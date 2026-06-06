@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#256a5f" />
+    <meta
+      name="description"
+      content="Where2Go shows nearby kid-friendly events on a simple daily map."
+    />
+    <title>Where2Go</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-label="Where2Go event map">
+      <header class="topbar">
+        <div>
+          <p class="label">Near 07059</p>
+          <h1>Where2Go</h1>
+        </div>
+        <p class="updated" id="updatedLabel">Loading</p>
+      </header>
+
+      <nav class="date-strip" id="dateStrip" aria-label="Choose a date"></nav>
+
+      <section class="map-section" aria-label="Events map for selected date">
+        <div class="map-surface" id="mapSurface"></div>
+      </section>
+
+      <section class="event-detail" id="eventDetail" aria-live="polite"></section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
