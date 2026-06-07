@@ -7,6 +7,7 @@ The current app is intentionally simple:
 - Choose a date from the top timeline.
 - See only that day's events on the map.
 - Tap a map pin to view the event time, place, description, and source link.
+- Use current location or a ZIP code to move the map.
 - No login, no private family data, no playdate features yet.
 
 ## Folder Structure

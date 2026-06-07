@@ -7,21 +7,29 @@ const USE_OSM_FALLBACK = window.Where2GoConfig?.useTemporaryOpenStreetMapFallbac
 const mapState = {
   map: null,
   markerLayer: null,
-  message: null
+  message: null,
+  locateButton: null,
+  zipForm: null,
+  zipInput: null,
+  zipButton: null,
+  userMarker: null,
+  searchMarker: null
 };
 
 const state = {
   events: [],
   dates: [],
   selectedDate: "",
-  selectedEventId: ""
+  selectedEventId: "",
+  mapFocus: "events"
 };
 
 const elements = {
   dateStrip: document.querySelector("#dateStrip"),
   mapSurface: document.querySelector("#mapSurface"),
   eventDetail: document.querySelector("#eventDetail"),
-  updatedLabel: document.querySelector("#updatedLabel")
+  updatedLabel: document.querySelector("#updatedLabel"),
+  locationLabel: document.querySelector("#locationLabel")
 };
 
 async function loadJson(path) {
@@ -190,6 +198,197 @@ function setMapMessage(title, body = "") {
   `;
 }
 
+function setLocationLabel(text) {
+  if (elements.locationLabel) {
+    elements.locationLabel.textContent = text;
+  }
+}
+
+function setControlLoading(kind, isLoading) {
+  if (kind === "locate" && mapState.locateButton) {
+    mapState.locateButton.disabled = isLoading;
+    mapState.locateButton.classList.toggle("is-loading", isLoading);
+    mapState.locateButton.setAttribute("aria-busy", String(isLoading));
+  }
+  if (kind === "zip") {
+    if (mapState.zipButton) {
+      mapState.zipButton.disabled = isLoading;
+      mapState.zipButton.textContent = isLoading ? "..." : "Go";
+    }
+    if (mapState.zipInput) {
+      mapState.zipInput.disabled = isLoading;
+    }
+  }
+}
+
+function addOrMoveCircleMarker(markerName, lat, lng, options) {
+  if (!mapState.map) {
+    return;
+  }
+  if (mapState[markerName]) {
+    mapState[markerName].setLatLng([lat, lng]);
+    return;
+  }
+  mapState[markerName] = L.circleMarker([lat, lng], options).addTo(mapState.map);
+}
+
+function moveMapToPoint({ lat, lng, zoom = 13, marker = "search", label = "" }) {
+  if (!mapState.map || !Number.isFinite(lat) || !Number.isFinite(lng)) {
+    return;
+  }
+  const markerOptions =
+    marker === "user"
+      ? { radius: 8, color: "#ffffff", weight: 3, fillColor: "#2f7de1", fillOpacity: 1 }
+      : { radius: 7, color: "#ffffff", weight: 3, fillColor: "#c58338", fillOpacity: 1 };
+  addOrMoveCircleMarker(marker === "user" ? "userMarker" : "searchMarker", lat, lng, markerOptions);
+  mapState.map.setView([lat, lng], zoom, { animate: true });
+  state.mapFocus = marker === "user" ? "user" : "zip";
+  if (label) {
+    setLocationLabel(label);
+  }
+  setMapMessage("");
+}
+
+function geolocationErrorMessage(error) {
+  if (error?.code === 1) {
+    return ["Location permission denied", "Enter a ZIP code instead."];
+  }
+  if (error?.code === 2) {
+    return ["Location unavailable", "Try again or enter a ZIP code."];
+  }
+  if (error?.code === 3) {
+    return ["Location timed out", "Try again or enter a ZIP code."];
+  }
+  return ["Could not get location", "Try again or enter a ZIP code."];
+}
+
+function locateUser() {
+  if (!navigator.geolocation) {
+    setMapMessage("Location is not supported", "Enter a ZIP code instead.");
+    return;
+  }
+  setControlLoading("locate", true);
+  setMapMessage("Finding your location", "Allow location access when prompted.");
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      setControlLoading("locate", false);
+      moveMapToPoint({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+        zoom: 13,
+        marker: "user",
+        label: "Near you"
+      });
+    },
+    (error) => {
+      setControlLoading("locate", false);
+      const [title, body] = geolocationErrorMessage(error);
+      setMapMessage(title, body);
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
+  );
+}
+
+function validZip(value) {
+  return /^\d{5}$/.test(value.trim());
+}
+
+async function geocodeZip(zip) {
+  if (!MAPTILER_KEY) {
+    throw new Error("ZIP search needs a MapTiler key.");
+  }
+  const params = new URLSearchParams({
+    key: MAPTILER_KEY,
+    country: "us",
+    types: "postal_code",
+    limit: "1",
+    language: "en"
+  });
+  const response = await fetch(`https://api.maptiler.com/geocoding/${encodeURIComponent(zip)}.json?${params.toString()}`);
+  if (!response.ok) {
+    throw new Error("ZIP lookup failed.");
+  }
+  const data = await response.json();
+  const feature = data.features?.[0];
+  const center = feature?.center || feature?.geometry?.coordinates;
+  if (!Array.isArray(center) || center.length < 2) {
+    throw new Error("ZIP code not found.");
+  }
+  return {
+    lat: Number(center[1]),
+    lng: Number(center[0]),
+    bbox: feature.bbox
+  };
+}
+
+function fitZipResult(zip, result) {
+  if (!mapState.map || !Number.isFinite(result.lat) || !Number.isFinite(result.lng)) {
+    setMapMessage("ZIP code not found", "Try another 5-digit ZIP code.");
+    return;
+  }
+  state.mapFocus = "zip";
+  addOrMoveCircleMarker("searchMarker", result.lat, result.lng, {
+    radius: 7,
+    color: "#ffffff",
+    weight: 3,
+    fillColor: "#c58338",
+    fillOpacity: 1
+  });
+
+  if (Array.isArray(result.bbox) && result.bbox.length === 4) {
+    const [west, south, east, north] = result.bbox.map(Number);
+    if ([west, south, east, north].every(Number.isFinite)) {
+      mapState.map.fitBounds(
+        [
+          [south, west],
+          [north, east]
+        ],
+        { padding: [54, 54], maxZoom: 13, animate: true }
+      );
+    } else {
+      mapState.map.setView([result.lat, result.lng], 12, { animate: true });
+    }
+  } else {
+    mapState.map.setView([result.lat, result.lng], 12, { animate: true });
+  }
+  setLocationLabel(`Near ${zip}`);
+  setMapMessage("");
+}
+
+async function handleZipSubmit(event) {
+  event.preventDefault();
+  const zip = mapState.zipInput?.value.trim() || "";
+  if (!validZip(zip)) {
+    setMapMessage("Enter a 5-digit ZIP code", "Example: 07059");
+    mapState.zipInput?.focus();
+    return;
+  }
+
+  setControlLoading("zip", true);
+  setMapMessage("Finding ZIP code", zip);
+  try {
+    const result = await geocodeZip(zip);
+    fitZipResult(zip, result);
+  } catch (error) {
+    setMapMessage(error.message || "ZIP lookup failed", "Try another ZIP code.");
+  } finally {
+    setControlLoading("zip", false);
+  }
+}
+
+function bindMapControls() {
+  mapState.locateButton = elements.mapSurface.querySelector("#locateButton");
+  mapState.zipForm = elements.mapSurface.querySelector("#zipForm");
+  mapState.zipInput = elements.mapSurface.querySelector("#zipInput");
+  mapState.zipButton = elements.mapSurface.querySelector("#zipButton");
+
+  mapState.locateButton?.addEventListener("click", locateUser);
+  mapState.zipForm?.addEventListener("submit", handleZipSubmit);
+  mapState.zipInput?.addEventListener("input", () => {
+    mapState.zipInput.value = mapState.zipInput.value.replace(/\D/g, "").slice(0, 5);
+  });
+}
+
 function addBaseLayer(map) {
   if (MAPTILER_KEY) {
     const layer = L.tileLayer(
@@ -229,9 +428,20 @@ function ensureMapShell() {
   }
   elements.mapSurface.innerHTML = `
     <div class="leaflet-map" id="leafletMap" aria-label="Interactive event map"></div>
+    <div class="map-controls" aria-label="Map location controls">
+      <button class="locate-button" id="locateButton" type="button" aria-label="Use my location" title="Use my location">
+        <span aria-hidden="true">⌖</span>
+      </button>
+      <form class="zip-form" id="zipForm" autocomplete="on">
+        <label class="sr-only" for="zipInput">ZIP code</label>
+        <input id="zipInput" name="postal-code" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]*" placeholder="ZIP" aria-label="ZIP code" />
+        <button id="zipButton" type="submit">Go</button>
+      </form>
+    </div>
     <div class="map-message" id="mapMessage" hidden></div>
   `;
   mapState.message = elements.mapSurface.querySelector("#mapMessage");
+  bindMapControls();
 }
 
 function initMap() {
@@ -245,11 +455,12 @@ function initMap() {
   }
 
   const map = L.map("leafletMap", {
-    zoomControl: true,
+    zoomControl: false,
     scrollWheelZoom: false,
     tap: true
   }).setView([HOME.lat, HOME.lng], 12);
 
+  L.control.zoom({ position: "bottomright" }).addTo(map);
   addBaseLayer(map);
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
@@ -283,13 +494,14 @@ function syncMarkers(dayEvents, active) {
       .addTo(mapState.markerLayer)
       .on("click", () => {
         state.selectedEventId = event.id;
+        state.mapFocus = "event";
         render();
       });
   });
 
   if (state.selectedEventId && active && hasCoordinates(active)) {
     mapState.map.panTo([active.lat, active.lng], { animate: true });
-  } else {
+  } else if (state.mapFocus === "events") {
     fitMapToEvents(points);
   }
 }
@@ -314,6 +526,9 @@ function renderDates() {
     button.addEventListener("click", () => {
       state.selectedDate = button.dataset.date;
       state.selectedEventId = "";
+      if (state.mapFocus === "event") {
+        state.mapFocus = "events";
+      }
       render();
     });
   });
