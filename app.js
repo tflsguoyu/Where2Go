@@ -1024,6 +1024,8 @@ function initMap() {
 
   const map = L.map("leafletMap", {
     zoomControl: false,
+    zoomSnap: 0.25,
+    zoomDelta: 0.5,
     scrollWheelZoom: false,
     tap: true
   });
@@ -1040,13 +1042,11 @@ function initMap() {
   return true;
 }
 
-function fitMapToGroups(groups) {
-  const points = groupsWithCoordinates(groups);
-  if (!mapState.map || !points.length) {
+function fitMapToEventArea() {
+  if (!mapState.map) {
     return;
   }
-  const bounds = L.latLngBounds(points.map((group) => [group.lat, group.lng]));
-  fitMapBounds(boundsWithMinimumRadius(bounds, HOME));
+  fitMapAroundPoint(distanceSortOrigin());
 }
 
 function syncMarkers(dayEvents, activeGroup) {
@@ -1071,7 +1071,7 @@ function syncMarkers(dayEvents, activeGroup) {
   if (state.selectedEventId && activeGroup && hasCoordinates(activeGroup)) {
     mapState.map.panTo([activeGroup.lat, activeGroup.lng], { animate: true });
   } else if (state.mapFocus === "events") {
-    fitMapToGroups(groups);
+    fitMapToEventArea();
   }
 }
 
