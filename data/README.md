@@ -72,6 +72,87 @@ provide the needed address, room, date, or time. Use image alt text, captions,
 visible flyer text, or OCR/manual review before deciding that the field is truly
 missing.
 
+## Source Crawl Runbook
+
+Use this section before re-investigating source pages. The durable source of
+truth remains `data/event-sources.json`; this runbook records the crawl path and
+known blockers so future refreshes do not need fresh discovery.
+
+### Parser Methods
+
+| Parser | Where used | Crawl method | Notes |
+| --- | --- | --- | --- |
+| `sclsnj-libnet` | Somerset County Library System shared source | Request `eventEndpoint` with `event_type=0` and a JSON `req` containing `date`, `days`, `private:false`, `locations:branchIds`, and encoded `ages:ageFilters`. Load `locationEndpoint` in parallel and fall back to `sharedSources.sclsnj-libnet.locations`. | Keep branch IDs and fallback coordinates in `event-sources.json`; do not rediscover branch addresses in code. |
+| `librarycalendar-list` | Plainfield, South Plainfield, Piscataway, New Providence libraries | Fetch `/events/list`, parse `lc-event--list` cards, keep child/family audiences, then enrich each detail page with JSON-LD for exact time, image, and room/location. | Skip closings. If list HTML changes, inspect card `aria-label` first. |
+| `libcal-list` | Berkeley Heights and Summit libraries | Call `{origin}/ajax/calendar/list` per date with `c`, `date`, `perpage=100`, `page`, and `audience` query params from the library config. | Calendar IDs and audience IDs are source config, not constants. Page through `total_results`. |
+| `localhop-calendar` | Bernards Township Library | Fetch `WidgetConfigCalendar/{calendarObjectId}` with `X-Parse-Application-Id`, derive organizations when not configured, then page `EventInstance` with Parse `where` on organization, date range, status, event type, and age group IDs. | Bernards currently uses organization `vs20XMKDTh` and age groups `t6CVlW0P9v`, `FCD8Alsg84`. |
+| `eventorganiser-fullcal` | Long Hill Township Library | Call WordPress AJAX `admin-ajax.php?action=eventorganiser-fullcal&start=YYYY-MM-DD&end=YYYY-MM-DD&timeformat=g:i a&users_events=false`, plus category slugs. | Current slugs are `kids` and `teens`. |
+| `joomla-event-booking-calendar` | Mountainside Public Library | Fetch the youth calendar page, parse `eb_event_link` anchors and tooltip text for title/date/time, then open detail pages for `eb-description-details` summaries. | Calendar tooltip is the canonical date source. |
+| `configured-library-events` | Middlesex Public Library | Use manually transcribed official flyer data in `configuredEvents`; expand explicit dates and weekly/monthly recurrence. | Use only when source publishes flyer images or static program grids without a stable event feed. |
+| `configured-dated-workshops` | Lowe's, Michaels, arboretums, museums, nature centers, arts venues | Use dated `workshops[]` and `locations[]` from source config. | Refresh by checking the official program page and editing config, then run importer. |
+| `configured-recurring-workshops` | Home Depot Kids Workshops | Expand recurrence from source config across nearby locations. | Keep title/time/summary in source config. |
+| `civicplus-calendar` | Warren, Berkeley Heights, New Providence, Summit municipal calendars | For every configured `calendarIds[]` and every month in the import window, fetch `calendar.aspx?view=list&month=M&year=YYYY&CID=ID`. Parse `eventTitle_` list items, microdata dates/addresses, then open detail pages for summary and image. | Keep venue aliases in `municipal.locationOverrides`. Filter with `MUNICIPAL_COMMUNITY_EVENT_PATTERN` and `MUNICIPAL_SKIP_TITLE_PATTERN`. |
+| `joomla-dpcalendar-raw` | Bernards municipal calendar | Call the DPCalendar raw endpoint with `option=com_dpcalendar&view=events&format=raw&limit=0`, optional `Itemid`, `start`, and `end`. Map `data.events`, tooltip calendar label, summary, and location. | Bernards current raw URL is stored in `municipal.rawEventsUrl`; do not scrape rendered calendar HTML. |
+| `squarespace-calendar-list` | Middlesex municipal calendar | Fetch calendar page, read the `<noscript>` event list, split by event `<li><h1>`, parse title link, date range, image, and nested location list. | Do not stop at inner location `</ul>`. Community events can include "Committee Presents"; skip only explicit meetings/notices. |
+| `nj-carnivals-jsonld-list` | NJ Carnivals shared source | Fetch paginated listing pages, parse structured Event JSON-LD inside listing sections, expand multi-day ranges, then open detail pages for per-date hours and better summary. | Use `locationOverrides` for noisy fair locations and intersection-based events. |
+
+### Current Municipal Links
+
+| Town | Link | Status | Next crawl path |
+| --- | --- | --- | --- |
+| Green Brook | `https://www.greenbrooktwp.org/` | `manual_review` | JavaScript/challenge-like official site; check news and recreation flyers manually before writing a parser. |
+| Warren | `https://www.warrennj.org/calendar.aspx` | `importable` | `civicplus-calendar`, CIDs `14`, `23`. Annual recreation PDF remains manual. |
+| Dunellen | `https://www.dunellen-nj.gov/` | `manual_review` | No stable municipal event feed found yet; check official news/recreation pages. |
+| North Plainfield | `https://northplainfieldnj.gov/` | `manual_review` | Homepage exposes borough calendar/news snippets; likely needs site-specific parser plus recreation portal check. |
+| Middlesex | `https://www.middlesexboro-nj.gov/calendar` | `importable` | `squarespace-calendar-list`; read static `<noscript>` list and filter meetings. |
+| Watchung | `https://watchungnj.gov/recreation-dates` | `manual_review` | Direct fetch returns challenge/sparse content; manual recreation-date review or browser-backed parser. |
+| Plainfield | `https://plainfieldsid.org/events-calendar` | `manual_review` | Strong public events source but GoDaddy/JS rendered; needs browser/JS parser. |
+| Bound Brook | `https://boundbrook-nj.org/calendar/` | `manual_review` | All-in-One Event Calendar page; good candidate for an `ai1ec` parser. |
+| Long Hill | `https://www.longhillnj.gov/calendar` | `manual_review` | Angular/fullcalendar style site; inspect network/API route before scraping. |
+| South Bound Brook | `https://sbbnj.com/events/` | `manual_review` | Needs source-specific event page check; library coverage is via SCLSNJ. |
+| South Plainfield | `https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/` | `manual_review` | Old Zumu-style calendar is sparse; recreation/program PDF parser may be more useful. |
+| Berkeley Heights | `https://berkeleyheights.gov/calendar.aspx` | `importable` | `civicplus-calendar`, CIDs `43`, `52`, `59`, `32`; many venues need `locationOverrides`. |
+| Piscataway | `https://drupalpway.piscatawaynj.org/calendar` | `manual_review` | Current URL is stale/TLS fragile; confirm official source before parser work. |
+| Bernards | `https://www.bernards.org/resident-calendar` | `importable` | `joomla-dpcalendar-raw`, `Itemid=965`, raw endpoint in source config. |
+| Fanwood | `https://fanwoodnj.org/calendar/` | `manual_review` | Avada/Cloudflare-style blocking seen; likely browser-backed or manual. |
+| Scotch Plains | `https://scotchplainsnj.gov/index.php/events` | `manual_review` | TLS/static flyer issues; needs source-specific parser or manual flyer extraction. |
+| Bridgewater | `https://www.bridgewaternj.gov/township-information/calendar` | `manual_review` | Official calendar source needs separate review; library is covered by SCLSNJ. |
+| New Providence | `https://www.newprov.us/calendar.aspx` | `importable` | `civicplus-calendar`, CID `25`; meetings/garbage/recycling calendars intentionally excluded. |
+| Somerville | `https://www.somervillenj.org/calendar/` | `manual_review` | WordPress calendar currently showed office/notice items; find family/community source first. |
+| Mountainside | `https://www.mountainside-nj.com/` | `manual_review` | No stable dated municipal event feed found yet; library parser is separate. |
+| Summit | `https://www.cityofsummit.org/Calendar.aspx` | `importable` | `civicplus-calendar`, CIDs `28`, `41`; enrich detail pages for summaries/images. |
+
+### Current Library Links
+
+| Source | Link | Status | Crawl path |
+| --- | --- | --- | --- |
+| SCLSNJ branches: Bridgewater, North Plainfield, Somerville, Warren, Watchung | `https://sclsnj.libnet.info/events` | `importable` | Shared `sclsnj-libnet` endpoint with branch IDs `471`, `475`, `477`, `478`, `479`. |
+| Plainfield Public Library | `https://plainfieldnj.librarycalendar.com/events/list` | `importable` | `librarycalendar-list`. |
+| South Plainfield Public Library | `https://southplainfield.librarycalendar.com/events/list` | `importable` | `librarycalendar-list`. |
+| Piscataway Public Library | `https://piscataway.librarycalendar.com/events/list` | `importable` | `librarycalendar-list`. |
+| New Providence Memorial Library | `https://newprovidence.librarycalendar.com/events/list` | `importable` | `librarycalendar-list`. |
+| Berkeley Heights Public Library | `https://bhplnj.libcal.com/calendar` | `importable` | `libcal-list`, calendar `21879`, child/family audience IDs in source config. |
+| Summit Free Public Library | `https://summitlibrary.libcal.com/calendar` | `importable` | `libcal-list`, calendar `12857`, audience IDs `320`, `795`, `397`. |
+| Bernards Township Library | `https://bernardslibrary.org/event-calendar/` | `importable` | `localhop-calendar`; use LocalHop Parse API, not rendered HTML. |
+| Long Hill Township Library | `https://longhilllibrary.org/events-calendar/` | `importable` | `eventorganiser-fullcal`, categories `kids`, `teens`. |
+| Mountainside Public Library | `https://mountainsidelibrary.org/programs/youth-calendar` | `importable` | `joomla-event-booking-calendar`. |
+| Middlesex Public Library | `https://www.middlesexlibrarynj.org/kids/` | `importable` | `configured-library-events` from official flyer/program data. |
+| Dunellen Public Library | `https://dunellenlibrary.events.mylibrary.digital/` | `blocked_by_bot_protection` | mylibrary.digital exposes indexed pages but direct fetch gets Cloudflare challenge; use browser-backed import or manual. |
+| Fanwood Memorial Library | `https://fanwoodlibrary.events.mylibrary.digital/` | `blocked_by_bot_protection` | Same mylibrary.digital Cloudflare blocker. |
+| Scotch Plains Public Library | `https://scotlib.events.mylibrary.digital/` | `blocked_by_bot_protection` | Same mylibrary.digital Cloudflare blocker. |
+
+### Regional Links
+
+Configured regional sources are intentionally data-driven. Do not write a new
+parser unless the source exposes a stable feed.
+
+| Source group | Crawl path |
+| --- | --- |
+| Home Depot Kids Workshops | `configured-recurring-workshops`; update recurrence and nearby `locations[]` when the official workshop cadence changes. |
+| Lowe's, Michaels, Reeves-Reed, Trailside, Somerset EEC, Raptor Trust, Wallace House, Visual Arts Center | `configured-dated-workshops`; update dated `workshops[]` from official pages and keep coordinates in `locations[]`. |
+| Bridgewater Commons, The Mall at Short Hills | Direct fetch is blocked by bot protection; use manual review or browser-backed parser. |
+| Other manual regional venues | Keep as `manual_review` until a stable booking/calendar feed is found. |
+
 Refresh the source-driven event file:
 
 ```bash

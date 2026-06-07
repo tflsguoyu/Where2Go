@@ -7,6 +7,9 @@ const SOURCES_FILE = new URL("../data/event-sources.json", import.meta.url);
 const EVENTS_FILE = new URL("../data/events.json", import.meta.url);
 const DAY_MS = 24 * 60 * 60 * 1000;
 const GEOCODE_DELAY_MS = 1100;
+const LOCALHOP_API_URL = "https://api.getlocalhop.com/1";
+const LOCALHOP_PARSE_APP_ID = "zesqKJEzK7ncFXe57x4uWc4Moow3I2wGCq7zFcqI";
+const LOCALHOP_PAGE_LIMIT = 500;
 
 const AGE_ORDER = ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"];
 const IMPORT_QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
@@ -21,6 +24,10 @@ const CONTACT_DETAILS_SENTENCE_PATTERN = /\bplease contact\b[^.!?]*\bdetails?\b[
 const GENERIC_SUMMARY_PATTERN =
   /\b(?:open|see|visit|check)\s+(?:the\s+)?source page\b|\bfor updates?\b|\bcurrent availability\b/i;
 const QUALITY_REPORT_SAMPLE_LIMIT = 8;
+const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
+  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|tree lighting|unity day|watch part(?:y|ies)|world cup|yoga)\b/i;
+const MUNICIPAL_SKIP_TITLE_PATTERN =
+  /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|stormwater|township committee|wine tasting|zoning board)\b/i;
 const MONTHS = new Map([
   ["january", "01"],
   ["february", "02"],
@@ -58,8 +65,18 @@ function todayInNewYork() {
 function decodeEntities(value) {
   return String(value ?? "")
     .replace(/&nbsp;/g, " ")
+    .replace(/&thinsp;/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/&quot;/g, '"')
+    .replace(/&ldquo;/g, '"')
+    .replace(/&rdquo;/g, '"')
+    .replace(/&lsquo;/g, "'")
+    .replace(/&rsquo;/g, "'")
+    .replace(/&ndash;/g, "-")
+    .replace(/&mdash;/g, "-")
+    .replace(/&hellip;/g, "...")
+    .replace(/&eacute;/g, "e")
+    .replace(/&Eacute;/g, "E")
     .replace(/&#039;/g, "'")
     .replace(/&#39;/g, "'")
     .replace(/&apos;/g, "'")
@@ -349,11 +366,12 @@ async function readJson(url, fallback) {
   }
 }
 
-async function fetchJson(url) {
+async function fetchJson(url, extraHeaders = {}) {
   const response = await fetch(url, {
     headers: {
       accept: "application/json,text/plain,*/*",
-      "user-agent": "Where2Go data importer"
+      "user-agent": "Where2Go data importer",
+      ...extraHeaders
     }
   });
   if (!response.ok) {
@@ -1308,6 +1326,295 @@ function parseNjCarnivalsListings(html, source, sources, startDate, days) {
   return events;
 }
 
+function allLocalHopSources(sources) {
+  return sources.towns.flatMap((town) =>
+    (town.libraries ?? [])
+      .filter((library) => library.status === "importable" && library.parser === "localhop-calendar")
+      .map((library) => ({ town, library }))
+  );
+}
+
+function localHopHeaders() {
+  return { "X-Parse-Application-Id": LOCALHOP_PARSE_APP_ID };
+}
+
+function localHopPointer(className, objectId) {
+  return { __type: "Pointer", className, objectId };
+}
+
+function localHopWallIso(value) {
+  const raw = String(value ?? "").trim();
+  if (!raw) {
+    return null;
+  }
+  const match = raw.match(/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})(?::(\d{2}))?(?:\.\d+)?Z?$/);
+  if (match) {
+    return `${match[1]}T${match[2]}:${match[3] || "00"}`;
+  }
+  return localIso(raw.replace(/\.\d+Z$/, "").replace(/Z$/, ""));
+}
+
+function localHopDateBoundary(dateKey, time) {
+  return `${dateKey}T${time}.000Z`;
+}
+
+function localHopAddress(address) {
+  if (typeof address === "string") {
+    return cleanAddress(address);
+  }
+  const regionPostal = [address?.state, address?.postalCode].filter(Boolean).join(" ");
+  return [address?.address1, address?.address2, address?.city, regionPostal]
+    .filter(Boolean)
+    .map((part) => stripHtml(part))
+    .join(", ");
+}
+
+function localHopCoordinates(...items) {
+  for (const item of items) {
+    const point = item?.addressLatLng || item;
+    const lat = Number(point?.latitude ?? point?.lat);
+    const lng = Number(point?.longitude ?? point?.lng);
+    if (Number.isFinite(lat) && Number.isFinite(lng) && lat !== 0 && lng !== 0) {
+      return { lat, lng };
+    }
+  }
+  return null;
+}
+
+function localHopFileUrl(file) {
+  return file?.secureUrl || file?.url || null;
+}
+
+function localHopOrganizationAgeGroupIds(instance) {
+  return [instance.organizationAgeGroups, instance.event?.organizationAgeGroups]
+    .flatMap((groups) => (Array.isArray(groups) ? groups : []))
+    .map((group) => group?.objectId)
+    .filter(Boolean);
+}
+
+function localHopAudienceLabels(instance) {
+  const labels = [];
+  [instance.organizationAgeGroups, instance.event?.organizationAgeGroups]
+    .flatMap((groups) => (Array.isArray(groups) ? groups : []))
+    .forEach((group) => {
+      if (group?.name) {
+        labels.push(group.name);
+      }
+      (group?.ageGroups || []).forEach((ageGroup) => {
+        if (ageGroup?.name) {
+          labels.push(ageGroup.name);
+        }
+      });
+    });
+  return [...new Set(labels.map(stripHtml).filter(Boolean))];
+}
+
+function localHopMatchesAgeGroups(source, instance, title) {
+  const allowedIds = new Set(source.library.ageGroupIds || []);
+  const audiences = localHopAudienceLabels(instance);
+  if (!allowedIds.size) {
+    return hasChildAudience(audiences, title);
+  }
+  const ids = localHopOrganizationAgeGroupIds(instance);
+  return ids.some((id) => allowedIds.has(id)) || (!ids.length && hasChildAudience(audiences, title));
+}
+
+function localHopRegistrationLabel(event) {
+  const ticketingConfig = event?.ticketingConfig || {};
+  if (ticketingConfig.url || Number(ticketingConfig.type || 0) > 0 || (ticketingConfig.ticketTypes || []).length) {
+    return "RSVP";
+  }
+  return "See source";
+}
+
+function localHopSourceId(source) {
+  const host = new URL(source.library.eventsUrl || source.library.website).host;
+  return `localhop-${slugify(source.library.siteId || host)}`;
+}
+
+function localHopEventUrl(source, instance) {
+  const event = instance.event || {};
+  const registrationUrl = event.ticketingConfig?.url || "";
+  if (registrationUrl) {
+    return registrationUrl;
+  }
+  if (event.objectId && instance.objectId && source.library.eventsUrl) {
+    return `${source.library.eventsUrl.replace(/\/?$/, "/")}#/events/${event.objectId}/instances/${instance.objectId}/`;
+  }
+  if (event.slug && event.objectId) {
+    return `https://events.getlocalhop.com/${event.slug}/event/${event.objectId}/`;
+  }
+  return source.library.eventsUrl || source.library.website;
+}
+
+async function fetchLocalHopCalendarConfig(library) {
+  if (!library.calendarObjectId) {
+    return null;
+  }
+  const url = new URL(`${LOCALHOP_API_URL}/classes/WidgetConfigCalendar/${library.calendarObjectId}`);
+  url.searchParams.set("include", "calendarOrganizations,calendarEventCategories,selectedCalendarAgeGroups");
+  return fetchJson(url.toString(), localHopHeaders());
+}
+
+function localHopOrganizationIds(source, config) {
+  const configured = source.library.organizationIds || [];
+  if (configured.length) {
+    return configured;
+  }
+  const calendarOrganizations = config?.calendarOrganizations || [];
+  const configOrganizationId = config?.organization?.objectId;
+  return [...new Set([...calendarOrganizations.map((organization) => organization.objectId), configOrganizationId].filter(Boolean))];
+}
+
+function localHopEventTypes(source, config) {
+  return source.library.eventTypes || config?.calendarEventTypes || [];
+}
+
+function buildLocalHopInstancesUrl(source, config, organizationIds, startDate, days, skip) {
+  const endDate = addDateDays(startDate, Math.max(0, days - 1));
+  const where = {
+    organization: {
+      $in: organizationIds.map((objectId) => localHopPointer("Organization", objectId))
+    },
+    standardStartDate: {
+      $gte: { __type: "Date", iso: localHopDateBoundary(startDate, "00:00:00") },
+      $lte: { __type: "Date", iso: localHopDateBoundary(endDate, "23:59:59") }
+    },
+    myCalendarOnly: { $ne: true },
+    status: { $in: ["publish"] }
+  };
+  const eventTypes = localHopEventTypes(source, config);
+  if (eventTypes.length) {
+    where.type = { $in: eventTypes };
+  }
+  if (source.library.ageGroupIds?.length) {
+    where.organizationAgeGroups = {
+      $in: source.library.ageGroupIds.map((objectId) => localHopPointer("OrganizationAgeGroup", objectId))
+    };
+  }
+
+  const url = new URL(`${LOCALHOP_API_URL}/classes/EventInstance`);
+  url.searchParams.set("order", "standardStartDate");
+  url.searchParams.set("skip", String(skip));
+  url.searchParams.set("limit", String(LOCALHOP_PAGE_LIMIT));
+  url.searchParams.set(
+    "include",
+    [
+      "event",
+      "event.eventCategories",
+      "event.ticketingConfig",
+      "event.ticketingConfig.ticketTypes",
+      "event.organizationAgeGroups",
+      "event.organizationAgeGroups.ageGroups",
+      "organizationAgeGroups",
+      "organization"
+    ].join(",")
+  );
+  url.searchParams.set("where", JSON.stringify(where));
+  return url.toString();
+}
+
+function mapLocalHopEvent(source, instance, orgById) {
+  const rawEvent = instance.event || {};
+  const title = stripHtml(rawEvent.name || instance.name || "");
+  const summary = cleanImportedSummary(rawEvent.description || instance.description || "");
+  if (!title || isClosureOrNonEvent(title, summary) || !localHopMatchesAgeGroups(source, instance, title)) {
+    return null;
+  }
+
+  const startsAt = localHopWallIso(instance.standardStartDate?.iso);
+  const endsAt = localHopWallIso(instance.standardEndDate?.iso);
+  const sourceUrl = localHopEventUrl(source, instance);
+  if (!startsAt || !sourceUrl) {
+    return null;
+  }
+
+  const organization = instance.organization || orgById.get(rawEvent.organization?.objectId) || {};
+  const addressObject = rawEvent.address || organization.address || {};
+  const address = cleanAddress(localHopAddress(addressObject) || localHopAddress(organization.address) || source.library.address || "");
+  const coordinates =
+    localHopCoordinates(rawEvent.addressLatLng, instance.addressLatLng, organization.addressLatLng, source.library) || {};
+  const venueName = stripHtml(addressObject.place || organization.address?.place || organization.name || source.library.name);
+  const room = stripHtml(addressObject.room || "");
+  const categories = normalizeLabelList(rawEvent.eventCategories ?? instance.eventCategories ?? []);
+  const audiences = localHopAudienceLabels(instance);
+  const allDay = instance.allDay === true || rawEvent.allDay === true;
+  const cancelled = /cancel/i.test(`${instance.statusReason || ""} ${rawEvent.statusReason || ""}`);
+
+  const event = {
+    id: `${localHopSourceId(source)}-${instance.objectId}`,
+    externalId: String(instance.objectId),
+    sourceId: localHopSourceId(source),
+    townId: source.library.townId || source.town.id,
+    title,
+    venue: [venueName, room].filter(Boolean).join(" · "),
+    venueName,
+    room: room || null,
+    category: "library",
+    source: source.library.name,
+    startsAt,
+    endsAt,
+    timezone: rawEvent.timezone || instance.timezone || TIMEZONE,
+    durationMinutes: startsAt && endsAt && !allDay ? durationMinutes(startsAt, endsAt) : null,
+    timeLabel: allDay ? "All day" : undefined,
+    ages: inferAgeBandsFromText(title, summary, audiences.join(" "), categories.join(" ")),
+    audiences,
+    cost: categories.some((category) => /free/i.test(category)) ? 0 : null,
+    registration: localHopRegistrationLabel(rawEvent),
+    summary,
+    url: sourceUrl,
+    sourceUrl,
+    sourceCalendarUrl: source.library.eventsUrl,
+    address: address || null,
+    lat: coordinates.lat ?? libraryLat(source),
+    lng: coordinates.lng ?? libraryLng(source),
+    image: localHopFileUrl(rawEvent.photo),
+    tags: categories,
+    status: cancelled ? "review" : "published",
+    confidence: coordinates.lat && coordinates.lng ? 0.9 : 0.82
+  };
+
+  if (rawEvent.virtual || instance.virtual || eventLooksOnline(event)) {
+    markOnlineEvent(event);
+  }
+  return event;
+}
+
+async function importLocalHopEvents(sources, startDate, days) {
+  const imported = [];
+
+  for (const source of allLocalHopSources(sources)) {
+    try {
+      const config = await fetchLocalHopCalendarConfig(source.library);
+      const organizationIds = localHopOrganizationIds(source, config);
+      if (!organizationIds.length) {
+        console.warn(`warning: could not import ${source.library.eventsUrl}: missing LocalHop organization ids`);
+        continue;
+      }
+
+      const orgById = new Map((config?.calendarOrganizations || []).map((organization) => [organization.objectId, organization]));
+      for (let skip = 0; ; skip += LOCALHOP_PAGE_LIMIT) {
+        const data = await fetchJson(
+          buildLocalHopInstancesUrl(source, config, organizationIds, startDate, days, skip),
+          localHopHeaders()
+        );
+        const results = Array.isArray(data.results) ? data.results : [];
+        results
+          .map((instance) => mapLocalHopEvent(source, instance, orgById))
+          .filter(Boolean)
+          .forEach((event) => imported.push(event));
+        if (results.length < LOCALHOP_PAGE_LIMIT) {
+          break;
+        }
+      }
+    } catch (error) {
+      console.warn(`warning: could not import ${source.library.eventsUrl}: ${error.message}`);
+    }
+  }
+
+  return [...new Map(imported.filter((event) => event.startsAt && event.sourceUrl).map((event) => [event.id, event])).values()];
+}
+
 function parseLibraryCalendarCards(html, baseUrl, source) {
   const cards = html.split('<div class="lc-event lc-event--list"').slice(1);
   const events = [];
@@ -1766,16 +2073,109 @@ const WEEKDAY_INDEX = new Map([
 ]);
 
 function recurrenceMatches(dateKey, recurrence) {
+  const date = new Date(`${dateKey}T12:00:00Z`);
+  if (recurrence?.frequency === "weekly") {
+    const weekdays = (recurrence.weekdays || [recurrence.weekday])
+      .map((weekday) => WEEKDAY_INDEX.get(String(weekday || "").toLowerCase()))
+      .filter((weekday) => weekday !== undefined);
+    return weekdays.includes(date.getUTCDay());
+  }
   if (recurrence?.frequency !== "monthly") {
     return false;
   }
-  const date = new Date(`${dateKey}T12:00:00Z`);
   const weekday = WEEKDAY_INDEX.get(String(recurrence.weekday || "").toLowerCase());
   if (weekday === undefined || date.getUTCDay() !== weekday) {
     return false;
   }
   const dayOfMonth = Number(dateKey.slice(8, 10));
   return Math.floor((dayOfMonth - 1) / 7) + 1 === Number(recurrence.ordinal || 1);
+}
+
+function allConfiguredLibraryEventSources(sources) {
+  return sources.towns.flatMap((town) =>
+    (town.libraries ?? [])
+      .filter((library) => library.status === "importable" && library.parser === "configured-library-events")
+      .map((library) => ({ town, library }))
+  );
+}
+
+function configuredEventDates(config, startDate, days) {
+  const windowEndDate = addDateDays(startDate, Math.max(0, days - 1));
+  const explicitDates = config.dates || (config.date ? [config.date] : []);
+  if (explicitDates.length) {
+    return explicitDates.filter((dateKey) => isDateWithinWindow(dateKey, startDate, days));
+  }
+  const recurrence = config.recurrence;
+  if (!recurrence) {
+    return [];
+  }
+  const rangeStart = recurrence.startDate && dateStamp(recurrence.startDate) > dateStamp(startDate) ? recurrence.startDate : startDate;
+  const rangeEnd =
+    recurrence.endDate && dateStamp(recurrence.endDate) < dateStamp(windowEndDate) ? recurrence.endDate : windowEndDate;
+  return datesInRange(rangeStart, rangeEnd).filter((dateKey) => recurrenceMatches(dateKey, recurrence));
+}
+
+function configuredLibraryEvent(source, config, dateKey) {
+  const title = stripHtml(config.title);
+  const sourceUrl = config.url || source.library.eventsUrl || source.library.website;
+  const startsAt = config.startTime ? localDateTime(dateKey, config.startTime) : null;
+  const endsAt = config.endTime ? localDateTime(dateKey, config.endTime) : null;
+  const summary = cleanImportedSummary(config.summary || "");
+  if (!title || !sourceUrl || !startsAt) {
+    return null;
+  }
+
+  const event = {
+    id: `configured-library-${slugify(source.library.name)}-${dateKey}-${slugify(title)}`,
+    externalId: `${dateKey}-${slugify(title)}`,
+    sourceId: `configured-library-${slugify(source.library.name)}`,
+    townId: source.library.townId || source.town.id,
+    title,
+    venue: config.venue || source.library.name,
+    venueName: config.venueName || config.venue || source.library.name,
+    room: config.room || null,
+    category: "library",
+    source: source.library.name,
+    startsAt,
+    endsAt,
+    timezone: TIMEZONE,
+    durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : null,
+    ages: config.ages || inferAgeBandsFromText(title, summary, (config.audiences || []).join(" ")),
+    audiences: config.audiences || [],
+    cost: config.cost ?? null,
+    registration: config.registration || "See source",
+    summary,
+    url: sourceUrl,
+    sourceUrl,
+    sourceCalendarUrl: source.library.eventsUrl,
+    address: source.library.address || null,
+    lat: libraryLat(source),
+    lng: libraryLng(source),
+    image: config.image || null,
+    tags: config.tags || [],
+    status: "published",
+    confidence: 0.72
+  };
+
+  if (config.virtual || eventLooksOnline(event)) {
+    markOnlineEvent(event);
+  }
+  return event;
+}
+
+function importConfiguredLibraryEvents(sources, startDate, days) {
+  const imported = [];
+  allConfiguredLibraryEventSources(sources).forEach((source) => {
+    (source.library.configuredEvents || []).forEach((config) => {
+      configuredEventDates(config, startDate, days).forEach((dateKey) => {
+        const event = configuredLibraryEvent(source, config, dateKey);
+        if (event) {
+          imported.push(event);
+        }
+      });
+    });
+  });
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
 }
 
 function configuredWorkshopEvent(source, location, workshop, dateKey) {
@@ -1847,6 +2247,563 @@ function importConfiguredWorkshopEvents(sources, startDate, days) {
   return imported.filter((event) => event.startsAt && event.sourceUrl);
 }
 
+function allMunicipalParserSources(sources, parser) {
+  return (sources.towns ?? [])
+    .filter((town) => town.municipal?.status === "importable" && town.municipal?.parser === parser)
+    .map((town) => ({ town, municipal: town.municipal }));
+}
+
+function municipalSourceLabel(source) {
+  return source.municipal.label || `${source.town.name} municipal calendar`;
+}
+
+function municipalSourceId(source, parser) {
+  return `${parser}-${source.town.id}`;
+}
+
+function monthsInWindow(startDate, days) {
+  const months = [];
+  const endDate = addDateDays(startDate, Math.max(0, days - 1));
+  let cursor = new Date(`${startDate.slice(0, 7)}-01T00:00:00Z`);
+  const end = new Date(`${endDate.slice(0, 7)}-01T00:00:00Z`);
+
+  while (cursor <= end) {
+    months.push({ year: cursor.getUTCFullYear(), month: cursor.getUTCMonth() + 1 });
+    cursor = new Date(Date.UTC(cursor.getUTCFullYear(), cursor.getUTCMonth() + 1, 1));
+  }
+  return months;
+}
+
+function eventStartsWithinWindow(startsAt, startDate, days) {
+  return Boolean(startsAt) && isDateWithinWindow(String(startsAt).slice(0, 10), startDate, days);
+}
+
+function isImportableMunicipalEvent(title, summary = "", calendar = "") {
+  if (!title || MUNICIPAL_SKIP_TITLE_PATTERN.test(title)) {
+    return false;
+  }
+  return MUNICIPAL_COMMUNITY_EVENT_PATTERN.test(`${title} ${summary} ${calendar}`);
+}
+
+function findMunicipalLocationOverride(source, venueName, address, ...textParts) {
+  const direct = findSourceLocationOverride(source.municipal, venueName, address);
+  if (direct) {
+    return direct;
+  }
+
+  const searchText = normalizePlaceName([venueName, address, ...textParts].filter(Boolean).join(" "));
+  if (!searchText) {
+    return null;
+  }
+  return (source.municipal.locationOverrides || []).find((location) => {
+    const names = [location.name, ...(location.aliases || [])].map(normalizePlaceName).filter(Boolean);
+    return names.some((name) => name && searchText.includes(name));
+  });
+}
+
+function municipalVenueDetails(source, { title, summary, venueName, address }) {
+  const location = findMunicipalLocationOverride(source, venueName, address, title, summary);
+  const coordinates = locationCoordinates(location);
+  const resolvedAddress = cleanAddress(location?.address || address || source.municipal.defaultAddress || "");
+  const townAddressOnly =
+    resolvedAddress &&
+    !/\b\d+\s+[A-Za-z]/.test(resolvedAddress) &&
+    normalizePlaceName(resolvedAddress).includes(normalizePlaceName(source.town.name));
+  const fallbackToTownCenter = (!resolvedAddress && !coordinates) || (!coordinates && townAddressOnly);
+  const resolvedVenue =
+    location?.name || venueName || source.municipal.defaultVenueName || `${source.town.name} municipal event`;
+
+  return {
+    venueName: resolvedVenue,
+    address: resolvedAddress || null,
+    lat: coordinates?.lat ?? (fallbackToTownCenter ? numericCoordinate(source.town.center?.lat) : undefined),
+    lng: coordinates?.lng ?? (fallbackToTownCenter ? numericCoordinate(source.town.center?.lng) : undefined),
+    confidence: coordinates ? 0.9 : resolvedAddress ? 0.84 : 0.72
+  };
+}
+
+function civicPlusCalendarIds(source) {
+  const configured = source.municipal.calendarIds || [];
+  if (configured.length > 0) {
+    return configured.map(String);
+  }
+  try {
+    const cid = new URL(source.municipal.eventsUrl || source.municipal.website).searchParams.get("CID");
+    return cid ? cid.split(",").map((value) => value.trim()).filter(Boolean) : [null];
+  } catch {
+    return [null];
+  }
+}
+
+function civicPlusCalendarListUrl(source, calendarId, year, month) {
+  const url = new URL(source.municipal.eventsUrl || source.municipal.website);
+  url.searchParams.set("view", "list");
+  url.searchParams.set("month", String(month));
+  url.searchParams.set("year", String(year));
+  if (calendarId) {
+    url.searchParams.set("CID", String(calendarId));
+  }
+  return url.toString();
+}
+
+function timeToLocalIso(dateKey, hourRaw, minuteRaw, meridiemRaw) {
+  let hour = Number(hourRaw);
+  const meridiem = String(meridiemRaw || "").toLowerCase();
+  if (meridiem === "pm" && hour !== 12) {
+    hour += 12;
+  }
+  if (meridiem === "am" && hour === 12) {
+    hour = 0;
+  }
+  return `${dateKey}T${String(hour).padStart(2, "0")}:${String(minuteRaw || "00").padStart(2, "0")}:00`;
+}
+
+function parseCivicPlusStartFromDateText(dateText) {
+  const text = collapseWhitespace(dateText);
+  const match = text.match(
+    /\b([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})(?:,\s+(\d{1,2})(?::(\d{2}))?\s*(AM|PM))?/i
+  );
+  if (!match) {
+    return null;
+  }
+  const [, monthName, day, year, hour = "12", minute = "00", meridiem = "PM"] = match;
+  const month = MONTHS.get(monthName.toLowerCase());
+  if (!month) {
+    return null;
+  }
+  const dateKey = `${year}-${month}-${String(day).padStart(2, "0")}`;
+  if (/all day/i.test(text)) {
+    return `${dateKey}T12:00:00`;
+  }
+  return timeToLocalIso(dateKey, hour, minute, meridiem);
+}
+
+function civicPlusEndFromDateText(dateText, startsAt, hiddenEnd) {
+  const normalizedEnd = hiddenEnd ? localIso(hiddenEnd) : null;
+  if (normalizedEnd && normalizedEnd !== startsAt) {
+    return normalizedEnd;
+  }
+  if (!startsAt || /all day/i.test(dateText)) {
+    return null;
+  }
+  const range = collapseWhitespace(dateText).match(
+    /(\d{1,2})(?::(\d{2}))?\s*(AM|PM)\s*(?:-|–|—|to)\s*(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i
+  );
+  if (!range) {
+    return null;
+  }
+  const [, , , , endHour, endMinute = "00", endMeridiem] = range;
+  return timeToLocalIso(startsAt.slice(0, 10), endHour, endMinute, endMeridiem);
+}
+
+function civicPlusItempropText(section, prop) {
+  return stripHtml(
+    firstMatch(section, new RegExp(`<[^>]+itemprop=["']${prop}["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`, "i"))
+  );
+}
+
+function civicPlusPostalAddress(block, venueName) {
+  const address = addressFromPostalAddress({
+    streetAddress: civicPlusItempropText(block, "streetAddress"),
+    addressLocality: civicPlusItempropText(block, "addressLocality"),
+    addressRegion: civicPlusItempropText(block, "addressRegion"),
+    postalCode: civicPlusItempropText(block, "postalCode"),
+    addressCountry: civicPlusItempropText(block, "addressCountry")
+  });
+  if (!address) {
+    return "";
+  }
+  if (!civicPlusItempropText(block, "streetAddress") && venueName) {
+    return cleanAddress(`${venueName}, ${address}`);
+  }
+  return cleanAddress(address);
+}
+
+function civicPlusMunicipalCategory(title, summary, calendar) {
+  const text = `${title} ${summary} ${calendar}`.toLowerCase();
+  if (/fair|festival|juneteenth|pride|street fair/.test(text)) {
+    return "festival";
+  }
+  if (/farmers? market|free market|market/.test(text)) {
+    return "market";
+  }
+  if (/movie|concert|musical|plays in the park|screen on the green/.test(text)) {
+    return "performance";
+  }
+  return "community";
+}
+
+function parseCivicPlusListings(html, source, startDate, days) {
+  const sections = [];
+  const sectionPattern =
+    /<div\b[^>]*id=["']CID(\d+)["'][^>]*class=["'][^"']*\bcalendar\b[^"']*["'][^>]*>([\s\S]*?)(?=<div\b[^>]*id=["']CID\d+["'][^>]*class=["'][^"']*\bcalendar\b|<script\b|$)/gi;
+  for (const match of html.matchAll(sectionPattern)) {
+    sections.push({ calendarId: match[1], html: match[2] });
+  }
+  if (sections.length === 0) {
+    sections.push({ calendarId: null, html });
+  }
+
+  const imported = [];
+  for (const section of sections) {
+    const calendar = stripHtml(firstMatch(section.html, /<h2\b[^>]*class=["'][^"']*\btitle\b[^"']*["'][^>]*>([\s\S]*?)<\/h2>/i));
+    const itemPattern = /<li\b[^>]*>([\s\S]*?<a\b[^>]*id=["']eventTitle_[^"']+["'][\s\S]*?)<\/li>/gi;
+    for (const itemMatch of section.html.matchAll(itemPattern)) {
+      const block = itemMatch[1];
+      const eventId =
+        firstMatch(block, /eventTitle_(\d+)/i) || firstMatch(block, /[?&]EID=(\d+)/i) || slugify(block).slice(0, 40);
+      const title = stripHtml(firstMatch(block, /<a\b[^>]*id=["']eventTitle_[^"']+["'][^>]*>([\s\S]*?)<\/a>/i));
+      const href = firstMatch(block, /<a\b[^>]*id=["']eventTitle_[^"']+["'][^>]*href=["']([^"']+)["']/i);
+      const sourceUrl = href ? absoluteUrl(source.municipal.eventsUrl || source.municipal.website, href) : source.municipal.eventsUrl;
+      const dateText = stripHtml(firstMatch(block, /<div\b[^>]*class=["'][^"']*\bdate\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i));
+      let startsAt =
+        localIso(civicPlusItempropText(block, "startDate")) || parseCivicPlusStartFromDateText(dateText) || null;
+      if (startsAt?.endsWith("T00:00:00") && /all day/i.test(dateText)) {
+        startsAt = `${startsAt.slice(0, 10)}T12:00:00`;
+      }
+      if (!eventStartsWithinWindow(startsAt, startDate, days)) {
+        continue;
+      }
+      const listingSummary = cleanImportedSummary(civicPlusItempropText(block, "description"));
+      if (!isImportableMunicipalEvent(title, listingSummary, calendar)) {
+        continue;
+      }
+
+      const venueName = stripHtml(firstMatch(block, /<div\b[^>]*class=["'][^"']*\bname\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i));
+      const address = civicPlusPostalAddress(block, venueName);
+      const venue = municipalVenueDetails(source, { title, summary: listingSummary, venueName, address });
+      const endsAt = civicPlusEndFromDateText(dateText, startsAt, civicPlusItempropText(block, "endDate"));
+      const category = civicPlusMunicipalCategory(title, listingSummary, calendar);
+
+      imported.push({
+        id: `civicplus-${source.town.id}-${eventId}-${startsAt.slice(0, 10)}`,
+        sourceId: municipalSourceId(source, "civicplus"),
+        title,
+        venue: venue.venueName,
+        venueName: venue.venueName,
+        category,
+        source: municipalSourceLabel(source),
+        startsAt,
+        endsAt,
+        timezone: TIMEZONE,
+        durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : null,
+        ages: inferAgeBandsFromText(title, listingSummary, calendar, "families all ages community"),
+        cost: null,
+        registration: "See source",
+        summary: listingSummary,
+        url: sourceUrl,
+        sourceUrl,
+        sourceCalendarUrl: source.municipal.eventsUrl || source.municipal.website,
+        address: venue.address,
+        lat: venue.lat,
+        lng: venue.lng,
+        tags: ["municipal", source.town.id, category, "family"].filter(Boolean),
+        status: "published",
+        confidence: venue.confidence
+      });
+    }
+  }
+
+  return imported.filter((event) => event.title && event.startsAt && event.sourceUrl);
+}
+
+function extractMetaContent(html, property) {
+  return decodeEntities(
+    firstMatch(html, new RegExp(`<meta[^>]+(?:property|name)=["']${property}["'][^>]+content=["']([^"']+)["']`, "i")) ||
+      firstMatch(html, new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["']${property}["']`, "i"))
+  );
+}
+
+function extractCivicPlusDetailSummary(html) {
+  const description =
+    firstMatch(
+      html,
+      /<div\b[^>]*itemprop=["']description["'][^>]*class=["'][^"']*\bfr-view\b[^"']*["'][^>]*>([\s\S]*?)<\/div>\s*(?:<ul|<div\b[^>]*class=["']row\b|<script\b|$)/i
+    ) || firstMatch(html, /<[^>]+itemprop=["']description["'][^>]*>([\s\S]*?)<\/[^>]+>/i);
+  return cleanImportedSummary(description);
+}
+
+function extractCivicPlusDetailImage(html, sourceUrl) {
+  const metaImage = extractMetaContent(html, "og:image");
+  if (metaImage) {
+    return absoluteUrl(sourceUrl, metaImage);
+  }
+  const itemImage = firstMatch(html, /<img\b[^>]*itemprop=["']image["'][^>]*src=["']([^"']+)["']/i);
+  return itemImage ? absoluteUrl(sourceUrl, itemImage) : null;
+}
+
+async function enrichCivicPlusDetails(events) {
+  const cache = new Map();
+  for (const event of events) {
+    if (!event.sourceUrl || cache.has(event.sourceUrl)) {
+      continue;
+    }
+    try {
+      const html = await fetchText(event.sourceUrl);
+      cache.set(event.sourceUrl, {
+        summary: extractCivicPlusDetailSummary(html),
+        image: extractCivicPlusDetailImage(html, event.sourceUrl)
+      });
+      await sleep(100);
+    } catch (error) {
+      console.warn(`warning: could not enrich ${event.sourceUrl}: ${error.message}`);
+      cache.set(event.sourceUrl, {});
+    }
+  }
+
+  return events.map((event) => {
+    const details = cache.get(event.sourceUrl) || {};
+    return {
+      ...event,
+      summary: details.summary || event.summary,
+      image: details.image || event.image
+    };
+  });
+}
+
+async function importCivicPlusMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "civicplus-calendar")) {
+    for (const { year, month } of monthsInWindow(startDate, days)) {
+      for (const calendarId of civicPlusCalendarIds(source)) {
+        try {
+          const html = await fetchText(civicPlusCalendarListUrl(source, calendarId, year, month));
+          imported.push(...parseCivicPlusListings(html, source, startDate, days));
+        } catch (error) {
+          console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+        }
+      }
+    }
+  }
+
+  const deduped = [...new Map(imported.map((event) => [event.id, event])).values()];
+  return enrichCivicPlusDetails(deduped);
+}
+
+function dpCalendarRawEventsUrl(source, startDate, days) {
+  const config = source.municipal;
+  const base = config.rawEventsUrl || new URL("/index.php", config.eventsUrl || config.website).toString();
+  const url = new URL(base, config.eventsUrl || config.website);
+  url.searchParams.set("option", "com_dpcalendar");
+  url.searchParams.set("view", "events");
+  url.searchParams.set("format", "raw");
+  url.searchParams.set("limit", "0");
+  if (config.itemId) {
+    url.searchParams.set("Itemid", String(config.itemId));
+  }
+  url.searchParams.set("start", startDate);
+  url.searchParams.set("end", addDateDays(startDate, Math.max(0, days - 1)));
+  return url.toString();
+}
+
+function dpCalendarLocalIso(value, allDay = false) {
+  if (!value) {
+    return null;
+  }
+  const text = String(value);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+    return `${text}T${allDay ? "12:00" : "00:00"}:00`;
+  }
+  return localIso(text);
+}
+
+function extractDpCalendarLabel(description) {
+  return stripHtml(firstMatch(description, /dp-event-tooltip__calendar["'][^>]*>\s*\[([^\]]+)/i));
+}
+
+function extractDpCalendarSummary(description) {
+  const tooltipDescription =
+    firstMatch(
+      description,
+      /<div\b[^>]*class=["'][^"']*\bdp-event-tooltip__description\b[^"']*["'][^>]*>([\s\S]*?)<\/div>\s*<div\b[^>]*class=["'][^"']*\bdp-event-tooltip__actions\b/i
+    ) || firstMatch(description, /<div\b[^>]*class=["'][^"']*\bdp-event-tooltip__description\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
+  return cleanImportedSummary(tooltipDescription);
+}
+
+function dpCalendarLocationDetails(location) {
+  const details = Array.isArray(location) ? location[0] : location;
+  if (!details) {
+    return { venueName: "", address: "" };
+  }
+  if (typeof details === "string") {
+    return { venueName: stripHtml(details), address: "" };
+  }
+  const venueName = stripHtml(details.title || details.name || details.label || "");
+  const address = cleanAddress(details.address || addressFor(details) || "");
+  return { venueName, address };
+}
+
+function mapDpCalendarMunicipalEvent(source, item, startDate, days) {
+  const title = stripHtml(item.title || "");
+  const startsAt = dpCalendarLocalIso(item.start, item.allDay);
+  if (!eventStartsWithinWindow(startsAt, startDate, days)) {
+    return null;
+  }
+  const calendar = extractDpCalendarLabel(item.description || "");
+  const summary = extractDpCalendarSummary(item.description || "");
+  if (!isImportableMunicipalEvent(title, summary, calendar)) {
+    return null;
+  }
+  const locationDetails = dpCalendarLocationDetails(item.location);
+  const venue = municipalVenueDetails(source, {
+    title,
+    summary,
+    venueName: locationDetails.venueName,
+    address: locationDetails.address
+  });
+  const endsAt = dpCalendarLocalIso(item.end, item.allDay);
+  const sourceUrl = item.url
+    ? absoluteUrl(source.municipal.eventsUrl || source.municipal.website, item.url)
+    : source.municipal.eventsUrl || source.municipal.website;
+  const category = civicPlusMunicipalCategory(title, summary, calendar);
+
+  return {
+    id: `dpcalendar-${source.town.id}-${item.id}-${startsAt.slice(0, 10)}`,
+    sourceId: municipalSourceId(source, "dpcalendar"),
+    title,
+    venue: venue.venueName,
+    venueName: venue.venueName,
+    category,
+    source: municipalSourceLabel(source),
+    startsAt,
+    endsAt: endsAt && endsAt !== startsAt ? endsAt : null,
+    timezone: TIMEZONE,
+    durationMinutes: endsAt && endsAt !== startsAt ? durationMinutes(startsAt, endsAt) : null,
+    ages: inferAgeBandsFromText(title, summary, calendar, "families all ages community"),
+    cost: null,
+    registration: "See source",
+    summary,
+    url: sourceUrl,
+    sourceUrl,
+    sourceCalendarUrl: source.municipal.eventsUrl || source.municipal.website,
+    address: venue.address,
+    lat: venue.lat,
+    lng: venue.lng,
+    tags: ["municipal", source.town.id, category, "family"].filter(Boolean),
+    status: "published",
+    confidence: venue.confidence
+  };
+}
+
+async function importDpCalendarMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "joomla-dpcalendar-raw")) {
+    try {
+      const data = await fetchJson(dpCalendarRawEventsUrl(source, startDate, days));
+      const events = data?.data?.events || data?.events || [];
+      events.forEach((item) => {
+        const event = mapDpCalendarMunicipalEvent(source, item, startDate, days);
+        if (event) {
+          imported.push(event);
+        }
+      });
+    } catch (error) {
+      console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
+function parseSquarespaceDateRange(dateText) {
+  const text = stripHtml(dateText).replace(/\u202f/g, " ");
+  const match = text.match(
+    /(?:[A-Za-z]+,\s*)?([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4}),\s+(\d{1,2}):(\d{2})\s*(AM|PM)\s*(?:-|–|—|to)\s*(\d{1,2}):(\d{2})\s*(AM|PM)/i
+  );
+  if (!match) {
+    return { startsAt: null, endsAt: null };
+  }
+  const [, monthName, day, year, startHour, startMinute, startMeridiem, endHour, endMinute, endMeridiem] = match;
+  const month = MONTHS.get(monthName.toLowerCase());
+  if (!month) {
+    return { startsAt: null, endsAt: null };
+  }
+  const dateKey = `${year}-${month}-${String(day).padStart(2, "0")}`;
+  return {
+    startsAt: timeToLocalIso(dateKey, startHour, startMinute, startMeridiem),
+    endsAt: timeToLocalIso(dateKey, endHour, endMinute, endMeridiem)
+  };
+}
+
+function parseSquarespaceCalendarListings(html, source, startDate, days) {
+  const noscript = firstMatch(html, /<noscript>([\s\S]*?)<\/noscript>/i);
+  if (!noscript) {
+    return [];
+  }
+
+  const imported = [];
+  const itemPattern = /<li>\s*(<h1>[\s\S]*?)(?=\n\s*<li>\s*<h1>|\s*<\/ul>\s*$|$)/gi;
+  for (const match of noscript.matchAll(itemPattern)) {
+    const block = match[1];
+    const title = stripHtml(firstMatch(block, /<h1>\s*<a\b[^>]*>([\s\S]*?)<\/a>\s*<\/h1>/i));
+    const href = firstMatch(block, /<h1>\s*<a\b[^>]*href=["']([^"']+)["']/i);
+    const sourceUrl = href ? absoluteUrl(source.municipal.eventsUrl || source.municipal.website, href) : source.municipal.eventsUrl;
+    const dateText = [...block.matchAll(/<div\b[^>]*>([\s\S]*?)<\/div>/gi)]
+      .map((div) => stripHtml(div[1]))
+      .find((text) => /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\b.+\d{4}/i.test(text));
+    const { startsAt, endsAt } = parseSquarespaceDateRange(dateText || "");
+    if (!eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+
+    const locationItems = [...block.matchAll(/<li>([\s\S]*?)<\/li>/gi)]
+      .map((item) => stripHtml(item[1]))
+      .filter((item) => item && !/maps\.google\.com/i.test(item) && !/^United States$/i.test(item));
+    const venueName = locationItems[0] || `${source.town.name} municipal event`;
+    const address = cleanAddress(locationItems.slice(1).join(", "));
+    const image = firstMatch(block, /<img\b[^>]*(?:data-image|data-src)=["']([^"']+)["']/i);
+    const summary = title;
+    if (!isImportableMunicipalEvent(title, summary, "")) {
+      continue;
+    }
+
+    const venue = municipalVenueDetails(source, { title, summary, venueName, address });
+    const category = civicPlusMunicipalCategory(title, summary, "");
+
+    imported.push({
+      id: `squarespace-${source.town.id}-${slugFromUrl(sourceUrl)}-${startsAt.slice(0, 10)}`,
+      sourceId: municipalSourceId(source, "squarespace"),
+      title,
+      venue: venue.venueName,
+      venueName: venue.venueName,
+      category,
+      source: municipalSourceLabel(source),
+      startsAt,
+      endsAt,
+      timezone: TIMEZONE,
+      durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : null,
+      ages: inferAgeBandsFromText(title, summary, "families all ages community"),
+      cost: null,
+      registration: "See source",
+      summary,
+      image: image ? absoluteUrl(sourceUrl, image) : null,
+      url: sourceUrl,
+      sourceUrl,
+      sourceCalendarUrl: source.municipal.eventsUrl || source.municipal.website,
+      address: venue.address,
+      lat: venue.lat,
+      lng: venue.lng,
+      tags: ["municipal", source.town.id, category, "family"].filter(Boolean),
+      status: "published",
+      confidence: venue.confidence
+    });
+  }
+
+  return imported;
+}
+
+async function importSquarespaceMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "squarespace-calendar-list")) {
+    try {
+      const html = await fetchText(source.municipal.eventsUrl || source.municipal.website);
+      imported.push(...parseSquarespaceCalendarListings(html, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
 async function importNjCarnivalsEvents(sources, startDate, days) {
   const source = sources.sharedSources?.["nj-carnivals"];
   if (!source || source.status !== "importable") {
@@ -1916,10 +2873,15 @@ async function main() {
 
   const importedGroups = await Promise.all([
     importSclsnjEvents(sources, startDate, days),
+    importLocalHopEvents(sources, startDate, days),
+    importCivicPlusMunicipalEvents(sources, startDate, days),
+    importDpCalendarMunicipalEvents(sources, startDate, days),
+    importSquarespaceMunicipalEvents(sources, startDate, days),
     importLibraryCalendarEvents(sources, startDate, days),
     importLibCalEvents(sources, startDate, days),
     importEventOrganiserEvents(sources, startDate, days),
     importJoomlaEventBookingEvents(sources, startDate, days),
+    importConfiguredLibraryEvents(sources, startDate, days),
     importConfiguredWorkshopEvents(sources, startDate, days),
     importNjCarnivalsEvents(sources, startDate, days)
   ]);

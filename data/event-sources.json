@@ -71,7 +71,13 @@
         "priority": 1,
         "target": "towns[].municipal",
         "searchHints": ["{town} NJ official calendar", "{town} NJ events", "{town} NJ community calendar"],
-        "parserCandidates": ["manual", "civicplus-calendar", "wordpress-calendar"],
+        "parserCandidates": [
+          "manual",
+          "civicplus-calendar",
+          "joomla-dpcalendar-raw",
+          "squarespace-calendar-list",
+          "wordpress-calendar"
+        ],
         "notes": "Use for town-wide civic events, holiday events, parades, concerts, fairs, and public notices."
       },
       {
@@ -259,6 +265,14 @@
           "lat": 40.6850798,
           "lng": -74.4389058,
           "notes": "Official block party page describes the event along Springfield Ave from Snyder Ave to Plainfield Ave; point is an approximate map anchor on that corridor."
+        },
+        {
+          "name": "Dunellen",
+          "aliases": ["Dunellen Street Fair & Craft Show (Spring)", "North Ave & S Washington Ave"],
+          "address": "North Ave & S Washington Ave, Dunellen, NJ 08812",
+          "lat": 40.591748,
+          "lng": -74.462981,
+          "notes": "Street fair listing places the event at North Ave and S Washington Ave; point uses the nearby 2 S Washington Ave map anchor for the intersection."
         }
       ],
       "notes": "Imports structured Event JSON-LD from paginated listings, expands multi-day fairs into daily occurrences, and keeps source event URLs for refresh/review."
@@ -1040,10 +1054,23 @@
       "distanceMiles": 1.8,
       "municipal": {
         "website": "https://www.warrennj.org/",
-        "eventsUrl": "https://www.warrennj.org/calendar.aspx?CID=14",
+        "eventsUrl": "https://www.warrennj.org/calendar.aspx",
         "recreationUrl": "https://www.warrennj.org/DocumentCenter/View/11321/2026-Recreation-Programs-Events3",
-        "status": "manual_review",
-        "notes": "CivicPlus calendar and annual recreation PDF; good candidate for a future CivicPlus/PDF parser."
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "calendarIds": ["14", "23"],
+        "locationOverrides": [
+          {
+            "name": "Warren Central School",
+            "address": "109 Mt. Bethel Road, Warren, NJ 07059"
+          },
+          {
+            "name": "Susie B. Boyce Court Room",
+            "aliases": ["Warren Municipal Building", "Warren Township Municipal Complex"],
+            "address": "44 Mountain Blvd, Warren, NJ 07059"
+          }
+        ],
+        "notes": "CivicPlus parser imports public/community events and filters meetings, court dates, and adult recreation leagues; annual recreation PDF remains manual review."
       },
       "libraries": [
         {
@@ -1075,8 +1102,8 @@
           "name": "Dunellen Public Library",
           "website": "https://dunellenlibrary.net/",
           "eventsUrl": "https://dunellenlibrary.events.mylibrary.digital/",
-          "status": "manual_review",
-          "notes": "mylibrary.digital currently presents a Cloudflare challenge to simple fetches."
+          "status": "blocked_by_bot_protection",
+          "notes": "mylibrary.digital exposes indexed event pages, but direct importer fetches receive a Cloudflare managed challenge; needs browser-backed import or manual transcription."
         }
       ]
     },
@@ -1118,14 +1145,183 @@
         "website": "https://www.middlesexboro-nj.gov/",
         "eventsUrl": "https://www.middlesexboro-nj.gov/calendar",
         "recreationUrl": "https://www.middlesexboro-nj.gov/recreation",
-        "status": "manual_review"
+        "status": "importable",
+        "parser": "squarespace-calendar-list",
+        "locationOverrides": [
+          {
+            "name": "Middlesex Borough Public Library",
+            "aliases": ["Middlesex Public Library"],
+            "address": "1300 Mountain Avenue, Middlesex, NJ 08846",
+            "lat": 40.5793316,
+            "lng": -74.4996999
+          },
+          {
+            "name": "Borough Hall, Court Room",
+            "aliases": ["Borough of Middlesex"],
+            "address": "1200 Mountain Avenue, Middlesex, NJ 08846"
+          }
+        ],
+        "notes": "Squarespace calendar noscript parser imports public cultural/community events and filters meetings/notices."
       },
       "libraries": [
         {
           "name": "Middlesex Public Library",
           "website": "https://www.middlesexlibrarynj.org/",
-          "eventsUrl": "https://www.middlesexlibrarynj.org/current-programs/",
-          "status": "manual_review"
+          "eventsUrl": "https://www.middlesexlibrarynj.org/kids/",
+          "status": "importable",
+          "parser": "configured-library-events",
+          "address": "1300 Mountain Avenue, Middlesex, NJ 08846",
+          "lat": 40.5793316,
+          "lng": -74.4996999,
+          "configuredEvents": [
+            {
+              "title": "Family Storytime",
+              "recurrence": { "frequency": "weekly", "weekday": "monday", "startDate": "2026-07-06", "endDate": "2026-08-10" },
+              "startTime": "10:15",
+              "room": "Children's Room",
+              "registration": "Drop-in",
+              "summary": "Family storytime with books, music, playful early learning, and stay-and-play time with toys and activities. No registration required.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Family-Storytime.png",
+              "tags": ["summer reading", "storytime"]
+            },
+            {
+              "title": "Movie Mondays",
+              "recurrence": { "frequency": "weekly", "weekday": "monday", "startDate": "2026-07-06", "endDate": "2026-08-10" },
+              "startTime": "12:30",
+              "room": "Community Room",
+              "registration": "Drop-in",
+              "summary": "Family-friendly G or PG movie; bring lunch or snacks. No registration required.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Movie-Mondays.png",
+              "tags": ["summer reading", "movie"]
+            },
+            {
+              "title": "Crafternoons",
+              "recurrence": { "frequency": "weekly", "weekday": "tuesday", "startDate": "2026-07-07", "endDate": "2026-08-11" },
+              "startTime": "15:00",
+              "registration": "Drop-in",
+              "summary": "All-ages craft program. Crafts are first come, first served, and no registration is required.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Crafternoon-1.png",
+              "tags": ["summer reading", "craft"]
+            },
+            {
+              "title": "Stage & Story Theater Club",
+              "recurrence": { "frequency": "weekly", "weekday": "tuesday", "startDate": "2026-07-07", "endDate": "2026-08-11" },
+              "startTime": "16:30",
+              "endTime": "18:00",
+              "registration": "RSVP",
+              "summary": "Theater club with spots for actors and behind-the-scenes crew. For ages 8-12; final performance date to be determined at the end of summer.",
+              "ages": ["tween"],
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Stage-Story.png",
+              "tags": ["summer reading", "theater"]
+            },
+            {
+              "title": "Magic of Make Believe",
+              "recurrence": { "frequency": "weekly", "weekday": "thursday", "startDate": "2026-07-09", "endDate": "2026-08-13" },
+              "startTime": "10:30",
+              "room": "Community Room",
+              "registration": "RSVP",
+              "summary": "Theater games, music, movement, and imaginative play for ages 3-6. Registration opens three weeks before each session at noon.",
+              "ages": ["preschool", "early-elementary"],
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/MoMB.png",
+              "tags": ["summer reading", "theater", "music"]
+            },
+            {
+              "title": "Pajama Storytime",
+              "recurrence": { "frequency": "weekly", "weekday": "thursday", "startDate": "2026-07-09", "endDate": "2026-08-13" },
+              "startTime": "19:00",
+              "virtual": true,
+              "registration": "RSVP",
+              "summary": "Evening pajama storytime on Zoom. All ages are welcome; registration is required for the link.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/PJ-Sgtorytime.png",
+              "tags": ["summer reading", "storytime", "online"]
+            },
+            {
+              "title": "Fun Fridays",
+              "recurrence": { "frequency": "weekly", "weekday": "friday", "startDate": "2026-07-10", "endDate": "2026-08-14" },
+              "startTime": "13:00",
+              "endTime": "15:00",
+              "room": "Children's Room",
+              "registration": "Drop-in",
+              "summary": "Ages 3 and up can join a Friday program in the Children's Room. No registration required.",
+              "ages": ["preschool", "early-elementary"],
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Fun-Fridays.png",
+              "tags": ["summer reading"]
+            },
+            {
+              "title": "Dinosaurs Arise",
+              "date": "2026-07-11",
+              "startTime": "10:00",
+              "registration": "RSVP",
+              "summary": "Hands-on dinosaur adventure featuring fossil digs, stories, and the chance to feed and play with real life-sized dinos. Open to ages 3 and up; registration begins on June 20 at noon.",
+              "ages": ["preschool", "early-elementary"],
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_11_-Dinosaurs-Arise.png",
+              "tags": ["summer reading", "special event"]
+            },
+            {
+              "title": "Arrayscape Gaming",
+              "date": "2026-07-15",
+              "startTime": "14:00",
+              "registration": "RSVP",
+              "summary": "Summer special event from the library's official kids schedule. Registration opens on June 24.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_15_-Arrayscape.png",
+              "tags": ["summer reading", "special event", "gaming"]
+            },
+            {
+              "title": "Beyond the Bug",
+              "date": "2026-07-22",
+              "startTime": "14:00",
+              "registration": "RSVP",
+              "summary": "Summer special event from the library's official kids schedule. Registration opens on July 1.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_22_-Beyond-the-Bug.png",
+              "tags": ["summer reading", "special event"]
+            },
+            {
+              "title": "Rutgers Geology Museum",
+              "date": "2026-07-23",
+              "startTime": "13:30",
+              "registration": "RSVP",
+              "summary": "Summer special event with Rutgers Geology Museum from the library's official kids schedule. Registration opens on July 2.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_23_-Rutegrs-Geology.png",
+              "tags": ["summer reading", "special event", "science"]
+            },
+            {
+              "title": "Family Fort Night",
+              "date": "2026-07-29",
+              "startTime": "19:00",
+              "registration": "RSVP",
+              "summary": "Summer special family event from the library's official kids schedule. Registration opens on July 8.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_29_-Family-Fort-Night.png",
+              "tags": ["summer reading", "special event"]
+            },
+            {
+              "title": "Science Heroes",
+              "date": "2026-08-05",
+              "startTime": "14:00",
+              "registration": "RSVP",
+              "summary": "Science Heroes summer special event from the library's official kids schedule. Registration opens on July 15.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/8_5_-Science-Heroes.png",
+              "tags": ["summer reading", "special event", "science"]
+            },
+            {
+              "title": "Dinosaur Adventure",
+              "date": "2026-08-14",
+              "startTime": "14:00",
+              "registration": "RSVP",
+              "summary": "Dinosaur Adventure summer special event from the library's official kids schedule. Registration opens on July 24.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/814-Mike-Roberta-Straka.png",
+              "tags": ["summer reading", "special event"]
+            },
+            {
+              "title": "The Magic of Conrad",
+              "date": "2026-08-21",
+              "startTime": "12:00",
+              "registration": "RSVP",
+              "summary": "The Magic of Conrad summer special event from the library's official kids schedule. Registration opens on July 31.",
+              "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/8_21_-Conrad.png",
+              "tags": ["summer reading", "special event", "magic"]
+            }
+          ],
+          "notes": "Current kids program data is published as official flyer images, not a machine-readable calendar. This source uses manual flyer transcription for the summer 2026 schedule and special-event flyers."
         }
       ]
     },
@@ -1328,7 +1524,80 @@
         "website": "https://www.berkeleyheights.gov/",
         "eventsUrl": "https://berkeleyheights.gov/calendar.aspx",
         "recreationUrl": "https://www.berkeleyheights.gov/214/Recreation",
-        "status": "manual_review"
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "calendarIds": ["43", "52", "59", "32"],
+        "locationOverrides": [
+          {
+            "name": "Bubbakoo's Burritos",
+            "address": "410 Springfield Avenue, Berkeley Heights, NJ 07922",
+            "lat": 40.6852592,
+            "lng": -74.4363279
+          },
+          {
+            "name": "Delicious Heights",
+            "aliases": ["Delicious Heights *Sadal Wines"],
+            "address": "428 Springfield Avenue, Berkeley Heights, NJ 07922",
+            "lat": 40.684783,
+            "lng": -74.4380555
+          },
+          {
+            "name": "Ami Sushi",
+            "address": "538 Springfield Avenue, Berkeley Heights, NJ 07922",
+            "lat": 40.6830585,
+            "lng": -74.443287
+          },
+          {
+            "name": "Patria Station Cafe",
+            "aliases": ["Patria Station Café"],
+            "address": "128 Station Street, Berkeley Heights, NJ 07922",
+            "lat": 40.6826946,
+            "lng": -74.4437193
+          },
+          {
+            "name": "VFW Post 6259",
+            "aliases": ["VFW"],
+            "address": "15 Locust Avenue, Berkeley Heights, NJ 07922",
+            "lat": 40.6792519,
+            "lng": -74.430144
+          },
+          {
+            "name": "The District at Connell",
+            "address": "300 Connell Drive, Berkeley Heights, NJ 07922",
+            "lat": 40.6629525,
+            "lng": -74.4147762
+          },
+          {
+            "name": "Our Lady of Mount Carmel",
+            "aliases": ["Mount Carmel Festival", "Mount Carmel"],
+            "address": "56 River Road, Berkeley Heights, NJ 07922",
+            "lat": 40.6826705,
+            "lng": -74.4512775
+          },
+          {
+            "name": "Town Hall",
+            "address": "29 Park Avenue, Berkeley Heights, NJ 07922"
+          },
+          {
+            "name": "Veterans Memorial Park",
+            "aliases": ["Memorial Park"],
+            "address": "205 Plainfield Avenue, Berkeley Heights, NJ 07922",
+            "lat": 40.68051,
+            "lng": -74.440095
+          },
+          {
+            "name": "Berkeley Heights Swim Club",
+            "address": "59 Locust Avenue, Berkeley Heights, NJ 07922"
+          },
+          {
+            "name": "Springfield Ave",
+            "aliases": ["Berkeley Heights Street Fair"],
+            "address": "Springfield Ave, Berkeley Heights, NJ 07922",
+            "lat": 40.6883613,
+            "lng": -74.4356494
+          }
+        ],
+        "notes": "CivicPlus parser focuses on Community/World Cup/Recreation calendars and filters meetings/adult-only items."
       },
       "libraries": [
         {
@@ -1422,14 +1691,51 @@
         "website": "https://www.bernards.org/",
         "eventsUrl": "https://www.bernards.org/resident-calendar",
         "recreationUrl": "https://bernards.org/departments/recreation",
-        "status": "manual_review"
+        "status": "importable",
+        "parser": "joomla-dpcalendar-raw",
+        "itemId": "965",
+        "rawEventsUrl": "https://www.bernards.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "locationOverrides": [
+          {
+            "name": "Ross Farm",
+            "aliases": ["Flag Day at the Ross Farm", "From Revolution to Reflection"],
+            "address": "135 North Maple Avenue, Basking Ridge, NJ 07920"
+          },
+          {
+            "name": "Downtown Basking Ridge",
+            "aliases": ["Battle of Basking Ridge"],
+            "address": "1 East Oak Street, Basking Ridge, NJ 07920",
+            "lat": 40.706594,
+            "lng": -74.548584
+          },
+          {
+            "name": "Pleasant Valley Park",
+            "aliases": [
+              "P&R Family Fun Night",
+              "P&R Summer Concert Series",
+              "P&R Outdoor Movie Night",
+              "P&R Plays in the Park",
+              "National Night Out"
+            ],
+            "address": "3405 Valley Road, Basking Ridge, NJ 07920"
+          }
+        ],
+        "notes": "Joomla DPCalendar raw endpoint imports public recreation/America 250 events and filters municipal meetings/closures."
       },
       "libraries": [
         {
           "name": "Bernards Township Library",
           "website": "https://www.bernardslibrary.org/",
-          "eventsUrl": "https://www.bernardslibrary.org/eventcalendar",
-          "status": "manual_review"
+          "eventsUrl": "https://bernardslibrary.org/event-calendar/",
+          "status": "importable",
+          "parser": "localhop-calendar",
+          "calendarObjectId": "uXHR3V92hS",
+          "organizationIds": ["vs20XMKDTh"],
+          "ageGroupIds": ["t6CVlW0P9v", "FCD8Alsg84"],
+          "address": "32 South Maple Avenue, Basking Ridge, NJ 07920",
+          "lat": 40.7058542,
+          "lng": -74.5477014,
+          "notes": "Uses the LocalHop widget calendar filtered to Kids and Teen organization age groups."
         }
       ]
     },
@@ -1452,8 +1758,8 @@
           "name": "Fanwood Memorial Library",
           "website": "https://fanwoodlibrary.org/",
           "eventsUrl": "https://fanwoodlibrary.events.mylibrary.digital/",
-          "status": "manual_review",
-          "notes": "mylibrary.digital feed is linked from the library site but needs browser/challenge handling."
+          "status": "blocked_by_bot_protection",
+          "notes": "mylibrary.digital exposes indexed event pages, but direct importer fetches receive a Cloudflare managed challenge; needs browser-backed import or manual transcription."
         }
       ]
     },
@@ -1476,8 +1782,8 @@
           "name": "Scotch Plains Public Library",
           "website": "https://scotchplainslibrary.org/",
           "eventsUrl": "https://scotlib.events.mylibrary.digital/",
-          "status": "manual_review",
-          "notes": "mylibrary.digital currently presents a Cloudflare challenge to simple fetches."
+          "status": "blocked_by_bot_protection",
+          "notes": "mylibrary.digital exposes indexed event pages, but direct importer fetches receive a Cloudflare managed challenge; needs browser-backed import or manual transcription."
         }
       ]
     },
@@ -1518,7 +1824,31 @@
         "website": "https://www.newprov.us/",
         "eventsUrl": "https://www.newprov.us/calendar.aspx",
         "recreationUrl": "https://www.newprov.us/191/community-activities",
-        "status": "manual_review"
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "calendarIds": ["25"],
+        "locationOverrides": [
+          {
+            "name": "Centennial Park",
+            "address": "360 Elkwood Ave, New Providence, NJ 07974"
+          },
+          {
+            "name": "New Providence High School Gym",
+            "aliases": ["New Providence High School"],
+            "address": "35 Pioneer Drive, New Providence, NJ 07974"
+          },
+          {
+            "name": "Municipal Center",
+            "address": "360 Elkwood Ave, New Providence, NJ 07974"
+          },
+          {
+            "name": "Downtown New Providence",
+            "address": "Springfield Avenue, New Providence, NJ 07974",
+            "lat": 40.7061791,
+            "lng": -74.4059329
+          }
+        ],
+        "notes": "CivicPlus Events calendar parser; garbage/recycling and meetings calendars intentionally excluded."
       },
       "libraries": [
         {
@@ -1598,7 +1928,32 @@
         "website": "https://www.cityofsummit.org/",
         "eventsUrl": "https://www.cityofsummit.org/Calendar.aspx",
         "recreationUrl": "https://summitcommunityprograms.com/35/Events",
-        "status": "manual_review"
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "calendarIds": ["28", "41"],
+        "locationOverrides": [
+          {
+            "name": "Park & Shop Lot #1, on the corner of Woodland Ave and Deforest Ave",
+            "aliases": ["Summit Farmers Market", "Park & Shop Lot #1"],
+            "address": "30 DeForest Avenue, Summit, NJ 07901",
+            "lat": 40.7188244,
+            "lng": -74.3596582
+          },
+          {
+            "name": "Village Green",
+            "address": "356 Broad Street, Summit, NJ 07901"
+          },
+          {
+            "name": "Summit Family Aquatic Center",
+            "aliases": ["SFAC"],
+            "address": "100 Ashwood Avenue, Summit, NJ 07901"
+          },
+          {
+            "name": "Transfer Station",
+            "address": "40 New Providence Avenue, Summit, NJ 07901"
+          }
+        ],
+        "notes": "CivicPlus parser imports Community Programs & Events and Summit Free Market calendars; filters blood drives, meetings, and office items."
       },
       "libraries": [
         {
