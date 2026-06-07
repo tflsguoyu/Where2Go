@@ -44,7 +44,20 @@
         <div>
           <h1>Where2Go</h1>
         </div>
-        <p class="updated" id="updatedLabel">Loading</p>
+        <div class="topbar-actions">
+          <p class="updated" id="updatedLabel">Loading</p>
+          <div class="more-menu">
+            <button class="more-button" id="moreMenuButton" type="button" aria-label="More" aria-expanded="false" aria-controls="moreMenuPanel">
+              <span class="more-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <div class="more-panel" id="moreMenuPanel" hidden>
+              <section class="more-section" aria-labelledby="coveredTownsTitle">
+                <h2 id="coveredTownsTitle">Covered towns</h2>
+                <ul class="town-list" id="coveredTownsList"></ul>
+              </section>
+            </div>
+          </div>
+        </div>
       </header>
 
       <section class="install-prompt" id="installPrompt" hidden aria-live="polite">

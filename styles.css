@@ -65,9 +65,16 @@ a {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px;
   padding: 14px 18px 8px;
   background: rgba(248, 250, 247, 0.94);
+}
+
+.topbar-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  align-items: center;
 }
 
 .updated {
@@ -77,6 +84,168 @@ a {
   font-size: 0.74rem;
   font-weight: 850;
   text-align: right;
+}
+
+.more-menu {
+  position: relative;
+}
+
+.more-button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--green-dark);
+  box-shadow: 0 8px 18px rgba(23, 33, 29, 0.08);
+}
+
+.more-button[aria-expanded="true"] {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.more-icon {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.more-icon span {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.more-panel {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  z-index: 1000;
+  width: min(228px, calc(100vw - 28px));
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 18px 42px rgba(23, 33, 29, 0.16);
+}
+
+.more-panel[hidden] {
+  display: none;
+}
+
+.more-section {
+  display: grid;
+  gap: 6px;
+}
+
+.more-section h2 {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.town-list {
+  display: grid;
+  max-height: 286px;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.town-list-item {
+  display: grid;
+  gap: 4px;
+  padding: 5px 2px;
+  border-top: 1px solid rgba(215, 224, 218, 0.75);
+}
+
+.town-list-item:first-child {
+  border-top: 0;
+}
+
+.town-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 8px;
+  align-items: baseline;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.town-row strong {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.town-row span {
+  justify-self: end;
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.has-search-library > .town-row strong,
+.has-search-library > .town-row span {
+  color: var(--green);
+}
+
+.has-communities .town-row {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.town-sublist {
+  display: grid;
+  gap: 3px;
+  margin: 0 0 0 10px;
+  padding: 0 0 0 8px;
+  border-left: 2px solid rgba(30, 123, 103, 0.22);
+  list-style: none;
+}
+
+.town-sublist li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 8px;
+  align-items: baseline;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.town-sublist span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.town-sublist span:last-child {
+  justify-self: end;
+  font-weight: 850;
+}
+
+.has-search-library .town-sublist span:last-child {
+  color: var(--green);
+}
+
+.town-list-empty {
+  padding: 5px 2px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 850;
 }
 
 h1,
@@ -540,15 +709,15 @@ h2 {
 
 .event-detail {
   grid-area: details;
-  margin: 8px 14px 12px;
+  margin: 6px 14px 10px;
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .detail-group {
   display: grid;
-  gap: 10px;
-  padding: 12px;
+  gap: 6px;
+  padding: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
@@ -619,23 +788,23 @@ h2 {
 
 .detail-events {
   display: grid;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 6px;
+  margin-top: 2px;
 }
 
 .detail-event {
   display: grid;
-  gap: 3px;
+  gap: 2px;
 }
 
 .detail-event + .detail-event {
-  padding-top: 8px;
+  padding-top: 6px;
   border-top: 1px solid var(--line);
 }
 
 .detail-event h2 {
-  font-size: 1.02rem;
-  line-height: 1.15;
+  font-size: 1rem;
+  line-height: 1.12;
 }
 
 .event-time {
@@ -648,8 +817,8 @@ h2 {
   display: -webkit-box;
   overflow: hidden;
   color: var(--ink);
-  font-size: 0.88rem;
-  line-height: 1.28;
+  font-size: 0.86rem;
+  line-height: 1.24;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
@@ -658,9 +827,9 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 28px;
+  min-height: 26px;
   width: fit-content;
-  margin-top: 2px;
+  margin-top: 1px;
   padding: 0 9px;
   border-radius: 999px;
   background: var(--green-dark);

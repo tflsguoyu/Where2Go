@@ -6,66 +6,7 @@ const TIMEZONE = "America/New_York";
 const SOURCES_FILE = new URL("../data/event-sources.json", import.meta.url);
 const EVENTS_FILE = new URL("../data/events.json", import.meta.url);
 const DAY_MS = 24 * 60 * 60 * 1000;
-const SCLSNJ_BRANCH_DISPLAY_NAMES = new Map([
-  ["471", "Bridgewater Library"],
-  ["475", "North Plainfield Library"],
-  ["477", "Somerville Library"],
-  ["478", "Warren Library"],
-  ["479", "Watchung Library"]
-]);
-
-const SCLSNJ_FALLBACK_LOCATIONS = [
-  {
-    id: "471",
-    name: "Bridgewater Library",
-    line1: "1 Vogt Dr.",
-    locality: "Bridgewater",
-    stateprovincecounty: "NJ",
-    ziporpostcode: "08807",
-    lat: "40.58792",
-    lon: "-74.607602"
-  },
-  {
-    id: "475",
-    name: "North Plainfield Library",
-    line1: "6 Rockview Ave.",
-    locality: "North Plainfield",
-    stateprovincecounty: "NJ",
-    ziporpostcode: "07060",
-    lat: "40.620859",
-    lon: "-74.43402"
-  },
-  {
-    id: "477",
-    name: "Somerville Library",
-    line1: "35 West End Ave.",
-    locality: "Somerville",
-    stateprovincecounty: "NJ",
-    ziporpostcode: "08876",
-    lat: "40.5704",
-    lon: "-74.618922"
-  },
-  {
-    id: "478",
-    name: "Warren Library",
-    line1: "42 Mountain Blvd.",
-    locality: "Warren",
-    stateprovincecounty: "NJ",
-    ziporpostcode: "07059",
-    lat: "40.619261",
-    lon: "-74.490372"
-  },
-  {
-    id: "479",
-    name: "Watchung Library",
-    line1: "20 Stirling Rd.",
-    locality: "Watchung",
-    stateprovincecounty: "NJ",
-    ziporpostcode: "07069",
-    lat: "40.638195",
-    lon: "-74.450275"
-  }
-];
+const GEOCODE_DELAY_MS = 1100;
 
 const AGE_ORDER = ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"];
 const IMPORT_QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
@@ -75,6 +16,11 @@ const SOURCE_LOGISTICS_CLAUSE_PATTERN =
   /\s+[-–—]\s*(?:see|check|visit|open|follow|be sure to follow)\b[^.!?]{0,180}\b(?:updates?|details?|current availability|confirm|registration|capacity)\b[^.!?]*(?:[.!?]|$)/gi;
 const SOURCE_LOGISTICS_SENTENCE_PATTERN =
   /\b(?:open|see|visit|check|follow|be sure to follow|please register|register)\b[^.!?]{0,180}\b(?:updates?|details?|current availability|confirm|registration|capacity)\b[^.!?]*(?:[.!?]|$)/gi;
+const SOURCE_PAGE_SENTENCE_PATTERN = /\b(?:open|see|visit|check)\s+(?:the\s+)?source page\b[^.!?]*(?:[.!?]|$)/gi;
+const CONTACT_DETAILS_SENTENCE_PATTERN = /\bplease contact\b[^.!?]*\bdetails?\b[^.!?]*(?:[.!?]|$)/gi;
+const GENERIC_SUMMARY_PATTERN =
+  /\b(?:open|see|visit|check)\s+(?:the\s+)?source page\b|\bfor updates?\b|\bcurrent availability\b/i;
+const QUALITY_REPORT_SAMPLE_LIMIT = 8;
 const MONTHS = new Map([
   ["january", "01"],
   ["february", "02"],
@@ -136,6 +82,8 @@ function cleanImportedSummary(value) {
     .replace(/\[&hellip;]|\[…]|&hellip;|\.\.\./gi, "")
     .replace(SOURCE_LOGISTICS_CLAUSE_PATTERN, ".")
     .replace(SOURCE_LOGISTICS_SENTENCE_PATTERN, "")
+    .replace(SOURCE_PAGE_SENTENCE_PATTERN, "")
+    .replace(CONTACT_DETAILS_SENTENCE_PATTERN, "")
     .replace(/\s+([,.!?])/g, "$1")
     .replace(/\.{2,}/g, ".")
     .replace(/\s+/g, " ")
@@ -255,12 +203,38 @@ function numericCoordinate(value) {
   return Number.isFinite(coordinate) ? coordinate : 0;
 }
 
+function hasValidCoordinates(value) {
+  const lat = Number(value?.lat);
+  const lng = Number(value?.lng);
+  return Number.isFinite(lat) && Number.isFinite(lng) && lat !== 0 && lng !== 0;
+}
+
+function isNonEmptyText(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function isValidDateText(value) {
+  return isNonEmptyText(value) && !Number.isNaN(new Date(value).valueOf());
+}
+
+function isValidUrlText(value) {
+  if (!isNonEmptyText(value)) {
+    return false;
+  }
+  try {
+    new URL(value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function libraryLat(source) {
-  return numericCoordinate(source.library.lat);
+  return numericCoordinate(source.library.lat || source.town?.center?.lat);
 }
 
 function libraryLng(source) {
-  return numericCoordinate(source.library.lng);
+  return numericCoordinate(source.library.lng || source.town?.center?.lng);
 }
 
 function hasChildAudience(audiences, title = "") {
@@ -401,6 +375,192 @@ async function fetchText(url) {
   return response.text();
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+function geocodeableAddress(value) {
+  const address = collapseWhitespace(value);
+  if (address.length < 8 || !/[a-z]/i.test(address)) {
+    return "";
+  }
+  return /\bNJ\b|New Jersey/i.test(address) ? address : `${address}, NJ`;
+}
+
+async function geocodeAddress(address) {
+  const url = new URL("https://nominatim.openstreetmap.org/search");
+  url.searchParams.set("format", "jsonv2");
+  url.searchParams.set("limit", "1");
+  url.searchParams.set("q", address);
+  const results = await fetchJson(url.toString());
+  const result = Array.isArray(results) ? results[0] : null;
+  const lat = Number(result?.lat);
+  const lng = Number(result?.lon);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng) || lat === 0 || lng === 0) {
+    return null;
+  }
+  return { lat, lng };
+}
+
+async function geocodeMissingEventCoordinates(events) {
+  const cache = new Map();
+  let filled = 0;
+  let lookups = 0;
+  let lastLookupAt = 0;
+
+  for (const event of events) {
+    if (event.withinCoverage === false || hasValidCoordinates(event)) {
+      continue;
+    }
+    const address = geocodeableAddress(event.address);
+    if (!address) {
+      continue;
+    }
+    if (!cache.has(address)) {
+      const elapsed = Date.now() - lastLookupAt;
+      if (lastLookupAt && elapsed < GEOCODE_DELAY_MS) {
+        await sleep(GEOCODE_DELAY_MS - elapsed);
+      }
+      lastLookupAt = Date.now();
+      lookups += 1;
+      try {
+        cache.set(address, await geocodeAddress(address));
+      } catch (error) {
+        console.warn(`warning: could not geocode ${address}: ${error.message}`);
+        cache.set(address, null);
+      }
+    }
+    const coordinates = cache.get(address);
+    if (coordinates) {
+      event.lat = coordinates.lat;
+      event.lng = coordinates.lng;
+      filled += 1;
+    }
+  }
+
+  return { filled, lookups };
+}
+
+function repairEventQuality(events) {
+  const repairs = new Map();
+  const noteRepair = (field) => {
+    repairs.set(field, (repairs.get(field) || 0) + 1);
+  };
+
+  events.forEach((event) => {
+    if (!isNonEmptyText(event.sourceUrl) && isNonEmptyText(event.url)) {
+      event.sourceUrl = event.url;
+      noteRepair("sourceUrl");
+    }
+    if (!isNonEmptyText(event.url) && isNonEmptyText(event.sourceUrl)) {
+      event.url = event.sourceUrl;
+      noteRepair("url");
+    }
+    if (!isNonEmptyText(event.venueName) && isNonEmptyText(event.venue)) {
+      event.venueName = event.venue;
+      noteRepair("venueName");
+    }
+    if (!isNonEmptyText(event.venue) && isNonEmptyText(event.venueName)) {
+      event.venue = event.venueName;
+      noteRepair("venue");
+    }
+    if (!isNonEmptyText(event.timezone) && isValidDateText(event.startsAt)) {
+      event.timezone = TIMEZONE;
+      noteRepair("timezone");
+    }
+    if (!Number.isFinite(Number(event.durationMinutes)) && isValidDateText(event.startsAt) && isValidDateText(event.endsAt)) {
+      event.durationMinutes = durationMinutes(event.startsAt, event.endsAt);
+      noteRepair("durationMinutes");
+    }
+    if (isNonEmptyText(event.summary)) {
+      const cleanedSummary = cleanImportedSummary(stripImportedSummaryDateTimePrefix(event.summary));
+      if (cleanedSummary && cleanedSummary !== event.summary) {
+        event.summary = cleanedSummary;
+        noteRepair("summary");
+      }
+    }
+  });
+
+  return Object.fromEntries(repairs);
+}
+
+function qualityEventLabel(event) {
+  return [event.id, event.startsAt ? String(event.startsAt).slice(0, 10) : "", event.title, event.venueName || event.venue]
+    .filter(Boolean)
+    .join(" | ");
+}
+
+function noteQualityIssue(issues, field, event) {
+  if (!issues[field]) {
+    issues[field] = { count: 0, samples: [] };
+  }
+  issues[field].count += 1;
+  if (issues[field].samples.length < QUALITY_REPORT_SAMPLE_LIMIT) {
+    issues[field].samples.push(qualityEventLabel(event));
+  }
+}
+
+function auditEventQuality(events) {
+  const issues = {};
+
+  events
+    .filter((event) => event.status !== "review" && event.withinCoverage !== false)
+    .forEach((event) => {
+      if (!isNonEmptyText(event.title)) {
+        noteQualityIssue(issues, "title", event);
+      }
+      if (!isValidDateText(event.startsAt) && !isNonEmptyText(event.timeLabel)) {
+        noteQualityIssue(issues, "time", event);
+      }
+      if (!isNonEmptyText(event.venueName) && !isNonEmptyText(event.venue)) {
+        noteQualityIssue(issues, "place", event);
+      }
+      if (!hasValidCoordinates(event)) {
+        noteQualityIssue(issues, "coordinates", event);
+      }
+      if (!isValidUrlText(event.sourceUrl || event.url)) {
+        noteQualityIssue(issues, "sourceUrl", event);
+      }
+      if (!isNonEmptyText(event.summary) || GENERIC_SUMMARY_PATTERN.test(event.summary)) {
+        noteQualityIssue(issues, "summary", event);
+      }
+    });
+
+  return {
+    checked: events.filter((event) => event.status !== "review" && event.withinCoverage !== false).length,
+    issues
+  };
+}
+
+function printImportQualityReport({ audit, repairs, geocodeSummary }) {
+  const repairEntries = Object.entries(repairs).filter(([, count]) => count > 0);
+  const issueEntries = Object.entries(audit.issues);
+  console.log(`Quality audit checked ${audit.checked} visible/importable event record(s).`);
+  if (repairEntries.length) {
+    const repairText = repairEntries.map(([field, count]) => `${field}:${count}`).join(", ");
+    console.log(`Auto-repaired event fields: ${repairText}.`);
+  }
+  if (geocodeSummary.lookups) {
+    console.log(`Geocoded ${geocodeSummary.filled} event record(s) from ${geocodeSummary.lookups} address lookup(s).`);
+  }
+  if (!issueEntries.length) {
+    console.log("Quality audit found no unresolved gaps.");
+    return;
+  }
+  console.log("Quality audit unresolved gaps:");
+  issueEntries.forEach(([field, issue]) => {
+    console.log(`- ${field}: ${issue.count}`);
+    issue.samples.forEach((sample) => {
+      console.log(`  ${sample}`);
+    });
+    if (issue.count > issue.samples.length) {
+      console.log(`  ... ${issue.count - issue.samples.length} more`);
+    }
+  });
+}
+
 function buildSclsnjEventsUrl(source, startDate, days) {
   const request = {
     date: startDate,
@@ -435,18 +595,35 @@ function normalizeSclsnjUrl(event) {
   return `https://sclsnj.libnet.info/event/${event.id}`;
 }
 
+function sclsnjRegistryLocations(source) {
+  return new Map((source.locations || []).map((location) => [String(location.id), location]));
+}
+
+function mergeSclsnjLocation(apiLocation, registryLocation) {
+  return {
+    ...(apiLocation || {}),
+    ...(registryLocation || {}),
+    id: String(registryLocation?.id || apiLocation?.id || "")
+  };
+}
+
 function sclsnjDisplayLocationName(location, event) {
-  const locationId = String(location?.id || event.location_id || "");
-  return SCLSNJ_BRANCH_DISPLAY_NAMES.get(locationId) || location?.name || event.location;
+  return location?.name || event.location;
 }
 
 async function loadSclsnjLocations(source) {
+  const registryLocations = sclsnjRegistryLocations(source);
   try {
     const locations = await fetchJson(source.locationEndpoint);
-    return new Map(locations.map((location) => [String(location.id), location]));
+    return new Map(
+      locations.map((location) => {
+        const locationId = String(location.id);
+        return [locationId, mergeSclsnjLocation(location, registryLocations.get(locationId))];
+      })
+    );
   } catch (error) {
-    console.warn(`warning: SCLSNJ location API failed, using fallback locations: ${error.message}`);
-    return new Map(SCLSNJ_FALLBACK_LOCATIONS.map((location) => [String(location.id), location]));
+    console.warn(`warning: SCLSNJ location API failed, using registry locations: ${error.message}`);
+    return registryLocations;
   }
 }
 
@@ -979,6 +1156,9 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
   const host = new URL(baseUrl).host.replace(/[^a-z0-9]+/gi, "-").replace(/-$/g, "").toLowerCase();
 
   cards.forEach((card) => {
+    if (/\bnode--type-lc-closing\b|\blc-closing\b/i.test(card)) {
+      return;
+    }
     const selectorId = firstMatch(card, /data-drupal-selector="edit-([^"]+)"/);
     const linkMatch = card.match(/<a aria-label="([^"]+)" href="([^"]+)"/);
     if (!selectorId || !linkMatch) {
@@ -1265,6 +1445,21 @@ function allJoomlaEventBookingSources(sources) {
   );
 }
 
+function extractJoomlaEventBookingDetailSummary(html) {
+  const detailBlock = firstMatch(
+    html,
+    /<div\b[^>]*class=["'][^"']*\beb-description-details\b[^"']*["'][^>]*>([\s\S]*?)<\/div>\s*<div\b[^>]*id=["']eb-event-info/i
+  );
+  const summary = cleanImportedSummary(detailBlock);
+  if (summary) {
+    return summary;
+  }
+  const metaDescription =
+    firstMatch(html, /<meta\b(?=[^>]*property=["']og:description["'])(?=[^>]*content=["']([^"']+)["'])[^>]*>/i) ||
+    firstMatch(html, /<meta\b(?=[^>]*name=["']description["'])(?=[^>]*content=["']([^"']+)["'])[^>]*>/i);
+  return cleanImportedSummary(metaDescription);
+}
+
 function parseJoomlaEventBookingCalendar(html, source, startDate, days) {
   const events = [];
   const host = new URL(source.library.website).host.replace(/[^a-z0-9]+/gi, "-").replace(/-$/g, "").toLowerCase();
@@ -1329,6 +1524,25 @@ function parseJoomlaEventBookingCalendar(html, source, startDate, days) {
   return events;
 }
 
+async function enrichJoomlaEventBookingSummaries(events) {
+  for (const event of events) {
+    if (!event.sourceUrl) {
+      continue;
+    }
+    try {
+      const detailHtml = await fetchText(event.sourceUrl);
+      const summary = extractJoomlaEventBookingDetailSummary(detailHtml);
+      if (summary) {
+        event.summary = summary;
+        event.confidence = Math.max(Number(event.confidence || 0), 0.88);
+      }
+    } catch (error) {
+      console.warn(`warning: could not enrich Joomla summary for ${event.sourceUrl}: ${error.message}`);
+    }
+  }
+  return events;
+}
+
 async function importJoomlaEventBookingEvents(sources, startDate, days) {
   const imported = [];
   for (const source of allJoomlaEventBookingSources(sources)) {
@@ -1339,7 +1553,7 @@ async function importJoomlaEventBookingEvents(sources, startDate, days) {
       console.warn(`warning: could not import ${source.library.eventsUrl}: ${error.message}`);
     }
   }
-  return imported.filter((event) => event.startsAt && event.sourceUrl);
+  return enrichJoomlaEventBookingSummaries(imported.filter((event) => event.startsAt && event.sourceUrl));
 }
 
 const WEEKDAY_INDEX = new Map([
@@ -1512,10 +1726,14 @@ async function main() {
   ]);
   const incoming = importedGroups.flat();
   const events = mergeEvents(existingEvents, incoming, importedAt);
+  const repairs = repairEventQuality(events);
+  const geocodeSummary = await geocodeMissingEventCoordinates(events);
+  const audit = auditEventQuality(events);
 
   await writeFile(EVENTS_FILE, `${JSON.stringify(events, null, 2)}\n`);
   console.log(`Import window: ${startDate} through ${addDateDays(startDate, days - 1)}.`);
   console.log(`Imported or refreshed ${incoming.length} event records.`);
+  printImportQualityReport({ audit, repairs, geocodeSummary });
   console.log(`Stored ${events.length} total records in ${new URL(EVENTS_FILE).pathname}.`);
 }
 

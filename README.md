@@ -23,13 +23,17 @@ Where2Go/
   manifest.webmanifest        PWA metadata for Add to Home Screen
   .nojekyll                   Keeps GitHub Pages from running Jekyll
   assets/
-    icon.svg                  App icon
+    icon.svg                  Source app icon
+    icon-192.png              Android/iOS home-screen icon
+    icon-512.png              Large PWA icon
+    share-card.png            Social link preview image
   data/
     README.md                 Event data contract and maintenance notes
     event-sources.json        20-minute township/source registry
     events.json               Source-driven merged event history
     sample-events.json        Fallback sample data if imported data is missing
   scripts/
+    audit-project.mjs         Checks source registry consistency and visible event quality
     import-source-events.mjs  Refreshes source-driven events without deleting old events
     validate-events.mjs       Checks event JSON shape before deploy
 ```
@@ -62,6 +66,12 @@ Validate event data:
 node scripts/validate-events.mjs
 ```
 
+Audit source registry consistency and visible event quality:
+
+```bash
+node scripts/audit-project.mjs
+```
+
 The importer writes:
 
 ```text
@@ -69,6 +79,11 @@ data/events.json
 ```
 
 Commit and push that JSON file when GitHub Pages should show fresh events.
+
+The More menu is generated from `data/event-sources.json`: single-ZIP towns show
+the town and ZIP in two compact columns, multi-ZIP towns show an indented
+community/ZIP tree, and towns with at least one importable library source are
+highlighted.
 
 ## Map Setup
 

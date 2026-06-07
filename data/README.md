@@ -35,6 +35,37 @@ absolute timestamps.
 
 ## Maintenance
 
+When adding a new town, use `townExpansion.sourceTypes` in
+`data/event-sources.json` as the source checklist. Add links first, then run the
+importer so `data/events.json` is refreshed from those sources. The app should
+continue reading event records from `data/events.json`; `event-sources.json`
+stays the durable source registry and expansion notes.
+
+Use `sourceStatusVocabulary` in `data/event-sources.json` for source statuses:
+`importable` means the importer should read it automatically, `manual_review`
+means useful but not automated yet, `service_area` means covered by a broader
+system source, `blocked_by_bot_protection` means direct script fetching is
+blocked, and `reference_only` means keep the link but do not import it.
+
+For towns with multiple ZIP codes, add `zipCommunities` so the app can show a
+tree in the More menu. The menu display follows `appDisplayPolicy`: town labels
+are shortened for readability, ZIPs are right-aligned without parentheses, and
+towns with an importable library source are highlighted. Keep full official
+venue names in source/event data even when the app shortens them for display.
+
+Shared systems such as SCLSNJ should keep branch fallback locations in
+`sharedSources[*].locations`, not in importer code. Each branch location should
+include the external branch `id`, display `name`, address fields, and coordinates
+so imports remain stable when an upstream location API fails or returns noisy
+names.
+
+Every import should finish with a quality audit. The importer automatically
+repairs deterministic gaps such as mirrored `url`/`sourceUrl`, mirrored
+`venue`/`venueName`, missing timezone, missing duration, and missing in-coverage
+coordinates when an address can be geocoded. Any remaining missing time, place,
+coordinates, source URL, or concrete summary must be reported for manual review;
+do not invent descriptions when the source page does not provide one.
+
 Refresh the source-driven event file:
 
 ```bash
@@ -45,4 +76,11 @@ Validate both imported and sample data:
 
 ```bash
 node scripts/validate-events.mjs
+```
+
+Audit source registry consistency, source statuses, ZIP/community structure, and
+visible event quality:
+
+```bash
+node scripts/audit-project.mjs
 ```

@@ -73,7 +73,9 @@ const state = {
   driveTimeOrigin: null,
   installPromptEvent: null,
   installPromptMode: "",
-  initialLocationRequested: false
+  initialLocationRequested: false,
+  sourceRegistry: null,
+  moreMenuOpen: false
 };
 
 const elements = {
@@ -81,6 +83,9 @@ const elements = {
   mapSurface: document.querySelector("#mapSurface"),
   eventDetail: document.querySelector("#eventDetail"),
   updatedLabel: document.querySelector("#updatedLabel"),
+  moreMenuButton: document.querySelector("#moreMenuButton"),
+  moreMenuPanel: document.querySelector("#moreMenuPanel"),
+  coveredTownsList: document.querySelector("#coveredTownsList"),
   installPrompt: document.querySelector("#installPrompt"),
   installPromptTitle: document.querySelector("#installPromptTitle"),
   installPromptText: document.querySelector("#installPromptText"),
@@ -101,6 +106,14 @@ async function loadEventsData() {
     return await loadJson("data/events.json");
   } catch {
     return loadJson("data/sample-events.json");
+  }
+}
+
+async function loadSourceRegistryData() {
+  try {
+    return await loadJson("data/event-sources.json");
+  } catch {
+    return null;
   }
 }
 
@@ -405,6 +418,130 @@ async function updateUpdatedLabel(events) {
   } catch {
     elements.updatedLabel.textContent = formatUpdatedLabel(fallbackDate);
   }
+}
+
+function titleCaseTownName(value) {
+  return collapseWhitespace(value).replace(/\b[a-z]/g, (letter) => letter.toUpperCase());
+}
+
+function compactTownMenuName(value) {
+  return titleCaseTownName(value).replace(/\s+(Township|Borough|City)$/i, "").trim();
+}
+
+function compactCommunityMenuName(value) {
+  return titleCaseTownName(value).replace(/\s+Mailing Area$/i, "").trim();
+}
+
+function compactPlaceName(value) {
+  return collapseWhitespace(value)
+    .replace(/\b(Township|Borough|City)\s+(Public\s+Library|Library)\b/gi, "$2")
+    .replace(/\b(Township|Borough|City)\b/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function zipCodesForTown(town) {
+  if (Array.isArray(town?.zipCodes) && town.zipCodes.length) {
+    return town.zipCodes.map(String).filter(Boolean);
+  }
+  const text = JSON.stringify([town?.municipal, town?.libraries] || []);
+  return [...new Set(text.match(/\b\d{5}\b/g) || [])].sort();
+}
+
+function zipCommunitiesForTown(town) {
+  if (!Array.isArray(town?.zipCommunities)) {
+    return [];
+  }
+  return town.zipCommunities
+    .map((community) => ({
+      name: compactCommunityMenuName(community?.name || ""),
+      zip: String(community?.zip || "").trim()
+    }))
+    .filter((community) => community.name || community.zip);
+}
+
+function hasSearchableLibrary(town) {
+  return Array.isArray(town?.libraries) && town.libraries.some((library) => library?.status === "importable");
+}
+
+function coveredTownItems(sourceRegistry) {
+  return (sourceRegistry?.towns || [])
+    .map((town) => {
+      const zipCodes = zipCodesForTown(town);
+      return {
+        id: town.id,
+        name: compactTownMenuName(town.name || town.id || "Town"),
+        zipCodes,
+        communities: zipCommunitiesForTown(town),
+        hasSearchableLibrary: hasSearchableLibrary(town)
+      };
+    })
+    .sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
+}
+
+function renderCoveredTowns(sourceRegistry) {
+  if (!elements.coveredTownsList) {
+    return;
+  }
+  const towns = coveredTownItems(sourceRegistry);
+  if (!towns.length) {
+    elements.coveredTownsList.innerHTML = `<li class="town-list-empty">No towns loaded</li>`;
+    return;
+  }
+  elements.coveredTownsList.innerHTML = towns
+    .map((town) => {
+      const zipLabel = town.zipCodes.length ? town.zipCodes.join(", ") : "ZIP TBD";
+      const itemClass = `town-list-item${town.communities.length ? " has-communities" : ""}${town.hasSearchableLibrary ? " has-search-library" : ""}`;
+      if (town.communities.length) {
+        const communities = town.communities
+          .map((community) => {
+            const communityName = community.name || "ZIP area";
+            const communityZip = community.zip || "ZIP TBD";
+            return `<li><span>${escapeHtml(communityName)}</span><span>${escapeHtml(communityZip)}</span></li>`;
+          })
+          .join("");
+        return `<li class="${itemClass}"><div class="town-row"><strong>${escapeHtml(town.name)}</strong></div><ul class="town-sublist">${communities}</ul></li>`;
+      }
+      return `<li class="${itemClass}"><div class="town-row"><strong>${escapeHtml(town.name)}</strong><span>${escapeHtml(zipLabel)}</span></div></li>`;
+    })
+    .join("");
+}
+
+function setMoreMenuOpen(isOpen) {
+  state.moreMenuOpen = isOpen;
+  if (elements.moreMenuPanel) {
+    elements.moreMenuPanel.hidden = !isOpen;
+  }
+  if (elements.moreMenuButton) {
+    elements.moreMenuButton.setAttribute("aria-expanded", String(isOpen));
+  }
+}
+
+function toggleMoreMenu() {
+  setMoreMenuOpen(!state.moreMenuOpen);
+}
+
+function bindMoreMenu() {
+  elements.moreMenuButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleMoreMenu();
+  });
+  elements.moreMenuPanel?.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+  document.addEventListener("click", () => {
+    if (state.moreMenuOpen) {
+      setMoreMenuOpen(false);
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && state.moreMenuOpen) {
+      setMoreMenuOpen(false);
+      elements.moreMenuButton?.focus();
+    }
+  });
 }
 
 function collapseWhitespace(value) {
@@ -892,6 +1029,18 @@ function clearDriveTimeLayer() {
   updateDriveTimeControl();
 }
 
+function autoEnableDriveTimeLayer() {
+  if (state.driveTimeEnabled) {
+    return;
+  }
+  state.driveTimeEnabled = true;
+  updateDriveTimeControl();
+  refreshDriveTimeLayer().catch((error) => {
+    clearDriveTimeLayer();
+    setMapMessage(error.message || "Drive time failed", driveTimeErrorBody(error));
+  });
+}
+
 async function toggleDriveTimeLayer() {
   if (state.driveTimeEnabled) {
     clearDriveTimeLayer();
@@ -937,12 +1086,7 @@ function moveMapToPoint({ lat, lng, marker = "search", autoEnableDriveTime = fal
   const wasDriveTimeEnabled = state.driveTimeEnabled;
   setDriveTimeOrigin({ lat, lng, source: marker });
   if (autoEnableDriveTime && !wasDriveTimeEnabled) {
-    state.driveTimeEnabled = true;
-    updateDriveTimeControl();
-    refreshDriveTimeLayer().catch((error) => {
-      clearDriveTimeLayer();
-      setMapMessage(error.message || "Drive time failed", driveTimeErrorBody(error));
-    });
+    autoEnableDriveTimeLayer();
   }
   if (!state.driveTimeLoading) {
     setMapMessage("");
@@ -1031,6 +1175,7 @@ function fitSearchResult(result) {
     return;
   }
   state.mapFocus = "search";
+  const wasDriveTimeEnabled = state.driveTimeEnabled;
   addOrMoveCircleMarker("searchMarker", result.lat, result.lng, {
     radius: 7,
     color: "#ffffff",
@@ -1055,6 +1200,9 @@ function fitSearchResult(result) {
     }
   } else {
     fitMapAroundPoint(result);
+  }
+  if (!wasDriveTimeEnabled) {
+    autoEnableDriveTimeLayer();
   }
   if (!state.driveTimeLoading) {
     setMapMessage("");
@@ -1294,6 +1442,7 @@ function renderDetail() {
     .map((group) => {
       const pinNumber = groupPinNumber(group);
       const isActive = group.events.some((event) => event.id === state.selectedEventId);
+      const displayPlace = compactPlaceName(group.place);
       const pinBadgeHtml = pinNumber
         ? `<span class="pin-badge" aria-label="Pin ${escapeHtml(pinNumber)}">${escapeHtml(pinNumber)}</span>`
         : "";
@@ -1317,7 +1466,7 @@ function renderDetail() {
         <section class="detail-group ${isActive ? "is-active" : ""}" aria-label="${escapeHtml(group.place)}">
           <div class="place-line ${pinNumber ? "" : "has-no-pin"}">
             ${pinBadgeHtml}
-            <strong class="place-name">${escapeHtml(group.place)}</strong>
+            <strong class="place-name">${escapeHtml(displayPlace || group.place)}</strong>
             <a class="directions-link" href="${escapeHtml(directionsUrl(group))}" target="_blank" rel="noreferrer">Directions</a>
           </div>
           <div class="detail-events">${eventsHtml}</div>
@@ -1334,12 +1483,14 @@ function render() {
 }
 
 async function init() {
-  const events = await loadEventsData();
+  const [events, sourceRegistry] = await Promise.all([loadEventsData(), loadSourceRegistryData()]);
+  state.sourceRegistry = sourceRegistry;
   state.events = normalizeEvents(events);
   state.dates = visibleDates(state.events);
   state.selectedDate = defaultSelectedDate(state.dates);
   state.selectedEventId = "";
   updateUpdatedLabel(events);
+  renderCoveredTowns(sourceRegistry);
   render();
   requestInitialLocation();
 }
@@ -1374,6 +1525,7 @@ function setupInstallPrompt() {
 }
 
 setupInstallPrompt();
+bindMoreMenu();
 
 init().catch((error) => {
   elements.updatedLabel.textContent = "Load failed";
