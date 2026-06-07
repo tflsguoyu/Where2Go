@@ -60,7 +60,7 @@ async function loadJson(path) {
 
 async function loadEventsData() {
   try {
-    return await loadJson("data/imported/sclsnj-events.json");
+    return await loadJson("data/events.json");
   } catch {
     return loadJson("data/sample-events.json");
   }

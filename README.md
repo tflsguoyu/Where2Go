@@ -26,11 +26,11 @@ Where2Go/
     icon.svg                  App icon
   data/
     README.md                 Event data contract and maintenance notes
-    imported/
-      sclsnj-events.json      Current real SCLSNJ event data used by the app
+    event-sources.json        20-minute township/source registry
+    events.json               Source-driven merged event history
     sample-events.json        Fallback sample data if imported data is missing
   scripts/
-    import-libnet-events.mjs  Refreshes SCLSNJ events
+    import-source-events.mjs  Refreshes source-driven events without deleting old events
     validate-events.mjs       Checks event JSON shape before deploy
 ```
 
@@ -50,10 +50,10 @@ The app has no build step and no runtime npm dependencies.
 
 ## Data Workflow
 
-Refresh the imported SCLSNJ data:
+Refresh the broader source-driven event history:
 
 ```bash
-node scripts/import-libnet-events.mjs --days 21
+node scripts/import-source-events.mjs --days 60
 ```
 
 Validate event data:
@@ -65,7 +65,7 @@ node scripts/validate-events.mjs
 The importer writes:
 
 ```text
-data/imported/sclsnj-events.json
+data/events.json
 ```
 
 Commit and push that JSON file when GitHub Pages should show fresh events.

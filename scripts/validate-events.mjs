@@ -3,7 +3,7 @@
 import { readFile } from "node:fs/promises";
 
 const DEFAULT_FILES = [
-  "data/imported/sclsnj-events.json",
+  "data/events.json",
   "data/sample-events.json"
 ];
 
@@ -99,8 +99,8 @@ function validateEvent(event, context) {
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
       pushIssue(errors, file, index, id, "lat/lng must both be finite numbers");
     }
-    if ((lat === 0 || lng === 0) && file.includes("/imported/")) {
-      pushIssue(warnings, file, index, id, "imported event has zero coordinates");
+    if (lat === 0 || lng === 0) {
+      pushIssue(warnings, file, index, id, "event has zero coordinates");
     }
   }
 

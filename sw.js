@@ -1,4 +1,4 @@
-const CACHE_NAME = "where2go-public-v15";
+const CACHE_NAME = "where2go-public-v17";
 const APP_ASSETS = [
   "./",
   "index.html",
@@ -7,7 +7,8 @@ const APP_ASSETS = [
   "config.js",
   "manifest.webmanifest",
   "assets/icon.svg",
-  "data/imported/sclsnj-events.json",
+  "data/events.json",
+  "data/event-sources.json",
   "data/sample-events.json"
 ];
 
@@ -17,7 +18,8 @@ const NETWORK_FIRST_SUFFIXES = [
   "/app.js",
   "/config.js",
   "/styles.css",
-  "/data/imported/sclsnj-events.json",
+  "/data/events.json",
+  "/data/event-sources.json",
   "/data/sample-events.json"
 ];
 

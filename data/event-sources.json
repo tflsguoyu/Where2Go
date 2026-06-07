@@ -1,0 +1,535 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-07",
+  "home": {
+    "label": "Warren, NJ 07059",
+    "lat": 40.619261,
+    "lng": -74.490372
+  },
+  "coverage": {
+    "driveTimeMinutes": 20,
+    "method": "OpenRouteService driving-car isochrone; 2024 Census county subdivision internal points inside the isochrone",
+    "townCount": 21
+  },
+  "eventPolicy": {
+    "keepPastEvents": true,
+    "defaultLookaheadDays": 60,
+    "timezone": "America/New_York",
+    "costRule": "Keep paid events and record cost/registration fields when visible.",
+    "sourceUrlRule": "Every event must keep the original event page or source calendar URL."
+  },
+  "sharedSources": {
+    "sclsnj-libnet": {
+      "label": "Somerset County Library System",
+      "type": "library-system",
+      "status": "importable",
+      "parser": "sclsnj-libnet",
+      "website": "https://www.sclsnj.org/",
+      "eventsUrl": "https://sclsnj.libnet.info/events",
+      "eventEndpoint": "https://sclsnj.libnet.info/eeventcaldata",
+      "locationEndpoint": "https://api.communico.co/v1/sclsnj/locations",
+      "branchIds": ["471", "475", "477", "478", "479"],
+      "ageFilters": ["Baby/Toddler", "Pre-School", "Kids", "Families"],
+      "notes": "20-minute first pass imports Bridgewater, North Plainfield, Somerville, Warren Township, and Watchung branches."
+    }
+  },
+  "towns": [
+    {
+      "id": "green-brook-township",
+      "name": "Green Brook township",
+      "county": "Somerset",
+      "geoid": "3403527510",
+      "center": { "lat": 40.603832, "lng": -74.483208 },
+      "distanceMiles": 1.1,
+      "municipal": {
+        "website": "https://www.greenbrooktwp.org/",
+        "eventsUrl": "https://www.greenbrooktwp.org/",
+        "recreationUrl": "https://www.greenbrooktwp.org/",
+        "status": "manual_review",
+        "notes": "Official site uses JavaScript/challenge pages in simple fetches; check news/recreation flyers manually."
+      },
+      "libraries": [
+        {
+          "name": "Somerset County Library System service area",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "status": "service_area"
+        }
+      ]
+    },
+    {
+      "id": "warren-township",
+      "name": "Warren township",
+      "county": "Somerset",
+      "geoid": "3403576940",
+      "center": { "lat": 40.634588, "lng": -74.519044 },
+      "distanceMiles": 1.8,
+      "municipal": {
+        "website": "https://www.warrennj.org/",
+        "eventsUrl": "https://www.warrennj.org/calendar.aspx?CID=14",
+        "recreationUrl": "https://www.warrennj.org/DocumentCenter/View/11321/2026-Recreation-Programs-Events3",
+        "status": "manual_review",
+        "notes": "CivicPlus calendar and annual recreation PDF; good candidate for a future CivicPlus/PDF parser."
+      },
+      "libraries": [
+        {
+          "name": "Warren Township branch",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "478",
+          "status": "importable"
+        }
+      ]
+    },
+    {
+      "id": "dunellen-borough",
+      "name": "Dunellen borough",
+      "county": "Middlesex",
+      "geoid": "3402318490",
+      "center": { "lat": 40.590294, "lng": -74.465652 },
+      "distanceMiles": 2.4,
+      "municipal": {
+        "website": "https://www.dunellen-nj.gov/",
+        "eventsUrl": "https://www.dunellen-nj.gov/",
+        "recreationUrl": "https://www.dunellen-nj.gov/departments/parks_and_recreation/index.php",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Dunellen Public Library",
+          "website": "https://dunellenlibrary.net/",
+          "eventsUrl": "https://dunellenlibrary.events.mylibrary.digital/",
+          "status": "manual_review",
+          "notes": "mylibrary.digital currently presents a Cloudflare challenge to simple fetches."
+        }
+      ]
+    },
+    {
+      "id": "north-plainfield-borough",
+      "name": "North Plainfield borough",
+      "county": "Somerset",
+      "geoid": "3403553280",
+      "center": { "lat": 40.621255, "lng": -74.439466 },
+      "distanceMiles": 2.7,
+      "municipal": {
+        "website": "https://northplainfieldnj.gov/",
+        "eventsUrl": "https://northplainfieldnj.gov/",
+        "recreationUrl": "https://northplainfieldnj.gov/",
+        "status": "manual_review",
+        "notes": "Homepage exposes borough calendar items; recreation may also post via separate registration portals."
+      },
+      "libraries": [
+        {
+          "name": "North Plainfield branch",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "475",
+          "status": "importable"
+        }
+      ]
+    },
+    {
+      "id": "middlesex-borough",
+      "name": "Middlesex borough",
+      "county": "Middlesex",
+      "geoid": "3402345900",
+      "center": { "lat": 40.574627, "lng": -74.498259 },
+      "distanceMiles": 3.1,
+      "municipal": {
+        "website": "https://www.middlesexboro-nj.gov/",
+        "eventsUrl": "https://www.middlesexboro-nj.gov/calendar",
+        "recreationUrl": "https://www.middlesexboro-nj.gov/recreation",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Middlesex Public Library",
+          "website": "https://www.middlesexlibrarynj.org/",
+          "eventsUrl": "https://www.middlesexlibrarynj.org/current-programs/",
+          "status": "manual_review"
+        }
+      ]
+    },
+    {
+      "id": "watchung-borough",
+      "name": "Watchung borough",
+      "county": "Somerset",
+      "geoid": "3403577600",
+      "center": { "lat": 40.642845, "lng": -74.436233 },
+      "distanceMiles": 3.3,
+      "municipal": {
+        "website": "https://watchungnj.gov/",
+        "eventsUrl": "https://watchungnj.gov/recreation-dates",
+        "recreationUrl": "https://watchungnj.gov/recreation-dates",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Watchung branch",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "479",
+          "status": "importable"
+        }
+      ]
+    },
+    {
+      "id": "plainfield-city",
+      "name": "Plainfield city",
+      "county": "Union",
+      "geoid": "3403959190",
+      "center": { "lat": 40.615444, "lng": -74.415775 },
+      "distanceMiles": 3.9,
+      "municipal": {
+        "website": "https://www.plainfieldnj.gov/",
+        "eventsUrl": "https://plainfieldsid.org/events-calendar",
+        "recreationUrl": "https://www.plainfieldnj.gov/",
+        "status": "manual_review",
+        "notes": "Plainfield SID has a strong public events calendar; city recreation pages need a separate parser."
+      },
+      "libraries": [
+        {
+          "name": "Plainfield Public Library",
+          "website": "https://www.plainfieldlibrary.info/",
+          "eventsUrl": "https://plainfieldnj.librarycalendar.com/events/list",
+          "status": "importable",
+          "parser": "librarycalendar-list",
+          "townId": "plainfield-city"
+        }
+      ]
+    },
+    {
+      "id": "bound-brook-borough",
+      "name": "Bound Brook borough",
+      "county": "Somerset",
+      "geoid": "3403506790",
+      "center": { "lat": 40.567749, "lng": -74.53725 },
+      "distanceMiles": 4.3,
+      "municipal": {
+        "website": "https://boundbrook-nj.org/",
+        "eventsUrl": "https://boundbrook-nj.org/calendar/",
+        "recreationUrl": "https://boundbrook-nj.org/recreation/",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Somerset County Library System service area",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "status": "service_area",
+          "notes": "Bound Brook branch is being handled as SCLSNJ service-area/reopening source until a stable branch feed is available."
+        }
+      ]
+    },
+    {
+      "id": "long-hill-township",
+      "name": "Long Hill township",
+      "county": "Morris",
+      "geoid": "3402741362",
+      "center": { "lat": 40.682882, "lng": -74.491619 },
+      "distanceMiles": 4.4,
+      "municipal": {
+        "website": "https://www.longhillnj.gov/",
+        "eventsUrl": "https://www.longhillnj.gov/calendar",
+        "recreationUrl": "https://www.longhillnj.gov/",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Long Hill Township Library",
+          "website": "https://longhilllibrary.org/",
+          "eventsUrl": "https://longhilllibrary.org/events-calendar/",
+          "status": "manual_review"
+        }
+      ]
+    },
+    {
+      "id": "south-bound-brook-borough",
+      "name": "South Bound Brook borough",
+      "county": "Somerset",
+      "geoid": "3403568730",
+      "center": { "lat": 40.553947, "lng": -74.527455 },
+      "distanceMiles": 4.9,
+      "municipal": {
+        "website": "https://sbbnj.com/",
+        "eventsUrl": "https://sbbnj.com/events/",
+        "recreationUrl": "https://sbbnj.com/events/",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Somerset County Library System service area",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "status": "service_area",
+          "notes": "Borough library page directs residents to SCLSNJ."
+        }
+      ]
+    },
+    {
+      "id": "south-plainfield-borough",
+      "name": "South Plainfield borough",
+      "county": "Middlesex",
+      "geoid": "3402369390",
+      "center": { "lat": 40.574413, "lng": -74.4148 },
+      "distanceMiles": 5.0,
+      "municipal": {
+        "website": "https://www.southplainfieldnj.com/",
+        "eventsUrl": "https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/",
+        "recreationUrl": "https://www.southplainfieldnj.com/recreation",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "South Plainfield Public Library",
+          "website": "https://southplainfield.lib.nj.us/",
+          "eventsUrl": "https://southplainfield.librarycalendar.com/events/list",
+          "status": "importable",
+          "parser": "librarycalendar-list",
+          "townId": "south-plainfield-borough"
+        }
+      ]
+    },
+    {
+      "id": "berkeley-heights-township",
+      "name": "Berkeley Heights township",
+      "county": "Union",
+      "geoid": "3403905320",
+      "center": { "lat": 40.676119, "lng": -74.422756 },
+      "distanceMiles": 5.3,
+      "municipal": {
+        "website": "https://www.berkeleyheights.gov/",
+        "eventsUrl": "https://berkeleyheights.gov/calendar.aspx",
+        "recreationUrl": "https://www.berkeleyheights.gov/214/Recreation",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Berkeley Heights Public Library",
+          "website": "https://bhplnj.org/",
+          "eventsUrl": "https://bhplnj.org/events/",
+          "status": "manual_review"
+        }
+      ]
+    },
+    {
+      "id": "piscataway-township",
+      "name": "Piscataway township",
+      "county": "Middlesex",
+      "geoid": "3402359010",
+      "center": { "lat": 40.545539, "lng": -74.46072 },
+      "distanceMiles": 5.3,
+      "municipal": {
+        "website": "https://piscatawaynj.org/",
+        "eventsUrl": "https://drupalpway.piscatawaynj.org/calendar",
+        "recreationUrl": "https://drupalpway.piscatawaynj.org/recreation/about-us",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Piscataway Public Library",
+          "website": "https://piscatawaylibrary.org/",
+          "eventsUrl": "https://piscataway.librarycalendar.com/events/list",
+          "status": "importable",
+          "parser": "librarycalendar-list",
+          "townId": "piscataway-township"
+        }
+      ]
+    },
+    {
+      "id": "bernards-township",
+      "name": "Bernards township",
+      "county": "Somerset",
+      "geoid": "3403505560",
+      "center": { "lat": 40.677455, "lng": -74.567277 },
+      "distanceMiles": 5.7,
+      "municipal": {
+        "website": "https://www.bernards.org/",
+        "eventsUrl": "https://www.bernards.org/resident-calendar",
+        "recreationUrl": "https://bernards.org/departments/recreation",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Bernards Township Library",
+          "website": "https://www.bernardslibrary.org/",
+          "eventsUrl": "https://www.bernardslibrary.org/eventcalendar",
+          "status": "manual_review"
+        }
+      ]
+    },
+    {
+      "id": "fanwood-borough",
+      "name": "Fanwood borough",
+      "county": "Union",
+      "geoid": "3403922860",
+      "center": { "lat": 40.641701, "lng": -74.385692 },
+      "distanceMiles": 5.7,
+      "municipal": {
+        "website": "https://fanwoodnj.org/",
+        "eventsUrl": "https://fanwoodnj.org/calendar/",
+        "recreationUrl": "https://fanwoodnj.org/departments/recreation-info/",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Fanwood Memorial Library",
+          "website": "https://fanwoodlibrary.org/",
+          "eventsUrl": "https://fanwoodlibrary.events.mylibrary.digital/",
+          "status": "manual_review",
+          "notes": "mylibrary.digital feed is linked from the library site but needs browser/challenge handling."
+        }
+      ]
+    },
+    {
+      "id": "scotch-plains-township",
+      "name": "Scotch Plains township",
+      "county": "Union",
+      "geoid": "3403966060",
+      "center": { "lat": 40.633029, "lng": -74.372899 },
+      "distanceMiles": 6.2,
+      "municipal": {
+        "website": "https://scotchplainsnj.gov/",
+        "eventsUrl": "https://scotchplainsnj.gov/index.php/events",
+        "recreationUrl": "https://scotchplainsnj.gov/index.php/events",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Scotch Plains Public Library",
+          "website": "https://scotchplainslibrary.org/",
+          "eventsUrl": "https://scotlib.events.mylibrary.digital/",
+          "status": "manual_review",
+          "notes": "mylibrary.digital currently presents a Cloudflare challenge to simple fetches."
+        }
+      ]
+    },
+    {
+      "id": "bridgewater-township",
+      "name": "Bridgewater township",
+      "county": "Somerset",
+      "geoid": "3403507720",
+      "center": { "lat": 40.592358, "lng": -74.60401 },
+      "distanceMiles": 6.2,
+      "municipal": {
+        "website": "https://www.bridgewaternj.gov/",
+        "eventsUrl": "https://www.bridgewaternj.gov/township-information/calendar",
+        "recreationUrl": "https://parks.bridgewaternj.gov/",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Bridgewater branch",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "471",
+          "status": "importable"
+        }
+      ]
+    },
+    {
+      "id": "new-providence-borough",
+      "name": "New Providence borough",
+      "county": "Union",
+      "geoid": "3403951810",
+      "center": { "lat": 40.69889, "lng": -74.406623 },
+      "distanceMiles": 7.0,
+      "municipal": {
+        "website": "https://www.newprov.us/",
+        "eventsUrl": "https://www.newprov.us/calendar.aspx",
+        "recreationUrl": "https://www.newprov.us/191/community-activities",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "New Providence Memorial Library",
+          "website": "https://newprovlibrary.org/",
+          "eventsUrl": "https://newprovidence.librarycalendar.com/events/list",
+          "status": "importable",
+          "parser": "librarycalendar-list",
+          "townId": "new-providence-borough"
+        }
+      ]
+    },
+    {
+      "id": "somerville-borough",
+      "name": "Somerville borough",
+      "county": "Somerset",
+      "geoid": "3403568460",
+      "center": { "lat": 40.569749, "lng": -74.607682 },
+      "distanceMiles": 7.0,
+      "municipal": {
+        "website": "https://www.somervillenj.org/",
+        "eventsUrl": "https://www.somervillenj.org/calendar/",
+        "recreationUrl": "https://www.somervillenj.org/departments/recreation/",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Somerville branch",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "477",
+          "status": "importable"
+        }
+      ]
+    },
+    {
+      "id": "mountainside-borough",
+      "name": "Mountainside borough",
+      "county": "Union",
+      "geoid": "3403948510",
+      "center": { "lat": 40.680722, "lng": -74.360292 },
+      "distanceMiles": 8.0,
+      "municipal": {
+        "website": "https://www.mountainside-nj.com/",
+        "eventsUrl": "https://www.mountainside-nj.com/",
+        "recreationUrl": "https://www.mountainside-nj.com/department/recreation/",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Mountainside Public Library",
+          "website": "https://mountainsidelibrary.org/",
+          "eventsUrl": "https://mountainsidelibrary.org/programs/youth-calendar",
+          "status": "manual_review"
+        }
+      ]
+    },
+    {
+      "id": "summit-city",
+      "name": "Summit city",
+      "county": "Union",
+      "geoid": "3403971430",
+      "center": { "lat": 40.715622, "lng": -74.364684 },
+      "distanceMiles": 9.4,
+      "municipal": {
+        "website": "https://www.cityofsummit.org/",
+        "eventsUrl": "https://www.cityofsummit.org/Calendar.aspx",
+        "recreationUrl": "https://summitcommunityprograms.com/35/Events",
+        "status": "manual_review"
+      },
+      "libraries": [
+        {
+          "name": "Summit Free Public Library",
+          "website": "https://www.summitlibrary.org/",
+          "eventsUrl": "https://summitlibrary.libcal.com/calendar",
+          "status": "importable",
+          "parser": "libcal-list",
+          "siteId": "14878",
+          "calendarIds": ["12857"],
+          "audienceIds": ["320", "795", "397"],
+          "townId": "summit-city"
+        }
+      ]
+    }
+  ]
+}
