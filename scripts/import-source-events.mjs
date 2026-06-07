@@ -71,6 +71,10 @@ const AGE_ORDER = ["baby", "toddler", "preschool", "early-elementary", "tween", 
 const IMPORT_QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
 const IMPORT_SUMMARY_TITLE_STOP_PATTERN =
   /\s+(?:Join|Learn|Enjoy|Come|Meet|Discover|Explore|Register|Presented|Presenter|Hosted|For|This|In this|During|Participants|All ages)\b/i;
+const SOURCE_LOGISTICS_CLAUSE_PATTERN =
+  /\s+[-–—]\s*(?:see|check|visit|open|follow|be sure to follow)\b[^.!?]{0,180}\b(?:updates?|details?|current availability|confirm|registration|capacity)\b[^.!?]*(?:[.!?]|$)/gi;
+const SOURCE_LOGISTICS_SENTENCE_PATTERN =
+  /\b(?:open|see|visit|check|follow|be sure to follow|please register|register)\b[^.!?]{0,180}\b(?:updates?|details?|current availability|confirm|registration|capacity)\b[^.!?]*(?:[.!?]|$)/gi;
 const MONTHS = new Map([
   ["january", "01"],
   ["february", "02"],
@@ -124,6 +128,18 @@ function stripHtml(value) {
     .replace(/<\/p>/gi, " ")
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
+    .trim();
+}
+
+function cleanImportedSummary(value) {
+  return stripHtml(value)
+    .replace(/\[&hellip;]|\[…]|&hellip;|\.\.\./gi, "")
+    .replace(SOURCE_LOGISTICS_CLAUSE_PATTERN, ".")
+    .replace(SOURCE_LOGISTICS_SENTENCE_PATTERN, "")
+    .replace(/\s+([,.!?])/g, "$1")
+    .replace(/\.{2,}/g, ".")
+    .replace(/\s+/g, " ")
+    .replace(/^[.,;:!?-]+\s*/, "")
     .trim();
 }
 
@@ -194,22 +210,6 @@ function isDateWithinWindow(dateKey, startDate, days) {
   const startStamp = dateStamp(startDate);
   const endStamp = dateStamp(addDateDays(startDate, Math.max(0, days - 1)));
   return stamp >= startStamp && stamp <= endStamp;
-}
-
-function formatDateForSummary(dateKey) {
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: "UTC",
-    month: "short",
-    day: "numeric",
-    year: "numeric"
-  }).format(new Date(`${dateKey}T12:00:00Z`));
-}
-
-function formatDateRangeForSummary(startDate, endDate) {
-  if (!endDate || startDate === endDate) {
-    return formatDateForSummary(startDate);
-  }
-  return `${formatDateForSummary(startDate)} - ${formatDateForSummary(endDate)}`;
 }
 
 function parseLocalDateTime(datePart, timePart) {
@@ -485,8 +485,8 @@ async function importSclsnjEvents(sources, startDate, days) {
     .filter((event) => isSclsnjLowAgeEvent(event, source.ageFilters))
     .map((event) => {
       const location = locationsById.get(String(event.location_id));
-      const summary = stripHtml(event.description || event.long_description || "");
-      const longSummary = stripHtml(event.long_description || "");
+      const summary = cleanImportedSummary(event.description || event.long_description || "");
+      const longSummary = cleanImportedSummary(event.long_description || "");
       const displayLocationName = sclsnjDisplayLocationName(location, event);
       const venueParts = [displayLocationName, event.venues].filter(Boolean);
       const url = normalizeSclsnjUrl(event);
@@ -603,6 +603,71 @@ function collectTagsFromListingSection(section) {
   return [...tagBlock.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/g)]
     .map((match) => stripHtml(match[1]).replace(/^#/, "").trim())
     .filter(Boolean);
+}
+
+function cleanNjCarnivalsDetailParagraph(value) {
+  return cleanImportedSummary(value)
+    .replace(/\bHours?\s+(?:are|is)\s+[^.!?]+[.!?]?/gi, "")
+    .replace(/\bDates?, prices?, and hours? are subject to change[^.!?]*[.!?]?/gi, "")
+    .replace(/\bNJ Carnivals does not operate[^.!?]*[.!?]?/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isUsefulNjCarnivalsDetailParagraph(value) {
+  if (value.length < 35) {
+    return false;
+  }
+  if (/^(?:profits|proceeds)\b/i.test(value)) {
+    return false;
+  }
+  if (/\bwill host\b/i.test(value) && !/\b(?:features?|includes?|rides?|games?|music|entertainment|vendors?|food|crafts?|fireworks|free|kids?|famil(?:y|ies)|activities)\b/i.test(value)) {
+    return false;
+  }
+  return true;
+}
+
+function njCarnivalsDetailParagraphScore(value) {
+  let score = 0;
+  if (/\b(?:features?|includes?|rides?|games?|activities|entertainment|music|vendors?|food trucks?|crafts?|fireworks|performances?)\b/i.test(value)) {
+    score += 4;
+  }
+  if (/\b(?:kids?|children|famil(?:y|ies)|all ages)\b/i.test(value)) {
+    score += 2;
+  }
+  if (/\b(?:free|admission|tickets?|wristbands?)\b/i.test(value)) {
+    score += 1;
+  }
+  if (/\b(?:will host|held along|located at)\b/i.test(value)) {
+    score -= 1;
+  }
+  return score;
+}
+
+function extractNjCarnivalsDetailSummary(html) {
+  const content =
+    firstMatch(html, /<div\b[^>]*class=["'][^"']*\bpostContent\b[^"']*["'][^>]*>([\s\S]*?)<div\b[^>]*id=["']contentDisclaimer["']/i) ||
+    firstMatch(html, /<div\b[^>]*class=["'][^"']*\bentry-content\b[^"']*["'][^>]*>([\s\S]*?)<h2\b[^>]*class=["']hoursLabel["']/i);
+  const paragraphs = [...content.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+    .map((match) => cleanNjCarnivalsDetailParagraph(match[1]))
+    .filter(isUsefulNjCarnivalsDetailParagraph);
+
+  const selected = paragraphs
+    .map((text, index) => ({ index, score: njCarnivalsDetailParagraphScore(text), text }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.index - b.index)
+    .slice(0, 2)
+    .sort((a, b) => a.index - b.index)
+    .map((item) => item.text);
+
+  if (selected.length) {
+    return selected.join(" ");
+  }
+
+  const metaDescription =
+    firstMatch(html, /<meta\b(?=[^>]*property=["']og:description["'])(?=[^>]*content=["']([^"']+)["'])[^>]*>/i) ||
+    firstMatch(html, /<meta\b(?=[^>]*name=["']description["'])(?=[^>]*content=["']([^"']+)["'])[^>]*>/i);
+  return cleanNjCarnivalsDetailParagraph(metaDescription);
 }
 
 function parseJsonLdEvent(section) {
@@ -813,18 +878,21 @@ async function enrichNjCarnivalsDetailHours(events) {
         const detailHtml = await fetchText(sourceUrl);
         const dateKeys = group.map((event) => String(event.startsAt || "").slice(0, 10)).filter(Boolean);
         const hoursByDate = extractNjCarnivalsDetailHours(detailHtml, dateKeys);
+        const detailSummary = extractNjCarnivalsDetailSummary(detailHtml);
         group.forEach((event) => {
           const dateKey = String(event.startsAt || "").slice(0, 10);
           const hours = hoursByDate.get(dateKey);
-          if (!hours) {
-            return;
+          if (detailSummary) {
+            event.summary = detailSummary;
+            event.confidence = Math.max(Number(event.confidence || 0), event.withinCoverage ? 0.88 : 0.78);
           }
-          event.startsAt = `${dateKey}T${hours.start}:00`;
-          event.endsAt = hours.end ? `${dateKey}T${hours.end}:00` : null;
-          event.durationMinutes = hours.durationMinutes;
-          event.summary = event.summary.replace("Open the source page for daily hours and updates.", "Open the source page for updates.");
-          event.timeLabel = hours.timeLabel || null;
-          event.confidence = Math.max(Number(event.confidence || 0), event.withinCoverage ? 0.88 : 0.78);
+          if (hours) {
+            event.startsAt = `${dateKey}T${hours.start}:00`;
+            event.endsAt = hours.end ? `${dateKey}T${hours.end}:00` : null;
+            event.durationMinutes = hours.durationMinutes;
+            event.timeLabel = hours.timeLabel || null;
+            event.confidence = Math.max(Number(event.confidence || 0), event.withinCoverage ? 0.88 : 0.78);
+          }
         });
       } catch (error) {
         console.warn(`warning: could not enrich NJ Carnivals hours for ${sourceUrl}: ${error.message}`);
@@ -862,8 +930,7 @@ function parseNjCarnivalsListings(html, source, sources, startDate, days) {
     const tags = collectTagsFromListingSection(section);
     const venueName = stripHtml(location.name || locality || "NJ Carnivals event");
     const fullAddress = addressFromPostalAddress(address);
-    const dateRange = formatDateRangeForSummary(startDateOnly, endDateOnly);
-    const summary = `${title} listed by ${source.label}. Dates: ${dateRange}. ${fullAddress ? `Location: ${fullAddress}. ` : ""}Open the source page for daily hours and updates.`;
+    const summary = "";
 
     datesInRange(startDateOnly, endDateOnly)
       .filter((dateKey) => isDateWithinWindow(dateKey, startDate, days))
@@ -926,7 +993,7 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
 
     const [, title, datePart, timePart] = titleMatch;
     const audiences = [...card.matchAll(/This event is in the "([^"]+)" group/g)].map((match) => decodeEntities(match[1]));
-    const description = stripHtml(firstMatch(card, /<div class="lc-list-event-description">([\s\S]*?)<\/div>/));
+    const description = cleanImportedSummary(firstMatch(card, /<div class="lc-list-event-description">([\s\S]*?)<\/div>/));
     if (isClosureOrNonEvent(title, description)) {
       return;
     }
@@ -958,7 +1025,7 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
       audiences,
       cost: null,
       registration: actionLabel.startsWith("Register Now") ? "RSVP" : "See source",
-      summary: description || `${source.library.name} event. See source page for details.`,
+      summary: description,
       url: sourceUrl,
       sourceUrl,
       sourceCalendarUrl: source.library.eventsUrl,
@@ -1033,7 +1100,7 @@ function buildLibCalListUrl(source, dateKey, page = 1) {
 function mapLibCalEvent(source, event, calendarUrl, dateKey) {
   const audiences = normalizeLabelList(event.audiences ?? []);
   const categories = normalizeLabelList(event.categories_arr ?? event.categories ?? []);
-  const summary = stripHtml(event.shortdesc || event.description || "");
+  const summary = cleanImportedSummary(event.shortdesc || event.description || "");
   if (isClosureOrNonEvent(event.title, summary) || !hasChildAudience(audiences, event.title)) {
     return null;
   }
@@ -1059,7 +1126,7 @@ function mapLibCalEvent(source, event, calendarUrl, dateKey) {
     audiences,
     cost: event.registration_cost ?? null,
     registration: event.registration_enabled ? "RSVP" : "See source",
-    summary: summary || `${source.library.name} event. See source page for details.`,
+    summary,
     url,
     sourceUrl: url,
     sourceCalendarUrl: source.library.eventsUrl,
@@ -1126,7 +1193,7 @@ function buildEventOrganiserUrl(source, startDate, days) {
 function mapEventOrganiserEvent(source, rawEvent) {
   const rawTitle = stripHtml(rawEvent.title || rawEvent.event_title || "");
   const categories = normalizeLabelList(rawEvent.category ?? rawEvent.categories ?? []);
-  const summary = stripHtml(rawEvent.description || rawEvent.excerpt || "");
+  const summary = cleanImportedSummary(rawEvent.description || rawEvent.excerpt || "");
   const title = importedDisplayTitle(rawTitle, summary);
   if (!title || isClosureOrNonEvent(title, summary)) {
     return null;
@@ -1161,7 +1228,7 @@ function mapEventOrganiserEvent(source, rawEvent) {
     audiences: categories,
     cost: null,
     registration: "See source",
-    summary: summary || `${source.library.name} event. See source page for details.`,
+    summary,
     url: sourceUrl,
     sourceUrl,
     sourceCalendarUrl: source.library.eventsUrl,
@@ -1247,7 +1314,7 @@ function parseJoomlaEventBookingCalendar(html, source, startDate, days) {
       ages: inferAgeBandsFromText(title, tooltipText),
       cost: /free/i.test(price) ? 0 : null,
       registration: /Registration Start Date|Cut Off Date|Available Place/i.test(tooltipText) ? "RSVP" : "See source",
-      summary: `${source.library.name} youth event. Open the source page for registration, capacity, and updates.`,
+      summary: "",
       url: sourceUrl,
       sourceUrl,
       sourceCalendarUrl: source.library.eventsUrl,
@@ -1303,7 +1370,7 @@ function configuredWorkshopEvent(source, location, workshop, dateKey) {
   const sourceUrl = workshop.url || location.storeUrl || source.eventsUrl || source.website;
   const startsAt = localDateTime(dateKey, workshop.startTime || source.recurrence?.startTime || "12:00");
   const endsAt = localDateTime(dateKey, workshop.endTime || source.recurrence?.endTime || "13:00");
-  const summary = stripHtml(workshop.summary || source.recurrence?.summary || `${source.label}. Open the source page for details.`);
+  const summary = cleanImportedSummary(workshop.summary || source.recurrence?.summary || source.label);
 
   return {
     id: `${source.id}-${location.id}-${dateKey}-${slugify(title)}`,

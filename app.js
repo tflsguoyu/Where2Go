@@ -33,6 +33,12 @@ const LEADING_DATE_TIME_PATTERN = new RegExp(
 );
 const LEADING_TIME_PATTERN = new RegExp(`^${TIME_RANGE_TEXT_PATTERN}\\s*`, "i");
 const METADATA_LABEL_PATTERN = /\b(?:dates?|times?|when|locations?|venues?|addresses?|where):\s*[^.;]+[.;]?\s*/gi;
+const SOURCE_PAGE_SENTENCE_PATTERN = /\b(?:Open|See|Visit|Check)\s+(?:the\s+)?source page\b[^.!?]*(?:[.!?]|$)/gi;
+const SOURCE_LOGISTICS_CLAUSE_PATTERN =
+  /\s+[-–—]\s*(?:see|check|visit|open|follow|be sure to follow)\b[^.!?]{0,180}\b(?:updates?|details?|current availability|confirm|registration|capacity)\b[^.!?]*(?:[.!?]|$)/gi;
+const SOURCE_LOGISTICS_SENTENCE_PATTERN =
+  /\b(?:open|see|visit|check|follow|be sure to follow|please register|register)\b[^.!?]{0,180}\b(?:updates?|details?|current availability|confirm|registration|capacity)\b[^.!?]*(?:[.!?]|$)/gi;
+const GENERIC_SOURCE_SENTENCE_PATTERN = /\b(?:listed by [^.!?]+|[^.!?]*\byouth event)\b[^.!?]*(?:[.!?]|$)/gi;
 const QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
 const SUMMARY_TITLE_STOP_PATTERN =
   /\s+(?:Join|Learn|Enjoy|Come|Meet|Discover|Explore|Register|Presented|Presenter|Hosted|For|This|In this|During|Participants|All ages)\b/i;
@@ -439,7 +445,11 @@ function summaryWithoutRepeatedMetadata(event) {
     return "";
   }
   text = collapseWhitespace(text.replace(METADATA_LABEL_PATTERN, " "));
-  return stripLeadingDateTime(text);
+  text = collapseWhitespace(text.replace(SOURCE_PAGE_SENTENCE_PATTERN, " "));
+  text = collapseWhitespace(text.replace(SOURCE_LOGISTICS_CLAUSE_PATTERN, "."));
+  text = collapseWhitespace(text.replace(SOURCE_LOGISTICS_SENTENCE_PATTERN, " "));
+  text = collapseWhitespace(text.replace(GENERIC_SOURCE_SENTENCE_PATTERN, " "));
+  return stripLeadingDateTime(text.replace(/\s+([,.!?])/g, "$1").replace(/\.{2,}/g, "."));
 }
 
 function normalizeDisplayTitle(value) {
@@ -476,22 +486,29 @@ function displayTitle(event) {
   return summaryTitleCandidate(event) || title;
 }
 
+function repeatedSummaryTitleSegment(event) {
+  const segment = summaryTitleSegment(event);
+  if (!segment) {
+    return "";
+  }
+  return normalizeDisplayTitle(segment) === normalizeDisplayTitle(displayTitle(event)) ? segment : "";
+}
+
 function cleanedSummaryText(event) {
   let text = summaryWithoutRepeatedMetadata(event);
   if (!text) {
     return "";
   }
   text = stripLeadingDateTime(text);
-  [summaryTitleSegment(event), displayTitle(event), event.title, event.venueName, event.venue, event.address, event.source].forEach(
-    (value) => {
-      text = stripLeadingKnownValue(text, value);
-    }
-  );
+  const titleSegment = repeatedSummaryTitleSegment(event);
+  [titleSegment, displayTitle(event), event.title, event.venueName, event.venue, event.address, event.source].forEach((value) => {
+    text = stripLeadingKnownValue(text, value);
+  });
   return stripLeadingDateTime(collapseWhitespace(text));
 }
 
 function summaryText(event) {
-  const text = cleanedSummaryText(event) || "Open the source page for details.";
+  const text = cleanedSummaryText(event);
   if (text.length <= SUMMARY_PREVIEW_LIMIT) {
     return text;
   }
@@ -1282,14 +1299,17 @@ function renderDetail() {
         : "";
       const eventsHtml = group.events
         .map(
-          (event) => `
-            <article class="detail-event">
-              <h2>${escapeHtml(displayTitle(event))}</h2>
-              <p class="event-time">${formatTimeRange(event)}</p>
-              <p class="event-summary">${escapeHtml(summaryText(event))}</p>
-              <a class="source-link" href="${escapeHtml(sourceUrl(event))}" target="_blank" rel="noreferrer">Open source page</a>
-            </article>
-          `
+          (event) => {
+            const summary = summaryText(event);
+            return `
+              <article class="detail-event">
+                <h2>${escapeHtml(displayTitle(event))}</h2>
+                <p class="event-time">${formatTimeRange(event)}</p>
+                ${summary ? `<p class="event-summary">${escapeHtml(summary)}</p>` : ""}
+                <a class="source-link" href="${escapeHtml(sourceUrl(event))}" target="_blank" rel="noreferrer">Open source page</a>
+              </article>
+            `;
+          }
         )
         .join("");
 
