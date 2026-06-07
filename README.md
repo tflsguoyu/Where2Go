@@ -1,35 +1,37 @@
 # Where2Go
 
-Where2Go is a mobile-first static web app for checking kid-friendly events near 07059.
+Where2Go is a mobile-first static PWA for checking kid-friendly events near
+Warren, NJ 07059.
 
-The current app is intentionally simple:
+The app is intentionally small:
 
-- Choose a date from the top timeline.
-- See only that day's events on the map.
-- Tap a map pin to view the event time, place, description, and source link.
-- Use current location or a ZIP code to move the map.
-- No login, no private family data, no playdate features yet.
+- Pick a date from the top timeline.
+- See only that day's events on a Leaflet map.
+- Tap a numbered map pin to view grouped event details for that location.
+- Use current location or ZIP/town search to move the map.
+- Keep family data out of the app: no login, profiles, or playdate features.
 
-## Folder Structure
+## Project Structure
 
 ```text
 Where2Go/
   index.html                  App HTML shell
-  app.js                      Date timeline, Leaflet map pins, and event detail logic
-  config.js                   Public MapTiler key/config for the production basemap
+  app.js                      Date timeline, map pins, search, and detail rendering
   styles.css                  Mobile-first visual styling
-  sw.js                       Service worker for basic offline/cache support
+  config.js                   Public MapTiler config for map tiles and search
+  sw.js                       Basic app-shell/data service worker cache
   manifest.webmanifest        PWA metadata for Add to Home Screen
   .nojekyll                   Keeps GitHub Pages from running Jekyll
-  README.md                   This file
   assets/
     icon.svg                  App icon
   data/
+    README.md                 Event data contract and maintenance notes
     imported/
-      sclsnj-events.json      Current real event data used by the app
+      sclsnj-events.json      Current real SCLSNJ event data used by the app
     sample-events.json        Fallback sample data if imported data is missing
   scripts/
-    import-libnet-events.mjs  SCLSNJ event importer used to refresh event data
+    import-libnet-events.mjs  Refreshes SCLSNJ events
+    validate-events.mjs       Checks event JSON shape before deploy
 ```
 
 ## Run Locally
@@ -44,41 +46,67 @@ Then open:
 http://localhost:4178/
 ```
 
-## Map Setup
+The app has no build step and no runtime npm dependencies.
 
-The app uses Leaflet for map interactions and a MapTiler raster basemap for production. Add your public MapTiler key in:
+## Data Workflow
 
-```text
-config.js
-```
-
-For beta testing, `useTemporaryOpenStreetMapFallback` can stay `true` so the map still works before a MapTiler key is added. For long-term public use, add a MapTiler key and restrict it to your GitHub Pages domain.
-
-## Refresh Event Data
+Refresh the imported SCLSNJ data:
 
 ```bash
 node scripts/import-libnet-events.mjs --days 21
 ```
 
-This updates:
+Validate event data:
+
+```bash
+node scripts/validate-events.mjs
+```
+
+The importer writes:
 
 ```text
 data/imported/sclsnj-events.json
 ```
 
-Commit and push that file when you want GitHub Pages to show fresh data.
+Commit and push that JSON file when GitHub Pages should show fresh events.
+
+## Map Setup
+
+The app uses Leaflet for map interactions, MapTiler for production raster map
+tiles and ZIP/town search, and OpenRouteService for optional drive-time
+isochrones. Configure public keys in:
+
+```text
+config.js
+```
+
+The MapTiler key should be restricted to the deployed GitHub Pages domain. During
+early testing, `useTemporaryOpenStreetMapFallback` can be set to `true` so the map
+still renders before a MapTiler key is available. Search still requires MapTiler.
+
+Drive-time overlays use `driveTime.apiKey` in `config.js`. The current UI draws
+10-minute and 20-minute driving contours from the last location/search point; the
+inner contour is styled as 0-10 minutes and the outer visible area as 10-20
+minutes.
+
+## Offline Behavior
+
+The service worker caches the app shell and event JSON with a network-first
+strategy for frequently changed files. External Leaflet assets, map tiles, and
+geocoding requests still depend on the network or the browser's own cache.
+
+When changing cached app files, bump `CACHE_NAME` in `sw.js`.
 
 ## Deploy With GitHub Pages
 
-1. Create a GitHub repo named `Where2Go`.
-2. Push this folder to the repo.
-3. Open the repo on GitHub.
-4. Go to `Settings > Pages`.
-5. Choose `Deploy from a branch`.
-6. Select branch `main` and folder `/ (root)`.
-7. Save.
+1. Push this folder to a GitHub repo.
+2. Open the repo on GitHub.
+3. Go to `Settings > Pages`.
+4. Choose `Deploy from a branch`.
+5. Select branch `main` and folder `/ (root)`.
+6. Save.
 
-Your public URL will look like:
+The public URL will look like:
 
 ```text
 https://YOUR-GITHUB-USERNAME.github.io/Where2Go/
@@ -86,4 +114,5 @@ https://YOUR-GITHUB-USERNAME.github.io/Where2Go/
 
 ## Phone Install
 
-On iPhone, open the GitHub Pages URL in Safari, tap Share, then tap Add to Home Screen.
+On iPhone, open the GitHub Pages URL in Safari, tap Share, then tap Add to Home
+Screen.

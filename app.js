@@ -3,17 +3,32 @@ const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
 const USE_OSM_FALLBACK = window.Where2GoConfig?.useTemporaryOpenStreetMapFallback === true;
+const DRIVE_TIME_CONFIG = window.Where2GoConfig?.driveTime || {};
+const DRIVE_TIME_PROVIDER = String(DRIVE_TIME_CONFIG.provider || "openrouteservice").trim();
+const DRIVE_TIME_KEY = String(DRIVE_TIME_CONFIG.apiKey || "").trim();
+const DRIVE_TIME_PROFILE = String(DRIVE_TIME_CONFIG.profile || "driving-car").trim();
+const DRIVE_TIME_ATTRIBUTION =
+  '&copy; <a href="https://openrouteservice.org/" target="_blank">openrouteservice.org</a> by <a href="https://www.heigit.org/" target="_blank">HeiGIT</a>';
+const DRIVE_TIME_RANGES_MINUTES = Array.isArray(DRIVE_TIME_CONFIG.rangesMinutes)
+  ? DRIVE_TIME_CONFIG.rangesMinutes.map(Number).filter((value) => Number.isFinite(value) && value > 0)
+  : [10, 20];
+const DRIVE_TIME_CONTOURS = DRIVE_TIME_RANGES_MINUTES.length ? DRIVE_TIME_RANGES_MINUTES : [10, 20];
 
 const mapState = {
   map: null,
   markerLayer: null,
+  driveTimeLayer: null,
   message: null,
   locateButton: null,
+  driveTimeButton: null,
+  driveTimeLegend: null,
   searchForm: null,
   searchInput: null,
   searchButton: null,
   userMarker: null,
-  searchMarker: null
+  searchMarker: null,
+  driveTimeCache: new Map(),
+  driveTimeRequestId: 0
 };
 
 const state = {
@@ -21,7 +36,10 @@ const state = {
   dates: [],
   selectedDate: "",
   selectedEventId: "",
-  mapFocus: "events"
+  mapFocus: "events",
+  driveTimeEnabled: false,
+  driveTimeLoading: false,
+  driveTimeOrigin: null
 };
 
 const elements = {
@@ -94,7 +112,6 @@ function normalizeEvents(events) {
     .filter((event) => event.status !== "review")
     .sort((a, b) => a.startsAt - b.startsAt);
 }
-
 
 function uniqueDates(events) {
   return [...new Set(events.map((event) => event.dateKey))];
@@ -266,6 +283,189 @@ function setControlLoading(kind, isLoading) {
       mapState.searchInput.disabled = isLoading;
     }
   }
+  if (kind === "driveTime" && mapState.driveTimeButton) {
+    mapState.driveTimeButton.disabled = isLoading;
+    mapState.driveTimeButton.textContent = isLoading ? "..." : "Drive";
+    mapState.driveTimeButton.setAttribute("aria-busy", String(isLoading));
+  }
+}
+
+function updateDriveTimeControl() {
+  if (!mapState.driveTimeButton) {
+    return;
+  }
+  mapState.driveTimeButton.classList.toggle("is-active", state.driveTimeEnabled);
+  mapState.driveTimeButton.setAttribute("aria-pressed", String(state.driveTimeEnabled));
+  if (!state.driveTimeLoading) {
+    mapState.driveTimeButton.textContent = "Drive";
+  }
+  if (mapState.driveTimeLegend) {
+    mapState.driveTimeLegend.hidden = !state.driveTimeEnabled || state.driveTimeLoading;
+  }
+}
+
+function driveTimeErrorBody(error) {
+  if (String(error?.message || "").includes("API key")) {
+    return "Add driveTime.apiKey in config.js.";
+  }
+  return "Try again later.";
+}
+
+function setDriveTimeOrigin({ lat, lng, source }) {
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+    return;
+  }
+  state.driveTimeOrigin = { lat, lng, source };
+  if (state.driveTimeEnabled) {
+    refreshDriveTimeLayer().catch((error) => {
+      setMapMessage(error.message || "Drive time failed", driveTimeErrorBody(error));
+    });
+  }
+}
+
+function driveTimeCacheKey(origin) {
+  return [
+    DRIVE_TIME_PROVIDER,
+    DRIVE_TIME_PROFILE,
+    DRIVE_TIME_CONTOURS.join(","),
+    origin.lat.toFixed(5),
+    origin.lng.toFixed(5)
+  ].join("|");
+}
+
+function driveTimeFeatureMinutes(feature) {
+  const properties = feature?.properties || {};
+  const rawValue = Number(properties.value ?? properties.contour ?? properties.range ?? 0);
+  if (!Number.isFinite(rawValue)) {
+    return 0;
+  }
+  return rawValue > 60 ? Math.round(rawValue / 60) : Math.round(rawValue);
+}
+
+function driveTimeFeatureStyle(feature) {
+  const minutes = driveTimeFeatureMinutes(feature);
+  const isInner = minutes <= DRIVE_TIME_CONTOURS[0];
+  return {
+    color: isInner ? "#2f7de1" : "#b46d24",
+    weight: 2,
+    opacity: 0.78,
+    fillColor: isInner ? "#4e9ee8" : "#f0b35a",
+    fillOpacity: isInner ? 0.34 : 0.24
+  };
+}
+
+function normalizedDriveTimeFeatures(geojson) {
+  return (geojson?.features || [])
+    .filter((feature) => feature?.geometry)
+    .sort((a, b) => driveTimeFeatureMinutes(b) - driveTimeFeatureMinutes(a));
+}
+
+function renderDriveTimeLayer(geojson) {
+  if (!mapState.driveTimeLayer || !mapState.map) {
+    return;
+  }
+  mapState.driveTimeLayer.clearLayers();
+  normalizedDriveTimeFeatures(geojson).forEach((feature) => {
+    L.geoJSON(feature, {
+      interactive: false,
+      style: driveTimeFeatureStyle
+    }).addTo(mapState.driveTimeLayer);
+  });
+  updateDriveTimeControl();
+}
+
+async function fetchOpenRouteServiceIsochrones(origin) {
+  if (!DRIVE_TIME_KEY) {
+    throw new Error("Drive-time API key needed");
+  }
+  const response = await fetch(
+    `https://api.openrouteservice.org/v2/isochrones/${encodeURIComponent(DRIVE_TIME_PROFILE)}`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: DRIVE_TIME_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        locations: [[origin.lng, origin.lat]],
+        range_type: "time",
+        range: DRIVE_TIME_CONTOURS.map((minutes) => minutes * 60)
+      })
+    }
+  );
+  if (!response.ok) {
+    throw new Error(`Drive time failed (${response.status})`);
+  }
+  const geojson = await response.json();
+  if (!Array.isArray(geojson.features)) {
+    throw new Error("Drive time returned no areas");
+  }
+  return geojson;
+}
+
+async function fetchDriveTimeIsochrones(origin) {
+  if (DRIVE_TIME_PROVIDER !== "openrouteservice") {
+    throw new Error("Unsupported drive-time provider");
+  }
+  const key = driveTimeCacheKey(origin);
+  if (mapState.driveTimeCache.has(key)) {
+    return mapState.driveTimeCache.get(key);
+  }
+  const geojson = await fetchOpenRouteServiceIsochrones(origin);
+  mapState.driveTimeCache.set(key, geojson);
+  return geojson;
+}
+
+async function refreshDriveTimeLayer() {
+  if (!state.driveTimeOrigin) {
+    throw new Error("Use location or search first");
+  }
+  const requestId = (mapState.driveTimeRequestId += 1);
+  state.driveTimeLoading = true;
+  setControlLoading("driveTime", true);
+  updateDriveTimeControl();
+  setMapMessage("Loading drive time", "10 and 20 minute areas.");
+  try {
+    const geojson = await fetchDriveTimeIsochrones(state.driveTimeOrigin);
+    if (requestId !== mapState.driveTimeRequestId) {
+      return;
+    }
+    renderDriveTimeLayer(geojson);
+    setMapMessage("");
+  } finally {
+    if (requestId === mapState.driveTimeRequestId) {
+      state.driveTimeLoading = false;
+      setControlLoading("driveTime", false);
+      updateDriveTimeControl();
+    }
+  }
+}
+
+function clearDriveTimeLayer() {
+  state.driveTimeEnabled = false;
+  state.driveTimeLoading = false;
+  mapState.driveTimeLayer?.clearLayers();
+  updateDriveTimeControl();
+}
+
+async function toggleDriveTimeLayer() {
+  if (state.driveTimeEnabled) {
+    clearDriveTimeLayer();
+    setMapMessage("");
+    return;
+  }
+  if (!state.driveTimeOrigin) {
+    setMapMessage("Use location or search first", "Then turn on drive time.");
+    return;
+  }
+  state.driveTimeEnabled = true;
+  updateDriveTimeControl();
+  try {
+    await refreshDriveTimeLayer();
+  } catch (error) {
+    clearDriveTimeLayer();
+    setMapMessage(error.message || "Drive time failed", driveTimeErrorBody(error));
+  }
 }
 
 function addOrMoveCircleMarker(markerName, lat, lng, options) {
@@ -290,7 +490,10 @@ function moveMapToPoint({ lat, lng, zoom = 12, marker = "search" }) {
   addOrMoveCircleMarker(marker === "user" ? "userMarker" : "searchMarker", lat, lng, markerOptions);
   mapState.map.setView([lat, lng], zoom, { animate: true });
   state.mapFocus = marker === "user" ? "user" : "search";
-  setMapMessage("");
+  setDriveTimeOrigin({ lat, lng, source: marker });
+  if (!state.driveTimeLoading) {
+    setMapMessage("");
+  }
 }
 
 function geolocationErrorMessage(error) {
@@ -381,6 +584,7 @@ function fitSearchResult(result) {
     fillColor: "#c58338",
     fillOpacity: 1
   });
+  setDriveTimeOrigin({ lat: result.lat, lng: result.lng, source: "search" });
 
   if (Array.isArray(result.bbox) && result.bbox.length === 4) {
     const [west, south, east, north] = result.bbox.map(Number);
@@ -398,7 +602,9 @@ function fitSearchResult(result) {
   } else {
     mapState.map.setView([result.lat, result.lng], 11, { animate: true });
   }
-  setMapMessage("");
+  if (!state.driveTimeLoading) {
+    setMapMessage("");
+  }
 }
 
 async function handleSearchSubmit(event) {
@@ -427,9 +633,13 @@ function bindMapControls() {
   mapState.searchForm = elements.mapSurface.querySelector("#searchForm");
   mapState.searchInput = elements.mapSurface.querySelector("#searchInput");
   mapState.searchButton = elements.mapSurface.querySelector("#searchButton");
+  mapState.driveTimeButton = elements.mapSurface.querySelector("#driveTimeButton");
+  mapState.driveTimeLegend = elements.mapSurface.querySelector("#driveTimeLegend");
 
   mapState.locateButton?.addEventListener("click", locateUser);
   mapState.searchForm?.addEventListener("submit", handleSearchSubmit);
+  mapState.driveTimeButton?.addEventListener("click", toggleDriveTimeLayer);
+  updateDriveTimeControl();
 }
 
 function addBaseLayer(map) {
@@ -479,6 +689,11 @@ function ensureMapShell() {
       <input id="searchInput" name="search" autocomplete="off" maxlength="40" placeholder="ZIP or town" aria-label="Search ZIP or township" />
       <button id="searchButton" type="submit">Go</button>
     </form>
+    <button class="drive-time-button" id="driveTimeButton" type="button" aria-pressed="false" aria-label="Toggle drive-time areas" title="Toggle drive-time areas">Drive</button>
+    <div class="drive-time-legend" id="driveTimeLegend" hidden>
+      <span><i class="drive-time-swatch is-inner"></i>0-10 min</span>
+      <span><i class="drive-time-swatch is-outer"></i>10-20 min</span>
+    </div>
     <div class="map-message" id="mapMessage" hidden></div>
   `;
   mapState.message = elements.mapSurface.querySelector("#mapMessage");
@@ -503,6 +718,8 @@ function initMap() {
 
   L.control.zoom({ position: "bottomright" }).addTo(map);
   addBaseLayer(map);
+  map.attributionControl.addAttribution(DRIVE_TIME_ATTRIBUTION);
+  mapState.driveTimeLayer = L.layerGroup().addTo(map);
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
   setTimeout(() => map.invalidateSize(), 0);
