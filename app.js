@@ -114,21 +114,60 @@ function centerActiveDate() {
   });
 }
 
-function eventPinNumber(event) {
-  const index = eventsWithCoordinates(eventsForSelectedDate()).findIndex((item) => item.id === event.id);
-  return index === -1 ? "" : String(index + 1);
-}
-
 function eventsForSelectedDate() {
   return state.events.filter((event) => event.dateKey === state.selectedDate);
 }
 
-function selectedEvent() {
-  return (
-    state.events.find((event) => event.id === state.selectedEventId) ||
-    eventsForSelectedDate()[0] ||
-    null
-  );
+function locationKey(event) {
+  if (hasCoordinates(event)) {
+    return `${event.lat.toFixed(5)},${event.lng.toFixed(5)}`;
+  }
+  return String(event.venueName || event.venue || event.address || event.id).trim().toLowerCase();
+}
+
+function placeLabel(event) {
+  return event.venueName || event.venue || event.address || "Event location";
+}
+
+function locationGroupsForEvents(events) {
+  const groups = new Map();
+  events.forEach((event) => {
+    const key = locationKey(event);
+    if (!groups.has(key)) {
+      groups.set(key, {
+        key,
+        lat: event.lat,
+        lng: event.lng,
+        place: placeLabel(event),
+        address: event.address || "",
+        events: []
+      });
+    }
+    const group = groups.get(key);
+    group.events.push(event);
+    if (!group.address && event.address) {
+      group.address = event.address;
+    }
+  });
+  return [...groups.values()];
+}
+
+function groupsWithCoordinates(groups) {
+  return groups.filter(hasCoordinates);
+}
+
+function groupsForSelectedDate() {
+  return locationGroupsForEvents(eventsForSelectedDate());
+}
+
+function selectedGroup() {
+  const groups = groupsForSelectedDate();
+  return groups.find((group) => group.events.some((event) => event.id === state.selectedEventId)) || groups[0] || null;
+}
+
+function groupPinNumber(group) {
+  const index = groupsWithCoordinates(groupsForSelectedDate()).findIndex((item) => item.key === group?.key);
+  return index === -1 ? "" : String(index + 1);
 }
 
 function formatDateLabel(dateKey) {
@@ -159,10 +198,10 @@ function formatUpdatedLabel() {
 
 function summaryText(event) {
   const text = event.summary || "Open the source page for details.";
-  if (text.length <= 180) {
+  if (text.length <= 130) {
     return text;
   }
-  return `${text.slice(0, 180).trim()}...`;
+  return `${text.slice(0, 130).trim()}...`;
 }
 
 function escapeHtml(value) {
@@ -190,9 +229,9 @@ function markerIcon(index, isActive) {
   return L.divIcon({
     className: `event-map-marker ${isActive ? "is-active" : ""}`,
     html: `<span>${index + 1}</span>`,
-    iconSize: [32, 40],
-    iconAnchor: [16, 36],
-    popupAnchor: [0, -34]
+    iconSize: [26, 34],
+    iconAnchor: [13, 31],
+    popupAnchor: [0, -30]
   });
 }
 
@@ -470,8 +509,8 @@ function initMap() {
   return true;
 }
 
-function fitMapToEvents(events) {
-  const points = eventsWithCoordinates(events);
+function fitMapToGroups(groups) {
+  const points = groupsWithCoordinates(groups);
   if (!mapState.map || !points.length) {
     return;
   }
@@ -479,32 +518,33 @@ function fitMapToEvents(events) {
     mapState.map.setView([points[0].lat, points[0].lng], 12, { animate: true });
     return;
   }
-  const bounds = L.latLngBounds(points.map((event) => [event.lat, event.lng]));
+  const bounds = L.latLngBounds(points.map((group) => [group.lat, group.lng]));
   mapState.map.fitBounds(bounds, { padding: [52, 52], maxZoom: 12, animate: true });
 }
 
-function syncMarkers(dayEvents, active) {
+function syncMarkers(dayEvents, activeGroup) {
   if (!mapState.markerLayer || !mapState.map) {
     return;
   }
   mapState.markerLayer.clearLayers();
 
-  const points = eventsWithCoordinates(dayEvents);
-  points.forEach((event, index) => {
-    const isActive = event.id === active?.id;
-    L.marker([event.lat, event.lng], { icon: markerIcon(index, isActive), keyboard: true })
+  const groups = locationGroupsForEvents(dayEvents);
+  const points = groupsWithCoordinates(groups);
+  points.forEach((group, index) => {
+    const isActive = group.key === activeGroup?.key;
+    L.marker([group.lat, group.lng], { icon: markerIcon(index, isActive), keyboard: true })
       .addTo(mapState.markerLayer)
       .on("click", () => {
-        state.selectedEventId = event.id;
+        state.selectedEventId = group.events[0].id;
         state.mapFocus = "event";
         render();
       });
   });
 
-  if (state.selectedEventId && active && hasCoordinates(active)) {
-    mapState.map.panTo([active.lat, active.lng], { animate: true });
+  if (state.selectedEventId && activeGroup && hasCoordinates(activeGroup)) {
+    mapState.map.panTo([activeGroup.lat, activeGroup.lng], { animate: true });
   } else if (state.mapFocus === "events") {
-    fitMapToEvents(points);
+    fitMapToGroups(groups);
   }
 }
 
@@ -528,9 +568,7 @@ function renderDates() {
     button.addEventListener("click", () => {
       state.selectedDate = button.dataset.date;
       state.selectedEventId = "";
-      if (state.mapFocus === "event") {
-        state.mapFocus = "events";
-      }
+      state.mapFocus = "events";
       render();
     });
   });
@@ -539,18 +577,18 @@ function renderDates() {
 
 function renderMap() {
   const dayEvents = eventsForSelectedDate();
-  const active = selectedEvent();
+  const activeGroup = selectedGroup();
   if (!initMap()) {
     return;
   }
 
-  syncMarkers(dayEvents, active);
+  syncMarkers(dayEvents, activeGroup);
 
   if (!dayEvents.length) {
     setMapMessage("No events this day", "Try another date.");
     return;
   }
-  if (!eventsWithCoordinates(dayEvents).length) {
+  if (!groupsWithCoordinates(locationGroupsForEvents(dayEvents)).length) {
     setMapMessage("No mapped locations", "This date has events without coordinates.");
     return;
   }
@@ -559,9 +597,45 @@ function renderMap() {
   }
 }
 
+function directionsUrl(group) {
+  const destination = hasCoordinates(group) ? `${group.lat},${group.lng}` : group?.address || group?.place || "";
+  if (!destination) {
+    return "#";
+  }
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`;
+}
+
+function uniqueSourceLinks(events) {
+  const seen = new Map();
+  events.forEach((event) => {
+    const url = sourceUrl(event);
+    if (url && url !== "#" && !seen.has(url)) {
+      seen.set(url, url);
+    }
+  });
+  return [...seen.values()];
+}
+
+function sourceLinksHtml(events) {
+  const urls = uniqueSourceLinks(events);
+  if (!urls.length) {
+    return "";
+  }
+  return `
+    <div class="source-links">
+      ${urls
+        .map((url, index) => {
+          const label = urls.length === 1 ? "Open source page" : `Source ${index + 1}`;
+          return `<a class="source-link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${label}</a>`;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
 function renderDetail() {
-  const event = selectedEvent();
-  if (!event) {
+  const group = selectedGroup();
+  if (!group) {
     elements.eventDetail.innerHTML = `
       <div class="empty-detail">
         <strong>Choose a date</strong>
@@ -571,27 +645,28 @@ function renderDetail() {
     return;
   }
 
-  const distance = typeof event.distanceMiles === "number" ? `${event.distanceMiles.toFixed(1)} mi` : "";
-  const pinNumber = eventPinNumber(event);
-  const facts = [pinNumber ? `Pin ${pinNumber}` : "", formatDateLabel(event.dateKey).weekday, distance].filter(Boolean);
+  const pinNumber = groupPinNumber(group);
+  const eventsHtml = group.events
+    .map(
+      (event) => `
+        <article class="detail-event">
+          <h2>${escapeHtml(event.title)}</h2>
+          <p class="event-time">${formatTimeRange(event)}</p>
+          <p class="event-summary">${escapeHtml(summaryText(event))}</p>
+        </article>
+      `
+    )
+    .join("");
+
   elements.eventDetail.innerHTML = `
-    <p class="detail-kicker">${facts.join(" · ")}</p>
-    <h2>${escapeHtml(event.title)}</h2>
-    <dl class="detail-facts">
-      <div>
-        <dt>Time</dt>
-        <dd>${formatTimeRange(event)}</dd>
-      </div>
-      <div>
-        <dt>Place</dt>
-        <dd>${escapeHtml(event.venue || event.venueName || "")}</dd>
-      </div>
-      <div>
-        <dt>What it is</dt>
-        <dd>${escapeHtml(summaryText(event))}</dd>
-      </div>
-    </dl>
-    <a class="source-link" href="${escapeHtml(sourceUrl(event))}" target="_blank" rel="noreferrer">Open source page</a>
+    <div class="place-line">
+      <span class="pin-badge" aria-label="Pin ${escapeHtml(pinNumber || "")}">${escapeHtml(pinNumber || "-")}</span>
+      <span class="pin-label">Pin ${escapeHtml(pinNumber || "-")}</span>
+      <strong class="place-name">${escapeHtml(group.place)}</strong>
+      <a class="directions-link" href="${escapeHtml(directionsUrl(group))}" target="_blank" rel="noreferrer">Directions</a>
+    </div>
+    <div class="detail-events">${eventsHtml}</div>
+    ${sourceLinksHtml(group.events)}
   `;
 }
 
