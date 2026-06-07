@@ -14,6 +14,7 @@
   "eventPolicy": {
     "keepPastEvents": true,
     "defaultLookaheadDays": 60,
+    "importLookbackDays": 7,
     "timezone": "America/New_York",
     "costRule": "Keep paid events and record cost/registration fields when visible.",
     "sourceUrlRule": "Every event must keep the original event page or source calendar URL."
@@ -403,7 +404,7 @@
       },
       "libraries": [
         {
-          "name": "Warren Township branch",
+          "name": "Warren Library",
           "website": "https://www.sclsnj.org/",
           "eventsUrl": "https://sclsnj.libnet.info/events",
           "sourceRef": "sclsnj-libnet",
@@ -451,7 +452,7 @@
       },
       "libraries": [
         {
-          "name": "North Plainfield branch",
+          "name": "North Plainfield Library",
           "website": "https://www.sclsnj.org/",
           "eventsUrl": "https://sclsnj.libnet.info/events",
           "sourceRef": "sclsnj-libnet",
@@ -497,7 +498,7 @@
       },
       "libraries": [
         {
-          "name": "Watchung branch",
+          "name": "Watchung Library",
           "website": "https://www.sclsnj.org/",
           "eventsUrl": "https://sclsnj.libnet.info/events",
           "sourceRef": "sclsnj-libnet",
@@ -767,7 +768,7 @@
       },
       "libraries": [
         {
-          "name": "Bridgewater branch",
+          "name": "Bridgewater Library",
           "website": "https://www.sclsnj.org/",
           "eventsUrl": "https://sclsnj.libnet.info/events",
           "sourceRef": "sclsnj-libnet",
@@ -815,7 +816,7 @@
       },
       "libraries": [
         {
-          "name": "Somerville branch",
+          "name": "Somerville Library",
           "website": "https://www.sclsnj.org/",
           "eventsUrl": "https://sclsnj.libnet.info/events",
           "sourceRef": "sclsnj-libnet",

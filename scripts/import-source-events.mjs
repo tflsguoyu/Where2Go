@@ -6,11 +6,18 @@ const TIMEZONE = "America/New_York";
 const SOURCES_FILE = new URL("../data/event-sources.json", import.meta.url);
 const EVENTS_FILE = new URL("../data/events.json", import.meta.url);
 const DAY_MS = 24 * 60 * 60 * 1000;
+const SCLSNJ_BRANCH_DISPLAY_NAMES = new Map([
+  ["471", "Bridgewater Library"],
+  ["475", "North Plainfield Library"],
+  ["477", "Somerville Library"],
+  ["478", "Warren Library"],
+  ["479", "Watchung Library"]
+]);
 
 const SCLSNJ_FALLBACK_LOCATIONS = [
   {
     id: "471",
-    name: "Bridgewater branch",
+    name: "Bridgewater Library",
     line1: "1 Vogt Dr.",
     locality: "Bridgewater",
     stateprovincecounty: "NJ",
@@ -20,7 +27,7 @@ const SCLSNJ_FALLBACK_LOCATIONS = [
   },
   {
     id: "475",
-    name: "North Plainfield branch",
+    name: "North Plainfield Library",
     line1: "6 Rockview Ave.",
     locality: "North Plainfield",
     stateprovincecounty: "NJ",
@@ -30,7 +37,7 @@ const SCLSNJ_FALLBACK_LOCATIONS = [
   },
   {
     id: "477",
-    name: "Somerville branch",
+    name: "Somerville Library",
     line1: "35 West End Ave.",
     locality: "Somerville",
     stateprovincecounty: "NJ",
@@ -40,7 +47,7 @@ const SCLSNJ_FALLBACK_LOCATIONS = [
   },
   {
     id: "478",
-    name: "Warren Township branch",
+    name: "Warren Library",
     line1: "42 Mountain Blvd.",
     locality: "Warren",
     stateprovincecounty: "NJ",
@@ -50,7 +57,7 @@ const SCLSNJ_FALLBACK_LOCATIONS = [
   },
   {
     id: "479",
-    name: "Watchung branch",
+    name: "Watchung Library",
     line1: "20 Stirling Rd.",
     locality: "Watchung",
     stateprovincecounty: "NJ",
@@ -374,6 +381,11 @@ function normalizeSclsnjUrl(event) {
   return `https://sclsnj.libnet.info/event/${event.id}`;
 }
 
+function sclsnjDisplayLocationName(location, event) {
+  const locationId = String(location?.id || event.location_id || "");
+  return SCLSNJ_BRANCH_DISPLAY_NAMES.get(locationId) || location?.name || event.location;
+}
+
 async function loadSclsnjLocations(source) {
   try {
     const locations = await fetchJson(source.locationEndpoint);
@@ -421,7 +433,7 @@ async function importSclsnjEvents(sources, startDate, days) {
       const location = locationsById.get(String(event.location_id));
       const summary = stripHtml(event.description || event.long_description || "");
       const longSummary = stripHtml(event.long_description || "");
-      const displayLocationName = location?.name || event.location;
+      const displayLocationName = sclsnjDisplayLocationName(location, event);
       const venueParts = [displayLocationName, event.venues].filter(Boolean);
       const url = normalizeSclsnjUrl(event);
 
@@ -580,6 +592,193 @@ function njCarnivalsHighestPage(html, maxPages) {
     return 1;
   }
   return Math.min(maxPages, Math.max(1, ...pageNumbers));
+}
+
+function parseNjCarnivalsClockTime(value, fallbackMeridiem = "") {
+  const normalized = String(value ?? "")
+    .toLowerCase()
+    .replace(/\./g, "")
+    .replace(/\bnoon\b/g, "12pm")
+    .replace(/\bmidnight\b/g, "12am")
+    .trim();
+  const match = normalized.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?$/i);
+  if (!match) {
+    return null;
+  }
+  const [, hourRaw, minuteRaw = "00", meridiemRaw = fallbackMeridiem] = match;
+  const meridiem = meridiemRaw.toLowerCase();
+  let hour = Number(hourRaw);
+  const minute = Number(minuteRaw);
+  if (!Number.isFinite(hour) || !Number.isFinite(minute) || hour < 1 || hour > 12 || minute < 0 || minute > 59) {
+    return null;
+  }
+  if (meridiem === "pm" && hour !== 12) {
+    hour += 12;
+  }
+  if (meridiem === "am" && hour === 12) {
+    hour = 0;
+  }
+  return { hour, minute };
+}
+
+function inferStartMeridiem(startHour, endHour, endMeridiem) {
+  if (endMeridiem.toLowerCase() === "am") {
+    return "am";
+  }
+  if (startHour === 12 || startHour <= endHour) {
+    return "pm";
+  }
+  return "am";
+}
+
+function timeStringFromParts(parts) {
+  return `${String(parts.hour).padStart(2, "0")}:${String(parts.minute).padStart(2, "0")}`;
+}
+
+function parseNjCarnivalsTimeRange(value) {
+  const normalized = stripHtml(value)
+    .replace(/\./g, "")
+    .replace(/\bnoon\b/gi, "12pm")
+    .replace(/\bmidnight\b/gi, "12am");
+  const match = normalized.match(
+    /(\d{1,2}(?::\d{2})?\s*(?:am|pm)?)\s*(?:-|–|—|to)\s*(\d{1,2}(?::\d{2})?\s*(am|pm))/i
+  );
+  if (!match) {
+    return null;
+  }
+  const [, startRaw, endRaw, endMeridiem] = match;
+  const startHour = Number(startRaw.match(/\d{1,2}/)?.[0]);
+  const endHour = Number(endRaw.match(/\d{1,2}/)?.[0]);
+  const startMeridiem = /(?:am|pm)/i.test(startRaw)
+    ? ""
+    : inferStartMeridiem(startHour, endHour, endMeridiem);
+  const start = parseNjCarnivalsClockTime(startRaw, startMeridiem);
+  const end = parseNjCarnivalsClockTime(endRaw);
+  if (!start || !end) {
+    return null;
+  }
+  let startMinutes = start.hour * 60 + start.minute;
+  let endMinutes = end.hour * 60 + end.minute;
+  if (endMinutes <= startMinutes) {
+    endMinutes += 12 * 60;
+  }
+  return {
+    start: timeStringFromParts(start),
+    end: timeStringFromParts({ hour: Math.floor((endMinutes % (24 * 60)) / 60), minute: endMinutes % 60 }),
+    durationMinutes: Math.max(0, endMinutes - startMinutes)
+  };
+}
+
+function parseNjCarnivalsOpenTime(value) {
+  const normalized = stripHtml(value)
+    .replace(/\./g, "")
+    .replace(/\bnoon\b/gi, "12pm")
+    .replace(/\bmidnight\b/gi, "12am");
+  const match = normalized.match(/\b(?:opens?|starts?)\s+(?:at\s+)?(\d{1,2}(?::\d{2})?\s*(?:am|pm))/i);
+  if (!match) {
+    return null;
+  }
+  const start = parseNjCarnivalsClockTime(match[1]);
+  if (!start) {
+    return null;
+  }
+  return {
+    start: timeStringFromParts(start),
+    end: null,
+    durationMinutes: null,
+    timeLabel: stripHtml(value)
+  };
+}
+
+function parseNjCarnivalsDateLabel(value, fallbackYear) {
+  const normalized = stripHtml(value).replace(/(\d{1,2})(st|nd|rd|th)\b/gi, "$1");
+  const match = normalized.match(
+    /\b(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2})(?:,\s*(\d{4}))?/i
+  );
+  if (!match) {
+    return null;
+  }
+  const [, monthName, dayRaw, yearRaw] = match;
+  const month = MONTHS.get(monthName.toLowerCase());
+  if (!month) {
+    return null;
+  }
+  return `${yearRaw || fallbackYear}-${month}-${String(dayRaw).padStart(2, "0")}`;
+}
+
+function extractNjCarnivalsDetailHours(html, dateKeys) {
+  const dates = [...new Set(dateKeys)].sort();
+  const fallbackYear = dates[0]?.slice(0, 4) || String(new Date().getFullYear());
+  const hoursByDate = new Map();
+  const rowPattern =
+    /<span\b(?=[^>]*class=["'][^"']*\btimeDay\b[^"']*["'])[^>]*>([\s\S]*?)<\/span>\s*<span\b(?=[^>]*class=["'][^"']*\btimeHour\b[^"']*["'])[^>]*>([\s\S]*?)<\/span>/gi;
+
+  [...html.matchAll(rowPattern)].forEach((match) => {
+    const dayLabel = stripHtml(match[1]);
+    const hourLabel = stripHtml(match[2]);
+    const hours = parseNjCarnivalsTimeRange(hourLabel) || parseNjCarnivalsOpenTime(hourLabel);
+    if (!hours) {
+      return;
+    }
+    const explicitDate = parseNjCarnivalsDateLabel(dayLabel, fallbackYear);
+    const targetDates = explicitDate ? [explicitDate] : dates;
+    targetDates
+      .filter((dateKey) => dates.includes(dateKey))
+      .forEach((dateKey) => {
+        hoursByDate.set(dateKey, hours);
+      });
+  });
+
+  if (!hoursByDate.size) {
+    const fallbackText = stripHtml(html);
+    const hoursSentence = fallbackText.match(/\bHours?\s+(?:are|is)\s+([^.!?]+(?:am|pm|noon)[^.!?]*)/i)?.[1];
+    const hours = parseNjCarnivalsTimeRange(hoursSentence || "") || parseNjCarnivalsOpenTime(hoursSentence || "");
+    if (hours) {
+      dates.forEach((dateKey) => hoursByDate.set(dateKey, hours));
+    }
+  }
+
+  return hoursByDate;
+}
+
+async function enrichNjCarnivalsDetailHours(events) {
+  const eventsByUrl = new Map();
+  events.forEach((event) => {
+    if (!event.sourceUrl) {
+      return;
+    }
+    if (!eventsByUrl.has(event.sourceUrl)) {
+      eventsByUrl.set(event.sourceUrl, []);
+    }
+    eventsByUrl.get(event.sourceUrl).push(event);
+  });
+
+  await Promise.all(
+    [...eventsByUrl.entries()].map(async ([sourceUrl, group]) => {
+      try {
+        const detailHtml = await fetchText(sourceUrl);
+        const dateKeys = group.map((event) => String(event.startsAt || "").slice(0, 10)).filter(Boolean);
+        const hoursByDate = extractNjCarnivalsDetailHours(detailHtml, dateKeys);
+        group.forEach((event) => {
+          const dateKey = String(event.startsAt || "").slice(0, 10);
+          const hours = hoursByDate.get(dateKey);
+          if (!hours) {
+            return;
+          }
+          event.startsAt = `${dateKey}T${hours.start}:00`;
+          event.endsAt = hours.end ? `${dateKey}T${hours.end}:00` : null;
+          event.durationMinutes = hours.durationMinutes;
+          event.summary = event.summary.replace("Open the source page for daily hours and updates.", "Open the source page for updates.");
+          event.timeLabel = hours.timeLabel || null;
+          event.confidence = Math.max(Number(event.confidence || 0), event.withinCoverage ? 0.88 : 0.78);
+        });
+      } catch (error) {
+        console.warn(`warning: could not enrich NJ Carnivals hours for ${sourceUrl}: ${error.message}`);
+      }
+    })
+  );
+
+  return events;
 }
 
 function parseNjCarnivalsListings(html, source, sources, startDate, days) {
@@ -1142,7 +1341,8 @@ async function importNjCarnivalsEvents(sources, startDate, days) {
     console.warn(`warning: could not import ${source.eventsUrl || source.website}: ${error.message}`);
   }
 
-  return [...new Map(imported.filter((event) => event.startsAt && event.sourceUrl).map((event) => [event.id, event])).values()];
+  const enriched = await enrichNjCarnivalsDetailHours(imported.filter((event) => event.startsAt && event.sourceUrl));
+  return [...new Map(enriched.map((event) => [event.id, event])).values()];
 }
 
 function mergeEvents(existing, incoming, importedAt) {
@@ -1166,10 +1366,16 @@ function mergeEvents(existing, incoming, importedAt) {
 }
 
 async function main() {
-  const startDate = argValue("--start", todayInNewYork());
-  const days = Number(argValue("--days", "60"));
   const importedAt = new Date().toISOString();
   const sources = await readJson(SOURCES_FILE, null);
+  const explicitStart = process.argv.includes("--start");
+  const defaultLookaheadDays = Number(sources?.eventPolicy?.defaultLookaheadDays || 60);
+  const requestedDays = Math.max(1, Number(argValue("--days", String(defaultLookaheadDays))) || defaultLookaheadDays);
+  const defaultLookbackDays = Math.max(0, Number(sources?.eventPolicy?.importLookbackDays || 0) || 0);
+  const lookbackDays = explicitStart ? 0 : Math.max(0, Number(argValue("--past-days", String(defaultLookbackDays))) || 0);
+  const today = todayInNewYork();
+  const startDate = explicitStart ? argValue("--start", today) : addDateDays(today, -lookbackDays);
+  const days = requestedDays + (explicitStart ? 0 : lookbackDays);
   const replace = process.argv.includes("--replace");
   const existingEvents = replace ? [] : await readJson(EVENTS_FILE, []);
 
@@ -1186,6 +1392,7 @@ async function main() {
   const events = mergeEvents(existingEvents, incoming, importedAt);
 
   await writeFile(EVENTS_FILE, `${JSON.stringify(events, null, 2)}\n`);
+  console.log(`Import window: ${startDate} through ${addDateDays(startDate, days - 1)}.`);
   console.log(`Imported or refreshed ${incoming.length} event records.`);
   console.log(`Stored ${events.length} total records in ${new URL(EVENTS_FILE).pathname}.`);
 }
