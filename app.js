@@ -3,6 +3,8 @@ const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
 const USE_OSM_FALLBACK = window.Where2GoConfig?.useTemporaryOpenStreetMapFallback === true;
+const GITHUB_REPO = String(window.Where2GoConfig?.githubRepo || "").trim();
+const GITHUB_BRANCH = String(window.Where2GoConfig?.githubBranch || "main").trim();
 const DRIVE_TIME_CONFIG = window.Where2GoConfig?.driveTime || {};
 const DRIVE_TIME_PROVIDER = String(DRIVE_TIME_CONFIG.provider || "openrouteservice").trim();
 const DRIVE_TIME_KEY = String(DRIVE_TIME_CONFIG.apiKey || "").trim();
@@ -229,14 +231,112 @@ function formatTimeRange(event) {
   return `${formatter.format(event.startsAt)} - ${formatter.format(event.endsAt)}`;
 }
 
-function formatUpdatedLabel() {
+function formatUpdatedLabel(date) {
   const formatter = new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
     hour: "numeric",
     minute: "2-digit"
   });
-  return `Updated ${formatter.format(new Date())}`;
+  return `Updated ${formatter.format(date)}`;
+}
+
+function parseValidDate(value) {
+  const date = new Date(value);
+  return Number.isNaN(date.valueOf()) ? null : date;
+}
+
+function latestEventRefreshDate(events) {
+  return events
+    .flatMap((event) => [event.lastSeenAt, event.firstSeenAt])
+    .map(parseValidDate)
+    .filter(Boolean)
+    .sort((a, b) => b - a)[0] || null;
+}
+
+function updateCacheKey() {
+  return `where2go-updated-at:${GITHUB_REPO}:${GITHUB_BRANCH}`;
+}
+
+function readCachedPushDate() {
+  try {
+    const cached = JSON.parse(window.localStorage.getItem(updateCacheKey()) || "null");
+    if (!cached?.value || Date.now() - Number(cached.savedAt || 0) > 10 * 60 * 1000) {
+      return null;
+    }
+    return parseValidDate(cached.value);
+  } catch {
+    return null;
+  }
+}
+
+function writeCachedPushDate(date) {
+  try {
+    window.localStorage.setItem(updateCacheKey(), JSON.stringify({ value: date.toISOString(), savedAt: Date.now() }));
+  } catch {
+    // Cache is optional; private browsing or storage limits should not affect the app.
+  }
+}
+
+async function fetchJsonWithTimeout(url, timeoutMs = 5000) {
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, {
+      headers: { accept: "application/vnd.github+json" },
+      signal: controller.signal
+    });
+    if (!response.ok) {
+      throw new Error(`Fetch failed ${response.status}`);
+    }
+    return response.json();
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
+}
+
+async function latestGitHubPushDate() {
+  if (!GITHUB_REPO) {
+    return null;
+  }
+  const cached = readCachedPushDate();
+  if (cached) {
+    return cached;
+  }
+
+  const repoPath = GITHUB_REPO.split("/").map(encodeURIComponent).join("/");
+  const eventsUrl = `https://api.github.com/repos/${repoPath}/events`;
+  const repoEvents = await fetchJsonWithTimeout(eventsUrl);
+  const branchRef = `refs/heads/${GITHUB_BRANCH}`;
+  const pushEvent = Array.isArray(repoEvents)
+    ? repoEvents.find((event) => event.type === "PushEvent" && event.payload?.ref === branchRef)
+    : null;
+  const pushDate = parseValidDate(pushEvent?.created_at);
+  if (pushDate) {
+    writeCachedPushDate(pushDate);
+    return pushDate;
+  }
+
+  const branchUrl = `https://api.github.com/repos/${repoPath}/branches/${encodeURIComponent(GITHUB_BRANCH)}`;
+  const branch = await fetchJsonWithTimeout(branchUrl);
+  const commitDate = parseValidDate(branch?.commit?.commit?.committer?.date || branch?.commit?.commit?.author?.date);
+  if (commitDate) {
+    writeCachedPushDate(commitDate);
+  }
+  return commitDate;
+}
+
+async function updateUpdatedLabel(events) {
+  const fallbackDate = latestEventRefreshDate(events) || new Date();
+  elements.updatedLabel.textContent = formatUpdatedLabel(fallbackDate);
+  try {
+    const pushDate = await latestGitHubPushDate();
+    if (pushDate) {
+      elements.updatedLabel.textContent = formatUpdatedLabel(pushDate);
+    }
+  } catch {
+    elements.updatedLabel.textContent = formatUpdatedLabel(fallbackDate);
+  }
 }
 
 function summaryText(event) {
@@ -910,7 +1010,7 @@ async function init() {
   state.dates = visibleDates(state.events);
   state.selectedDate = defaultSelectedDate(state.dates);
   state.selectedEventId = "";
-  elements.updatedLabel.textContent = formatUpdatedLabel();
+  updateUpdatedLabel(events);
   render();
   requestInitialLocation();
 }
