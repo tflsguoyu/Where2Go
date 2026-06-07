@@ -36,6 +36,7 @@ const state = {
   dates: [],
   selectedDate: "",
   selectedEventId: "",
+  dateStripAligned: false,
   mapFocus: "events",
   driveTimeEnabled: false,
   driveTimeLoading: false,
@@ -118,17 +119,23 @@ function uniqueDates(events) {
   return [...new Set(events.map((event) => event.dateKey))];
 }
 
-function defaultSelectedDate(dates) {
-  const today = localDateKey(new Date());
-  return dates.find((dateKey) => dateKey >= today) || dates.at(-1) || "";
+function visibleDates(events) {
+  return [...new Set([...uniqueDates(events), localDateKey(new Date())])].sort();
 }
 
-function centerActiveDate() {
+function defaultSelectedDate(dates) {
+  const today = localDateKey(new Date());
+  return dates.includes(today) ? today : dates.find((dateKey) => dateKey >= today) || dates.at(-1) || "";
+}
+
+function alignActiveDateToStart() {
   window.requestAnimationFrame(() => {
-    elements.dateStrip.querySelector(".date-chip.is-active")?.scrollIntoView({
-      block: "nearest",
-      inline: "center"
-    });
+    const activeChip = elements.dateStrip.querySelector(".date-chip.is-active");
+    if (!activeChip) {
+      return;
+    }
+    const paddingLeft = Number.parseFloat(window.getComputedStyle(elements.dateStrip).paddingLeft) || 0;
+    elements.dateStrip.scrollLeft = Math.max(0, activeChip.offsetLeft - paddingLeft);
   });
 }
 
@@ -806,7 +813,10 @@ function renderDates() {
       render();
     });
   });
-  centerActiveDate();
+  if (!state.dateStripAligned) {
+    alignActiveDateToStart();
+    state.dateStripAligned = true;
+  }
 }
 
 function renderMap() {
@@ -891,7 +901,7 @@ function render() {
 async function init() {
   const events = await loadEventsData();
   state.events = normalizeEvents(events);
-  state.dates = uniqueDates(state.events);
+  state.dates = visibleDates(state.events);
   state.selectedDate = defaultSelectedDate(state.dates);
   state.selectedEventId = "";
   elements.updatedLabel.textContent = formatUpdatedLabel();

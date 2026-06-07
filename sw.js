@@ -1,4 +1,4 @@
-const CACHE_NAME = "where2go-public-v17";
+const CACHE_NAME = "where2go-public-v21";
 const APP_ASSETS = [
   "./",
   "index.html",
@@ -7,6 +7,8 @@ const APP_ASSETS = [
   "config.js",
   "manifest.webmanifest",
   "assets/icon.svg",
+  "assets/icon-192.png",
+  "assets/icon-512.png",
   "data/events.json",
   "data/event-sources.json",
   "data/sample-events.json"
