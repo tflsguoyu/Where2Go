@@ -5,6 +5,7 @@ const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v
 const USE_OSM_FALLBACK = window.Where2GoConfig?.useTemporaryOpenStreetMapFallback === true;
 const GITHUB_REPO = String(window.Where2GoConfig?.githubRepo || "").trim();
 const GITHUB_BRANCH = String(window.Where2GoConfig?.githubBranch || "main").trim();
+const UPDATED_LABEL_CACHE_MS = 60 * 1000;
 const DRIVE_TIME_CONFIG = window.Where2GoConfig?.driveTime || {};
 const DRIVE_TIME_PROVIDER = String(DRIVE_TIME_CONFIG.provider || "openrouteservice").trim();
 const DRIVE_TIME_KEY = String(DRIVE_TIME_CONFIG.apiKey || "").trim();
@@ -255,13 +256,13 @@ function latestEventRefreshDate(events) {
 }
 
 function updateCacheKey() {
-  return `where2go-updated-at:${GITHUB_REPO}:${GITHUB_BRANCH}`;
+  return `where2go-updated-at:v2:${GITHUB_REPO}:${GITHUB_BRANCH}`;
 }
 
 function readCachedPushDate() {
   try {
     const cached = JSON.parse(window.localStorage.getItem(updateCacheKey()) || "null");
-    if (!cached?.value || Date.now() - Number(cached.savedAt || 0) > 10 * 60 * 1000) {
+    if (!cached?.value || Date.now() - Number(cached.savedAt || 0) > UPDATED_LABEL_CACHE_MS) {
       return null;
     }
     return parseValidDate(cached.value);
@@ -283,6 +284,7 @@ async function fetchJsonWithTimeout(url, timeoutMs = 5000) {
   const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
   try {
     const response = await fetch(url, {
+      cache: "no-store",
       headers: { accept: "application/vnd.github+json" },
       signal: controller.signal
     });
@@ -305,7 +307,8 @@ async function latestGitHubPushDate() {
   }
 
   const repoPath = GITHUB_REPO.split("/").map(encodeURIComponent).join("/");
-  const eventsUrl = `https://api.github.com/repos/${repoPath}/events`;
+  const cacheMinute = Math.floor(Date.now() / UPDATED_LABEL_CACHE_MS);
+  const eventsUrl = `https://api.github.com/repos/${repoPath}/events?per_page=30&_=${cacheMinute}`;
   const repoEvents = await fetchJsonWithTimeout(eventsUrl);
   const branchRef = `refs/heads/${GITHUB_BRANCH}`;
   const pushEvent = Array.isArray(repoEvents)
@@ -317,7 +320,7 @@ async function latestGitHubPushDate() {
     return pushDate;
   }
 
-  const branchUrl = `https://api.github.com/repos/${repoPath}/branches/${encodeURIComponent(GITHUB_BRANCH)}`;
+  const branchUrl = `https://api.github.com/repos/${repoPath}/branches/${encodeURIComponent(GITHUB_BRANCH)}?_=${cacheMinute}`;
   const branch = await fetchJsonWithTimeout(branchUrl);
   const commitDate = parseValidDate(branch?.commit?.commit?.committer?.date || branch?.commit?.commit?.author?.date);
   if (commitDate) {
