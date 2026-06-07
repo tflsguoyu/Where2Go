@@ -6,6 +6,8 @@ const USE_OSM_FALLBACK = window.Where2GoConfig?.useTemporaryOpenStreetMapFallbac
 const GITHUB_REPO = String(window.Where2GoConfig?.githubRepo || "").trim();
 const GITHUB_BRANCH = String(window.Where2GoConfig?.githubBranch || "main").trim();
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
+const DEFAULT_MAP_RADIUS_MILES = 20;
+const MAP_FIT_PADDING = [52, 52];
 const DRIVE_TIME_CONFIG = window.Where2GoConfig?.driveTime || {};
 const DRIVE_TIME_PROVIDER = String(DRIVE_TIME_CONFIG.provider || "openrouteservice").trim();
 const DRIVE_TIME_KEY = String(DRIVE_TIME_CONFIG.apiKey || "").trim();
@@ -157,6 +159,20 @@ function placeLabel(event) {
   return event.venueName || event.venue || event.address || "Event location";
 }
 
+function distanceMiles(pointA, pointB) {
+  if (!hasCoordinates(pointA) || !hasCoordinates(pointB)) {
+    return Number.POSITIVE_INFINITY;
+  }
+  const latMiles = (pointA.lat - pointB.lat) * 69;
+  const lngScale = Math.cos((((pointA.lat + pointB.lat) / 2) * Math.PI) / 180);
+  const lngMiles = (pointA.lng - pointB.lng) * 69 * lngScale;
+  return Math.hypot(latMiles, lngMiles);
+}
+
+function distanceSortOrigin() {
+  return state.driveTimeOrigin || HOME;
+}
+
 function locationGroupsForEvents(events) {
   const groups = new Map();
   events.forEach((event) => {
@@ -177,7 +193,14 @@ function locationGroupsForEvents(events) {
       group.address = event.address;
     }
   });
-  return [...groups.values()];
+  const origin = distanceSortOrigin();
+  return [...groups.values()].sort((a, b) => {
+    const distanceCompare = distanceMiles(a, origin) - distanceMiles(b, origin);
+    if (distanceCompare !== 0) {
+      return distanceCompare;
+    }
+    return String(a.place || "").localeCompare(String(b.place || ""));
+  });
 }
 
 function groupsWithCoordinates(groups) {
@@ -369,6 +392,41 @@ function hasCoordinates(event) {
 
 function eventsWithCoordinates(events) {
   return events.filter(hasCoordinates);
+}
+
+function boundsAroundPoint({ lat, lng }, radiusMiles = DEFAULT_MAP_RADIUS_MILES) {
+  const latDelta = radiusMiles / 69;
+  const lngScale = Math.max(0.2, Math.cos((lat * Math.PI) / 180));
+  const lngDelta = radiusMiles / (69 * lngScale);
+  return L.latLngBounds(
+    [lat - latDelta, lng - lngDelta],
+    [lat + latDelta, lng + lngDelta]
+  );
+}
+
+function boundsWithMinimumRadius(bounds, center, radiusMiles = DEFAULT_MAP_RADIUS_MILES) {
+  const minimumBounds = boundsAroundPoint(center, radiusMiles);
+  const expanded = L.latLngBounds(bounds.getSouthWest(), bounds.getNorthEast());
+  expanded.extend(minimumBounds.getSouthWest());
+  expanded.extend(minimumBounds.getNorthEast());
+  return expanded;
+}
+
+function fitMapBounds(bounds, options = {}) {
+  if (!mapState.map || !bounds?.isValid?.()) {
+    return;
+  }
+  mapState.map.fitBounds(bounds, {
+    padding: MAP_FIT_PADDING,
+    animate: options.animate !== false
+  });
+}
+
+function fitMapAroundPoint(point, options = {}) {
+  if (!Number.isFinite(point?.lat) || !Number.isFinite(point?.lng)) {
+    return;
+  }
+  fitMapBounds(boundsAroundPoint(point, options.radiusMiles || DEFAULT_MAP_RADIUS_MILES), options);
 }
 
 function markerIcon(index, isActive) {
@@ -608,7 +666,7 @@ function addOrMoveCircleMarker(markerName, lat, lng, options) {
   mapState[markerName] = L.circleMarker([lat, lng], options).addTo(mapState.map);
 }
 
-function moveMapToPoint({ lat, lng, zoom = 12, marker = "search" }) {
+function moveMapToPoint({ lat, lng, marker = "search" }) {
   if (!mapState.map || !Number.isFinite(lat) || !Number.isFinite(lng)) {
     return;
   }
@@ -617,12 +675,13 @@ function moveMapToPoint({ lat, lng, zoom = 12, marker = "search" }) {
       ? { radius: 8, color: "#ffffff", weight: 3, fillColor: "#2f7de1", fillOpacity: 1 }
       : { radius: 7, color: "#ffffff", weight: 3, fillColor: "#c58338", fillOpacity: 1 };
   addOrMoveCircleMarker(marker === "user" ? "userMarker" : "searchMarker", lat, lng, markerOptions);
-  mapState.map.setView([lat, lng], zoom, { animate: true });
+  fitMapAroundPoint({ lat, lng });
   state.mapFocus = marker === "user" ? "user" : "search";
   setDriveTimeOrigin({ lat, lng, source: marker });
   if (!state.driveTimeLoading) {
     setMapMessage("");
   }
+  render();
 }
 
 function geolocationErrorMessage(error) {
@@ -651,7 +710,6 @@ function locateUser() {
       moveMapToPoint({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
-        zoom: 12,
         marker: "user"
       });
     },
@@ -718,22 +776,23 @@ function fitSearchResult(result) {
   if (Array.isArray(result.bbox) && result.bbox.length === 4) {
     const [west, south, east, north] = result.bbox.map(Number);
     if ([west, south, east, north].every(Number.isFinite)) {
-      mapState.map.fitBounds(
+      const searchBounds = L.latLngBounds(
         [
           [south, west],
           [north, east]
-        ],
-        { padding: [54, 54], maxZoom: 12, animate: true }
+        ]
       );
+      fitMapBounds(boundsWithMinimumRadius(searchBounds, result));
     } else {
-      mapState.map.setView([result.lat, result.lng], 11, { animate: true });
+      fitMapAroundPoint(result);
     }
   } else {
-    mapState.map.setView([result.lat, result.lng], 11, { animate: true });
+    fitMapAroundPoint(result);
   }
   if (!state.driveTimeLoading) {
     setMapMessage("");
   }
+  render();
 }
 
 async function handleSearchSubmit(event) {
@@ -843,7 +902,7 @@ function initMap() {
     zoomControl: false,
     scrollWheelZoom: false,
     tap: true
-  }).setView([HOME.lat, HOME.lng], 11);
+  });
 
   map.attributionControl.setPrefix(false);
   L.control.zoom({ position: "bottomright" }).addTo(map);
@@ -852,6 +911,7 @@ function initMap() {
   mapState.driveTimeLayer = L.layerGroup().addTo(map);
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
+  fitMapAroundPoint(HOME, { animate: false });
   setTimeout(() => map.invalidateSize(), 0);
   return true;
 }
@@ -861,12 +921,8 @@ function fitMapToGroups(groups) {
   if (!mapState.map || !points.length) {
     return;
   }
-  if (points.length === 1) {
-    mapState.map.setView([points[0].lat, points[0].lng], 12, { animate: true });
-    return;
-  }
   const bounds = L.latLngBounds(points.map((group) => [group.lat, group.lng]));
-  mapState.map.fitBounds(bounds, { padding: [52, 52], maxZoom: 12, animate: true });
+  fitMapBounds(boundsWithMinimumRadius(bounds, HOME));
 }
 
 function syncMarkers(dayEvents, activeGroup) {
