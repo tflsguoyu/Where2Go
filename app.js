@@ -8,6 +8,9 @@ const GITHUB_BRANCH = String(window.Where2GoConfig?.githubBranch || "main").trim
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
 const DEFAULT_MAP_RADIUS_MILES = 7.5;
 const MAP_FIT_PADDING = [52, 52];
+const INSTALL_PROMPT_DISMISSED_KEY = "where2go-install-dismissed-at";
+const INSTALL_PROMPT_DISMISSED_MS = 7 * 24 * 60 * 60 * 1000;
+const INSTALL_PROMPT_DELAY_MS = 1600;
 const DRIVE_TIME_CONFIG = window.Where2GoConfig?.driveTime || {};
 const DRIVE_TIME_PROVIDER = String(DRIVE_TIME_CONFIG.provider || "openrouteservice").trim();
 const DRIVE_TIME_KEY = String(DRIVE_TIME_CONFIG.apiKey || "").trim();
@@ -48,7 +51,8 @@ const mapState = {
   userMarker: null,
   searchMarker: null,
   driveTimeCache: new Map(),
-  driveTimeRequestId: 0
+  driveTimeRequestId: 0,
+  installPromptTimer: 0
 };
 
 const state = {
@@ -61,6 +65,8 @@ const state = {
   driveTimeEnabled: false,
   driveTimeLoading: false,
   driveTimeOrigin: null,
+  installPromptEvent: null,
+  installPromptMode: "",
   initialLocationRequested: false
 };
 
@@ -68,7 +74,12 @@ const elements = {
   dateStrip: document.querySelector("#dateStrip"),
   mapSurface: document.querySelector("#mapSurface"),
   eventDetail: document.querySelector("#eventDetail"),
-  updatedLabel: document.querySelector("#updatedLabel")
+  updatedLabel: document.querySelector("#updatedLabel"),
+  installPrompt: document.querySelector("#installPrompt"),
+  installPromptTitle: document.querySelector("#installPromptTitle"),
+  installPromptText: document.querySelector("#installPromptText"),
+  installPromptAction: document.querySelector("#installPromptAction"),
+  installPromptDismiss: document.querySelector("#installPromptDismiss")
 };
 
 async function loadJson(path) {
@@ -494,6 +505,121 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function readStorageValue(key) {
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return "";
+  }
+}
+
+function writeStorageValue(key, value) {
+  try {
+    window.localStorage.setItem(key, value);
+  } catch {}
+}
+
+function appRunsStandalone() {
+  return window.matchMedia?.("(display-mode: standalone)")?.matches || window.navigator?.standalone === true;
+}
+
+function isIosLikeDevice() {
+  const userAgent = window.navigator?.userAgent || "";
+  const platform = window.navigator?.platform || "";
+  return /iphone|ipad|ipod/i.test(userAgent) || (platform === "MacIntel" && window.navigator?.maxTouchPoints > 1);
+}
+
+function installPromptDismissedRecently() {
+  const dismissedAt = Number(readStorageValue(INSTALL_PROMPT_DISMISSED_KEY));
+  return Number.isFinite(dismissedAt) && Date.now() - dismissedAt < INSTALL_PROMPT_DISMISSED_MS;
+}
+
+function rememberInstallPromptDismissed() {
+  writeStorageValue(INSTALL_PROMPT_DISMISSED_KEY, String(Date.now()));
+}
+
+function shouldSuppressInstallPrompt() {
+  return appRunsStandalone() || installPromptDismissedRecently();
+}
+
+function hideInstallPrompt() {
+  if (elements.installPrompt) {
+    elements.installPrompt.hidden = true;
+  }
+  state.installPromptMode = "";
+}
+
+function setInstallPromptContent(mode) {
+  if (!elements.installPromptTitle || !elements.installPromptText || !elements.installPromptAction) {
+    return;
+  }
+  const iosMode = mode === "ios";
+  elements.installPromptTitle.textContent = iosMode ? "Add Where2Go" : "Install Where2Go";
+  elements.installPromptText.textContent = iosMode
+    ? "Use Share, then Add to Home Screen."
+    : "Open faster from your home screen.";
+  elements.installPromptAction.textContent = iosMode ? "Got it" : "Install";
+}
+
+function showInstallPrompt(mode) {
+  if (!elements.installPrompt || shouldSuppressInstallPrompt()) {
+    return;
+  }
+  state.installPromptMode = mode;
+  setInstallPromptContent(mode);
+  elements.installPrompt.hidden = false;
+}
+
+function scheduleInstallPrompt(mode = "") {
+  if (mapState.installPromptTimer || shouldSuppressInstallPrompt()) {
+    return;
+  }
+  mapState.installPromptTimer = window.setTimeout(() => {
+    mapState.installPromptTimer = 0;
+    if (shouldSuppressInstallPrompt()) {
+      return;
+    }
+    if (mode) {
+      showInstallPrompt(mode);
+      return;
+    }
+    if (state.installPromptEvent) {
+      showInstallPrompt("native");
+    } else if (isIosLikeDevice()) {
+      showInstallPrompt("ios");
+    }
+  }, INSTALL_PROMPT_DELAY_MS);
+}
+
+async function handleInstallPromptAction() {
+  if (state.installPromptMode === "ios") {
+    rememberInstallPromptDismissed();
+    hideInstallPrompt();
+    return;
+  }
+  const promptEvent = state.installPromptEvent;
+  if (!promptEvent) {
+    hideInstallPrompt();
+    return;
+  }
+  hideInstallPrompt();
+  state.installPromptEvent = null;
+  try {
+    promptEvent.prompt();
+    const choice = await promptEvent.userChoice;
+    if (choice?.outcome !== "accepted") {
+      rememberInstallPromptDismissed();
+    }
+  } catch {
+    rememberInstallPromptDismissed();
+  }
+}
+
+function dismissInstallPrompt() {
+  rememberInstallPromptDismissed();
+  hideInstallPrompt();
 }
 
 function sourceUrl(event) {
@@ -1207,6 +1333,27 @@ function requestInitialLocation() {
     locateUser();
   });
 }
+
+function setupInstallPrompt() {
+  if (!elements.installPrompt || appRunsStandalone()) {
+    return;
+  }
+  elements.installPromptAction?.addEventListener("click", handleInstallPromptAction);
+  elements.installPromptDismiss?.addEventListener("click", dismissInstallPrompt);
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    state.installPromptEvent = event;
+    scheduleInstallPrompt("native");
+  });
+  window.addEventListener("appinstalled", () => {
+    rememberInstallPromptDismissed();
+    state.installPromptEvent = null;
+    hideInstallPrompt();
+  });
+  scheduleInstallPrompt();
+}
+
+setupInstallPrompt();
 
 init().catch((error) => {
   elements.updatedLabel.textContent = "Load failed";

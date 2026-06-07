@@ -44,7 +44,13 @@ a {
 
 .app-shell {
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto auto auto 1fr;
+  grid-template-areas:
+    "topbar"
+    "install"
+    "dates"
+    "map"
+    "details";
   width: min(100vw, 440px);
   min-height: 100vh;
   margin: 0 auto;
@@ -55,6 +61,7 @@ a {
 }
 
 .topbar {
+  grid-area: topbar;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -91,7 +98,87 @@ h2 {
   line-height: 1.18;
 }
 
+.install-prompt {
+  grid-area: install;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  margin: 0 12px 7px;
+  padding: 8px;
+  border: 1px solid #cbd9d3;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(23, 33, 29, 0.08);
+}
+
+.install-prompt[hidden] {
+  display: none;
+}
+
+.install-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(23, 33, 29, 0.14);
+}
+
+.install-copy {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.install-copy strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 950;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.install-copy span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 750;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.install-actions {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.install-action,
+.install-dismiss {
+  min-height: 30px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.install-action {
+  padding: 0 10px;
+  background: var(--green-dark);
+  color: white;
+}
+
+.install-dismiss {
+  padding: 0 8px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+
 .date-strip {
+  grid-area: dates;
   display: flex;
   gap: 6px;
   overflow-x: auto;
@@ -167,6 +254,7 @@ h2 {
 }
 
 .map-section {
+  grid-area: map;
   padding: 0 14px;
   min-height: 0;
 }
@@ -451,6 +539,7 @@ h2 {
 }
 
 .event-detail {
+  grid-area: details;
   margin: 8px 14px 12px;
   display: grid;
   gap: 10px;
@@ -599,5 +688,16 @@ h2 {
   .app-shell {
     min-height: calc(100vh - 40px);
     border-radius: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .install-prompt {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .install-actions {
+    grid-column: 2;
+    justify-content: flex-start;
   }
 }
