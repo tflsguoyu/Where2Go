@@ -18,7 +18,7 @@
     "timezone": "America/New_York",
     "costRule": "Keep paid events and record cost/registration fields when visible.",
     "sourceUrlRule": "Every event must keep the original event page or source calendar URL.",
-    "qualityRule": "Every import must check time, place, coordinates, source URL, and activity summary before writing events.json; automatically repair deterministic gaps and report anything still missing."
+    "qualityRule": "Every import must check time, place, coordinates, source URL, and activity summary before writing events.json; summaries must contain only useful activity content, not date, time, venue, room, place, or address text; automatically repair deterministic gaps and report anything still missing."
   },
   "importQuality": {
     "requiredChecks": [
@@ -28,7 +28,7 @@
       "address when available from the source",
       "official page text first, then image/flyer text for address, time, room, and venue only when HTML text is incomplete",
       "lat/lng for every in-coverage event shown on the map",
-      "summary with concrete activity content",
+      "summary with concrete activity content only, excluding date, time, venue, room, place, and address text",
       "sourceUrl or url pointing back to the original event page"
     ],
     "autoRepair": [
@@ -37,10 +37,10 @@
       "Fill timezone from eventPolicy.timezone when startsAt is present.",
       "Calculate durationMinutes from startsAt and endsAt when possible.",
       "Use source library/location coordinates first, then town center fallback, then address geocoding for missing in-coverage lat/lng.",
-      "Clean generic source-page/update/registration filler out of summaries."
+      "Clean generic source-page/update/registration filler and date/time/place/address/venue text out of summaries."
     ],
     "unresolvedReportRule": "If time, place, coordinates, source URL, or concrete summary are still missing after auto-repair, print an import quality audit with counts and sample event IDs/titles for manual review.",
-    "contentRule": "Do not invent activity descriptions. Extract concrete content from the source page when possible; if unavailable, leave summary empty and report it.",
+    "contentRule": "Do not invent activity descriptions. Extract concrete activity content from the source page when possible; if unavailable, leave summary empty and report it. Put date, time, venue, room, place, and address only in structured fields such as startsAt, endsAt, timeLabel, venueName, venue, and address, never in summary.",
     "imageTextRule": "Always inspect official page HTML text first. Only when the page text does not provide the needed address, time, room, or venue detail should the importer inspect image alt/title/captions or OCR-visible flyer text; if the importer cannot read the image text, report the event/source for manual image review."
   },
   "sourceStatusVocabulary": {

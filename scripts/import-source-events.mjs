@@ -23,6 +23,53 @@ const SOURCE_PAGE_SENTENCE_PATTERN = /\b(?:open|see|visit|check)\s+(?:the\s+)?so
 const CONTACT_DETAILS_SENTENCE_PATTERN = /\bplease contact\b[^.!?]*\bdetails?\b[^.!?]*(?:[.!?]|$)/gi;
 const GENERIC_SUMMARY_PATTERN =
   /\b(?:open|see|visit|check)\s+(?:the\s+)?source page\b|\bfor updates?\b|\bcurrent availability\b/i;
+const SUMMARY_WEEKDAY_PATTERN =
+  "(?:sun(?:day)?s?|mon(?:day)?s?|tue(?:sday)?s?|wed(?:nesday)?s?|thu(?:rsday)?s?|fri(?:day)?s?|sat(?:urday)?s?)";
+const SUMMARY_MONTH_PATTERN =
+  "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
+const SUMMARY_TIME_PATTERN = "(?:(?:\\d{1,2}:\\d{2}\\s*(?:a\\.?m\\.?|p\\.?m\\.?)?)|(?:\\d{1,2}\\s*(?:a\\.?m\\.?|p\\.?m\\.?)))";
+const SUMMARY_TIME_RANGE_PATTERN = `(?:${SUMMARY_TIME_PATTERN}|\\d{1,2})(?:\\s*(?:-|\\u2013|\\u2014|to|until|through|and)\\s*${SUMMARY_TIME_PATTERN})`;
+const SUMMARY_TIME_SEQUENCE_PATTERN = `${SUMMARY_TIME_PATTERN}\\s+${SUMMARY_TIME_PATTERN}`;
+const SUMMARY_TIME_BLOCK_PATTERN = `(?:${SUMMARY_TIME_SEQUENCE_PATTERN}|${SUMMARY_TIME_RANGE_PATTERN}|${SUMMARY_TIME_PATTERN})`;
+const SUMMARY_DATE_PATTERN = `(?:(?:${SUMMARY_WEEKDAY_PATTERN})[,]?\\s+)?${SUMMARY_MONTH_PATTERN}\\s+\\d{1,2}(?:st|nd|rd|th)?(?:,?\\s*\\d{4})?`;
+const SUMMARY_RECURRING_TIME_PREFIX_PATTERN = new RegExp(
+  `^(?:every\\s+)?${SUMMARY_WEEKDAY_PATTERN}[,]?\\s+(?:from\\s+)?${SUMMARY_TIME_BLOCK_PATTERN}\\s*`,
+  "i"
+);
+const SUMMARY_LEADING_TIME_PATTERN = new RegExp(`^${SUMMARY_TIME_BLOCK_PATTERN}\\s*`, "i");
+const SUMMARY_LEADING_ADDRESS_PATTERN =
+  /^\d{1,6}\s+[A-Za-z0-9 .'-]+(?:road|rd|street|st|avenue|ave|boulevard|blvd|drive|dr|lane|ln|way|court|ct|place|pl|highway|hwy|route|rte|commons way)\b(?:[\s,]+[A-Za-z .'-]+)?(?:,\s*[A-Z]{2})?(?:\s+\d{5}(?:-\d{4})?)?\s*/i;
+const SUMMARY_SOURCE_WIDGET_TAIL_PATTERN =
+  /\b(?:Add To My Calendar|Contact Info|Related Links|Return to Calendar|Event Calendar|Event Sponsorship|Google Calendar|iCalendar|Outlook)\b[\s\S]*$/i;
+const SUMMARY_EVENT_TIME_PHRASE_PATTERN = new RegExp(
+  `(?:\\b(?:at|from|between)\\s+|@\\s*)${SUMMARY_TIME_BLOCK_PATTERN}(?:\\s*(?:and|to)\\s*${SUMMARY_TIME_PATTERN})?`,
+  "gi"
+);
+const SUMMARY_DATE_TIME_PHRASE_PATTERN = new RegExp(
+  `\\bon\\s+${SUMMARY_DATE_PATTERN}(?:\\s+(?:at|from)\\s+${SUMMARY_TIME_BLOCK_PATTERN})?`,
+  "gi"
+);
+const SUMMARY_RECURRING_TIME_PHRASE_PATTERN = new RegExp(
+  `\\b(?:every\\s+)?${SUMMARY_WEEKDAY_PATTERN}\\s+(?:morning|afternoon|evening|night|at\\s+${SUMMARY_TIME_BLOCK_PATTERN}|from\\s+${SUMMARY_TIME_BLOCK_PATTERN})\\b`,
+  "gi"
+);
+const SUMMARY_STANDALONE_TIME_RANGE_PATTERN = new RegExp(`\\b${SUMMARY_TIME_BLOCK_PATTERN}\\b`, "gi");
+const SUMMARY_DAY_ABBREV_TIME_PATTERN = new RegExp(`\\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\.?,?\\s*,?\\s*${SUMMARY_TIME_BLOCK_PATTERN}\\b`, "gi");
+const SUMMARY_TEMP_LOCATION_BLOCK_PATTERN =
+  /\bThe\s+[^.!?]{0,100}\bis temporarily located at\b[\s\S]{0,280}?(?=\b(?:Please note|Let us know|As the parent|If there are any issues|I do hereby waive|No registration|Registration|$))/gi;
+const SUMMARY_TEMP_LOCATION_INTRO_PATTERN =
+  /\bThe\s+[^.]{0,120}\bis temporarily located at\s+\d{1,6}\s+[^.]+(?:Rd|RD|Road|St|Street|Ave|Avenue|Dr|Drive|Ln|Lane)\.?\s*/gi;
+const SUMMARY_TEMP_RENOVATION_SENTENCE_PATTERN = /\bin\s+[A-Z][A-Za-z .'-]+\s+while the building is under renovation\.\s*/g;
+const SUMMARY_STREET_LOCATION_SENTENCE_PATTERN =
+  /\b\d{1,6}\s+[A-Za-z0-9 .'-]+(?:Rd|RD|Road|St|Street|Ave|Avenue|Dr|Drive|Ln|Lane)\.?\s+is located\b[^.]*\.\s*/gi;
+const SUMMARY_PARKING_SENTENCE_PATTERN = /\bYou may park\b[^.!?]*(?:[.!?]|$)/gi;
+const SUMMARY_PARKING_FRAGMENT_PATTERN = /\bif there is space or at\b[^.]*\buse the sidewalk\b[^.]*\.\s*/gi;
+const SUMMARY_WAIVER_TAIL_PATTERN =
+  /\b(?:Please note we will be serving|Let us know if there are|As the parent or legal guardian|If there are any issues|I do hereby waive)\b[\s\S]*$/i;
+const SUMMARY_PLACE_LOGISTICS_PATTERN =
+  /\b(?:located at|temporarily located|held at|events are held at|meet at|meets at|parking|park at|driveway|transfer station|parking lot|children'?s room|kids department|near the playground)\b/i;
+const SUMMARY_ACTIVITY_SIGNAL_PATTERN =
+  /\b(?:story|craft|club|kids|children|family|families|baby|toddler|preschool|teen|tween|lego|game|games|movie|music|concert|festival|market|rides?|food|workshop|camp|art|paint|build|read|reading|learn|discover|explore|nature|garden|science|theater|performance|play|party|parade|fireworks|foam|jump|slime)\b/i;
 const QUALITY_REPORT_SAMPLE_LIMIT = 8;
 const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
   /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|tree lighting|unity day|watch part(?:y|ies)|world cup|yoga)\b/i;
@@ -94,18 +141,193 @@ function stripHtml(value) {
     .trim();
 }
 
-function cleanImportedSummary(value) {
-  return stripHtml(value)
+function escapeRegExp(value) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function normalizeSummaryPunctuation(value) {
+  return collapseWhitespace(value)
+    .replace(/\s+([,.!?;:])/g, "$1")
+    .replace(/\(\s*\)/g, "")
+    .replace(/\s+-\s*([.!?])/g, "$1")
+    .replace(/\b(?:at|from|between|on|in)\s*([,.!?])/gi, "$1")
+    .replace(/(?:[,;:]\s*){2,}/g, ", ")
+    .replace(/\.{2,}/g, ".")
+    .replace(/^[.,;:!?|/\-]+(?:\s+|$)/, "")
+    .replace(/\b(?:Join us|Come join us)\s*$/i, "")
+    .replace(/\bNo\s*$/i, "")
+    .replace(/\b(?:and|or|to|from|on)\s*$/i, "")
+    .replace(/\s+in\s+[A-Z][A-Za-z .'-]+,\s*held\.?$/g, "")
+    .replace(/,\s*held\.?$/i, ".")
+    .replace(/\bPlease\s*$/i, "")
+    .trim();
+}
+
+function stripLeadingEventTitleFromSummary(value, context = {}) {
+  const title = collapseWhitespace(stripHtml(context.title || ""));
+  if (title.length < 3) {
+    return value;
+  }
+  const pattern = new RegExp(`^${escapeRegExp(title)}\\s*(?:[,.:;|/\\-\\u2013\\u2014]+\\s*)?`, "i");
+  const match = value.match(pattern);
+  if (!match || match[0].length >= value.length) {
+    return value;
+  }
+  return value.slice(match[0].length).trim();
+}
+
+function summaryLocationCandidates(context = {}) {
+  const values = [context.venueName, context.venue, context.address ? cleanAddress(context.address) : ""]
+    .map((value) => collapseWhitespace(stripHtml(value || "")))
+    .filter((value) => value.length >= 5);
+  const address = values.find((value) => /\d/.test(value) && /,/.test(value));
+  if (address) {
+    values.push(address.split(",")[0].trim());
+  }
+  return [...new Set(values.filter(Boolean))];
+}
+
+function stripLeadingKnownLocationFromSummary(value, context = {}) {
+  let text = value;
+  for (const location of summaryLocationCandidates(context)) {
+    const pattern = new RegExp(`^${escapeRegExp(location)}\\s*(?:[,.:;|/\\-\\u2013\\u2014]+\\s*)?`, "i");
+    text = text.replace(pattern, "").trim();
+  }
+  return text.replace(SUMMARY_LEADING_ADDRESS_PATTERN, "").replace(/^(?:US|USA|United States)\b\s*/i, "").trim();
+}
+
+function stripLeadingSummaryLogistics(value, context = {}) {
+  let text = collapseWhitespace(value);
+  for (let index = 0; index < 8; index += 1) {
+    const previous = text;
+    text = stripLeadingEventTitleFromSummary(text, context);
+    text = stripImportedSummaryDateTimePrefix(text);
+    text = text.replace(SUMMARY_RECURRING_TIME_PREFIX_PATTERN, "");
+    text = text.replace(SUMMARY_LEADING_TIME_PATTERN, "");
+    text = stripLeadingKnownLocationFromSummary(text, context);
+    text = normalizeSummaryPunctuation(text);
+    if (text === previous) {
+      break;
+    }
+  }
+  return text;
+}
+
+function stripSummaryDateTimePhrases(value) {
+  const bareDatePattern = new RegExp(`\\b${SUMMARY_DATE_PATTERN}\\b`, "gi");
+  const numericDatePattern = /\b(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[12]\d|3[01])(?:\/\d{2,4})?\b/g;
+  const recurringWeekdayPattern = new RegExp(`\\bevery\\s+${SUMMARY_WEEKDAY_PATTERN}\\b`, "gi");
+  const weekdayProgramPattern = new RegExp(`\\b${SUMMARY_WEEKDAY_PATTERN}\\s+(kids storytime|storytime|chess program|program)\\b`, "gi");
+  return value
+    .replace(SUMMARY_DAY_ABBREV_TIME_PATTERN, "")
+    .replace(SUMMARY_DATE_TIME_PHRASE_PATTERN, "")
+    .replace(SUMMARY_RECURRING_TIME_PHRASE_PATTERN, "")
+    .replace(SUMMARY_EVENT_TIME_PHRASE_PATTERN, "")
+    .replace(SUMMARY_STANDALONE_TIME_RANGE_PATTERN, "")
+    .replace(/\bNow through\s+[A-Za-z]+\b/gi, "")
+    .replace(weekdayProgramPattern, "$1")
+    .replace(recurringWeekdayPattern, "")
+    .replace(bareDatePattern, "")
+    .replace(numericDatePattern, "")
+    .replace(/\b(?:a\.?m\.?|p\.?m\.?)\b(?=\s*(?:[,.!?]|$))/gi, "");
+}
+
+function removeKnownLocationPhrases(value, context = {}) {
+  let text = value;
+  for (const location of summaryLocationCandidates(context)) {
+    const phrasePattern = new RegExp(`\\b(?:at|in|inside|outside|near|from)\\s+(?:the\\s+)?${escapeRegExp(location)}\\b`, "gi");
+    text = text.replace(phrasePattern, "");
+  }
+  return text
+    .replace(/\b(?:in|at)\s+(?:the\s+)?(?:kids department|children'?s room|community room|program room [a-z])\b/gi, "")
+    .replace(/\s*,?\s*\b(?:held at|located at)\b[^.!?]*(?=[.!?])/gi, "");
+}
+
+function summarySentenceHasKnownLocation(sentence, context = {}) {
+  const lower = sentence.toLowerCase();
+  if (SUMMARY_LEADING_ADDRESS_PATTERN.test(sentence) || /\b\d{1,6}\s+[A-Za-z0-9 .'-]+(?:road|rd|street|st|avenue|ave|drive|dr|lane|ln|way)\b/i.test(sentence)) {
+    return true;
+  }
+  return summaryLocationCandidates(context).some((location) => location.length >= 6 && lower.includes(location.toLowerCase()));
+}
+
+function isSummaryLogisticsSentence(sentence, context = {}) {
+  const text = collapseWhitespace(sentence);
+  if (!text) {
+    return true;
+  }
+  const hasKnownLocation = summarySentenceHasKnownLocation(text, context);
+  const hasDateOrTime = new RegExp(`${SUMMARY_DATE_PATTERN}|${SUMMARY_TIME_PATTERN}`, "i").test(text) || /\b\d{1,2}\/\d{1,2}\b/.test(text);
+  if (hasKnownLocation && SUMMARY_PLACE_LOGISTICS_PATTERN.test(text)) {
+    return true;
+  }
+  if (/\bruns?\b/i.test(text) && /\b(?:rain or shine|parking lot|from\s+to|every\s+(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)|corner of)\b/i.test(text)) {
+    return true;
+  }
+  if (/^(?:free parking|be prompt|entrance doors lock)\b/i.test(text)) {
+    return true;
+  }
+  if (/^(?:no registration required|registration required|registration is required|required for children only|all meetings will be held|all children must be accompanied|you do not need to register|registration opens|registration begins|sign up|rsvp|tickets?|click here)\b/i.test(text)) {
+    return true;
+  }
+  if (/\b(?:hours? for|ride bracelet nights?|pay one price|wristbands?|advance sale|discounted advance sale|individual ride credits|registration begins|registration opens|all meetings will be held)\b/i.test(text)) {
+    return true;
+  }
+  if (/\b(?:first|second|third|fourth|last)\s+(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i.test(text) && !SUMMARY_ACTIVITY_SIGNAL_PATTERN.test(text)) {
+    return true;
+  }
+  if (hasDateOrTime && !SUMMARY_ACTIVITY_SIGNAL_PATTERN.test(text) && /\b(?:registration|register|hours?|runs?|held|meets?|starts?|ends?|first day|last day|schedule)\b/i.test(text)) {
+    return true;
+  }
+  return false;
+}
+
+function filterSummaryLogisticsSentences(value, context = {}) {
+  const sentences = collapseWhitespace(value).match(/[^.!?]+[.!?]*/g) || [];
+  return sentences.filter((sentence) => !isSummaryLogisticsSentence(sentence, context)).join(" ");
+}
+
+function cleanImportedSummary(value, context = {}) {
+  let summary = stripHtml(value)
+    .replace(SUMMARY_SOURCE_WIDGET_TAIL_PATTERN, "")
+    .replace(/\bThursday is the new in [^.]+\.?\s*/gi, "")
+    .replace(/\bAnnual festival hosted by ([^.]+?) in [A-Z][A-Za-z .'-]+(?=[.!?])/g, "Annual festival hosted by $1")
+    .replace(/\bSuite\s+\d+,\s*[A-Za-z .'-]+,\s*NJ\s+\d{5}\.?/gi, "")
+    .replace(/\bPresenter:\s*[^.!?]*(?:[.!?]|$)/gi, "")
+    .replace(/\bRide (?:tickets|credits)\b[^.!?]*(?:[.!?]|$)/gi, "")
+    .replace(/\bSpace is limited\b[^.!?]*(?:[.!?]|$)/gi, "")
+    .replace(/\bNo registration (?:is )?required\.?/gi, "")
+    .replace(/\bRegistration (?:not )?required\.?/gi, "")
+    .replace(/\bFireworks will be held on two nights:[^.!?]*(?:[.!?]|$)?/gi, "")
+    .replace(/\bStop in anytime\b[^.!?]*(?:[.!?]|$)/gi, "")
+    .replace(/\s+\bat\b[^.!?]*\bon\s+[A-Z][A-Za-z .'-]+(?:Ave|Avenue|Road|Rd|Street|St|Drive|Dr|Lane|Ln)\b[^.!?]*(?=[.!?])/gi, "")
+    .replace(/\s+in\s+[A-Z][A-Za-z .'-]+(?=[.!?])/g, "")
+    .replace(/\s+on\s*\([^)]*rain date[^)]*\)/gi, "")
+    .replace(/\s+\(rain date[^)]*\)/gi, "")
+    .replace(/\s+at approximately\.?/gi, "")
+    .replace(SUMMARY_TEMP_LOCATION_BLOCK_PATTERN, "")
+    .replace(SUMMARY_TEMP_LOCATION_INTRO_PATTERN, "")
+    .replace(SUMMARY_TEMP_RENOVATION_SENTENCE_PATTERN, "")
+    .replace(SUMMARY_STREET_LOCATION_SENTENCE_PATTERN, "")
+    .replace(SUMMARY_PARKING_SENTENCE_PATTERN, "")
+    .replace(SUMMARY_PARKING_FRAGMENT_PATTERN, "")
+    .replace(SUMMARY_WAIVER_TAIL_PATTERN, "")
+    .replace(/^PROGRAM ROOM [A-Z]\s+/i, "")
+    .replace(/\bRegister here\b[^.!?]*(?:[.!?]|$)/gi, "")
+    .replace(/\bRegister for\b[^.!?]*(?:[.!?]|$)/gi, "")
+    .replace(/\bOnline\.?\s*/gi, "")
     .replace(/\[&hellip;]|\[…]|&hellip;|\.\.\./gi, "")
     .replace(SOURCE_LOGISTICS_CLAUSE_PATTERN, ".")
     .replace(SOURCE_LOGISTICS_SENTENCE_PATTERN, "")
     .replace(SOURCE_PAGE_SENTENCE_PATTERN, "")
-    .replace(CONTACT_DETAILS_SENTENCE_PATTERN, "")
-    .replace(/\s+([,.!?])/g, "$1")
-    .replace(/\.{2,}/g, ".")
-    .replace(/\s+/g, " ")
-    .replace(/^[.,;:!?-]+\s*/, "")
-    .trim();
+    .replace(CONTACT_DETAILS_SENTENCE_PATTERN, "");
+  summary = stripLeadingSummaryLogistics(summary, context);
+  summary = filterSummaryLogisticsSentences(summary, context);
+  summary = stripSummaryDateTimePhrases(summary);
+  summary = removeKnownLocationPhrases(summary, context);
+  summary = filterSummaryLogisticsSentences(summary, context);
+  summary = stripLeadingSummaryLogistics(summary, context);
+  return normalizeSummaryPunctuation(summary);
 }
 
 function collapseWhitespace(value) {
@@ -493,8 +715,8 @@ function repairEventQuality(events) {
       noteRepair("durationMinutes");
     }
     if (isNonEmptyText(event.summary)) {
-      const cleanedSummary = cleanImportedSummary(stripImportedSummaryDateTimePrefix(event.summary));
-      if (cleanedSummary && cleanedSummary !== event.summary) {
+      const cleanedSummary = cleanImportedSummary(event.summary, event);
+      if (cleanedSummary !== event.summary) {
         event.summary = cleanedSummary;
         noteRepair("summary");
       }
@@ -2268,7 +2490,12 @@ function regionalEventRecord(source, fields) {
   const location = fields.location || primaryRegionalLocation(source);
   const startsAt = fields.startsAt || null;
   const endsAt = fields.endsAt || null;
-  const summary = cleanImportedSummary(fields.summary || fields.title || "");
+  const summary = cleanImportedSummary(fields.summary || fields.title || "", {
+    ...fields,
+    venue: location.name,
+    venueName: location.name,
+    address: location.address
+  });
   return {
     id: fields.id,
     externalId: fields.externalId || fields.id,

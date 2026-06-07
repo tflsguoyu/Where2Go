@@ -19,7 +19,8 @@ Each event should include:
 - `title`: Event name shown in the detail panel.
 - `venue` or `venueName`: Human-readable location.
 - `source`: Calendar/provider label.
-- `summary`: Short description shown in the detail panel.
+- `summary`: Useful activity-only description shown in the detail panel; do not
+  include date, time, venue, room, place, or address text.
 - `url` or `sourceUrl`: Link to the source event page.
 
 Real imported events should also include:
@@ -62,9 +63,11 @@ names.
 Every import should finish with a quality audit. The importer automatically
 repairs deterministic gaps such as mirrored `url`/`sourceUrl`, mirrored
 `venue`/`venueName`, missing timezone, missing duration, and missing in-coverage
-coordinates when an address can be geocoded. Any remaining missing time, place,
-coordinates, source URL, or concrete summary must be reported for manual review;
-do not invent descriptions when the source page does not provide one.
+coordinates when an address can be geocoded. Summaries should contain activity
+content only; date, time, venue, room, place, and address belong in structured
+fields. Any remaining missing time, place, coordinates, source URL, or concrete
+summary must be reported for manual review; do not invent descriptions when the
+source page does not provide one.
 
 When an official event page includes flyer images or other event images, check
 normal page text first. Only inspect image text when the HTML text does not
