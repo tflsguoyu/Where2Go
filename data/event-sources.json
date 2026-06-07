@@ -493,35 +493,37 @@
       "address": "400 Commons Way, Bridgewater Commons, Bridgewater, NJ 08807",
       "lat": 40.585616,
       "lng": -74.619682,
-      "notes": "Official store page has structured location data; event announcements are not consistently exposed as a stable machine-readable feed."
+      "notes": "Official store page exposes StoreEvent promo cards such as Little Builder Classes, but current cards do not include store-specific dated sessions. Keep manual until a detail/API route exposes dates."
     },
     {
       "id": "barnes-noble-bridgewater",
       "label": "Barnes & Noble Somerset Shopping Center",
       "type": "bookstore-kids-events",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "barnes-noble-store-calendar",
       "website": "https://stores.barnesandnoble.com/store/2140",
       "eventsUrl": "https://stores.barnesandnoble.com/store/2140?view=calendar",
       "townId": "bridgewater-township",
       "address": "319 Route 202/206, Bridgewater, NJ 08807",
-      "lat": 40.592358,
-      "lng": -74.60401,
-      "notes": "Potential storytime and children's bookstore events; current store page is a Next.js page and needs a deeper event-data parser."
+      "lat": 40.582218,
+      "lng": -74.622124,
+      "notes": "Next.js/RSC store calendar embeds monthEvents in the HTML. Parser decodes the hydration payload, keeps in-store child/family events, and skips adult book clubs and virtual national author events."
     },
     {
       "id": "apple-bridgewater",
       "label": "Today at Apple Bridgewater",
       "type": "store-creative-sessions",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "today-at-apple-calendar",
       "website": "https://www.apple.com/retail/bridgewater/",
       "eventsUrl": "https://www.apple.com/today/calendar/bridgewater/",
       "townId": "bridgewater-township",
       "address": "400 Commons Way, Bridgewater, NJ 08807",
-      "lat": 40.585616,
-      "lng": -74.619682,
-      "notes": "Today at Apple has Kids & Families filters; parser should use the Apple calendar data route rather than rendered HTML."
+      "lat": 40.58638,
+      "lng": -74.61979,
+      "storeNum": "R104",
+      "topicCollId": "kids-and-families",
+      "notes": "Calendar page embeds Next.js/RSC data with courses, schedules, topics, and stores. Parser imports only the Kids & Families topic for Apple Bridgewater."
     },
     {
       "id": "clubair-warren",
@@ -530,26 +532,47 @@
       "status": "manual_review",
       "parser": "manual",
       "website": "https://clubair.fun/",
-      "eventsUrl": "https://clubair.fun/",
+      "eventsUrl": "https://clubair.fun/specials/",
       "townId": "warren-township",
       "address": "150 Mt Bethel Rd Building 1, Warren, NJ 07059",
       "lat": 40.634588,
       "lng": -74.519044,
-      "notes": "Indoor trampoline/open-play venue; check for special events, sensory-friendly jumps, camps, and holiday sessions."
+      "notes": "Specials page lists possible weekly themes but currently says the specials are not available and coming soon. Do not import until the page republishes active dates/times."
     },
     {
       "id": "sky-zone-south-plainfield",
       "label": "Sky Zone South Plainfield - Piscataway",
       "type": "indoor-play-trampoline",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-recurring-workshops",
       "website": "https://www.skyzone.com/south-plainfield-piscataway-nj/",
-      "eventsUrl": "https://www.skyzone.com/south-plainfield-piscataway-nj/",
+      "eventsUrl": "https://www.skyzone.com/south-plainfield-piscataway-nj/events-calendar/",
       "townId": "south-plainfield-borough",
       "address": "600 Hadley Rd, South Plainfield, NJ 07080",
       "lat": 40.574413,
       "lng": -74.4148,
-      "notes": "Programs include GLOW, member events, group events, promos, and birthday/open-jump offerings; needs store-specific event calendar parser."
+      "locations": [
+        {
+          "id": "south-plainfield-piscataway",
+          "name": "Sky Zone South Plainfield - Piscataway",
+          "townId": "south-plainfield-borough",
+          "address": "600 Hadley Rd, South Plainfield, NJ 07080",
+          "lat": 40.574413,
+          "lng": -74.4148,
+          "storeUrl": "https://www.skyzone.com/south-plainfield-piscataway-nj/programs/glow/"
+        }
+      ],
+      "recurrence": {
+        "frequency": "weekly",
+        "weekdays": ["friday", "saturday"],
+        "startTime": "20:00",
+        "endTime": "22:00",
+        "title": "Sky Zone GLOW",
+        "summary": "GLOW jump sessions with blacklights, music, and glow-in-the-dark play. GLOW shirt and SkySocks are required; tickets are subject to session availability.",
+        "registration": "See source",
+        "category": "indoor-play"
+      },
+      "notes": "Events calendar embeds JSON with Friday and Saturday GLOW rows. Current importer expands those as weekly recurring sessions from source config."
     },
     {
       "id": "kidstrong-watchung",
@@ -563,21 +586,21 @@
       "address": "1701 US Highway 22 Unit 27, Watchung, NJ 07069",
       "lat": 40.642845,
       "lng": -74.436233,
-      "notes": "Kids development classes, camps, parties, and trial sessions; schedule likely requires a booking-system parser."
+      "notes": "Camps page describes ages 4-9 and asks users to view camp dates/contact the center, but direct HTML does not expose dated sessions. Needs booking-system or browser-backed parser."
     },
     {
       "id": "dainty-den-warren",
       "label": "The Dainty Den",
       "type": "kids-party-craft-venue",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "wix-events-list",
       "website": "https://www.daintyden.com/",
-      "eventsUrl": "https://www.daintyden.com/",
+      "eventsUrl": "https://www.daintyden.com/event-list",
       "townId": "warren-township",
       "address": "20 Mt Bethel Rd, Warren, NJ 07059",
-      "lat": 40.634588,
-      "lng": -74.519044,
-      "notes": "Kids/teens party and craft venue; check for public workshops, holiday events, and themed drop-ins."
+      "lat": 40.616746,
+      "lng": -74.494576,
+      "notes": "Wix Events list embeds scheduling.config start/end UTC values, slug, ticketing, and image URLs. Parser reads public workshop/camp cards from /event-list."
     },
     {
       "id": "fun-factory-sensory-gym",
@@ -591,7 +614,7 @@
       "address": "991 US Highway 22, Suite 200, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Sensory gym / indoor-play related provider; currently no obvious public dated event feed."
+      "notes": "Sensory gym / indoor-play provider; current public pages are contact/service oriented and do not expose public dated events."
     },
     {
       "id": "kids-empire-watchung",
@@ -605,7 +628,7 @@
       "address": "1515 US-22, Watchung, NJ 07069",
       "lat": 40.642845,
       "lng": -74.436233,
-      "notes": "Indoor playground for ages 1-12 with all-day play; no obvious public dated event feed yet."
+      "notes": "Indoor playground for ages 1-12 with all-day play; store page has location/hours but no public dated events feed yet."
     },
     {
       "id": "code-ninjas-local",
@@ -638,7 +661,7 @@
           "storeUrl": "https://www.codeninjas.com/locations/en-us/nj/piscataway/coding-school-376.html"
         }
       ],
-      "notes": "Kids coding/STEM classes, camps, birthday parties, and parent night out; dated camp schedule is not exposed in a simple feed."
+      "notes": "Local NJ center pages describe classes, camps, birthdays, and parent night out but do not expose dated schedules in simple HTML. codeninjascamps.com search results can show schedules for other states, so verify center location before manual import."
     },
     {
       "id": "valhallan-bridgewater",
@@ -652,35 +675,35 @@
       "address": "Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Youth esports training arena; check for camps, tryouts, tournaments, and STEM/gaming events."
+      "notes": "Youth esports training arena; current public arena page does not expose dated camps, tryouts, tournaments, or events in script-fetchable HTML."
     },
     {
       "id": "wagner-farm-arboretum",
       "label": "Wagner Farm Arboretum",
       "type": "arboretum-family-programs",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "squarespace-eventlist",
       "website": "https://www.wfafnj.org/",
       "eventsUrl": "https://www.wfafnj.org/events",
       "townId": "warren-township",
       "address": "197 Mountain Ave, Warren, NJ 07059",
       "lat": 40.634588,
       "lng": -74.519044,
-      "notes": "Arboretum, garden, and seasonal family event source; current public calendar did not expose near-term dated kids events."
+      "notes": "Squarespace event list exposes upcoming/past article blocks. Parser imports current garden/nature/family entries and expands long-running weekly Saturday listings."
     },
     {
       "id": "farmstead-arts-center",
       "label": "Farmstead Arts Center",
       "type": "arts-center-family-programs",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://farmsteadartscenter.org/",
-      "eventsUrl": "https://farmsteadartscenter.org/events/",
+      "status": "importable",
+      "parser": "firespring-calendar-grid",
+      "website": "https://farmsteadarts.org/",
+      "eventsUrl": "https://farmsteadarts.org/events/event-calendar.html",
       "townId": "bernards-township",
       "address": "450 King George Rd, Basking Ridge, NJ 07920",
       "lat": 40.677455,
       "lng": -74.567277,
-      "notes": "Arts center with theater, gallery, workshops, and family-suitable events; needs event-type filtering before auto-import."
+      "notes": "Firespring event calendar exposes month grid anchors with date/time/title/detail URLs. Parser fetches each month in the window, skips open hours, and keeps arts/theater/workshop-style entries."
     },
     {
       "id": "reeves-reed-arboretum",

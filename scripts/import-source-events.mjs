@@ -2247,6 +2247,543 @@ function importConfiguredWorkshopEvents(sources, startDate, days) {
   return imported.filter((event) => event.startsAt && event.sourceUrl);
 }
 
+function allRegionalParserSources(sources, parser) {
+  return (sources.regionalSources ?? []).filter((source) => source.status === "importable" && source.parser === parser);
+}
+
+function primaryRegionalLocation(source) {
+  const configuredLocation = (source.locations || [])[0] || {};
+  return {
+    id: configuredLocation.id || source.id,
+    name: configuredLocation.name || source.label,
+    townId: configuredLocation.townId || source.townId || null,
+    address: configuredLocation.address || source.address || null,
+    lat: Number(configuredLocation.lat ?? source.lat ?? 0),
+    lng: Number(configuredLocation.lng ?? source.lng ?? 0),
+    url: configuredLocation.storeUrl || source.eventsUrl || source.website
+  };
+}
+
+function regionalEventRecord(source, fields) {
+  const location = fields.location || primaryRegionalLocation(source);
+  const startsAt = fields.startsAt || null;
+  const endsAt = fields.endsAt || null;
+  const summary = cleanImportedSummary(fields.summary || fields.title || "");
+  return {
+    id: fields.id,
+    externalId: fields.externalId || fields.id,
+    sourceId: source.id,
+    townId: location.townId,
+    title: stripHtml(fields.title),
+    venue: location.name,
+    venueName: location.name,
+    category: fields.category || source.type || "regional",
+    source: source.label,
+    startsAt,
+    endsAt,
+    timezone: TIMEZONE,
+    durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : fields.durationMinutes ?? null,
+    ages: fields.ages || inferAgeBandsFromText(fields.title, summary, "kids children family"),
+    cost: fields.cost ?? null,
+    registration: fields.registration || "See source",
+    summary,
+    url: fields.sourceUrl,
+    sourceUrl: fields.sourceUrl,
+    sourceCalendarUrl: source.eventsUrl || source.website,
+    address: location.address,
+    lat: location.lat,
+    lng: location.lng,
+    image: fields.image || null,
+    tags: [source.type, ...(fields.tags || []), "family"].filter(Boolean),
+    status: "published",
+    confidence: fields.confidence ?? 0.78
+  };
+}
+
+function decodeEscapedJsonText(value) {
+  return decodeEntities(value)
+    .replace(/\\\//g, "/")
+    .replace(/\\u([0-9a-fA-F]{4})/g, (_, code) => String.fromCharCode(parseInt(code, 16)))
+    .replace(/\\"/g, '"')
+    .replace(/\\n/g, " ")
+    .replace(/\\r/g, " ")
+    .replace(/\\t/g, " ");
+}
+
+function extractBalancedJsonAfter(value, marker, fromIndex = 0) {
+  const index = value.indexOf(marker, fromIndex);
+  if (index === -1) {
+    return "";
+  }
+  let start = index + marker.length;
+  while (/\s/.test(value[start])) {
+    start += 1;
+  }
+  const open = value[start];
+  const close = open === "{" ? "}" : open === "[" ? "]" : "";
+  if (!close) {
+    return "";
+  }
+
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let cursor = start; cursor < value.length; cursor += 1) {
+    const character = value[cursor];
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (character === "\\") {
+        escaped = true;
+      } else if (character === '"') {
+        inString = false;
+      }
+      continue;
+    }
+    if (character === '"') {
+      inString = true;
+      continue;
+    }
+    if (character === open) {
+      depth += 1;
+    } else if (character === close) {
+      depth -= 1;
+      if (depth === 0) {
+        return value.slice(start, cursor + 1);
+      }
+    }
+  }
+  return "";
+}
+
+function parseEmbeddedJsonAfter(value, marker, fromIndex = 0) {
+  const rawJson = extractBalancedJsonAfter(value, marker, fromIndex);
+  try {
+    return JSON.parse(rawJson);
+  } catch {
+    return JSON.parse(rawJson.replace(/\\(?=\s)/g, ""));
+  }
+}
+
+function barnesNobleHydrationText(html) {
+  return decodeEscapedJsonText(html).replace(/\\u0026/g, "&");
+}
+
+function isBarnesNobleFamilyEvent(title, summary, typeLabels) {
+  const text = `${title} ${summary} ${typeLabels.join(" ")}`.toLowerCase();
+  const childSignal =
+    /\b(storytime|children|child|kids|kid|young reader|summer reading|scavenger|camp|cat in the hat|tiny t\.?\s*rex|investigators|craft|activities|family)\b/i.test(
+      text
+    );
+  const adultBookClub = /\bbook club\b/i.test(typeLabels.join(" ")) && !/\byoung reader|children|child|kids|kid|teen|tween/i.test(text);
+  const virtualOrAdultAuthor = /\bauthor event\b/i.test(typeLabels.join(" ")) && !/\bstorytime|children|child|kids|kid|family/i.test(text);
+  return childSignal && !adultBookClub && !virtualOrAdultAuthor;
+}
+
+function parseBarnesNobleStoreEvents(html, source, startDate, days) {
+  const text = barnesNobleHydrationText(html);
+  const imported = [];
+  const seen = new Set();
+  const eventPattern =
+    /\{"eventId":"([^"]+)","name":"([^"]+)","date":"(\d{4}-\d{2}-\d{2})","time":"([^"]+)"([\s\S]*?)"time24":"([^"]+)"/g;
+
+  for (const match of text.matchAll(eventPattern)) {
+    const [, eventId, rawTitle, dateKey, , block, time24] = match;
+    if (seen.has(`${eventId}-${dateKey}`) || !isDateWithinWindow(dateKey, startDate, days)) {
+      continue;
+    }
+    seen.add(`${eventId}-${dateKey}`);
+
+    if (!/"isInstoreEvent":true/.test(block) || /"isVirtualEvent":true/.test(block)) {
+      continue;
+    }
+
+    const title = stripHtml(rawTitle);
+    const summary = cleanImportedSummary(firstMatch(block, /"descriptionText":"([^"]*)"/));
+    const typeLabels = [...block.matchAll(/"text":"([^"]+)"/g)].map((type) => stripHtml(type[1])).filter(Boolean);
+    if (!isBarnesNobleFamilyEvent(title, summary, typeLabels)) {
+      continue;
+    }
+
+    const location = {
+      ...primaryRegionalLocation(source),
+      lat: Number(firstMatch(block, /"latitude":(-?\d+(?:\.\d+)?)/) || source.lat || 0),
+      lng: Number(firstMatch(block, /"longitude":(-?\d+(?:\.\d+)?)/) || source.lng || 0)
+    };
+    const sourceUrl = `https://stores.barnesandnoble.com/event/${eventId}`;
+    const imagePath = firstMatch(block, /"largeIcon":"([^"]+)"/);
+
+    imported.push(
+      regionalEventRecord(source, {
+        id: `${source.id}-${slugify(eventId)}-${dateKey}`,
+        externalId: eventId,
+        location,
+        title,
+        category: "bookstore",
+        startsAt: localDateTime(dateKey, time24),
+        summary: summary || title,
+        sourceUrl,
+        image: imagePath ? absoluteUrl(source.website, imagePath) : null,
+        registration: "See source",
+        tags: ["bookstore", "storytime", ...typeLabels.map(slugify)],
+        confidence: 0.86
+      })
+    );
+  }
+
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
+}
+
+async function importBarnesNobleStoreEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allRegionalParserSources(sources, "barnes-noble-store-calendar")) {
+    try {
+      const html = await fetchText(source.eventsUrl || source.website);
+      imported.push(...parseBarnesNobleStoreEvents(html, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.eventsUrl || source.website}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
+function parseTodayAtAppleCalendar(html, source, startDate, days) {
+  const text = decodeEscapedJsonText(html);
+  let courses;
+  let schedules;
+  let topics;
+  let stores;
+  try {
+    const schedulesIndex = text.indexOf('"schedules":');
+    courses = parseEmbeddedJsonAfter(text, '"courses":');
+    schedules = parseEmbeddedJsonAfter(text, '"schedules":');
+    topics = parseEmbeddedJsonAfter(text, '"topics":', schedulesIndex);
+    stores = parseEmbeddedJsonAfter(text, '"stores":', schedulesIndex);
+  } catch {
+    return [];
+  }
+
+  const topic = topics.find((item) => item.collId === (source.topicCollId || "kids-and-families"));
+  const store = stores[source.storeNum] || Object.values(stores)[0] || {};
+  const location = {
+    ...primaryRegionalLocation(source),
+    name: store.title || source.label,
+    address: cleanAddress([store.address1, store.city, store.stateCode || store.state, store.zip].filter(Boolean).join(", ")) || source.address,
+    lat: Number(store.lat ?? source.lat ?? 0),
+    lng: Number(store.long ?? source.lng ?? 0)
+  };
+  const imported = [];
+
+  (topic?.scheduleIds || []).forEach((scheduleId) => {
+    const schedule = schedules[scheduleId];
+    const course = courses[schedule?.courseId];
+    const startsAt = localIso(schedule?.displayStartTime);
+    if (!schedule || !course || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      return;
+    }
+    const endsAt = localIso(schedule.displayEndTime);
+    const title = stripHtml(course.name || course.title || "");
+    const summary = cleanImportedSummary(course.mediumDescription || course.shortDescription || course.longDescription || title);
+    const sourceUrl = `https://www.apple.com/today/event/${course.urlTitle || slugify(title)}/${schedule.id}/`;
+
+    imported.push(
+      regionalEventRecord(source, {
+        id: `${source.id}-${schedule.id}`,
+        externalId: schedule.id,
+        location,
+        title,
+        category: "store-creative-session",
+        startsAt,
+        endsAt,
+        summary,
+        sourceUrl,
+        cost: 0,
+        registration: schedule.status || "RSVP",
+        tags: ["today-at-apple", "kids-and-families", course.collId].filter(Boolean),
+        confidence: 0.9
+      })
+    );
+  });
+
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
+}
+
+async function importTodayAtAppleEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allRegionalParserSources(sources, "today-at-apple-calendar")) {
+    try {
+      const html = await fetchText(source.eventsUrl || source.website);
+      imported.push(...parseTodayAtAppleCalendar(html, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.eventsUrl || source.website}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
+function zonedWallIso(value, timeZone = TIMEZONE) {
+  const date = new Date(value);
+  if (Number.isNaN(date.valueOf())) {
+    return null;
+  }
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}T${values.hour}:${values.minute}:${values.second}`;
+}
+
+function parseWixEventsList(html, source, startDate, days) {
+  const imported = [];
+  const eventPattern = /"scheduling":\{"config":\{[\s\S]*?(?="guestListConfig")/g;
+
+  for (const match of html.matchAll(eventPattern)) {
+    const block = decodeEscapedJsonText(match[0]);
+    const startUtc = firstMatch(block, /"startDate":"([^"]+)"/);
+    const endUtc = firstMatch(block, /"endDate":"([^"]+)"/);
+    const timeZone = firstMatch(block, /"timeZoneId":"([^"]+)"/) || TIMEZONE;
+    const startsAt = zonedWallIso(startUtc, timeZone);
+    if (!eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+
+    const title = stripHtml(firstMatch(block, /"title":"([^"]+)"/));
+    const slug = firstMatch(block, /"slug":"([^"]+)"/) || slugify(title);
+    if (!title || !slug) {
+      continue;
+    }
+    const description = cleanImportedSummary(firstMatch(block, /"description":"([^"]*)"/) || firstMatch(block, /"about":"([^"]*)"/));
+    const lowPrice = firstMatch(block, /"lowestTicketPrice":\{"amount":"([^"]+)"/) || firstMatch(block, /"lowestPrice":"\$?([^"]+)"/);
+    const cost = Number(String(lowPrice).replace(/[^0-9.]/g, ""));
+    const image = firstMatch(block, /"mainImage":\{[\s\S]*?"url":"([^"]+)"/);
+    const sourceUrl = absoluteUrl(source.eventsUrl || source.website, `/event-details/${slug}`);
+
+    imported.push(
+      regionalEventRecord(source, {
+        id: `${source.id}-${slugify(slug)}-${startsAt.slice(0, 10)}`,
+        externalId: slug,
+        title,
+        category: /camp/i.test(title) ? "camp" : "workshop",
+        startsAt,
+        endsAt: zonedWallIso(endUtc, timeZone),
+        summary: description || title,
+        sourceUrl,
+        image: image || null,
+        cost: Number.isFinite(cost) ? cost : null,
+        registration: /ticket/i.test(block) ? "Tickets" : "See source",
+        tags: ["wix-events", "craft", "camp"],
+        confidence: 0.85
+      })
+    );
+  }
+
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
+async function importWixEventsList(sources, startDate, days) {
+  const imported = [];
+  for (const source of allRegionalParserSources(sources, "wix-events-list")) {
+    try {
+      const html = await fetchText(source.eventsUrl || source.website);
+      imported.push(...parseWixEventsList(html, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.eventsUrl || source.website}: ${error.message}`);
+    }
+  }
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
+}
+
+function isImportableRegionalEvent(title, summary = "") {
+  const text = `${title} ${summary}`.toLowerCase();
+  if (/\b(cancelled|canceled|public hours|gallery hours|office hours|closed)\b/i.test(text)) {
+    return false;
+  }
+  return /\b(kid|kids|children|child|family|families|teen|tween|toddler|camp|craft|workshop|story|festival|garden|nature|astronomy|butterfl|moth|plant sale|seed|earth day|brite nites|art show|theater|concert|performance|movie|slime|lego|glow|music|science)\b/i.test(
+    text
+  );
+}
+
+function parseMeridiemTimeLabel(dateKey, timeLabel) {
+  const match = collapseWhitespace(timeLabel).match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);
+  return match ? timeToLocalIso(dateKey, match[1], match[2] || "00", match[3]) : localDateTime(dateKey, "12:00");
+}
+
+function extractFarmsteadDetailSummary(html) {
+  const main =
+    firstMatch(html, /<main\b[^>]*>([\s\S]*?)<\/main>/i) ||
+    firstMatch(html, /<div\b[^>]*id=["']main-content["'][^>]*>([\s\S]*?)<\/div>/i) ||
+    html;
+  const cleaned = cleanImportedSummary(main)
+    .replace(/^Event Calendar\s*/i, "")
+    .replace(/^Events\s*/i, "")
+    .trim();
+  return cleaned.length > 360 ? `${cleaned.slice(0, 357).trim()}...` : cleaned;
+}
+
+async function enrichRegionalDetailSummaries(events, extractor) {
+  const cache = new Map();
+  for (const event of events) {
+    if (!event.sourceUrl || cache.has(event.sourceUrl)) {
+      continue;
+    }
+    try {
+      cache.set(event.sourceUrl, extractor(await fetchText(event.sourceUrl)));
+      await sleep(100);
+    } catch (error) {
+      console.warn(`warning: could not enrich ${event.sourceUrl}: ${error.message}`);
+      cache.set(event.sourceUrl, "");
+    }
+  }
+  return events.map((event) => ({ ...event, summary: cache.get(event.sourceUrl) || event.summary }));
+}
+
+function farmsteadCalendarMonthUrl(source, year, month) {
+  const base = source.eventsUrl || source.website;
+  return new URL(`calendar/${year}/${month}`, base.endsWith("/") ? base : `${base}/`).toString();
+}
+
+function parseFarmsteadCalendar(html, source, startDate, days) {
+  const imported = [];
+  const eventPattern =
+    /<a\b[^>]*class=["'][^"']*\bcalendar-grid-event\b[^"']*["'][^>]*href=["']([^"']+)["'][\s\S]*?<span\b[^>]*class=["'][^"']*\bcalendar-grid-event__time\b[^"']*["'][^>]*>([\s\S]*?)<\/span>[\s\S]*?<span\b[^>]*class=["'][^"']*\bcalendar-grid-event__title\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi;
+
+  for (const match of html.matchAll(eventPattern)) {
+    const [, href, timeText, rawTitle] = match;
+    const dateMatch = href.match(/\/event\/(\d{4})\/(\d{2})\/(\d{2})\//);
+    const dateKey = dateMatch ? `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}` : "";
+    const title = stripHtml(rawTitle);
+    if (!dateKey || !isDateWithinWindow(dateKey, startDate, days) || !isImportableRegionalEvent(title)) {
+      continue;
+    }
+    const sourceUrl = absoluteUrl(source.eventsUrl || source.website, href);
+    imported.push(
+      regionalEventRecord(source, {
+        id: `${source.id}-${dateKey}-${slugify(title)}-${slugFromUrl(sourceUrl)}`,
+        externalId: `${dateKey}-${slugFromUrl(sourceUrl)}`,
+        title,
+        category: /theater|performance/i.test(title) ? "performance" : "art",
+        startsAt: parseMeridiemTimeLabel(dateKey, stripHtml(timeText)),
+        summary: title,
+        sourceUrl,
+        registration: "See source",
+        tags: ["arts", "calendar"],
+        confidence: 0.8
+      })
+    );
+  }
+
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
+}
+
+async function importFarmsteadCalendarEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allRegionalParserSources(sources, "firespring-calendar-grid")) {
+    for (const { year, month } of monthsInWindow(startDate, days)) {
+      try {
+        const html = await fetchText(farmsteadCalendarMonthUrl(source, year, month));
+        imported.push(...parseFarmsteadCalendar(html, source, startDate, days));
+      } catch (error) {
+        console.warn(`warning: could not import ${source.eventsUrl || source.website}: ${error.message}`);
+      }
+    }
+  }
+  const deduped = [...new Map(imported.map((event) => [event.id, event])).values()];
+  return enrichRegionalDetailSummaries(deduped, extractFarmsteadDetailSummary);
+}
+
+function parseSquarespaceEventListTime(block) {
+  const dates = [...block.matchAll(/<time\b[^>]*class=["'][^"']*\bevent-date\b[^"']*["'][^>]*datetime=["']([^"']+)["'][^>]*>/gi)].map(
+    (match) => match[1]
+  );
+  const times = [...block.matchAll(/<time\b[^>]*class=["'][^"']*\bevent-time-24hr(?:-start|-end)?\b[^"']*["'][^>]*>([^<]+)<\/time>/gi)]
+    .map((match) => stripHtml(match[1]))
+    .filter((value) => /^\d{2}:\d{2}$/.test(value));
+  const startDate = dates[0] || "";
+  const endDate = dates[1] || startDate;
+  return {
+    startDate,
+    endDate,
+    startTime: times[0] || "12:00",
+    endTime: times[1] || null
+  };
+}
+
+function parseSquarespaceRegionalEventList(html, source, startDate, days) {
+  const imported = [];
+  const articlePattern = /<article\b([^>]*)>([\s\S]*?)<\/article>/gi;
+
+  for (const match of html.matchAll(articlePattern)) {
+    const [, attrs, block] = match;
+    if (!/\beventlist-event\b/i.test(attrs) || /\beventlist-event--past\b/i.test(attrs)) {
+      continue;
+    }
+    const title = stripHtml(firstMatch(block, /<h1\b[^>]*class=["'][^"']*\beventlist-title\b[^"']*["'][^>]*>\s*<a\b[^>]*>([\s\S]*?)<\/a>/i));
+    const href = firstMatch(block, /<h1\b[^>]*class=["'][^"']*\beventlist-title\b[^"']*["'][^>]*>\s*<a\b[^>]*href=["']([^"']+)["']/i);
+    const summary = cleanImportedSummary(firstMatch(block, /<div\b[^>]*class=["'][^"']*\beventlist-description\b[^"']*["'][^>]*>([\s\S]*?)(?:<\/div>\s*<a\b|<\/article>)/i));
+    if (!title || !href || !isImportableRegionalEvent(title, summary)) {
+      continue;
+    }
+
+    const timing = parseSquarespaceEventListTime(block);
+    if (!timing.startDate) {
+      continue;
+    }
+    const sourceUrl = absoluteUrl(source.eventsUrl || source.website, href);
+    const image = firstMatch(block, /<img\b[^>]*(?:data-src|data-image)=["']([^"']+)["']/i) || firstMatch(block, /data-asset-url=["']([^"']+)["']/i);
+    const repeatsWeekly =
+      dateStamp(timing.endDate) > dateStamp(timing.startDate) && /\bsaturdays?\b|\bmondays?\b|\btuesdays?\b|\bwednesdays?\b|\bthursdays?\b|\bfridays?\b|\bsundays?\b/i.test(`${title} ${summary}`);
+    const dateKeys = repeatsWeekly
+      ? datesInRange(timing.startDate, timing.endDate).filter((dateKey) => {
+          const startWeekday = new Date(`${timing.startDate}T12:00:00Z`).getUTCDay();
+          return new Date(`${dateKey}T12:00:00Z`).getUTCDay() === startWeekday;
+        })
+      : [timing.startDate];
+
+    dateKeys.filter((dateKey) => isDateWithinWindow(dateKey, startDate, days)).forEach((dateKey) => {
+      const startsAt = localDateTime(dateKey, timing.startTime);
+      const endsAt = timing.endTime ? localDateTime(dateKey, timing.endTime) : null;
+      imported.push(
+        regionalEventRecord(source, {
+          id: `${source.id}-${dateKey}-${slugify(title)}`,
+          externalId: `${dateKey}-${slugFromUrl(sourceUrl)}`,
+          title,
+          category: /garden|plant|seed|earth|butter|moth|nature/i.test(`${title} ${summary}`) ? "nature" : "regional",
+          startsAt,
+          endsAt,
+          summary: summary || title,
+          sourceUrl,
+          image: image ? absoluteUrl(source.eventsUrl || source.website, image) : null,
+          registration: /sign up|register/i.test(summary) ? "RSVP" : "See source",
+          tags: ["squarespace", "garden"],
+          confidence: 0.82
+        })
+      );
+    });
+  }
+
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
+}
+
+async function importSquarespaceRegionalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allRegionalParserSources(sources, "squarespace-eventlist")) {
+    try {
+      const html = await fetchText(source.eventsUrl || source.website);
+      imported.push(...parseSquarespaceRegionalEventList(html, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.eventsUrl || source.website}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
 function allMunicipalParserSources(sources, parser) {
   return (sources.towns ?? [])
     .filter((town) => town.municipal?.status === "importable" && town.municipal?.parser === parser)
@@ -2883,6 +3420,11 @@ async function main() {
     importJoomlaEventBookingEvents(sources, startDate, days),
     importConfiguredLibraryEvents(sources, startDate, days),
     importConfiguredWorkshopEvents(sources, startDate, days),
+    importBarnesNobleStoreEvents(sources, startDate, days),
+    importTodayAtAppleEvents(sources, startDate, days),
+    importWixEventsList(sources, startDate, days),
+    importFarmsteadCalendarEvents(sources, startDate, days),
+    importSquarespaceRegionalEvents(sources, startDate, days),
     importNjCarnivalsEvents(sources, startDate, days)
   ]);
   const incoming = importedGroups.flat();
