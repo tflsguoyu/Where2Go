@@ -18,6 +18,21 @@ const DRIVE_TIME_RANGES_MINUTES = Array.isArray(DRIVE_TIME_CONFIG.rangesMinutes)
   ? DRIVE_TIME_CONFIG.rangesMinutes.map(Number).filter((value) => Number.isFinite(value) && value > 0)
   : [10, 20];
 const DRIVE_TIME_CONTOURS = DRIVE_TIME_RANGES_MINUTES.length ? DRIVE_TIME_RANGES_MINUTES : [10, 20];
+const SUMMARY_PREVIEW_LIMIT = 130;
+const MONTH_NAME_PATTERN =
+  "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
+const DATE_TEXT_PATTERN = `(?:${MONTH_NAME_PATTERN}\\s+\\d{1,2}(?:st|nd|rd|th)?(?:,\\s*\\d{4})?|\\d{1,2}/\\d{1,2}/\\d{2,4}|\\d{4}-\\d{1,2}-\\d{1,2})`;
+const TIME_TEXT_PATTERN = "(?:\\d{1,2}:\\d{2}\\s*(?:a\\.?m\\.?|p\\.?m\\.?)?|\\d{1,2}\\s*(?:a\\.?m\\.?|p\\.?m\\.?)?)";
+const TIME_RANGE_TEXT_PATTERN = `${TIME_TEXT_PATTERN}(?:\\s*(?:-|\\u2013|\\u2014|to)\\s*${TIME_TEXT_PATTERN})?`;
+const LEADING_DATE_TIME_PATTERN = new RegExp(
+  `^(?:(?:sun|mon|tue|wed|thu|fri|sat)(?:day)?[,]?\\s+)?${DATE_TEXT_PATTERN}(?:[,]?\\s+${TIME_RANGE_TEXT_PATTERN})?\\s*`,
+  "i"
+);
+const LEADING_TIME_PATTERN = new RegExp(`^${TIME_RANGE_TEXT_PATTERN}\\s*`, "i");
+const METADATA_LABEL_PATTERN = /\b(?:dates?|times?|when|locations?|venues?|addresses?|where):\s*[^.;]+[.;]?\s*/gi;
+const QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
+const SUMMARY_TITLE_STOP_PATTERN =
+  /\s+(?:Join|Learn|Enjoy|Come|Meet|Discover|Explore|Register|Presented|Presenter|Hosted|For|This|In this|During|Participants|All ages)\b/i;
 
 const mapState = {
   map: null,
@@ -148,11 +163,21 @@ function eventsForSelectedDate() {
   return state.events.filter((event) => event.dateKey === state.selectedDate);
 }
 
+function normalizedLocationName(event) {
+  return String(event.venueName || event.venue || event.address || event.source || event.id || "event-location")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function locationKey(event) {
+  const nameKey = normalizedLocationName(event);
   if (hasCoordinates(event)) {
-    return `${event.lat.toFixed(5)},${event.lng.toFixed(5)}`;
+    return `${event.lat.toFixed(5)},${event.lng.toFixed(5)}|${nameKey}`;
   }
-  return String(event.venueName || event.venue || event.address || event.id).trim().toLowerCase();
+  return nameKey;
 }
 
 function placeLabel(event) {
@@ -365,12 +390,101 @@ async function updateUpdatedLabel(events) {
   }
 }
 
-function summaryText(event) {
-  const text = event.summary || "Open the source page for details.";
-  if (text.length <= 130) {
+function collapseWhitespace(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function stripLeadingKnownValue(text, value) {
+  const phrase = collapseWhitespace(value);
+  if (!phrase) {
     return text;
   }
-  return `${text.slice(0, 130).trim()}...`;
+  return text
+    .replace(new RegExp(`^${escapeRegExp(phrase)}\\s*(?:[-:|,]|\\u2013|\\u2014)?\\s*`, "i"), "")
+    .trim();
+}
+
+function stripLeadingDateTime(text) {
+  let cleaned = text.trim();
+  let previous = "";
+  while (cleaned && cleaned !== previous) {
+    previous = cleaned;
+    cleaned = cleaned
+      .replace(LEADING_DATE_TIME_PATTERN, "")
+      .replace(LEADING_TIME_PATTERN, "")
+      .replace(/^\s*(?:[-:|,]|\u2013|\u2014)+\s*/, "")
+      .trim();
+  }
+  return cleaned;
+}
+
+function summaryWithoutRepeatedMetadata(event) {
+  let text = collapseWhitespace(event.summary);
+  if (!text) {
+    return "";
+  }
+  text = collapseWhitespace(text.replace(METADATA_LABEL_PATTERN, " "));
+  return stripLeadingDateTime(text);
+}
+
+function normalizeDisplayTitle(value) {
+  return collapseWhitespace(value)
+    .replace(/^["'“”]+|["'“”]+$/g, "")
+    .replace(/\s+A\s+USA\s+\d{3}\b.*$/i, "")
+    .replace(/\s+[-\u2013\u2014]\s+/g, ": ")
+    .trim();
+}
+
+function isQuestionLikeTitle(title) {
+  return QUESTION_LIKE_TITLE_PATTERN.test(title) || /\?$/.test(title);
+}
+
+function summaryTitleSegment(event) {
+  const text = summaryWithoutRepeatedMetadata(event);
+  const stopMatch = text.match(SUMMARY_TITLE_STOP_PATTERN);
+  return stopMatch ? text.slice(0, stopMatch.index).trim() : "";
+}
+
+function summaryTitleCandidate(event) {
+  const normalized = normalizeDisplayTitle(summaryTitleSegment(event));
+  if (normalized.length >= 12 && normalized.length <= 90 && !isQuestionLikeTitle(normalized)) {
+    return normalized;
+  }
+  return "";
+}
+
+function displayTitle(event) {
+  const title = collapseWhitespace(event.title) || "Event";
+  if (!isQuestionLikeTitle(title)) {
+    return title;
+  }
+  return summaryTitleCandidate(event) || title;
+}
+
+function cleanedSummaryText(event) {
+  let text = summaryWithoutRepeatedMetadata(event);
+  if (!text) {
+    return "";
+  }
+  text = stripLeadingDateTime(text);
+  [summaryTitleSegment(event), displayTitle(event), event.title, event.venueName, event.venue, event.address, event.source].forEach(
+    (value) => {
+      text = stripLeadingKnownValue(text, value);
+    }
+  );
+  return stripLeadingDateTime(collapseWhitespace(text));
+}
+
+function summaryText(event) {
+  const text = cleanedSummaryText(event) || "Open the source page for details.";
+  if (text.length <= SUMMARY_PREVIEW_LIMIT) {
+    return text;
+  }
+  return `${text.slice(0, SUMMARY_PREVIEW_LIMIT).trim()}...`;
 }
 
 function escapeHtml(value) {
@@ -666,7 +780,7 @@ function addOrMoveCircleMarker(markerName, lat, lng, options) {
   mapState[markerName] = L.circleMarker([lat, lng], options).addTo(mapState.map);
 }
 
-function moveMapToPoint({ lat, lng, marker = "search" }) {
+function moveMapToPoint({ lat, lng, marker = "search", autoEnableDriveTime = false }) {
   if (!mapState.map || !Number.isFinite(lat) || !Number.isFinite(lng)) {
     return;
   }
@@ -677,7 +791,16 @@ function moveMapToPoint({ lat, lng, marker = "search" }) {
   addOrMoveCircleMarker(marker === "user" ? "userMarker" : "searchMarker", lat, lng, markerOptions);
   fitMapAroundPoint({ lat, lng });
   state.mapFocus = marker === "user" ? "user" : "search";
+  const wasDriveTimeEnabled = state.driveTimeEnabled;
   setDriveTimeOrigin({ lat, lng, source: marker });
+  if (autoEnableDriveTime && !wasDriveTimeEnabled) {
+    state.driveTimeEnabled = true;
+    updateDriveTimeControl();
+    refreshDriveTimeLayer().catch((error) => {
+      clearDriveTimeLayer();
+      setMapMessage(error.message || "Drive time failed", driveTimeErrorBody(error));
+    });
+  }
   if (!state.driveTimeLoading) {
     setMapMessage("");
   }
@@ -710,7 +833,8 @@ function locateUser() {
       moveMapToPoint({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
-        marker: "user"
+        marker: "user",
+        autoEnableDriveTime: true
       });
     },
     (error) => {
@@ -1034,7 +1158,7 @@ function renderDetail() {
         .map(
           (event) => `
             <article class="detail-event">
-              <h2>${escapeHtml(event.title)}</h2>
+              <h2>${escapeHtml(displayTitle(event))}</h2>
               <p class="event-time">${formatTimeRange(event)}</p>
               <p class="event-summary">${escapeHtml(summaryText(event))}</p>
               <a class="source-link" href="${escapeHtml(sourceUrl(event))}" target="_blank" rel="noreferrer">Open source page</a>

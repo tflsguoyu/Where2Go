@@ -1081,6 +1081,8 @@
           "audienceIds": ["10423", "10404", "10406", "10425", "10424", "10405", "10426", "10403"],
           "townId": "berkeley-heights-township",
           "address": "110 Roosevelt Ave, Berkeley Heights, NJ 07922",
+          "lat": 40.678612,
+          "lng": -74.439521,
           "notes": "LibCal audience filters include baby, children, families, preschool, toddler, teens, tweens, and all ages."
         }
       ]

@@ -68,6 +68,9 @@ const SCLSNJ_FALLBACK_LOCATIONS = [
 ];
 
 const AGE_ORDER = ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"];
+const IMPORT_QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
+const IMPORT_SUMMARY_TITLE_STOP_PATTERN =
+  /\s+(?:Join|Learn|Enjoy|Come|Meet|Discover|Explore|Register|Presented|Presenter|Hosted|For|This|In this|During|Participants|All ages)\b/i;
 const MONTHS = new Map([
   ["january", "01"],
   ["february", "02"],
@@ -122,6 +125,44 @@ function stripHtml(value) {
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function collapseWhitespace(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function isQuestionLikeImportedTitle(title) {
+  return IMPORT_QUESTION_LIKE_TITLE_PATTERN.test(title) || /\?$/.test(title);
+}
+
+function stripImportedSummaryDateTimePrefix(value) {
+  const monthPattern =
+    "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
+  const timePattern = "(?:\\d{1,2}:\\d{2}\\s*(?:a\\.?m\\.?|p\\.?m\\.?)?|\\d{1,2}\\s*(?:a\\.?m\\.?|p\\.?m\\.?)?)";
+  const prefixPattern = new RegExp(
+    `^(?:(?:sun|mon|tue|wed|thu|fri|sat)(?:day)?[,]?\\s+)?${monthPattern}\\s+\\d{1,2}(?:st|nd|rd|th)?(?:,\\s*\\d{4})?(?:[,]?\\s+${timePattern}(?:\\s*(?:-|\\u2013|\\u2014|to)\\s*${timePattern})?)?\\s*`,
+    "i"
+  );
+  return collapseWhitespace(value).replace(prefixPattern, "").trim();
+}
+
+function normalizeImportedTitle(value) {
+  return collapseWhitespace(value)
+    .replace(/^["'“”]+|["'“”]+$/g, "")
+    .replace(/\s+A\s+USA\s+\d{3}\b.*$/i, "")
+    .replace(/\s+[-\u2013\u2014]\s+/g, ": ")
+    .trim();
+}
+
+function importedDisplayTitle(rawTitle, summary) {
+  const title = collapseWhitespace(rawTitle);
+  if (!isQuestionLikeImportedTitle(title)) {
+    return title;
+  }
+  const body = stripImportedSummaryDateTimePrefix(summary);
+  const stopMatch = body.match(IMPORT_SUMMARY_TITLE_STOP_PATTERN);
+  const candidate = normalizeImportedTitle(stopMatch ? body.slice(0, stopMatch.index) : "");
+  return candidate.length >= 12 && candidate.length <= 90 && !isQuestionLikeImportedTitle(candidate) ? candidate : title;
 }
 
 function localIso(rawDateTime) {
@@ -207,6 +248,19 @@ function addressFor(location) {
     .filter(Boolean)
     .map((part) => String(part).trim())
     .join(", ");
+}
+
+function numericCoordinate(value) {
+  const coordinate = Number(value);
+  return Number.isFinite(coordinate) ? coordinate : 0;
+}
+
+function libraryLat(source) {
+  return numericCoordinate(source.library.lat);
+}
+
+function libraryLng(source) {
+  return numericCoordinate(source.library.lng);
 }
 
 function hasChildAudience(audiences, title = "") {
@@ -909,8 +963,8 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
       sourceUrl,
       sourceCalendarUrl: source.library.eventsUrl,
       address: source.library.address || null,
-      lat: Number(source.library.lat ?? source.town.center?.lat ?? 0),
-      lng: Number(source.library.lng ?? source.town.center?.lng ?? 0),
+      lat: libraryLat(source),
+      lng: libraryLng(source),
       status: "published",
       confidence: 0.8
     });
@@ -1010,8 +1064,8 @@ function mapLibCalEvent(source, event, calendarUrl, dateKey) {
     sourceUrl: url,
     sourceCalendarUrl: source.library.eventsUrl,
     address: source.library.address || null,
-    lat: Number(source.library.lat ?? source.town.center?.lat ?? 0),
-    lng: Number(source.library.lng ?? source.town.center?.lng ?? 0),
+    lat: libraryLat(source),
+    lng: libraryLng(source),
     image: event.featured_image || null,
     tags: categories,
     status: "published",
@@ -1070,9 +1124,10 @@ function buildEventOrganiserUrl(source, startDate, days) {
 }
 
 function mapEventOrganiserEvent(source, rawEvent) {
-  const title = stripHtml(rawEvent.title || rawEvent.event_title || "");
+  const rawTitle = stripHtml(rawEvent.title || rawEvent.event_title || "");
   const categories = normalizeLabelList(rawEvent.category ?? rawEvent.categories ?? []);
   const summary = stripHtml(rawEvent.description || rawEvent.excerpt || "");
+  const title = importedDisplayTitle(rawTitle, summary);
   if (!title || isClosureOrNonEvent(title, summary)) {
     return null;
   }
@@ -1111,8 +1166,8 @@ function mapEventOrganiserEvent(source, rawEvent) {
     sourceUrl,
     sourceCalendarUrl: source.library.eventsUrl,
     address: source.library.address || null,
-    lat: Number(source.library.lat ?? source.town.center?.lat ?? 0),
-    lng: Number(source.library.lng ?? source.town.center?.lng ?? 0),
+    lat: libraryLat(source),
+    lng: libraryLng(source),
     tags: categories,
     status: "published",
     confidence: 0.86
@@ -1197,8 +1252,8 @@ function parseJoomlaEventBookingCalendar(html, source, startDate, days) {
       sourceUrl,
       sourceCalendarUrl: source.library.eventsUrl,
       address: source.library.address || null,
-      lat: Number(source.library.lat ?? source.town.center?.lat ?? 0),
-      lng: Number(source.library.lng ?? source.town.center?.lng ?? 0),
+      lat: libraryLat(source),
+      lng: libraryLng(source),
       status: "published",
       confidence: 0.84
     });
