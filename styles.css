@@ -205,10 +205,6 @@ h2 {
   font-size: 0.62rem;
 }
 
-.leaflet-bottom.leaflet-right {
-  bottom: 72px;
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -223,8 +219,8 @@ h2 {
 
 .locate-button {
   position: absolute;
-  right: 10px;
-  bottom: 30px;
+  left: 10px;
+  top: 10px;
   z-index: 500;
   display: grid;
   width: 38px;
@@ -250,12 +246,12 @@ h2 {
 
 .search-form {
   position: absolute;
-  left: 10px;
-  bottom: 10px;
+  left: 56px;
+  top: 10px;
   z-index: 500;
   display: flex;
   height: 38px;
-  max-width: calc(100% - 72px);
+  max-width: calc(100% - 66px);
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgba(23, 33, 29, 0.12);
@@ -356,7 +352,7 @@ h2 {
 
 .map-message {
   position: absolute;
-  inset: auto 12px 58px;
+  inset: auto 72px 12px 12px;
   z-index: 500;
   display: grid;
   gap: 3px;

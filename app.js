@@ -462,7 +462,7 @@ function initMap() {
     tap: true
   }).setView([HOME.lat, HOME.lng], 11);
 
-  L.control.zoom({ position: "topleft" }).addTo(map);
+  L.control.zoom({ position: "bottomright" }).addTo(map);
   addBaseLayer(map);
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
