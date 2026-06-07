@@ -1422,7 +1422,15 @@ function renderMap() {
 }
 
 function directionsUrl(group) {
-  const destination = hasCoordinates(group) ? `${group.lat},${group.lng}` : group?.address || group?.place || "";
+  const address = String(group?.address || "").trim();
+  const place = String(group?.place || "").trim();
+  const hasExactStreetAddress = /\d/.test(address) && !/\b(?:from|behind|between|near)\b|&/i.test(address);
+  const destination =
+    hasExactStreetAddress && place
+      ? `${place}, ${address}`
+      : hasCoordinates(group)
+        ? `${group.lat},${group.lng}`
+        : address || place;
   if (!destination) {
     return "#";
   }
