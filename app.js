@@ -1,4 +1,14 @@
 const TIMEZONE = "America/New_York";
+const HOME = { lat: 40.619261, lng: -74.490372 };
+const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
+const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
+const USE_OSM_FALLBACK = window.Where2GoConfig?.useTemporaryOpenStreetMapFallback === true;
+
+const mapState = {
+  map: null,
+  markerLayer: null,
+  message: null
+};
 
 const state = {
   events: [],
@@ -146,42 +156,142 @@ function sourceUrl(event) {
   return event.sourceUrl || event.url || "#";
 }
 
-function mapBounds(events) {
-  const points = events.filter((event) => event.lat && event.lng);
-  if (!points.length) {
-    return null;
-  }
-  return points.reduce(
-    (bounds, event) => ({
-      minLat: Math.min(bounds.minLat, event.lat),
-      maxLat: Math.max(bounds.maxLat, event.lat),
-      minLng: Math.min(bounds.minLng, event.lng),
-      maxLng: Math.max(bounds.maxLng, event.lng)
-    }),
-    {
-      minLat: points[0].lat,
-      maxLat: points[0].lat,
-      minLng: points[0].lng,
-      maxLng: points[0].lng
-    }
-  );
+function hasCoordinates(event) {
+  return Number.isFinite(event.lat) && Number.isFinite(event.lng) && event.lat !== 0 && event.lng !== 0;
 }
 
-function eventPosition(event, index, bounds) {
-  if (!event.lat || !event.lng || !bounds) {
-    const [x = 50, y = 50] = event.map || [];
-    return { x, y };
+function eventsWithCoordinates(events) {
+  return events.filter(hasCoordinates);
+}
+
+function markerIcon(index, isActive) {
+  return L.divIcon({
+    className: `event-map-marker ${isActive ? "is-active" : ""}`,
+    html: `<span>${index + 1}</span>`,
+    iconSize: [38, 48],
+    iconAnchor: [19, 44],
+    popupAnchor: [0, -42]
+  });
+}
+
+function setMapMessage(title, body = "") {
+  if (!mapState.message) {
+    return;
+  }
+  if (!title) {
+    mapState.message.hidden = true;
+    mapState.message.innerHTML = "";
+    return;
+  }
+  mapState.message.hidden = false;
+  mapState.message.innerHTML = `
+    <strong>${escapeHtml(title)}</strong>
+    ${body ? `<span>${escapeHtml(body)}</span>` : ""}
+  `;
+}
+
+function addBaseLayer(map) {
+  if (MAPTILER_KEY) {
+    const layer = L.tileLayer(
+      `https://api.maptiler.com/maps/${MAPTILER_STYLE}/{z}/{x}/{y}.png?key=${encodeURIComponent(MAPTILER_KEY)}`,
+      {
+        tileSize: 512,
+        zoomOffset: -1,
+        minZoom: 1,
+        maxZoom: 19,
+        crossOrigin: true,
+        attribution:
+          '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+      }
+    );
+    layer.on("tileerror", () => {
+      setMapMessage("Map tiles could not load", "Check the MapTiler key and allowed domains.");
+    });
+    layer.addTo(map);
+    return;
   }
 
-  const lngRange = Math.max(bounds.maxLng - bounds.minLng, 0.01);
-  const latRange = Math.max(bounds.maxLat - bounds.minLat, 0.01);
-  const baseX = 14 + ((event.lng - bounds.minLng) / lngRange) * 72;
-  const baseY = 86 - ((event.lat - bounds.minLat) / latRange) * 72;
-  const offset = (index % 5) - 2;
-  return {
-    x: Math.max(8, Math.min(92, baseX + offset * 2.2)),
-    y: Math.max(12, Math.min(88, baseY + offset * 1.7))
-  };
+  if (USE_OSM_FALLBACK) {
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    setMapMessage("Temporary map layer", "Add a MapTiler key to use the production basemap.");
+    return;
+  }
+
+  setMapMessage("MapTiler key needed", "Add your key in config.js to show the production map.");
+}
+
+function ensureMapShell() {
+  if (mapState.message) {
+    return;
+  }
+  elements.mapSurface.innerHTML = `
+    <div class="leaflet-map" id="leafletMap" aria-label="Interactive event map"></div>
+    <div class="map-message" id="mapMessage" hidden></div>
+  `;
+  mapState.message = elements.mapSurface.querySelector("#mapMessage");
+}
+
+function initMap() {
+  if (mapState.map) {
+    return true;
+  }
+  ensureMapShell();
+  if (typeof L === "undefined") {
+    setMapMessage("Map library failed to load", "Check your connection and refresh.");
+    return false;
+  }
+
+  const map = L.map("leafletMap", {
+    zoomControl: true,
+    scrollWheelZoom: false,
+    tap: true
+  }).setView([HOME.lat, HOME.lng], 12);
+
+  addBaseLayer(map);
+  mapState.markerLayer = L.layerGroup().addTo(map);
+  mapState.map = map;
+  setTimeout(() => map.invalidateSize(), 0);
+  return true;
+}
+
+function fitMapToEvents(events) {
+  const points = eventsWithCoordinates(events);
+  if (!mapState.map || !points.length) {
+    return;
+  }
+  if (points.length === 1) {
+    mapState.map.setView([points[0].lat, points[0].lng], 13, { animate: true });
+    return;
+  }
+  const bounds = L.latLngBounds(points.map((event) => [event.lat, event.lng]));
+  mapState.map.fitBounds(bounds, { padding: [42, 42], maxZoom: 13, animate: true });
+}
+
+function syncMarkers(dayEvents, active) {
+  if (!mapState.markerLayer || !mapState.map) {
+    return;
+  }
+  mapState.markerLayer.clearLayers();
+
+  const points = eventsWithCoordinates(dayEvents);
+  points.forEach((event, index) => {
+    const isActive = event.id === active?.id;
+    L.marker([event.lat, event.lng], { icon: markerIcon(index, isActive), keyboard: true })
+      .addTo(mapState.markerLayer)
+      .on("click", () => {
+        state.selectedEventId = event.id;
+        render();
+      });
+  });
+
+  if (state.selectedEventId && active && hasCoordinates(active)) {
+    mapState.map.panTo([active.lat, active.lng], { animate: true });
+  } else {
+    fitMapToEvents(points);
+  }
 }
 
 function renderDates() {
@@ -212,54 +322,23 @@ function renderDates() {
 function renderMap() {
   const dayEvents = eventsForSelectedDate();
   const active = selectedEvent();
-  const bounds = mapBounds(state.events);
-
-  if (!dayEvents.length) {
-    elements.mapSurface.innerHTML = `
-      <div class="map-empty">
-        <strong>No events this day</strong>
-        <span>Try another date</span>
-      </div>
-    `;
+  if (!initMap()) {
     return;
   }
 
-  const pins = dayEvents
-    .map((event, index) => {
-      const position = eventPosition(event, index, bounds);
-      const isActive = event.id === active?.id;
-      return `
-        <button
-          class="event-pin ${isActive ? "is-active" : ""}"
-          type="button"
-          style="left:${position.x}%; top:${position.y}%"
-          data-event-id="${event.id}"
-          aria-label="${escapeHtml(event.title)}"
-          aria-pressed="${isActive}"
-        >
-          <span>${index + 1}</span>
-        </button>
-      `;
-    })
-    .join("");
+  syncMarkers(dayEvents, active);
 
-  elements.mapSurface.innerHTML = `
-    <div class="map-place place-home">07059</div>
-    <div class="map-place place-north">North Plainfield</div>
-    <div class="map-place place-east">Watchung</div>
-    <div class="map-place place-west">Bridgewater</div>
-    <div class="route route-a"></div>
-    <div class="route route-b"></div>
-    <div class="route route-c"></div>
-    ${pins}
-  `;
-
-  elements.mapSurface.querySelectorAll("[data-event-id]").forEach((pin) => {
-    pin.addEventListener("click", () => {
-      state.selectedEventId = pin.dataset.eventId;
-      render();
-    });
-  });
+  if (!dayEvents.length) {
+    setMapMessage("No events this day", "Try another date.");
+    return;
+  }
+  if (!eventsWithCoordinates(dayEvents).length) {
+    setMapMessage("No mapped locations", "This date has events without coordinates.");
+    return;
+  }
+  if (MAPTILER_KEY || !USE_OSM_FALLBACK) {
+    setMapMessage("");
+  }
 }
 
 function renderDetail() {
@@ -307,7 +386,7 @@ async function init() {
   state.events = normalizeEvents(events);
   state.dates = uniqueDates(state.events);
   state.selectedDate = state.dates[0] || "";
-  state.selectedEventId = eventsForSelectedDate()[0]?.id || "";
+  state.selectedEventId = "";
   elements.updatedLabel.textContent = formatUpdatedLabel();
   render();
 }

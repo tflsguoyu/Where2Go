@@ -1,9 +1,10 @@
-const CACHE_NAME = "where2go-public-v1";
+const CACHE_NAME = "where2go-public-v2";
 const APP_ASSETS = [
   "./",
   "index.html",
   "styles.css",
   "app.js",
+  "config.js",
   "manifest.webmanifest",
   "assets/icon.svg",
   "data/imported/sclsnj-events.json",
@@ -14,6 +15,7 @@ const NETWORK_FIRST_SUFFIXES = [
   "/",
   "/index.html",
   "/app.js",
+  "/config.js",
   "/styles.css",
   "/data/imported/sclsnj-events.json",
   "/data/sample-events.json"
@@ -45,6 +47,9 @@ self.addEventListener("fetch", (event) => {
     return;
   }
   const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) {
+    return;
+  }
   if (shouldUseNetworkFirst(url)) {
     event.respondWith(
       fetch(event.request)

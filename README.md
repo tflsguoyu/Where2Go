@@ -14,7 +14,8 @@ The current app is intentionally simple:
 ```text
 Where2Go/
   index.html                  App HTML shell
-  app.js                      Date timeline, map pins, and event detail logic
+  app.js                      Date timeline, Leaflet map pins, and event detail logic
+  config.js                   Public MapTiler key/config for the production basemap
   styles.css                  Mobile-first visual styling
   sw.js                       Service worker for basic offline/cache support
   manifest.webmanifest        PWA metadata for Add to Home Screen
@@ -41,6 +42,16 @@ Then open:
 ```text
 http://localhost:4178/
 ```
+
+## Map Setup
+
+The app uses Leaflet for map interactions and a MapTiler raster basemap for production. Add your public MapTiler key in:
+
+```text
+config.js
+```
+
+For beta testing, `useTemporaryOpenStreetMapFallback` can stay `true` so the map still works before a MapTiler key is added. For long-term public use, add a MapTiler key and restrict it to your GitHub Pages domain.
 
 ## Refresh Event Data
 
