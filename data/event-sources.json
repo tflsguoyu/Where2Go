@@ -31,8 +31,337 @@
       "branchIds": ["471", "475", "477", "478", "479"],
       "ageFilters": ["Baby/Toddler", "Pre-School", "Kids", "Families"],
       "notes": "20-minute first pass imports Bridgewater, North Plainfield, Somerville, Warren Township, and Watchung branches."
+    },
+    "nj-carnivals": {
+      "label": "NJ Carnivals",
+      "type": "statewide-events-directory",
+      "status": "importable",
+      "parser": "nj-carnivals-jsonld-list",
+      "website": "https://www.nj-carnivals.com/",
+      "eventsUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+      "searchUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+      "timeframe": "all",
+      "county": "all",
+      "maxPages": 8,
+      "notes": "Imports structured Event JSON-LD from paginated listings, expands multi-day fairs into daily occurrences, and keeps source event URLs for refresh/review."
     }
   },
+  "regionalSources": [
+    {
+      "id": "home-depot-kids-workshops",
+      "label": "The Home Depot Kids Workshops",
+      "type": "retail-kids-workshop",
+      "status": "importable",
+      "parser": "configured-recurring-workshops",
+      "website": "https://www.homedepot.com/c/kids-workshop",
+      "eventsUrl": "https://www.homedepot.com/c/kids-workshop",
+      "recurrence": {
+        "frequency": "monthly",
+        "weekday": "saturday",
+        "ordinal": 1,
+        "startTime": "09:00",
+        "endTime": "12:00",
+        "title": "Home Depot Kids Workshop",
+        "summary": "Free in-store kids workshop. Exact project may vary by month and store; open the source page to register and confirm supplies.",
+        "category": "workshop",
+        "registration": "RSVP"
+      },
+      "locations": [
+        {
+          "id": "watchung-906",
+          "name": "The Home Depot Watchung",
+          "townId": "watchung-borough",
+          "address": "1515 Route 22, Watchung, NJ 07069",
+          "lat": 40.642845,
+          "lng": -74.436233,
+          "storeUrl": "https://www.homedepot.com/l/Watchung/NJ/Watchung/07069/906"
+        },
+        {
+          "id": "bridgewater-947",
+          "name": "The Home Depot Bridgewater - Rt 28",
+          "townId": "bridgewater-township",
+          "address": "400 Promenade Blvd, Bridgewater, NJ 08807",
+          "lat": 40.592358,
+          "lng": -74.60401,
+          "storeUrl": "https://www.homedepot.com/l/Bridgewater-Route-28/NJ/Bridgewater/08807/947"
+        },
+        {
+          "id": "south-plainfield-903",
+          "name": "The Home Depot South Plainfield",
+          "townId": "south-plainfield-borough",
+          "address": "3100 Hamilton Blvd, South Plainfield, NJ 07080",
+          "lat": 40.574413,
+          "lng": -74.4148,
+          "storeUrl": "https://www.homedepot.com/l/South-Plainfield/NJ/South-Plainfield/07080/903"
+        }
+      ],
+      "notes": "Home Depot pages are bot-protected for direct scripts, so this source generates first-Saturday kids workshops from the official workshop program and keeps store/source URLs for confirmation."
+    },
+    {
+      "id": "lowes-kids-club",
+      "label": "Lowe's Kids Club Workshops",
+      "type": "retail-kids-workshop",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.lowes.com/diy-projects-and-ideas/workshops",
+      "eventsUrl": "https://www.lowes.com/diy-projects-and-ideas/workshops",
+      "locations": [
+        {
+          "id": "piscataway-0692",
+          "name": "Lowe's Piscataway",
+          "townId": "piscataway-township",
+          "address": "1345 Centennial Ave, Piscataway, NJ 08854",
+          "lat": 40.545539,
+          "lng": -74.46072,
+          "storeUrl": "https://www.lowes.com/store/NJ-Piscataway/0692"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-13",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "DIY Toy Box",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        },
+        {
+          "date": "2026-06-27",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "MrBeast Swarm Spinner Workshop",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        },
+        {
+          "date": "2026-07-25",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "MrBeast Swarm Jet Workshop",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        },
+        {
+          "date": "2026-08-15",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "Paw Patrol: The Dino Movie Workshop",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        },
+        {
+          "date": "2026-09-12",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "Haunted House",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        },
+        {
+          "date": "2026-10-17",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "Firefighting Plane",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        },
+        {
+          "date": "2026-11-14",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "Holiday Engine",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        },
+        {
+          "date": "2026-12-12",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "Holiday Trolley Car",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        },
+        {
+          "date": "2027-01-16",
+          "startTime": "10:00",
+          "endTime": "13:00",
+          "title": "Winter Play Lodge",
+          "summary": "Lowe's Kids Club in-store workshop. Open the source page to register and confirm current availability."
+        }
+      ],
+      "notes": "Direct Lowes.com script fetch is access-denied; workshop dates are stored from the public Kids Club page and can be refreshed manually or by a future browser-backed parser."
+    },
+    {
+      "id": "michaels-kids-events",
+      "label": "Michaels Kids Events",
+      "type": "retail-craft-workshop",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.michaels.com/events-and-services",
+      "eventsUrl": "https://www.michaels.com/events-and-services",
+      "locations": [
+        {
+          "id": "watchung-5191",
+          "name": "Michaels Watchung",
+          "townId": "watchung-borough",
+          "address": "1515 US Hwy 22 Suite 34, Watchung, NJ 07069",
+          "lat": 40.642845,
+          "lng": -74.436233,
+          "storeUrl": "https://locations.michaels.com/nj/watchung/5191/"
+        },
+        {
+          "id": "bridgewater-9938",
+          "name": "Michaels Bridgewater",
+          "townId": "bridgewater-township",
+          "address": "135 Promenade Blvd, Bridgewater, NJ 08807",
+          "lat": 40.592358,
+          "lng": -74.60401,
+          "storeUrl": "https://locations.michaels.com/NJ/Bridgewater/9938"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-13",
+          "startTime": "14:00",
+          "endTime": "16:00",
+          "title": "Kids Club Make In-Store: Father's Day Card",
+          "summary": "Michaels in-store Kids Club craft event. Open the source page or store page to confirm time and supply requirements."
+        }
+      ],
+      "notes": "Michaels public events page exposes named kids/craft events, but local availability can vary by store; these records are generated conservatively across nearby stores."
+    },
+    {
+      "id": "bridgewater-commons",
+      "label": "Bridgewater Commons",
+      "type": "mall-events",
+      "status": "blocked_by_bot_protection",
+      "parser": "manual",
+      "website": "https://bridgewatercommons.com/",
+      "eventsUrl": "https://bridgewatercommons.com/events/",
+      "townId": "bridgewater-township",
+      "address": "400 Commons Way, Bridgewater, NJ 08807",
+      "lat": 40.585616,
+      "lng": -74.619682,
+      "notes": "Strong local mall event source, but direct script fetch currently receives Cloudflare challenge."
+    },
+    {
+      "id": "mall-at-short-hills",
+      "label": "The Mall at Short Hills",
+      "type": "mall-events",
+      "status": "blocked_by_bot_protection",
+      "parser": "manual",
+      "website": "https://www.shopshorthills.com/",
+      "eventsUrl": "https://www.simon.com/mall/the-mall-at-short-hills/events",
+      "address": "1200 Morris Turnpike, Short Hills, NJ 07078",
+      "lat": 40.7408,
+      "lng": -74.3626,
+      "notes": "Nearby regional mall with seasonal family events; Simon event pages currently show PerimeterX challenge to direct scripts."
+    },
+    {
+      "id": "lego-bridgewater-commons",
+      "label": "LEGO Store Bridgewater Commons",
+      "type": "retail-kids-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
+      "eventsUrl": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
+      "townId": "bridgewater-township",
+      "address": "400 Commons Way, Bridgewater Commons, Bridgewater, NJ 08807",
+      "lat": 40.585616,
+      "lng": -74.619682,
+      "notes": "Official store page has structured location data; event announcements are not consistently exposed as a stable machine-readable feed."
+    },
+    {
+      "id": "barnes-noble-bridgewater",
+      "label": "Barnes & Noble Somerset Shopping Center",
+      "type": "bookstore-kids-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://stores.barnesandnoble.com/store/2140",
+      "eventsUrl": "https://stores.barnesandnoble.com/store/2140?view=calendar",
+      "townId": "bridgewater-township",
+      "address": "319 Route 202/206, Bridgewater, NJ 08807",
+      "lat": 40.592358,
+      "lng": -74.60401,
+      "notes": "Potential storytime and children's bookstore events; current store page is a Next.js page and needs a deeper event-data parser."
+    },
+    {
+      "id": "apple-bridgewater",
+      "label": "Today at Apple Bridgewater",
+      "type": "store-creative-sessions",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.apple.com/retail/bridgewater/",
+      "eventsUrl": "https://www.apple.com/today/calendar/bridgewater/",
+      "townId": "bridgewater-township",
+      "address": "400 Commons Way, Bridgewater, NJ 08807",
+      "lat": 40.585616,
+      "lng": -74.619682,
+      "notes": "Today at Apple has Kids & Families filters; parser should use the Apple calendar data route rather than rendered HTML."
+    },
+    {
+      "id": "clubair-warren",
+      "label": "ClubAir Warren",
+      "type": "indoor-play-trampoline",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://clubair.fun/",
+      "eventsUrl": "https://clubair.fun/",
+      "townId": "warren-township",
+      "address": "150 Mt Bethel Rd Building 1, Warren, NJ 07059",
+      "lat": 40.634588,
+      "lng": -74.519044,
+      "notes": "Indoor trampoline/open-play venue; check for special events, sensory-friendly jumps, camps, and holiday sessions."
+    },
+    {
+      "id": "sky-zone-south-plainfield",
+      "label": "Sky Zone South Plainfield - Piscataway",
+      "type": "indoor-play-trampoline",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.skyzone.com/south-plainfield-piscataway-nj/",
+      "eventsUrl": "https://www.skyzone.com/south-plainfield-piscataway-nj/",
+      "townId": "south-plainfield-borough",
+      "address": "600 Hadley Rd, South Plainfield, NJ 07080",
+      "lat": 40.574413,
+      "lng": -74.4148,
+      "notes": "Programs include GLOW, member events, group events, promos, and birthday/open-jump offerings; needs store-specific event calendar parser."
+    },
+    {
+      "id": "kidstrong-watchung",
+      "label": "KidStrong Watchung",
+      "type": "kids-gym-classes",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://watchung.kidstrong.com/",
+      "eventsUrl": "https://watchung.kidstrong.com/",
+      "townId": "watchung-borough",
+      "address": "1701 US Highway 22 Unit 27, Watchung, NJ 07069",
+      "lat": 40.642845,
+      "lng": -74.436233,
+      "notes": "Kids development classes, camps, parties, and trial sessions; schedule likely requires a booking-system parser."
+    },
+    {
+      "id": "dainty-den-warren",
+      "label": "The Dainty Den",
+      "type": "kids-party-craft-venue",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.daintyden.com/",
+      "eventsUrl": "https://www.daintyden.com/",
+      "townId": "warren-township",
+      "address": "20 Mt Bethel Rd, Warren, NJ 07059",
+      "lat": 40.634588,
+      "lng": -74.519044,
+      "notes": "Kids/teens party and craft venue; check for public workshops, holiday events, and themed drop-ins."
+    },
+    {
+      "id": "fun-factory-sensory-gym",
+      "label": "Fun Factory Sensory Gym",
+      "type": "sensory-gym",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.funfactorysensorygym.com/",
+      "eventsUrl": "https://www.funfactorysensorygym.com/contact-us",
+      "townId": "bridgewater-township",
+      "address": "991 US Highway 22, Suite 200, Bridgewater, NJ 08807",
+      "lat": 40.592358,
+      "lng": -74.60401,
+      "notes": "Sensory gym / indoor-play related provider; currently no obvious public dated event feed."
+    }
+  ],
   "towns": [
     {
       "id": "green-brook-township",
@@ -244,7 +573,13 @@
           "name": "Long Hill Township Library",
           "website": "https://longhilllibrary.org/",
           "eventsUrl": "https://longhilllibrary.org/events-calendar/",
-          "status": "manual_review"
+          "status": "importable",
+          "parser": "eventorganiser-fullcal",
+          "ajaxUrl": "https://longhilllibrary.org/wp-admin/admin-ajax.php",
+          "categorySlugs": ["kids", "teens"],
+          "townId": "long-hill-township",
+          "address": "917 Valley Road, Gillette, NJ 07933",
+          "notes": "Uses WordPress Event Organiser fullcalendar AJAX feed filtered to kids and teens."
         }
       ]
     },
@@ -313,8 +648,15 @@
         {
           "name": "Berkeley Heights Public Library",
           "website": "https://bhplnj.org/",
-          "eventsUrl": "https://bhplnj.org/events/",
-          "status": "manual_review"
+          "eventsUrl": "https://bhplnj.libcal.com/calendar",
+          "status": "importable",
+          "parser": "libcal-list",
+          "siteId": "bhplnj",
+          "calendarIds": ["21879"],
+          "audienceIds": ["10423", "10404", "10406", "10425", "10424", "10405", "10426", "10403"],
+          "townId": "berkeley-heights-township",
+          "address": "110 Roosevelt Ave, Berkeley Heights, NJ 07922",
+          "notes": "LibCal audience filters include baby, children, families, preschool, toddler, teens, tweens, and all ages."
         }
       ]
     },
@@ -500,7 +842,11 @@
           "name": "Mountainside Public Library",
           "website": "https://mountainsidelibrary.org/",
           "eventsUrl": "https://mountainsidelibrary.org/programs/youth-calendar",
-          "status": "manual_review"
+          "status": "importable",
+          "parser": "joomla-event-booking-calendar",
+          "townId": "mountainside-borough",
+          "address": "1 Constitution Plaza, Mountainside, NJ 07092",
+          "notes": "Joomla Event Booking calendar exposes youth event dates in calendar tooltips."
         }
       ]
     },

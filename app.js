@@ -219,6 +219,9 @@ function formatDateLabel(dateKey) {
 }
 
 function formatTimeRange(event) {
+  if (event.timeLabel) {
+    return event.timeLabel;
+  }
   const formatter = new Intl.DateTimeFormat("en-US", {
     hour: "numeric",
     minute: "2-digit"
