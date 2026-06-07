@@ -32,7 +32,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-26th-annual-feast-of-st-anthony-in-roselle-park-nj-2026-06-07",
@@ -72,7 +72,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-berkeley-heights-block-party-2026-in-berkeley-heights-nj",
@@ -114,7 +115,8 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": true
   },
   {
     "id": "nj-carnivals-fair-lawn-street-fair-craft-show-june-2026-in-fair-lawn-nj",
@@ -155,7 +157,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-garden-state-plaza-2026-in-paramus-nj-2026-06-07",
@@ -195,7 +198,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-07",
@@ -234,7 +238,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-anthonys-festival-2026-in-passaic-nj-2026-06-07",
@@ -272,7 +277,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "eventorganiser-longhilllibrary-org-250th-anniversary-history-talk-the-declaration-of-independence-americas-birth-certificate-2026-06-07t13-30-00",
@@ -314,7 +320,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5101",
@@ -353,7 +359,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-15246622",
@@ -394,7 +400,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979485",
@@ -433,7 +439,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15995302",
@@ -471,7 +477,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-51576",
@@ -508,7 +514,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-50318",
@@ -544,7 +550,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-08t10-30-00",
@@ -581,7 +587,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201688",
@@ -617,7 +623,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-08",
@@ -656,7 +662,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-charles-carnival-2026-in-cinnaminson-nj-2026-06-08",
@@ -695,7 +702,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-baby-bounce-storytime-06-08-2026-2026-06-08",
@@ -726,7 +734,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-06-08t15-00-00",
@@ -764,7 +772,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979497",
@@ -806,7 +814,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-48893",
@@ -840,7 +848,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16358629",
@@ -885,7 +893,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-storytime-ages-3-6-06-08-2026-2026-06-08",
@@ -916,7 +924,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4194",
@@ -959,7 +967,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15822612",
@@ -996,7 +1004,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182955",
@@ -1032,7 +1040,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5182",
@@ -1075,7 +1083,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26509",
@@ -1112,7 +1120,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-1774",
@@ -1149,7 +1157,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-50742",
@@ -1184,7 +1192,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979508",
@@ -1223,7 +1231,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979509",
@@ -1265,7 +1273,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-3259",
@@ -1303,7 +1311,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087861",
@@ -1342,7 +1350,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-09t10-30-00",
@@ -1379,7 +1387,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-storytime-ages-0-5-06-09-2026-2026-06-09",
@@ -1410,7 +1418,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26408",
@@ -1451,7 +1459,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-09",
@@ -1490,7 +1498,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-saint-leo-the-great-parish-carnival-2026-in-lincroft-nj-2026-06-09",
@@ -1529,7 +1538,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-charles-carnival-2026-in-cinnaminson-nj-2026-06-09",
@@ -1568,7 +1578,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-3448",
@@ -1607,7 +1618,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979560",
@@ -1646,7 +1657,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-27320",
@@ -1685,7 +1696,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-52730",
@@ -1719,7 +1730,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15767444",
@@ -1754,7 +1765,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4410",
@@ -1792,7 +1803,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-06-09t16-30-00",
@@ -1832,7 +1843,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-in-a-pickle-2026-06-09t16-30-00",
@@ -1871,7 +1882,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15996211",
@@ -1907,7 +1918,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5473",
@@ -1945,7 +1956,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-52659",
@@ -1979,7 +1990,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5422",
@@ -2019,7 +2030,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-47595",
@@ -2056,7 +2067,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-17017251",
@@ -2093,7 +2104,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-make-the-most-of-your-college-visit-2026-06-09t18-30-00",
@@ -2130,7 +2141,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-baby-bounce-storytime-06-10-2026-2026-06-10",
@@ -2162,7 +2173,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979616",
@@ -2207,7 +2218,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201759",
@@ -2244,7 +2255,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-3350",
@@ -2283,7 +2294,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-infant-toddler-rhyme-time-2026-06-10t10-30-00",
@@ -2322,7 +2333,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26409",
@@ -2363,7 +2374,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-39910",
@@ -2399,7 +2410,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17604",
@@ -2441,7 +2452,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201731",
@@ -2478,7 +2489,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-st-anthony-feast-2026-in-hawthorne-nj-2026-06-10",
@@ -2516,7 +2527,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4303",
@@ -2554,7 +2566,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-glen-rock-family-fun-fair-2026-in-glen-rock-nj-2026-06-10",
@@ -2592,7 +2604,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-10",
@@ -2631,7 +2644,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-saint-leo-the-great-parish-carnival-2026-in-lincroft-nj-2026-06-10",
@@ -2670,7 +2684,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-charles-carnival-2026-in-cinnaminson-nj-2026-06-10",
@@ -2709,7 +2724,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-warren-lions-expo-2026-in-warren-nj-2026-06-10",
@@ -2752,7 +2768,8 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": true
   },
   {
     "id": "sclsnj-16248435",
@@ -2791,7 +2808,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-41532",
@@ -2830,7 +2847,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4799",
@@ -2865,7 +2882,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5474",
@@ -2903,7 +2920,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979677",
@@ -2941,7 +2958,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-kids-june-craft-ages-4-2026-06-10",
@@ -2974,7 +2991,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-52523",
@@ -3008,7 +3025,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15965136",
@@ -3044,7 +3061,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-my-first-book-club-for-grades-1-2-ages-5-8-5-2026-06-10t16-30-00",
@@ -3084,7 +3101,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-15533097",
@@ -3125,7 +3142,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088034",
@@ -3165,7 +3182,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-library-chef-teen-pancake-muffins-2026-06-10t18-00-00",
@@ -3206,7 +3223,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-17017257",
@@ -3243,7 +3260,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979628",
@@ -3287,7 +3304,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182709",
@@ -3324,7 +3341,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26422",
@@ -3359,7 +3376,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-11t10-30-00",
@@ -3396,7 +3413,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-3682",
@@ -3435,7 +3452,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182760",
@@ -3472,7 +3489,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-st-anthony-feast-2026-in-hawthorne-nj-2026-06-11",
@@ -3510,7 +3527,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-glen-rock-family-fun-fair-2026-in-glen-rock-nj-2026-06-11",
@@ -3548,7 +3566,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-11",
@@ -3587,7 +3606,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-11",
@@ -3629,7 +3649,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-saint-leo-the-great-parish-carnival-2026-in-lincroft-nj-2026-06-11",
@@ -3668,7 +3689,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-charles-carnival-2026-in-cinnaminson-nj-2026-06-11",
@@ -3707,7 +3729,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-warren-lions-expo-2026-in-warren-nj-2026-06-11",
@@ -3750,7 +3773,8 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": true
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-storytime-ages-0-5-06-11-2026-2026-06-11",
@@ -3781,7 +3805,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4369",
@@ -3817,7 +3841,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4800",
@@ -3852,7 +3876,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979637",
@@ -3894,7 +3918,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-play-ages-1-6-3-2026-06-11t16-00-00",
@@ -3932,7 +3956,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16302435",
@@ -3971,7 +3995,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-47819",
@@ -4006,7 +4030,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26586",
@@ -4044,7 +4068,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-17017259",
@@ -4083,7 +4107,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-40577",
@@ -4118,7 +4142,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-drop-in-craft-06-12-2026-2026-06-12",
@@ -4149,7 +4173,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979632",
@@ -4191,7 +4215,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16184587",
@@ -4229,7 +4253,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26423",
@@ -4264,7 +4288,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-51483",
@@ -4299,7 +4323,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-12t10-30-00",
@@ -4336,7 +4360,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-st-anthony-feast-2026-in-hawthorne-nj-2026-06-12",
@@ -4374,7 +4398,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-glen-rock-family-fun-fair-2026-in-glen-rock-nj-2026-06-12",
@@ -4412,7 +4437,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-12",
@@ -4451,7 +4477,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-12",
@@ -4493,7 +4520,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-saint-leo-the-great-parish-carnival-2026-in-lincroft-nj-2026-06-12",
@@ -4532,7 +4560,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-charles-carnival-2026-in-cinnaminson-nj-2026-06-12",
@@ -4571,7 +4600,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-warren-lions-expo-2026-in-warren-nj-2026-06-12",
@@ -4614,7 +4644,8 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": true
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-friendly-movie-screenings-2026-06-12t14-30-00",
@@ -4659,7 +4690,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26842",
@@ -4698,7 +4729,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-53649",
@@ -4732,7 +4763,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087944",
@@ -4771,7 +4802,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979672",
@@ -4816,7 +4847,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "lowes-kids-club-piscataway-0692-2026-06-13-diy-toy-box",
@@ -4855,7 +4886,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-knit-in-public-day-3-2026-06-13t10-00-00",
@@ -4899,7 +4930,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-53816",
@@ -4939,7 +4970,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979749",
@@ -4984,7 +5015,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16437177",
@@ -5024,7 +5055,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-live-animals-from-zoophoria-nj-2026-06-13t11-00-00",
@@ -5063,7 +5094,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26468",
@@ -5101,7 +5132,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16247084",
@@ -5141,7 +5172,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-st-anthony-feast-2026-in-hawthorne-nj-2026-06-13",
@@ -5179,7 +5210,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-franklin-lakes-freedom-fest-fireworks-2026-in-franklin-lakes-nj",
@@ -5219,7 +5251,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-glen-rock-family-fun-fair-2026-in-glen-rock-nj-2026-06-13",
@@ -5257,7 +5290,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17600",
@@ -5295,7 +5329,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-13",
@@ -5334,7 +5368,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-13",
@@ -5376,7 +5411,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-charles-carnival-2026-in-cinnaminson-nj-2026-06-13",
@@ -5415,7 +5451,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-warren-lions-expo-2026-in-warren-nj-2026-06-13",
@@ -5458,7 +5495,8 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": true
   },
   {
     "id": "eventorganiser-longhilllibrary-org-hacakaneers-coding-club-grades-3-8-2026-06-13t13-00-00",
@@ -5496,7 +5534,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "michaels-kids-events-watchung-5191-2026-06-13-kids-club-make-in-store-father-s-day-card",
@@ -5535,7 +5573,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "michaels-kids-events-bridgewater-9938-2026-06-13-kids-club-make-in-store-father-s-day-card",
@@ -5574,7 +5612,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16235033",
@@ -5611,7 +5649,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16718096",
@@ -5653,7 +5691,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-bernardsville-street-fair-craft-show-2026-in-bernardsville-nj",
@@ -5694,7 +5732,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-14",
@@ -5733,7 +5772,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-14",
@@ -5775,7 +5815,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "libcal-bhplnj-16966531",
@@ -5816,7 +5857,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979486",
@@ -5855,7 +5896,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16089884",
@@ -5894,7 +5935,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-15t10-30-00",
@@ -5931,7 +5972,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201689",
@@ -5967,7 +6008,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-15",
@@ -6009,7 +6050,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "libcal-bhplnj-16986728",
@@ -6052,7 +6094,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-06-15t15-00-00",
@@ -6090,7 +6132,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979493",
@@ -6132,7 +6174,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16358630",
@@ -6177,7 +6219,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16437669",
@@ -6213,7 +6255,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-15694288",
@@ -6256,7 +6298,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979512",
@@ -6295,7 +6337,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-16t10-30-00",
@@ -6332,7 +6374,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762582",
@@ -6377,7 +6419,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17398",
@@ -6415,7 +6457,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-16",
@@ -6457,7 +6499,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "libcal-bhplnj-16979561",
@@ -6496,7 +6539,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-18086",
@@ -6540,7 +6583,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16253011",
@@ -6575,7 +6618,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16757732",
@@ -6622,7 +6665,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-kids-book-club-ages-8-12-11-2026-06-16t16-15-00",
@@ -6661,7 +6704,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-06-16t16-30-00",
@@ -6701,7 +6744,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15798829",
@@ -6737,7 +6780,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-15246376",
@@ -6778,7 +6821,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-online-author-talk-zaila-avant-garde-2026-06-16t19-00-00",
@@ -6815,7 +6858,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-17004132",
@@ -6856,7 +6899,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-dress-like-a-word-day-2-2026-06-17t00-00-00",
@@ -6904,7 +6947,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979617",
@@ -6949,7 +6992,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201760",
@@ -6986,7 +7029,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-infant-toddler-rhyme-time-2026-06-17t10-30-00",
@@ -7025,7 +7068,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17605",
@@ -7065,7 +7108,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201732",
@@ -7102,7 +7145,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-immaculate-conception-parish-festival-2026-in-annandale-nj-2026-06-17",
@@ -7143,7 +7186,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-17",
@@ -7185,7 +7229,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-oakland-carnival-2026-in-oakland-nj-2026-06-17",
@@ -7224,7 +7269,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "libcal-bhplnj-16979626",
@@ -7267,7 +7313,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16253017",
@@ -7302,7 +7348,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16718082",
@@ -7347,7 +7393,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15964933",
@@ -7384,7 +7430,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088035",
@@ -7424,7 +7470,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979629",
@@ -7468,7 +7514,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182710",
@@ -7505,7 +7551,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-18t10-30-00",
@@ -7542,7 +7588,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182761",
@@ -7579,7 +7625,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-12th-annual-tri-county-fair-in-rockaway-nj-2026-06-18",
@@ -7620,7 +7666,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-immaculate-conception-parish-festival-2026-in-annandale-nj-2026-06-18",
@@ -7661,7 +7708,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-18",
@@ -7703,7 +7751,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-oakland-carnival-2026-in-oakland-nj-2026-06-18",
@@ -7742,7 +7791,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-pompton-lakes-spring-summer-stroll-june-2026-in-pompton-lakes-nj",
@@ -7781,7 +7831,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-philip-the-apostle-church-carnival-2026-in-clifton-nj-2026-06-18",
@@ -7819,7 +7870,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-stans-carnival-2026-in-sayreville-nj-2026-06-18",
@@ -7857,7 +7909,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "sclsnj-16436741",
@@ -7898,7 +7951,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17412",
@@ -7935,7 +7988,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979638",
@@ -7977,7 +8030,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-read-to-morrigan-the-dog-2026-06-18t15-30-00",
@@ -8014,7 +8067,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-play-ages-1-6-3-2026-06-18t16-00-00",
@@ -8052,7 +8105,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16827839",
@@ -8091,7 +8144,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16198792",
@@ -8127,7 +8180,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16262094",
@@ -8168,7 +8221,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16819227",
@@ -8211,7 +8264,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-17017266",
@@ -8250,7 +8303,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17250",
@@ -8282,7 +8335,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-creative-movement-with-starstruck-dance-studio-10-2026-06-19t10-30-00",
@@ -8323,7 +8376,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-19t10-30-00",
@@ -8360,7 +8413,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-12th-annual-tri-county-fair-in-rockaway-nj-2026-06-19",
@@ -8401,7 +8454,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-immaculate-conception-parish-festival-2026-in-annandale-nj-2026-06-19",
@@ -8442,7 +8496,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-19",
@@ -8484,7 +8539,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-oakland-carnival-2026-in-oakland-nj-2026-06-19",
@@ -8523,7 +8579,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-philip-the-apostle-church-carnival-2026-in-clifton-nj-2026-06-19",
@@ -8561,7 +8618,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-stans-carnival-2026-in-sayreville-nj-2026-06-19",
@@ -8599,7 +8657,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-friendly-movie-screenings-super-mario-galaxy-movie-2026-06-19t14-30-00",
@@ -8644,7 +8703,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979807",
@@ -8689,7 +8748,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16006986",
@@ -8725,7 +8784,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-read-to-a-dog-storytime-with-creature-comfort-pet-therapy-5-2026-06-20t10-30-00",
@@ -8764,7 +8823,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16396493",
@@ -8801,7 +8860,7 @@
     "status": "review",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-12th-annual-tri-county-fair-in-rockaway-nj-2026-06-20",
@@ -8842,7 +8901,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-immaculate-conception-parish-festival-2026-in-annandale-nj-2026-06-20",
@@ -8883,7 +8943,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-20",
@@ -8925,7 +8986,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-oakland-carnival-2026-in-oakland-nj-2026-06-20",
@@ -8964,7 +9026,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-philip-the-apostle-church-carnival-2026-in-clifton-nj-2026-06-20",
@@ -9002,7 +9065,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-stans-carnival-2026-in-sayreville-nj-2026-06-20",
@@ -9040,7 +9104,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "eventorganiser-longhilllibrary-org-hacakaneers-coding-club-grades-3-8-2026-06-20t13-00-00",
@@ -9078,7 +9143,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16006704",
@@ -9120,7 +9185,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-12th-annual-tri-county-fair-in-rockaway-nj-2026-06-21",
@@ -9161,7 +9226,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-immaculate-conception-parish-festival-2026-in-annandale-nj-2026-06-21",
@@ -9202,7 +9268,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-21",
@@ -9244,7 +9311,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "libcal-14878-16385825",
@@ -9285,7 +9353,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16251851",
@@ -9320,7 +9388,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979487",
@@ -9359,7 +9427,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15995465",
@@ -9397,7 +9465,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-22t10-30-00",
@@ -9434,7 +9502,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201690",
@@ -9470,7 +9538,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-holy-child-parish-lawn-festival-2026-in-runnemede-nj-2026-06-22",
@@ -9511,7 +9579,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-22",
@@ -9553,7 +9622,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-marys-great-fair-2026-in-middletown-nj-2026-06-22",
@@ -9593,7 +9663,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-summer-reading-kickoff-dazzleme-face-paint-and-balloon-art-2026-06-22",
@@ -9624,7 +9695,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-summer-reading-kickoff-scream-truck-2026-06-22",
@@ -9655,7 +9726,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-06-22t15-00-00",
@@ -9693,7 +9764,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979498",
@@ -9735,7 +9806,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16358631",
@@ -9780,7 +9851,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979516",
@@ -9819,7 +9890,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16435232",
@@ -9855,7 +9926,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16332485",
@@ -9894,7 +9965,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087863",
@@ -9933,7 +10004,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-23t10-30-00",
@@ -9970,7 +10041,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762583",
@@ -10015,7 +10086,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-chester-fire-company-carnival-2026-in-chester-nj-2026-06-23",
@@ -10056,7 +10127,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-holy-child-parish-lawn-festival-2026-in-runnemede-nj-2026-06-23",
@@ -10097,7 +10169,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-23",
@@ -10139,7 +10212,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-marys-great-fair-2026-in-middletown-nj-2026-06-23",
@@ -10179,7 +10253,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "sclsnj-16437687",
@@ -10219,7 +10294,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979562",
@@ -10258,7 +10333,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16595013",
@@ -10296,7 +10371,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762118",
@@ -10342,7 +10417,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-06-23t16-30-00",
@@ -10382,7 +10457,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15326554",
@@ -10419,7 +10494,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979618",
@@ -10464,7 +10539,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16164034",
@@ -10505,7 +10580,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201761",
@@ -10542,7 +10617,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16424805",
@@ -10582,7 +10657,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-infant-toddler-rhyme-time-2026-06-24t10-30-00",
@@ -10621,7 +10696,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17606",
@@ -10661,7 +10736,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201733",
@@ -10698,7 +10773,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-chester-fire-company-carnival-2026-in-chester-nj-2026-06-24",
@@ -10739,7 +10814,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-holy-child-parish-lawn-festival-2026-in-runnemede-nj-2026-06-24",
@@ -10780,7 +10856,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-montville-township-4th-of-july-celebration-2026-in-montville-nj-2026-06-24",
@@ -10822,7 +10899,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-24",
@@ -10864,7 +10942,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-marys-great-fair-2026-in-middletown-nj-2026-06-24",
@@ -10904,7 +10983,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "sclsnj-16437118",
@@ -10944,7 +11024,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979678",
@@ -10982,7 +11062,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-comic-book-club-ages-5-12-2-2026-06-24t16-00-00",
@@ -11022,7 +11102,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16761187",
@@ -11067,7 +11147,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-teen-book-club-23-2026-06-24t16-30-00",
@@ -11109,7 +11189,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16332251",
@@ -11147,7 +11227,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088036",
@@ -11187,7 +11267,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979630",
@@ -11231,7 +11311,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16819009",
@@ -11275,7 +11355,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182711",
@@ -11312,7 +11392,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16364931",
@@ -11350,7 +11430,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-25t10-30-00",
@@ -11387,7 +11467,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182762",
@@ -11424,7 +11504,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16364899",
@@ -11462,7 +11542,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-chester-fire-company-carnival-2026-in-chester-nj-2026-06-25",
@@ -11503,7 +11583,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-holy-child-parish-lawn-festival-2026-in-runnemede-nj-2026-06-25",
@@ -11544,7 +11625,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-montville-township-4th-of-july-celebration-2026-in-montville-nj-2026-06-25",
@@ -11586,7 +11668,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-25",
@@ -11628,7 +11711,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-marys-great-fair-2026-in-middletown-nj-2026-06-25",
@@ -11668,7 +11752,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-wall-fair-2026-in-wall-twp-nj-2026-06-25",
@@ -11709,7 +11794,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-west-orange-downtown-thursday-market-june-2026-in-west-orange-nj",
@@ -11748,7 +11834,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17495",
@@ -11796,7 +11883,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16237122",
@@ -11838,7 +11925,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16251845",
@@ -11873,7 +11960,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-17013903",
@@ -11915,7 +12002,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-play-ages-1-6-3-2026-06-25t16-00-00",
@@ -11953,7 +12040,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16827840",
@@ -11992,7 +12079,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-drop-in-craft-06-26-2026-2026-06-26",
@@ -12023,7 +12110,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979633",
@@ -12065,7 +12152,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16184588",
@@ -12103,7 +12190,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-26t10-30-00",
@@ -12140,7 +12227,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-chester-fire-company-carnival-2026-in-chester-nj-2026-06-26",
@@ -12181,7 +12268,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-holy-child-parish-lawn-festival-2026-in-runnemede-nj-2026-06-26",
@@ -12222,7 +12310,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-06-26",
@@ -12266,7 +12355,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-montville-township-4th-of-july-celebration-2026-in-montville-nj-2026-06-26",
@@ -12308,7 +12398,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-26",
@@ -12350,7 +12441,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-saint-valentine-church-festival-2026-in-bloomfield-nj-2026-06-26",
@@ -12388,7 +12480,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-marys-great-fair-2026-in-middletown-nj-2026-06-26",
@@ -12428,7 +12521,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-wall-fair-2026-in-wall-twp-nj-2026-06-26",
@@ -12469,7 +12563,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-friendly-movie-screenings-despicable-me-4-2026-06-26t14-30-00",
@@ -12514,7 +12609,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16249022",
@@ -12556,7 +12651,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087945",
@@ -12595,7 +12690,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "lowes-kids-club-piscataway-0692-2026-06-27-mrbeast-swarm-spinner-workshop",
@@ -12634,7 +12729,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979809",
@@ -12679,7 +12774,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16495967",
@@ -12715,7 +12810,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-learn-about-the-past-meeting-the-maccullochs-2026-06-27t10-30-00",
@@ -12754,7 +12849,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16069537",
@@ -12791,7 +12886,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-chester-fire-company-carnival-2026-in-chester-nj-2026-06-27",
@@ -12832,7 +12927,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-holy-child-parish-lawn-festival-2026-in-runnemede-nj-2026-06-27",
@@ -12873,7 +12969,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-06-27",
@@ -12917,7 +13014,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-27",
@@ -12959,7 +13057,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-saint-valentine-church-festival-2026-in-bloomfield-nj-2026-06-27",
@@ -12997,7 +13096,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-st-marys-great-fair-2026-in-middletown-nj-2026-06-27",
@@ -13037,7 +13137,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-wall-fair-2026-in-wall-twp-nj-2026-06-27",
@@ -13078,7 +13179,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "eventorganiser-longhilllibrary-org-hacakaneers-coding-club-grades-3-8-2026-06-27t13-00-00",
@@ -13116,7 +13218,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-dunellen-street-fair-craft-show-june-2026-in-dunellen-nj",
@@ -13159,7 +13261,8 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": true
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-06-28",
@@ -13203,7 +13306,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-28",
@@ -13245,7 +13349,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-saint-valentine-church-festival-2026-in-bloomfield-nj-2026-06-28",
@@ -13283,7 +13388,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-wall-fair-2026-in-wall-twp-nj-2026-06-28",
@@ -13324,7 +13430,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "libcal-14878-16711099",
@@ -13365,7 +13472,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-happy-birthday-america-celebrating-the-250th-anniversary-2026-06-28t14-00-00",
@@ -13410,7 +13517,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16711106",
@@ -13451,7 +13558,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979488",
@@ -13490,7 +13597,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-29t10-30-00",
@@ -13527,7 +13634,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201691",
@@ -13563,7 +13670,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-dig-into-magic-a-family-magic-show-2026-06-29",
@@ -13597,7 +13704,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-06-29",
@@ -13641,7 +13748,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-06-29t15-00-00",
@@ -13679,7 +13787,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979499",
@@ -13721,7 +13829,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16710910",
@@ -13766,7 +13874,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-storytime-ages-3-6-06-29-2026-2026-06-29",
@@ -13797,7 +13905,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-middle-school-book-chat-2026-06-29",
@@ -13828,7 +13936,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-15708941",
@@ -13872,7 +13980,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979518",
@@ -13911,7 +14019,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16370703",
@@ -13948,7 +14056,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087864",
@@ -13987,7 +14095,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-30t10-30-00",
@@ -14024,7 +14132,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-toddler-tales-story-time-2026-06-30",
@@ -14055,7 +14163,7 @@
     "status": "published",
     "confidence": 0.84,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16761263",
@@ -14100,7 +14208,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-atlantic-highlands-firemans-fair-2026-in-atlantic-highlands-nj-2026-06-30",
@@ -14140,7 +14248,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-06-30",
@@ -14184,7 +14293,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "libcal-bhplnj-16979563",
@@ -14223,7 +14333,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16256878",
@@ -14261,7 +14371,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762119",
@@ -14307,7 +14417,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-06-30t16-30-00",
@@ -14347,7 +14457,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979619",
@@ -14392,7 +14502,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201762",
@@ -14429,7 +14539,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16424806",
@@ -14469,7 +14579,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201734",
@@ -14506,7 +14616,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-atlantic-highlands-firemans-fair-2026-in-atlantic-highlands-nj-2026-07-01",
@@ -14546,7 +14656,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-07-01",
@@ -14590,7 +14701,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "sclsnj-16317415",
@@ -14628,7 +14740,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16707084",
@@ -14674,7 +14786,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088037",
@@ -14714,7 +14826,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16819010",
@@ -14758,7 +14870,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182712",
@@ -14795,7 +14907,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16364905",
@@ -14833,7 +14945,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182763",
@@ -14870,7 +14982,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16364910",
@@ -14908,7 +15020,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-atlantic-highlands-firemans-fair-2026-in-atlantic-highlands-nj-2026-07-02",
@@ -14948,7 +15060,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-07-02",
@@ -14992,7 +15105,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "sclsnj-16459810",
@@ -15032,7 +15146,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16589877",
@@ -15068,7 +15182,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16253562",
@@ -15111,7 +15225,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16827841",
@@ -15150,7 +15264,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16184589",
@@ -15188,7 +15302,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-atlantic-highlands-firemans-fair-2026-in-atlantic-highlands-nj-2026-07-03",
@@ -15228,7 +15342,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-07-03",
@@ -15272,7 +15387,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-friendly-movie-screenings-sing-2-2026-07-03t14-30-00",
@@ -15317,7 +15433,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087946",
@@ -15356,7 +15472,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "home-depot-kids-workshops-watchung-906-2026-07-04-home-depot-kids-workshop",
@@ -15395,7 +15511,7 @@
     "status": "published",
     "confidence": 0.68,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "home-depot-kids-workshops-bridgewater-947-2026-07-04-home-depot-kids-workshop",
@@ -15434,7 +15550,7 @@
     "status": "published",
     "confidence": 0.68,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "home-depot-kids-workshops-south-plainfield-903-2026-07-04-home-depot-kids-workshop",
@@ -15473,7 +15589,7 @@
     "status": "published",
     "confidence": 0.68,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-atlantic-highlands-firemans-fair-2026-in-atlantic-highlands-nj-2026-07-04",
@@ -15513,7 +15629,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-07-04",
@@ -15557,7 +15674,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "nj-carnivals-the-lead-fest-state-fair-at-mercer-county-park-2026-in-west-windsor-nj-2026-07-05",
@@ -15601,7 +15719,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "libcal-bhplnj-16979489",
@@ -15640,7 +15759,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16165179",
@@ -15679,7 +15798,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201692",
@@ -15715,7 +15834,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16469660",
@@ -15751,7 +15870,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-07-06t15-00-00",
@@ -15789,7 +15908,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16358633",
@@ -15834,7 +15953,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16435238",
@@ -15870,7 +15989,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087865",
@@ -15909,7 +16028,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762590",
@@ -15954,7 +16073,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16009460",
@@ -15995,7 +16114,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979564",
@@ -16034,7 +16153,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16237422",
@@ -16070,7 +16189,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762120",
@@ -16116,7 +16235,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-07-07t16-30-00",
@@ -16156,7 +16275,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16006722",
@@ -16198,7 +16317,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979620",
@@ -16243,7 +16362,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201763",
@@ -16280,7 +16399,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16424807",
@@ -16320,7 +16439,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201735",
@@ -16357,7 +16476,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16459306",
@@ -16396,7 +16515,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16292837",
@@ -16433,7 +16552,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762829",
@@ -16477,7 +16596,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-teens-pizza-and-trivia-2-2026-07-08t16-30-00",
@@ -16514,7 +16633,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088038",
@@ -16554,7 +16673,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16819011",
@@ -16598,7 +16717,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182713",
@@ -16635,7 +16754,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16364937",
@@ -16673,7 +16792,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182764",
@@ -16710,7 +16829,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16365028",
@@ -16748,7 +16867,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-west-orange-downtown-thursday-market-july-2026-in-west-orange-nj",
@@ -16787,7 +16906,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "sclsnj-16467652",
@@ -16827,7 +16947,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16253563",
@@ -16870,7 +16990,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16827842",
@@ -16909,7 +17029,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16198834",
@@ -16945,7 +17065,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16819228",
@@ -16988,7 +17108,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16184590",
@@ -17026,7 +17146,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16458871",
@@ -17065,7 +17185,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16634792",
@@ -17106,7 +17226,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-friendly-movie-screenings-hoppers-2026-07-10t14-30-00",
@@ -17151,7 +17271,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087947",
@@ -17190,7 +17310,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16458886",
@@ -17229,7 +17349,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-spinning-wheel-demonstration-2026-07-11t14-00-00",
@@ -17273,7 +17393,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979490",
@@ -17312,7 +17432,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15995303",
@@ -17350,7 +17470,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201693",
@@ -17386,7 +17506,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16662915",
@@ -17422,7 +17542,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-07-13t15-00-00",
@@ -17460,7 +17580,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16237408",
@@ -17496,7 +17616,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16358634",
@@ -17541,7 +17661,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16439335",
@@ -17578,7 +17698,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182825",
@@ -17615,7 +17735,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16435248",
@@ -17651,7 +17771,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16332486",
@@ -17690,7 +17810,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087866",
@@ -17729,7 +17849,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16719009",
@@ -17774,7 +17894,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16590154",
@@ -17813,7 +17933,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16663152",
@@ -17851,7 +17971,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979565",
@@ -17890,7 +18010,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762121",
@@ -17936,7 +18056,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-07-14t16-30-00",
@@ -17976,7 +18096,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15996226",
@@ -18012,7 +18132,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979621",
@@ -18057,7 +18177,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16262261",
@@ -18098,7 +18218,7 @@
     "status": "review",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201764",
@@ -18135,7 +18255,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16424808",
@@ -18175,7 +18295,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201736",
@@ -18212,7 +18332,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16071960",
@@ -18254,7 +18374,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16590230",
@@ -18293,7 +18413,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15965164",
@@ -18329,7 +18449,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088039",
@@ -18369,7 +18489,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16247342",
@@ -18412,7 +18532,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-intro-to-embroidery-2026-07-15t18-30-00",
@@ -18451,7 +18571,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16718083",
@@ -18496,7 +18616,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16819012",
@@ -18540,7 +18660,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182714",
@@ -18577,7 +18697,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16365088",
@@ -18615,7 +18735,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182765",
@@ -18652,7 +18772,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16365102",
@@ -18690,7 +18810,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "nj-carnivals-pompton-lakes-spring-summer-stroll-july-2026-in-pompton-lakes-nj",
@@ -18729,7 +18849,8 @@
     "status": "published",
     "confidence": 0.72,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z",
+    "withinCoverage": false
   },
   {
     "id": "sclsnj-16253564",
@@ -18772,7 +18893,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16827843",
@@ -18811,7 +18932,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16184591",
@@ -18849,7 +18970,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16021632",
@@ -18889,7 +19010,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-friendly-movie-screenings-goat-2026-07-17t14-30-00",
@@ -18934,7 +19055,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087948",
@@ -18973,7 +19094,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-read-to-a-dog-storytime-with-creature-comfort-pet-therapy-5-2026-07-18t10-30-00",
@@ -19012,7 +19133,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16437524",
@@ -19052,7 +19173,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979491",
@@ -19091,7 +19212,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15965283",
@@ -19128,7 +19249,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201694",
@@ -19164,7 +19285,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16468730",
@@ -19200,7 +19321,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-07-20t15-00-00",
@@ -19238,7 +19359,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16358635",
@@ -19283,7 +19404,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182956",
@@ -19319,7 +19440,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16435281",
@@ -19355,7 +19476,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087867",
@@ -19394,7 +19515,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16761264",
@@ -19439,7 +19560,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16469727",
@@ -19476,7 +19597,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979566",
@@ -19515,7 +19636,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16507191",
@@ -19557,7 +19678,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762122",
@@ -19603,7 +19724,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-07-21t16-30-00",
@@ -19643,7 +19764,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15798859",
@@ -19679,7 +19800,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979622",
@@ -19724,7 +19845,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16262262",
@@ -19765,7 +19886,7 @@
     "status": "review",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201765",
@@ -19802,7 +19923,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16424809",
@@ -19842,7 +19963,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201737",
@@ -19879,7 +20000,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16662939",
@@ -19914,7 +20035,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16478070",
@@ -19951,7 +20072,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16257484",
@@ -19986,7 +20107,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15965056",
@@ -20023,7 +20144,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088040",
@@ -20063,7 +20184,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-15694289",
@@ -20106,7 +20227,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16819013",
@@ -20150,7 +20271,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182715",
@@ -20187,7 +20308,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16365772",
@@ -20225,7 +20346,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182766",
@@ -20262,7 +20383,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16365131",
@@ -20300,7 +20421,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-18085",
@@ -20338,7 +20459,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16404617",
@@ -20375,7 +20496,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16253565",
@@ -20418,7 +20539,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16827844",
@@ -20457,7 +20578,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16332516",
@@ -20493,7 +20614,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16164035",
@@ -20534,7 +20655,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16184592",
@@ -20572,7 +20693,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-friendly-movie-screenings-spider-man-across-the-spider-verse-2026-07-24t14-30-00",
@@ -20617,7 +20738,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087949",
@@ -20656,7 +20777,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "lowes-kids-club-piscataway-0692-2026-07-25-mrbeast-swarm-jet-workshop",
@@ -20695,7 +20816,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16069582",
@@ -20732,7 +20853,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979492",
@@ -20771,7 +20892,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15995466",
@@ -20809,7 +20930,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201695",
@@ -20845,7 +20966,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16662958",
@@ -20881,7 +21002,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-07-27t15-00-00",
@@ -20919,7 +21040,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16358636",
@@ -20964,7 +21085,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16227168",
@@ -20999,7 +21120,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16435289",
@@ -21035,7 +21156,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16332487",
@@ -21074,7 +21195,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087868",
@@ -21113,7 +21234,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762597",
@@ -21154,7 +21275,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16663165",
@@ -21192,7 +21313,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979567",
@@ -21231,7 +21352,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762123",
@@ -21277,7 +21398,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-07-28t16-30-00",
@@ -21317,7 +21438,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16006888",
@@ -21354,7 +21475,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-bhplnj-16979623",
@@ -21399,7 +21520,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16164036",
@@ -21440,7 +21561,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201766",
@@ -21477,7 +21598,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16424810",
@@ -21517,7 +21638,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17399",
@@ -21555,7 +21676,7 @@
     "status": "published",
     "confidence": 0.8,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201738",
@@ -21592,7 +21713,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16467382",
@@ -21632,7 +21753,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16590269",
@@ -21672,7 +21793,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16299898",
@@ -21709,7 +21830,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-comic-book-club-ages-5-12-2-2026-07-29t16-00-00",
@@ -21749,7 +21870,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088041",
@@ -21789,7 +21910,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16760697",
@@ -21833,7 +21954,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16819014",
@@ -21877,7 +21998,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182716",
@@ -21914,7 +22035,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16365790",
@@ -21952,7 +22073,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16182767",
@@ -21989,7 +22110,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16437526",
@@ -22027,7 +22148,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-kids-online-author-talk-katherine-rundell-2026-07-30t14-00-00",
@@ -22067,7 +22188,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16253566",
@@ -22110,7 +22231,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16827845",
@@ -22149,7 +22270,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16590281",
@@ -22187,7 +22308,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16859574",
@@ -22228,7 +22349,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16184593",
@@ -22266,7 +22387,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-harry-potters-birthday-celebration-2-2026-07-31t14-00-00",
@@ -22309,7 +22430,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087950",
@@ -22348,7 +22469,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16007826",
@@ -22390,7 +22511,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "home-depot-kids-workshops-watchung-906-2026-08-01-home-depot-kids-workshop",
@@ -22429,7 +22550,7 @@
     "status": "published",
     "confidence": 0.68,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "home-depot-kids-workshops-bridgewater-947-2026-08-01-home-depot-kids-workshop",
@@ -22468,7 +22589,7 @@
     "status": "published",
     "confidence": 0.68,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "home-depot-kids-workshops-south-plainfield-903-2026-08-01-home-depot-kids-workshop",
@@ -22507,7 +22628,7 @@
     "status": "published",
     "confidence": 0.68,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16009643",
@@ -22549,7 +22670,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16021654",
@@ -22589,7 +22710,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-15965284",
@@ -22626,7 +22747,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201696",
@@ -22662,7 +22783,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16469636",
@@ -22698,7 +22819,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-lego-challenge-club-ages-4-12-2026-08-03t15-00-00",
@@ -22736,7 +22857,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16358637",
@@ -22781,7 +22902,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16435334",
@@ -22817,7 +22938,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16087869",
@@ -22856,7 +22977,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762598",
@@ -22897,7 +23018,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16681716",
@@ -22937,7 +23058,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16762124",
@@ -22983,7 +23104,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-08-04t16-30-00",
@@ -23023,7 +23144,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-14355935",
@@ -23063,7 +23184,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16025645",
@@ -23105,7 +23226,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201767",
@@ -23142,7 +23263,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16424811",
@@ -23182,7 +23303,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16590364",
@@ -23218,7 +23339,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16467415",
@@ -23258,7 +23379,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16201739",
@@ -23295,7 +23416,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16439527",
@@ -23330,7 +23451,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "libcal-14878-16718084",
@@ -23375,7 +23496,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   },
   {
     "id": "sclsnj-16088042",
@@ -23415,6 +23536,6 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T05:39:47.263Z"
+    "lastSeenAt": "2026-06-07T12:36:43.892Z"
   }
 ]

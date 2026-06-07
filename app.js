@@ -111,7 +111,7 @@ function normalizeEvents(events) {
         lng: Number(event.lng || 0)
       };
     })
-    .filter((event) => event.status !== "review")
+    .filter((event) => event.status !== "review" && event.withinCoverage !== false)
     .sort((a, b) => a.startsAt - b.startsAt);
 }
 
@@ -868,6 +868,9 @@ function renderDetail() {
     .map((group) => {
       const pinNumber = groupPinNumber(group);
       const isActive = group.events.some((event) => event.id === state.selectedEventId);
+      const pinBadgeHtml = pinNumber
+        ? `<span class="pin-badge" aria-label="Pin ${escapeHtml(pinNumber)}">${escapeHtml(pinNumber)}</span>`
+        : "";
       const eventsHtml = group.events
         .map(
           (event) => `
@@ -883,8 +886,8 @@ function renderDetail() {
 
       return `
         <section class="detail-group ${isActive ? "is-active" : ""}" aria-label="${escapeHtml(group.place)}">
-          <div class="place-line">
-            <span class="pin-badge" aria-label="Pin ${escapeHtml(pinNumber || "")}">${escapeHtml(pinNumber || "-")}</span>
+          <div class="place-line ${pinNumber ? "" : "has-no-pin"}">
+            ${pinBadgeHtml}
             <strong class="place-name">${escapeHtml(group.place)}</strong>
             <a class="directions-link" href="${escapeHtml(directionsUrl(group))}" target="_blank" rel="noreferrer">Directions</a>
           </div>

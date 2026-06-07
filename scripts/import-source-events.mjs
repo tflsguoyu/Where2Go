@@ -621,6 +621,7 @@ function parseNjCarnivalsListings(html, source, sources, startDate, days) {
           externalId: eventSlug,
           sourceId: "nj-carnivals",
           townId: matchedTown?.id || null,
+          withinCoverage: Boolean(matchedTown),
           title,
           venue: locality ? `${venueName} · ${locality}` : venueName,
           venueName,
