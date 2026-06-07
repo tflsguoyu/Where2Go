@@ -66,6 +66,12 @@ coordinates when an address can be geocoded. Any remaining missing time, place,
 coordinates, source URL, or concrete summary must be reported for manual review;
 do not invent descriptions when the source page does not provide one.
 
+When an official event page includes flyer images or other event images, check
+normal page text first. Only inspect image text when the HTML text does not
+provide the needed address, room, date, or time. Use image alt text, captions,
+visible flyer text, or OCR/manual review before deciding that the field is truly
+missing.
+
 Refresh the source-driven event file:
 
 ```bash

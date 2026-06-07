@@ -26,6 +26,7 @@
       "startsAt or a clear timeLabel",
       "venue or venueName",
       "address when available from the source",
+      "official page text first, then image/flyer text for address, time, room, and venue only when HTML text is incomplete",
       "lat/lng for every in-coverage event shown on the map",
       "summary with concrete activity content",
       "sourceUrl or url pointing back to the original event page"
@@ -39,7 +40,8 @@
       "Clean generic source-page/update/registration filler out of summaries."
     ],
     "unresolvedReportRule": "If time, place, coordinates, source URL, or concrete summary are still missing after auto-repair, print an import quality audit with counts and sample event IDs/titles for manual review.",
-    "contentRule": "Do not invent activity descriptions. Extract concrete content from the source page when possible; if unavailable, leave summary empty and report it."
+    "contentRule": "Do not invent activity descriptions. Extract concrete content from the source page when possible; if unavailable, leave summary empty and report it.",
+    "imageTextRule": "Always inspect official page HTML text first. Only when the page text does not provide the needed address, time, room, or venue detail should the importer inspect image alt/title/captions or OCR-visible flyer text; if the importer cannot read the image text, report the event/source for manual image review."
   },
   "sourceStatusVocabulary": {
     "importable": "Importer should automatically read this source and write events to data/events.json.",
@@ -241,6 +243,24 @@
       "timeframe": "all",
       "county": "all",
       "maxPages": 8,
+      "locationOverrides": [
+        {
+          "name": "Warren Municipal Building",
+          "aliases": ["Warren Township Municipal Complex"],
+          "address": "46 Mountain Boulevard, Warren, NJ 07059",
+          "lat": 40.619261,
+          "lng": -74.490372,
+          "notes": "Official township pages identify the Municipal Complex at 46 Mountain Boulevard off Bardy Road; use the municipal grounds/library-adjacent point instead of NJ Carnivals' '#2' address geocode candidates."
+        },
+        {
+          "name": "Springfield Ave",
+          "aliases": ["Berkeley Heights Downtown Summer Block Party"],
+          "address": "Springfield Ave from Snyder Ave to Plainfield Ave, Berkeley Heights, NJ 07922",
+          "lat": 40.6850798,
+          "lng": -74.4389058,
+          "notes": "Official block party page describes the event along Springfield Ave from Snyder Ave to Plainfield Ave; point is an approximate map anchor on that corridor."
+        }
+      ],
       "notes": "Imports structured Event JSON-LD from paginated listings, expands multi-day fairs into daily occurrences, and keeps source event URLs for refresh/review."
     }
   },
@@ -309,8 +329,8 @@
           "name": "Lowe's Piscataway",
           "townId": "piscataway-township",
           "address": "1345 Centennial Ave, Piscataway, NJ 08854",
-          "lat": 40.545539,
-          "lng": -74.46072,
+          "lat": 40.552462,
+          "lng": -74.45422,
           "storeUrl": "https://www.lowes.com/store/NJ-Piscataway/0692"
         }
       ],
@@ -395,8 +415,8 @@
           "name": "Michaels Watchung",
           "townId": "watchung-borough",
           "address": "1515 US Hwy 22 Suite 34, Watchung, NJ 07069",
-          "lat": 40.642845,
-          "lng": -74.436233,
+          "lat": 40.6392357,
+          "lng": -74.4219689,
           "storeUrl": "https://locations.michaels.com/nj/watchung/5191/"
         },
         {
@@ -404,8 +424,8 @@
           "name": "Michaels Bridgewater",
           "townId": "bridgewater-township",
           "address": "135 Promenade Blvd, Bridgewater, NJ 08807",
-          "lat": 40.592358,
-          "lng": -74.60401,
+          "lat": 40.5629632,
+          "lng": -74.5557133,
           "storeUrl": "https://locations.michaels.com/NJ/Bridgewater/9938"
         }
       ],
@@ -662,8 +682,8 @@
           "name": "Reeves-Reed Arboretum",
           "townId": "summit-city",
           "address": "165 Hobart Ave, Summit, NJ 07901",
-          "lat": 40.715622,
-          "lng": -74.364684,
+          "lat": 40.726543,
+          "lng": -74.349509,
           "storeUrl": "https://www.reeves-reedarboretum.org/events/"
         }
       ],
@@ -1161,7 +1181,24 @@
           "eventsUrl": "https://plainfieldnj.librarycalendar.com/events/list",
           "status": "importable",
           "parser": "librarycalendar-list",
-          "townId": "plainfield-city"
+          "townId": "plainfield-city",
+          "address": "800 Park Ave, Plainfield, NJ 07060",
+          "lat": 40.6133591,
+          "lng": -74.4153546,
+          "locations": [
+            {
+              "name": "Plainfield Public Library",
+              "address": "800 Park Ave, Plainfield, NJ 07060",
+              "lat": 40.6133591,
+              "lng": -74.4153546
+            },
+            {
+              "name": "Cindelle's Bookstore",
+              "address": "401 Watchung Avenue, Plainfield, NJ 07060",
+              "lat": 40.6184145,
+              "lng": -74.4188618
+            }
+          ]
         }
       ]
     },
@@ -1272,7 +1309,10 @@
           "eventsUrl": "https://southplainfield.librarycalendar.com/events/list",
           "status": "importable",
           "parser": "librarycalendar-list",
-          "townId": "south-plainfield-borough"
+          "townId": "south-plainfield-borough",
+          "address": "2484 Plainfield Ave, South Plainfield, NJ 07080",
+          "lat": 40.5837594,
+          "lng": -74.4157082
         }
       ]
     },
@@ -1304,6 +1344,15 @@
           "address": "110 Roosevelt Ave, Berkeley Heights, NJ 07922",
           "lat": 40.678612,
           "lng": -74.439521,
+          "locations": [
+            {
+              "name": "Veterans Memorial Park",
+              "aliases": ["Memorial Park"],
+              "address": "205 Plainfield Avenue, Berkeley Heights, NJ 07922",
+              "lat": 40.68051,
+              "lng": -74.440095
+            }
+          ],
           "notes": "LibCal audience filters include baby, children, families, preschool, toddler, teens, tweens, and all ages."
         }
       ]
@@ -1329,7 +1378,29 @@
           "eventsUrl": "https://piscataway.librarycalendar.com/events/list",
           "status": "importable",
           "parser": "librarycalendar-list",
-          "townId": "piscataway-township"
+          "townId": "piscataway-township",
+          "locations": [
+            {
+              "name": "Kennedy Library",
+              "aliases": ["Piscataway John F. Kennedy Memorial Library"],
+              "address": "500 Hoes Lane, Piscataway, NJ 08854",
+              "lat": 40.5366589,
+              "lng": -74.4714095
+            },
+            {
+              "name": "Westergard Library",
+              "aliases": ["Westergard Branch"],
+              "address": "20 Murray Avenue, Piscataway, NJ 08854",
+              "lat": 40.5685406,
+              "lng": -74.457419
+            },
+            {
+              "name": "Piscataway Street Fair",
+              "address": "Stockton Street in Piscataway behind the Piscataway YMCA, Piscataway, NJ 08854",
+              "lat": 40.5335402,
+              "lng": -74.4712959
+            }
+          ]
         }
       ]
     },
@@ -1539,7 +1610,10 @@
           "siteId": "14878",
           "calendarIds": ["12857"],
           "audienceIds": ["320", "795", "397"],
-          "townId": "summit-city"
+          "townId": "summit-city",
+          "address": "75 Maple Street, Summit, NJ 07901",
+          "lat": 40.7152466,
+          "lng": -74.360276
         }
       ]
     }

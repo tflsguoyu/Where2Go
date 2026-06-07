@@ -762,17 +762,191 @@ function buildTownLookup(sources) {
   return lookup;
 }
 
+function cleanAddress(value) {
+  return stripHtml(value)
+    .replace(/,\s*(?:US|USA|United States)$/i, "")
+    .replace(/,\s*(NJ|NY|PA),\s*(\d{5}(?:-\d{4})?)\b/gi, ", $1 $2")
+    .replace(/\s*,\s*/g, ", ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function addressFromPostalAddress(address) {
+  if (typeof address === "string") {
+    return cleanAddress(address);
+  }
+  const regionPostal = [address?.addressRegion, address?.postalCode]
+    .filter(Boolean)
+    .map((part) => stripHtml(part))
+    .join(" ");
+  const country = stripHtml(address?.addressCountry || "");
   return [
     address?.streetAddress,
     address?.addressLocality,
-    address?.addressRegion,
-    address?.postalCode,
-    address?.addressCountry
+    regionPostal,
+    country && !/^US(?:A)?$/i.test(country) ? country : ""
   ]
     .filter(Boolean)
     .map((part) => stripHtml(part))
     .join(", ");
+}
+
+function canonicalVenueAddress(venueName, address) {
+  return cleanAddress(address);
+}
+
+function findSourceLocationOverride(source, venueName, address) {
+  const venueKey = normalizePlaceName(venueName);
+  const addressKey = normalizePlaceName(address);
+  return (source.locationOverrides || []).find((location) => {
+    const names = [location.name, ...(location.aliases || [])].map(normalizePlaceName).filter(Boolean);
+    const locationAddress = normalizePlaceName(location.address || "");
+    const nameMatches = venueKey && names.includes(venueKey);
+    const addressMatches = addressKey && locationAddress && addressKey === locationAddress;
+    return nameMatches || addressMatches;
+  });
+}
+
+function jsonLdNodes(data) {
+  const nodes = [];
+  const stack = [data];
+  while (stack.length) {
+    const item = stack.shift();
+    if (!item) {
+      continue;
+    }
+    if (Array.isArray(item)) {
+      stack.push(...item);
+      continue;
+    }
+    if (typeof item !== "object") {
+      continue;
+    }
+    nodes.push(item);
+    if (item["@graph"]) {
+      stack.push(item["@graph"]);
+    }
+  }
+  return nodes;
+}
+
+function isJsonLdType(item, typeName) {
+  const type = item?.["@type"];
+  return type === typeName || (Array.isArray(type) && type.includes(typeName));
+}
+
+function parseJsonLdEvents(section) {
+  const scripts = [...section.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  const events = [];
+  scripts.forEach((script) => {
+    try {
+      const data = JSON.parse(script[1].trim());
+      jsonLdNodes(data)
+        .filter((item) => isJsonLdType(item, "Event"))
+        .forEach((item) => events.push(item));
+    } catch {
+      // Ignore non-event JSON-LD blocks. The listing card fallback will skip them.
+    }
+  });
+  return events;
+}
+
+function parseJsonLdEvent(section) {
+  return parseJsonLdEvents(section)[0] || null;
+}
+
+function locationAddress(location) {
+  return cleanAddress(location?.address || addressFor(location));
+}
+
+function locationCoordinates(location) {
+  const lat = Number(location?.lat);
+  const lng = Number(location?.lng ?? location?.lon);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng) || lat === 0 || lng === 0) {
+    return null;
+  }
+  return { lat, lng };
+}
+
+function libraryLocationRegistry(source) {
+  return [
+    {
+      name: source.library.name,
+      address: source.library.address,
+      lat: source.library.lat,
+      lng: source.library.lng
+    },
+    ...(source.library.locations || [])
+  ];
+}
+
+function findKnownLibraryLocation(source, details) {
+  const targetNames = [details?.name, ...(details?.aliases || [])].map(normalizePlaceName).filter(Boolean);
+  const targetAddress = normalizePlaceName(details?.address || "");
+  return libraryLocationRegistry(source).find((location) => {
+    const names = [location.name, ...(location.aliases || [])].map(normalizePlaceName).filter(Boolean);
+    const locationAddressKey = normalizePlaceName(locationAddress(location));
+    const nameMatches = targetNames.some((name) => names.includes(name));
+    const addressMatches = targetAddress && locationAddressKey && targetAddress === locationAddressKey;
+    return nameMatches || addressMatches;
+  });
+}
+
+function jsonLdLocationDetails(event) {
+  const location = Array.isArray(event?.location) ? event.location[0] : event?.location;
+  if (!location) {
+    return null;
+  }
+  const geo = location.geo || {};
+  const lat = Number(geo.latitude);
+  const lng = Number(geo.longitude);
+  return {
+    name: stripHtml(location.name || ""),
+    address: addressFromPostalAddress(location.address),
+    lat: Number.isFinite(lat) && lat !== 0 ? lat : undefined,
+    lng: Number.isFinite(lng) && lng !== 0 ? lng : undefined
+  };
+}
+
+function applyLibraryLocationDetails(event, source, details) {
+  if (!details?.name && !details?.address) {
+    return;
+  }
+  const knownLocation = findKnownLibraryLocation(source, details);
+  const coordinates =
+    (Number.isFinite(details.lat) && Number.isFinite(details.lng) ? { lat: details.lat, lng: details.lng } : null) ||
+    locationCoordinates(knownLocation);
+  const placeName = details.name || knownLocation?.name || source.library.name;
+  const address = cleanAddress(details.address || locationAddress(knownLocation) || source.library.address || "");
+
+  event.venue = placeName;
+  event.venueName = placeName;
+  if (address) {
+    event.address = address;
+  }
+  if (coordinates) {
+    event.lat = coordinates.lat;
+    event.lng = coordinates.lng;
+    event.confidence = Math.max(Number(event.confidence || 0), 0.9);
+  } else if (address) {
+    event.lat = undefined;
+    event.lng = undefined;
+    event.confidence = Math.max(Number(event.confidence || 0), 0.86);
+  }
+}
+
+function eventLooksOnline(event) {
+  return /\b(?:online|virtual|zoom)\b/i.test(`${event.title || ""} ${event.venue || ""} ${event.summary || ""}`);
+}
+
+function markOnlineEvent(event) {
+  event.venue = "Online";
+  event.venueName = "Online";
+  event.address = null;
+  event.withinCoverage = false;
+  event.lat = undefined;
+  event.lng = undefined;
+  event.confidence = Math.max(Number(event.confidence || 0), 0.82);
 }
 
 function collectTagsFromListingSection(section) {
@@ -845,25 +1019,6 @@ function extractNjCarnivalsDetailSummary(html) {
     firstMatch(html, /<meta\b(?=[^>]*property=["']og:description["'])(?=[^>]*content=["']([^"']+)["'])[^>]*>/i) ||
     firstMatch(html, /<meta\b(?=[^>]*name=["']description["'])(?=[^>]*content=["']([^"']+)["'])[^>]*>/i);
   return cleanNjCarnivalsDetailParagraph(metaDescription);
-}
-
-function parseJsonLdEvent(section) {
-  const scripts = [...section.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
-  for (const script of scripts) {
-    try {
-      const data = JSON.parse(script[1].trim());
-      if (data?.["@type"] === "Event") {
-        return data;
-      }
-      const graphEvent = data?.["@graph"]?.find((item) => item?.["@type"] === "Event");
-      if (graphEvent) {
-        return graphEvent;
-      }
-    } catch {
-      // Ignore non-event JSON-LD blocks. The listing card fallback will skip them.
-    }
-  }
-  return null;
 }
 
 function cleanNjCarnivalsTitle(eventName, listingTitle) {
@@ -1106,7 +1261,10 @@ function parseNjCarnivalsListings(html, source, sources, startDate, days) {
     const eventSlug = slugFromUrl(event.url);
     const tags = collectTagsFromListingSection(section);
     const venueName = stripHtml(location.name || locality || "NJ Carnivals event");
-    const fullAddress = addressFromPostalAddress(address);
+    const importedAddress = canonicalVenueAddress(venueName, addressFromPostalAddress(address));
+    const locationOverride = findSourceLocationOverride(source, venueName, importedAddress);
+    const fullAddress = locationOverride?.address || importedAddress;
+    const coordinates = locationCoordinates(locationOverride);
     const summary = "";
 
     datesInRange(startDateOnly, endDateOnly)
@@ -1137,8 +1295,8 @@ function parseNjCarnivalsListings(html, source, sources, startDate, days) {
           sourceUrl: event.url,
           sourceCalendarUrl: source.eventsUrl || source.website,
           address: fullAddress || null,
-          lat: matchedTown ? Number(matchedTown.center?.lat || 0) : undefined,
-          lng: matchedTown ? Number(matchedTown.center?.lng || 0) : undefined,
+          lat: coordinates?.lat ?? (fullAddress ? undefined : matchedTown ? Number(matchedTown.center?.lat || 0) : undefined),
+          lng: coordinates?.lng ?? (fullAddress ? undefined : matchedTown ? Number(matchedTown.center?.lng || 0) : undefined),
           image: event.image || null,
           tags,
           status: "published",
@@ -1220,12 +1378,49 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
   return events;
 }
 
-async function importLibraryCalendarEvents(sources) {
+async function enrichLibraryCalendarDetails(events, source) {
+  for (const event of events) {
+    try {
+      const html = await fetchText(event.sourceUrl);
+      const detailEvent = parseJsonLdEvent(html);
+      const details = jsonLdLocationDetails(detailEvent);
+      if (details?.name || details?.address) {
+        applyLibraryLocationDetails(event, source, details);
+      } else if (eventLooksOnline(event)) {
+        markOnlineEvent(event);
+      }
+
+      const startsAt = localIso(detailEvent?.startDate);
+      const endsAt = localIso(detailEvent?.endDate);
+      if (startsAt) {
+        event.startsAt = startsAt;
+      }
+      if (endsAt) {
+        event.endsAt = endsAt;
+        event.durationMinutes = durationMinutes(event.startsAt, event.endsAt);
+      }
+      if (detailEvent?.image) {
+        event.image = detailEvent.image;
+      }
+    } catch (error) {
+      console.warn(`warning: could not enrich ${event.sourceUrl}: ${error.message}`);
+      if (eventLooksOnline(event)) {
+        markOnlineEvent(event);
+      }
+    }
+  }
+  return events;
+}
+
+async function importLibraryCalendarEvents(sources, startDate, days) {
   const imported = [];
   for (const source of allLibraryCalendarSources(sources)) {
     try {
       const html = await fetchText(source.library.eventsUrl);
-      imported.push(...parseLibraryCalendarCards(html, source.library.eventsUrl, source));
+      const events = parseLibraryCalendarCards(html, source.library.eventsUrl, source).filter((event) =>
+        isDateWithinWindow(String(event.startsAt || "").slice(0, 10), startDate, days)
+      );
+      imported.push(...(await enrichLibraryCalendarDetails(events, source)));
     } catch (error) {
       console.warn(`warning: could not import ${source.library.eventsUrl}: ${error.message}`);
     }
@@ -1288,14 +1483,18 @@ function mapLibCalEvent(source, event, calendarUrl, dateKey) {
   const startsAt = libCalDateTime(event, "start", dateKey);
   const endsAt = libCalDateTime(event, "end", dateKey);
   const url = absoluteUrl(source.library.eventsUrl, event.url || `/event/${event.id}`);
+  const knownLocation = findKnownLibraryLocation(source, { name: event.location || "" });
+  const knownCoordinates = locationCoordinates(knownLocation);
+  const address = cleanAddress(locationAddress(knownLocation) || source.library.address || "");
+  const venueName = knownLocation?.name || source.library.name;
   return {
     id: `libcal-${source.library.siteId || calendarUrl.host}-${event.id}`,
     externalId: String(event.id),
     sourceId: `libcal-${calendarUrl.host}`,
     townId: source.library.townId || source.town.id,
     title: stripHtml(event.title),
-    venue: event.location || source.library.name,
-    venueName: source.library.name,
+    venue: knownLocation?.name || event.location || source.library.name,
+    venueName,
     category: "library",
     source: source.library.name,
     startsAt,
@@ -1310,13 +1509,13 @@ function mapLibCalEvent(source, event, calendarUrl, dateKey) {
     url,
     sourceUrl: url,
     sourceCalendarUrl: source.library.eventsUrl,
-    address: source.library.address || null,
-    lat: libraryLat(source),
-    lng: libraryLng(source),
+    address: address || null,
+    lat: knownCoordinates?.lat || libraryLat(source),
+    lng: knownCoordinates?.lng || libraryLng(source),
     image: event.featured_image || null,
     tags: categories,
     status: "published",
-    confidence: 0.82
+    confidence: knownLocation ? 0.9 : 0.82
   };
 }
 
@@ -1717,7 +1916,7 @@ async function main() {
 
   const importedGroups = await Promise.all([
     importSclsnjEvents(sources, startDate, days),
-    importLibraryCalendarEvents(sources),
+    importLibraryCalendarEvents(sources, startDate, days),
     importLibCalEvents(sources, startDate, days),
     importEventOrganiserEvents(sources, startDate, days),
     importJoomlaEventBookingEvents(sources, startDate, days),

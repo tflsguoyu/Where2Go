@@ -293,9 +293,11 @@ function groupPinNumber(group) {
 
 function formatDateLabel(dateKey) {
   const date = new Date(`${dateKey}T12:00:00`);
+  const isToday = dateKey === localDateKey(new Date());
   return {
+    isToday,
     weekday: new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date),
-    day: new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date)
+    day: isToday ? "Today" : new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date)
   };
 }
 
@@ -1369,12 +1371,13 @@ function syncMarkers(dayEvents, activeGroup) {
 function renderDates() {
   elements.dateStrip.innerHTML = state.dates
     .map((dateKey) => {
-      const { weekday, day } = formatDateLabel(dateKey);
+      const { isToday, weekday, day } = formatDateLabel(dateKey);
       const count = state.events.filter((event) => event.dateKey === dateKey).length;
       const isActive = dateKey === state.selectedDate;
+      const ariaLabel = `${isToday ? "Today" : `${weekday} ${day}`}, ${count} event${count === 1 ? "" : "s"}`;
       return `
-        <button class="date-chip ${isActive ? "is-active" : ""}" type="button" data-date="${dateKey}" aria-pressed="${isActive}">
-          <span>${weekday}</span>
+        <button class="date-chip ${isActive ? "is-active" : ""} ${isToday ? "is-today" : ""}" type="button" data-date="${dateKey}" aria-pressed="${isActive}" aria-label="${ariaLabel}">
+          ${isToday ? "" : `<span>${weekday}</span>`}
           <strong>${day}</strong>
           <small>${count}</small>
         </button>

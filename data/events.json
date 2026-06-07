@@ -1821,7 +1821,7 @@
     "url": "https://www.nj-carnivals.com/2026/fair-lawn-street-fair-craft-show-june-2026-in-fair-lawn-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/fair-lawn-street-fair-craft-show-june-2026-in-fair-lawn-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "Downtown Fair Lawn, Plaza Rd & Fair Lawn Ave, Fair Lawn, NJ 07410, Fair Lawn, NJ, USA",
+    "address": "Downtown Fair Lawn, Plaza Rd & Fair Lawn Ave, Fair Lawn, NJ 07410, Fair Lawn, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/01/Street-Fairs-SQUARE-LOGO-1.9mgs.webp",
     "tags": [
       "Bergen County",
@@ -1833,7 +1833,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -1863,9 +1863,7 @@
     "url": "https://www.nj-carnivals.com/2026/berkeley-heights-block-party-2026-in-berkeley-heights-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/berkeley-heights-block-party-2026-in-berkeley-heights-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "Springfield Ave & Snyder Ave, Berkeley Heights, NJ, USA",
-    "lat": 40.676119,
-    "lng": -74.422756,
+    "address": "Springfield Ave from Snyder Ave to Plainfield Ave, Berkeley Heights, NJ 07922",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/bh-summer-block-party-2026.jpg",
     "tags": [
       "Union County",
@@ -1876,8 +1874,10 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
-    "withinCoverage": true
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "withinCoverage": true,
+    "lat": 40.6850798,
+    "lng": -74.4389058
   },
   {
     "id": "nj-carnivals-st-anthonys-festival-2026-in-passaic-nj-2026-06-07",
@@ -1906,7 +1906,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-anthonys-festival-2026-in-passaic-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-anthonys-festival-2026-in-passaic-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "101-103 Myrtle Ave, Passaic, NJ, USA",
+    "address": "101-103 Myrtle Ave, Passaic, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/03/wheel2.webp",
     "tags": [
       "Passaic County",
@@ -1915,7 +1915,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -1958,7 +1958,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-26th-annual-feast-of-st-anthony-in-roselle-park-nj-2026-06-07",
@@ -1987,7 +1987,7 @@
     "url": "https://www.nj-carnivals.com/2026/26th-annual-feast-of-st-anthony-in-roselle-park-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/26th-annual-feast-of-st-anthony-in-roselle-park-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "113 Coolidge Pl, Roselle Park, NJ, USA",
+    "address": "113 Coolidge Pl, Roselle Park, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/zipper-round-up.webp",
     "tags": [
       "Union County",
@@ -1998,47 +1998,8 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
-  },
-  {
-    "id": "librarycalendar-newprovidence-librarycalendar-com-5101",
-    "externalId": "5101",
-    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
-    "townId": "new-providence-borough",
-    "title": "5th - 8th grade Knitting/Crochet Group",
-    "venue": "New Providence Memorial Library",
-    "venueName": "New Providence Memorial Library",
-    "category": "library",
-    "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-07T14:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "early-elementary",
-      "tween",
-      "teen"
-    ],
-    "audiences": [
-      "Elem Children (6-12)",
-      "Teens",
-      "Elem Children (6-12)",
-      "Teens"
-    ],
-    "cost": null,
-    "registration": "RSVP",
-    "summary": "Students in grades 5-8 are invited to bring their knitting or crochet project to work on. Please note this is not a class and students should know how to knit or crochet and bring their own materials.",
-    "url": "https://newprovidence.librarycalendar.com/event/5th-8th-grade-knitcrochet-group-5101",
-    "sourceUrl": "https://newprovidence.librarycalendar.com/event/5th-8th-grade-knitcrochet-group-5101",
-    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
-    "address": "377 Elkwood Ave, New Providence, NJ 07974",
-    "lat": 40.7086718,
-    "lng": -74.4040653,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
   },
   {
     "id": "libcal-bhplnj-15246622",
@@ -2079,7 +2040,47 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-newprovidence-librarycalendar-com-5101",
+    "externalId": "5101",
+    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
+    "townId": "new-providence-borough",
+    "title": "5th - 8th grade Knitting/Crochet Group - Cancelled",
+    "venue": "New Providence Memorial Library",
+    "venueName": "New Providence Memorial Library",
+    "category": "library",
+    "source": "New Providence Memorial Library",
+    "startsAt": "2026-06-07T14:00:00-04:00",
+    "endsAt": "2026-06-07T15:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 60,
+    "ages": [
+      "early-elementary",
+      "tween",
+      "teen"
+    ],
+    "audiences": [
+      "Elem Children (6-12)",
+      "Teens",
+      "Elem Children (6-12)",
+      "Teens"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "Students in grades 5-8 are invited to bring their knitting or crochet project to work on. Please note this is not a class and students should know how to knit or crochet and bring their own materials.",
+    "url": "https://newprovidence.librarycalendar.com/event/5th-8th-grade-knitcrochet-group-5101",
+    "sourceUrl": "https://newprovidence.librarycalendar.com/event/5th-8th-grade-knitcrochet-group-5101",
+    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
+    "address": "377 Elkwood Ave, New Providence, NJ 07974",
+    "lat": 40.7086718,
+    "lng": -74.4040653,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2026-03/Calendar%20Graphics%20%28Repeating%20events%29%20-%20Untitled%20Page%20%2843%29.jpeg"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-garden-state-plaza-2026-in-paramus-nj-2026-06-07",
@@ -2108,7 +2109,7 @@
     "url": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-garden-state-plaza-2026-in-paramus-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-garden-state-plaza-2026-in-paramus-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "One Garden State Plaza, Paramus, NJ, USA",
+    "address": "One Garden State Plaza, Paramus, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/05/grav-wheel1-1.webp",
     "tags": [
       "Bergen County",
@@ -2119,7 +2120,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -2149,7 +2150,7 @@
     "url": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ, USA",
+    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/07/skyfall1.webp",
     "tags": [
       "Bergen County",
@@ -2159,7 +2160,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -2199,7 +2200,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-15995302",
@@ -2237,80 +2238,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-piscataway-librarycalendar-com-51576",
-    "externalId": "51576",
-    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
-    "townId": "piscataway-township",
-    "title": "Music and Movement Story Time",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
-    "category": "library",
-    "source": "Piscataway Public Library",
-    "startsAt": "2026-06-08T10:30:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "baby",
-      "preschool",
-      "early-elementary"
-    ],
-    "audiences": [
-      "Babies-Preschoolers",
-      "Children"
-    ],
-    "cost": null,
-    "registration": "RSVP",
-    "summary": "Music & Movement Ages 2-5 years",
-    "url": "https://piscataway.librarycalendar.com/event/music-and-movement-story-time-51576",
-    "sourceUrl": "https://piscataway.librarycalendar.com/event/music-and-movement-story-time-51576",
-    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-piscataway-librarycalendar-com-50318",
-    "externalId": "50318",
-    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
-    "townId": "piscataway-township",
-    "title": "Stay 'n' Play",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
-    "category": "library",
-    "source": "Piscataway Public Library",
-    "startsAt": "2026-06-08T10:30:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "baby",
-      "preschool",
-      "early-elementary"
-    ],
-    "audiences": [
-      "Babies-Preschoolers"
-    ],
-    "cost": null,
-    "registration": "RSVP",
-    "summary": "Come mingle with other parents/caregivers as your child/children play. Good opportunity to chat with other caregivers and socialize.",
-    "url": "https://piscataway.librarycalendar.com/event/stay-n-play-50318",
-    "sourceUrl": "https://piscataway.librarycalendar.com/event/stay-n-play-50318",
-    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-08t10-30-00",
@@ -2347,7 +2275,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-16201688",
@@ -2383,7 +2311,82 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-piscataway-librarycalendar-com-51576",
+    "externalId": "51576",
+    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
+    "townId": "piscataway-township",
+    "title": "Music and Movement Story Time",
+    "venue": "Westergard Library",
+    "venueName": "Westergard Library",
+    "category": "library",
+    "source": "Piscataway Public Library",
+    "startsAt": "2026-06-08T10:30:00-04:00",
+    "endsAt": "2026-06-08T11:15:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 45,
+    "ages": [
+      "baby",
+      "preschool",
+      "early-elementary"
+    ],
+    "audiences": [
+      "Babies-Preschoolers",
+      "Children"
+    ],
+    "cost": null,
+    "registration": "RSVP",
+    "summary": "Music & Movement Ages 2-5 years",
+    "url": "https://piscataway.librarycalendar.com/event/music-and-movement-story-time-51576",
+    "sourceUrl": "https://piscataway.librarycalendar.com/event/music-and-movement-story-time-51576",
+    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
+    "address": "20 Murray Avenue, Piscataway, NJ 08854",
+    "lat": 40.5685406,
+    "lng": -74.457419,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-02/Music%20and%20Movement%20%285%29.png"
+  },
+  {
+    "id": "librarycalendar-piscataway-librarycalendar-com-50318",
+    "externalId": "50318",
+    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
+    "townId": "piscataway-township",
+    "title": "Stay 'n' Play",
+    "venue": "Kennedy Library",
+    "venueName": "Kennedy Library",
+    "category": "library",
+    "source": "Piscataway Public Library",
+    "startsAt": "2026-06-08T10:30:00-04:00",
+    "endsAt": "2026-06-08T11:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 30,
+    "ages": [
+      "baby",
+      "preschool",
+      "early-elementary"
+    ],
+    "audiences": [
+      "Babies-Preschoolers"
+    ],
+    "cost": null,
+    "registration": "RSVP",
+    "summary": "Come mingle with other parents/caregivers as your child/children play. Good opportunity to chat with other caregivers and socialize.",
+    "url": "https://piscataway.librarycalendar.com/event/stay-n-play-50318",
+    "sourceUrl": "https://piscataway.librarycalendar.com/event/stay-n-play-50318",
+    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
+    "address": "500 Hoes Lane, Piscataway, NJ 08854",
+    "lat": 40.5366589,
+    "lng": -74.4714095,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2025-02/CALENDAR%20images%20%2811%29.png"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-baby-bounce-storytime-06-08-2026-2026-06-08",
@@ -2414,7 +2417,7 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-08",
@@ -2443,7 +2446,7 @@
     "url": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ, USA",
+    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/07/skyfall1.webp",
     "tags": [
       "Bergen County",
@@ -2453,7 +2456,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -2492,7 +2495,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "libcal-bhplnj-16979497",
@@ -2534,41 +2537,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-piscataway-librarycalendar-com-48893",
-    "externalId": "48893",
-    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
-    "townId": "piscataway-township",
-    "title": "Chess for Kids",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
-    "category": "library",
-    "source": "Piscataway Public Library",
-    "startsAt": "2026-06-08T16:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "early-elementary"
-    ],
-    "audiences": [
-      "Children"
-    ],
-    "cost": null,
-    "registration": "RSVP",
-    "summary": "Grades 1-6 Join us for a game of chess. Beginners and all skill levels are welcome! Come to learn, come to play, and come to teach. Registration required.",
-    "url": "https://piscataway.librarycalendar.com/event/chess-kids-48893",
-    "sourceUrl": "https://piscataway.librarycalendar.com/event/chess-kids-48893",
-    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "libcal-14878-16358629",
@@ -2600,9 +2569,9 @@
     "url": "https://summitlibrary.libcal.com/event/16358629",
     "sourceUrl": "https://summitlibrary.libcal.com/event/16358629",
     "sourceCalendarUrl": "https://summitlibrary.libcal.com/calendar",
-    "address": null,
-    "lat": 40.715622,
-    "lng": -74.364684,
+    "address": "75 Maple Street, Summit, NJ 07901",
+    "lat": 40.7152466,
+    "lng": -74.360276,
     "image": null,
     "tags": [
       "Elementary (K-5)",
@@ -2613,7 +2582,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-storytime-ages-3-6-06-08-2026-2026-06-08",
@@ -2644,50 +2613,42 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
-    "id": "librarycalendar-newprovidence-librarycalendar-com-4194",
-    "externalId": "4194",
-    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
-    "townId": "new-providence-borough",
-    "title": "NP Chess Club Lecture",
-    "venue": "New Providence Memorial Library",
-    "venueName": "New Providence Memorial Library",
+    "id": "librarycalendar-piscataway-librarycalendar-com-48893",
+    "externalId": "48893",
+    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
+    "townId": "piscataway-township",
+    "title": "Chess for Kids",
+    "venue": "Westergard Library",
+    "venueName": "Westergard Library",
     "category": "library",
-    "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-08T16:30:00",
-    "endsAt": null,
+    "source": "Piscataway Public Library",
+    "startsAt": "2026-06-08T16:00:00-04:00",
+    "endsAt": "2026-06-08T16:45:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 45,
     "ages": [
-      "baby",
-      "toddler",
-      "preschool",
-      "early-elementary",
-      "teen"
+      "early-elementary"
     ],
     "audiences": [
-      "Elem Children (6-12)",
-      "Teens",
-      "Adults",
-      "Elem Children (6-12)",
-      "Teens",
-      "Adults"
+      "Children"
     ],
     "cost": null,
-    "registration": "See source",
-    "summary": "Learn to play chess with the NP Chess Club! The club will present instructional lectures & strategy in the Conti Family Room. These presentations are open to children, teens and adults.",
-    "url": "https://newprovidence.librarycalendar.com/event/np-chess-club-lecture-4194",
-    "sourceUrl": "https://newprovidence.librarycalendar.com/event/np-chess-club-lecture-4194",
-    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
-    "address": "377 Elkwood Ave, New Providence, NJ 07974",
-    "lat": 40.7086718,
-    "lng": -74.4040653,
+    "registration": "RSVP",
+    "summary": "Grades 1-6 Join us for a game of chess. Beginners and all skill levels are welcome! Come to learn, come to play, and come to teach. Registration required.",
+    "url": "https://piscataway.librarycalendar.com/event/chess-kids-48893",
+    "sourceUrl": "https://piscataway.librarycalendar.com/event/chess-kids-48893",
+    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
+    "address": "20 Murray Avenue, Piscataway, NJ 08854",
+    "lat": 40.5685406,
+    "lng": -74.457419,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2023-08/Chess%20for%20Kids_0.png"
   },
   {
     "id": "sclsnj-15822612",
@@ -2724,7 +2685,51 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-newprovidence-librarycalendar-com-4194",
+    "externalId": "4194",
+    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
+    "townId": "new-providence-borough",
+    "title": "NP Chess Club Lecture",
+    "venue": "New Providence Memorial Library",
+    "venueName": "New Providence Memorial Library",
+    "category": "library",
+    "source": "New Providence Memorial Library",
+    "startsAt": "2026-06-08T16:30:00-04:00",
+    "endsAt": "2026-06-08T17:30:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 60,
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "early-elementary",
+      "teen"
+    ],
+    "audiences": [
+      "Elem Children (6-12)",
+      "Teens",
+      "Adults",
+      "Elem Children (6-12)",
+      "Teens",
+      "Adults"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "Learn to play chess with the NP Chess Club! The club will present instructional lectures & strategy in the Conti Family Room. These presentations are open to children, teens and adults.",
+    "url": "https://newprovidence.librarycalendar.com/event/np-chess-club-lecture-4194",
+    "sourceUrl": "https://newprovidence.librarycalendar.com/event/np-chess-club-lecture-4194",
+    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
+    "address": "377 Elkwood Ave, New Providence, NJ 07974",
+    "lat": 40.7086718,
+    "lng": -74.4040653,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-12/Calendar%20Graphics%20%28Repeating%20events%29%20-%20Untitled%20Page%20%2810%29.jpeg"
   },
   {
     "id": "sclsnj-16182955",
@@ -2760,7 +2765,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5182",
@@ -2772,10 +2777,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-08T17:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-08T17:30:00-04:00",
+    "endsAt": "2026-06-08T18:30:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 60,
     "ages": [
       "baby",
       "toddler",
@@ -2801,9 +2806,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2026-03/Calendar%20Graphics%20%28Repeating%20events%29%20-%20Untitled%20Page%20%2818%29.jpeg"
   },
   {
     "id": "nj-carnivals-st-charles-carnival-2026-in-cinnaminson-nj-2026-06-08",
@@ -2832,7 +2838,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2500 Branch Pike, Cinnaminson, NJ, USA",
+    "address": "2500 Branch Pike, Cinnaminson, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/05/yoyo1.webp",
     "tags": [
       "Burlington County",
@@ -2842,7 +2848,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -2855,10 +2861,10 @@
     "venueName": "South Plainfield Public Library",
     "category": "library",
     "source": "South Plainfield Public Library",
-    "startsAt": "2026-06-08T18:15:00",
-    "endsAt": null,
+    "startsAt": "2026-06-08T18:15:00-04:00",
+    "endsAt": "2026-06-08T19:30:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 75,
     "ages": [
       "teen"
     ],
@@ -2874,13 +2880,13 @@
     "url": "https://southplainfield.librarycalendar.com/event/learn-crochet-26509",
     "sourceUrl": "https://southplainfield.librarycalendar.com/event/learn-crochet-26509",
     "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
+    "address": "2484 Plainfield Ave., South Plainfield, NJ 07080",
+    "lat": 40.5837594,
+    "lng": -74.4157082,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-1774",
@@ -2892,10 +2898,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-08T18:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-08T18:30:00-04:00",
+    "endsAt": "2026-06-08T20:30:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 120,
     "ages": [
       "teen"
     ],
@@ -2915,9 +2921,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-05/baseball%20event%20image_0.jpg"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-50742",
@@ -2925,14 +2932,14 @@
     "sourceId": "librarycalendar-piscataway-librarycalendar-com",
     "townId": "piscataway-township",
     "title": "ASL for Beginners Level 3",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
+    "venue": "Westergard Library",
+    "venueName": "Westergard Library",
     "category": "library",
     "source": "Piscataway Public Library",
-    "startsAt": "2026-06-08T19:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-08T19:00:00-04:00",
+    "endsAt": "2026-06-08T20:15:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 75,
     "ages": [
       "teen"
     ],
@@ -2946,13 +2953,14 @@
     "url": "https://piscataway.librarycalendar.com/event/hold-american-sign-language-beginners-level-3-50742",
     "sourceUrl": "https://piscataway.librarycalendar.com/event/hold-american-sign-language-beginners-level-3-50742",
     "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "address": "20 Murray Avenue, Piscataway, NJ 08854",
+    "lat": 40.5685406,
+    "lng": -74.457419,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-05/2023%20%282%29.png"
   },
   {
     "id": "libcal-bhplnj-16979508",
@@ -2991,7 +2999,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "libcal-bhplnj-16979509",
@@ -3033,45 +3041,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-newprovidence-librarycalendar-com-3259",
-    "externalId": "3259",
-    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
-    "townId": "new-providence-borough",
-    "title": "Signs, Songs & Stories with Miss Cathy",
-    "venue": "New Providence Memorial Library",
-    "venueName": "New Providence Memorial Library",
-    "category": "library",
-    "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-09T10:30:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "toddler",
-      "preschool"
-    ],
-    "audiences": [
-      "Toddlers (0-2)",
-      "Preschool (3-5)",
-      "Toddlers (0-2)",
-      "Preschool (3-5)"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Join Miss Cathy for stories, interactive rhymes and movement with sign language.",
-    "url": "https://newprovidence.librarycalendar.com/event/signs-songs-stories-miss-cathy-3259",
-    "sourceUrl": "https://newprovidence.librarycalendar.com/event/signs-songs-stories-miss-cathy-3259",
-    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
-    "address": "377 Elkwood Ave, New Providence, NJ 07974",
-    "lat": 40.7086718,
-    "lng": -74.4040653,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-16087861",
@@ -3110,7 +3080,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-09t10-30-00",
@@ -3147,7 +3117,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-storytime-ages-0-5-06-09-2026-2026-06-09",
@@ -3178,7 +3148,46 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-newprovidence-librarycalendar-com-3259",
+    "externalId": "3259",
+    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
+    "townId": "new-providence-borough",
+    "title": "Signs, Songs & Stories with Miss Cathy",
+    "venue": "New Providence Memorial Library",
+    "venueName": "New Providence Memorial Library",
+    "category": "library",
+    "source": "New Providence Memorial Library",
+    "startsAt": "2026-06-09T10:30:00-04:00",
+    "endsAt": "2026-06-09T11:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 30,
+    "ages": [
+      "toddler",
+      "preschool"
+    ],
+    "audiences": [
+      "Toddlers (0-2)",
+      "Preschool (3-5)",
+      "Toddlers (0-2)",
+      "Preschool (3-5)"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "Join Miss Cathy for stories, interactive rhymes and movement with sign language.",
+    "url": "https://newprovidence.librarycalendar.com/event/signs-songs-stories-miss-cathy-3259",
+    "sourceUrl": "https://newprovidence.librarycalendar.com/event/signs-songs-stories-miss-cathy-3259",
+    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
+    "address": "377 Elkwood Ave, New Providence, NJ 07974",
+    "lat": 40.7086718,
+    "lng": -74.4040653,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-09/Miss%20Cathy%20kids%20blurred.png"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26408",
@@ -3190,10 +3199,10 @@
     "venueName": "South Plainfield Public Library",
     "category": "library",
     "source": "South Plainfield Public Library",
-    "startsAt": "2026-06-09T10:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-09T10:30:00-04:00",
+    "endsAt": "2026-06-09T11:15:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 45,
     "ages": [
       "baby",
       "toddler",
@@ -3213,13 +3222,13 @@
     "url": "https://southplainfield.librarycalendar.com/event/toddler-storytime-26408",
     "sourceUrl": "https://southplainfield.librarycalendar.com/event/toddler-storytime-26408",
     "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
+    "address": "2484 Plainfield Ave., South Plainfield, NJ 07080",
+    "lat": 40.5837594,
+    "lng": -74.4157082,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-3448",
@@ -3231,10 +3240,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-09T13:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-09T13:00:00-04:00",
+    "endsAt": "2026-06-09T20:15:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 435,
     "ages": [
       "toddler",
       "preschool",
@@ -3256,9 +3265,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-09/open%20play%20action.jpg"
   },
   {
     "id": "libcal-bhplnj-16979560",
@@ -3297,46 +3307,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-southplainfield-librarycalendar-com-27320",
-    "externalId": "27320",
-    "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
-    "townId": "south-plainfield-borough",
-    "title": "Craft, Chat and Chill: Diamond Art Pride Keychains with NJ4S",
-    "venue": "South Plainfield Public Library",
-    "venueName": "South Plainfield Public Library",
-    "category": "library",
-    "source": "South Plainfield Public Library",
-    "startsAt": "2026-06-09T15:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "early-elementary",
-      "tween",
-      "teen"
-    ],
-    "audiences": [
-      "Tweens",
-      "Teens",
-      "Tweens",
-      "Teens"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Make a cute rainbow keychain. Plus our friends from NJ4S will be on hand to offer information, resources and support. Open to students ages 11+.",
-    "url": "https://southplainfield.librarycalendar.com/event/craft-chat-and-chill-diamond-art-pride-keychains-nj4s-27320",
-    "sourceUrl": "https://southplainfield.librarycalendar.com/event/craft-chat-and-chill-diamond-art-pride-keychains-nj4s-27320",
-    "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-09",
@@ -3365,7 +3336,7 @@
     "url": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ, USA",
+    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/07/skyfall1.webp",
     "tags": [
       "Bergen County",
@@ -3375,8 +3346,47 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
+  },
+  {
+    "id": "librarycalendar-southplainfield-librarycalendar-com-27320",
+    "externalId": "27320",
+    "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
+    "townId": "south-plainfield-borough",
+    "title": "Craft, Chat and Chill: Diamond Art Pride Keychains with NJ4S",
+    "venue": "South Plainfield Public Library",
+    "venueName": "South Plainfield Public Library",
+    "category": "library",
+    "source": "South Plainfield Public Library",
+    "startsAt": "2026-06-09T15:00:00-04:00",
+    "endsAt": "2026-06-09T16:30:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 90,
+    "ages": [
+      "early-elementary",
+      "tween",
+      "teen"
+    ],
+    "audiences": [
+      "Tweens",
+      "Teens",
+      "Tweens",
+      "Teens"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "Make a cute rainbow keychain. Plus our friends from NJ4S will be on hand to offer information, resources and support. Open to students ages 11+.",
+    "url": "https://southplainfield.librarycalendar.com/event/craft-chat-and-chill-diamond-art-pride-keychains-nj4s-27320",
+    "sourceUrl": "https://southplainfield.librarycalendar.com/event/craft-chat-and-chill-diamond-art-pride-keychains-nj4s-27320",
+    "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
+    "address": "2484 Plainfield Ave., South Plainfield, NJ 07080",
+    "lat": 40.5837594,
+    "lng": -74.4157082,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-52730",
@@ -3384,14 +3394,14 @@
     "sourceId": "librarycalendar-piscataway-librarycalendar-com",
     "townId": "piscataway-township",
     "title": "Weave A Rainbow!",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
+    "venue": "Kennedy Library",
+    "venueName": "Kennedy Library",
     "category": "library",
     "source": "Piscataway Public Library",
-    "startsAt": "2026-06-09T15:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-09T15:30:00-04:00",
+    "endsAt": "2026-06-09T16:15:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 45,
     "ages": [
       "teen"
     ],
@@ -3404,13 +3414,14 @@
     "url": "https://piscataway.librarycalendar.com/event/weave-rainbow-52730",
     "sourceUrl": "https://piscataway.librarycalendar.com/event/weave-rainbow-52730",
     "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "address": "500 Hoes Lane, Piscataway, NJ 08854",
+    "lat": 40.5366589,
+    "lng": -74.4714095,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-04/lib%20cal%20images%20may%202026%20%281%29.png"
   },
   {
     "id": "sclsnj-15767444",
@@ -3445,7 +3456,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4410",
@@ -3457,10 +3468,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-09T16:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-09T16:00:00-04:00",
+    "endsAt": "2026-06-09T17:00:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 60,
     "ages": [
       "early-elementary",
       "teen"
@@ -3481,9 +3492,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-12/Calendar%20Graphics%20%28Repeating%20events%29%20-%20Untitled%20Page%20%282%29_0.png"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-beaded-bracelet-making-for-ages-7-18-2-2026-06-09t16-30-00",
@@ -3523,7 +3535,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-in-a-pickle-2026-06-09t16-30-00",
@@ -3562,7 +3574,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-15996211",
@@ -3598,7 +3610,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5473",
@@ -3610,10 +3622,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-09T17:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-09T17:00:00-04:00",
+    "endsAt": "2026-06-09T19:00:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 120,
     "ages": [
       "preschool",
       "early-elementary"
@@ -3634,9 +3646,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2026-04/logo.png"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-52659",
@@ -3644,14 +3657,14 @@
     "sourceId": "librarycalendar-piscataway-librarycalendar-com",
     "townId": "piscataway-township",
     "title": "Marvel Movie Night",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
+    "venue": "Westergard Library",
+    "venueName": "Westergard Library",
     "category": "library",
     "source": "Piscataway Public Library",
-    "startsAt": "2026-06-09T17:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-09T17:00:00-04:00",
+    "endsAt": "2026-06-09T19:15:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 135,
     "ages": [
       "teen"
     ],
@@ -3664,13 +3677,14 @@
     "url": "https://piscataway.librarycalendar.com/event/marvel-movie-night-52659",
     "sourceUrl": "https://piscataway.librarycalendar.com/event/marvel-movie-night-52659",
     "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "address": "20 Murray Avenue, Piscataway, NJ 08854",
+    "lat": 40.5685406,
+    "lng": -74.457419,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-04/MV5BYWYyOGQzOGYtMGQ1My00ZWYxLTgzZjktZWYzN2IwYjkxYzM0XkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5422",
@@ -3682,10 +3696,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-09T17:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-09T17:30:00-04:00",
+    "endsAt": "2026-06-09T18:30:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 60,
     "ages": [
       "baby",
       "toddler",
@@ -3708,46 +3722,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-piscataway-librarycalendar-com-47595",
-    "externalId": "47595",
-    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
-    "townId": "piscataway-township",
-    "title": "Ana's World of Minis: Meet Memorable Miniature Horses!",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
-    "category": "library",
-    "source": "Piscataway Public Library",
-    "startsAt": "2026-06-09T18:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "baby",
-      "preschool",
-      "early-elementary"
-    ],
-    "audiences": [
-      "Babies-Preschoolers",
-      "Children"
-    ],
-    "cost": null,
-    "registration": "RSVP",
-    "summary": "Ages 3 to 11 years old",
-    "url": "https://piscataway.librarycalendar.com/event/anas-world-minis-memorable-miniature-horses-odyssey-and-roxxy-47595",
-    "sourceUrl": "https://piscataway.librarycalendar.com/event/anas-world-minis-memorable-miniature-horses-odyssey-and-roxxy-47595",
-    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2026-05/Calendar%20Graphics%20%28Repeating%20events%29%20-%20Untitled%20Page.png"
   },
   {
     "id": "nj-carnivals-saint-leo-the-great-parish-carnival-2026-in-lincroft-nj-2026-06-09",
@@ -3776,7 +3754,7 @@
     "url": "https://www.nj-carnivals.com/2026/saint-leo-the-great-parish-carnival-2026-in-lincroft-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/saint-leo-the-great-parish-carnival-2026-in-lincroft-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "50 Hurleys Ln, Lincroft, NJ, USA",
+    "address": "50 Hurleys Ln, Lincroft, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/zipper-round-up.webp",
     "tags": [
       "Monmouth County",
@@ -3786,7 +3764,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -3816,7 +3794,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2500 Branch Pike, Cinnaminson, NJ, USA",
+    "address": "2500 Branch Pike, Cinnaminson, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/05/yoyo1.webp",
     "tags": [
       "Burlington County",
@@ -3826,7 +3804,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -3864,7 +3842,45 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-piscataway-librarycalendar-com-47595",
+    "externalId": "47595",
+    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
+    "townId": "piscataway-township",
+    "title": "Ana's World of Minis: Meet Memorable Miniature Horses!",
+    "venue": "Kennedy Library",
+    "venueName": "Kennedy Library",
+    "category": "library",
+    "source": "Piscataway Public Library",
+    "startsAt": "2026-06-09T18:00:00-04:00",
+    "endsAt": "2026-06-09T19:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 60,
+    "ages": [
+      "baby",
+      "preschool",
+      "early-elementary"
+    ],
+    "audiences": [
+      "Babies-Preschoolers",
+      "Children"
+    ],
+    "cost": null,
+    "registration": "RSVP",
+    "summary": "Ages 3 to 11 years old",
+    "url": "https://piscataway.librarycalendar.com/event/anas-world-minis-memorable-miniature-horses-odyssey-and-roxxy-47595",
+    "sourceUrl": "https://piscataway.librarycalendar.com/event/anas-world-minis-memorable-miniature-horses-odyssey-and-roxxy-47595",
+    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
+    "address": "500 Hoes Lane, Piscataway, NJ 08854",
+    "lat": 40.5366589,
+    "lng": -74.4714095,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-05/Ana%27s%20World%20of%20Minis_Roxxy%20%26%20Odyssey.png"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-make-the-most-of-your-college-visit-2026-06-09t18-30-00",
@@ -3901,7 +3917,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-baby-bounce-storytime-06-10-2026-2026-06-10",
@@ -3933,7 +3949,7 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "libcal-bhplnj-16979616",
@@ -3941,8 +3957,8 @@
     "sourceId": "libcal-bhplnj.libcal.com",
     "townId": "berkeley-heights-township",
     "title": "Family Story Time at Memorial Park",
-    "venue": "Memorial Park",
-    "venueName": "Berkeley Heights Public Library",
+    "venue": "Veterans Memorial Park",
+    "venueName": "Veterans Memorial Park",
     "category": "library",
     "source": "Berkeley Heights Public Library",
     "startsAt": "2026-06-10T10:00:00",
@@ -3968,17 +3984,17 @@
     "url": "https://bhplnj.libcal.com/event/16979616",
     "sourceUrl": "https://bhplnj.libcal.com/event/16979616",
     "sourceCalendarUrl": "https://bhplnj.libcal.com/calendar",
-    "address": "110 Roosevelt Ave, Berkeley Heights, NJ 07922",
-    "lat": 40.678612,
-    "lng": -74.439521,
+    "address": "205 Plainfield Avenue, Berkeley Heights, NJ 07922",
+    "lat": 40.68051,
+    "lng": -74.440095,
     "image": null,
     "tags": [
       "Story Times"
     ],
     "status": "published",
-    "confidence": 0.82,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-16201759",
@@ -4015,46 +4031,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-newprovidence-librarycalendar-com-3350",
-    "externalId": "3350",
-    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
-    "townId": "new-providence-borough",
-    "title": "Mother Goose Group with Miss Debbie",
-    "venue": "New Providence Memorial Library",
-    "venueName": "New Providence Memorial Library",
-    "category": "library",
-    "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-10T10:30:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "toddler",
-      "preschool",
-      "early-elementary"
-    ],
-    "audiences": [
-      "Toddlers (0-2)",
-      "Preschool (3-5)",
-      "Toddlers (0-2)",
-      "Preschool (3-5)"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Join Miss Debbie for an active storytime of songs, fingerplays, dancing and fun. For 18 months - preschool but older kids are always welcome!",
-    "url": "https://newprovidence.librarycalendar.com/event/mother-goose-group-miss-debbie-3350",
-    "sourceUrl": "https://newprovidence.librarycalendar.com/event/mother-goose-group-miss-debbie-3350",
-    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
-    "address": "377 Elkwood Ave, New Providence, NJ 07974",
-    "lat": 40.7086718,
-    "lng": -74.4040653,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-infant-toddler-rhyme-time-2026-06-10t10-30-00",
@@ -4093,7 +4070,47 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-newprovidence-librarycalendar-com-3350",
+    "externalId": "3350",
+    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
+    "townId": "new-providence-borough",
+    "title": "Mother Goose Group with Miss Debbie",
+    "venue": "New Providence Memorial Library",
+    "venueName": "New Providence Memorial Library",
+    "category": "library",
+    "source": "New Providence Memorial Library",
+    "startsAt": "2026-06-10T10:30:00-04:00",
+    "endsAt": "2026-06-10T11:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 30,
+    "ages": [
+      "toddler",
+      "preschool",
+      "early-elementary"
+    ],
+    "audiences": [
+      "Toddlers (0-2)",
+      "Preschool (3-5)",
+      "Toddlers (0-2)",
+      "Preschool (3-5)"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "Join Miss Debbie for an active storytime of songs, fingerplays, dancing and fun. For 18 months - preschool but older kids are always welcome!",
+    "url": "https://newprovidence.librarycalendar.com/event/mother-goose-group-miss-debbie-3350",
+    "sourceUrl": "https://newprovidence.librarycalendar.com/event/mother-goose-group-miss-debbie-3350",
+    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
+    "address": "377 Elkwood Ave, New Providence, NJ 07974",
+    "lat": 40.7086718,
+    "lng": -74.4040653,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-09/goose%20image_0.gif"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26409",
@@ -4105,10 +4122,10 @@
     "venueName": "South Plainfield Public Library",
     "category": "library",
     "source": "South Plainfield Public Library",
-    "startsAt": "2026-06-10T10:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-10T10:30:00-04:00",
+    "endsAt": "2026-06-10T11:15:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 45,
     "ages": [
       "baby",
       "toddler",
@@ -4128,13 +4145,13 @@
     "url": "https://southplainfield.librarycalendar.com/event/toddler-storytime-26409",
     "sourceUrl": "https://southplainfield.librarycalendar.com/event/toddler-storytime-26409",
     "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
+    "address": "2484 Plainfield Ave., South Plainfield, NJ 07080",
+    "lat": 40.5837594,
+    "lng": -74.4157082,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-39910",
@@ -4142,14 +4159,14 @@
     "sourceId": "librarycalendar-piscataway-librarycalendar-com",
     "townId": "piscataway-township",
     "title": "Tot Time",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
+    "venue": "Kennedy Library",
+    "venueName": "Kennedy Library",
     "category": "library",
     "source": "Piscataway Public Library",
-    "startsAt": "2026-06-10T10:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-10T10:30:00-04:00",
+    "endsAt": "2026-06-10T11:00:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 30,
     "ages": [
       "baby",
       "preschool",
@@ -4164,13 +4181,13 @@
     "url": "https://piscataway.librarycalendar.com/event/tot-time-39910",
     "sourceUrl": "https://piscataway.librarycalendar.com/event/tot-time-39910",
     "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "address": "500 Hoes Lane, Piscataway, NJ 08854",
+    "lat": 40.5366589,
+    "lng": -74.4714095,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-plainfieldnj-librarycalendar-com-17604",
@@ -4178,14 +4195,14 @@
     "sourceId": "librarycalendar-plainfieldnj-librarycalendar-com",
     "townId": "plainfield-city",
     "title": "Toddler Storytime at Cindelle's Bookstore",
-    "venue": "Plainfield Public Library",
-    "venueName": "Plainfield Public Library",
+    "venue": "Cindelle's Bookstore",
+    "venueName": "Cindelle's Bookstore",
     "category": "library",
     "source": "Plainfield Public Library",
-    "startsAt": "2026-06-10T11:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-10T11:00:00-04:00",
+    "endsAt": "2026-06-10T11:45:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 45,
     "ages": [
       "baby",
       "toddler",
@@ -4206,13 +4223,14 @@
     "url": "https://plainfieldnj.librarycalendar.com/event/toddler-storytime-cindelles-bookstore-17604",
     "sourceUrl": "https://plainfieldnj.librarycalendar.com/event/toddler-storytime-cindelles-bookstore-17604",
     "sourceCalendarUrl": "https://plainfieldnj.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.615444,
-    "lng": -74.415775,
+    "address": "401 Watchung Avenue, Plainfield, NJ 07060",
+    "lat": 40.6184145,
+    "lng": -74.4188618,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://plainfieldnj.librarycalendar.com/sites/default/files/2026-05/Storytime%20Flyer%20English.jpg"
   },
   {
     "id": "sclsnj-16201731",
@@ -4249,7 +4267,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4303",
@@ -4261,10 +4279,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-10T12:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-10T12:00:00-04:00",
+    "endsAt": "2026-06-10T13:00:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 60,
     "ages": [
       "baby",
       "toddler",
@@ -4285,9 +4303,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-12/audiobook%20walking%20club%20calendar%20graphic_1.jpeg"
   },
   {
     "id": "sclsnj-16248435",
@@ -4326,7 +4345,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-41532",
@@ -4334,14 +4353,14 @@
     "sourceId": "librarycalendar-piscataway-librarycalendar-com",
     "townId": "piscataway-township",
     "title": "Local History Collection Open Hours",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
+    "venue": "Kennedy Library",
+    "venueName": "Kennedy Library",
     "category": "library",
     "source": "Piscataway Public Library",
-    "startsAt": "2026-06-10T14:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-10T14:30:00-04:00",
+    "endsAt": "2026-06-10T16:30:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 120,
     "ages": [
       "baby",
       "toddler",
@@ -4359,48 +4378,13 @@
     "url": "https://piscataway.librarycalendar.com/event/local-history-collection-open-hours-41532",
     "sourceUrl": "https://piscataway.librarycalendar.com/event/local-history-collection-open-hours-41532",
     "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "address": "500 Hoes Lane, Piscataway, NJ 08854",
+    "lat": 40.5366589,
+    "lng": -74.4714095,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-newprovidence-librarycalendar-com-4799",
-    "externalId": "4799",
-    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
-    "townId": "new-providence-borough",
-    "title": "Finals Study Space",
-    "venue": "New Providence Memorial Library",
-    "venueName": "New Providence Memorial Library",
-    "category": "library",
-    "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-10T15:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "teen"
-    ],
-    "audiences": [
-      "Teens",
-      "Teens"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "The Conti Room will be reserved for High School students to study for finals over the next week. No registration required. As always, all are welcome to use our tables and study bar anytime.",
-    "url": "https://newprovidence.librarycalendar.com/event/finals-study-space-4799",
-    "sourceUrl": "https://newprovidence.librarycalendar.com/event/finals-study-space-4799",
-    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
-    "address": "377 Elkwood Ave, New Providence, NJ 07974",
-    "lat": 40.7086718,
-    "lng": -74.4040653,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-10",
@@ -4429,7 +4413,7 @@
     "url": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ, USA",
+    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/07/skyfall1.webp",
     "tags": [
       "Bergen County",
@@ -4439,8 +4423,82 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
+  },
+  {
+    "id": "librarycalendar-newprovidence-librarycalendar-com-4799",
+    "externalId": "4799",
+    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
+    "townId": "new-providence-borough",
+    "title": "Finals Study Space",
+    "venue": "New Providence Memorial Library",
+    "venueName": "New Providence Memorial Library",
+    "category": "library",
+    "source": "New Providence Memorial Library",
+    "startsAt": "2026-06-10T15:00:00-04:00",
+    "endsAt": "2026-06-10T16:30:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 90,
+    "ages": [
+      "teen"
+    ],
+    "audiences": [
+      "Teens",
+      "Teens"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "The Conti Room will be reserved for High School students to study for finals over the next week. No registration required. As always, all are welcome to use our tables and study bar anytime.",
+    "url": "https://newprovidence.librarycalendar.com/event/finals-study-space-4799",
+    "sourceUrl": "https://newprovidence.librarycalendar.com/event/finals-study-space-4799",
+    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
+    "address": "377 Elkwood Ave, New Providence, NJ 07974",
+    "lat": 40.7086718,
+    "lng": -74.4040653,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2026-02/Calendar%20Graphics%20%28Repeating%20events%29%20-%20Untitled%20Page%20%2815%29.jpeg"
+  },
+  {
+    "id": "libcal-bhplnj-16979677",
+    "externalId": "16979677",
+    "sourceId": "libcal-bhplnj.libcal.com",
+    "townId": "berkeley-heights-township",
+    "title": "Science Explorers",
+    "venue": "Veterans Memorial Park",
+    "venueName": "Veterans Memorial Park",
+    "category": "library",
+    "source": "Berkeley Heights Public Library",
+    "startsAt": "2026-06-10T15:30:00",
+    "endsAt": "2026-06-10T16:30:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 60,
+    "ages": [
+      "early-elementary"
+    ],
+    "audiences": [
+      "Children"
+    ],
+    "cost": "",
+    "registration": "See source",
+    "summary": "Meet us at Memorial Park for an afternoon STEAM program for elementary age kids. 6/10: Building Challenge 6/24: Marble Maze Outdoor programs are subject to change due to weather, please check",
+    "url": "https://bhplnj.libcal.com/event/16979677",
+    "sourceUrl": "https://bhplnj.libcal.com/event/16979677",
+    "sourceCalendarUrl": "https://bhplnj.libcal.com/calendar",
+    "address": "205 Plainfield Avenue, Berkeley Heights, NJ 07922",
+    "lat": 40.68051,
+    "lng": -74.440095,
+    "image": "https://d68g328n4ug0e.cloudfront.net/data/feat_img/6890/21879/1753802959.png",
+    "tags": [
+      "STEAM"
+    ],
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T05:38:36.396Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-5474",
@@ -4452,10 +4510,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-10T15:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-10T15:30:00-04:00",
+    "endsAt": "2026-06-10T16:30:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 60,
     "ages": [
       "preschool",
       "early-elementary"
@@ -4476,47 +4534,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "libcal-bhplnj-16979677",
-    "externalId": "16979677",
-    "sourceId": "libcal-bhplnj.libcal.com",
-    "townId": "berkeley-heights-township",
-    "title": "Science Explorers",
-    "venue": "Memorial Park",
-    "venueName": "Berkeley Heights Public Library",
-    "category": "library",
-    "source": "Berkeley Heights Public Library",
-    "startsAt": "2026-06-10T15:30:00",
-    "endsAt": "2026-06-10T16:30:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 60,
-    "ages": [
-      "early-elementary"
-    ],
-    "audiences": [
-      "Children"
-    ],
-    "cost": "",
-    "registration": "See source",
-    "summary": "Meet us at Memorial Park for an afternoon STEAM program for elementary age kids. 6/10: Building Challenge 6/24: Marble Maze Outdoor programs are subject to change due to weather, please check",
-    "url": "https://bhplnj.libcal.com/event/16979677",
-    "sourceUrl": "https://bhplnj.libcal.com/event/16979677",
-    "sourceCalendarUrl": "https://bhplnj.libcal.com/calendar",
-    "address": "110 Roosevelt Ave, Berkeley Heights, NJ 07922",
-    "lat": 40.678612,
-    "lng": -74.439521,
-    "image": "https://d68g328n4ug0e.cloudfront.net/data/feat_img/6890/21879/1753802959.png",
-    "tags": [
-      "STEAM"
-    ],
-    "status": "published",
-    "confidence": 0.82,
-    "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2026-04/logo.png"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-kids-june-craft-ages-4-2026-06-10",
@@ -4549,41 +4570,7 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-piscataway-librarycalendar-com-52523",
-    "externalId": "52523",
-    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
-    "townId": "piscataway-township",
-    "title": "Art Around the World: Henna Traditions",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
-    "category": "library",
-    "source": "Piscataway Public Library",
-    "startsAt": "2026-06-10T16:30:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "teen"
-    ],
-    "audiences": [
-      "Teens"
-    ],
-    "cost": null,
-    "registration": "RSVP",
-    "summary": "This workshop will trace the origins of henna and explore how designs vary across cultures and traditions. Attendees will then receive henna cones and be guided to create various patterns.",
-    "url": "https://piscataway.librarycalendar.com/event/hold-henna-52523",
-    "sourceUrl": "https://piscataway.librarycalendar.com/event/hold-henna-52523",
-    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-15965136",
@@ -4619,7 +4606,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-my-first-book-club-for-grades-1-2-ages-5-8-5-2026-06-10t16-30-00",
@@ -4659,7 +4646,42 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-piscataway-librarycalendar-com-52523",
+    "externalId": "52523",
+    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
+    "townId": "piscataway-township",
+    "title": "Art Around the World: Henna Traditions",
+    "venue": "Westergard Library",
+    "venueName": "Westergard Library",
+    "category": "library",
+    "source": "Piscataway Public Library",
+    "startsAt": "2026-06-10T16:30:00-04:00",
+    "endsAt": "2026-06-10T18:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 90,
+    "ages": [
+      "teen"
+    ],
+    "audiences": [
+      "Teens"
+    ],
+    "cost": null,
+    "registration": "RSVP",
+    "summary": "This workshop will trace the origins of henna and explore how designs vary across cultures and traditions. Attendees will then receive henna cones and be guided to create various patterns.",
+    "url": "https://piscataway.librarycalendar.com/event/hold-henna-52523",
+    "sourceUrl": "https://piscataway.librarycalendar.com/event/hold-henna-52523",
+    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
+    "address": "20 Murray Avenue, Piscataway, NJ 08854",
+    "lat": 40.5685406,
+    "lng": -74.457419,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-04/Art%20Around%20the%20World.png"
   },
   {
     "id": "nj-carnivals-st-anthony-feast-2026-in-hawthorne-nj-2026-06-10",
@@ -4688,7 +4710,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-anthony-feast-2026-in-hawthorne-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-anthony-feast-2026-in-hawthorne-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "276 Diamond Bridge Ave, Hawthorne, NJ, USA",
+    "address": "276 Diamond Bridge Ave, Hawthorne, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/St.-Anthony-Feast-2026-Final.webp",
     "tags": [
       "Passaic County",
@@ -4697,7 +4719,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -4727,7 +4749,7 @@
     "url": "https://www.nj-carnivals.com/2026/glen-rock-family-fun-fair-2026-in-glen-rock-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/glen-rock-family-fun-fair-2026-in-glen-rock-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "683 Maple Ave, Glen Rock, NJ, USA",
+    "address": "683 Maple Ave, Glen Rock, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/03/wheel2.webp",
     "tags": [
       "Bergen County",
@@ -4736,7 +4758,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -4768,9 +4790,9 @@
     "url": "https://summitlibrary.libcal.com/event/15533097",
     "sourceUrl": "https://summitlibrary.libcal.com/event/15533097",
     "sourceCalendarUrl": "https://summitlibrary.libcal.com/calendar",
-    "address": null,
-    "lat": 40.715622,
-    "lng": -74.364684,
+    "address": "75 Maple Street, Summit, NJ 07901",
+    "lat": 40.7152466,
+    "lng": -74.360276,
     "image": null,
     "tags": [
       "Board of Trustees meetings"
@@ -4778,7 +4800,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-16088034",
@@ -4818,7 +4840,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-library-chef-teen-pancake-muffins-2026-06-10t18-00-00",
@@ -4859,7 +4881,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-saint-leo-the-great-parish-carnival-2026-in-lincroft-nj-2026-06-10",
@@ -4888,7 +4910,7 @@
     "url": "https://www.nj-carnivals.com/2026/saint-leo-the-great-parish-carnival-2026-in-lincroft-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/saint-leo-the-great-parish-carnival-2026-in-lincroft-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "50 Hurleys Ln, Lincroft, NJ, USA",
+    "address": "50 Hurleys Ln, Lincroft, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/zipper-round-up.webp",
     "tags": [
       "Monmouth County",
@@ -4898,7 +4920,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -4928,7 +4950,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2500 Branch Pike, Cinnaminson, NJ, USA",
+    "address": "2500 Branch Pike, Cinnaminson, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/05/yoyo1.webp",
     "tags": [
       "Burlington County",
@@ -4938,7 +4960,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -4976,7 +4998,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-warren-lions-expo-2026-in-warren-nj-2026-06-10",
@@ -5005,9 +5027,9 @@
     "url": "https://www.nj-carnivals.com/2026/warren-lions-expo-2026-in-warren-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/warren-lions-expo-2026-in-warren-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "46 Mountain Blvd #2, Warren, NJ, USA",
-    "lat": 40.634588,
-    "lng": -74.519044,
+    "address": "46 Mountain Boulevard, Warren, NJ 07059",
+    "lat": 40.619261,
+    "lng": -74.490372,
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/02/lions-expo-2026_1.webp",
     "tags": [
       "Somerset County",
@@ -5019,7 +5041,7 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": true
   },
   {
@@ -5064,7 +5086,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-16182709",
@@ -5101,42 +5123,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-southplainfield-librarycalendar-com-26422",
-    "externalId": "26422",
-    "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
-    "townId": "south-plainfield-borough",
-    "title": "Baby Time",
-    "venue": "South Plainfield Public Library",
-    "venueName": "South Plainfield Public Library",
-    "category": "library",
-    "source": "South Plainfield Public Library",
-    "startsAt": "2026-06-11T10:30:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "baby"
-    ],
-    "audiences": [
-      "Babies",
-      "Babies"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Baby Time:",
-    "url": "https://southplainfield.librarycalendar.com/event/baby-time-26422",
-    "sourceUrl": "https://southplainfield.librarycalendar.com/event/baby-time-26422",
-    "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-11t10-30-00",
@@ -5173,7 +5160,43 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-southplainfield-librarycalendar-com-26422",
+    "externalId": "26422",
+    "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
+    "townId": "south-plainfield-borough",
+    "title": "Baby Time",
+    "venue": "South Plainfield Public Library",
+    "venueName": "South Plainfield Public Library",
+    "category": "library",
+    "source": "South Plainfield Public Library",
+    "startsAt": "2026-06-11T10:30:00-04:00",
+    "endsAt": "2026-06-11T11:15:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 45,
+    "ages": [
+      "baby"
+    ],
+    "audiences": [
+      "Babies",
+      "Babies"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "Baby Time:",
+    "url": "https://southplainfield.librarycalendar.com/event/baby-time-26422",
+    "sourceUrl": "https://southplainfield.librarycalendar.com/event/baby-time-26422",
+    "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
+    "address": "2484 Plainfield Ave., South Plainfield, NJ 07080",
+    "lat": 40.5837594,
+    "lng": -74.4157082,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://southplainfield.librarycalendar.com/sites/default/files/2023-05/BABYTIME_0.png"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-3682",
@@ -5185,10 +5208,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-11T10:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-11T10:30:00-04:00",
+    "endsAt": "2026-06-11T11:00:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 30,
     "ages": [
       "baby",
       "toddler",
@@ -5210,9 +5233,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-10/Story%20Time_0.png"
   },
   {
     "id": "sclsnj-16182760",
@@ -5249,7 +5273,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-11",
@@ -5278,7 +5302,7 @@
     "url": "https://www.nj-carnivals.com/2026/north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "630 US-1, North Brunswick, NJ, USA",
+    "address": "630 US-1, North Brunswick, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2025/05/nbysf-1.webp",
     "tags": [
       "Middlesex County",
@@ -5291,7 +5315,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -5323,7 +5347,7 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-newprovidence-librarycalendar-com-4369",
@@ -5335,10 +5359,10 @@
     "venueName": "New Providence Memorial Library",
     "category": "library",
     "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-11T13:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-11T13:30:00-04:00",
+    "endsAt": "2026-06-11T14:15:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 45,
     "ages": [
       "preschool",
       "early-elementary"
@@ -5357,44 +5381,10 @@
     "lat": 40.7086718,
     "lng": -74.4040653,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-newprovidence-librarycalendar-com-4800",
-    "externalId": "4800",
-    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
-    "townId": "new-providence-borough",
-    "title": "Finals Study Space",
-    "venue": "New Providence Memorial Library",
-    "venueName": "New Providence Memorial Library",
-    "category": "library",
-    "source": "New Providence Memorial Library",
-    "startsAt": "2026-06-11T15:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "teen"
-    ],
-    "audiences": [
-      "Teens",
-      "Teens"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "The Conti Room will be reserved for High School students to study for finals over the next week. No registration required. As always, all are welcome to use our tables and study bar anytime.",
-    "url": "https://newprovidence.librarycalendar.com/event/finals-study-space-4800",
-    "sourceUrl": "https://newprovidence.librarycalendar.com/event/finals-study-space-4800",
-    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
-    "address": "377 Elkwood Ave, New Providence, NJ 07974",
-    "lat": 40.7086718,
-    "lng": -74.4040653,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2025-12/image%20for%20website.jpg"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-11",
@@ -5423,7 +5413,7 @@
     "url": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ, USA",
+    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/07/skyfall1.webp",
     "tags": [
       "Bergen County",
@@ -5433,8 +5423,44 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
+  },
+  {
+    "id": "librarycalendar-newprovidence-librarycalendar-com-4800",
+    "externalId": "4800",
+    "sourceId": "librarycalendar-newprovidence-librarycalendar-com",
+    "townId": "new-providence-borough",
+    "title": "Finals Study Space",
+    "venue": "New Providence Memorial Library",
+    "venueName": "New Providence Memorial Library",
+    "category": "library",
+    "source": "New Providence Memorial Library",
+    "startsAt": "2026-06-11T15:00:00-04:00",
+    "endsAt": "2026-06-11T19:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 240,
+    "ages": [
+      "teen"
+    ],
+    "audiences": [
+      "Teens",
+      "Teens"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "The Conti Room will be reserved for High School students to study for finals over the next week. No registration required. As always, all are welcome to use our tables and study bar anytime.",
+    "url": "https://newprovidence.librarycalendar.com/event/finals-study-space-4800",
+    "sourceUrl": "https://newprovidence.librarycalendar.com/event/finals-study-space-4800",
+    "sourceCalendarUrl": "https://newprovidence.librarycalendar.com/events/list",
+    "address": "377 Elkwood Ave, New Providence, NJ 07974",
+    "lat": 40.7086718,
+    "lng": -74.4040653,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://newprovidence.librarycalendar.com/sites/default/files/2026-02/Calendar%20Graphics%20%28Repeating%20events%29%20-%20Untitled%20Page%20%2815%29_0.jpeg"
   },
   {
     "id": "libcal-bhplnj-16979637",
@@ -5476,7 +5502,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-sensory-play-ages-1-6-3-2026-06-11t16-00-00",
@@ -5514,7 +5540,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-st-anthony-feast-2026-in-hawthorne-nj-2026-06-11",
@@ -5543,7 +5569,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-anthony-feast-2026-in-hawthorne-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-anthony-feast-2026-in-hawthorne-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "276 Diamond Bridge Ave, Hawthorne, NJ, USA",
+    "address": "276 Diamond Bridge Ave, Hawthorne, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/St.-Anthony-Feast-2026-Final.webp",
     "tags": [
       "Passaic County",
@@ -5552,7 +5578,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -5582,7 +5608,7 @@
     "url": "https://www.nj-carnivals.com/2026/glen-rock-family-fun-fair-2026-in-glen-rock-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/glen-rock-family-fun-fair-2026-in-glen-rock-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "683 Maple Ave, Glen Rock, NJ, USA",
+    "address": "683 Maple Ave, Glen Rock, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/03/wheel2.webp",
     "tags": [
       "Bergen County",
@@ -5591,7 +5617,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -5631,7 +5657,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-47819",
@@ -5639,14 +5665,14 @@
     "sourceId": "librarycalendar-piscataway-librarycalendar-com",
     "townId": "piscataway-township",
     "title": "Learn to Crochet for Kids",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
+    "venue": "Kennedy Library",
+    "venueName": "Kennedy Library",
     "category": "library",
     "source": "Piscataway Public Library",
-    "startsAt": "2026-06-11T17:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-11T17:30:00-04:00",
+    "endsAt": "2026-06-11T18:30:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 60,
     "ages": [
       "early-elementary",
       "tween"
@@ -5660,51 +5686,14 @@
     "url": "https://piscataway.librarycalendar.com/learn-to-crochet-kids",
     "sourceUrl": "https://piscataway.librarycalendar.com/learn-to-crochet-kids",
     "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "address": "500 Hoes Lane, Piscataway, NJ 08854",
+    "lat": 40.5366589,
+    "lng": -74.4714095,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-southplainfield-librarycalendar-com-26586",
-    "externalId": "26586",
-    "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
-    "townId": "south-plainfield-borough",
-    "title": "Beginner Crochet for Tweens & Teens",
-    "venue": "South Plainfield Public Library",
-    "venueName": "South Plainfield Public Library",
-    "category": "library",
-    "source": "South Plainfield Public Library",
-    "startsAt": "2026-06-11T18:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "tween",
-      "teen"
-    ],
-    "audiences": [
-      "Tweens",
-      "Teens",
-      "Tweens",
-      "Teens"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Join instructor Pat Publik as she leads Beginner Crochet for tweens and teens. Please b ring a skein of worsted weight yarn in a light color and a crochet hook size G or H. No experience necessary.",
-    "url": "https://southplainfield.librarycalendar.com/event/beginner-crochet-tweens-teens-26586",
-    "sourceUrl": "https://southplainfield.librarycalendar.com/event/beginner-crochet-tweens-teens-26586",
-    "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-05/crochet.png"
   },
   {
     "id": "libcal-bhplnj-17017259",
@@ -5743,7 +5732,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-saint-leo-the-great-parish-carnival-2026-in-lincroft-nj-2026-06-11",
@@ -5772,7 +5761,7 @@
     "url": "https://www.nj-carnivals.com/2026/saint-leo-the-great-parish-carnival-2026-in-lincroft-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/saint-leo-the-great-parish-carnival-2026-in-lincroft-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "50 Hurleys Ln, Lincroft, NJ, USA",
+    "address": "50 Hurleys Ln, Lincroft, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/zipper-round-up.webp",
     "tags": [
       "Monmouth County",
@@ -5782,7 +5771,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -5812,7 +5801,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2500 Branch Pike, Cinnaminson, NJ, USA",
+    "address": "2500 Branch Pike, Cinnaminson, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/05/yoyo1.webp",
     "tags": [
       "Burlington County",
@@ -5822,7 +5811,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -5852,9 +5841,9 @@
     "url": "https://www.nj-carnivals.com/2026/warren-lions-expo-2026-in-warren-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/warren-lions-expo-2026-in-warren-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "46 Mountain Blvd #2, Warren, NJ, USA",
-    "lat": 40.634588,
-    "lng": -74.519044,
+    "address": "46 Mountain Boulevard, Warren, NJ 07059",
+    "lat": 40.619261,
+    "lng": -74.490372,
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/02/lions-expo-2026_1.webp",
     "tags": [
       "Somerset County",
@@ -5866,8 +5855,46 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": true
+  },
+  {
+    "id": "librarycalendar-southplainfield-librarycalendar-com-26586",
+    "externalId": "26586",
+    "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
+    "townId": "south-plainfield-borough",
+    "title": "Beginner Crochet for Tweens & Teens",
+    "venue": "South Plainfield Public Library",
+    "venueName": "South Plainfield Public Library",
+    "category": "library",
+    "source": "South Plainfield Public Library",
+    "startsAt": "2026-06-11T18:00:00-04:00",
+    "endsAt": "2026-06-11T19:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 60,
+    "ages": [
+      "tween",
+      "teen"
+    ],
+    "audiences": [
+      "Tweens",
+      "Teens",
+      "Tweens",
+      "Teens"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "Join instructor Pat Publik as she leads Beginner Crochet for tweens and teens. Please b ring a skein of worsted weight yarn in a light color and a crochet hook size G or H. No experience necessary.",
+    "url": "https://southplainfield.librarycalendar.com/event/beginner-crochet-tweens-teens-26586",
+    "sourceUrl": "https://southplainfield.librarycalendar.com/event/beginner-crochet-tweens-teens-26586",
+    "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
+    "address": "2484 Plainfield Ave., South Plainfield, NJ 07080",
+    "lat": 40.5837594,
+    "lng": -74.4157082,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-40577",
@@ -5875,14 +5902,14 @@
     "sourceId": "librarycalendar-piscataway-librarycalendar-com",
     "townId": "piscataway-township",
     "title": "Food for Thought: My First Popsicle",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
+    "venue": "Kennedy Library",
+    "venueName": "Kennedy Library",
     "category": "library",
     "source": "Piscataway Public Library",
-    "startsAt": "2026-06-11T18:30:00",
-    "endsAt": null,
+    "startsAt": "2026-06-11T18:30:00-04:00",
+    "endsAt": "2026-06-11T20:00:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 90,
     "ages": [
       "teen"
     ],
@@ -5896,13 +5923,14 @@
     "url": "https://piscataway.librarycalendar.com/my-first-popsicle",
     "sourceUrl": "https://piscataway.librarycalendar.com/my-first-popsicle",
     "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "address": "500 Hoes Lane, Piscataway, NJ 08854",
+    "lat": 40.5366589,
+    "lng": -74.4714095,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-04/9780593613054.jpg"
   },
   {
     "id": "joomla-eventbooking-mountainsidelibrary-org-drop-in-craft-06-12-2026-2026-06-12",
@@ -5933,7 +5961,7 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "libcal-bhplnj-16979632",
@@ -5975,7 +6003,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-16184587",
@@ -6013,77 +6041,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-southplainfield-librarycalendar-com-26423",
-    "externalId": "26423",
-    "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
-    "townId": "south-plainfield-borough",
-    "title": "Baby Time",
-    "venue": "South Plainfield Public Library",
-    "venueName": "South Plainfield Public Library",
-    "category": "library",
-    "source": "South Plainfield Public Library",
-    "startsAt": "2026-06-12T10:30:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "baby"
-    ],
-    "audiences": [
-      "Babies",
-      "Babies"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Baby Time:",
-    "url": "https://southplainfield.librarycalendar.com/event/baby-time-26423",
-    "sourceUrl": "https://southplainfield.librarycalendar.com/event/baby-time-26423",
-    "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-piscataway-librarycalendar-com-51483",
-    "externalId": "51483",
-    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
-    "townId": "piscataway-township",
-    "title": "Rhyme Time",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
-    "category": "library",
-    "source": "Piscataway Public Library",
-    "startsAt": "2026-06-12T10:30:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "baby",
-      "preschool"
-    ],
-    "audiences": [
-      "Babies-Preschoolers"
-    ],
-    "cost": null,
-    "registration": "RSVP",
-    "summary": "Ages 6-24 months",
-    "url": "https://piscataway.librarycalendar.com/event/rhyme-time-51483",
-    "sourceUrl": "https://piscataway.librarycalendar.com/event/rhyme-time-51483",
-    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-storytime-2-2026-06-12t10-30-00",
@@ -6120,7 +6078,79 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-southplainfield-librarycalendar-com-26423",
+    "externalId": "26423",
+    "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
+    "townId": "south-plainfield-borough",
+    "title": "Baby Time",
+    "venue": "South Plainfield Public Library",
+    "venueName": "South Plainfield Public Library",
+    "category": "library",
+    "source": "South Plainfield Public Library",
+    "startsAt": "2026-06-12T10:30:00-04:00",
+    "endsAt": "2026-06-12T11:15:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 45,
+    "ages": [
+      "baby"
+    ],
+    "audiences": [
+      "Babies",
+      "Babies"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "Baby Time:",
+    "url": "https://southplainfield.librarycalendar.com/event/baby-time-26423",
+    "sourceUrl": "https://southplainfield.librarycalendar.com/event/baby-time-26423",
+    "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
+    "address": "2484 Plainfield Ave., South Plainfield, NJ 07080",
+    "lat": 40.5837594,
+    "lng": -74.4157082,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://southplainfield.librarycalendar.com/sites/default/files/2023-05/BABYTIME_0.png"
+  },
+  {
+    "id": "librarycalendar-piscataway-librarycalendar-com-51483",
+    "externalId": "51483",
+    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
+    "townId": "piscataway-township",
+    "title": "Rhyme Time",
+    "venue": "Westergard Library",
+    "venueName": "Westergard Library",
+    "category": "library",
+    "source": "Piscataway Public Library",
+    "startsAt": "2026-06-12T10:30:00-04:00",
+    "endsAt": "2026-06-12T11:15:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 45,
+    "ages": [
+      "baby",
+      "preschool"
+    ],
+    "audiences": [
+      "Babies-Preschoolers"
+    ],
+    "cost": null,
+    "registration": "RSVP",
+    "summary": "Ages 6-24 months",
+    "url": "https://piscataway.librarycalendar.com/event/rhyme-time-51483",
+    "sourceUrl": "https://piscataway.librarycalendar.com/event/rhyme-time-51483",
+    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
+    "address": "20 Murray Avenue, Piscataway, NJ 08854",
+    "lat": 40.5685406,
+    "lng": -74.457419,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2023-12/Rhyme%20Time%20%285%29.png"
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-12",
@@ -6149,7 +6179,7 @@
     "url": "https://www.nj-carnivals.com/2026/north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "630 US-1, North Brunswick, NJ, USA",
+    "address": "630 US-1, North Brunswick, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2025/05/nbysf-1.webp",
     "tags": [
       "Middlesex County",
@@ -6162,7 +6192,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -6208,7 +6238,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-12",
@@ -6237,7 +6267,7 @@
     "url": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ, USA",
+    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/07/skyfall1.webp",
     "tags": [
       "Bergen County",
@@ -6247,7 +6277,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -6260,10 +6290,10 @@
     "venueName": "South Plainfield Public Library",
     "category": "library",
     "source": "South Plainfield Public Library",
-    "startsAt": "2026-06-12T15:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-12T15:00:00-04:00",
+    "endsAt": "2026-06-12T17:00:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 120,
     "ages": [
       "early-elementary",
       "tween",
@@ -6281,13 +6311,14 @@
     "url": "https://southplainfield.librarycalendar.com/event/makers-time-person-26842",
     "sourceUrl": "https://southplainfield.librarycalendar.com/event/makers-time-person-26842",
     "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
+    "address": "2484 Plainfield Ave., South Plainfield, NJ 07080",
+    "lat": 40.5837594,
+    "lng": -74.4157082,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://southplainfield.librarycalendar.com/sites/default/files/2025-06/STEAM.png"
   },
   {
     "id": "librarycalendar-piscataway-librarycalendar-com-53649",
@@ -6295,14 +6326,14 @@
     "sourceId": "librarycalendar-piscataway-librarycalendar-com",
     "townId": "piscataway-township",
     "title": "Teen Volunteer Orientation",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
+    "venue": "Westergard Library",
+    "venueName": "Westergard Library",
     "category": "library",
     "source": "Piscataway Public Library",
-    "startsAt": "2026-06-12T15:00:00",
-    "endsAt": null,
+    "startsAt": "2026-06-12T15:00:00-04:00",
+    "endsAt": "2026-06-12T15:45:00-04:00",
     "timezone": "America/New_York",
-    "durationMinutes": null,
+    "durationMinutes": 45,
     "ages": [
       "teen"
     ],
@@ -6315,13 +6346,14 @@
     "url": "https://piscataway.librarycalendar.com/event/teen-volunteer-orientation-53649",
     "sourceUrl": "https://piscataway.librarycalendar.com/event/teen-volunteer-orientation-53649",
     "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "address": "20 Murray Avenue, Piscataway, NJ 08854",
+    "lat": 40.5685406,
+    "lng": -74.457419,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.9,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2023-11/LibCal%20Images_3.png"
   },
   {
     "id": "sclsnj-16087944",
@@ -6360,7 +6392,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "libcal-bhplnj-16979672",
@@ -6405,7 +6437,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-st-anthony-feast-2026-in-hawthorne-nj-2026-06-12",
@@ -6434,7 +6466,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-anthony-feast-2026-in-hawthorne-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-anthony-feast-2026-in-hawthorne-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "276 Diamond Bridge Ave, Hawthorne, NJ, USA",
+    "address": "276 Diamond Bridge Ave, Hawthorne, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/St.-Anthony-Feast-2026-Final.webp",
     "tags": [
       "Passaic County",
@@ -6443,7 +6475,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -6473,7 +6505,7 @@
     "url": "https://www.nj-carnivals.com/2026/glen-rock-family-fun-fair-2026-in-glen-rock-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/glen-rock-family-fun-fair-2026-in-glen-rock-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "683 Maple Ave, Glen Rock, NJ, USA",
+    "address": "683 Maple Ave, Glen Rock, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/03/wheel2.webp",
     "tags": [
       "Bergen County",
@@ -6482,7 +6514,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -6512,7 +6544,7 @@
     "url": "https://www.nj-carnivals.com/2026/saint-leo-the-great-parish-carnival-2026-in-lincroft-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/saint-leo-the-great-parish-carnival-2026-in-lincroft-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "50 Hurleys Ln, Lincroft, NJ, USA",
+    "address": "50 Hurleys Ln, Lincroft, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/zipper-round-up.webp",
     "tags": [
       "Monmouth County",
@@ -6522,7 +6554,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -6552,7 +6584,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2500 Branch Pike, Cinnaminson, NJ, USA",
+    "address": "2500 Branch Pike, Cinnaminson, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/05/yoyo1.webp",
     "tags": [
       "Burlington County",
@@ -6562,7 +6594,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -6592,9 +6624,9 @@
     "url": "https://www.nj-carnivals.com/2026/warren-lions-expo-2026-in-warren-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/warren-lions-expo-2026-in-warren-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "46 Mountain Blvd #2, Warren, NJ, USA",
-    "lat": 40.634588,
-    "lng": -74.519044,
+    "address": "46 Mountain Boulevard, Warren, NJ 07059",
+    "lat": 40.619261,
+    "lng": -74.490372,
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/02/lions-expo-2026_1.webp",
     "tags": [
       "Somerset County",
@@ -6606,7 +6638,7 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": true
   },
   {
@@ -6636,8 +6668,8 @@
     "sourceUrl": "https://www.reeves-reedarboretum.org/learn/kids-programs/",
     "sourceCalendarUrl": "https://www.reeves-reedarboretum.org/events/",
     "address": "165 Hobart Ave, Summit, NJ 07901",
-    "lat": 40.715622,
-    "lng": -74.364684,
+    "lat": 40.726543,
+    "lng": -74.349509,
     "tags": [
       "arboretum-family-programs",
       "kids",
@@ -6646,7 +6678,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T14:13:50.876Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "lowes-kids-club-piscataway-0692-2026-06-13-diy-toy-box",
@@ -6675,8 +6707,8 @@
     "sourceUrl": "https://www.lowes.com/store/NJ-Piscataway/0692",
     "sourceCalendarUrl": "https://www.lowes.com/diy-projects-and-ideas/workshops",
     "address": "1345 Centennial Ave, Piscataway, NJ 08854",
-    "lat": 40.545539,
-    "lng": -74.46072,
+    "lat": 40.552462,
+    "lng": -74.45422,
     "tags": [
       "retail-kids-workshop",
       "kids",
@@ -6685,7 +6717,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-knit-in-public-day-3-2026-06-13t10-00-00",
@@ -6729,47 +6761,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-piscataway-librarycalendar-com-53816",
-    "externalId": "53816",
-    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
-    "townId": "piscataway-township",
-    "title": "Piscataway Street Fair",
-    "venue": "Piscataway Public Library",
-    "venueName": "Piscataway Public Library",
-    "category": "library",
-    "source": "Piscataway Public Library",
-    "startsAt": "2026-06-13T10:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "baby",
-      "preschool",
-      "early-elementary",
-      "teen"
-    ],
-    "audiences": [
-      "Babies-Preschoolers",
-      "Children",
-      "Teens",
-      "Adults"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "See you at the Street Fair! Visit the Library booth at the Street Fair for giveaways, crafts, and more!",
-    "url": "https://piscataway.librarycalendar.com/event/piscataway-street-fair-53816",
-    "sourceUrl": "https://piscataway.librarycalendar.com/event/piscataway-street-fair-53816",
-    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.545539,
-    "lng": -74.46072,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "libcal-bhplnj-16979749",
@@ -6814,7 +6806,48 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
+  },
+  {
+    "id": "librarycalendar-piscataway-librarycalendar-com-53816",
+    "externalId": "53816",
+    "sourceId": "librarycalendar-piscataway-librarycalendar-com",
+    "townId": "piscataway-township",
+    "title": "Piscataway Street Fair",
+    "venue": "Piscataway Street Fair",
+    "venueName": "Piscataway Street Fair",
+    "category": "library",
+    "source": "Piscataway Public Library",
+    "startsAt": "2026-06-13T10:00:00-04:00",
+    "endsAt": "2026-06-13T16:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 360,
+    "ages": [
+      "baby",
+      "preschool",
+      "early-elementary",
+      "teen"
+    ],
+    "audiences": [
+      "Babies-Preschoolers",
+      "Children",
+      "Teens",
+      "Adults"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "See you at the Street Fair! Visit the Library booth at the Street Fair for giveaways, crafts, and more!",
+    "url": "https://piscataway.librarycalendar.com/event/piscataway-street-fair-53816",
+    "sourceUrl": "https://piscataway.librarycalendar.com/event/piscataway-street-fair-53816",
+    "sourceCalendarUrl": "https://piscataway.librarycalendar.com/events/list",
+    "address": "Stockton Street in Piscataway Behind the Piscataway YMCA, Piscataway, NJ 08854",
+    "lat": 40.5335402,
+    "lng": -74.4712959,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-05/Street%20Fair%20logo.jpg"
   },
   {
     "id": "sclsnj-16437177",
@@ -6854,7 +6887,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-live-animals-from-zoophoria-nj-2026-06-13t11-00-00",
@@ -6893,7 +6926,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "librarycalendar-southplainfield-librarycalendar-com-26468",
@@ -6901,8 +6934,8 @@
     "sourceId": "librarycalendar-southplainfield-librarycalendar-com",
     "townId": "south-plainfield-borough",
     "title": "Online Course - Basics of Biology",
-    "venue": "South Plainfield Public Library",
-    "venueName": "South Plainfield Public Library",
+    "venue": "Online",
+    "venueName": "Online",
     "category": "library",
     "source": "South Plainfield Public Library",
     "startsAt": "2026-06-13T11:00:00",
@@ -6926,12 +6959,11 @@
     "sourceUrl": "https://southplainfield.librarycalendar.com/event/online-course-basics-biology-26468",
     "sourceCalendarUrl": "https://southplainfield.librarycalendar.com/events/list",
     "address": null,
-    "lat": 40.574413,
-    "lng": -74.4148,
     "status": "published",
-    "confidence": 0.8,
+    "confidence": 0.82,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "withinCoverage": false
   },
   {
     "id": "sclsnj-16247084",
@@ -6971,45 +7003,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
-  },
-  {
-    "id": "librarycalendar-plainfieldnj-librarycalendar-com-17600",
-    "externalId": "17600",
-    "sourceId": "librarycalendar-plainfieldnj-librarycalendar-com",
-    "townId": "plainfield-city",
-    "title": "Grand Reopening Celebration",
-    "venue": "Plainfield Public Library",
-    "venueName": "Plainfield Public Library",
-    "category": "library",
-    "source": "Plainfield Public Library",
-    "startsAt": "2026-06-13T12:00:00",
-    "endsAt": null,
-    "timezone": "America/New_York",
-    "durationMinutes": null,
-    "ages": [
-      "baby",
-      "toddler",
-      "preschool",
-      "early-elementary"
-    ],
-    "audiences": [
-      "Everyone",
-      "Everyone"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "📚 After months of transformative renovations, the Plainfield Public Library will host a Grand Reopening Celebration on Saturday, June 13!",
-    "url": "https://plainfieldnj.librarycalendar.com/event/grand-reopening-celebration-17600",
-    "sourceUrl": "https://plainfieldnj.librarycalendar.com/event/grand-reopening-celebration-17600",
-    "sourceCalendarUrl": "https://plainfieldnj.librarycalendar.com/events/list",
-    "address": null,
-    "lat": 40.615444,
-    "lng": -74.415775,
-    "status": "published",
-    "confidence": 0.8,
-    "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj-2026-06-13",
@@ -7038,7 +7032,7 @@
     "url": "https://www.nj-carnivals.com/2026/north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/north-brunswick-youth-sports-festival-2026-in-north-brunswick-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "630 US-1, North Brunswick, NJ, USA",
+    "address": "630 US-1, North Brunswick, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2025/05/nbysf-1.webp",
     "tags": [
       "Middlesex County",
@@ -7051,8 +7045,47 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
+  },
+  {
+    "id": "librarycalendar-plainfieldnj-librarycalendar-com-17600",
+    "externalId": "17600",
+    "sourceId": "librarycalendar-plainfieldnj-librarycalendar-com",
+    "townId": "plainfield-city",
+    "title": "Grand Reopening Celebration",
+    "venue": "Plainfield Public Library",
+    "venueName": "Plainfield Public Library",
+    "category": "library",
+    "source": "Plainfield Public Library",
+    "startsAt": "2026-06-13T12:00:00-04:00",
+    "endsAt": "2026-06-13T15:00:00-04:00",
+    "timezone": "America/New_York",
+    "durationMinutes": 180,
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "early-elementary"
+    ],
+    "audiences": [
+      "Everyone",
+      "Everyone"
+    ],
+    "cost": null,
+    "registration": "See source",
+    "summary": "📚 After months of transformative renovations, the Plainfield Public Library will host a Grand Reopening Celebration on Saturday, June 13!",
+    "url": "https://plainfieldnj.librarycalendar.com/event/grand-reopening-celebration-17600",
+    "sourceUrl": "https://plainfieldnj.librarycalendar.com/event/grand-reopening-celebration-17600",
+    "sourceCalendarUrl": "https://plainfieldnj.librarycalendar.com/events/list",
+    "address": "800 Park Ave., Plainfield, NJ 07060",
+    "lat": 40.6133591,
+    "lng": -74.4153546,
+    "status": "published",
+    "confidence": 0.9,
+    "firstSeenAt": "2026-06-07T04:14:31.266Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
+    "image": "https://plainfieldnj.librarycalendar.com/sites/default/files/2026-05/ReopeningEng_0.png"
   },
   {
     "id": "eventorganiser-longhilllibrary-org-hacakaneers-coding-club-grades-3-8-2026-06-13t13-00-00",
@@ -7090,7 +7123,7 @@
     "status": "published",
     "confidence": 0.86,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-franklin-lakes-freedom-fest-fireworks-2026-in-franklin-lakes-nj",
@@ -7119,7 +7152,7 @@
     "url": "https://www.nj-carnivals.com/2026/franklin-lakes-freedom-fest-fireworks-2026-in-franklin-lakes-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/franklin-lakes-freedom-fest-fireworks-2026-in-franklin-lakes-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "480 De Korte Dr, Franklin Lakes, NJ, USA",
+    "address": "480 De Korte Dr, Franklin Lakes, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/freedom-fest.webp",
     "tags": [
       "Bergen County",
@@ -7130,7 +7163,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -7160,8 +7193,8 @@
     "sourceUrl": "https://locations.michaels.com/nj/watchung/5191/",
     "sourceCalendarUrl": "https://www.michaels.com/events-and-services",
     "address": "1515 US Hwy 22 Suite 34, Watchung, NJ 07069",
-    "lat": 40.642845,
-    "lng": -74.436233,
+    "lat": 40.6392357,
+    "lng": -74.4219689,
     "tags": [
       "retail-craft-workshop",
       "kids",
@@ -7170,7 +7203,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "michaels-kids-events-bridgewater-9938-2026-06-13-kids-club-make-in-store-father-s-day-card",
@@ -7199,8 +7232,8 @@
     "sourceUrl": "https://locations.michaels.com/NJ/Bridgewater/9938",
     "sourceCalendarUrl": "https://www.michaels.com/events-and-services",
     "address": "135 Promenade Blvd, Bridgewater, NJ 08807",
-    "lat": 40.592358,
-    "lng": -74.60401,
+    "lat": 40.5629632,
+    "lng": -74.5557133,
     "tags": [
       "retail-craft-workshop",
       "kids",
@@ -7209,7 +7242,7 @@
     "status": "published",
     "confidence": 0.76,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "sclsnj-16235033",
@@ -7246,7 +7279,7 @@
     "status": "published",
     "confidence": 0.95,
     "firstSeenAt": "2026-06-07T04:14:31.266Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-l-e-a-d-fest-carnival-2026-in-hackensack-nj-2026-06-13",
@@ -7275,7 +7308,7 @@
     "url": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/l-e-a-d-fest-carnival-2026-in-hackensack-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ, USA",
+    "address": "2 University Plaza Dr Suit 100, Hackensack, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/07/skyfall1.webp",
     "tags": [
       "Bergen County",
@@ -7285,7 +7318,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -7318,9 +7351,9 @@
     "url": "https://summitlibrary.libcal.com/event/16718096",
     "sourceUrl": "https://summitlibrary.libcal.com/event/16718096",
     "sourceCalendarUrl": "https://summitlibrary.libcal.com/calendar",
-    "address": null,
-    "lat": 40.715622,
-    "lng": -74.364684,
+    "address": "75 Maple Street, Summit, NJ 07901",
+    "lat": 40.7152466,
+    "lng": -74.360276,
     "image": "https://d68g328n4ug0e.cloudfront.net/gallery/4378/donut-5331966_150.jpg",
     "tags": [
       "Elementary (K-5)"
@@ -7328,7 +7361,7 @@
     "status": "published",
     "confidence": 0.82,
     "firstSeenAt": "2026-06-07T05:38:36.396Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z"
+    "lastSeenAt": "2026-06-07T18:21:56.372Z"
   },
   {
     "id": "nj-carnivals-st-anthony-feast-2026-in-hawthorne-nj-2026-06-13",
@@ -7357,7 +7390,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-anthony-feast-2026-in-hawthorne-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-anthony-feast-2026-in-hawthorne-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "276 Diamond Bridge Ave, Hawthorne, NJ, USA",
+    "address": "276 Diamond Bridge Ave, Hawthorne, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/05/St.-Anthony-Feast-2026-Final.webp",
     "tags": [
       "Passaic County",
@@ -7366,7 +7399,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -7396,7 +7429,7 @@
     "url": "https://www.nj-carnivals.com/2026/glen-rock-family-fun-fair-2026-in-glen-rock-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/glen-rock-family-fun-fair-2026-in-glen-rock-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "683 Maple Ave, Glen Rock, NJ, USA",
+    "address": "683 Maple Ave, Glen Rock, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/03/wheel2.webp",
     "tags": [
       "Bergen County",
@@ -7405,7 +7438,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -7435,7 +7468,7 @@
     "url": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/st-charles-carnival-2026-in-cinnaminson-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "2500 Branch Pike, Cinnaminson, NJ, USA",
+    "address": "2500 Branch Pike, Cinnaminson, NJ",
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2023/05/yoyo1.webp",
     "tags": [
       "Burlington County",
@@ -7445,7 +7478,7 @@
     "status": "published",
     "confidence": 0.78,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": false
   },
   {
@@ -7475,9 +7508,9 @@
     "url": "https://www.nj-carnivals.com/2026/warren-lions-expo-2026-in-warren-nj/",
     "sourceUrl": "https://www.nj-carnivals.com/2026/warren-lions-expo-2026-in-warren-nj/",
     "sourceCalendarUrl": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
-    "address": "46 Mountain Blvd #2, Warren, NJ, USA",
-    "lat": 40.634588,
-    "lng": -74.519044,
+    "address": "46 Mountain Boulevard, Warren, NJ 07059",
+    "lat": 40.619261,
+    "lng": -74.490372,
     "image": "https://www.nj-carnivals.com/fairs/wp-content/uploads/2026/02/lions-expo-2026_1.webp",
     "tags": [
       "Somerset County",
@@ -7489,7 +7522,7 @@
     "status": "published",
     "confidence": 0.88,
     "firstSeenAt": "2026-06-07T05:24:30.078Z",
-    "lastSeenAt": "2026-06-07T16:57:25.582Z",
+    "lastSeenAt": "2026-06-07T18:21:56.372Z",
     "withinCoverage": true
   },
   {
