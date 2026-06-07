@@ -605,34 +605,6 @@ function directionsUrl(group) {
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`;
 }
 
-function uniqueSourceLinks(events) {
-  const seen = new Map();
-  events.forEach((event) => {
-    const url = sourceUrl(event);
-    if (url && url !== "#" && !seen.has(url)) {
-      seen.set(url, url);
-    }
-  });
-  return [...seen.values()];
-}
-
-function sourceLinksHtml(events) {
-  const urls = uniqueSourceLinks(events);
-  if (!urls.length) {
-    return "";
-  }
-  return `
-    <div class="source-links">
-      ${urls
-        .map((url, index) => {
-          const label = urls.length === 1 ? "Open source page" : `Source ${index + 1}`;
-          return `<a class="source-link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${label}</a>`;
-        })
-        .join("")}
-    </div>
-  `;
-}
-
 function renderDetail() {
   const group = selectedGroup();
   if (!group) {
@@ -653,6 +625,7 @@ function renderDetail() {
           <h2>${escapeHtml(event.title)}</h2>
           <p class="event-time">${formatTimeRange(event)}</p>
           <p class="event-summary">${escapeHtml(summaryText(event))}</p>
+          <a class="source-link" href="${escapeHtml(sourceUrl(event))}" target="_blank" rel="noreferrer">Open source page</a>
         </article>
       `
     )
@@ -661,12 +634,10 @@ function renderDetail() {
   elements.eventDetail.innerHTML = `
     <div class="place-line">
       <span class="pin-badge" aria-label="Pin ${escapeHtml(pinNumber || "")}">${escapeHtml(pinNumber || "-")}</span>
-      <span class="pin-label">Pin ${escapeHtml(pinNumber || "-")}</span>
       <strong class="place-name">${escapeHtml(group.place)}</strong>
       <a class="directions-link" href="${escapeHtml(directionsUrl(group))}" target="_blank" rel="noreferrer">Directions</a>
     </div>
     <div class="detail-events">${eventsHtml}</div>
-    ${sourceLinksHtml(group.events)}
   `;
 }
 
