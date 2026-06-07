@@ -8,7 +8,7 @@ const DRIVE_TIME_PROVIDER = String(DRIVE_TIME_CONFIG.provider || "openrouteservi
 const DRIVE_TIME_KEY = String(DRIVE_TIME_CONFIG.apiKey || "").trim();
 const DRIVE_TIME_PROFILE = String(DRIVE_TIME_CONFIG.profile || "driving-car").trim();
 const DRIVE_TIME_ATTRIBUTION =
-  '&copy; <a href="https://openrouteservice.org/" target="_blank">openrouteservice.org</a> by <a href="https://www.heigit.org/" target="_blank">HeiGIT</a>';
+  '&copy; <a href="https://openrouteservice.org/" target="_blank" title="openrouteservice.org">ORS</a>/<a href="https://www.heigit.org/" target="_blank">HeiGIT</a>';
 const DRIVE_TIME_RANGES_MINUTES = Array.isArray(DRIVE_TIME_CONFIG.rangesMinutes)
   ? DRIVE_TIME_CONFIG.rangesMinutes.map(Number).filter((value) => Number.isFinite(value) && value > 0)
   : [10, 20];
@@ -39,7 +39,8 @@ const state = {
   mapFocus: "events",
   driveTimeEnabled: false,
   driveTimeLoading: false,
-  driveTimeOrigin: null
+  driveTimeOrigin: null,
+  initialLocationRequested: false
 };
 
 const elements = {
@@ -179,7 +180,22 @@ function groupsForSelectedDate() {
 
 function selectedGroup() {
   const groups = groupsForSelectedDate();
-  return groups.find((group) => group.events.some((event) => event.id === state.selectedEventId)) || groups[0] || null;
+  if (!state.selectedEventId) {
+    return null;
+  }
+  return groups.find((group) => group.events.some((event) => event.id === state.selectedEventId)) || null;
+}
+
+function orderedGroupsForDetail() {
+  const groups = groupsForSelectedDate();
+  if (!state.selectedEventId) {
+    return groups;
+  }
+  const activeGroup = groups.find((group) => group.events.some((event) => event.id === state.selectedEventId));
+  if (!activeGroup) {
+    return groups;
+  }
+  return [activeGroup, ...groups.filter((group) => group.key !== activeGroup.key)];
 }
 
 function groupPinNumber(group) {
@@ -653,7 +669,7 @@ function addBaseLayer(map) {
         maxZoom: 19,
         crossOrigin: true,
         attribution:
-          '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+          '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank" title="OpenStreetMap contributors">&copy; OSM</a>'
       }
     );
     layer.on("tileerror", () => {
@@ -666,7 +682,7 @@ function addBaseLayer(map) {
   if (USE_OSM_FALLBACK) {
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" title="OpenStreetMap contributors">OSM</a>'
     }).addTo(map);
     setMapMessage("Temporary map layer", "Add a MapTiler key to use the production basemap.");
     return;
@@ -716,6 +732,7 @@ function initMap() {
     tap: true
   }).setView([HOME.lat, HOME.lng], 11);
 
+  map.attributionControl.setPrefix(false);
   L.control.zoom({ position: "bottomright" }).addTo(map);
   addBaseLayer(map);
   map.attributionControl.addAttribution(DRIVE_TIME_ATTRIBUTION);
@@ -823,8 +840,8 @@ function directionsUrl(group) {
 }
 
 function renderDetail() {
-  const group = selectedGroup();
-  if (!group) {
+  const groups = orderedGroupsForDetail();
+  if (!groups.length) {
     elements.eventDetail.innerHTML = `
       <div class="empty-detail">
         <strong>Choose a date</strong>
@@ -834,28 +851,35 @@ function renderDetail() {
     return;
   }
 
-  const pinNumber = groupPinNumber(group);
-  const eventsHtml = group.events
-    .map(
-      (event) => `
-        <article class="detail-event">
-          <h2>${escapeHtml(event.title)}</h2>
-          <p class="event-time">${formatTimeRange(event)}</p>
-          <p class="event-summary">${escapeHtml(summaryText(event))}</p>
-          <a class="source-link" href="${escapeHtml(sourceUrl(event))}" target="_blank" rel="noreferrer">Open source page</a>
-        </article>
-      `
-    )
-    .join("");
+  elements.eventDetail.innerHTML = groups
+    .map((group) => {
+      const pinNumber = groupPinNumber(group);
+      const isActive = group.events.some((event) => event.id === state.selectedEventId);
+      const eventsHtml = group.events
+        .map(
+          (event) => `
+            <article class="detail-event">
+              <h2>${escapeHtml(event.title)}</h2>
+              <p class="event-time">${formatTimeRange(event)}</p>
+              <p class="event-summary">${escapeHtml(summaryText(event))}</p>
+              <a class="source-link" href="${escapeHtml(sourceUrl(event))}" target="_blank" rel="noreferrer">Open source page</a>
+            </article>
+          `
+        )
+        .join("");
 
-  elements.eventDetail.innerHTML = `
-    <div class="place-line">
-      <span class="pin-badge" aria-label="Pin ${escapeHtml(pinNumber || "")}">${escapeHtml(pinNumber || "-")}</span>
-      <strong class="place-name">${escapeHtml(group.place)}</strong>
-      <a class="directions-link" href="${escapeHtml(directionsUrl(group))}" target="_blank" rel="noreferrer">Directions</a>
-    </div>
-    <div class="detail-events">${eventsHtml}</div>
-  `;
+      return `
+        <section class="detail-group ${isActive ? "is-active" : ""}" aria-label="${escapeHtml(group.place)}">
+          <div class="place-line">
+            <span class="pin-badge" aria-label="Pin ${escapeHtml(pinNumber || "")}">${escapeHtml(pinNumber || "-")}</span>
+            <strong class="place-name">${escapeHtml(group.place)}</strong>
+            <a class="directions-link" href="${escapeHtml(directionsUrl(group))}" target="_blank" rel="noreferrer">Directions</a>
+          </div>
+          <div class="detail-events">${eventsHtml}</div>
+        </section>
+      `;
+    })
+    .join("");
 }
 
 function render() {
@@ -872,6 +896,17 @@ async function init() {
   state.selectedEventId = "";
   elements.updatedLabel.textContent = formatUpdatedLabel();
   render();
+  requestInitialLocation();
+}
+
+function requestInitialLocation() {
+  if (state.initialLocationRequested) {
+    return;
+  }
+  state.initialLocationRequested = true;
+  window.requestAnimationFrame(() => {
+    locateUser();
+  });
 }
 
 init().catch((error) => {

@@ -174,7 +174,9 @@ h2 {
 
 .map-surface {
   position: relative;
-  height: clamp(220px, 34vh, 275px);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
   min-height: 0;
   overflow: hidden;
   border: 1px solid #cfd9d4;
@@ -283,8 +285,8 @@ h2 {
 
 .drive-time-button {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  left: 10px;
+  bottom: 10px;
   z-index: 500;
   min-width: 58px;
   height: 38px;
@@ -305,8 +307,8 @@ h2 {
 
 .drive-time-legend {
   position: absolute;
-  right: 10px;
-  top: 54px;
+  left: 10px;
+  bottom: 54px;
   z-index: 500;
   display: grid;
   gap: 4px;
@@ -411,7 +413,7 @@ h2 {
 
 .map-message {
   position: absolute;
-  inset: auto 72px 12px 12px;
+  inset: auto 72px 58px 12px;
   z-index: 500;
   display: grid;
   gap: 3px;
@@ -458,6 +460,22 @@ h2 {
   box-shadow: 0 10px 26px rgba(23, 33, 29, 0.08);
 }
 
+.detail-group {
+  display: grid;
+  gap: 10px;
+}
+
+.detail-group + .detail-group {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.detail-group.is-active .pin-badge {
+  background: var(--amber);
+  box-shadow: 0 8px 18px rgba(126, 78, 22, 0.28);
+}
+
 .place-line {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -471,11 +489,11 @@ h2 {
   height: 28px;
   place-items: center;
   border-radius: 999px;
-  background: var(--amber);
+  background: var(--green);
   color: white;
   font-size: 0.82rem;
   font-weight: 950;
-  box-shadow: 0 8px 18px rgba(126, 78, 22, 0.28);
+  box-shadow: 0 8px 18px rgba(23, 91, 79, 0.24);
 }
 
 .place-name {
