@@ -361,6 +361,430 @@
       "lat": 40.592358,
       "lng": -74.60401,
       "notes": "Sensory gym / indoor-play related provider; currently no obvious public dated event feed."
+    },
+    {
+      "id": "kids-empire-watchung",
+      "label": "Kids Empire Watchung",
+      "type": "indoor-playground",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.kidsempire.com/store-locator/kids-empire-watchung",
+      "eventsUrl": "https://www.kidsempire.com/store-locator/kids-empire-watchung",
+      "townId": "watchung-borough",
+      "address": "1515 US-22, Watchung, NJ 07069",
+      "lat": 40.642845,
+      "lng": -74.436233,
+      "notes": "Indoor playground for ages 1-12 with all-day play; no obvious public dated event feed yet."
+    },
+    {
+      "id": "code-ninjas-local",
+      "label": "Code Ninjas Local Centers",
+      "type": "kids-stem-coding",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.codeninjas.com/",
+      "eventsUrl": "https://www.codeninjas.com/",
+      "locations": [
+        {
+          "id": "bridgewater",
+          "name": "Code Ninjas Bridgewater",
+          "townId": "bridgewater-township",
+          "address": "338 US-22, Bridgewater, NJ 08807",
+          "storeUrl": "https://www.codeninjas.com/locations/en-us/nj/bridgewater/coding-school-316.html"
+        },
+        {
+          "id": "green-brook",
+          "name": "Code Ninjas Green Brook",
+          "townId": "green-brook-township",
+          "address": "215 Route 22 East, Green Brook, NJ 08812",
+          "storeUrl": "https://www.codeninjas.com/locations/en-us/nj/green-brook/coding-school-417.html"
+        },
+        {
+          "id": "piscataway",
+          "name": "Code Ninjas Piscataway",
+          "townId": "piscataway-township",
+          "address": "1506 Stelton Road, Piscataway Township, NJ 08854",
+          "storeUrl": "https://www.codeninjas.com/locations/en-us/nj/piscataway/coding-school-376.html"
+        }
+      ],
+      "notes": "Kids coding/STEM classes, camps, birthday parties, and parent night out; dated camp schedule is not exposed in a simple feed."
+    },
+    {
+      "id": "valhallan-bridgewater",
+      "label": "Valhallan Esports Training Bridgewater",
+      "type": "kids-esports-stem",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://arenas.valhallan.com/bridgewater-nj-us",
+      "eventsUrl": "https://arenas.valhallan.com/bridgewater-nj-us",
+      "townId": "bridgewater-township",
+      "address": "Bridgewater, NJ 08807",
+      "lat": 40.592358,
+      "lng": -74.60401,
+      "notes": "Youth esports training arena; check for camps, tryouts, tournaments, and STEM/gaming events."
+    },
+    {
+      "id": "wagner-farm-arboretum",
+      "label": "Wagner Farm Arboretum",
+      "type": "arboretum-family-programs",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.wfafnj.org/",
+      "eventsUrl": "https://www.wfafnj.org/events",
+      "townId": "warren-township",
+      "address": "197 Mountain Ave, Warren, NJ 07059",
+      "lat": 40.634588,
+      "lng": -74.519044,
+      "notes": "Arboretum, garden, and seasonal family event source; current public calendar did not expose near-term dated kids events."
+    },
+    {
+      "id": "farmstead-arts-center",
+      "label": "Farmstead Arts Center",
+      "type": "arts-center-family-programs",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://farmsteadartscenter.org/",
+      "eventsUrl": "https://farmsteadartscenter.org/events/",
+      "townId": "bernards-township",
+      "address": "450 King George Rd, Basking Ridge, NJ 07920",
+      "lat": 40.677455,
+      "lng": -74.567277,
+      "notes": "Arts center with theater, gallery, workshops, and family-suitable events; needs event-type filtering before auto-import."
+    },
+    {
+      "id": "reeves-reed-arboretum",
+      "label": "Reeves-Reed Arboretum",
+      "type": "arboretum-family-programs",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.reeves-reedarboretum.org/",
+      "eventsUrl": "https://www.reeves-reedarboretum.org/events/",
+      "locations": [
+        {
+          "id": "summit",
+          "name": "Reeves-Reed Arboretum",
+          "townId": "summit-city",
+          "address": "165 Hobart Ave, Summit, NJ 07901",
+          "lat": 40.715622,
+          "lng": -74.364684,
+          "storeUrl": "https://www.reeves-reedarboretum.org/events/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-13",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Discovery Weekends",
+          "category": "nature",
+          "cost": 0,
+          "registration": "Drop-in",
+          "url": "https://www.reeves-reedarboretum.org/learn/kids-programs/",
+          "summary": "Free self-guided family nature activity for children ages 3 and up. Borrow a magnifying glass, pick up an activity guide, and explore the arboretum."
+        },
+        {
+          "date": "2026-06-14",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Discovery Weekends",
+          "category": "nature",
+          "cost": 0,
+          "registration": "Drop-in",
+          "url": "https://www.reeves-reedarboretum.org/learn/kids-programs/",
+          "summary": "Free self-guided family nature activity for children ages 3 and up. Borrow a magnifying glass, pick up an activity guide, and explore the arboretum."
+        },
+        {
+          "date": "2026-06-20",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Discovery Weekends",
+          "category": "nature",
+          "cost": 0,
+          "registration": "Drop-in",
+          "url": "https://www.reeves-reedarboretum.org/learn/kids-programs/",
+          "summary": "Self-guided family nature activity for children ages 3 and up. Open the source page to confirm the weekly activity."
+        },
+        {
+          "date": "2026-06-21",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Discovery Weekends",
+          "category": "nature",
+          "cost": 0,
+          "registration": "Drop-in",
+          "url": "https://www.reeves-reedarboretum.org/learn/kids-programs/",
+          "summary": "Self-guided family nature activity for children ages 3 and up. Open the source page to confirm the weekly activity."
+        },
+        {
+          "date": "2026-06-26",
+          "startTime": "18:00",
+          "endTime": "23:59",
+          "title": "Great American Backyard Campout",
+          "category": "nature",
+          "registration": "RSVP",
+          "url": "https://www.reeves-reedarboretum.org/events/",
+          "summary": "Family overnight campout for families with children ages 4 and up. The program continues overnight; open the source page for the full schedule and registration."
+        },
+        {
+          "date": "2026-06-27",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Discovery Weekends",
+          "category": "nature",
+          "cost": 0,
+          "registration": "Drop-in",
+          "url": "https://www.reeves-reedarboretum.org/learn/kids-programs/",
+          "summary": "Self-guided family nature activity for children ages 3 and up. Open the source page to confirm the weekly activity."
+        },
+        {
+          "date": "2026-06-28",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Discovery Weekends",
+          "category": "nature",
+          "cost": 0,
+          "registration": "Drop-in",
+          "url": "https://www.reeves-reedarboretum.org/learn/kids-programs/",
+          "summary": "Self-guided family nature activity for children ages 3 and up. Open the source page to confirm the weekly activity."
+        }
+      ],
+      "notes": "Family nature programs and seasonal kids activities. Discovery Weekend dates are stored from the public kids/events pages."
+    },
+    {
+      "id": "trailside-nature-science-center",
+      "label": "Trailside Nature & Science Center",
+      "type": "science-nature-center",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://ucnj.org/trailside/",
+      "eventsUrl": "https://ucnj.org/trailside-nature-and-science-center/workshops/",
+      "locations": [
+        {
+          "id": "mountainside",
+          "name": "Trailside Nature & Science Center",
+          "townId": "mountainside-borough",
+          "address": "452 New Providence Rd, Mountainside, NJ 07092",
+          "lat": 40.680722,
+          "lng": -74.360292,
+          "storeUrl": "https://ucnj.org/trailside-nature-and-science-center/workshops/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-30",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Trailside Summer Camp Three-Day Program",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://ucnj.org/trailside-nature-and-science-center/workshops/",
+          "summary": "Trailside summer nature camp three-day session starting June 30. Morning, afternoon, and full-day options may vary by age group; open the source page for exact session choice."
+        }
+      ],
+      "notes": "Union County nature/science center with workshops, camps, and family nature programs. Public page requires manual review for session-specific times."
+    },
+    {
+      "id": "somerset-eec",
+      "label": "Somerset County Environmental Education Center",
+      "type": "science-nature-center",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.somersetcountyparks.org/environmental-education-center",
+      "eventsUrl": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
+      "locations": [
+        {
+          "id": "basking-ridge",
+          "name": "Environmental Education Center",
+          "townId": "bernards-township",
+          "address": "190 Lord Stirling Rd, Basking Ridge, NJ 07920",
+          "lat": 40.677455,
+          "lng": -74.567277,
+          "storeUrl": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-29",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "Coyote Kids Nature Camp",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
+          "summary": "Somerset County EEC nature camp for ages 4-6. Session starts June 29 and runs multiple days; open the source page for registration and daily details."
+        },
+        {
+          "date": "2026-06-29",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Eco-Explorers: Creature Feature",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
+          "summary": "Somerset County EEC Eco-Explorers nature camp week for children. Open the source page for age group, fee, and registration."
+        },
+        {
+          "date": "2026-07-06",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Eco-Explorers: Swamp Scientists",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
+          "summary": "Somerset County EEC Eco-Explorers nature camp week. Open the source page for age group, fee, and registration."
+        },
+        {
+          "date": "2026-07-13",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Eco-Explorers: Aquatic Adventures",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
+          "summary": "Somerset County EEC Eco-Explorers nature camp week. Open the source page for age group, fee, and registration."
+        },
+        {
+          "date": "2026-07-20",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Eco-Explorers: Back in Time",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
+          "summary": "Somerset County EEC Eco-Explorers nature camp week. Open the source page for age group, fee, and registration."
+        },
+        {
+          "date": "2026-07-27",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Eco-Explorers: Busy Builders",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
+          "summary": "Somerset County EEC Eco-Explorers nature camp week. Open the source page for age group, fee, and registration."
+        },
+        {
+          "date": "2026-08-03",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Eco-Explorers: Scales & Tails",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
+          "summary": "Somerset County EEC Eco-Explorers nature camp week. Open the source page for age group, fee, and registration."
+        }
+      ],
+      "notes": "Nature/science education center at Lord Stirling Park with public programs and summer camps; dates are stored from the public Programs & Registration page."
+    },
+    {
+      "id": "raptor-trust",
+      "label": "The Raptor Trust",
+      "type": "wildlife-education-center",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.theraptortrust.org/",
+      "eventsUrl": "https://www.theraptortrust.org/events",
+      "locations": [
+        {
+          "id": "millington",
+          "name": "The Raptor Trust",
+          "townId": "long-hill-township",
+          "address": "1390 White Bridge Rd, Millington, NJ 07946",
+          "lat": 40.682882,
+          "lng": -74.491619,
+          "storeUrl": "https://www.theraptortrust.org/events"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-08-08",
+          "startTime": "10:00",
+          "endTime": "14:00",
+          "title": "International Owl Awareness Day",
+          "category": "nature",
+          "registration": "See source",
+          "url": "https://www.theraptortrust.org/events",
+          "summary": "Family-friendly owl awareness day with crafts, games, snacks, and a photo-op backdrop. Open the source page for updates."
+        }
+      ],
+      "notes": "Wildlife rehabilitation and education center. Public event calendar currently lists occasional family wildlife events."
+    },
+    {
+      "id": "wallace-house-old-dutch-parsonage",
+      "label": "Wallace House & Old Dutch Parsonage",
+      "type": "history-museum",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://nj.gov/dep/parksandforests/historic/wallacehouseolddutchparsonage.html",
+      "eventsUrl": "https://visitsomersetnj.org/venue/wallace-house-old-dutch-parsonage-state-historic-sites/",
+      "locations": [
+        {
+          "id": "somerville",
+          "name": "Wallace House & Old Dutch Parsonage",
+          "townId": "somerville-borough",
+          "address": "71 Somerset St, Somerville, NJ 08876",
+          "lat": 40.569749,
+          "lng": -74.607682,
+          "storeUrl": "https://visitsomersetnj.org/venue/wallace-house-old-dutch-parsonage-state-historic-sites/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-07-02",
+          "startTime": "20:00",
+          "endTime": "21:00",
+          "title": "Middlebrook 5 Generals Bus Tour",
+          "category": "history",
+          "registration": "RSVP",
+          "url": "https://visitsomersetnj.org/venue/wallace-house-old-dutch-parsonage-state-historic-sites/",
+          "summary": "Local Revolutionary War history program listed for Wallace House & Old Dutch Parsonage. Open the source page to confirm family suitability and registration."
+        },
+        {
+          "date": "2026-07-04",
+          "startTime": "14:00",
+          "endTime": "16:00",
+          "title": "Declaration Readings",
+          "category": "history",
+          "registration": "See source",
+          "url": "https://visitsomersetnj.org/venue/wallace-house-old-dutch-parsonage-state-historic-sites/",
+          "summary": "Independence Day history program with public declaration readings. Open the source page for updates."
+        }
+      ],
+      "notes": "State historic site in Somerville with public history programs; imported from Visit Somerset venue listings."
+    },
+    {
+      "id": "visual-arts-center-nj",
+      "label": "Visual Arts Center of New Jersey",
+      "type": "art-museum-family-programs",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.artcenternj.org/",
+      "eventsUrl": "https://www.artcenternj.org/summer-2026-kid-workshops/",
+      "locations": [
+        {
+          "id": "summit",
+          "name": "Visual Arts Center of New Jersey",
+          "townId": "summit-city",
+          "address": "68 Elm St, Summit, NJ 07901",
+          "lat": 40.715622,
+          "lng": -74.364684,
+          "storeUrl": "https://www.artcenternj.org/summer-2026-kid-workshops/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-07-25",
+          "startTime": "13:30",
+          "endTime": "15:00",
+          "title": "From Mess to Magic: Tie Dye Creations",
+          "category": "art",
+          "cost": 100,
+          "registration": "RSVP",
+          "url": "https://www.artcenternj.org/summer-2026-kid-workshops/",
+          "summary": "Kids art workshop for ages 6-11 at the Visual Arts Center of New Jersey. Open the source page for registration, tuition, and material fee details."
+        }
+      ],
+      "notes": "Art museum/education center with kids workshops, classes, and camps. Dated kids workshop imported from the summer workshop page."
     }
   ],
   "towns": [
