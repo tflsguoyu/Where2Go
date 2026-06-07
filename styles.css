@@ -100,9 +100,9 @@ h2 {
 
 .date-strip {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
-  padding: 8px 16px 14px;
+  padding: 5px 12px 8px;
   scrollbar-width: none;
 }
 
@@ -111,17 +111,17 @@ h2 {
 }
 
 .date-chip {
+  position: relative;
   display: grid;
-  grid-template-columns: auto auto;
   grid-template-areas:
-    "weekday count"
-    "day count";
-  align-items: center;
-  min-width: 88px;
-  min-height: 56px;
-  padding: 9px 10px;
+    "weekday"
+    "day";
+  align-content: center;
+  min-width: 76px;
+  min-height: 44px;
+  padding: 6px 27px 6px 8px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 7px;
   background: var(--surface);
   color: var(--ink);
   text-align: left;
@@ -130,28 +130,33 @@ h2 {
 .date-chip span {
   grid-area: weekday;
   color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 800;
+  font-size: 0.68rem;
+  font-weight: 850;
+  line-height: 1;
 }
 
 .date-chip strong {
   grid-area: day;
-  margin-top: 2px;
-  font-size: 0.95rem;
+  margin-top: 3px;
+  font-size: 0.82rem;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .date-chip small {
+  position: absolute;
+  top: 50%;
+  right: 6px;
   display: grid;
-  grid-area: count;
-  width: 28px;
-  height: 28px;
+  width: 21px;
+  height: 21px;
   place-items: center;
-  justify-self: end;
   border-radius: 999px;
   background: #edf2ef;
   color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 900;
+  font-size: 0.68rem;
+  font-weight: 950;
+  transform: translateY(-50%);
 }
 
 .date-chip.is-active {
