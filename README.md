@@ -104,6 +104,22 @@ Drive-time overlays use `driveTime.apiKey` in `config.js`. The current UI draws
 inner contour is styled as 0-10 minutes and the outer visible area as 10-20
 minutes.
 
+## Analytics Setup
+
+The simplest visitor tracking path is Cloudflare Web Analytics. Create a Web
+Analytics site in Cloudflare, copy the token from its JavaScript snippet, and put
+it in:
+
+```js
+analytics: {
+  cloudflareWebAnalyticsToken: "YOUR_TOKEN"
+}
+```
+
+in `config.js`. Leave it empty to disable analytics locally or before setup.
+Cloudflare reports aggregate visits and coarse geography such as country/region;
+the app does not send precise GPS location to analytics.
+
 ## Offline Behavior
 
 The service worker caches the app shell and event JSON with a network-first

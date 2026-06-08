@@ -1,11 +1,13 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260607-cache-v42";
+const APP_VERSION = "20260608-cache-v43";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
 const USE_OSM_FALLBACK = window.Where2GoConfig?.useTemporaryOpenStreetMapFallback === true;
 const GITHUB_REPO = String(window.Where2GoConfig?.githubRepo || "").trim();
 const GITHUB_BRANCH = String(window.Where2GoConfig?.githubBranch || "main").trim();
+const ANALYTICS_CONFIG = window.Where2GoConfig?.analytics || {};
+const CLOUDFLARE_ANALYTICS_TOKEN = String(ANALYTICS_CONFIG.cloudflareWebAnalyticsToken || "").trim();
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
 const DEFAULT_MAP_RADIUS_MILES = 5.6;
 const MAP_FIT_PADDING = [52, 52];
@@ -116,6 +118,18 @@ async function loadSourceRegistryData() {
   } catch {
     return null;
   }
+}
+
+function initAnalytics() {
+  if (!CLOUDFLARE_ANALYTICS_TOKEN || document.querySelector("[data-where2go-analytics='cloudflare']")) {
+    return;
+  }
+  const script = document.createElement("script");
+  script.defer = true;
+  script.src = "https://static.cloudflareinsights.com/beacon.min.js";
+  script.dataset.cfBeacon = JSON.stringify({ token: CLOUDFLARE_ANALYTICS_TOKEN });
+  script.dataset.where2goAnalytics = "cloudflare";
+  document.head.append(script);
 }
 
 function eventStartDate(event) {
@@ -1536,6 +1550,7 @@ function setupInstallPrompt() {
   scheduleInstallPrompt();
 }
 
+initAnalytics();
 setupInstallPrompt();
 bindMoreMenu();
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-07",
+  "updatedAt": "2026-06-08",
   "home": {
     "label": "Warren, NJ 07059",
     "lat": 40.619261,
@@ -90,6 +90,15 @@
         "notes": "Often separate from the municipal calendar; store PDFs or registration portals even when events need manual review."
       },
       {
+        "id": "municipal-supplemental-events",
+        "label": "Official municipal/recreation supplemental pages",
+        "priority": 1,
+        "target": "regionalSources[]",
+        "searchHints": ["{town} NJ recreation special events", "{town} NJ municipal alliance events", "{town} NJ community events"],
+        "parserCandidates": ["configured-regional-events", "manual", "pdf-program-guide", "wordpress-calendar"],
+        "notes": "Use when an official town department, recreation microsite, municipal alliance, or named special-event page publishes family/community events outside the main municipal calendar feed."
+      },
+      {
         "id": "public-library",
         "label": "Public library kids calendar",
         "priority": 1,
@@ -104,8 +113,8 @@
         "priority": 2,
         "target": "towns[].municipal or regionalSources[]",
         "searchHints": ["{town} downtown events", "{town} chamber events family", "{town} street fair"],
-        "parserCandidates": ["manual", "wordpress-calendar", "eventbrite-list"],
-        "notes": "Good source for street fairs, block parties, farmers markets, outdoor movies, and family festivals."
+        "parserCandidates": ["configured-regional-events", "manual", "wordpress-calendar", "eventbrite-list"],
+        "notes": "Good source for street fairs, block parties, farmers markets, outdoor movies, and family festivals. In regionalSources, use type downtown-sid-events when the source is not an official town calendar."
       },
       {
         "id": "county-parks-nature",
@@ -279,6 +288,353 @@
     }
   },
   "regionalSources": [
+    {
+      "id": "warren-recreation-events",
+      "label": "Warren Township Recreation Events",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.warrennj.org/175/Recreation",
+      "eventsUrl": "https://warrennj.org/178/Events",
+      "guideUrl": "https://www.warrennj.org/DocumentCenter/View/11321/2026-Recreation-Programs-Events3",
+      "townId": "warren-township",
+      "address": "46 Mountain Boulevard, Warren, NJ 07059",
+      "lat": 40.619261,
+      "lng": -74.490372,
+      "notes": "Official recreation event page and annual program guide list seasonal family events such as the fishing derby, soccer watch party, summer concerts, movie nights, fall community event, Fall 5K, and holiday festival. Current CivicPlus calendar importer sees some recreation rows but not every recreation landing-page/PDF item; keep this as the refresh checklist before writing a page/PDF parser."
+    },
+    {
+      "id": "north-plainfield-recreation",
+      "label": "North Plainfield Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://nprecreation.com/",
+      "eventsUrl": "https://nprecreation.com/",
+      "townId": "north-plainfield-borough",
+      "address": "93 Greenbrook Road, North Plainfield, NJ 07060",
+      "lat": 40.621255,
+      "lng": -74.439466,
+      "notes": "Official borough-linked recreation portal exposes youth sports, cheer/dance, NFL Flag, summer camp, and registration news. It is WordPress/Stack Sports oriented and does not yet expose a stable dated public event feed; review homepage cards and linked registration pages."
+    },
+    {
+      "id": "middlesex-recreation",
+      "label": "Middlesex Borough Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.middlesexboro-nj.gov/recreation",
+      "eventsUrl": "https://www.middlesexboro-nj.gov/recreation",
+      "townId": "middlesex-borough",
+      "address": "1400 Mountain Avenue, Middlesex, NJ 08846",
+      "lat": 40.579332,
+      "lng": -74.4997,
+      "notes": "Official recreation page lists toddler, youth, adult, special event, and seasonal activity cards plus recent recreation news. Current municipal calendar importer handles the borough calendar, but the recreation landing page can publish separate program and event announcements."
+    },
+    {
+      "id": "watchung-recreation-centennial",
+      "label": "Watchung Recreation and Centennial Events",
+      "type": "municipal-supplemental-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://watchungnj.gov/",
+      "eventsUrl": "https://watchungnj.gov/resident/recreation-programs-events",
+      "townId": "watchung-borough",
+      "address": "15 Mountain Boulevard, Watchung, NJ 07069",
+      "lat": 40.642845,
+      "lng": -74.436233,
+      "configuredEvents": [
+        {
+          "title": "Founder's Day",
+          "date": "2026-06-13",
+          "startTime": "09:30",
+          "endTime": "12:30",
+          "registration": "Drop-in",
+          "cost": "Free",
+          "url": "https://watchungnj.gov/centennial-celebration/founders-day",
+          "venue": "Watchung Police Station to Best Lake",
+          "address": "840 Somerset Street, Watchung, NJ 07069",
+          "lat": 40.642845,
+          "lng": -74.436233,
+          "summary": "Watchung centennial celebration with a hometown parade, Mayor's Regatta, and opening of the borough's 1976 time capsule.",
+          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
+          "tags": ["centennial", "parade", "family", "official-page"]
+        }
+      ],
+      "notes": "Official Watchung recreation and centennial pages carry family events that are not yet imported from the manual-review municipal calendar. Founder's Day was added from the official centennial page; future refresh should inspect recreation news, Centennial Celebration, Farmers Market, and Mayor's Wellness pages."
+    },
+    {
+      "id": "bound-brook-recreation",
+      "label": "Bound Brook Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://boundbrook-nj.org/recreation/",
+      "eventsUrl": "https://boundbrook-nj.org/recreation/",
+      "townId": "bound-brook-borough",
+      "address": "200 Thompson Avenue, Bound Brook, NJ 08805",
+      "lat": 40.569749,
+      "lng": -74.538489,
+      "notes": "Official recreation page describes seasonal programs, pool/family events, summer camp, sports, and therapeutic recreation. The WordPress event archive is noisy with court/meeting rows, so recreation page review should precede parser work."
+    },
+    {
+      "id": "long-hill-parks-recreation",
+      "label": "Long Hill Parks and Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.longhillnj.gov/departments/parks-and-recreation",
+      "eventsUrl": "https://www.longhillnj.gov/departments/parks-and-recreation",
+      "townId": "long-hill-township",
+      "address": "915 Valley Road, Gillette, NJ 07933",
+      "lat": 40.681823,
+      "lng": -74.493456,
+      "notes": "Official recreation department pages link seasonal programs and recurring community events such as lake dances, summer concerts, movies, spring egg hunt, Halloween parade, tree lighting, holiday contests, TryCAN, and camps. Current municipal calendar is manual review; library importer is separate."
+    },
+    {
+      "id": "south-plainfield-recreation",
+      "label": "South Plainfield Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.southplainfieldnj.com/recreation",
+      "eventsUrl": "https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/",
+      "townId": "south-plainfield-borough",
+      "address": "1250 Maple Avenue, South Plainfield, NJ 07080",
+      "lat": 40.574628,
+      "lng": -74.415199,
+      "notes": "Official recreation calendar and department pages are separate from the library feed. Current public page uses an older Zumu-style calendar and needs source-specific review before import."
+    },
+    {
+      "id": "bernards-health-municipal-alliance",
+      "label": "Bernards Health Municipal Alliance",
+      "type": "municipal-supplemental-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.bernardshealth.org/municipal-alliance",
+      "eventsUrl": "https://www.bernardshealth.org/municipal-alliance/twilight-challenge",
+      "townId": "bernards-township",
+      "address": "262 South Finley Avenue, Basking Ridge, NJ 07920",
+      "lat": 40.70602,
+      "lng": -74.549121,
+      "configuredEvents": [
+        {
+          "title": "36th Annual Pleasant Valley Twilight Challenge 5K",
+          "date": "2026-06-07",
+          "startTime": "17:30",
+          "endTime": "19:30",
+          "registration": "RSVP",
+          "cost": "5K $20-$35; 1 Mile Health Walk $15; Kid's Lollipop Loop free",
+          "url": "https://www.bernardshealth.org/municipal-alliance/twilight-challenge",
+          "venue": "Pleasant Valley Park",
+          "address": "3405 Valley Road, Basking Ridge, NJ 07920",
+          "lat": 40.6625394,
+          "lng": -74.5640907,
+          "summary": "Community race evening with a 1-mile health walk, 5K race, free Kid's Lollipop Loop, live music, light refreshments, and red-white-and-blue America 250 theme.",
+          "ages": ["preschool", "early-elementary", "tween", "teen"],
+          "tags": ["race", "walk", "fitness", "family", "municipal-alliance", "official-page"]
+        }
+      ],
+      "notes": "Official Bernards Health / Municipal Alliance pages can publish youth and community events outside the main Bernards resident-calendar DPCalendar feed. Twilight Challenge is an example: the 2026 event appears here, while the Bernards municipal raw calendar still exposes the 2025 resident-calendar event page."
+    },
+    {
+      "id": "fanwood-recreation",
+      "label": "Fanwood Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://fanwoodnj.org/departments/recreation-info/",
+      "eventsUrl": "https://fanwoodnj.org/departments/recreation-info/",
+      "townId": "fanwood-borough",
+      "address": "75 North Martine Avenue, Fanwood, NJ 07023",
+      "lat": 40.640936,
+      "lng": -74.382342,
+      "notes": "Official recreation page highlights town-wide events such as Summer Free Movie Series, Halloween Parade and Costume Contest, Holiday Celebration, camps, and recreation programs. Current municipal calendar remains manual review; library events use configured mylibrary entries."
+    },
+    {
+      "id": "scotch-plains-parks-recreation",
+      "label": "Scotch Plains Parks and Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.scotchplainsnj.gov/index.php/departments/recreation-department",
+      "eventsUrl": "https://www.scotchplainsnj.gov/index.php/events",
+      "townId": "scotch-plains-township",
+      "address": "430 Park Avenue, Scotch Plains, NJ 07076",
+      "lat": 40.633029,
+      "lng": -74.372899,
+      "configuredEvents": [
+        {
+          "title": "Patrick's Downtown Race to Summer 5K",
+          "date": "2026-06-16",
+          "startTime": "19:00",
+          "endTime": "21:00",
+          "registration": "RSVP",
+          "cost": "$30-$35",
+          "url": "https://scotchplainsnj.gov/index.php/news/1295-2024-scotch-plains-patricks-downtown-race-to-summer-5k",
+          "venue": "Alan M. Augustine Village Green",
+          "address": "430 Park Avenue, Scotch Plains, NJ 07076",
+          "lat": 40.633029,
+          "lng": -74.372899,
+          "summary": "Downtown community race night with Family Fun Run, 5K, music, BBQ, and after-party on the Village Green.",
+          "ages": ["early-elementary", "tween", "teen"],
+          "tags": ["race", "family-fun-run", "downtown", "official-page"]
+        }
+      ],
+      "notes": "Official recreation and township event pages sometimes expose dated family activities outside the current manual municipal feed. Race to Summer 5K was added from the official township news page; Mental Health Awareness Wellness Fair and FreeCycle/Earth Day are useful past examples for parser design."
+    },
+    {
+      "id": "bridgewater-recreation-parks",
+      "label": "Bridgewater Recreation and Parks",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://parks.bridgewaternj.gov/",
+      "eventsUrl": "https://parks.bridgewaternj.gov/township/",
+      "townId": "bridgewater-township",
+      "address": "100 Commons Way, Bridgewater, NJ 08807",
+      "lat": 40.592358,
+      "lng": -74.60401,
+      "notes": "Official Bridgewater recreation and parks microsite links township parks, recreation department information, and Somerset County park events/programs. Current municipal calendar remains manual review; SCLSNJ covers library events."
+    },
+    {
+      "id": "somerville-recreation",
+      "label": "Somerville Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.somervillenj.org/departments/recreation/",
+      "eventsUrl": "https://www.somervillenj.org/recreation-activities/",
+      "townId": "somerville-borough",
+      "address": "25 West End Avenue, Somerville, NJ 08876",
+      "lat": 40.569749,
+      "lng": -74.607682,
+      "notes": "Official recreation activity pages list youth sports, clinics, seasonal programs, and local youth organizations. Current borough events page is mostly office closings and needs a separate parser or manual recreation refresh."
+    },
+    {
+      "id": "downtown-somerville-alliance",
+      "label": "Downtown Somerville Alliance",
+      "type": "downtown-sid-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://downtownsomerville.org/",
+      "eventsUrl": "https://downtownsomerville.org/events/",
+      "townId": "somerville-borough",
+      "address": "Main Street, Somerville, NJ 08876",
+      "lat": 40.569749,
+      "lng": -74.607682,
+      "configuredEvents": [
+        {
+          "title": "Downtown Somerville International Street Fair",
+          "date": "2026-06-07",
+          "startTime": "12:00",
+          "endTime": "18:00",
+          "registration": "Drop-in",
+          "url": "https://downtownsomerville.org/event/2026-international-street-fair/",
+          "venue": "Downtown Somerville",
+          "address": "Main Street, Somerville, NJ 08876",
+          "lat": 40.569749,
+          "lng": -74.607682,
+          "summary": "Downtown street fair with global food, vendors, live music, cultural activities, and family-friendly Main Street programming.",
+          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
+          "tags": ["street-fair", "downtown", "festival", "family", "official-page"]
+        }
+      ],
+      "notes": "Official SID site has a WordPress events calendar with street fairs, concerts, markets, and downtown promotions. Added as configured source until a WordPress/Tribe Events parser is implemented."
+    },
+    {
+      "id": "mountainside-recreation",
+      "label": "Mountainside Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.mountainside-nj.com/department/recreation/",
+      "eventsUrl": "https://www.mountainside-nj.com/department/recreation/",
+      "townId": "mountainside-borough",
+      "address": "1385 Route 22, Mountainside, NJ 07092",
+      "lat": 40.67227,
+      "lng": -74.357372,
+      "notes": "Official recreation department source for borough camps, pool, youth programs, holiday activities, kids triathlon, robotics, theater, and seasonal programs. Public pages are mostly landing pages/PDFs and need manual review."
+    },
+    {
+      "id": "summit-downtown",
+      "label": "Summit Downtown",
+      "type": "downtown-sid-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.summitdowntown.org/",
+      "eventsUrl": "https://www.summitdowntown.org/events/",
+      "townId": "summit-city",
+      "address": "18 Bank Street, Summit, NJ 07901",
+      "lat": 40.715622,
+      "lng": -74.364684,
+      "configuredEvents": [
+        {
+          "title": "Family Fun Night",
+          "date": "2026-06-04",
+          "startTime": "16:00",
+          "endTime": "20:00",
+          "registration": "Drop-in",
+          "cost": "Free",
+          "url": "https://www.summitdowntown.org/events/",
+          "venue": "Beechwood Road and Bank Street",
+          "address": "Beechwood Road and Bank Street, Summit, NJ 07901",
+          "lat": 40.715622,
+          "lng": -74.364684,
+          "summary": "Downtown carnival-style family night with free activities, live entertainment, games, music, and family programming.",
+          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
+          "tags": ["downtown", "family", "festival", "official-page"]
+        },
+        {
+          "title": "Summit Downtown Welcomes the World",
+          "dates": ["2026-06-11", "2026-07-19"],
+          "startTime": "14:00",
+          "endTime": "18:00",
+          "registration": "Drop-in",
+          "cost": "Free",
+          "url": "https://www.summitdowntown.org/events/",
+          "venue": "Bank Street Parking Lot",
+          "address": "Bank Street, Summit, NJ 07901",
+          "lat": 40.715622,
+          "lng": -74.364684,
+          "summary": "Downtown World Cup community watch party series hosted by Summit Downtown.",
+          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
+          "tags": ["downtown", "world-cup", "watch-party", "family", "official-page"]
+        },
+        {
+          "title": "Summit Street Sounds",
+          "recurrence": { "frequency": "weekly", "weekdays": ["thursday", "friday"], "startDate": "2026-06-11", "endDate": "2026-07-31" },
+          "startTime": "17:00",
+          "endTime": "20:00",
+          "registration": "Drop-in",
+          "cost": "Free",
+          "url": "https://www.summitdowntown.org/events/",
+          "venue": "Downtown Summit",
+          "address": "Summit, NJ 07901",
+          "lat": 40.715622,
+          "lng": -74.364684,
+          "summary": "Downtown live music series on Thursday and Friday evenings in June and July.",
+          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
+          "tags": ["music", "downtown", "family", "official-page"]
+        },
+        {
+          "title": "Cars and Croissants",
+          "date": "2026-06-21",
+          "startTime": "08:00",
+          "endTime": "11:00",
+          "registration": "Drop-in",
+          "url": "https://www.summitdowntown.org/events/",
+          "venue": "Downtown Summit",
+          "address": "Summit, NJ 07901",
+          "lat": 40.715622,
+          "lng": -74.364684,
+          "summary": "Downtown car gathering listed by Summit Downtown.",
+          "ages": ["early-elementary", "tween", "teen"],
+          "tags": ["cars", "downtown", "family", "official-page"]
+        }
+      ],
+      "notes": "Official Summit Downtown Inc. events page lists Family Fun Night, Farmers Market, Street Sounds, Arts & Cars, downtown trick-or-treat, and holiday events. Some entries overlap with the City of Summit CivicPlus calendar; keep this as a cross-check and candidate parser source."
+    },
     {
       "id": "home-depot-kids-workshops",
       "label": "The Home Depot Kids Workshops",
@@ -458,28 +814,551 @@
       "id": "bridgewater-commons",
       "label": "Bridgewater Commons",
       "type": "mall-events",
-      "status": "blocked_by_bot_protection",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-regional-events",
       "website": "https://bridgewatercommons.com/",
       "eventsUrl": "https://bridgewatercommons.com/events/",
       "townId": "bridgewater-township",
       "address": "400 Commons Way, Bridgewater, NJ 08807",
       "lat": 40.585616,
       "lng": -74.619682,
-      "notes": "Strong local mall event source, but direct script fetch currently receives Cloudflare challenge."
+      "configuredEvents": [
+        {
+          "title": "Celebrate International Day of Yoga with lululemon",
+          "date": "2026-06-20",
+          "startTime": "08:00",
+          "endTime": "09:00",
+          "registration": "Required",
+          "cost": "Free",
+          "url": "https://bridgewatercommons.com/events/celebrate-international-day-of-yoga-with-lululemon/",
+          "room": "Commons Park, across from Fogo de Chao",
+          "summary": "Free outdoor community yoga flow led by lululemon ambassador Nancy, followed by a private in-store shopping experience.",
+          "ages": [
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "wellness",
+            "community",
+            "official-index"
+          ]
+        },
+        {
+          "title": "Goal Zone @ The Commons",
+          "date": "2026-06-20",
+          "startTime": "12:00",
+          "endTime": "18:00",
+          "registration": "Drop-in",
+          "cost": "Free",
+          "url": "https://bridgewatercommons.com/events/goal-zone-the-commons/",
+          "room": "Center Court",
+          "summary": "All-ages soccer celebration with New York Cosmos activations, penalty kick challenges, prizes, giveaways, music, food partners, and live match viewing.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "sports",
+            "soccer",
+            "family",
+            "official-index"
+          ]
+        },
+        {
+          "title": "PARTNER FEATURE! World Cup Watch Party",
+          "date": "2026-06-27",
+          "startTime": "14:00",
+          "endTime": "20:30",
+          "registration": "Ticketed",
+          "url": "https://bridgewatercommons.com/events/partner-feature-world-cup-watch-party/",
+          "venue": "Iron Peak Sports & Events",
+          "address": "137 Mountain View Road, Hillsborough, NJ 08844",
+          "townId": "hillsborough-township",
+          "lat": 40.4817947,
+          "lng": -74.6660648,
+          "summary": "Partner-hosted World Cup watch party at Iron Peak with live match screens, kids and family activations, sponsor tables, games, giveaways, and food for purchase.",
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "sports",
+            "soccer",
+            "watch-party",
+            "family",
+            "official-index"
+          ]
+        },
+        {
+          "title": "Summer Carnival @ The Commons",
+          "dates": [
+            "2026-07-07",
+            "2026-07-08",
+            "2026-07-09",
+            "2026-07-10"
+          ],
+          "startTime": "16:00",
+          "endTime": "21:00",
+          "registration": "Tickets onsite or advance",
+          "cost": "$5 admission; kids under 36 inches free; ride credits extra",
+          "url": "https://bridgewatercommons.com/events/summer-carnival-the-commons/",
+          "room": "Parking Lot 9 by Lord & Taylor",
+          "summary": "Weekday carnival evenings with midway games, carnival food, and 20 rides at Bridgewater Commons.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "carnival",
+            "rides",
+            "family",
+            "official-index"
+          ]
+        },
+        {
+          "title": "Summer Carnival @ The Commons",
+          "date": "2026-07-11",
+          "startTime": "14:00",
+          "endTime": "21:00",
+          "registration": "Tickets onsite or advance",
+          "cost": "$5 admission; kids under 36 inches free; ride credits extra",
+          "url": "https://bridgewatercommons.com/events/summer-carnival-the-commons/",
+          "room": "Parking Lot 9 by Lord & Taylor",
+          "summary": "Saturday carnival with midway games, carnival food, and 20 rides at Bridgewater Commons.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "carnival",
+            "rides",
+            "family",
+            "official-index"
+          ]
+        },
+        {
+          "title": "Summer Carnival @ The Commons",
+          "date": "2026-07-12",
+          "startTime": "12:00",
+          "endTime": "18:00",
+          "registration": "Tickets onsite or advance",
+          "cost": "$5 admission; kids under 36 inches free; ride credits extra",
+          "url": "https://bridgewatercommons.com/events/summer-carnival-the-commons/",
+          "room": "Parking Lot 9 by Lord & Taylor",
+          "summary": "Sunday carnival with midway games, carnival food, and 20 rides at Bridgewater Commons.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "carnival",
+            "rides",
+            "family",
+            "official-index"
+          ]
+        },
+        {
+          "title": "Summer Anime Market",
+          "date": "2026-07-25",
+          "startTime": "11:00",
+          "endTime": "18:00",
+          "registration": "Drop-in",
+          "url": "https://bridgewatercommons.com/events/summer-anime-market/",
+          "room": "Lower Level",
+          "summary": "Anime, gaming, K-pop, Pokemon, collectibles, art, apparel, and handmade pop-culture vendor market with more than 100 vendors.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "anime",
+            "gaming",
+            "market",
+            "official-index"
+          ]
+        },
+        {
+          "title": "You Fly It! Drone Experience",
+          "date": "2026-08-08",
+          "startTime": "12:00",
+          "endTime": "16:00",
+          "registration": "Drop-in",
+          "cost": "Free",
+          "url": "https://bridgewatercommons.com/events/you-fly-it-drone-experience/",
+          "room": "Community Hub, Lower Level near Chico's",
+          "summary": "Indoor drone racing and mission challenges from RoboCon NJ, SARA, and KABHOOM Robotics for all ages and experience levels.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "stem",
+            "robotics",
+            "drone",
+            "official-index"
+          ]
+        },
+        {
+          "title": "RoboCon New Jersey",
+          "date": "2026-09-26",
+          "startTime": "12:00",
+          "endTime": "18:00",
+          "registration": "Drop-in",
+          "cost": "Free",
+          "url": "https://bridgewatercommons.com/events/robo-con-new-jersey/",
+          "summary": "Mall-wide interactive robotics showcase for all ages, produced by New Jersey FIRST Robotics Competition high school teams to inspire K-12 STEM learning.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "stem",
+            "robotics",
+            "family",
+            "official-index"
+          ]
+        },
+        {
+          "title": "RoboCon New Jersey",
+          "date": "2026-09-27",
+          "startTime": "12:00",
+          "endTime": "17:00",
+          "registration": "Drop-in",
+          "cost": "Free",
+          "url": "https://bridgewatercommons.com/events/robo-con-new-jersey/",
+          "summary": "Second day of the mall-wide robotics showcase for all ages, produced by New Jersey FIRST Robotics Competition high school teams to inspire K-12 STEM learning.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "stem",
+            "robotics",
+            "family",
+            "official-index"
+          ]
+        }
+      ],
+      "notes": "Bridgewater Commons direct script fetching still receives a Cloudflare managed challenge. Current family/community events were transcribed from public search-indexed official event pages on 2026-06-08 and imported through configured-regional-events until a browser-backed parser is available."
     },
     {
       "id": "mall-at-short-hills",
       "label": "The Mall at Short Hills",
       "type": "mall-events",
-      "status": "blocked_by_bot_protection",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-regional-events",
       "website": "https://www.shopshorthills.com/",
-      "eventsUrl": "https://www.simon.com/mall/the-mall-at-short-hills/events",
+      "eventsUrl": "https://www.simon.com/mall/the-mall-at-short-hills/news-and-events",
       "address": "1200 Morris Turnpike, Short Hills, NJ 07078",
       "lat": 40.7408,
       "lng": -74.3626,
-      "notes": "Nearby regional mall with seasonal family events; Simon event pages currently show PerimeterX challenge to direct scripts."
+      "configuredEvents": [
+        {
+          "title": "Hands On: Ravioli Di Cacio e Pepe Con Amatriciana",
+          "date": "2026-06-09",
+          "startTime": "17:30",
+          "endTime": "20:00",
+          "registration": "Tickets",
+          "cost": "From $75.80",
+          "url": "https://www.eventbrite.com/e/hands-on-ravioli-di-cacio-e-pepe-con-amatriciana-tickets-1988784452835",
+          "venue": "Eataly Short Hills",
+          "room": "La Scuola",
+          "address": "1200 Morris Turnpike #112, Millburn, NJ 07078",
+          "lat": 40.7408,
+          "lng": -74.3626,
+          "summary": "Hands-on Eataly cooking class where guests make ravioli from scratch and learn Roman pasta traditions. Classes are suitable for children 8+ who are passionate about Italian cuisine; guests 15 and under need a supervising adult.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "cooking",
+            "food",
+            "workshop",
+            "eataly",
+            "official-index"
+          ]
+        },
+        {
+          "title": "Hands-On: Tiramisu Classico",
+          "date": "2026-06-18",
+          "startTime": "17:00",
+          "endTime": "18:00",
+          "registration": "Tickets",
+          "cost": "From $58.74",
+          "url": "https://www.eventbrite.com/e/hands-on-tiramisu-classico-tickets-1988764482102",
+          "venue": "Eataly Short Hills",
+          "room": "La Scuola",
+          "address": "1200 Morris Turnpike #112, Millburn, NJ 07078",
+          "lat": 40.7408,
+          "lng": -74.3626,
+          "summary": "Hands-on Eataly class for assembling classic tiramisu and learning Italian dessert technique. Classes are suitable for children 8+ who are passionate about Italian cuisine; guests 15 and under need a supervising adult.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "cooking",
+            "dessert",
+            "food",
+            "workshop",
+            "eataly",
+            "official-index"
+          ]
+        },
+        {
+          "title": "Dad & Me: Hands On Pizza Making (Father's Day Edition)",
+          "date": "2026-06-21",
+          "startTime": "10:00",
+          "endTime": "12:00",
+          "registration": "Tickets",
+          "cost": "From $109.89",
+          "url": "https://www.eventbrite.com/o/eataly-short-hills-90517557373",
+          "venue": "Eataly Short Hills",
+          "room": "La Scuola",
+          "address": "1200 Morris Turnpike #112, Millburn, NJ 07078",
+          "lat": 40.7408,
+          "lng": -74.3626,
+          "summary": "Father's Day hands-on pizza-making class for dads or caregivers and kids at Eataly Short Hills.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "cooking",
+            "pizza",
+            "food",
+            "father's-day",
+            "eataly",
+            "official-index"
+          ]
+        },
+        {
+          "title": "Hands On: Gnocchi Pomodoro",
+          "date": "2026-06-25",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "registration": "Tickets",
+          "cost": "From $75.80",
+          "url": "https://www.eventbrite.com/e/hands-on-gnocchi-pomodoro-tickets-1988772369694",
+          "venue": "Eataly Short Hills",
+          "room": "La Scuola",
+          "address": "1200 Morris Turnpike #112, Millburn, NJ 07078",
+          "lat": 40.7408,
+          "lng": -74.3626,
+          "summary": "Hands-on Eataly cooking class where guests make gnocchi from scratch and learn a classic pomodoro preparation. Classes are suitable for children 8+ who are passionate about Italian cuisine; guests 15 and under need a supervising adult.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "cooking",
+            "food",
+            "workshop",
+            "eataly",
+            "official-index"
+          ]
+        }
+      ],
+      "notes": "Simon contentstream API still returns PerimeterX challenge to direct scripts. Current child/family-suitable Eataly cooking events were transcribed from public search-indexed Simon/Eventbrite pages on 2026-06-08 and imported through configured-regional-events until a browser-backed/API parser is available."
+    },
+    {
+      "id": "american-dream",
+      "label": "American Dream",
+      "type": "mall-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.americandream.com/",
+      "eventsUrl": "https://www.americandream.com/dream-fan-fest",
+      "address": "1 American Dream Way, East Rutherford, NJ 07073",
+      "lat": 40.809204,
+      "lng": -74.070808,
+      "configuredEvents": [
+        {
+          "title": "Dream Fan Fest Match Day Celebration: Brazil v Morocco",
+          "date": "2026-06-13",
+          "startTime": "14:00",
+          "endTime": "17:00",
+          "registration": "Tickets",
+          "cost": "See source",
+          "url": "https://www.americandream.com/dream-fan-fest",
+          "room": "The Arena Watch & Play Zone",
+          "summary": "Three-hour Dream Fan Fest pre-game celebration for Brazil v Morocco with food, music, entertainment, and fan activities before the nearby MetLife Stadium kickoff.",
+          "ages": [
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "soccer",
+            "world-cup",
+            "watch-party",
+            "match-day",
+            "official-contentful"
+          ]
+        },
+        {
+          "title": "Dream Fan Fest Match Day Celebration: France v Senegal",
+          "date": "2026-06-16",
+          "startTime": "11:00",
+          "endTime": "14:00",
+          "registration": "Tickets",
+          "cost": "See source",
+          "url": "https://www.americandream.com/dream-fan-fest",
+          "room": "The Arena Watch & Play Zone",
+          "summary": "Three-hour Dream Fan Fest pre-game celebration for France v Senegal with food, music, entertainment, and fan activities before the nearby MetLife Stadium kickoff.",
+          "ages": [
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "soccer",
+            "world-cup",
+            "watch-party",
+            "match-day",
+            "official-contentful"
+          ]
+        },
+        {
+          "title": "Dream Fan Fest Family Day",
+          "date": "2026-06-21",
+          "startTime": "10:00",
+          "endTime": "17:00",
+          "registration": "See source",
+          "cost": "See source",
+          "url": "https://www.americandream.com/events/dream-fan-fest-family-day",
+          "room": "The Arena",
+          "summary": "Family Day at The Arena with Good Vibes with Lulu & Lala, kids' activities, American Dream character appearances, a parade, and interactive fun for all ages.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "soccer",
+            "world-cup",
+            "characters",
+            "family-day",
+            "official-contentful"
+          ],
+          "confidence": 0.66
+        },
+        {
+          "title": "Dream Fan Fest Match Day Celebration: Norway v Senegal",
+          "date": "2026-06-22",
+          "startTime": "16:00",
+          "endTime": "19:00",
+          "registration": "Tickets",
+          "cost": "See source",
+          "url": "https://www.americandream.com/dream-fan-fest",
+          "room": "The Arena Watch & Play Zone",
+          "summary": "Three-hour Dream Fan Fest pre-game celebration for Norway v Senegal with food, music, entertainment, and fan activities before the nearby MetLife Stadium kickoff.",
+          "ages": [
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "soccer",
+            "world-cup",
+            "watch-party",
+            "match-day",
+            "official-contentful"
+          ]
+        },
+        {
+          "title": "Dream Fan Fest: New York Jets Fest",
+          "date": "2026-06-23",
+          "startTime": "16:00",
+          "endTime": "19:00",
+          "registration": "See source",
+          "cost": "See source",
+          "url": "https://www.americandream.com/events/dream-fan-fest-ny-jets",
+          "room": "The Arena",
+          "summary": "New York Jets fan experience during the England v Ghana watch party with inflatable obstacle courses, hands-on games, interactive fan activities, and giveaways.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "soccer",
+            "world-cup",
+            "sports",
+            "games",
+            "watch-party",
+            "official-contentful"
+          ],
+          "confidence": 0.68
+        },
+        {
+          "title": "Dream Fan Fest Match Day Celebration: Ecuador v Germany",
+          "date": "2026-06-25",
+          "startTime": "12:00",
+          "endTime": "15:00",
+          "registration": "Tickets",
+          "cost": "See source",
+          "url": "https://www.americandream.com/dream-fan-fest",
+          "room": "The Arena Watch & Play Zone",
+          "summary": "Three-hour Dream Fan Fest pre-game celebration for Ecuador v Germany with food, music, entertainment, and fan activities before the nearby MetLife Stadium kickoff.",
+          "ages": [
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "soccer",
+            "world-cup",
+            "watch-party",
+            "match-day",
+            "official-contentful"
+          ]
+        },
+        {
+          "title": "Dream Fan Fest Match Day Celebration: Panama v England",
+          "date": "2026-06-27",
+          "startTime": "13:00",
+          "endTime": "16:00",
+          "registration": "Tickets",
+          "cost": "See source",
+          "url": "https://www.americandream.com/dream-fan-fest",
+          "room": "The Arena Watch & Play Zone",
+          "summary": "Three-hour Dream Fan Fest pre-game celebration for Panama v England with food, music, entertainment, and fan activities before the nearby MetLife Stadium kickoff.",
+          "ages": [
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "soccer",
+            "world-cup",
+            "watch-party",
+            "match-day",
+            "official-contentful"
+          ]
+        }
+      ],
+      "notes": "Large regional mall and entertainment complex with family attractions and seasonal activations. Dream Fan Fest rows were refreshed on 2026-06-08 from the official American Dream site/Contentful data plus public announcement pages; kid-focused rows with less precise activity timing use conservative confidence until a browser-backed parser can read the rendered schedule."
     },
     {
       "id": "lego-bridgewater-commons",
@@ -838,6 +1717,232 @@
       "notes": "Union County nature/science center with workshops, camps, and family nature programs. Public page requires manual review for session-specific times."
     },
     {
+      "id": "liberty-science-center",
+      "label": "Liberty Science Center",
+      "type": "science-museum-family-programs",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://lsc.org/",
+      "eventsUrl": "https://lsc.org/education/families",
+      "address": "222 Jersey City Blvd, Jersey City, NJ 07305",
+      "lat": 40.7079009,
+      "lng": -74.0550328,
+      "configuredEvents": [
+        {
+          "title": "Member Morning",
+          "dates": [
+            "2026-06-13",
+            "2026-06-14",
+            "2026-07-11",
+            "2026-07-12"
+          ],
+          "startTime": "09:00",
+          "endTime": "10:00",
+          "registration": "Members only",
+          "cost": "Membership or admission required",
+          "url": "https://lsc.org/support-us/membership/member-events",
+          "summary": "Members-only early access hour before Liberty Science Center opens to the public.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "museum",
+            "members",
+            "early-access",
+            "official-page"
+          ]
+        },
+        {
+          "title": "A World Cup Member Night",
+          "date": "2026-06-18",
+          "startTime": "17:30",
+          "endTime": "21:00",
+          "registration": "Members only; RSVP",
+          "cost": "Membership or admission required",
+          "url": "https://lsc.org/support-us/membership/member-events",
+          "room": "PSE&G Court and galleries",
+          "summary": "Members-only World Cup night with drone soccer, penalty shots, Subsoccer, rat soccer, BASF Lab activities, a Summer Skies Live planetarium show, and Canada v Qatar on the giant screen.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "museum",
+            "science",
+            "soccer",
+            "world-cup",
+            "members",
+            "official-page"
+          ]
+        },
+        {
+          "title": "BASF Kids' Lab: Playful Polymers",
+          "date": "2026-06-18",
+          "startTime": "17:30",
+          "endTime": "21:00",
+          "registration": "Member Night access required",
+          "cost": "Free with paid LSC admission or membership",
+          "url": "https://lsc.org/education/families/basf-kids-labs",
+          "room": "BASF Kids' Lab",
+          "summary": "Hands-on chemistry lab for children ages 6-12 during Member Night, exploring how polymers behave with common household ingredients and a take-home slimy creation.",
+          "ages": [
+            "early-elementary",
+            "tween"
+          ],
+          "tags": [
+            "science",
+            "chemistry",
+            "stem",
+            "workshop",
+            "official-page"
+          ]
+        },
+        {
+          "title": "BASF Kids' Lab: Operation Filtration",
+          "date": "2026-06-20",
+          "startTime": "11:30",
+          "endTime": "16:00",
+          "registration": "Included with admission; space may be limited",
+          "cost": "Free with paid LSC admission or membership",
+          "url": "https://lsc.org/education/families/basf-kids-labs",
+          "room": "BASF Kids' Lab",
+          "summary": "Hands-on chemistry lab for children ages 6-12 with sessions at 11:30, 1:30, 2:30, and 3:30, where families create dirty water and test filtration processes.",
+          "ages": [
+            "early-elementary",
+            "tween"
+          ],
+          "tags": [
+            "science",
+            "chemistry",
+            "stem",
+            "workshop",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Science Camp: World Cup Week",
+          "date": "2026-07-06",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "registration": "RSVP",
+          "cost": "Members $1000/week; nonmembers $1050/week",
+          "url": "https://lsc.org/camp",
+          "category": "camp",
+          "summary": "Weeklong LSC Science Camp session, July 6-10, with World Cup-themed options including Sports Spectacular, Animal Athletes, and Athletes in Motion; some grade-level options may be sold out.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "camp",
+            "science",
+            "stem",
+            "sports",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Science Camp: Medical Science Week",
+          "date": "2026-07-13",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "registration": "RSVP",
+          "cost": "Members $1000/week; nonmembers $1050/week",
+          "url": "https://lsc.org/camp",
+          "category": "camp",
+          "summary": "Weeklong LSC Science Camp session, July 13-17, with medical science options including Animal Spotlight and Science of Senses; some grade-level options may be limited or sold out.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "camp",
+            "science",
+            "stem",
+            "medical-science",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Science Camp: Pop Culture Week",
+          "date": "2026-07-20",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "registration": "RSVP",
+          "cost": "Members $1000/week; nonmembers $1050/week",
+          "url": "https://lsc.org/camp",
+          "category": "camp",
+          "summary": "Weeklong LSC Science Camp session, July 20-24, with pop-culture science options including Sound Off and Most Deadly; several grade-level options are limited or sold out.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "camp",
+            "science",
+            "stem",
+            "pop-culture",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Science Camp: Explorers Week",
+          "date": "2026-07-27",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "registration": "RSVP",
+          "cost": "Members $1000/week; nonmembers $1050/week",
+          "url": "https://lsc.org/camp",
+          "category": "camp",
+          "summary": "Weeklong LSC Science Camp session, July 27-31, with exploration options including Explore the Planets, Destination: Mars, Paleolithic Survival, and Danger Zones.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "camp",
+            "science",
+            "stem",
+            "space",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Science Camp: Let's Roll Week",
+          "date": "2026-08-03",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "registration": "RSVP",
+          "cost": "Members $1000/week; nonmembers $1050/week",
+          "url": "https://lsc.org/camp",
+          "category": "camp",
+          "summary": "Weeklong LSC Science Camp session, August 3-7, with engineering and motion options including Ready to Ride, RC Adventure, and Reinventing the Wheel; some grade-level options may be limited or sold out.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "camp",
+            "science",
+            "stem",
+            "engineering",
+            "official-page"
+          ]
+        }
+      ],
+      "notes": "Interactive science museum in Liberty State Park with family programs, BASF Kids' Lab, camps, member events, planetarium shows, and daily schedule items. Current family/member/camp rows were refreshed from official LSC pages on 2026-06-08; skip adult-only LSC After Dark entries unless specifically requested."
+    },
+    {
       "id": "somerset-eec",
       "label": "Somerset County Environmental Education Center",
       "type": "science-nature-center",
@@ -1125,8 +2230,115 @@
           "name": "Dunellen Public Library",
           "website": "https://dunellenlibrary.net/",
           "eventsUrl": "https://dunellenlibrary.events.mylibrary.digital/",
-          "status": "blocked_by_bot_protection",
-          "notes": "mylibrary.digital exposes indexed event pages, but direct importer fetches receive a Cloudflare managed challenge; needs browser-backed import or manual transcription."
+          "status": "importable",
+          "parser": "configured-library-events",
+          "townId": "dunellen-borough",
+          "address": "100 New Market Road, Dunellen, NJ 08812",
+          "lat": 40.5902885,
+          "lng": -74.4624407,
+          "configuredEvents": [
+            {
+              "title": "Big & Little Craft",
+              "dates": [
+                "2026-06-08",
+                "2026-06-15",
+                "2026-06-22",
+                "2026-06-29",
+                "2026-07-06",
+                "2026-07-13",
+                "2026-07-20",
+                "2026-07-27",
+                "2026-08-03"
+              ],
+              "startTime": "11:00",
+              "endTime": "11:30",
+              "registration": "Drop-in",
+              "url": "https://dunellenlibrary.events.mylibrary.digital/event?id=326392",
+              "summary": "Caregiver-and-child craft time for ages 2-5 with a hands-on art project.",
+              "ages": [
+                "toddler",
+                "preschool"
+              ],
+              "tags": [
+                "craft",
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Twilight Storytime",
+              "dates": [
+                "2026-06-09",
+                "2026-06-16",
+                "2026-06-23",
+                "2026-06-30"
+              ],
+              "startTime": "17:15",
+              "endTime": "17:45",
+              "registration": "Drop-in",
+              "url": "https://dunellenlibrary.events.mylibrary.digital/event?id=290019",
+              "summary": "Evening storytime for young children with sleepy stories and songs.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool",
+                "early-elementary"
+              ],
+              "tags": [
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Thursday Musical Storytime",
+              "dates": [
+                "2026-06-11",
+                "2026-06-18",
+                "2026-06-25",
+                "2026-07-02"
+              ],
+              "startTime": "10:30",
+              "endTime": "11:00",
+              "registration": "Drop-in",
+              "summary": "Musical storytime for young children with books, songs, movement, and early-literacy play.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool",
+                "early-elementary"
+              ],
+              "tags": [
+                "storytime",
+                "music",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Saturday Storytime",
+              "dates": [
+                "2026-06-13",
+                "2026-06-20",
+                "2026-06-27"
+              ],
+              "startTime": "10:30",
+              "endTime": "11:00",
+              "registration": "Drop-in",
+              "url": "https://dunellenlibrary.events.mylibrary.digital/event?id=289979",
+              "summary": "Weekend storytime for young children with books, music, and movement.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool",
+                "early-elementary"
+              ],
+              "tags": [
+                "storytime",
+                "music",
+                "mylibrary-index"
+              ]
+            }
+          ],
+          "notes": "mylibrary.digital direct script fetching still receives Cloudflare challenge. Current child/family events were transcribed from public search-indexed calendar pages on 2026-06-08 and imported through configured-library-events until a browser-backed parser is available."
         }
       ]
     },
@@ -1781,8 +2993,642 @@
           "name": "Fanwood Memorial Library",
           "website": "https://fanwoodlibrary.org/",
           "eventsUrl": "https://fanwoodlibrary.events.mylibrary.digital/",
-          "status": "blocked_by_bot_protection",
-          "notes": "mylibrary.digital exposes indexed event pages, but direct importer fetches receive a Cloudflare managed challenge; needs browser-backed import or manual transcription."
+          "status": "importable",
+          "parser": "configured-library-events",
+          "townId": "fanwood-borough",
+          "address": "5 Forest Road, Fanwood, NJ 07023",
+          "lat": 40.643257,
+          "lng": -74.385233,
+          "configuredEvents": [
+            {
+              "title": "Music and Movement",
+              "dates": [
+                "2026-06-08",
+                "2026-06-15",
+                "2026-06-22",
+                "2026-06-29",
+                "2026-07-06",
+                "2026-07-13",
+                "2026-07-20",
+                "2026-07-27",
+                "2026-08-03"
+              ],
+              "startTime": "10:30",
+              "endTime": "11:30",
+              "registration": "RSVP",
+              "url": "https://fanwoodlibrary.events.mylibrary.digital/event?id=302174",
+              "summary": "Outdoor storytime with songs, dancing, and movement for children up to age 3.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool"
+              ],
+              "tags": [
+                "storytime",
+                "music",
+                "movement",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Bouncing Babies",
+              "dates": [
+                "2026-06-09",
+                "2026-06-16",
+                "2026-06-23",
+                "2026-06-30",
+                "2026-07-07"
+              ],
+              "startTime": "10:30",
+              "endTime": "11:00",
+              "registration": "RSVP",
+              "url": "https://fanwoodlibrary.events.mylibrary.digital/event?id=277293",
+              "summary": "Babies and caregivers share songs, stories, bouncing rhymes, and social play.",
+              "ages": [
+                "baby",
+                "toddler"
+              ],
+              "tags": [
+                "storytime",
+                "baby",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Crafty Readers Storytime",
+              "dates": [
+                "2026-06-11",
+                "2026-06-18",
+                "2026-06-25",
+                "2026-07-02",
+                "2026-07-09",
+                "2026-07-16"
+              ],
+              "startTime": "10:30",
+              "endTime": "11:30",
+              "registration": "RSVP",
+              "url": "https://fanwoodlibrary.events.mylibrary.digital/event?id=214585",
+              "summary": "Storytime for ages 3-6 with books, songs, and a related craft.",
+              "ages": [
+                "preschool",
+                "early-elementary"
+              ],
+              "tags": [
+                "storytime",
+                "craft",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Toddler Tales",
+              "dates": [
+                "2026-06-12",
+                "2026-06-26"
+              ],
+              "startTime": "10:30",
+              "endTime": "11:00",
+              "registration": "RSVP",
+              "summary": "Toddler storytime for ages 18 months to 3 years with stories and early-literacy activities.",
+              "ages": [
+                "toddler",
+                "preschool"
+              ],
+              "tags": [
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Pop Up Play",
+              "date": "2026-06-12",
+              "startTime": "10:30",
+              "endTime": "11:30",
+              "registration": "RSVP",
+              "url": "https://fanwoodlibrary.events.mylibrary.digital/event?id=277342",
+              "summary": "Play-based program with library toys for toddlers and time for caregivers to socialize.",
+              "ages": [
+                "toddler",
+                "preschool"
+              ],
+              "tags": [
+                "play",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Fiction Writing Workshop for Middle Schoolers",
+              "date": "2026-06-08",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "RSVP",
+              "summary": "Writing workshop for middle school students to practice fiction ideas and creative storytelling.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "writing",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Let's Get Cooking",
+              "dates": [
+                "2026-06-09",
+                "2026-07-07",
+                "2026-08-04"
+              ],
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "RSVP",
+              "summary": "Food and cooking program for ages 10-14.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "food",
+                "cooking",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Teen Craft",
+              "date": "2026-06-11",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "RSVP",
+              "summary": "Arts and crafts program for tweens and teens.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "craft",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "DIY Environmental Workshop",
+              "date": "2026-06-12",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "See source",
+              "summary": "Children make an environment-themed hands-on project.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "stem",
+                "craft",
+                "nature",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Mini Chefs",
+              "dates": [
+                "2026-06-16",
+                "2026-07-14"
+              ],
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "RSVP",
+              "summary": "Hands-on food and cooking program for children.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "food",
+                "cooking",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Pajama Storytime",
+              "dates": [
+                "2026-06-16",
+                "2026-07-21"
+              ],
+              "startTime": "18:00",
+              "endTime": "19:00",
+              "registration": "RSVP",
+              "url": "https://fanwoodlibrary.events.mylibrary.digital/event?id=277345",
+              "summary": "Evening storytime with cozy stories and songs for young children and caregivers.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool",
+                "early-elementary"
+              ],
+              "tags": [
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Mini Makers",
+              "date": "2026-06-18",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "RSVP",
+              "url": "https://fanwoodlibrary.events.mylibrary.digital/event?id=277363",
+              "summary": "Hands-on craft program designed for children in grades 2-4.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "craft",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Dino Party - Summer Reading Kick Off",
+              "date": "2026-06-20",
+              "startTime": "10:30",
+              "endTime": "11:30",
+              "registration": "See source",
+              "summary": "Children celebrate the start of summer reading with a dinosaur-themed party.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "summer reading",
+                "special event",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "LEGO Bridge Building Workshop",
+              "date": "2026-06-25",
+              "startTime": "13:00",
+              "endTime": "14:00",
+              "registration": "RSVP",
+              "summary": "STEM building workshop using LEGO bricks for ages 8-12.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "stem",
+                "lego",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Teens & Tots Storytime",
+              "date": "2026-06-27",
+              "startTime": "10:30",
+              "endTime": "11:30",
+              "registration": "See source",
+              "summary": "Storytime program connecting teen helpers with young children and caregivers.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool",
+                "teen"
+              ],
+              "tags": [
+                "storytime",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Stars & Stripes Craft",
+              "date": "2026-06-29",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "registration": "See source",
+              "summary": "Family craft program with a stars-and-stripes themed project.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "craft",
+                "family",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Hands On Art",
+              "dates": [
+                "2026-07-02",
+                "2026-07-16"
+              ],
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "See source",
+              "summary": "Hands-on art program for children.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "art",
+                "craft",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Summer STEM",
+              "dates": [
+                "2026-07-01",
+                "2026-07-15",
+                "2026-07-29"
+              ],
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "See source",
+              "summary": "Summer science and STEM activity for children.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "stem",
+                "summer reading",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Building Club",
+              "dates": [
+                "2026-06-26",
+                "2026-07-24"
+              ],
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "See source",
+              "summary": "Building and construction play program for children.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "stem",
+                "building",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Family Game Night",
+              "date": "2026-07-06",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "registration": "See source",
+              "summary": "Family game night with tabletop games and group play.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "games",
+                "family",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Charity Club",
+              "date": "2026-07-06",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "See source",
+              "summary": "Teen service club meeting focused on community-helping projects.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "volunteer",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Community Read: The Declaration of Independence",
+              "date": "2026-07-08",
+              "startTime": "18:00",
+              "endTime": "19:00",
+              "registration": "See source",
+              "summary": "All-ages community read event centered on the Declaration of Independence.",
+              "ages": [
+                "early-elementary",
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "history",
+                "all ages",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Pokemon Club",
+              "date": "2026-07-10",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "See source",
+              "summary": "Pokemon-themed games and activities for ages 5-11.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "games",
+                "pokemon",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Teen Taste Test",
+              "date": "2026-07-13",
+              "startTime": "15:00",
+              "endTime": "16:00",
+              "registration": "RSVP",
+              "summary": "Taste-test activity for ages 11-18.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "food",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Unique Creatures Animal Show",
+              "date": "2026-07-13",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "registration": "See source",
+              "summary": "Animal show for families and children.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "animals",
+                "family",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Magic By Conrad",
+              "date": "2026-07-20",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "registration": "See source",
+              "summary": "Family magic show with magician Conrad.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "magic",
+                "family",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "SCRATCH Coding Workshop",
+              "date": "2026-07-25",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "registration": "RSVP",
+              "summary": "Scratch coding workshop for ages 7-13.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "coding",
+                "stem",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Air Dry Clay Disks",
+              "date": "2026-07-27",
+              "startTime": "15:00",
+              "endTime": "16:00",
+              "registration": "RSVP",
+              "summary": "Teen art workshop using air-dry clay.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "art",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Watercolor Art",
+              "date": "2026-07-27",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "registration": "See source",
+              "summary": "Watercolor art activity for children and families.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "art",
+                "craft",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Teen Tie Dye",
+              "date": "2026-08-03",
+              "startTime": "15:00",
+              "endTime": "16:00",
+              "registration": "RSVP",
+              "summary": "Tie-dye art program for ages 11-18.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "art",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Pasta Paleontology",
+              "date": "2026-08-03",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "registration": "See source",
+              "summary": "Dinosaur-themed family craft or STEM activity using pasta.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "stem",
+                "craft",
+                "family",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Union County K-9 Unit Demonstration",
+              "date": "2026-08-05",
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "registration": "See source",
+              "summary": "Family demonstration with the Union County K-9 Unit.",
+              "ages": [
+                "early-elementary",
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "animals",
+                "community",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Movie Night",
+              "date": "2026-08-06",
+              "startTime": "17:30",
+              "endTime": "19:30",
+              "registration": "See source",
+              "summary": "Evening movie program for young patrons and families.",
+              "ages": [
+                "early-elementary",
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "movie",
+                "family",
+                "mylibrary-index"
+              ]
+            }
+          ],
+          "notes": "mylibrary.digital direct script fetching still receives Cloudflare challenge. Current child, teen, and family events were transcribed from public search-indexed calendar pages on 2026-06-08 and imported through configured-library-events until a browser-backed parser is available."
         }
       ]
     },
@@ -1805,8 +3651,642 @@
           "name": "Scotch Plains Public Library",
           "website": "https://scotchplainslibrary.org/",
           "eventsUrl": "https://scotlib.events.mylibrary.digital/",
-          "status": "blocked_by_bot_protection",
-          "notes": "mylibrary.digital exposes indexed event pages, but direct importer fetches receive a Cloudflare managed challenge; needs browser-backed import or manual transcription."
+          "status": "importable",
+          "parser": "configured-library-events",
+          "townId": "scotch-plains-township",
+          "address": "1927 Bartle Avenue, Scotch Plains, NJ 07076",
+          "lat": 40.6516968,
+          "lng": -74.397563,
+          "configuredEvents": [
+            {
+              "title": "Crafty Tales (Ages 2-5)",
+              "dates": [
+                "2026-06-08",
+                "2026-07-10",
+                "2026-07-17"
+              ],
+              "startTime": "18:00",
+              "endTime": "18:45",
+              "registration": "See source",
+              "summary": "Storytime and craft program for ages 2-5.",
+              "ages": [
+                "toddler",
+                "preschool"
+              ],
+              "tags": [
+                "storytime",
+                "craft",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Budding Bookworms (0-17 months)",
+              "dates": [
+                "2026-06-09",
+                "2026-06-10",
+                "2026-06-23",
+                "2026-06-24",
+                "2026-07-07",
+                "2026-07-08",
+                "2026-07-14"
+              ],
+              "startTime": "10:00",
+              "endTime": "10:45",
+              "registration": "RSVP",
+              "url": "https://scotlib.events.mylibrary.digital/event?id=290635",
+              "summary": "Baby storytime with sensory fun, stories, songs, movement, and social playtime.",
+              "ages": [
+                "baby"
+              ],
+              "tags": [
+                "storytime",
+                "baby",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Storytots (18-35 months)",
+              "dates": [
+                "2026-06-09",
+                "2026-06-23",
+                "2026-07-07"
+              ],
+              "startTime": "11:00",
+              "endTime": "11:45",
+              "registration": "RSVP",
+              "summary": "Toddler storytime for ages 18-35 months.",
+              "ages": [
+                "toddler"
+              ],
+              "tags": [
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Pokemon Club",
+              "date": "2026-06-09",
+              "startTime": "16:00",
+              "endTime": "16:45",
+              "registration": "RSVP",
+              "url": "https://scotlib.events.mylibrary.digital/event?id=293132",
+              "summary": "Elementary students play Pokemon-themed games and challenges; bring cards to play, with no trading.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "games",
+                "pokemon",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Once Upon an Easel (18-35 months)",
+              "dates": [
+                "2026-06-10",
+                "2026-06-24",
+                "2026-07-08",
+                "2026-07-15",
+                "2026-07-22"
+              ],
+              "startTime": "11:00",
+              "endTime": "11:45",
+              "registration": "RSVP",
+              "summary": "Art and storytime program for toddlers ages 18-35 months.",
+              "ages": [
+                "toddler"
+              ],
+              "tags": [
+                "art",
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Teen Cozy Corner",
+              "dates": [
+                "2026-06-10",
+                "2026-06-17",
+                "2026-07-08",
+                "2026-07-22"
+              ],
+              "startTime": "15:30",
+              "endTime": "16:30",
+              "registration": "RSVP",
+              "url": "https://scotlib.events.mylibrary.digital/event?id=293293",
+              "summary": "Relaxed teen hangout with art projects, music, games, creative activities, and snacks for incoming grades 6-12.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "teen",
+                "games",
+                "art",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Teen Volunteer Orientation",
+              "date": "2026-06-10",
+              "startTime": "17:30",
+              "endTime": "18:30",
+              "registration": "RSVP",
+              "summary": "Orientation for teens interested in library volunteer opportunities.",
+              "ages": [
+                "teen"
+              ],
+              "tags": [
+                "volunteer",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Teen Volunteer Orientation",
+              "date": "2026-06-12",
+              "startTime": "15:30",
+              "endTime": "16:30",
+              "registration": "RSVP",
+              "summary": "Orientation for teens interested in library volunteer opportunities.",
+              "ages": [
+                "teen"
+              ],
+              "tags": [
+                "volunteer",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Screen Mix",
+              "dates": [
+                "2026-06-10",
+                "2026-07-08",
+                "2026-08-05"
+              ],
+              "startTime": "18:00",
+              "endTime": "19:00",
+              "registration": "RSVP",
+              "url": "https://scotlib.events.mylibrary.digital/event?id=340209",
+              "summary": "Monthly screening program for middle and high school students featuring anime, TV, or film.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "movie",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Sprinkle Squad",
+              "dates": [
+                "2026-06-11",
+                "2026-07-09"
+              ],
+              "startTime": "18:00",
+              "endTime": "19:00",
+              "registration": "RSVP",
+              "summary": "Food and cooking activity for children.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "food",
+                "cooking",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Saturday Storytime",
+              "dates": [
+                "2026-06-13",
+                "2026-06-20",
+                "2026-06-27"
+              ],
+              "startTime": "10:00",
+              "endTime": "10:45",
+              "registration": "See source",
+              "url": "https://scotlib.events.mylibrary.digital/event?id=341267",
+              "summary": "Saturday morning storytime for children and caregivers.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool",
+                "early-elementary"
+              ],
+              "tags": [
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Art Explorers (Grades 2-5)",
+              "date": "2026-06-15",
+              "startTime": "19:00",
+              "endTime": "20:00",
+              "registration": "RSVP",
+              "summary": "Art program for children in grades 2-5.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "art",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Panel & Ink (Grades 3-5)",
+              "date": "2026-06-16",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "registration": "RSVP",
+              "summary": "Book and comics-themed program for children in grades 3-5.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "book group",
+                "comics",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Pokemon Battle Club (Grades 3-8)",
+              "dates": [
+                "2026-06-23",
+                "2026-07-06",
+                "2026-07-20",
+                "2026-08-03"
+              ],
+              "startTime": "15:30",
+              "endTime": "16:30",
+              "registration": "RSVP",
+              "summary": "Pokemon battle club for grades 3-8.",
+              "ages": [
+                "early-elementary",
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "games",
+                "pokemon",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Pajama Storytime",
+              "date": "2026-06-25",
+              "startTime": "18:00",
+              "endTime": "18:45",
+              "registration": "RSVP",
+              "summary": "Evening pajama storytime for children and caregivers.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool",
+                "early-elementary"
+              ],
+              "tags": [
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "One in Math (Grades K-3)",
+              "dates": [
+                "2026-06-26",
+                "2026-07-10",
+                "2026-07-17",
+                "2026-07-24",
+                "2026-07-31"
+              ],
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "registration": "RSVP",
+              "summary": "Math enrichment program for children in grades K-3.",
+              "ages": [
+                "early-elementary"
+              ],
+              "tags": [
+                "stem",
+                "math",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Summer Reading Kick Off",
+              "dates": [
+                "2026-06-29"
+              ],
+              "startTime": "18:30",
+              "endTime": "19:15",
+              "registration": "See source",
+              "summary": "Summer Reading kickoff program for children.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "summer reading",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Summer Reading Kick Off",
+              "date": "2026-06-29",
+              "startTime": "19:30",
+              "endTime": "20:15",
+              "registration": "See source",
+              "summary": "Second Summer Reading kickoff session for children.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "summer reading",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Reading Buddies",
+              "dates": [
+                "2026-07-06",
+                "2026-07-13",
+                "2026-07-20",
+                "2026-07-27"
+              ],
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "registration": "See source",
+              "summary": "Summer Reading program pairing young readers with reading buddies.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "reading",
+                "summer reading",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Lego Club",
+              "dates": [
+                "2026-07-06",
+                "2026-07-13",
+                "2026-07-20",
+                "2026-07-27",
+                "2026-08-03"
+              ],
+              "startTime": "18:00",
+              "endTime": "19:00",
+              "registration": "See source",
+              "summary": "LEGO building club for children.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "lego",
+                "stem",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Art Lab (Grades 3-8)",
+              "dates": [
+                "2026-07-07",
+                "2026-07-14",
+                "2026-07-21",
+                "2026-07-28",
+                "2026-08-04"
+              ],
+              "startTime": "15:00",
+              "endTime": "16:00",
+              "registration": "RSVP",
+              "summary": "Art lab for grades 3-8.",
+              "ages": [
+                "early-elementary",
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "art",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Potato Lab (K-5)",
+              "dates": [
+                "2026-07-09",
+                "2026-07-16",
+                "2026-07-23",
+                "2026-07-30"
+              ],
+              "startTime": "15:00",
+              "endTime": "16:00",
+              "registration": "RSVP",
+              "summary": "Hands-on potato-themed STEM activity for grades K-5.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "stem",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Teen Animal Show",
+              "date": "2026-07-10",
+              "startTime": "15:00",
+              "endTime": "16:00",
+              "registration": "RSVP",
+              "summary": "Animal show program for teens.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "animals",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Zoophoria - Animal Show",
+              "date": "2026-07-11",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "registration": "RSVP",
+              "summary": "Live animal show for children and families.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "animals",
+                "family",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Curious Kids: Science (Ages 3-6)",
+              "dates": [
+                "2026-07-13",
+                "2026-07-20"
+              ],
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "registration": "RSVP",
+              "url": "https://scotlib.events.mylibrary.digital/event?id=341290",
+              "summary": "Hands-on science program for families with children ages 3-6, using simple experiments and playful discovery.",
+              "ages": [
+                "preschool",
+                "early-elementary"
+              ],
+              "tags": [
+                "science",
+                "stem",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Dino Nugget Plush (Teen Sewing Workshop)",
+              "date": "2026-07-15",
+              "startTime": "15:30",
+              "endTime": "16:30",
+              "registration": "RSVP",
+              "summary": "Teen sewing workshop making a dino nugget plush.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "craft",
+                "sewing",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Family Craft Night",
+              "date": "2026-07-16",
+              "startTime": "18:00",
+              "endTime": "19:00",
+              "registration": "See source",
+              "summary": "Family craft night for children and caregivers.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "craft",
+                "family",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Cooking Crew (Ages 5+)",
+              "dates": [
+                "2026-07-17",
+                "2026-07-31"
+              ],
+              "startTime": "14:30",
+              "endTime": "15:30",
+              "registration": "RSVP",
+              "summary": "Cooking activity for children ages 5 and up.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "food",
+                "cooking",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Joe Fischer Magic",
+              "date": "2026-07-18",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "registration": "See source",
+              "summary": "Family magic show with Joe Fischer.",
+              "ages": [
+                "preschool",
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "magic",
+                "family",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Dino Cooking (Teen Cooking Program)",
+              "date": "2026-07-29",
+              "startTime": "15:30",
+              "endTime": "16:30",
+              "registration": "RSVP",
+              "summary": "Dinosaur-themed cooking program for teens.",
+              "ages": [
+                "tween",
+                "teen"
+              ],
+              "tags": [
+                "food",
+                "teen",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Ready, Set, Read! (Ages 3-5)",
+              "date": "2026-08-06",
+              "startTime": "14:00",
+              "endTime": "14:45",
+              "registration": "RSVP",
+              "summary": "Early-literacy reading program for ages 3-5.",
+              "ages": [
+                "preschool"
+              ],
+              "tags": [
+                "reading",
+                "storytime",
+                "mylibrary-index"
+              ]
+            },
+            {
+              "title": "Claymation Workshop (Grades 3-7)",
+              "date": "2026-08-06",
+              "startTime": "15:00",
+              "endTime": "16:00",
+              "registration": "RSVP",
+              "summary": "Claymation workshop for grades 3-7.",
+              "ages": [
+                "early-elementary",
+                "tween"
+              ],
+              "tags": [
+                "art",
+                "stem",
+                "mylibrary-index"
+              ]
+            }
+          ],
+          "notes": "mylibrary.digital direct script fetching still receives Cloudflare challenge. Current child, teen, and family events were transcribed from public search-indexed calendar pages on 2026-06-08 and imported through configured-library-events until a browser-backed parser is available."
         }
       ]
     },

@@ -2504,6 +2504,7 @@ function regionalEventRecord(source, fields) {
     title: stripHtml(fields.title),
     venue: location.name,
     venueName: location.name,
+    room: fields.room || null,
     category: fields.category || source.type || "regional",
     source: source.label,
     startsAt,
@@ -2525,6 +2526,66 @@ function regionalEventRecord(source, fields) {
     status: "published",
     confidence: fields.confidence ?? 0.78
   };
+}
+
+function configuredRegionalLocation(source, config) {
+  const baseLocation = primaryRegionalLocation(source);
+  return {
+    ...baseLocation,
+    id: config.locationId || baseLocation.id,
+    name: config.venue || baseLocation.name,
+    townId: config.townId || baseLocation.townId,
+    address: config.address || baseLocation.address,
+    lat: Number(config.lat ?? baseLocation.lat),
+    lng: Number(config.lng ?? baseLocation.lng),
+    url: config.locationUrl || baseLocation.url
+  };
+}
+
+function configuredRegionalEvent(source, config, dateKey) {
+  const title = stripHtml(config.title);
+  const sourceUrl = config.url || source.eventsUrl || source.website;
+  const startsAt = config.startTime ? localDateTime(dateKey, config.startTime) : null;
+  const endsAt = config.endTime ? localDateTime(dateKey, config.endTime) : null;
+  const summary = cleanImportedSummary(config.summary || "");
+  if (!title || !sourceUrl || !startsAt) {
+    return null;
+  }
+
+  return regionalEventRecord(source, {
+    id: `${source.id}-${dateKey}-${slugify(title)}`,
+    externalId: `${dateKey}-${slugify(title)}`,
+    title,
+    startsAt,
+    endsAt,
+    summary,
+    sourceUrl,
+    location: configuredRegionalLocation(source, config),
+    room: config.room || null,
+    category: config.category || source.type || "regional",
+    ages: config.ages || inferAgeBandsFromText(title, summary, (config.audiences || []).join(" ")),
+    audiences: config.audiences || [],
+    cost: config.cost ?? null,
+    registration: config.registration || "See source",
+    image: config.image || null,
+    tags: config.tags || [],
+    confidence: config.confidence ?? 0.72
+  });
+}
+
+function importConfiguredRegionalEvents(sources, startDate, days) {
+  const imported = [];
+  allRegionalParserSources(sources, "configured-regional-events").forEach((source) => {
+    (source.configuredEvents || []).forEach((config) => {
+      configuredEventDates(config, startDate, days).forEach((dateKey) => {
+        const event = configuredRegionalEvent(source, config, dateKey);
+        if (event) {
+          imported.push(event);
+        }
+      });
+    });
+  });
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
 }
 
 function decodeEscapedJsonText(value) {
@@ -3647,6 +3708,7 @@ async function main() {
     importJoomlaEventBookingEvents(sources, startDate, days),
     importConfiguredLibraryEvents(sources, startDate, days),
     importConfiguredWorkshopEvents(sources, startDate, days),
+    importConfiguredRegionalEvents(sources, startDate, days),
     importBarnesNobleStoreEvents(sources, startDate, days),
     importTodayAtAppleEvents(sources, startDate, days),
     importWixEventsList(sources, startDate, days),
