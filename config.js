@@ -5,6 +5,7 @@ window.Where2GoConfig = {
   githubRepo: "tflsguoyu/Where2Go",
   githubBranch: "main",
   analytics: {
+    goatCounterEndpoint: "https://where2go.goatcounter.com/count",
     cloudflareWebAnalyticsToken: ""
   },
   driveTime: {

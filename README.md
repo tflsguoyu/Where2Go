@@ -106,19 +106,20 @@ minutes.
 
 ## Analytics Setup
 
-The simplest visitor tracking path is Cloudflare Web Analytics. Create a Web
-Analytics site in Cloudflare, copy the token from its JavaScript snippet, and put
-it in:
+The app uses GoatCounter for simple visitor tracking. Create a GoatCounter site,
+copy the `data-goatcounter` endpoint from its JavaScript snippet, and put it in:
 
 ```js
 analytics: {
+  goatCounterEndpoint: "https://where2go.goatcounter.com/count",
   cloudflareWebAnalyticsToken: "YOUR_TOKEN"
 }
 ```
 
-in `config.js`. Leave it empty to disable analytics locally or before setup.
-Cloudflare reports aggregate visits and coarse geography such as country/region;
-the app does not send precise GPS location to analytics.
+in `config.js`. Leave `goatCounterEndpoint` empty to disable analytics. The
+Cloudflare token is optional and can stay empty. Analytics scripts are skipped on
+localhost so local testing does not count as live traffic. The app does not send
+precise GPS location to analytics.
 
 ## Offline Behavior
 
