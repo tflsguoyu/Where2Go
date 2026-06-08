@@ -142,12 +142,39 @@ a {
   gap: 6px;
 }
 
+.more-section + .more-section {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(215, 224, 218, 0.85);
+}
+
 .more-section h2 {
   color: var(--muted);
   font-size: 0.68rem;
   font-weight: 950;
   line-height: 1;
   text-transform: uppercase;
+}
+
+.more-link {
+  display: flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 9px;
+  border: 1px solid rgba(30, 123, 103, 0.18);
+  border-radius: 8px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-decoration: none;
+}
+
+.more-link::after {
+  content: "↗";
+  font-size: 0.78rem;
+  line-height: 1;
 }
 
 .town-list {
