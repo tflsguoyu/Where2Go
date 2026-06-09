@@ -72,7 +72,7 @@ const SUMMARY_ACTIVITY_SIGNAL_PATTERN =
   /\b(?:story|craft|club|kids|children|family|families|baby|toddler|preschool|teen|tween|lego|game|games|movie|music|concert|festival|market|rides?|food|workshop|camp|art|paint|build|read|reading|learn|discover|explore|nature|garden|science|theater|performance|play|party|parade|fireworks|foam|jump|slime)\b/i;
 const QUALITY_REPORT_SAMPLE_LIMIT = 8;
 const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
-  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|tree lighting|unity day|watch part(?:y|ies)|world cup|yoga)\b/i;
+  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|tree lighting|unity day|watch part(?:y|ies)|world cup|yoga)\b/i;
 const MUNICIPAL_SKIP_TITLE_PATTERN =
   /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|stormwater|township committee|wine tasting|zoning board)\b/i;
 const MONTHS = new Map([
@@ -941,6 +941,154 @@ async function importSclsnjEvents(sources, startDate, days) {
     .filter((event) => event.startsAt && event.sourceUrl);
 
   return events;
+}
+
+function allCommunicoLibnetLibrarySources(sources) {
+  return (sources.towns ?? []).flatMap((town) =>
+    (town.libraries ?? [])
+      .filter((library) => library.status === "importable" && library.parser === "communico-libnet")
+      .map((library) => ({ town, library }))
+  );
+}
+
+function buildCommunicoLibnetEventsUrl(source, startDate, days) {
+  const request = {
+    date: startDate,
+    days,
+    private: false,
+    locations: source.library.branchIds || (source.library.branchId ? [source.library.branchId] : []),
+    ages: (source.library.ageFilters || []).map((age) => encodeURIComponent(age))
+  };
+  const params = new URLSearchParams({
+    event_type: "0",
+    req: JSON.stringify(request)
+  });
+  return `${source.library.eventEndpoint}?${params.toString()}`;
+}
+
+function communicoLibnetRegistryLocations(source) {
+  return new Map((source.library.locations || []).map((location) => [String(location.id), location]));
+}
+
+function mergeCommunicoLibnetLocation(apiLocation, registryLocation) {
+  return {
+    ...(apiLocation || {}),
+    ...(registryLocation || {}),
+    id: String(registryLocation?.id || apiLocation?.id || "")
+  };
+}
+
+async function loadCommunicoLibnetLocations(source) {
+  const registryLocations = communicoLibnetRegistryLocations(source);
+  try {
+    const locations = await fetchJson(source.library.locationEndpoint);
+    return new Map(
+      locations.map((location) => {
+        const locationId = String(location.id);
+        return [locationId, mergeCommunicoLibnetLocation(location, registryLocations.get(locationId))];
+      })
+    );
+  } catch (error) {
+    console.warn(`warning: ${source.library.name} location API failed, using registry locations: ${error.message}`);
+    return registryLocations;
+  }
+}
+
+function isCommunicoLibnetAgeEvent(event, filters) {
+  if (!filters.length) {
+    return true;
+  }
+  const ages = new Set(event.agesArray ?? []);
+  return filters.some((age) => ages.has(age));
+}
+
+function communicoLibnetRegistrationLabel(event) {
+  if (String(event.changed) === "1") return "Cancelled";
+  if (event.reg_url || String(event.third_party_reg) === "1") return "Ticket";
+  if (String(event.allow_reg) !== "1") return "Drop-in";
+  return "RSVP";
+}
+
+function normalizeCommunicoLibnetUrl(source, event) {
+  if (event.url) {
+    return event.url.replace(/\/\/event\//, "/event/");
+  }
+  return absoluteUrl(source.library.eventsUrl, `/event/${event.id}`);
+}
+
+function mapCommunicoLibnetEvent(source, event, locationsById) {
+  const location = locationsById.get(String(event.location_id));
+  const summary = cleanImportedSummary(event.description || event.long_description || "");
+  const longSummary = cleanImportedSummary(event.long_description || "");
+  const title = stripHtml(event.title);
+  if (!title || isClosureOrNonEvent(title, summary) || !hasChildAudience(event.agesArray ?? [], title)) {
+    return null;
+  }
+
+  const displayLocationName = location?.name || event.location || source.library.name;
+  const venueParts = [displayLocationName, event.venues].filter(Boolean);
+  const startsAt = localIso(event.raw_start_time);
+  const endsAt = localIso(event.raw_end_time);
+  const url = normalizeCommunicoLibnetUrl(source, event);
+  const mapped = {
+    id: `${slugify(source.library.name)}-libnet-${event.id}`,
+    externalId: String(event.id),
+    sourceId: `${slugify(source.library.name)}-libnet`,
+    townId: source.library.townId || source.town.id,
+    title,
+    venue: venueParts.join(" · "),
+    venueName: displayLocationName,
+    room: event.venues || null,
+    category: "library",
+    source: source.library.name,
+    startsAt,
+    endsAt,
+    timezone: TIMEZONE,
+    durationMinutes: startsAt && endsAt ? durationMinutes(startsAt, endsAt) : null,
+    ages: inferAgeBandsFromText(event.title, event.description, event.long_description, event.ages),
+    audiences: event.agesArray ?? [],
+    cost: Number(event.registration_cost || 0),
+    registration: communicoLibnetRegistrationLabel(event),
+    summary: longSummary ? `${summary} ${longSummary}`.trim() : summary,
+    url,
+    sourceUrl: url,
+    sourceCalendarUrl: source.library.eventsUrl,
+    address: addressFor(location),
+    lat: Number(location?.lat || 0),
+    lng: Number(location?.lon || 0),
+    tags: event.tagsArray ?? [],
+    status: String(event.changed) === "1" ? "review" : "published",
+    confidence: 0.93
+  };
+
+  if (event.event_type === "ONLINE" || eventLooksOnline(mapped)) {
+    markOnlineEvent(mapped);
+  }
+  return mapped;
+}
+
+async function importCommunicoLibnetLibraryEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allCommunicoLibnetLibrarySources(sources)) {
+    if (!source.library.eventEndpoint || !source.library.locationEndpoint) {
+      console.warn(`warning: could not import ${source.library.name}: missing Communico endpoint config`);
+      continue;
+    }
+    try {
+      const [locationsById, rawEvents] = await Promise.all([
+        loadCommunicoLibnetLocations(source),
+        fetchJson(buildCommunicoLibnetEventsUrl(source, startDate, days))
+      ]);
+      rawEvents
+        .filter((event) => isCommunicoLibnetAgeEvent(event, source.library.ageFilters || []))
+        .map((event) => mapCommunicoLibnetEvent(source, event, locationsById))
+        .filter(Boolean)
+        .forEach((event) => imported.push(event));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.library.eventsUrl}: ${error.message}`);
+    }
+  }
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
 }
 
 function allLibraryCalendarSources(sources) {
@@ -3303,6 +3451,7 @@ function parseCivicPlusListings(html, source, startDate, days) {
       imported.push({
         id: `civicplus-${source.town.id}-${eventId}-${startsAt.slice(0, 10)}`,
         sourceId: municipalSourceId(source, "civicplus"),
+        townId: source.town.id,
         title,
         venue: venue.venueName,
         venueName: venue.venueName,
@@ -3702,6 +3851,7 @@ async function main() {
     importCivicPlusMunicipalEvents(sources, startDate, days),
     importDpCalendarMunicipalEvents(sources, startDate, days),
     importSquarespaceMunicipalEvents(sources, startDate, days),
+    importCommunicoLibnetLibraryEvents(sources, startDate, days),
     importLibraryCalendarEvents(sources, startDate, days),
     importLibCalEvents(sources, startDate, days),
     importEventOrganiserEvents(sources, startDate, days),

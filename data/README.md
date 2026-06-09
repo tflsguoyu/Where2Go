@@ -5,7 +5,7 @@ The app loads `data/events.json` first, then falls back to
 
 The broader source-driven workflow uses two durable files:
 
-- `data/event-sources.json`: Warren-centered 20-minute coverage, township
+- `data/event-sources.json`: Warren-centered 30-minute coverage, township
   websites, library websites, event URLs, and parser status.
 - `data/events.json`: merged event records from all importable sources. This
   file is append/update oriented: old events are kept so source pages can be
@@ -41,6 +41,41 @@ When adding a new town, use `townExpansion.sourceTypes` in
 importer so `data/events.json` is refreshed from those sources. The app should
 continue reading event records from `data/events.json`; `event-sources.json`
 stays the durable source registry and expansion notes.
+
+### New Town Source Sweep
+
+For every newly added town, source discovery must go beyond government and
+library calendars. A town source update is incomplete until every category in
+`townExpansion.requiredSourceSweep.minimumChecklist` has either a recorded source
+entry or a note explaining why no useful dated-event source was found.
+
+Search the town itself plus nearby venues inside the active drive-time coverage
+area. Treat any place where children can play, learn, watch, build, craft, read,
+explore, or attend seasonal programs as a potential event source. This includes:
+
+- Municipal calendars, parks/recreation pages, registration portals, municipal
+  alliance pages, official news/flyers, and community supplement pages.
+- Public library branches, county library systems, service-area branches, and
+  youth/teen/family pages.
+- Downtown/SID/chamber/business association calendars, street fairs, farmers
+  markets, and local business district pages.
+- County parks, nature centers, environmental education centers, gardens,
+  arboretums, farms, wildlife centers, zoos, and seasonal outdoor venues.
+- Museums, science centers, art centers, historic sites, theaters, music venues,
+  maker spaces, and cultural centers with family or youth programs.
+- Indoor playgrounds, trampoline parks, sensory gyms, kids gyms, sports
+  complexes, swim schools, dance/martial arts studios, STEM/coding centers,
+  party venues, and camp/class providers.
+- Malls, shopping centers, bookstores, toy/game stores, LEGO/Apple-style retail
+  programs, craft stores, home-improvement kids workshops, and restaurants or
+  cafes that host family events.
+- Regional festival, carnival, fair, market, and tourism directories that can be
+  mapped back to covered towns.
+
+Record useful sources even when they are not importable yet. Use
+`manual_review`, `blocked_by_bot_protection`, or `service_area` rather than
+dropping the source. Use `reference_only` only for directories or venues with no
+real dated-event potential.
 
 Use `sourceStatusVocabulary` in `data/event-sources.json` for source statuses:
 `importable` means the importer should read it automatically, `manual_review`

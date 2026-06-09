@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-08",
+  "updatedAt": "2026-06-09",
   "home": {
     "label": "Warren, NJ 07059",
     "lat": 40.619261,
     "lng": -74.490372
   },
   "coverage": {
-    "driveTimeMinutes": 20,
+    "driveTimeMinutes": 30,
     "method": "OpenRouteService driving-car isochrone; 2024 Census county subdivision internal points inside the isochrone",
-    "townCount": 21
+    "townCount": 48
   },
   "eventPolicy": {
     "keepPastEvents": true,
@@ -60,10 +60,27 @@
     "workflow": [
       "Add the town to towns[] with id, name, county, geoid when known, center, distanceMiles, and within-coverage status.",
       "Find and store source links first: municipal/recreation links in towns[].municipal, library links in towns[].libraries[], and reusable or venue-specific links in sharedSources or regionalSources.",
+      "Do not stop after government and library sources. For every newly added town, complete the requiredSourceSweep across businesses, museums, arts/science venues, farms/gardens, indoor play venues, malls/retail workshops, downtown/chamber groups, county parks, and other kid-friendly places that may publish dated or limited-time events.",
       "Mark each source with type, status from sourceStatusVocabulary, parser, website, eventsUrl, address/lat/lng when available, and notes about access or parser limits.",
       "Run scripts/import-source-events.mjs to refresh data/events.json from importable sources while keeping older events.",
-      "Let the app read data/events.json only; events outside the 20-minute coverage can stay in JSON but should not appear in the app until they are mapped to coverage."
+      "Let the app read data/events.json only; events outside the 30-minute coverage can stay in JSON but should not appear in the app until they are mapped to coverage."
     ],
+    "requiredSourceSweep": {
+      "rule": "Every town expansion must search beyond municipal and public-library calendars. Treat all places where children can play, learn, watch, build, craft, read, explore, or attend seasonal programs as potential event sources.",
+      "scope": "Search sources physically in the new town plus nearby venues that serve the town or sit inside the active drive-time coverage area. Prefer official venue pages, official calendars, booking pages, and stable APIs before third-party aggregators.",
+      "minimumChecklist": [
+        "Municipal calendar, parks/recreation department, recreation registration portal, municipal alliance, school/community supplement pages, and official news/flyer pages.",
+        "Public library branch calendars, county library system feeds, nearby service-area branches, and youth/teen/family pages.",
+        "Downtown/SID/chamber/business association calendars, street fairs, farmers markets, and local business district pages.",
+        "County parks, nature centers, environmental education centers, gardens, arboretums, farms, wildlife centers, zoos, and seasonal outdoor venues.",
+        "Museums, science centers, art centers, historic sites, theaters, music venues, maker spaces, and cultural centers with family or youth programs.",
+        "Indoor playgrounds, trampoline parks, sensory gyms, kids gyms, sports complexes, swim schools, dance/martial arts studios, STEM/coding centers, party venues, and camp/class providers.",
+        "Malls, shopping centers, bookstores, toy/game stores, LEGO/Apple-style retail programs, craft stores, home-improvement kids workshops, and restaurants/cafes that host family events.",
+        "Regional festival, carnival, fair, market, and tourism directories that can be mapped back to covered towns."
+      ],
+      "recordingRule": "Record every useful source even when it is not importable yet. Use importable when an importer can read it, manual_review when it needs human/browser review, service_area when covered by a broader system, blocked_by_bot_protection when direct fetching is blocked, and reference_only only for directories or venues without dated event potential.",
+      "stopRule": "A new town source update is incomplete until each checklist category has either an importable/manual source entry or a note explaining why no useful dated-event source was found."
+    },
     "sourceTypes": [
       {
         "id": "municipal-calendar",
@@ -191,7 +208,7 @@
       "eventsUrl": "https://sclsnj.libnet.info/events",
       "eventEndpoint": "https://sclsnj.libnet.info/eeventcaldata",
       "locationEndpoint": "https://api.communico.co/v1/sclsnj/locations",
-      "branchIds": ["471", "475", "477", "478", "479"],
+      "branchIds": ["471", "473", "475", "476", "477", "478", "479", "4303"],
       "locations": [
         {
           "id": "471",
@@ -204,6 +221,16 @@
           "lon": "-74.607602"
         },
         {
+          "id": "473",
+          "name": "Manville Library",
+          "line1": "100 South 10th Ave.",
+          "locality": "Manville",
+          "stateprovincecounty": "NJ",
+          "ziporpostcode": "08835",
+          "lat": "40.540955",
+          "lon": "-74.595301"
+        },
+        {
           "id": "475",
           "name": "North Plainfield Library",
           "line1": "6 Rockview Ave.",
@@ -212,6 +239,16 @@
           "ziporpostcode": "07060",
           "lat": "40.620859",
           "lon": "-74.43402"
+        },
+        {
+          "id": "476",
+          "name": "Peapack and Gladstone Library",
+          "line1": "1 School St.",
+          "locality": "Peapack",
+          "stateprovincecounty": "NJ",
+          "ziporpostcode": "07977",
+          "lat": "40.7171066",
+          "lon": "-74.6593562"
         },
         {
           "id": "477",
@@ -242,10 +279,20 @@
           "ziporpostcode": "07069",
           "lat": "40.638195",
           "lon": "-74.450275"
+        },
+        {
+          "id": "4303",
+          "name": "Raritan Public Library",
+          "line1": "54 E Somerset St.",
+          "locality": "Raritan",
+          "stateprovincecounty": "NJ",
+          "ziporpostcode": "08869",
+          "lat": "40.568866",
+          "lon": "-74.629058"
         }
       ],
       "ageFilters": ["Baby/Toddler", "Pre-School", "Kids", "Families"],
-      "notes": "20-minute first pass imports Bridgewater, North Plainfield, Somerville, Warren Township, and Watchung branches."
+      "notes": "30-minute coverage imports Bridgewater, Manville, North Plainfield, Peapack and Gladstone, Raritan, Somerville, Warren Township, and Watchung branches. Hillsborough branch is outside the current ORS 30-minute drive polygon and is intentionally excluded."
     },
     "nj-carnivals": {
       "label": "NJ Carnivals",
@@ -4474,6 +4521,445 @@
           "lng": -74.360276
         }
       ]
+    },
+    {
+      "id": "manville-borough",
+      "name": "Manville borough",
+      "county": "Somerset",
+      "zipCodes": ["08835"],
+      "geoid": "3403543620",
+      "center": { "lat": 40.541269, "lng": -74.589273 },
+      "distanceMiles": 7.5,
+      "municipal": {
+        "website": "https://www.manvillenj.org/",
+        "eventsUrl": "https://www.manvillenj.org/Calendar.aspx",
+        "recreationUrl": "https://www.manvillenj.org/Calendar.aspx",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "calendarIds": ["38", "43"],
+        "defaultVenueName": "Manville Borough event",
+        "defaultAddress": "325 N Main Street, Manville, NJ 08835",
+        "notes": "CivicPlus calendar imports Recreation Department and Manville Recreation Department calendars; municipal meetings and office calendars are intentionally excluded."
+      },
+      "libraries": [
+        {
+          "name": "Manville Library",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "473",
+          "status": "importable"
+        }
+      ]
+    },
+    {
+      "id": "chatham-township",
+      "name": "Chatham township",
+      "county": "Morris",
+      "zipCodes": ["07928", "07935"],
+      "zipCommunities": [
+        { "name": "Chatham", "zip": "07928" },
+        { "name": "Green Village", "zip": "07935" }
+      ],
+      "geoid": "3402712130",
+      "center": { "lat": 40.723214, "lng": -74.43639 },
+      "distanceMiles": 7.7
+    },
+    {
+      "id": "westfield-town",
+      "name": "Westfield town",
+      "county": "Union",
+      "zipCodes": ["07090"],
+      "geoid": "3403979040",
+      "center": { "lat": 40.651644, "lng": -74.343447 },
+      "distanceMiles": 8.0
+    },
+    {
+      "id": "harding-township",
+      "name": "Harding township",
+      "county": "Morris",
+      "zipCodes": ["07920", "07935", "07960", "07976"],
+      "zipCommunities": [
+        { "name": "Basking Ridge mailing area", "zip": "07920" },
+        { "name": "Green Village", "zip": "07935" },
+        { "name": "Morristown mailing area", "zip": "07960" },
+        { "name": "New Vernon", "zip": "07976" }
+      ],
+      "geoid": "3402729700",
+      "center": { "lat": 40.740956, "lng": -74.496814 },
+      "distanceMiles": 8.4
+    },
+    {
+      "id": "far-hills-borough",
+      "name": "Far Hills borough",
+      "county": "Somerset",
+      "zipCodes": ["07931"],
+      "geoid": "3403522890",
+      "center": { "lat": 40.690893, "lng": -74.621537 },
+      "distanceMiles": 8.5,
+      "municipal": {
+        "website": "https://www.farhillsnj.org/",
+        "eventsUrl": "https://www.farhillsnj.org/calendar.php",
+        "recreationUrl": "https://www.farhillsnj.org/",
+        "status": "manual_review",
+        "parser": "revize-calendar",
+        "notes": "Revize calendar page is retained for source review; no stable importer is wired yet."
+      },
+      "libraries": [
+        {
+          "name": "Peapack and Gladstone Library",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "476",
+          "status": "importable",
+          "notes": "Nearby SCLSNJ branch inside the 30-minute drive polygon for Far Hills-area library programming."
+        }
+      ]
+    },
+    {
+      "id": "metuchen-borough",
+      "name": "Metuchen borough",
+      "county": "Middlesex",
+      "zipCodes": ["08840"],
+      "geoid": "3402345690",
+      "center": { "lat": 40.542445, "lng": -74.362767 },
+      "distanceMiles": 8.5
+    },
+    {
+      "id": "highland-park-borough",
+      "name": "Highland Park borough",
+      "county": "Middlesex",
+      "zipCodes": ["08904"],
+      "geoid": "3402331470",
+      "center": { "lat": 40.500795, "lng": -74.427911 },
+      "distanceMiles": 8.8
+    },
+    {
+      "id": "raritan-borough",
+      "name": "Raritan borough",
+      "county": "Somerset",
+      "zipCodes": ["08869"],
+      "geoid": "3403561980",
+      "center": { "lat": 40.571344, "lng": -74.646026 },
+      "distanceMiles": 8.8,
+      "municipal": {
+        "website": "https://www.raritanboro.org/",
+        "eventsUrl": "https://www.raritanboro.org/departments/recreation/",
+        "recreationUrl": "https://www.raritanboro.org/departments/recreation/",
+        "status": "manual_review",
+        "parser": "alphadog-recreation-page",
+        "notes": "Official recreation page is useful for parks and seasonal recreation context, but the JavaScript-heavy site does not expose a stable event list importer yet."
+      },
+      "libraries": [
+        {
+          "name": "Raritan Public Library",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "4303",
+          "status": "importable",
+          "address": "54 E Somerset St., Raritan, NJ 08869",
+          "lat": 40.568866,
+          "lng": -74.629058
+        }
+      ]
+    },
+    {
+      "id": "garwood-borough",
+      "name": "Garwood borough",
+      "county": "Union",
+      "zipCodes": ["07027"],
+      "geoid": "3403925800",
+      "center": { "lat": 40.651331, "lng": -74.323152 },
+      "distanceMiles": 9.0
+    },
+    {
+      "id": "clark-township",
+      "name": "Clark township",
+      "county": "Union",
+      "zipCodes": ["07066"],
+      "geoid": "3403913150",
+      "center": { "lat": 40.618474, "lng": -74.316 },
+      "distanceMiles": 9.1
+    },
+    {
+      "id": "new-brunswick-city",
+      "name": "New Brunswick city",
+      "county": "Middlesex",
+      "zipCodes": ["08901"],
+      "geoid": "3402351210",
+      "center": { "lat": 40.486677, "lng": -74.444414 },
+      "distanceMiles": 9.5
+    },
+    {
+      "id": "springfield-township",
+      "name": "Springfield township",
+      "county": "Union",
+      "zipCodes": ["07081"],
+      "geoid": "3403970020",
+      "center": { "lat": 40.697966, "lng": -74.334436 },
+      "distanceMiles": 9.8
+    },
+    {
+      "id": "millstone-borough",
+      "name": "Millstone borough",
+      "county": "Somerset",
+      "zipCodes": ["08844"],
+      "geoid": "3403546590",
+      "center": { "lat": 40.499868, "lng": -74.595529 },
+      "distanceMiles": 9.9,
+      "municipal": {
+        "website": "https://millstoneboro.org/",
+        "eventsUrl": "https://millstoneboro.org/calendar.php",
+        "recreationUrl": "https://millstoneboro.org/",
+        "status": "manual_review",
+        "parser": "revize-calendar",
+        "defaultVenueName": "Millstone Borough event",
+        "defaultAddress": "1353 Main Street, Millstone, NJ 08844",
+        "notes": "Revize calendar is retained for manual/source review; current page requires a Revize/SavvyCitizen-specific parser. Hillsborough SCLSNJ branch is outside the current 30-minute drive polygon and is intentionally not imported for Millstone."
+      },
+      "libraries": [
+        {
+          "name": "Somerset County Library System service area",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "status": "service_area",
+          "notes": "SCLSNJ member municipality, but no separate in-town branch feed is inside the current coverage polygon."
+        }
+      ]
+    },
+    {
+      "id": "chatham-borough",
+      "name": "Chatham borough",
+      "county": "Morris",
+      "zipCodes": ["07928"],
+      "geoid": "3402712100",
+      "center": { "lat": 40.740686, "lng": -74.38448 },
+      "distanceMiles": 10.1
+    },
+    {
+      "id": "cranford-township",
+      "name": "Cranford township",
+      "county": "Union",
+      "zipCodes": ["07016"],
+      "geoid": "3403915640",
+      "center": { "lat": 40.65609, "lng": -74.303563 },
+      "distanceMiles": 10.1
+    },
+    {
+      "id": "franklin-township",
+      "name": "Franklin township",
+      "county": "Somerset",
+      "zipCodes": ["08528", "08540", "08823", "08873", "08890"],
+      "zipCommunities": [
+        { "name": "Kingston", "zip": "08528" },
+        { "name": "Princeton mailing area", "zip": "08540" },
+        { "name": "Franklin Park", "zip": "08823" },
+        { "name": "Somerset", "zip": "08873" },
+        { "name": "Zarephath", "zip": "08890" }
+      ],
+      "geoid": "3403524900",
+      "center": { "lat": 40.476872, "lng": -74.550447 },
+      "distanceMiles": 10.3,
+      "municipal": {
+        "website": "https://www.franklintwpnj.org/",
+        "eventsUrl": "https://www.franklintwpnj.org/our-township/what-s-new/municipal-calendar-of-events",
+        "recreationUrl": "https://www.franklintwpnj.org/departments/recreation-and-parks",
+        "status": "manual_review",
+        "parser": "granicus-calendar",
+        "notes": "Official municipal page exposes Municipal, Recreation, Youth Center, Police, and Community calendars. Keep for parser work; current importer does not yet read the Granicus calendar widget."
+      },
+      "libraries": [
+        {
+          "name": "Franklin Township Public Library",
+          "website": "https://www.franklintwp.org/",
+          "eventsUrl": "https://franklintwp.libnet.info/events",
+          "status": "importable",
+          "parser": "communico-libnet",
+          "eventEndpoint": "https://franklintwp.libnet.info/eeventcaldata",
+          "locationEndpoint": "https://api.communico.co/v1/franklintwp/locations",
+          "branchIds": ["2931", "2932", "2933"],
+          "ageFilters": ["Baby/Toddlers", "Preschool", "Kids", "Tweens", "Teens", "Families"],
+          "townId": "franklin-township",
+          "locations": [
+            {
+              "id": "2931",
+              "name": "DeMott Lane Branch",
+              "line1": "485 DeMott Lane",
+              "locality": "Somerset",
+              "stateprovincecounty": "NJ",
+              "ziporpostcode": "08873",
+              "lat": "40.4979828",
+              "lon": "-74.5253635"
+            },
+            {
+              "id": "2932",
+              "name": "Franklin Park Branch",
+              "line1": "64 Clover Place",
+              "locality": "Franklin Park",
+              "stateprovincecounty": "NJ",
+              "ziporpostcode": "08823",
+              "lat": "40.443232725445",
+              "lon": "-74.53887"
+            },
+            {
+              "id": "2933",
+              "name": "Lewis Street Branch",
+              "line1": "429 Lewis Street",
+              "locality": "Somerset",
+              "stateprovincecounty": "NJ",
+              "ziporpostcode": "08873",
+              "lat": "40.491092",
+              "lon": "-74.478825"
+            }
+          ],
+          "notes": "Somerset County Franklin Township library calendar runs on Communico/LibNet client franklintwp; do not confuse with ftlnj.org, which is Franklinville/Gloucester County."
+        }
+      ]
+    },
+    {
+      "id": "madison-borough",
+      "name": "Madison borough",
+      "county": "Morris",
+      "zipCodes": ["07940"],
+      "geoid": "3402742510",
+      "center": { "lat": 40.758044, "lng": -74.417807 },
+      "distanceMiles": 10.3
+    },
+    {
+      "id": "kenilworth-borough",
+      "name": "Kenilworth borough",
+      "county": "Union",
+      "zipCodes": ["07033"],
+      "geoid": "3403936690",
+      "center": { "lat": 40.678089, "lng": -74.288114 },
+      "distanceMiles": 11.4
+    },
+    {
+      "id": "millburn-township",
+      "name": "Millburn township",
+      "county": "Essex",
+      "zipCodes": ["07041", "07078"],
+      "zipCommunities": [
+        { "name": "Millburn", "zip": "07041" },
+        { "name": "Short Hills", "zip": "07078" }
+      ],
+      "geoid": "3401346380",
+      "center": { "lat": 40.741608, "lng": -74.321286 },
+      "distanceMiles": 12.2
+    },
+    {
+      "id": "branchburg-township",
+      "name": "Branchburg township",
+      "county": "Somerset",
+      "zipCodes": ["08853", "08876"],
+      "zipCommunities": [
+        { "name": "Neshanic Station", "zip": "08853" },
+        { "name": "Somerville mailing area", "zip": "08876" }
+      ],
+      "geoid": "3403507180",
+      "center": { "lat": 40.560024, "lng": -74.716119 },
+      "distanceMiles": 12.5,
+      "municipal": {
+        "website": "https://branchburg.nj.us/",
+        "eventsUrl": "https://branchburg.nj.us/calendar.php",
+        "recreationUrl": "https://branchburg.nj.us/departments/recreation/index.php",
+        "status": "manual_review",
+        "parser": "revize-calendar",
+        "defaultVenueName": "Branchburg Township event",
+        "defaultAddress": "1077 US Highway 202 North, Branchburg, NJ 08876",
+        "notes": "Revize calendar lists department, home, police, recreation, and senior program event buckets. Keep for source review until a Revize parser is wired."
+      },
+      "libraries": [
+        {
+          "name": "Somerset County Library System service area",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "status": "service_area",
+          "notes": "SCLSNJ member municipality, but no separate in-town branch feed is inside the current coverage polygon."
+        }
+      ]
+    },
+    {
+      "id": "union-township",
+      "name": "Union township",
+      "county": "Union",
+      "zipCodes": ["07083", "07088"],
+      "zipCommunities": [
+        { "name": "Union", "zip": "07083" },
+        { "name": "Vauxhall", "zip": "07088" }
+      ],
+      "geoid": "3403974480",
+      "center": { "lat": 40.695266, "lng": -74.269078 },
+      "distanceMiles": 12.7
+    },
+    {
+      "id": "maplewood-township",
+      "name": "Maplewood township",
+      "county": "Essex",
+      "zipCodes": ["07040"],
+      "geoid": "3401343800",
+      "center": { "lat": 40.733607, "lng": -74.271159 },
+      "distanceMiles": 13.9
+    },
+    {
+      "id": "livingston-township",
+      "name": "Livingston township",
+      "county": "Essex",
+      "zipCodes": ["07039"],
+      "geoid": "3401340890",
+      "center": { "lat": 40.785828, "lng": -74.3291 },
+      "distanceMiles": 14.3
+    },
+    {
+      "id": "hillside-township",
+      "name": "Hillside township",
+      "county": "Union",
+      "zipCodes": ["07205"],
+      "geoid": "3403931980",
+      "center": { "lat": 40.695889, "lng": -74.2288 },
+      "distanceMiles": 14.7
+    },
+    {
+      "id": "south-orange-village-township",
+      "name": "South Orange Village township",
+      "county": "Essex",
+      "zipCodes": ["07079"],
+      "geoid": "3401369274",
+      "center": { "lat": 40.748811, "lng": -74.261512 },
+      "distanceMiles": 15.0
+    },
+    {
+      "id": "irvington-township",
+      "name": "Irvington township",
+      "county": "Essex",
+      "zipCodes": ["07111"],
+      "geoid": "3401334450",
+      "center": { "lat": 40.723859, "lng": -74.232522 },
+      "distanceMiles": 15.3
+    },
+    {
+      "id": "newark-city",
+      "name": "Newark city",
+      "county": "Essex",
+      "zipCodes": ["07102", "07103", "07104", "07105", "07106", "07107", "07108", "07112", "07114"],
+      "zipCommunities": [
+        { "name": "Downtown Newark", "zip": "07102" },
+        { "name": "Central Newark", "zip": "07103" },
+        { "name": "North Newark", "zip": "07104" },
+        { "name": "Ironbound", "zip": "07105" },
+        { "name": "Vailsburg", "zip": "07106" },
+        { "name": "North/West Newark", "zip": "07107" },
+        { "name": "South/Central Newark", "zip": "07108" },
+        { "name": "Weequahic", "zip": "07112" },
+        { "name": "South Newark/Airport", "zip": "07114" }
+      ],
+      "geoid": "3401351000",
+      "center": { "lat": 40.72422, "lng": -74.172574 },
+      "distanceMiles": 18.2
     }
   ]
 }

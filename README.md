@@ -29,7 +29,7 @@ Where2Go/
     share-card.png            Social link preview image
   data/
     README.md                 Event data contract and maintenance notes
-    event-sources.json        20-minute township/source registry
+    event-sources.json        30-minute township/source registry
     events.json               Source-driven merged event history
     sample-events.json        Fallback sample data if imported data is missing
   scripts/
