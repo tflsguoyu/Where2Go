@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260609-cache-v70";
+const APP_VERSION = "20260609-cache-v71";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -264,6 +264,14 @@ function eventEndDate(event) {
   }
   const start = eventStartDate(event);
   return new Date(start.getTime() + (event.durationMinutes || 45) * 60000);
+}
+
+function isEventExpired(event, now = new Date()) {
+  return eventEndDate(event) < now;
+}
+
+function isGroupExpired(group, now = new Date()) {
+  return group.events.length > 0 && group.events.every((event) => isEventExpired(event, now));
 }
 
 function localDateKey(date) {
@@ -1274,9 +1282,16 @@ function fitMapAroundPoint(point, options = {}) {
   fitMapBounds(boundsAroundPoint(point, options.radiusMiles || DEFAULT_MAP_RADIUS_MILES), options);
 }
 
-function markerIcon(index, isActive) {
+function markerIcon(index, isActive, isExpired) {
+  const classNames = ["event-map-marker"];
+  if (isActive) {
+    classNames.push("is-active");
+  }
+  if (isExpired) {
+    classNames.push("is-expired");
+  }
   return L.divIcon({
-    className: `event-map-marker ${isActive ? "is-active" : ""}`,
+    className: classNames.join(" "),
     html: `<span>${index + 1}</span>`,
     iconSize: [26, 34],
     iconAnchor: [13, 31],
@@ -1834,9 +1849,11 @@ function syncMarkers(dayEvents, activeGroup) {
 
   const groups = locationGroupsForEvents(dayEvents);
   const points = groupsWithCoordinates(groups);
+  const now = new Date();
   points.forEach((group, index) => {
     const isActive = group.key === activeGroup?.key;
-    L.marker([group.lat, group.lng], { icon: markerIcon(index, isActive), keyboard: true })
+    const isExpired = isGroupExpired(group, now);
+    L.marker([group.lat, group.lng], { icon: markerIcon(index, isActive, isExpired), keyboard: true })
       .addTo(mapState.markerLayer)
       .on("click", () => {
         state.selectedEventId = group.events[0].id;
@@ -1946,9 +1963,10 @@ function renderDetail() {
     .map((group) => {
       const pinNumber = groupPinNumber(group);
       const isActive = group.events.some((event) => event.id === state.selectedEventId);
+      const isExpired = isGroupExpired(group);
       const displayPlace = compactPlaceName(group.place);
       const pinBadgeHtml = pinNumber
-        ? `<span class="pin-badge" aria-label="Pin ${escapeHtml(pinNumber)}">${escapeHtml(pinNumber)}</span>`
+        ? `<span class="pin-badge ${isExpired ? "is-expired" : ""}" aria-label="Pin ${escapeHtml(pinNumber)}">${escapeHtml(pinNumber)}</span>`
         : "";
       const eventsHtml = group.events
         .map(

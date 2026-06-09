@@ -869,6 +869,16 @@ h2 {
   height: 29px;
 }
 
+.event-map-marker.is-expired::before {
+  background: var(--muted);
+  box-shadow: 0 10px 20px rgba(23, 33, 29, 0.16);
+}
+
+.event-map-marker.is-expired.is-active::before {
+  background: #55635c;
+  box-shadow: 0 12px 24px rgba(23, 33, 29, 0.2);
+}
+
 .user-location-dot {
   filter: drop-shadow(0 8px 16px rgba(47, 125, 225, 0.3));
   animation: pulseUserDot 1.6s ease-in-out infinite;
@@ -987,6 +997,16 @@ h2 {
   font-size: 0.82rem;
   font-weight: 950;
   box-shadow: 0 8px 18px rgba(23, 91, 79, 0.24);
+}
+
+.pin-badge.is-expired {
+  background: var(--muted);
+  box-shadow: 0 8px 18px rgba(23, 33, 29, 0.16);
+}
+
+.detail-group.is-active .pin-badge.is-expired {
+  background: #55635c;
+  box-shadow: 0 8px 18px rgba(23, 33, 29, 0.2);
 }
 
 .place-name {
