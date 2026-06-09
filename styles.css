@@ -33,6 +33,12 @@ body {
   letter-spacing: 0;
 }
 
+body:not(.legal-page) {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
 button {
   font: inherit;
   cursor: pointer;
@@ -44,7 +50,7 @@ a {
 
 .app-shell {
   display: grid;
-  grid-template-rows: auto auto auto auto 1fr auto;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
   grid-template-areas:
     "topbar"
     "install"
@@ -53,10 +59,12 @@ a {
     "details"
     "footer";
   width: min(100vw, 440px);
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   margin: 0 auto;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   background: #f8faf7;
   box-shadow: 0 0 0 1px rgba(23, 33, 29, 0.06);
 }
@@ -67,7 +75,7 @@ a {
   align-items: flex-end;
   justify-content: space-between;
   gap: 10px;
-  padding: 14px 18px 8px;
+  padding: 8px 18px 6px;
   background: rgba(248, 250, 247, 0.94);
 }
 
@@ -385,9 +393,9 @@ h2 {
 .date-strip {
   grid-area: dates;
   display: flex;
-  gap: 6px;
+  gap: 5px;
   overflow-x: auto;
-  padding: 4px 12px 7px;
+  padding: 2px 12px 4px;
   scrollbar-width: none;
 }
 
@@ -398,43 +406,58 @@ h2 {
 .date-chip {
   position: relative;
   display: grid;
-  grid-template-areas:
-    "weekday"
-    "day";
+  flex: 0 0 auto;
+  min-width: 58px;
+  min-height: 34px;
   align-content: center;
-  min-width: 76px;
-  min-height: 44px;
-  padding: 6px 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 3px 5px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: var(--surface);
   color: var(--ink);
-  text-align: left;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .date-chip span {
-  grid-area: weekday;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.58rem;
   font-weight: 850;
   line-height: 1;
 }
 
 .date-chip strong {
-  grid-area: day;
-  margin-top: 3px;
-  font-size: 0.82rem;
+  font-size: 0.74rem;
   line-height: 1;
   white-space: nowrap;
 }
 
 .date-chip.is-today {
-  grid-template-areas: "day";
+  min-width: 64px;
 }
 
 .date-chip.is-today strong {
-  margin-top: 0;
-  font-size: 0.95rem;
+  font-size: 0.84rem;
+}
+
+.date-chip.is-weekend,
+.date-chip.is-holiday {
+  border-color: #ead2a0;
+  background: #fff1d4;
+  color: #3d2f1a;
+}
+
+.date-chip.is-holiday {
+  border-color: #edc18e;
+  background: #ffe5c8;
+}
+
+.date-chip.is-weekend span,
+.date-chip.is-holiday span {
+  color: #8a6331;
 }
 
 .date-chip.is-active {
@@ -514,18 +537,18 @@ h2 {
 
 .locate-button {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 8px;
+  top: 8px;
   z-index: 500;
   display: grid;
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   place-items: center;
   border: 1px solid rgba(23, 33, 29, 0.12);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.34);
   color: var(--green-dark);
-  box-shadow: 0 6px 16px rgba(23, 33, 29, 0.1);
+  box-shadow: 0 5px 13px rgba(23, 33, 29, 0.1);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -533,16 +556,16 @@ h2 {
 .locate-glyph {
   position: relative;
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   background:
-    linear-gradient(currentColor, currentColor) center / 2px 20px no-repeat,
-    linear-gradient(90deg, currentColor, currentColor) center / 20px 2px no-repeat;
+    linear-gradient(currentColor, currentColor) center / 2px 17px no-repeat,
+    linear-gradient(90deg, currentColor, currentColor) center / 17px 2px no-repeat;
 }
 
 .locate-glyph::before {
   position: absolute;
-  inset: 3px;
+  inset: 2px;
   content: "";
   border: 2px solid currentColor;
   border-radius: 999px;
@@ -551,7 +574,7 @@ h2 {
 
 .locate-glyph::after {
   position: absolute;
-  inset: 8px;
+  inset: 7px;
   content: "";
   border-radius: 999px;
   background: currentColor;
@@ -563,18 +586,18 @@ h2 {
 
 .search-form {
   position: absolute;
-  left: 56px;
-  top: 10px;
+  left: 48px;
+  top: 8px;
   z-index: 500;
   display: flex;
-  height: 38px;
-  max-width: calc(100% - 66px);
+  height: 32px;
+  max-width: calc(100% - 56px);
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgba(23, 33, 29, 0.12);
-  border-radius: 8px;
+  border-radius: 7px;
   background: rgba(255, 255, 255, 0.34);
-  box-shadow: 0 6px 16px rgba(23, 33, 29, 0.1);
+  box-shadow: 0 5px 13px rgba(23, 33, 29, 0.1);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -586,10 +609,10 @@ h2 {
   background: transparent;
   color: var(--ink);
   font: inherit;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 850;
   outline: 0;
-  padding: 0 9px;
+  padding: 0 8px;
 }
 
 .search-form input::placeholder {
@@ -597,29 +620,29 @@ h2 {
 }
 
 .search-form button {
-  min-width: 40px;
+  min-width: 36px;
   border: 0;
   background: rgba(22, 75, 67, 0.56);
   color: white;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 950;
-  padding: 0 10px;
+  padding: 0 8px;
 }
 
 .drive-time-button {
   position: absolute;
-  left: 10px;
-  bottom: 10px;
+  left: 8px;
+  bottom: 8px;
   z-index: 500;
-  min-width: 58px;
-  height: 38px;
+  min-width: 52px;
+  height: 30px;
   border: 1px solid rgba(23, 33, 29, 0.12);
-  border-radius: 8px;
+  border-radius: 7px;
   background: rgba(255, 255, 255, 0.34);
   color: var(--green-dark);
-  font-size: 0.76rem;
+  font-size: 0.7rem;
   font-weight: 950;
-  box-shadow: 0 6px 16px rgba(23, 33, 29, 0.1);
+  box-shadow: 0 5px 13px rgba(23, 33, 29, 0.1);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -632,22 +655,22 @@ h2 {
 
 .drive-time-legend {
   position: absolute;
-  left: 76px;
-  bottom: 10px;
+  left: 66px;
+  bottom: 8px;
   z-index: 500;
   display: flex;
-  min-height: 38px;
+  min-height: 30px;
   align-items: center;
-  gap: 7px;
-  max-width: calc(100% - 148px);
-  padding: 0 9px;
+  gap: 6px;
+  max-width: calc(100% - 134px);
+  padding: 0 7px;
   border: 1px solid rgba(23, 33, 29, 0.12);
-  border-radius: 8px;
+  border-radius: 7px;
   background: rgba(255, 255, 255, 0.34);
   color: var(--ink);
-  font-size: 0.66rem;
+  font-size: 0.62rem;
   font-weight: 850;
-  box-shadow: 0 6px 16px rgba(23, 33, 29, 0.08);
+  box-shadow: 0 5px 13px rgba(23, 33, 29, 0.08);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -658,14 +681,14 @@ h2 {
 
 .drive-time-legend span {
   display: flex;
-  gap: 4px;
+  gap: 3px;
   align-items: center;
   white-space: nowrap;
 }
 
 .drive-time-swatch {
-  width: 12px;
-  height: 7px;
+  width: 10px;
+  height: 5px;
   border-radius: 2px;
 }
 
@@ -810,7 +833,12 @@ h2 {
   grid-area: details;
   margin: 6px 14px 10px;
   display: grid;
+  min-height: 0;
+  align-content: start;
   gap: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .detail-group {
@@ -952,14 +980,16 @@ h2 {
   grid-area: footer;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 10px;
+  gap: 3px 6px;
   align-items: center;
   justify-content: center;
-  padding: 12px 16px 16px;
+  min-height: 18px;
+  padding: 3px 8px 4px;
   border-top: 1px solid rgba(215, 224, 218, 0.72);
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.56rem;
   font-weight: 850;
+  line-height: 1;
   text-align: center;
 }
 
@@ -1049,7 +1079,9 @@ h2 {
   }
 
   .app-shell {
-    min-height: calc(100vh - 40px);
+    height: calc(100vh - 40px);
+    height: calc(100dvh - 40px);
+    min-height: 0;
     border-radius: 8px;
   }
 }

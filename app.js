@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260609-cache-v57";
+const APP_VERSION = "20260609-cache-v66";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -338,11 +338,102 @@ function groupPinNumber(group) {
   return index === -1 ? "" : String(index + 1);
 }
 
+function dateFromKey(dateKey) {
+  return new Date(`${dateKey}T12:00:00`);
+}
+
+function dateKeyParts(dateKey) {
+  const [year, month, day] = dateKey.split("-").map(Number);
+  return { year, month, day };
+}
+
+function dateKeyFromParts(year, month, day) {
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+function dateKeyFromLocalDate(date) {
+  return dateKeyFromParts(date.getFullYear(), date.getMonth() + 1, date.getDate());
+}
+
+function dateFromParts(year, month, day) {
+  return new Date(year, month - 1, day, 12, 0, 0);
+}
+
+function addPublicHoliday(map, dateKey, name) {
+  if (!map.has(dateKey)) {
+    map.set(dateKey, name);
+  }
+}
+
+function addFixedPublicHoliday(map, year, month, day, name) {
+  const date = dateFromParts(year, month, day);
+  addPublicHoliday(map, dateKeyFromLocalDate(date), name);
+
+  if (date.getDay() === 6) {
+    addPublicHoliday(map, dateKeyFromLocalDate(dateFromParts(year, month, day - 1)), `${name} (observed)`);
+  } else if (date.getDay() === 0) {
+    addPublicHoliday(map, dateKeyFromLocalDate(dateFromParts(year, month, day + 1)), `${name} (observed)`);
+  }
+}
+
+function nthWeekdayOfMonth(year, month, weekday, nth) {
+  const date = dateFromParts(year, month, 1);
+  const offset = (weekday - date.getDay() + 7) % 7;
+  date.setDate(1 + offset + (nth - 1) * 7);
+  return dateKeyFromLocalDate(date);
+}
+
+function lastWeekdayOfMonth(year, month, weekday) {
+  const date = dateFromParts(year, month + 1, 0);
+  const offset = (date.getDay() - weekday + 7) % 7;
+  date.setDate(date.getDate() - offset);
+  return dateKeyFromLocalDate(date);
+}
+
+const publicHolidayCache = new Map();
+
+function publicHolidaysForYear(year) {
+  if (publicHolidayCache.has(year)) {
+    return publicHolidayCache.get(year);
+  }
+
+  const holidays = new Map();
+  addFixedPublicHoliday(holidays, year, 1, 1, "New Year's Day");
+  addPublicHoliday(holidays, nthWeekdayOfMonth(year, 1, 1, 3), "Martin Luther King Jr. Day");
+  addPublicHoliday(holidays, nthWeekdayOfMonth(year, 2, 1, 3), "Presidents Day");
+  addPublicHoliday(holidays, lastWeekdayOfMonth(year, 5, 1), "Memorial Day");
+  addFixedPublicHoliday(holidays, year, 6, 19, "Juneteenth");
+  addFixedPublicHoliday(holidays, year, 7, 4, "Independence Day");
+  addPublicHoliday(holidays, nthWeekdayOfMonth(year, 9, 1, 1), "Labor Day");
+  addPublicHoliday(holidays, nthWeekdayOfMonth(year, 10, 1, 2), "Columbus Day");
+  addFixedPublicHoliday(holidays, year, 11, 11, "Veterans Day");
+  addPublicHoliday(holidays, nthWeekdayOfMonth(year, 11, 4, 4), "Thanksgiving Day");
+  addFixedPublicHoliday(holidays, year, 12, 25, "Christmas Day");
+
+  publicHolidayCache.set(year, holidays);
+  return holidays;
+}
+
+function publicHolidayName(dateKey) {
+  const { year } = dateKeyParts(dateKey);
+  for (let candidateYear = year - 1; candidateYear <= year + 1; candidateYear += 1) {
+    const holidayName = publicHolidaysForYear(candidateYear).get(dateKey);
+    if (holidayName) {
+      return holidayName;
+    }
+  }
+  return "";
+}
+
 function formatDateLabel(dateKey) {
-  const date = new Date(`${dateKey}T12:00:00`);
+  const date = dateFromKey(dateKey);
   const isToday = dateKey === localDateKey(new Date());
+  const holidayName = publicHolidayName(dateKey);
+  const isWeekend = date.getDay() === 0 || date.getDay() === 6;
   return {
     isToday,
+    isWeekend,
+    holidayName,
     weekday: new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date),
     day: isToday ? "Today" : new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date)
   };
@@ -1443,11 +1534,22 @@ function syncMarkers(dayEvents, activeGroup) {
 function renderDates() {
   elements.dateStrip.innerHTML = state.dates
     .map((dateKey) => {
-      const { isToday, weekday, day } = formatDateLabel(dateKey);
+      const { isToday, isWeekend, holidayName, weekday, day } = formatDateLabel(dateKey);
       const isActive = dateKey === state.selectedDate;
-      const ariaLabel = isToday ? "Today" : `${weekday} ${day}`;
+      const label = isToday ? "Today" : `${weekday} ${day}`;
+      const ariaLabel = holidayName ? `${label}, ${holidayName}` : label;
+      const dateClass = [
+        "date-chip",
+        isActive ? "is-active" : "",
+        isToday ? "is-today" : "",
+        isWeekend ? "is-weekend" : "",
+        holidayName ? "is-holiday" : ""
+      ]
+        .filter(Boolean)
+        .join(" ");
+      const title = holidayName ? ` title="${escapeHtml(holidayName)}"` : "";
       return `
-        <button class="date-chip ${isActive ? "is-active" : ""} ${isToday ? "is-today" : ""}" type="button" data-date="${dateKey}" aria-pressed="${isActive}" aria-label="${ariaLabel}">
+        <button class="${dateClass}" type="button" data-date="${dateKey}" aria-pressed="${isActive}" aria-label="${escapeHtml(ariaLabel)}"${title}>
           ${isToday ? "" : `<span>${weekday}</span>`}
           <strong>${day}</strong>
         </button>
