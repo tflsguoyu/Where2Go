@@ -2191,6 +2191,623 @@
         }
       ],
       "notes": "Art museum/education center with kids workshops, classes, and camps. Dated kids workshop imported from the summer workshop page."
+    },
+    {
+      "id": "branchburg-sports-complex-tod-squad",
+      "label": "Branchburg Sports Complex Tod Squad",
+      "type": "indoor-play-toddler-program",
+      "status": "importable",
+      "parser": "configured-recurring-workshops",
+      "website": "https://branchburgsports.com/",
+      "eventsUrl": "https://branchburgsports.com/programs-camps/tod-squad/",
+      "townId": "branchburg-township",
+      "address": "47 Readington Rd, Branchburg, NJ 08876",
+      "lat": 40.560024,
+      "lng": -74.716119,
+      "locations": [
+        {
+          "id": "branchburg",
+          "name": "Branchburg Sports Complex",
+          "townId": "branchburg-township",
+          "address": "47 Readington Rd, Branchburg, NJ 08876",
+          "lat": 40.560024,
+          "lng": -74.716119,
+          "storeUrl": "https://branchburgsports.com/programs-camps/tod-squad/"
+        }
+      ],
+      "recurrence": {
+        "frequency": "weekly",
+        "weekdays": ["tuesday", "wednesday", "thursday", "friday"],
+        "startTime": "09:30",
+        "endTime": "11:30",
+        "title": "Tod Squad Indoor Toddler Play",
+        "summary": "Indoor toddler play for ages 1-4 with toddler-sized bounce houses, soft play equipment, PlayMaze access, toys, and parent participation.",
+        "category": "indoor-play",
+        "registration": "RSVP",
+        "cost": "$12 per child"
+      },
+      "notes": "Official BSC page lists Tod Squad Tuesday-Friday, 9:30-11:30, and notes seasonal holiday parties. Keep this source in the new-town sweep because it is a business-run indoor play venue with recurring and limited-time child programs."
+    },
+    {
+      "id": "branchburg-sports-complex-summer-camps",
+      "label": "Branchburg Sports Complex Summer Camps",
+      "type": "kids-sports-camps",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://branchburgsports.com/programs-camps/summer-camp-nj/",
+      "eventsUrl": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/",
+      "locations": [
+        {
+          "id": "branchburg",
+          "name": "Branchburg Sports Complex",
+          "townId": "branchburg-township",
+          "address": "47 Readington Rd, Branchburg, NJ 08876",
+          "lat": 40.560024,
+          "lng": -74.716119,
+          "storeUrl": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-22",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "BSC Summer Sports Camp Week 1",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$250/week; annual membership may apply",
+          "url": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/",
+          "summary": "Weeklong half-day sports camp session with soccer, basketball, and Jr. Sports options for younger athletes; KidVenture add-on can extend the day."
+        },
+        {
+          "date": "2026-06-29",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "BSC Summer Sports Camp Week 2",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$250/week; annual membership may apply",
+          "url": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/",
+          "summary": "Weeklong half-day sports camp session with flag football and Jr. Sports options for younger athletes; KidVenture add-on can extend the day."
+        },
+        {
+          "date": "2026-07-06",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "BSC Summer Sports Camp Week 3",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$250/week; annual membership may apply",
+          "url": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/",
+          "summary": "Weeklong half-day sports camp session with baseball, basketball, and Jr. Sports options for younger athletes; KidVenture add-on can extend the day."
+        },
+        {
+          "date": "2026-07-13",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "BSC Summer Sports Camp Week 4",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$250/week; annual membership may apply",
+          "url": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/",
+          "summary": "Weeklong half-day sports camp session with soccer and Jr. Sports options for younger athletes; KidVenture add-on can extend the day."
+        },
+        {
+          "date": "2026-07-20",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "BSC Summer Sports Camp Week 5",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$250/week; annual membership may apply",
+          "url": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/",
+          "summary": "Weeklong half-day sports camp session with flag football and Jr. Sports options for younger athletes; KidVenture add-on can extend the day."
+        },
+        {
+          "date": "2026-07-27",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "BSC Summer Sports Camp Week 6",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$250/week; annual membership may apply",
+          "url": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/",
+          "summary": "Weeklong half-day sports camp session from the official BSC summer sports camp schedule; open the source page for the current sport mix and KidVenture full-day add-on."
+        },
+        {
+          "date": "2026-08-03",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "BSC Summer Sports Camp Week 7",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$250/week; annual membership may apply",
+          "url": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/",
+          "summary": "Weeklong half-day sports camp session from the official BSC summer sports camp schedule; open the source page for the current sport mix and KidVenture full-day add-on."
+        }
+      ],
+      "notes": "Official BSC camp pages list KidVenture, sports camps, leaders-in-training, PlayMaze, arcade, laser tag, and summer week dates. This is a business-run activity source for Branchburg beyond municipal/library calendars."
+    },
+    {
+      "id": "future-stars-rvcc",
+      "label": "Future Stars Day Camps at RVCC",
+      "type": "kids-summer-camps",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.futurestars.com/rvcc/",
+      "eventsUrl": "https://www.futurestars.com/rvcc/",
+      "locations": [
+        {
+          "id": "rvcc",
+          "name": "Raritan Valley Community College",
+          "townId": "branchburg-township",
+          "address": "118 Lamington Road, Branchburg, NJ 08876",
+          "lat": 40.560024,
+          "lng": -74.716119,
+          "storeUrl": "https://www.futurestars.com/rvcc/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-22",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Future Stars at RVCC Summer Camp Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$455/week after May 31",
+          "url": "https://www.futurestars.com/rvcc/",
+          "summary": "Weeklong day camp at RVCC for ages 5-13 with traditional, all-sports, STEAM, daily swim, flexible scheduling, and before/after care."
+        },
+        {
+          "date": "2026-06-29",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Future Stars at RVCC Summer Camp Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$455/week after May 31",
+          "url": "https://www.futurestars.com/rvcc/",
+          "summary": "Weeklong day camp at RVCC for ages 5-13 with traditional, all-sports, STEAM, daily swim, flexible scheduling, and before/after care."
+        },
+        {
+          "date": "2026-07-06",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Future Stars at RVCC Summer Camp Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$455/week after May 31",
+          "url": "https://www.futurestars.com/rvcc/",
+          "summary": "Weeklong day camp at RVCC for ages 5-13 with traditional, all-sports, STEAM, daily swim, flexible scheduling, and before/after care."
+        },
+        {
+          "date": "2026-07-13",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Future Stars at RVCC Summer Camp Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$455/week after May 31",
+          "url": "https://www.futurestars.com/rvcc/",
+          "summary": "Weeklong day camp at RVCC for ages 5-13 with traditional, all-sports, STEAM, daily swim, flexible scheduling, and before/after care."
+        },
+        {
+          "date": "2026-07-20",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Future Stars at RVCC Summer Camp Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$455/week after May 31",
+          "url": "https://www.futurestars.com/rvcc/",
+          "summary": "Weeklong day camp at RVCC for ages 5-13 with traditional, all-sports, STEAM, daily swim, flexible scheduling, and before/after care."
+        },
+        {
+          "date": "2026-07-27",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Future Stars at RVCC Summer Camp Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$455/week after May 31",
+          "url": "https://www.futurestars.com/rvcc/",
+          "summary": "Weeklong day camp at RVCC for ages 5-13 with traditional, all-sports, STEAM, daily swim, flexible scheduling, and before/after care."
+        },
+        {
+          "date": "2026-08-03",
+          "startTime": "09:00",
+          "endTime": "15:00",
+          "title": "Future Stars at RVCC Summer Camp Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "cost": "$455/week after May 31",
+          "url": "https://www.futurestars.com/rvcc/",
+          "summary": "Weeklong day camp at RVCC for ages 5-13 with traditional, all-sports, STEAM, daily swim, flexible scheduling, and before/after care."
+        }
+      ],
+      "notes": "Official Future Stars RVCC page lists June 22-August 21, 2026 camp dates at 118 Lamington Road in Branchburg; FAQ lists 9 AM-3 PM camp hours. Include because RVCC hosts a commercial child activity/camp source in the new Branchburg coverage."
+    },
+    {
+      "id": "rvcc-planetarium",
+      "label": "RVCC Planetarium",
+      "type": "science-planetarium-family-programs",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.raritanval.edu/planetarium",
+      "eventsUrl": "https://www.raritanval.edu/planetarium/public-shows",
+      "townId": "branchburg-township",
+      "address": "118 Lamington Road, Branchburg, NJ 08876",
+      "lat": 40.560024,
+      "lng": -74.716119,
+      "notes": "College planetarium with public and family shows. June 2026 public-show page says no public shows in June and to check back for July; keep this source for the next schedule refresh instead of dropping it."
+    },
+    {
+      "id": "raritan-headwaters-fairview-farm",
+      "label": "Raritan Headwaters at Fairview Farm",
+      "type": "nature-center-family-programs",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.raritanheadwaters.org/",
+      "eventsUrl": "https://www.raritanheadwaters.org/naturedays/",
+      "locations": [
+        {
+          "id": "fairview-farm",
+          "name": "Fairview Farm Wildlife Preserve",
+          "townId": "far-hills-borough",
+          "address": "2121 Larger Cross Road, Far Hills, NJ 07931",
+          "lat": 40.690893,
+          "lng": -74.621537,
+          "storeUrl": "https://www.raritanheadwaters.org/naturedays/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-11",
+          "startTime": "15:00",
+          "endTime": "17:00",
+          "title": "Nature Days and Bugs and Blooms at Fairview Farm",
+          "category": "nature",
+          "registration": "RSVP",
+          "url": "https://www.raritanheadwaters.org/naturedays/",
+          "summary": "Outdoor nature and organic-garden learning for children and grown-ups at Fairview Farm, with hands-on exploration, crafts, and play-based environmental education."
+        }
+      ],
+      "notes": "Raritan Headwaters publishes children's nature programs, Bugs and Blooms, Nature Days, nature day camp, family events, and Fairview Farm preserve programming. One final June 2026 Fairview Farm child program is configured; future refresh should inspect both /naturedays/ and /events-happenings/ because rendered calendar times can differ from program-page text."
+    },
+    {
+      "id": "leonard-j-buck-garden",
+      "label": "Leonard J. Buck Garden",
+      "type": "public-garden-family-programs",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.somersetcountyparks.org/leonard-j-buck-garden",
+      "eventsUrl": "https://www.somersetcountyparks.org/node/1251/events/year/2026",
+      "townId": "far-hills-borough",
+      "address": "11 Layton Road, Far Hills, NJ 07931",
+      "lat": 40.690893,
+      "lng": -74.621537,
+      "notes": "Somerset County public garden in Far Hills; children are welcome with adult supervision, and the park calendar can list plant sales, tours, photography, horticultural programming, woodland walks, and seasonal family-friendly garden events. Current future dated kid-specific events need manual review."
+    },
+    {
+      "id": "far-hills-race-meeting",
+      "label": "Far Hills Race Meeting",
+      "type": "festival-sports-family-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://farhillsrace.org/",
+      "eventsUrl": "https://farhillsrace.org/buy-now/",
+      "townId": "far-hills-borough",
+      "address": "Moorland Farm, Far Hills, NJ 07931",
+      "lat": 40.690893,
+      "lng": -74.621537,
+      "notes": "Annual Far Hills community steeplechase event. Official 2026 pages list October 17, 2026, family/friend tailgating, vendor village, and free admission for children 13 and under with an adult; source is outside the current 60-day import window but should be refreshed before fall."
+    },
+    {
+      "id": "hummingbird-studio-raritan",
+      "label": "The Hummingbird Studio",
+      "type": "kids-art-studio-workshops",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.thehummingbirdstudio.com/",
+      "eventsUrl": "https://www.thehummingbirdstudio.com/",
+      "locations": [
+        {
+          "id": "raritan",
+          "name": "The Hummingbird Studio",
+          "townId": "raritan-borough",
+          "address": "65 West Somerset Street, Raritan, NJ 08869",
+          "lat": 40.568866,
+          "lng": -74.629058,
+          "storeUrl": "https://www.thehummingbirdstudio.com/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-15",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "Summer Workshop: Mini Mindful Zen Garden and Yoga",
+          "category": "art",
+          "registration": "RSVP",
+          "url": "https://www.thehummingbirdstudio.com/",
+          "summary": "Summer art workshop listed on the studio's Spring into Summer 2026 schedule."
+        },
+        {
+          "date": "2026-06-16",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "Summer Workshop: Needle Wool Felting and Denim Purse Decorating",
+          "category": "art",
+          "registration": "RSVP",
+          "url": "https://www.thehummingbirdstudio.com/",
+          "summary": "Summer art workshop listed on the studio's Spring into Summer 2026 schedule."
+        },
+        {
+          "date": "2026-06-17",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "Summer Workshop: Cuckoo Clocks",
+          "category": "art",
+          "registration": "RSVP",
+          "url": "https://www.thehummingbirdstudio.com/",
+          "summary": "Summer art workshop listed on the studio's Spring into Summer 2026 schedule."
+        },
+        {
+          "date": "2026-06-17",
+          "startTime": "13:00",
+          "endTime": "15:00",
+          "title": "Littlest Artists Camp: Cosmic Friends",
+          "category": "art",
+          "registration": "RSVP",
+          "url": "https://www.thehummingbirdstudio.com/",
+          "summary": "Afternoon Littlest Artists Camp session listed on the studio's Spring into Summer 2026 schedule."
+        },
+        {
+          "date": "2026-06-19",
+          "startTime": "09:00",
+          "endTime": "12:00",
+          "title": "Summer Workshop: Bitty Bakery",
+          "category": "art",
+          "registration": "RSVP",
+          "url": "https://www.thehummingbirdstudio.com/",
+          "summary": "Summer art workshop listed on the studio's Spring into Summer 2026 schedule."
+        },
+        {
+          "date": "2026-06-21",
+          "startTime": "10:00",
+          "endTime": "12:00",
+          "title": "Father's Day: Miniature Candy Shop",
+          "category": "art",
+          "registration": "RSVP",
+          "url": "https://www.thehummingbirdstudio.com/",
+          "summary": "Father's Day miniature candy shop art event listed on the studio's Spring into Summer 2026 schedule."
+        }
+      ],
+      "notes": "Raritan art studio with kids classes, date-night drop-off, tween craft club, no-school studio days, special events, and summer workshops. This fills the Raritan business/art-studio source gap beyond the borough and library calendars."
+    },
+    {
+      "id": "raritan-music-center",
+      "label": "Raritan Music Center",
+      "type": "kids-music-classes-camps",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.raritanmusiccenter.com/",
+      "eventsUrl": "https://www.raritanmusiccenter.com/",
+      "townId": "raritan-borough",
+      "address": "55 West Somerset Street, Raritan, NJ 08869",
+      "lat": 40.568866,
+      "lng": -74.629058,
+      "notes": "Music lesson studio with 2026 summer camp links for string, piano, and voice programs. Public homepage does not expose enough dated camp detail for import yet; review sign-up links or booking pages when refreshing Raritan business sources."
+    },
+    {
+      "id": "manville-recreation-programs",
+      "label": "Manville Recreation Programs",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.manvillenj.org/308/Recreation",
+      "eventsUrl": "https://www.manvillenj.org/308/Recreation",
+      "townId": "manville-borough",
+      "address": "325 N Main Street, Manville, NJ 08835",
+      "lat": 40.541269,
+      "lng": -74.589273,
+      "notes": "Official recreation department source for day camp, summer recreation, parks, and flyers that may not appear on the CivicPlus calendar importer. Keep alongside the importable municipal calendar."
+    },
+    {
+      "id": "kids-empire-manville",
+      "label": "Kids Empire Manville",
+      "type": "indoor-playground",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.kidsempire.com/store-locator/kids-empire-manville",
+      "eventsUrl": "https://www.kidsempire.com/store-locator/kids-empire-manville",
+      "townId": "manville-borough",
+      "address": "114 N Main St Unit 11, Manville, NJ 08835",
+      "lat": 40.541269,
+      "lng": -74.589273,
+      "notes": "Indoor playground for ages 1-12 with all-day play, toddler zone, parties, group outings, and long daily hours. Current store page has no stable dated event feed, so keep as manual_review for future special events."
+    },
+    {
+      "id": "franklin-township-youth-center",
+      "label": "Franklin Township Youth Center and Recreation",
+      "type": "municipal-supplemental-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.franklintwpnj.org/departments/youth-center",
+      "eventsUrl": "https://www.franklintwpnj.org/departments/recreation-and-parks",
+      "townId": "franklin-township",
+      "address": "429 Lewis Street, Somerset, NJ 08873",
+      "lat": 40.476872,
+      "lng": -74.550447,
+      "notes": "Official Franklin pages expose Youth Center, Recreation, Municipal, Police, and Community calendar items through a Granicus/Akamai-rendered site that direct scripts cannot fetch. Keep for manual review or a future browser-backed parser; do not rely only on the Franklin library feed."
+    },
+    {
+      "id": "colonial-park-spray-park",
+      "label": "Colonial Park Spray Park and Gardens",
+      "type": "county-park-family-activities",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.somersetcountyparks.org/colonial-park",
+      "eventsUrl": "https://www.somersetcountyparks.org/colonial-park/pages/colonial-park-spray-park",
+      "townId": "franklin-township",
+      "address": "156 Mettlers Road, Somerset, NJ 08873",
+      "lat": 40.476872,
+      "lng": -74.550447,
+      "notes": "Somerset County park source in Franklin with Morgan Pellowski Playground, children's spray park, paddle boats, putting, gardens, and seasonal festivals. Spray Park runs through September 1 with posted weekday/weekend hours; kept manual to avoid daily open-hour event spam."
+    },
+    {
+      "id": "camp-soar-franklin-ymca",
+      "label": "Franklin Twp YMCA Camp SOAR",
+      "type": "kids-summer-camps",
+      "status": "importable",
+      "parser": "configured-dated-workshops",
+      "website": "https://www.gscymca.org/child-care-camps/camp-soar/",
+      "eventsUrl": "https://www.gscymca.org/child-care-camps/camp-soar/",
+      "locations": [
+        {
+          "id": "franklin-twp-ymca-camp-soar",
+          "name": "Camp SOAR at Elizabeth Avenue School",
+          "townId": "franklin-township",
+          "address": "363 Elizabeth Ave, Somerset, NJ 08873",
+          "lat": 40.476872,
+          "lng": -74.550447,
+          "storeUrl": "https://www.gscymca.org/child-care-camps/camp-soar/"
+        }
+      ],
+      "workshops": [
+        {
+          "date": "2026-06-29",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Camp SOAR Week 1: Adventure Awaits",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.gscymca.org/child-care-camps/camp-soar/",
+          "summary": "Traditional multi-activity YMCA day camp week for children entering kindergarten through seventh grade, with STEM, arts and crafts, sports, team-building, theme days, and weekly swim time."
+        },
+        {
+          "date": "2026-07-06",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Camp SOAR Week 2: Disney Theme Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.gscymca.org/child-care-camps/camp-soar/",
+          "summary": "Traditional multi-activity YMCA day camp week for children entering kindergarten through seventh grade, with STEM, arts and crafts, sports, team-building, theme days, and weekly swim time."
+        },
+        {
+          "date": "2026-07-13",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Camp SOAR Week 3: Superhero vs. Villain Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.gscymca.org/child-care-camps/camp-soar/",
+          "summary": "Traditional multi-activity YMCA day camp week for children entering kindergarten through seventh grade, with STEM, arts and crafts, sports, team-building, theme days, and weekly swim time."
+        },
+        {
+          "date": "2026-07-20",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Camp SOAR Week 4: Wacky Tacky Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.gscymca.org/child-care-camps/camp-soar/",
+          "summary": "Traditional multi-activity YMCA day camp week for children entering kindergarten through seventh grade, with STEM, arts and crafts, sports, team-building, theme days, and weekly swim time."
+        },
+        {
+          "date": "2026-07-27",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Camp SOAR Week 5: Water Bash Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.gscymca.org/child-care-camps/camp-soar/",
+          "summary": "Traditional multi-activity YMCA day camp week for children entering kindergarten through seventh grade, with STEM, arts and crafts, sports, team-building, theme days, and weekly swim time."
+        },
+        {
+          "date": "2026-08-03",
+          "startTime": "09:00",
+          "endTime": "16:00",
+          "title": "Camp SOAR Week 6: Animal and Nature Friends Week",
+          "category": "camp",
+          "registration": "RSVP",
+          "url": "https://www.gscymca.org/child-care-camps/camp-soar/",
+          "summary": "Traditional multi-activity YMCA day camp week for children entering kindergarten through seventh grade, with STEM, arts and crafts, sports, team-building, theme days, and weekly swim time."
+        }
+      ],
+      "notes": "Greater Somerset County YMCA page lists Camp SOAR in Franklin Township, June 29-August 21, 2026, regular camp hours 9 AM-4 PM, and weekly themes. Added as a Franklin business/nonprofit camp source beyond government/library calendars."
+    },
+    {
+      "id": "wonderworld-playzone-somerset",
+      "label": "Wonderworld Playzone",
+      "type": "indoor-playground",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.wonderworldplayzone.com/",
+      "eventsUrl": "https://www.wonderworldplayzone.com/",
+      "townId": "franklin-township",
+      "address": "28 Worlds Fair Drive, Suite C, Somerset, NJ 08873",
+      "lat": 40.476872,
+      "lng": -74.550447,
+      "notes": "Somerset indoor playground with obstacle course, ball pits, slides, pretend-play/tiny town, arcade, daily passes, party bookings, and a special-events section. Current official page says no events at the moment; keep as manual_review for future limited-time events."
+    },
+    {
+      "id": "snyders-farm-somerset",
+      "label": "Snyder's Farm",
+      "type": "farm-family-activities",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.snyders-farm.com/",
+      "eventsUrl": "https://www.snyders-farm.com/",
+      "townId": "franklin-township",
+      "address": "586 South Middlebush Road, Somerset, NJ 08873",
+      "lat": 40.476872,
+      "lng": -74.550447,
+      "notes": "Seasonal family farm with U-pick strawberries, blueberries, vegetables, market, and fall festival potential. Official Wix site is script-heavy; VisitNJ/Visit Somerset confirm farm activities, so keep for manual/browser-backed refresh before berry and fall festival seasons."
+    },
+    {
+      "id": "modern-motion-somerset",
+      "label": "Modern Motion",
+      "type": "kids-dance-art-camps",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://modernmotion.org/",
+      "eventsUrl": "https://modernmotion.org/summer",
+      "townId": "franklin-township",
+      "address": "1 Railroad Avenue, Somerset, NJ 08873",
+      "lat": 40.476872,
+      "lng": -74.550447,
+      "notes": "Franklin Township nonprofit dance/art school with K-5 summer day camp, art, dance, and special-needs classes. Summer page lists hours and availability but not clear dated week starts in simple HTML; keep as manual_review."
+    },
+    {
+      "id": "millstone-valley-scenic-byway",
+      "label": "Millstone Valley Scenic Byway",
+      "type": "history-nature-family-programs",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.millstonevalley.org/",
+      "eventsUrl": "https://www.millstonevalley.org/",
+      "townId": "millstone-borough",
+      "address": "Millstone Borough, NJ 08844",
+      "lat": 40.499868,
+      "lng": -74.595529,
+      "notes": "Historic/nature corridor serving Millstone and Franklin river communities. Official site says the 2026 season is coming soon and asks users to subscribe for events; keep for family history, byway, and preservation event refreshes."
+    },
+    {
+      "id": "dr-canal-state-park-millstone",
+      "label": "D&R Canal State Park - Millstone Valley",
+      "type": "state-park-family-activities",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://dep.nj.gov/parksandforests/state-park/dr-canal-state-park/",
+      "eventsUrl": "https://dep.nj.gov/parksandforests/state-park/dr-canal-state-park/",
+      "townId": "millstone-borough",
+      "address": "Millstone Borough, NJ 08844",
+      "lat": 40.499868,
+      "lng": -74.595529,
+      "notes": "State park/towpath source for Millstone and East Millstone family walks, biking, history, and organized-event permit activity. Current DEP page is a park/activity source rather than a dated events feed; keep as manual_review and cross-check park/tourism event calendars."
     }
   ],
   "towns": [
@@ -4533,7 +5150,7 @@
       "municipal": {
         "website": "https://www.manvillenj.org/",
         "eventsUrl": "https://www.manvillenj.org/Calendar.aspx",
-        "recreationUrl": "https://www.manvillenj.org/Calendar.aspx",
+        "recreationUrl": "https://www.manvillenj.org/308/Recreation",
         "status": "importable",
         "parser": "civicplus-calendar",
         "calendarIds": ["38", "43"],
@@ -4550,6 +5167,9 @@
           "branchId": "473",
           "status": "importable"
         }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-09 Somerset new-town sweep added Manville Recreation Programs and Kids Empire Manville in regionalSources. No separate downtown/SID, museum, farm, or dated business association feed was found; keep municipal recreation, SCLSNJ, and indoor-play source review active."
       ]
     },
     {
@@ -4615,6 +5235,9 @@
           "status": "importable",
           "notes": "Nearby SCLSNJ branch inside the 30-minute drive polygon for Far Hills-area library programming."
         }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-09 Somerset new-town sweep added Raritan Headwaters/Fairview Farm, Leonard J. Buck Garden, and Far Hills Race Meeting in regionalSources. No dedicated Far Hills downtown/SID calendar was found; nature/garden/equestrian sources are the main non-library family-event channels."
       ]
     },
     {
@@ -4663,6 +5286,9 @@
           "lat": 40.568866,
           "lng": -74.629058
         }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-09 Somerset new-town sweep added The Hummingbird Studio and Raritan Music Center in regionalSources. No separate Raritan downtown/SID or chamber event feed with child-friendly dated events was found; keep art/music studios plus borough recreation/library feeds under review."
       ]
     },
     {
@@ -4728,6 +5354,9 @@
           "status": "service_area",
           "notes": "SCLSNJ member municipality, but no separate in-town branch feed is inside the current coverage polygon."
         }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-09 Somerset new-town sweep added Millstone Valley Scenic Byway and D&R Canal State Park - Millstone Valley in regionalSources. No in-borough commercial kids venue, museum calendar, farm event feed, or downtown/SID source was found during this pass."
       ]
     },
     {
@@ -4817,6 +5446,9 @@
           ],
           "notes": "Somerset County Franklin Township library calendar runs on Communico/LibNet client franklintwp; do not confuse with ftlnj.org, which is Franklinville/Gloucester County."
         }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-09 Somerset new-town sweep added Franklin Youth Center/Recreation, Colonial Park Spray Park and Gardens, Camp SOAR, Wonderworld Playzone, Snyder's Farm, and Modern Motion in regionalSources. Franklin has multiple business/county-park/farm/activity sources, but the official township Granicus pages need manual or browser-backed parser work."
       ]
     },
     {
@@ -4881,6 +5513,9 @@
           "status": "service_area",
           "notes": "SCLSNJ member municipality, but no separate in-town branch feed is inside the current coverage polygon."
         }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-09 Somerset new-town sweep added Branchburg Sports Complex, Future Stars at RVCC, and RVCC Planetarium in regionalSources. No dedicated downtown/SID calendar was found; RVCC and BSC are the primary non-library child activity sources."
       ]
     },
     {

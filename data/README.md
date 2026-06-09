@@ -195,6 +195,8 @@ parser unless the source exposes a stable feed.
 | Home Depot Kids Workshops | `configured-recurring-workshops`; update recurrence and nearby `locations[]` when the official workshop cadence changes. |
 | Sky Zone South Plainfield | `configured-recurring-workshops`; official events-calendar JSON currently lists Friday/Saturday GLOW, 8-10 PM, linking to the GLOW program page. |
 | Lowe's, Michaels, Reeves-Reed, Trailside, Somerset EEC, Raptor Trust, Wallace House, Visual Arts Center | `configured-dated-workshops`; update dated `workshops[]` from official pages and keep coordinates in `locations[]`. |
+| Branchburg Sports Complex Tod Squad | `configured-recurring-workshops`; official page lists Tuesday-Friday toddler play, 9:30-11:30 AM, with special holiday parties noted for manual refresh. |
+| Branchburg Sports Complex Summer Camps, Future Stars at RVCC, Franklin Twp YMCA Camp SOAR, Hummingbird Studio, Raritan Headwaters/Fairview Farm | `configured-dated-workshops`; these were added during the Somerset new-town sweep from official venue/program pages and should be refreshed from the same pages before each season. |
 | Barnes & Noble Bridgewater | `barnes-noble-store-calendar`; parse embedded `monthEvents`, filter to in-store storytime/children/young-reader/summer-reading style rows. |
 | Today at Apple Bridgewater | `today-at-apple-calendar`; parse embedded `courses`, `schedules`, `topics`, and `stores`, then keep only `kids-and-families`. |
 | The Dainty Den | `wix-events-list`; parse Wix Events scheduling blocks from `/event-list`, including camp/workshop dates, ticket price, and image. |
@@ -211,6 +213,7 @@ parser unless the source exposes a stable feed.
 | LEGO Store Bridgewater Commons | Keep as `manual_review`; StoreEvent promo cards are visible, but current store cards do not include local dated sessions. |
 | KidStrong Watchung | Keep as `manual_review`; camp page asks users to view/contact for dates but does not expose dated sessions in HTML. |
 | Fun Factory Sensory Gym, Kids Empire Watchung, Valhallan Bridgewater | Keep as `manual_review`; current public pages are service/location oriented without stable dated feeds. |
+| Somerset new-town manual venues | Kids Empire Manville, Franklin Youth Center/Recreation, Colonial Park Spray Park and Gardens, Wonderworld Playzone, Snyder's Farm, Modern Motion, RVCC Planetarium, Leonard J. Buck Garden, Far Hills Race Meeting, Raritan Music Center, Millstone Valley Scenic Byway, and D&R Canal State Park - Millstone Valley are recorded as `manual_review`; keep them in the source sweep even when no dated feed is available yet. |
 | Other manual regional venues | Keep as `manual_review` until a stable booking/calendar feed is found. |
 
 Refresh the source-driven event file:
