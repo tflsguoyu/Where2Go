@@ -105,20 +105,51 @@ location/search point; the compact legend labels them as 10m, 20m, and 30m.
 
 ## Analytics Setup
 
-The app uses GoatCounter for simple visitor tracking. Create a GoatCounter site,
-copy the `data-goatcounter` endpoint from its JavaScript snippet, and put it in:
+The app can use Google Analytics 4 for free visitor tracking and coarse
+town/city events. Create a GA4 web data stream, copy its Measurement ID, and put
+it in:
 
 ```js
 analytics: {
-  goatCounterEndpoint: "https://where2go.goatcounter.com/count",
-  cloudflareWebAnalyticsToken: "YOUR_TOKEN"
+  googleAnalyticsMeasurementId: "G-XXXXXXXXXX",
+  statsEndpoint: "https://where2go-tau.vercel.app/api/stats",
+  areaMaxDistanceMiles: 12
 }
 ```
 
-in `config.js`. Leave `goatCounterEndpoint` empty to disable analytics. The
-Cloudflare token is optional and can stay empty. Analytics scripts are skipped on
-localhost so local testing does not count as live traffic. The app does not send
-precise GPS location to analytics.
+in `config.js`. Leave `googleAnalyticsMeasurementId` empty to disable GA4. The
+analytics script is skipped on localhost so local testing does not count as live
+traffic.
+
+GA4's built-in geography reports can show visitor city/region from IP-derived
+data. In addition, Where2Go sends two custom events after user actions:
+`search_area` when a town/ZIP search succeeds, and `located_area` when location
+permission maps the user to a nearby covered town. The app sends only coarse
+event parameters such as `area_town`, `area_city`, `area_state`, `area_zip`,
+`area_county`, and `area_town_id`; it does not send precise GPS coordinates,
+raw search strings, IP addresses, or user IDs.
+
+To break down the custom events by town/city in GA4, create event-scoped custom
+dimensions for the event parameters `area_town`, `area_city`, `area_state`,
+`area_zip`, `area_county`, `area_town_id`, and `area_source`. Then use GA4
+`Reports > Engagement > Events` or `Explore` to view `search_area` and
+`located_area` by those dimensions.
+
+The right-menu Stats panel reads a public aggregate JSON response from
+`analytics.statsEndpoint`. On Vercel, `/api/stats` queries the GA4 Data API and
+returns only `state`, `zip`, and `visits` rows for the last 28 days. To enable
+it, add these Vercel environment variables:
+
+```text
+GA4_PROPERTY_ID=YOUR_NUMERIC_PROPERTY_ID
+GOOGLE_CLIENT_EMAIL=service-account-name@project-id.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n
+```
+
+Alternatively, set `GOOGLE_SERVICE_ACCOUNT_JSON` to the full service account JSON.
+Grant that service account Viewer access to the GA4 property. The Stats panel
+depends on the GA4 custom dimensions above, especially `area_state` and
+`area_zip`, and will show data only after new matching events have arrived.
 
 ## Offline Behavior
 

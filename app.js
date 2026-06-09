@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260609-cache-v66";
+const APP_VERSION = "20260609-cache-v70";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -7,8 +7,13 @@ const USE_OSM_FALLBACK = window.Where2GoConfig?.useTemporaryOpenStreetMapFallbac
 const GITHUB_REPO = String(window.Where2GoConfig?.githubRepo || "").trim();
 const GITHUB_BRANCH = String(window.Where2GoConfig?.githubBranch || "main").trim();
 const ANALYTICS_CONFIG = window.Where2GoConfig?.analytics || {};
-const GOATCOUNTER_ENDPOINT = String(ANALYTICS_CONFIG.goatCounterEndpoint || "").trim();
-const CLOUDFLARE_ANALYTICS_TOKEN = String(ANALYTICS_CONFIG.cloudflareWebAnalyticsToken || "").trim();
+const GOOGLE_ANALYTICS_MEASUREMENT_ID = String(ANALYTICS_CONFIG.googleAnalyticsMeasurementId || "").trim();
+const STATS_ENDPOINT = String(ANALYTICS_CONFIG.statsEndpoint || "").trim();
+const AREA_ANALYTICS_MAX_DISTANCE_MILES = Number.isFinite(Number(ANALYTICS_CONFIG.areaMaxDistanceMiles))
+  ? Number(ANALYTICS_CONFIG.areaMaxDistanceMiles)
+  : 12;
+const AREA_ANALYTICS_SENT_KEY = "where2go-area-analytics-sent-v1";
+const STATS_ROW_LIMIT = 8;
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
 const DEFAULT_MAP_RADIUS_MILES = 5.6;
 const MAP_FIT_PADDING = [52, 52];
@@ -86,7 +91,14 @@ const state = {
   installPromptMode: "",
   initialLocationRequested: false,
   sourceRegistry: null,
-  moreMenuOpen: false
+  moreMenuOpen: false,
+  coveredTownsOpen: false,
+  statsOpen: false,
+  statsLoaded: false,
+  statsLoading: false,
+  statsRows: [],
+  statsUpdatedAt: "",
+  statsMessage: ""
 };
 
 const elements = {
@@ -96,6 +108,13 @@ const elements = {
   updatedLabel: document.querySelector("#updatedLabel"),
   moreMenuButton: document.querySelector("#moreMenuButton"),
   moreMenuPanel: document.querySelector("#moreMenuPanel"),
+  coveredTownsToggle: document.querySelector("#coveredTownsToggle"),
+  coveredTownsPanel: document.querySelector("#coveredTownsPanel"),
+  statsToggle: document.querySelector("#statsToggle"),
+  statsPanel: document.querySelector("#statsPanel"),
+  statsRows: document.querySelector("#statsRows"),
+  statsStatus: document.querySelector("#statsStatus"),
+  statsUpdated: document.querySelector("#statsUpdated"),
   coveredTownsList: document.querySelector("#coveredTownsList"),
   installPrompt: document.querySelector("#installPrompt"),
   installPromptTitle: document.querySelector("#installPromptTitle"),
@@ -132,27 +151,23 @@ function shouldLoadAnalytics() {
   return Boolean(window.location.hostname && !["localhost", "127.0.0.1", "::1"].includes(window.location.hostname));
 }
 
-function initGoatCounterAnalytics() {
-  if (!GOATCOUNTER_ENDPOINT || document.querySelector("[data-where2go-analytics='goatcounter']")) {
+function initGoogleAnalytics() {
+  if (!GOOGLE_ANALYTICS_MEASUREMENT_ID || document.querySelector("[data-where2go-analytics='ga4']")) {
     return;
   }
+  window.dataLayer = window.dataLayer || [];
+  window.gtag =
+    window.gtag ||
+    function gtag() {
+      window.dataLayer.push(arguments);
+    };
+  window.gtag("js", new Date());
+  window.gtag("config", GOOGLE_ANALYTICS_MEASUREMENT_ID);
+
   const script = document.createElement("script");
   script.async = true;
-  script.src = "https://gc.zgo.at/count.js";
-  script.dataset.goatcounter = GOATCOUNTER_ENDPOINT;
-  script.dataset.where2goAnalytics = "goatcounter";
-  document.head.append(script);
-}
-
-function initCloudflareAnalytics() {
-  if (!CLOUDFLARE_ANALYTICS_TOKEN || document.querySelector("[data-where2go-analytics='cloudflare']")) {
-    return;
-  }
-  const script = document.createElement("script");
-  script.defer = true;
-  script.src = "https://static.cloudflareinsights.com/beacon.min.js";
-  script.dataset.cfBeacon = JSON.stringify({ token: CLOUDFLARE_ANALYTICS_TOKEN });
-  script.dataset.where2goAnalytics = "cloudflare";
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GOOGLE_ANALYTICS_MEASUREMENT_ID)}`;
+  script.dataset.where2goAnalytics = "ga4";
   document.head.append(script);
 }
 
@@ -160,8 +175,76 @@ function initAnalytics() {
   if (!shouldLoadAnalytics()) {
     return;
   }
-  initGoatCounterAnalytics();
-  initCloudflareAnalytics();
+  initGoogleAnalytics();
+}
+
+function shouldSendAreaAnalytics() {
+  return Boolean(GOOGLE_ANALYTICS_MEASUREMENT_ID && shouldLoadAnalytics() && typeof window.gtag === "function");
+}
+
+function cleanAnalyticsText(value, maxLength = 80) {
+  return String(value || "")
+    .replace(/[^\w\s.,'-]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, maxLength);
+}
+
+function normalizedAnalyticsArea(area = {}) {
+  const town = cleanAnalyticsText(area.town || area.city);
+  const city = cleanAnalyticsText(area.city || area.town);
+  const state = cleanAnalyticsText(area.state || "NJ", 12).toUpperCase();
+  const zip = cleanAnalyticsText(area.zip, 10).replace(/[^\d-]/g, "");
+  const townId = cleanAnalyticsText(area.townId, 80).toLowerCase();
+  const county = cleanAnalyticsText(area.county, 80);
+  if (!town && !city && !zip) {
+    return null;
+  }
+  return { town, city, state, zip, townId, county };
+}
+
+function areaAnalyticsDedupeSet() {
+  try {
+    return new Set(JSON.parse(window.sessionStorage.getItem(AREA_ANALYTICS_SENT_KEY) || "[]"));
+  } catch {
+    return new Set();
+  }
+}
+
+function rememberAreaAnalyticsKey(key) {
+  try {
+    const sent = areaAnalyticsDedupeSet();
+    sent.add(key);
+    window.sessionStorage.setItem(AREA_ANALYTICS_SENT_KEY, JSON.stringify([...sent].slice(-80)));
+  } catch {
+    // Session storage can be unavailable in strict privacy modes.
+  }
+}
+
+function trackAreaAnalytics(type, area) {
+  if (!shouldSendAreaAnalytics()) {
+    return;
+  }
+  const normalizedArea = normalizedAnalyticsArea(area);
+  if (!normalizedArea) {
+    return;
+  }
+  const eventType = cleanAnalyticsText(type, 40);
+  const dedupeKey = [localDateKey(new Date()), eventType, normalizedArea.state, normalizedArea.town, normalizedArea.zip].join("|");
+  if (areaAnalyticsDedupeSet().has(dedupeKey)) {
+    return;
+  }
+  rememberAreaAnalyticsKey(dedupeKey);
+
+  window.gtag("event", eventType, {
+    area_source: eventType,
+    area_town: normalizedArea.town,
+    area_city: normalizedArea.city,
+    area_state: normalizedArea.state,
+    area_zip: normalizedArea.zip,
+    area_county: normalizedArea.county,
+    area_town_id: normalizedArea.townId
+  });
 }
 
 function eventStartDate(event) {
@@ -621,6 +704,113 @@ function coveredTownItems(sourceRegistry) {
     });
 }
 
+function areaFromCoveredTown(town, zip = "") {
+  if (!town) {
+    return null;
+  }
+  const zipCodes = zipCodesForTown(town);
+  return {
+    town: compactTownMenuName(town.name || town.id || ""),
+    city: compactTownMenuName(town.name || town.id || ""),
+    state: "NJ",
+    zip: zip || zipCodes[0] || "",
+    townId: town.id || "",
+    county: town.county || ""
+  };
+}
+
+function areaFromCoveredZip(zip) {
+  const normalizedZip = String(zip || "").trim();
+  if (!normalizedZip || !state.sourceRegistry?.towns) {
+    return null;
+  }
+  const town = state.sourceRegistry.towns.find((item) => zipCodesForTown(item).includes(normalizedZip));
+  return areaFromCoveredTown(town, normalizedZip);
+}
+
+function nearestCoveredTownArea(point) {
+  if (!hasCoordinates(point) || !state.sourceRegistry?.towns) {
+    return null;
+  }
+  let nearest = null;
+  state.sourceRegistry.towns.forEach((town) => {
+    const center = town?.center;
+    if (!hasCoordinates(center)) {
+      return;
+    }
+    const miles = distanceMiles(point, center);
+    if (!nearest || miles < nearest.miles) {
+      nearest = { town, miles };
+    }
+  });
+  if (!nearest || nearest.miles > AREA_ANALYTICS_MAX_DISTANCE_MILES) {
+    return null;
+  }
+  return areaFromCoveredTown(nearest.town);
+}
+
+function featureContextValue(feature, names) {
+  const wanted = new Set(names.map((name) => String(name).toLowerCase()));
+  const context = Array.isArray(feature?.context) ? feature.context : [];
+  for (const item of context) {
+    const id = String(item?.id || "").toLowerCase();
+    const type = String(item?.type || "").toLowerCase();
+    if ([...wanted].some((name) => id.startsWith(`${name}.`) || type === name)) {
+      return item?.text || item?.name || "";
+    }
+  }
+  return "";
+}
+
+function featurePropertyValue(feature, names) {
+  const properties = feature?.properties || {};
+  for (const name of names) {
+    if (properties[name]) {
+      return properties[name];
+    }
+  }
+  return "";
+}
+
+function normalizeStateCode(value) {
+  const text = cleanAnalyticsText(value, 40);
+  if (!text || /new jersey/i.test(text)) {
+    return "NJ";
+  }
+  return text.length === 2 ? text.toUpperCase() : text;
+}
+
+function areaFromGeocodeFeature(feature, point, query = "") {
+  const queryZip = isPostalCode(query) ? query.trim() : "";
+  const coveredZipArea = areaFromCoveredZip(queryZip);
+  if (coveredZipArea) {
+    return coveredZipArea;
+  }
+
+  const nearestArea = nearestCoveredTownArea(point);
+  if (nearestArea) {
+    return {
+      ...nearestArea,
+      zip: queryZip || nearestArea.zip
+    };
+  }
+
+  const town =
+    featurePropertyValue(feature, ["city", "locality", "municipality", "place", "name"]) ||
+    featureContextValue(feature, ["place", "locality", "municipality", "localadmin"]);
+  const zip =
+    featurePropertyValue(feature, ["postal_code", "postcode", "zip"]) ||
+    featureContextValue(feature, ["postcode", "postal_code"]) ||
+    queryZip;
+  const stateName = featurePropertyValue(feature, ["region", "state"]) || featureContextValue(feature, ["region"]);
+  return normalizedAnalyticsArea({
+    town,
+    city: town,
+    state: normalizeStateCode(stateName),
+    zip
+  });
+}
+
 function renderCoveredTowns(sourceRegistry) {
   if (!elements.coveredTownsList) {
     return;
@@ -649,6 +839,119 @@ function renderCoveredTowns(sourceRegistry) {
     .join("");
 }
 
+function renderCoveredTownsPanel() {
+  if (!elements.coveredTownsToggle || !elements.coveredTownsPanel) {
+    return;
+  }
+  elements.coveredTownsPanel.hidden = !state.coveredTownsOpen;
+  elements.coveredTownsToggle.setAttribute("aria-expanded", String(state.coveredTownsOpen));
+}
+
+function toggleCoveredTownsPanel() {
+  state.coveredTownsOpen = !state.coveredTownsOpen;
+  renderCoveredTownsPanel();
+}
+
+function normalizeStatsRows(rows = []) {
+  return rows
+    .map((row) => {
+      const visits = Number(row.visits ?? row.count ?? row.eventCount ?? 0);
+      return {
+        state: cleanAnalyticsText(row.state || "NJ", 12).toUpperCase(),
+        zip: cleanAnalyticsText(row.zip, 10).replace(/[^\d-]/g, ""),
+        visits: Number.isFinite(visits) ? Math.max(0, Math.round(visits)) : 0
+      };
+    })
+    .filter((row) => row.state && row.zip && row.visits > 0)
+    .sort((a, b) => b.visits - a.visits)
+    .slice(0, STATS_ROW_LIMIT);
+}
+
+function formatVisitCount(value) {
+  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
+}
+
+function formatStatsUpdated(value) {
+  if (!value) {
+    return "Last 28 days";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "Last 28 days";
+  }
+  return `Updated ${new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date)}`;
+}
+
+function renderStatsPanel() {
+  if (!elements.statsPanel || !elements.statsToggle || !elements.statsRows || !elements.statsStatus || !elements.statsUpdated) {
+    return;
+  }
+  elements.statsPanel.hidden = !state.statsOpen;
+  elements.statsToggle.setAttribute("aria-expanded", String(state.statsOpen));
+  elements.statsUpdated.textContent = formatStatsUpdated(state.statsUpdatedAt);
+
+  elements.statsRows.innerHTML = state.statsRows
+    .map((row) => {
+      return `
+        <div class="stats-row" role="row">
+          <span role="cell">${escapeHtml(row.state)}</span>
+          <span role="cell">${escapeHtml(row.zip)}</span>
+          <span role="cell">${escapeHtml(formatVisitCount(row.visits))}</span>
+        </div>
+      `;
+    })
+    .join("");
+
+  if (state.statsLoading) {
+    elements.statsStatus.textContent = "Loading stats...";
+  } else if (state.statsMessage) {
+    elements.statsStatus.textContent = state.statsMessage;
+  } else if (!state.statsRows.length) {
+    elements.statsStatus.textContent = "No stats yet.";
+  } else {
+    elements.statsStatus.textContent = "";
+  }
+}
+
+async function loadStats() {
+  if (!STATS_ENDPOINT || state.statsLoading) {
+    state.statsMessage = STATS_ENDPOINT ? state.statsMessage : "Stats endpoint not configured.";
+    renderStatsPanel();
+    return;
+  }
+  state.statsLoading = true;
+  state.statsMessage = "";
+  renderStatsPanel();
+  try {
+    const response = await fetch(STATS_ENDPOINT, {
+      headers: { Accept: "application/json" },
+      cache: "no-store"
+    });
+    if (!response.ok) {
+      throw new Error("Stats unavailable");
+    }
+    const payload = await response.json();
+    state.statsRows = normalizeStatsRows(payload.areas || payload.rows || []);
+    state.statsUpdatedAt = payload.updatedAt || "";
+    state.statsLoaded = true;
+    state.statsMessage = payload.message || "";
+  } catch {
+    state.statsRows = [];
+    state.statsMessage = "Stats unavailable.";
+  } finally {
+    state.statsLoading = false;
+    renderStatsPanel();
+  }
+}
+
+function toggleStatsPanel() {
+  state.statsOpen = !state.statsOpen;
+  renderStatsPanel();
+  if (state.statsOpen && !state.statsLoaded) {
+    loadStats();
+  }
+}
+
 function setMoreMenuOpen(isOpen) {
   state.moreMenuOpen = isOpen;
   if (elements.moreMenuPanel) {
@@ -667,6 +970,14 @@ function bindMoreMenu() {
   elements.moreMenuButton?.addEventListener("click", (event) => {
     event.stopPropagation();
     toggleMoreMenu();
+  });
+  elements.coveredTownsToggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleCoveredTownsPanel();
+  });
+  elements.statsToggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleStatsPanel();
   });
   elements.moreMenuPanel?.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -1283,12 +1594,17 @@ function locateUser() {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       setControlLoading("locate", false);
-      moveMapToPoint({
+      const point = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        lng: position.coords.longitude
+      };
+      moveMapToPoint({
+        lat: point.lat,
+        lng: point.lng,
         marker: "user",
         autoEnableDriveTime: true
       });
+      trackAreaAnalytics("located_area", nearestCoveredTownArea(point));
     },
     (error) => {
       setControlLoading("locate", false);
@@ -1328,10 +1644,14 @@ async function geocodePlace(query) {
   if (!Array.isArray(center) || center.length < 2) {
     throw new Error("Place not found.");
   }
-  return {
+  const result = {
     lat: Number(center[1]),
     lng: Number(center[0]),
     bbox: feature.bbox
+  };
+  return {
+    ...result,
+    area: areaFromGeocodeFeature(feature, result, trimmed)
   };
 }
 
@@ -1390,6 +1710,7 @@ async function handleSearchSubmit(event) {
   try {
     const result = await geocodePlace(query);
     fitSearchResult(result);
+    trackAreaAnalytics("search_area", result.area);
   } catch (error) {
     setMapMessage(error.message || "Search failed", "Try a ZIP code or township name.");
   } finally {
@@ -1674,6 +1995,7 @@ async function init() {
   state.selectedEventId = "";
   updateUpdatedLabel(events);
   renderCoveredTowns(sourceRegistry);
+  renderCoveredTownsPanel();
   render();
   requestInitialLocation();
 }

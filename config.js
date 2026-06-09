@@ -5,8 +5,9 @@ window.Where2GoConfig = {
   githubRepo: "tflsguoyu/Where2Go",
   githubBranch: "main",
   analytics: {
-    goatCounterEndpoint: "https://where2go.goatcounter.com/count",
-    cloudflareWebAnalyticsToken: ""
+    googleAnalyticsMeasurementId: "G-XGGD8NRM16",
+    statsEndpoint: "https://where2go-tau.vercel.app/api/stats",
+    areaMaxDistanceMiles: 12
   },
   driveTime: {
     provider: "openrouteservice",

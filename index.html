@@ -31,12 +31,12 @@
     />
     <meta name="twitter:image" content="https://tflsguoyu.github.io/Where2Go/assets/share-card.png" />
     <title>Where2Go</title>
-    <link rel="manifest" href="manifest.webmanifest?v=20260609-cache-v66" />
+    <link rel="manifest" href="manifest.webmanifest?v=20260609-cache-v70" />
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="assets/icon-192.png" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css?v=20260609-cache-v66" />
+    <link rel="stylesheet" href="styles.css?v=20260609-cache-v70" />
   </head>
   <body>
     <main class="app-shell" aria-label="Where2Go event map">
@@ -52,12 +52,27 @@
             </button>
             <div class="more-panel" id="moreMenuPanel" hidden>
               <section class="more-section">
+                <button class="more-link more-action" id="coveredTownsToggle" type="button" aria-expanded="false" aria-controls="coveredTownsPanel">Covered towns</button>
+                <div class="covered-towns-panel" id="coveredTownsPanel" hidden>
+                  <ul class="town-list" id="coveredTownsList"></ul>
+                </div>
+                <button class="more-link more-action" id="statsToggle" type="button" aria-expanded="false" aria-controls="statsPanel">Stats</button>
+                <div class="stats-panel" id="statsPanel" hidden>
+                  <div class="stats-header">
+                    <strong>Area visits</strong>
+                    <span id="statsUpdated">Last 28 days</span>
+                  </div>
+                  <div class="stats-table" role="table" aria-label="Area visit stats">
+                    <div class="stats-row stats-head" role="row">
+                      <span role="columnheader">State</span>
+                      <span role="columnheader">ZIP</span>
+                      <span role="columnheader">Visits</span>
+                    </div>
+                    <div id="statsRows" class="stats-rows"></div>
+                  </div>
+                  <p class="stats-status" id="statsStatus">Loading stats</p>
+                </div>
                 <a class="more-link" href="terms.html">Terms</a>
-                <a class="more-link" href="https://where2go.goatcounter.com" target="_blank" rel="noopener noreferrer">Analytics</a>
-              </section>
-              <section class="more-section" aria-labelledby="coveredTownsTitle">
-                <h2 id="coveredTownsTitle">Covered towns</h2>
-                <ul class="town-list" id="coveredTownsList"></ul>
               </section>
             </div>
           </div>
@@ -91,7 +106,7 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="config.js?v=20260609-cache-v66"></script>
-    <script type="module" src="app.js?v=20260609-cache-v66"></script>
+    <script src="config.js?v=20260609-cache-v70"></script>
+    <script type="module" src="app.js?v=20260609-cache-v70"></script>
   </body>
 </html>
