@@ -1,7 +1,8 @@
-const CACHE_NAME = "where2go-public-v45";
+const CACHE_NAME = "where2go-public-v57";
 const APP_ASSETS = [
   "./",
   "index.html",
+  "terms.html",
   "styles.css",
   "app.js",
   "config.js",
@@ -18,6 +19,7 @@ const APP_ASSETS = [
 const NETWORK_FIRST_SUFFIXES = [
   "/",
   "/index.html",
+  "/terms.html",
   "/app.js",
   "/config.js",
   "/styles.css",

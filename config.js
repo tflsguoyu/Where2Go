@@ -12,6 +12,6 @@ window.Where2GoConfig = {
     provider: "openrouteservice",
     apiKey: "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjNjMGY5NzQ1YzkxMDRkNTBiOTU2ZmUxNjQ4NDBjNDIyIiwiaCI6Im11cm11cjY0In0=",
     profile: "driving-car",
-    rangesMinutes: [10, 20]
+    rangesMinutes: [10, 20, 30]
   }
 };

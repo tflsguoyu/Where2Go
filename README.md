@@ -100,9 +100,8 @@ early testing, `useTemporaryOpenStreetMapFallback` can be set to `true` so the m
 still renders before a MapTiler key is available. Search still requires MapTiler.
 
 Drive-time overlays use `driveTime.apiKey` in `config.js`. The current UI draws
-10-minute and 20-minute driving contours from the last location/search point; the
-inner contour is styled as 0-10 minutes and the outer visible area as 10-20
-minutes.
+10-minute, 20-minute, and 30-minute driving contours from the last
+location/search point; the compact legend labels them as 10m, 20m, and 30m.
 
 ## Analytics Setup
 

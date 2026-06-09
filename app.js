@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260608-cache-v45";
+const APP_VERSION = "20260609-cache-v57";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -23,8 +23,15 @@ const DRIVE_TIME_ATTRIBUTION =
   '&copy; <a href="https://openrouteservice.org/" target="_blank" title="openrouteservice.org">ORS</a>/<a href="https://www.heigit.org/" target="_blank">HeiGIT</a>';
 const DRIVE_TIME_RANGES_MINUTES = Array.isArray(DRIVE_TIME_CONFIG.rangesMinutes)
   ? DRIVE_TIME_CONFIG.rangesMinutes.map(Number).filter((value) => Number.isFinite(value) && value > 0)
-  : [10, 20];
-const DRIVE_TIME_CONTOURS = DRIVE_TIME_RANGES_MINUTES.length ? DRIVE_TIME_RANGES_MINUTES : [10, 20];
+  : [10, 20, 30];
+const DRIVE_TIME_CONTOURS = [...new Set(DRIVE_TIME_RANGES_MINUTES.length ? DRIVE_TIME_RANGES_MINUTES : [10, 20, 30])].sort(
+  (a, b) => a - b
+);
+const DRIVE_TIME_BAND_STYLES = [
+  { className: "is-near", color: "#1f7a4d", fillColor: "#56b87a", fillOpacity: 0.32 },
+  { className: "is-middle", color: "#b46d24", fillColor: "#f0b35a", fillOpacity: 0.24 },
+  { className: "is-far", color: "#6f63b6", fillColor: "#a28be7", fillOpacity: 0.18 }
+];
 const SUMMARY_PREVIEW_LIMIT = 130;
 const MONTH_NAME_PATTERN =
   "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
@@ -965,16 +972,42 @@ function driveTimeFeatureMinutes(feature) {
   return rawValue > 60 ? Math.round(rawValue / 60) : Math.round(rawValue);
 }
 
+function driveTimeBandIndex(minutes) {
+  const index = DRIVE_TIME_CONTOURS.findIndex((contour) => minutes <= contour);
+  return index === -1 ? DRIVE_TIME_CONTOURS.length - 1 : index;
+}
+
+function driveTimeBandStyle(index) {
+  return DRIVE_TIME_BAND_STYLES[Math.min(index, DRIVE_TIME_BAND_STYLES.length - 1)];
+}
+
 function driveTimeFeatureStyle(feature) {
   const minutes = driveTimeFeatureMinutes(feature);
-  const isInner = minutes <= DRIVE_TIME_CONTOURS[0];
+  const bandStyle = driveTimeBandStyle(driveTimeBandIndex(minutes));
   return {
-    color: isInner ? "#2f7de1" : "#b46d24",
+    color: bandStyle.color,
     weight: 2,
     opacity: 0.78,
-    fillColor: isInner ? "#4e9ee8" : "#f0b35a",
-    fillOpacity: isInner ? 0.34 : 0.24
+    fillColor: bandStyle.fillColor,
+    fillOpacity: bandStyle.fillOpacity
   };
+}
+
+function driveTimeLegendItems() {
+  return DRIVE_TIME_CONTOURS.map((minutes, index) => {
+    const bandStyle = driveTimeBandStyle(index);
+    const label = `${minutes}m`;
+    return `<span><i class="drive-time-swatch ${bandStyle.className}"></i>${label}</span>`;
+  }).join("");
+}
+
+function driveTimeLoadingBody() {
+  if (DRIVE_TIME_CONTOURS.length === 1) {
+    return `${DRIVE_TIME_CONTOURS[0]} minute area.`;
+  }
+  const values = DRIVE_TIME_CONTOURS.map((minutes) => String(minutes));
+  const last = values.pop();
+  return `${values.join(", ")}${values.length > 1 ? "," : ""} and ${last} minute areas.`;
 }
 
 function normalizedDriveTimeFeatures(geojson) {
@@ -1047,7 +1080,7 @@ async function refreshDriveTimeLayer() {
   state.driveTimeLoading = true;
   setControlLoading("driveTime", true);
   updateDriveTimeControl();
-  setMapMessage("Loading drive time", "10 and 20 minute areas.");
+  setMapMessage("Loading drive time", driveTimeLoadingBody());
   try {
     const geojson = await fetchDriveTimeIsochrones(state.driveTimeOrigin);
     if (requestId !== mapState.driveTimeRequestId) {
@@ -1120,7 +1153,7 @@ function moveMapToPoint({ lat, lng, marker = "search", autoEnableDriveTime = fal
   }
   const markerOptions =
     marker === "user"
-      ? { radius: 8, color: "#ffffff", weight: 3, fillColor: "#2f7de1", fillOpacity: 1 }
+      ? { radius: 8, color: "#ffffff", weight: 3, fillColor: "#2f7de1", fillOpacity: 1, className: "user-location-dot" }
       : { radius: 7, color: "#ffffff", weight: 3, fillColor: "#c58338", fillOpacity: 1 };
   addOrMoveCircleMarker(marker === "user" ? "userMarker" : "searchMarker", lat, lng, markerOptions);
   fitMapAroundPoint({ lat, lng });
@@ -1327,7 +1360,7 @@ function ensureMapShell() {
   elements.mapSurface.innerHTML = `
     <div class="leaflet-map" id="leafletMap" aria-label="Interactive event map"></div>
     <button class="locate-button" id="locateButton" type="button" aria-label="Use my location" title="Use my location">
-      <span aria-hidden="true">⌖</span>
+      <span class="locate-glyph" aria-hidden="true"></span>
     </button>
     <form class="search-form" id="searchForm" autocomplete="on">
       <label class="sr-only" for="searchInput">Search place or ZIP</label>
@@ -1336,8 +1369,7 @@ function ensureMapShell() {
     </form>
     <button class="drive-time-button" id="driveTimeButton" type="button" aria-pressed="false" aria-label="Toggle drive-time areas" title="Toggle drive-time areas">Drive</button>
     <div class="drive-time-legend" id="driveTimeLegend" hidden>
-      <span><i class="drive-time-swatch is-inner"></i>0-10 min</span>
-      <span><i class="drive-time-swatch is-outer"></i>10-20 min</span>
+      ${driveTimeLegendItems()}
     </div>
     <div class="map-message" id="mapMessage" hidden></div>
   `;
@@ -1412,14 +1444,12 @@ function renderDates() {
   elements.dateStrip.innerHTML = state.dates
     .map((dateKey) => {
       const { isToday, weekday, day } = formatDateLabel(dateKey);
-      const count = state.events.filter((event) => event.dateKey === dateKey).length;
       const isActive = dateKey === state.selectedDate;
-      const ariaLabel = `${isToday ? "Today" : `${weekday} ${day}`}, ${count} event${count === 1 ? "" : "s"}`;
+      const ariaLabel = isToday ? "Today" : `${weekday} ${day}`;
       return `
         <button class="date-chip ${isActive ? "is-active" : ""} ${isToday ? "is-today" : ""}" type="button" data-date="${dateKey}" aria-pressed="${isActive}" aria-label="${ariaLabel}">
           ${isToday ? "" : `<span>${weekday}</span>`}
           <strong>${day}</strong>
-          <small>${count}</small>
         </button>
       `;
     })
