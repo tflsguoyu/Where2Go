@@ -9,6 +9,8 @@
   --green-dark: #164b43;
   --green-soft: #dceee9;
   --amber: #c58338;
+  --expired-pin: #8f98a1;
+  --expired-pin-active: #636b74;
   --blue: #4779a8;
   --shadow: 0 18px 44px rgba(23, 33, 29, 0.12);
 }
@@ -870,13 +872,13 @@ h2 {
 }
 
 .event-map-marker.is-expired::before {
-  background: var(--muted);
-  box-shadow: 0 10px 20px rgba(23, 33, 29, 0.16);
+  background: var(--expired-pin);
+  box-shadow: 0 10px 20px rgba(60, 66, 73, 0.22);
 }
 
 .event-map-marker.is-expired.is-active::before {
-  background: #55635c;
-  box-shadow: 0 12px 24px rgba(23, 33, 29, 0.2);
+  background: var(--expired-pin-active);
+  box-shadow: 0 12px 24px rgba(60, 66, 73, 0.28);
 }
 
 .user-location-dot {
@@ -1000,13 +1002,13 @@ h2 {
 }
 
 .pin-badge.is-expired {
-  background: var(--muted);
-  box-shadow: 0 8px 18px rgba(23, 33, 29, 0.16);
+  background: var(--expired-pin);
+  box-shadow: 0 8px 18px rgba(60, 66, 73, 0.22);
 }
 
 .detail-group.is-active .pin-badge.is-expired {
-  background: #55635c;
-  box-shadow: 0 8px 18px rgba(23, 33, 29, 0.2);
+  background: var(--expired-pin-active);
+  box-shadow: 0 8px 18px rgba(60, 66, 73, 0.28);
 }
 
 .place-name {
