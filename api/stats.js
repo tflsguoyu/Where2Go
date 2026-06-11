@@ -105,6 +105,9 @@ function statsRequestBody() {
 function normalizedRows(rows = []) {
   const normalizeFiveDigitZip = (value) => {
     const digits = String(value || "").replace(/\D/g, "");
+    if (digits.length === 4) {
+      return `0${digits}`;
+    }
     if (digits.length === 5) {
       return digits;
     }
@@ -117,11 +120,11 @@ function normalizedRows(rows = []) {
   return rows
     .map((row) => {
       const state = String(row.dimensionValues?.[0]?.value || "").trim().toUpperCase();
-      const zip = normalizeFiveDigitZip(row.dimensionValues?.[1]?.value || "");
+      const zip = normalizeFiveDigitZip(row.dimensionValues?.[1]?.value || "") || "ZIP TBD";
       const visits = Number(row.metricValues?.[0]?.value || 0);
       return { state, zip, visits };
     })
-    .filter((row) => row.state && row.zip && Number.isFinite(row.visits) && row.visits > 0);
+    .filter((row) => row.state && Number.isFinite(row.visits) && row.visits > 0);
 }
 
 async function fetchStats() {

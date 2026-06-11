@@ -202,6 +202,9 @@ function cleanAnalyticsText(value, maxLength = 80) {
 
 function normalizeFiveDigitZip(value) {
   const digits = String(value || "").replace(/\D/g, "");
+  if (digits.length === 4) {
+    return `0${digits}`;
+  }
   if (digits.length === 5) {
     return digits;
   }
@@ -209,6 +212,10 @@ function normalizeFiveDigitZip(value) {
     return digits.slice(0, 5);
   }
   return "";
+}
+
+function normalizeStatsZip(value) {
+  return normalizeFiveDigitZip(value) || "ZIP TBD";
 }
 
 function normalizedAnalyticsArea(area = {}) {
@@ -887,11 +894,11 @@ function normalizeStatsRows(rows = []) {
       const visits = Number(row.visits ?? row.count ?? row.eventCount ?? 0);
       return {
         state: cleanAnalyticsText(row.state || "NJ", 12).toUpperCase(),
-        zip: normalizeFiveDigitZip(row.zip),
+        zip: normalizeStatsZip(row.zip),
         visits: Number.isFinite(visits) ? Math.max(0, Math.round(visits)) : 0
       };
     })
-    .filter((row) => row.state && row.zip && row.visits > 0)
+    .filter((row) => row.state && row.visits > 0)
     .sort((a, b) => b.visits - a.visits)
     .slice(0, STATS_ROW_LIMIT);
 }
