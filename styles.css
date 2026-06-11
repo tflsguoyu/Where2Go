@@ -214,7 +214,8 @@ a {
 }
 
 .covered-towns-panel,
-.stats-panel {
+.stats-panel,
+.terms-panel {
   display: grid;
   gap: 6px;
   margin-top: 6px;
@@ -225,8 +226,41 @@ a {
 }
 
 .covered-towns-panel[hidden],
-.stats-panel[hidden] {
+.stats-panel[hidden],
+.terms-panel[hidden] {
   display: none;
+}
+
+.terms-section h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 950;
+}
+
+.terms-section p,
+.terms-section ul {
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-size: 0.69rem;
+  line-height: 1.35;
+}
+
+.terms-section ul {
+  padding-left: 15px;
+}
+
+.terms-section ul li {
+  margin: 4px 0;
+}
+
+.terms-section + .terms-section {
+  border-top: 1px solid rgba(215, 224, 218, 0.72);
+  padding-top: 6px;
+}
+
+.terms-changes {
+  margin-bottom: 2px;
 }
 
 .covered-towns-panel .town-list {
@@ -1120,6 +1154,99 @@ h2 {
   color: var(--green-dark);
   font-weight: 950;
   text-decoration: none;
+}
+
+.site-footer-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--green-dark);
+  font: inherit;
+  font-size: 0.56rem;
+  font-weight: 950;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.terms-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+}
+
+.terms-modal[hidden] {
+  display: none;
+}
+
+.terms-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: rgba(18, 24, 23, 0.44);
+}
+
+.terms-modal-panel {
+  position: relative;
+  width: min(100%, 700px);
+  max-height: 82vh;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+}
+
+.terms-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.terms-modal-header h2 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 950;
+}
+
+.terms-modal-close {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--green-dark);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.terms-modal-content {
+  max-height: 72vh;
+  overflow: auto;
+  padding: 8px 12px 12px;
+  display: grid;
+  gap: 8px;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 .legal-page {

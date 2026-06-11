@@ -3023,6 +3023,110 @@ function parseWixEventsList(html, source, startDate, days) {
   return [...new Map(imported.map((event) => [event.id, event])).values()];
 }
 
+function tribeEventsApiUrl(source, startDate, days, page) {
+  const endpoint = source.eventEndpoint || `${String(source.website || "").replace(/\/$/, "")}/wp-json/tribe/events/v1/events`;
+  const url = new URL(endpoint);
+  url.searchParams.set("per_page", String(source.perPage || 50));
+  url.searchParams.set("start_date", startDate);
+  url.searchParams.set("end_date", addDateDays(startDate, days - 1));
+  url.searchParams.set("page", String(page));
+  return url.toString();
+}
+
+function parseTribeVenueDetails(venue) {
+  if (!venue) {
+    return { name: "", address: "", lat: 0, lng: 0, city: "" };
+  }
+  const regionPostal = [venue.state || venue.province || venue.stateprovince, venue.zip].filter(Boolean).join(" ");
+  const parts = [venue.address, venue.city, regionPostal].filter(Boolean);
+  return {
+    name: stripHtml(venue.venue || venue.name || ""),
+    address: cleanAddress(parts.join(", ")),
+    lat: Number(venue.geo_lat),
+    lng: Number(venue.geo_lng),
+    city: stripHtml(venue.city || "")
+  };
+}
+
+function parseTribeEventsCalendar(events, source, sources, startDate, days) {
+  const townLookup = buildTownLookup(sources);
+  const imported = [];
+
+  events.forEach((event) => {
+    if (event.status !== "publish" || event.hide_from_listings) {
+      return;
+    }
+
+    const title = stripHtml(event.title);
+    const description = stripHtml(event.description || event.excerpt || "");
+    if (!title || !isImportableRegionalEvent(title, description)) {
+      return;
+    }
+
+    const dateKey = String(event.start_date || "").slice(0, 10);
+    if (!dateKey || !isDateWithinWindow(dateKey, startDate, days)) {
+      return;
+    }
+
+    const venue = parseTribeVenueDetails(event.venue);
+    const matchedTown = townLookup.get(normalizePlaceName(venue.city));
+    const startsAt = String(event.start_date || "").replace(" ", "T");
+    const endsAt = event.end_date ? String(event.end_date).replace(" ", "T") : null;
+    const record = regionalEventRecord(source, {
+      id: `${source.id}-${event.id}-${dateKey}`,
+      externalId: String(event.id),
+      title,
+      startsAt,
+      endsAt,
+      summary: description,
+      sourceUrl: event.url,
+      image: event.image?.url || null,
+      cost: isNonEmptyText(event.cost) ? event.cost : null,
+      registration: isNonEmptyText(event.cost) ? "Tickets" : "See source",
+      location: {
+        id: venue.name || source.id,
+        name: venue.name || matchedTown?.name || source.label,
+        townId: matchedTown?.id || source.townId || null,
+        address: venue.address || source.address || null,
+        lat: Number.isFinite(venue.lat) && venue.lat !== 0 ? venue.lat : Number(source.lat || 0),
+        lng: Number.isFinite(venue.lng) && venue.lng !== 0 ? venue.lng : Number(source.lng || 0)
+      },
+      tags: ["tribe-events", "county-tourism"],
+      confidence: matchedTown ? 0.84 : 0.72
+    });
+    record.withinCoverage = Boolean(matchedTown);
+    if (event.is_virtual || eventLooksOnline(record)) {
+      markOnlineEvent(record);
+    }
+    imported.push(record);
+  });
+
+  return imported;
+}
+
+async function importTribeEventsCalendar(sources, startDate, days) {
+  const imported = [];
+  for (const source of allRegionalParserSources(sources, "tribe-events-calendar")) {
+    try {
+      let page = 1;
+      let totalPages = 1;
+      const maxPages = Number(source.maxPages || 12);
+      while (page <= totalPages && page <= maxPages) {
+        const payload = await fetchJson(tribeEventsApiUrl(source, startDate, days, page));
+        totalPages = Number(payload.total_pages || 1);
+        imported.push(...parseTribeEventsCalendar(payload.events || [], source, sources, startDate, days));
+        page += 1;
+        if (page <= totalPages && page <= maxPages) {
+          await sleep(150);
+        }
+      }
+    } catch (error) {
+      console.warn(`warning: could not import ${source.label}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
 async function importWixEventsList(sources, startDate, days) {
   const imported = [];
   for (const source of allRegionalParserSources(sources, "wix-events-list")) {
@@ -3864,6 +3968,7 @@ async function main() {
     importWixEventsList(sources, startDate, days),
     importFarmsteadCalendarEvents(sources, startDate, days),
     importSquarespaceRegionalEvents(sources, startDate, days),
+    importTribeEventsCalendar(sources, startDate, days),
     importNjCarnivalsEvents(sources, startDate, days)
   ]);
   const incoming = importedGroups.flat();

@@ -72,7 +72,55 @@
                   </div>
                   <p class="stats-status" id="statsStatus">Loading stats</p>
                 </div>
-                <a class="more-link" href="terms.html">Terms</a>
+                <button class="more-link more-action" id="termsToggle" type="button" aria-expanded="false" aria-controls="termsPanel">Terms</button>
+                <div class="terms-panel" id="termsPanel" hidden></div>
+                <template id="termsTemplate">
+                  <section class="terms-section">
+                    <h3>Use of Where2Go</h3>
+                    <p>Where2Go provides kid-friendly event listings and map views for personal, non-commercial use.</p>
+                  </section>
+                  <section class="terms-section">
+                    <h3>Copyright and Ownership</h3>
+                    <p>
+                      © 2026 Where2Go. All rights reserved. The Where2Go name, site design, app structure, curated event data, and original
+                      content may not be copied, reproduced, scraped, mirrored, redistributed, resold, or used to create a competing service
+                      without written permission.
+                    </p>
+                  </section>
+                  <section class="terms-section">
+                    <h3>Event Information</h3>
+                    <p>
+                      Event details may change. Always verify dates, times, locations, registration requirements, costs, and age suitability with
+                      the original event organizer before attending.
+                    </p>
+                  </section>
+                  <section class="terms-section">
+                    <h3>Third-Party Links</h3>
+                    <p>
+                      We link to third-party websites for event details, directions, analytics, and map services. Those sites are controlled by
+                      their owners and may have separate terms and privacy practices.
+                    </p>
+                  </section>
+                  <section class="terms-section">
+                    <h3>Acceptable Use</h3>
+                    <ul>
+                      <li>Do not interfere with, overload, reverse engineer, or misuse the site.</li>
+                      <li>Do not use automated scraping, bulk copying, or data extraction without written permission.</li>
+                      <li>Do not present Where2Go content as your own or remove copyright notices.</li>
+                    </ul>
+                  </section>
+                  <section class="terms-section">
+                    <h3>No Warranty</h3>
+                    <p>
+                      Where2Go is provided as-is. We do not guarantee that listings are complete, current, error-free, uninterrupted, or suitable
+                      for every family or child.
+                    </p>
+                  </section>
+                  <section class="terms-section terms-changes">
+                    <h3>Changes</h3>
+                    <p>These terms may be updated from time to time. Continued use of the site after updates means you accept the revised terms.</p>
+                  </section>
+                </template>
               </section>
             </div>
           </div>
@@ -101,8 +149,19 @@
 
       <footer class="site-footer">
         <span>© 2026 Where2Go. All rights reserved.</span>
-        <a href="terms.html">Terms of Service</a>
+        <button class="site-footer-link" id="termsFooterButton" type="button">Terms of Service</button>
       </footer>
+
+      <div class="terms-modal" id="termsModal" hidden aria-hidden="true">
+        <button class="terms-modal-backdrop" id="termsModalBackdrop" type="button" aria-hidden="true" tabindex="-1"></button>
+        <section class="terms-modal-panel" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+          <header class="terms-modal-header">
+            <h2 id="termsModalTitle">Terms of Service</h2>
+            <button class="terms-modal-close" id="termsModalClose" type="button" aria-label="Close terms">✕</button>
+          </header>
+          <div class="terms-modal-content" id="termsModalContent"></div>
+        </section>
+      </div>
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

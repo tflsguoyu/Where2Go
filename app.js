@@ -94,6 +94,8 @@ const state = {
   moreMenuOpen: false,
   coveredTownsOpen: false,
   statsOpen: false,
+  termsOpen: false,
+  termsModalOpen: false,
   statsLoaded: false,
   statsLoading: false,
   statsRows: [],
@@ -115,6 +117,14 @@ const elements = {
   statsRows: document.querySelector("#statsRows"),
   statsStatus: document.querySelector("#statsStatus"),
   statsUpdated: document.querySelector("#statsUpdated"),
+  termsToggle: document.querySelector("#termsToggle"),
+  termsPanel: document.querySelector("#termsPanel"),
+  termsTemplate: document.querySelector("#termsTemplate"),
+  termsModal: document.querySelector("#termsModal"),
+  termsModalContent: document.querySelector("#termsModalContent"),
+  termsFooterButton: document.querySelector("#termsFooterButton"),
+  termsModalClose: document.querySelector("#termsModalClose"),
+  termsModalBackdrop: document.querySelector("#termsModalBackdrop"),
   coveredTownsList: document.querySelector("#coveredTownsList"),
   installPrompt: document.querySelector("#installPrompt"),
   installPromptTitle: document.querySelector("#installPromptTitle"),
@@ -190,11 +200,22 @@ function cleanAnalyticsText(value, maxLength = 80) {
     .slice(0, maxLength);
 }
 
+function normalizeFiveDigitZip(value) {
+  const digits = String(value || "").replace(/\D/g, "");
+  if (digits.length === 5) {
+    return digits;
+  }
+  if (digits.length === 9) {
+    return digits.slice(0, 5);
+  }
+  return "";
+}
+
 function normalizedAnalyticsArea(area = {}) {
   const town = cleanAnalyticsText(area.town || area.city);
   const city = cleanAnalyticsText(area.city || area.town);
   const state = cleanAnalyticsText(area.state || "NJ", 12).toUpperCase();
-  const zip = cleanAnalyticsText(area.zip, 10).replace(/[^\d-]/g, "");
+  const zip = normalizeFiveDigitZip(area.zip);
   const townId = cleanAnalyticsText(area.townId, 80).toLowerCase();
   const county = cleanAnalyticsText(area.county, 80);
   if (!town && !city && !zip) {
@@ -728,7 +749,7 @@ function areaFromCoveredTown(town, zip = "") {
 }
 
 function areaFromCoveredZip(zip) {
-  const normalizedZip = String(zip || "").trim();
+  const normalizedZip = normalizeFiveDigitZip(zip);
   if (!normalizedZip || !state.sourceRegistry?.towns) {
     return null;
   }
@@ -866,7 +887,7 @@ function normalizeStatsRows(rows = []) {
       const visits = Number(row.visits ?? row.count ?? row.eventCount ?? 0);
       return {
         state: cleanAnalyticsText(row.state || "NJ", 12).toUpperCase(),
-        zip: cleanAnalyticsText(row.zip, 10).replace(/[^\d-]/g, ""),
+        zip: normalizeFiveDigitZip(row.zip),
         visits: Number.isFinite(visits) ? Math.max(0, Math.round(visits)) : 0
       };
     })
@@ -921,6 +942,21 @@ function renderStatsPanel() {
   }
 }
 
+function hydrateTermsContent() {
+  const template = elements.termsTemplate?.content;
+  if (!template) {
+    return;
+  }
+  if (elements.termsPanel) {
+    elements.termsPanel.innerHTML = "";
+    elements.termsPanel.appendChild(template.cloneNode(true));
+  }
+  if (elements.termsModalContent) {
+    elements.termsModalContent.innerHTML = "";
+    elements.termsModalContent.appendChild(template.cloneNode(true));
+  }
+}
+
 async function loadStats() {
   if (!STATS_ENDPOINT || state.statsLoading) {
     state.statsMessage = STATS_ENDPOINT ? state.statsMessage : "Stats endpoint not configured.";
@@ -960,6 +996,53 @@ function toggleStatsPanel() {
   }
 }
 
+function renderTermsPanel() {
+  if (!elements.termsPanel || !elements.termsToggle) {
+    return;
+  }
+  elements.termsPanel.hidden = !state.termsOpen;
+  elements.termsToggle.setAttribute("aria-expanded", String(state.termsOpen));
+}
+
+function toggleTermsPanel() {
+  state.termsOpen = !state.termsOpen;
+  renderTermsPanel();
+}
+
+function renderTermsModal() {
+  if (!elements.termsModal) {
+    return;
+  }
+  elements.termsModal.hidden = !state.termsModalOpen;
+  elements.termsModal.setAttribute("aria-hidden", String(!state.termsModalOpen));
+  document.body.classList.toggle("modal-open", state.termsModalOpen);
+  if (state.termsModalOpen) {
+    elements.termsModalClose?.focus();
+  }
+}
+
+function openTermsModal() {
+  if (state.termsModalOpen) {
+    return;
+  }
+  state.termsModalOpen = true;
+  renderTermsModal();
+  if (state.termsOpen) {
+    state.termsOpen = false;
+    renderTermsPanel();
+  }
+  setMoreMenuOpen(false);
+}
+
+function closeTermsModal() {
+  if (!state.termsModalOpen) {
+    return;
+  }
+  state.termsModalOpen = false;
+  renderTermsModal();
+  elements.termsFooterButton?.focus();
+}
+
 function setMoreMenuOpen(isOpen) {
   state.moreMenuOpen = isOpen;
   if (elements.moreMenuPanel) {
@@ -987,6 +1070,19 @@ function bindMoreMenu() {
     event.stopPropagation();
     toggleStatsPanel();
   });
+  elements.termsToggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleTermsPanel();
+  });
+  elements.termsFooterButton?.addEventListener("click", () => {
+    openTermsModal();
+  });
+  elements.termsModalClose?.addEventListener("click", () => {
+    closeTermsModal();
+  });
+  elements.termsModalBackdrop?.addEventListener("click", () => {
+    closeTermsModal();
+  });
   elements.moreMenuPanel?.addEventListener("click", (event) => {
     event.stopPropagation();
   });
@@ -996,7 +1092,15 @@ function bindMoreMenu() {
     }
   });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && state.moreMenuOpen) {
+    if (event.key !== "Escape") {
+      return;
+    }
+    if (state.termsModalOpen) {
+      event.preventDefault();
+      closeTermsModal();
+      return;
+    }
+    if (state.moreMenuOpen) {
       setMoreMenuOpen(false);
       elements.moreMenuButton?.focus();
     }
@@ -2014,6 +2118,9 @@ async function init() {
   updateUpdatedLabel(events);
   renderCoveredTowns(sourceRegistry);
   renderCoveredTownsPanel();
+  hydrateTermsContent();
+  renderTermsPanel();
+  renderTermsModal();
   render();
   requestInitialLocation();
 }

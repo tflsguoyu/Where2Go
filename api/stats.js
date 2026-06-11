@@ -103,10 +103,21 @@ function statsRequestBody() {
 }
 
 function normalizedRows(rows = []) {
+  const normalizeFiveDigitZip = (value) => {
+    const digits = String(value || "").replace(/\D/g, "");
+    if (digits.length === 5) {
+      return digits;
+    }
+    if (digits.length === 9) {
+      return digits.slice(0, 5);
+    }
+    return "";
+  };
+
   return rows
     .map((row) => {
       const state = String(row.dimensionValues?.[0]?.value || "").trim().toUpperCase();
-      const zip = String(row.dimensionValues?.[1]?.value || "").replace(/[^\d-]/g, "");
+      const zip = normalizeFiveDigitZip(row.dimensionValues?.[1]?.value || "");
       const visits = Number(row.metricValues?.[0]?.value || 0);
       return { state, zip, visits };
     })
