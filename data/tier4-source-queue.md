@@ -1,0 +1,518 @@
+# Tier-4 全量信息源追踪清单（手工执行版）
+生成时间: 2026-06-11
+目标：把有 `manual_review` 的 town 先做“信息源发现”，不是活动内容抓取。按统一优先级：县域活动 → 商圈/商会 → Mall/零售 → 儿童友好场馆。
+
+## Somerset
+- Green Brook township (green-brook-township)
+  - Layer 1 先查县级：
+    - `https://www.somersetcountynj.gov/government/public-works/cultural-heritage/events`（县级活动）
+    - `https://www.somersetcountyparks.org/programs`（县公园亲子项目）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Green Brook township NJ downtown events"
+    - "Green Brook township NJ chamber events"
+    - "Green Brook township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Green Brook township NJ"
+    - "LEGO Store"
+    - "Kids events at Green Brook township bookstore"
+    - "apple store family events Green Brook township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Green Brook township nj"
+    - "trampoline park Green Brook township nj"
+    - "indoor playground Green Brook township nj"
+    - "science museum family program Green Brook township nj"
+- South Bound Brook borough (south-bound-brook-borough)
+  - Layer 1 先查县级：
+    - `https://www.somersetcountynj.gov/government/public-works/cultural-heritage/events`（县级活动）
+    - `https://www.somersetcountyparks.org/programs`（县公园亲子项目）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "South Bound Brook borough NJ downtown events"
+    - "South Bound Brook borough NJ chamber events"
+    - "South Bound Brook borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near South Bound Brook borough NJ"
+    - "LEGO Store"
+    - "Kids events at South Bound Brook borough bookstore"
+    - "apple store family events South Bound Brook borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue South Bound Brook borough nj"
+    - "trampoline park South Bound Brook borough nj"
+    - "indoor playground South Bound Brook borough nj"
+    - "science museum family program South Bound Brook borough nj"
+
+## Middlesex
+- Dunellen borough (dunellen-borough)
+  - Layer 1 先查县级：
+    - `https://www.middlesexcountynj.gov/find-programs-and-resources/events`（县级活动）
+    - `https://www.middlesexcountynj.gov/government/departments/department-of-infrastructure-management/office-of-parks-and-recreation/recreation-and-programming/-toggle-all`（公园/运动）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Dunellen borough NJ downtown events"
+    - "Dunellen borough NJ chamber events"
+    - "Dunellen borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Dunellen borough NJ"
+    - "LEGO Store"
+    - "Kids events at Dunellen borough bookstore"
+    - "apple store family events Dunellen borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Dunellen borough nj"
+    - "trampoline park Dunellen borough nj"
+    - "indoor playground Dunellen borough nj"
+    - "science museum family program Dunellen borough nj"
+- Piscataway township (piscataway-township)
+  - Layer 1 先查县级：
+    - `https://www.middlesexcountynj.gov/find-programs-and-resources/events`（县级活动）
+    - `https://www.middlesexcountynj.gov/government/departments/department-of-infrastructure-management/office-of-parks-and-recreation/recreation-and-programming/-toggle-all`（公园/运动）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Piscataway township NJ downtown events"
+    - "Piscataway township NJ chamber events"
+    - "Piscataway township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Piscataway township NJ"
+    - "LEGO Store"
+    - "Kids events at Piscataway township bookstore"
+    - "apple store family events Piscataway township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Piscataway township nj"
+    - "trampoline park Piscataway township nj"
+    - "indoor playground Piscataway township nj"
+    - "science museum family program Piscataway township nj"
+- Metuchen borough (metuchen-borough)
+  - Layer 1 先查县级：
+    - `https://www.middlesexcountynj.gov/find-programs-and-resources/events`（县级活动）
+    - `https://www.middlesexcountynj.gov/government/departments/department-of-infrastructure-management/office-of-parks-and-recreation/recreation-and-programming/-toggle-all`（公园/运动）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Metuchen borough NJ downtown events"
+    - "Metuchen borough NJ chamber events"
+    - "Metuchen borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Metuchen borough NJ"
+    - "LEGO Store"
+    - "Kids events at Metuchen borough bookstore"
+    - "apple store family events Metuchen borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Metuchen borough nj"
+    - "trampoline park Metuchen borough nj"
+    - "indoor playground Metuchen borough nj"
+    - "science museum family program Metuchen borough nj"
+- Highland Park borough (highland-park-borough)
+  - Layer 1 先查县级：
+    - `https://www.middlesexcountynj.gov/find-programs-and-resources/events`（县级活动）
+    - `https://www.middlesexcountynj.gov/government/departments/department-of-infrastructure-management/office-of-parks-and-recreation/recreation-and-programming/-toggle-all`（公园/运动）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Highland Park borough NJ downtown events"
+    - "Highland Park borough NJ chamber events"
+    - "Highland Park borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Highland Park borough NJ"
+    - "LEGO Store"
+    - "Kids events at Highland Park borough bookstore"
+    - "apple store family events Highland Park borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Highland Park borough nj"
+    - "trampoline park Highland Park borough nj"
+    - "indoor playground Highland Park borough nj"
+    - "science museum family program Highland Park borough nj"
+- New Brunswick city (new-brunswick-city)
+  - Layer 1 先查县级：
+    - `https://www.middlesexcountynj.gov/find-programs-and-resources/events`（县级活动）
+    - `https://www.middlesexcountynj.gov/government/departments/department-of-infrastructure-management/office-of-parks-and-recreation/recreation-and-programming/-toggle-all`（公园/运动）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "New Brunswick city NJ downtown events"
+    - "New Brunswick city NJ chamber events"
+    - "New Brunswick city NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near New Brunswick city NJ"
+    - "LEGO Store"
+    - "Kids events at New Brunswick city bookstore"
+    - "apple store family events New Brunswick city nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue New Brunswick city nj"
+    - "trampoline park New Brunswick city nj"
+    - "indoor playground New Brunswick city nj"
+    - "science museum family program New Brunswick city nj"
+
+## Union
+- New Providence borough (new-providence-borough)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "New Providence borough NJ downtown events"
+    - "New Providence borough NJ chamber events"
+    - "New Providence borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near New Providence borough NJ"
+    - "LEGO Store"
+    - "Kids events at New Providence borough bookstore"
+    - "apple store family events New Providence borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue New Providence borough nj"
+    - "trampoline park New Providence borough nj"
+    - "indoor playground New Providence borough nj"
+    - "science museum family program New Providence borough nj"
+- Berkeley Heights township (berkeley-heights-township)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Berkeley Heights township NJ downtown events"
+    - "Berkeley Heights township NJ chamber events"
+    - "Berkeley Heights township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Berkeley Heights township NJ"
+    - "LEGO Store"
+    - "Kids events at Berkeley Heights township bookstore"
+    - "apple store family events Berkeley Heights township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Berkeley Heights township nj"
+    - "trampoline park Berkeley Heights township nj"
+    - "indoor playground Berkeley Heights township nj"
+    - "science museum family program Berkeley Heights township nj"
+- Westfield town (westfield-town)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Westfield town NJ downtown events"
+    - "Westfield town NJ chamber events"
+    - "Westfield town NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Westfield town NJ"
+    - "LEGO Store"
+    - "Kids events at Westfield town bookstore"
+    - "apple store family events Westfield town nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Westfield town nj"
+    - "trampoline park Westfield town nj"
+    - "indoor playground Westfield town nj"
+    - "science museum family program Westfield town nj"
+- Garwood borough (garwood-borough)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Garwood borough NJ downtown events"
+    - "Garwood borough NJ chamber events"
+    - "Garwood borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Garwood borough NJ"
+    - "LEGO Store"
+    - "Kids events at Garwood borough bookstore"
+    - "apple store family events Garwood borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Garwood borough nj"
+    - "trampoline park Garwood borough nj"
+    - "indoor playground Garwood borough nj"
+    - "science museum family program Garwood borough nj"
+- Clark township (clark-township)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Clark township NJ downtown events"
+    - "Clark township NJ chamber events"
+    - "Clark township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Clark township NJ"
+    - "LEGO Store"
+    - "Kids events at Clark township bookstore"
+    - "apple store family events Clark township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Clark township nj"
+    - "trampoline park Clark township nj"
+    - "indoor playground Clark township nj"
+    - "science museum family program Clark township nj"
+- Springfield township (springfield-township)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Springfield township NJ downtown events"
+    - "Springfield township NJ chamber events"
+    - "Springfield township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Springfield township NJ"
+    - "LEGO Store"
+    - "Kids events at Springfield township bookstore"
+    - "apple store family events Springfield township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Springfield township nj"
+    - "trampoline park Springfield township nj"
+    - "indoor playground Springfield township nj"
+    - "science museum family program Springfield township nj"
+- Cranford township (cranford-township)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Cranford township NJ downtown events"
+    - "Cranford township NJ chamber events"
+    - "Cranford township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Cranford township NJ"
+    - "LEGO Store"
+    - "Kids events at Cranford township bookstore"
+    - "apple store family events Cranford township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Cranford township nj"
+    - "trampoline park Cranford township nj"
+    - "indoor playground Cranford township nj"
+    - "science museum family program Cranford township nj"
+- Kenilworth borough (kenilworth-borough)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Kenilworth borough NJ downtown events"
+    - "Kenilworth borough NJ chamber events"
+    - "Kenilworth borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Kenilworth borough NJ"
+    - "LEGO Store"
+    - "Kids events at Kenilworth borough bookstore"
+    - "apple store family events Kenilworth borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Kenilworth borough nj"
+    - "trampoline park Kenilworth borough nj"
+    - "indoor playground Kenilworth borough nj"
+    - "science museum family program Kenilworth borough nj"
+- Union township (union-township)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Union township NJ downtown events"
+    - "Union township NJ chamber events"
+    - "Union township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Union township NJ"
+    - "LEGO Store"
+    - "Kids events at Union township bookstore"
+    - "apple store family events Union township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Union township nj"
+    - "trampoline park Union township nj"
+    - "indoor playground Union township nj"
+    - "science museum family program Union township nj"
+- Plainfield city (plainfield-city)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Plainfield city NJ downtown events"
+    - "Plainfield city NJ chamber events"
+    - "Plainfield city NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Plainfield city NJ"
+    - "LEGO Store"
+    - "Kids events at Plainfield city bookstore"
+    - "apple store family events Plainfield city nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Plainfield city nj"
+    - "trampoline park Plainfield city nj"
+    - "indoor playground Plainfield city nj"
+    - "science museum family program Plainfield city nj"
+- Hillside township (hillside-township)
+  - Layer 1 先查县级：
+    - `https://ucnj.org/calendar/`（县级活动）
+    - `https://ucnj.org/events/`（如有子目录）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Hillside township NJ downtown events"
+    - "Hillside township NJ chamber events"
+    - "Hillside township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Hillside township NJ"
+    - "LEGO Store"
+    - "Kids events at Hillside township bookstore"
+    - "apple store family events Hillside township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Hillside township nj"
+    - "trampoline park Hillside township nj"
+    - "indoor playground Hillside township nj"
+    - "science museum family program Hillside township nj"
+
+## Morris
+- Chatham township (chatham-township)
+  - Layer 1 先查县级：
+    - `https://www.morriscountynj.gov/Morris-County-Events/Calendar`（县级活动）
+    - `https://www.morriscountynj.gov/parks-recreation/parks-and-recreation`（县公园）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Chatham township NJ downtown events"
+    - "Chatham township NJ chamber events"
+    - "Chatham township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Chatham township NJ"
+    - "LEGO Store"
+    - "Kids events at Chatham township bookstore"
+    - "apple store family events Chatham township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Chatham township nj"
+    - "trampoline park Chatham township nj"
+    - "indoor playground Chatham township nj"
+    - "science museum family program Chatham township nj"
+- Chatham borough (chatham-borough)
+  - Layer 1 先查县级：
+    - `https://www.morriscountynj.gov/Morris-County-Events/Calendar`（县级活动）
+    - `https://www.morriscountynj.gov/parks-recreation/parks-and-recreation`（县公园）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Chatham borough NJ downtown events"
+    - "Chatham borough NJ chamber events"
+    - "Chatham borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Chatham borough NJ"
+    - "LEGO Store"
+    - "Kids events at Chatham borough bookstore"
+    - "apple store family events Chatham borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Chatham borough nj"
+    - "trampoline park Chatham borough nj"
+    - "indoor playground Chatham borough nj"
+    - "science museum family program Chatham borough nj"
+- Harding township (harding-township)
+  - Layer 1 先查县级：
+    - `https://www.morriscountynj.gov/Morris-County-Events/Calendar`（县级活动）
+    - `https://www.morriscountynj.gov/parks-recreation/parks-and-recreation`（县公园）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Harding township NJ downtown events"
+    - "Harding township NJ chamber events"
+    - "Harding township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Harding township NJ"
+    - "LEGO Store"
+    - "Kids events at Harding township bookstore"
+    - "apple store family events Harding township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Harding township nj"
+    - "trampoline park Harding township nj"
+    - "indoor playground Harding township nj"
+    - "science museum family program Harding township nj"
+- Madison borough (madison-borough)
+  - Layer 1 先查县级：
+    - `https://www.morriscountynj.gov/Morris-County-Events/Calendar`（县级活动）
+    - `https://www.morriscountynj.gov/parks-recreation/parks-and-recreation`（县公园）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Madison borough NJ downtown events"
+    - "Madison borough NJ chamber events"
+    - "Madison borough NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Madison borough NJ"
+    - "LEGO Store"
+    - "Kids events at Madison borough bookstore"
+    - "apple store family events Madison borough nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Madison borough nj"
+    - "trampoline park Madison borough nj"
+    - "indoor playground Madison borough nj"
+    - "science museum family program Madison borough nj"
+
+## Essex
+- Millburn township (millburn-township)
+  - Layer 1 先查县级：
+    - `https://essexcountyparks.org/calendar`（县公园活动）
+    - `https://www.essexcountyparks.org`（公告与专题活动入口）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Millburn township NJ downtown events"
+    - "Millburn township NJ chamber events"
+    - "Millburn township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Millburn township NJ"
+    - "LEGO Store"
+    - "Kids events at Millburn township bookstore"
+    - "apple store family events Millburn township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Millburn township nj"
+    - "trampoline park Millburn township nj"
+    - "indoor playground Millburn township nj"
+    - "science museum family program Millburn township nj"
+- Maplewood township (maplewood-township)
+  - Layer 1 先查县级：
+    - `https://essexcountyparks.org/calendar`（县公园活动）
+    - `https://www.essexcountyparks.org`（公告与专题活动入口）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Maplewood township NJ downtown events"
+    - "Maplewood township NJ chamber events"
+    - "Maplewood township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Maplewood township NJ"
+    - "LEGO Store"
+    - "Kids events at Maplewood township bookstore"
+    - "apple store family events Maplewood township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Maplewood township nj"
+    - "trampoline park Maplewood township nj"
+    - "indoor playground Maplewood township nj"
+    - "science museum family program Maplewood township nj"
+- Livingston township (livingston-township)
+  - Layer 1 先查县级：
+    - `https://essexcountyparks.org/calendar`（县公园活动）
+    - `https://www.essexcountyparks.org`（公告与专题活动入口）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Livingston township NJ downtown events"
+    - "Livingston township NJ chamber events"
+    - "Livingston township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Livingston township NJ"
+    - "LEGO Store"
+    - "Kids events at Livingston township bookstore"
+    - "apple store family events Livingston township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Livingston township nj"
+    - "trampoline park Livingston township nj"
+    - "indoor playground Livingston township nj"
+    - "science museum family program Livingston township nj"
+- South Orange Village township (south-orange-village-township)
+  - Layer 1 先查县级：
+    - `https://essexcountyparks.org/calendar`（县公园活动）
+    - `https://www.essexcountyparks.org`（公告与专题活动入口）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "South Orange Village township NJ downtown events"
+    - "South Orange Village township NJ chamber events"
+    - "South Orange Village township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near South Orange Village township NJ"
+    - "LEGO Store"
+    - "Kids events at South Orange Village township bookstore"
+    - "apple store family events South Orange Village township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue South Orange Village township nj"
+    - "trampoline park South Orange Village township nj"
+    - "indoor playground South Orange Village township nj"
+    - "science museum family program South Orange Village township nj"
+- Irvington township (irvington-township)
+  - Layer 1 先查县级：
+    - `https://essexcountyparks.org/calendar`（县公园活动）
+    - `https://www.essexcountyparks.org`（公告与专题活动入口）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Irvington township NJ downtown events"
+    - "Irvington township NJ chamber events"
+    - "Irvington township NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Irvington township NJ"
+    - "LEGO Store"
+    - "Kids events at Irvington township bookstore"
+    - "apple store family events Irvington township nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Irvington township nj"
+    - "trampoline park Irvington township nj"
+    - "indoor playground Irvington township nj"
+    - "science museum family program Irvington township nj"
+- Newark city (newark-city)
+  - Layer 1 先查县级：
+    - `https://essexcountyparks.org/calendar`（县公园活动）
+    - `https://www.essexcountyparks.org`（公告与专题活动入口）
+  - Layer 2 商圈/Chamber/Downtown（每镇关键词）：
+    - "Newark city NJ downtown events"
+    - "Newark city NJ chamber events"
+    - "Newark city NJ farmers market"
+  - Layer 3 Mall/零售（每镇关键词）：
+    - "mall events near Newark city NJ"
+    - "LEGO Store"
+    - "Kids events at Newark city bookstore"
+    - "apple store family events Newark city nj"
+  - Layer 4 儿童可玩的场馆（每镇关键词）：
+    - "kids party venue Newark city nj"
+    - "trampoline park Newark city nj"
+    - "indoor playground Newark city nj"
+    - "science museum family program Newark city nj"
+

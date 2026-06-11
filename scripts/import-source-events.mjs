@@ -4434,6 +4434,80 @@ function parseSquarespaceCalendarListings(html, source, startDate, days) {
   return imported;
 }
 
+function parseJsonLdMunicipalEvents(html, source, startDate, days) {
+  const imported = [];
+  const events = parseJsonLdEvents(html).filter((event) => isImportableMunicipalEvent(event.name, event.description || event.about || ""));
+  for (const event of events) {
+    const title = stripHtml(event.name || "");
+    const summary = cleanImportedSummary(event.description || event.about || "");
+    if (!title) {
+      continue;
+    }
+    const startsRaw = event.startDate || event.startDateTime || event.startDateTimeString || "";
+    const endsRaw = event.endDate || event.endDateTime || "";
+    const normalizedStarts = localIso(startsRaw || "");
+    const startsAt = normalizedStarts && normalizedStarts.includes("T")
+      ? normalizedStarts
+      : `${countyDateFromJson(event)}T12:00`;
+    if (!startsAt || !isDateWithinWindow(startsAt.slice(0, 10), startDate, days)) {
+      continue;
+    }
+    const venueName = stripHtml(event.location?.name || event.location?.label || event.location?.title || "");
+    const address = cleanAddress(
+      addressFor(event.location || {}) ||
+        event.location?.address ||
+        event.address?.addressLocality ||
+        source.town?.name
+    );
+    const venue = municipalVenueDetails(source, { title, summary, venueName, address });
+    const endsAt = endsRaw ? (localIso(endsRaw).includes("T") ? localIso(endsRaw) : null) : null;
+    imported.push({
+      id: `jsonld-${source.town.id}-${slugify(title)}-${startsAt.slice(0, 10)}`,
+      sourceId: municipalSourceId(source, "jsonld"),
+      title,
+      venue: venue.venueName,
+      venueName: venue.venueName,
+      category: civicPlusMunicipalCategory(title, summary, ""),
+      source: municipalSourceLabel(source),
+      startsAt,
+      endsAt,
+      timezone: TIMEZONE,
+      durationMinutes: endsAt && endsAt !== startsAt ? durationMinutes(startsAt, endsAt) : null,
+      ages: inferAgeBandsFromText(title, summary, "families all ages community"),
+      cost: null,
+      registration: "See source",
+      summary,
+      url: event.url || source.municipal.eventsUrl || source.municipal.website,
+      sourceUrl: event.url || source.municipal.eventsUrl || source.municipal.website,
+      sourceCalendarUrl: source.municipal.eventsUrl || source.municipal.website,
+      address: venue.address,
+      lat: venue.lat,
+      lng: venue.lng,
+      tags: ["municipal", source.town.id, civicPlusMunicipalCategory(title, summary, ""), "family"].filter(Boolean),
+      status: "published",
+      confidence: venue.confidence
+    });
+  }
+  return imported.filter((event) => event.title && event.startsAt && event.sourceUrl);
+}
+
+async function importJsonLdMunicipalEvents(sources, startDate, days, parser) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, parser)) {
+    try {
+      const html = await fetchText(source.municipal.eventsUrl || source.municipal.website);
+      imported.push(...parseJsonLdMunicipalEvents(html, source, startDate, days).map((event) => ({
+        ...event,
+        id: `${parser}-${event.id}`,
+        sourceId: municipalSourceId(source, parser)
+      })));
+    } catch (error) {
+      console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
 async function importSquarespaceMunicipalEvents(sources, startDate, days) {
   const imported = [];
   for (const source of allMunicipalParserSources(sources, "squarespace-calendar-list")) {
@@ -4531,6 +4605,9 @@ async function main() {
     importConfiguredWorkshopEvents(sources, startDate, days),
     importConfiguredRegionalEvents(sources, startDate, days),
     importCountyCalendarEvents(sources, startDate, days),
+    importJsonLdMunicipalEvents(sources, startDate, days, "revize-calendar"),
+    importJsonLdMunicipalEvents(sources, startDate, days, "granicus-calendar"),
+    importJsonLdMunicipalEvents(sources, startDate, days, "alphadog-recreation-page"),
     importBarnesNobleStoreEvents(sources, startDate, days),
     importTodayAtAppleEvents(sources, startDate, days),
     importWixEventsList(sources, startDate, days),

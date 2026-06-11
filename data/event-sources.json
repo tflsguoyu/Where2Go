@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-10",
+  "updatedAt": "2026-06-11",
   "home": {
     "label": "Warren, NJ 07059",
     "lat": 40.619261,
@@ -87,7 +87,11 @@
         "label": "Township/borough official calendar",
         "priority": 1,
         "target": "towns[].municipal",
-        "searchHints": ["{town} NJ official calendar", "{town} NJ events", "{town} NJ community calendar"],
+        "searchHints": [
+          "{town} NJ official calendar",
+          "{town} NJ events",
+          "{town} NJ community calendar"
+        ],
         "parserCandidates": [
           "manual",
           "civicplus-calendar",
@@ -102,8 +106,16 @@
         "label": "Parks and recreation programs",
         "priority": 1,
         "target": "towns[].municipal.recreationUrl",
-        "searchHints": ["{town} NJ recreation events", "{town} NJ parks recreation programs", "{town} NJ summer camp events"],
-        "parserCandidates": ["manual", "configured-dated-workshops", "pdf-program-guide"],
+        "searchHints": [
+          "{town} NJ recreation events",
+          "{town} NJ parks recreation programs",
+          "{town} NJ summer camp events"
+        ],
+        "parserCandidates": [
+          "manual",
+          "configured-dated-workshops",
+          "pdf-program-guide"
+        ],
         "notes": "Often separate from the municipal calendar; store PDFs or registration portals even when events need manual review."
       },
       {
@@ -111,8 +123,17 @@
         "label": "Official municipal/recreation supplemental pages",
         "priority": 1,
         "target": "regionalSources[]",
-        "searchHints": ["{town} NJ recreation special events", "{town} NJ municipal alliance events", "{town} NJ community events"],
-        "parserCandidates": ["configured-regional-events", "manual", "pdf-program-guide", "wordpress-calendar"],
+        "searchHints": [
+          "{town} NJ recreation special events",
+          "{town} NJ municipal alliance events",
+          "{town} NJ community events"
+        ],
+        "parserCandidates": [
+          "configured-regional-events",
+          "manual",
+          "pdf-program-guide",
+          "wordpress-calendar"
+        ],
         "notes": "Use when an official town department, recreation microsite, municipal alliance, or named special-event page publishes family/community events outside the main municipal calendar feed."
       },
       {
@@ -120,8 +141,19 @@
         "label": "Public library kids calendar",
         "priority": 1,
         "target": "towns[].libraries[]",
-        "searchHints": ["{town} NJ library events kids", "{town} public library calendar children", "{town} library storytime"],
-        "parserCandidates": ["sclsnj-libnet", "librarycalendar-list", "libcal-list", "eventorganiser-fullcal", "joomla-event-booking-calendar", "manual"],
+        "searchHints": [
+          "{town} NJ library events kids",
+          "{town} public library calendar children",
+          "{town} library storytime"
+        ],
+        "parserCandidates": [
+          "sclsnj-libnet",
+          "librarycalendar-list",
+          "libcal-list",
+          "eventorganiser-fullcal",
+          "joomla-event-booking-calendar",
+          "manual"
+        ],
         "notes": "Prefer branch-level event URLs and keep branchId/sourceRef when the library belongs to a county system."
       },
       {
@@ -129,8 +161,17 @@
         "label": "Downtown, SID, chamber, and local business events",
         "priority": 2,
         "target": "towns[].municipal or regionalSources[]",
-        "searchHints": ["{town} downtown events", "{town} chamber events family", "{town} street fair"],
-        "parserCandidates": ["configured-regional-events", "manual", "wordpress-calendar", "eventbrite-list"],
+        "searchHints": [
+          "{town} downtown events",
+          "{town} chamber events family",
+          "{town} street fair"
+        ],
+        "parserCandidates": [
+          "configured-regional-events",
+          "manual",
+          "wordpress-calendar",
+          "eventbrite-list"
+        ],
         "notes": "Good source for street fairs, block parties, farmers markets, outdoor movies, and family festivals. In regionalSources, use type downtown-sid-events when the source is not an official town calendar."
       },
       {
@@ -138,8 +179,15 @@
         "label": "County parks, nature centers, and environmental education",
         "priority": 2,
         "target": "regionalSources[]",
-        "searchHints": ["{county} NJ parks family programs", "{county} NJ nature center children events", "{county} environmental education kids"],
-        "parserCandidates": ["configured-dated-workshops", "manual"],
+        "searchHints": [
+          "{county} NJ parks family programs",
+          "{county} NJ nature center children events",
+          "{county} environmental education kids"
+        ],
+        "parserCandidates": [
+          "configured-dated-workshops",
+          "manual"
+        ],
         "notes": "Use regionalSources when one venue or county system covers multiple towns."
       },
       {
@@ -147,8 +195,15 @@
         "label": "Regional festival and carnival directories",
         "priority": 2,
         "target": "sharedSources",
-        "searchHints": ["NJ carnivals {county}", "NJ family festivals {town}", "NJ fairs calendar"],
-        "parserCandidates": ["nj-carnivals-jsonld-list", "manual"],
+        "searchHints": [
+          "NJ carnivals {county}",
+          "NJ family festivals {town}",
+          "NJ fairs calendar"
+        ],
+        "parserCandidates": [
+          "nj-carnivals-jsonld-list",
+          "manual"
+        ],
         "notes": "Keep these as shared sources and filter or map events back to covered towns."
       },
       {
@@ -156,8 +211,16 @@
         "label": "Retail kids workshops and craft stores",
         "priority": 3,
         "target": "regionalSources[]",
-        "searchHints": ["Home Depot kids workshop near {town}", "Lowes kids workshop near {town}", "Michaels kids events near {town}"],
-        "parserCandidates": ["configured-recurring-workshops", "configured-dated-workshops", "manual"],
+        "searchHints": [
+          "Home Depot kids workshop near {town}",
+          "Lowes kids workshop near {town}",
+          "Michaels kids events near {town}"
+        ],
+        "parserCandidates": [
+          "configured-recurring-workshops",
+          "configured-dated-workshops",
+          "manual"
+        ],
         "notes": "Store each nearby location with townId, address, coordinates, and storeUrl."
       },
       {
@@ -165,8 +228,15 @@
         "label": "Mall and store family events",
         "priority": 3,
         "target": "regionalSources[]",
-        "searchHints": ["mall events near {town} kids", "LEGO store events near {town}", "Apple kids family sessions near {town}"],
-        "parserCandidates": ["manual", "browser-backed"],
+        "searchHints": [
+          "mall events near {town} kids",
+          "LEGO store events near {town}",
+          "Apple kids family sessions near {town}"
+        ],
+        "parserCandidates": [
+          "manual",
+          "browser-backed"
+        ],
         "notes": "Many mall and national retail sites block simple fetches; keep source links and parser notes for future browser-backed import."
       },
       {
@@ -174,8 +244,16 @@
         "label": "Indoor play, trampoline, gym, STEM, and party venues",
         "priority": 3,
         "target": "regionalSources[]",
-        "searchHints": ["kids gym events near {town}", "trampoline park events near {town}", "kids STEM classes near {town}", "indoor playground near {town} events"],
-        "parserCandidates": ["manual", "booking-system"],
+        "searchHints": [
+          "kids gym events near {town}",
+          "trampoline park events near {town}",
+          "kids STEM classes near {town}",
+          "indoor playground near {town} events"
+        ],
+        "parserCandidates": [
+          "manual",
+          "booking-system"
+        ],
         "notes": "Look for public open-play events, camps, sensory-friendly sessions, holiday drop-ins, trial classes, and workshops."
       },
       {
@@ -183,8 +261,16 @@
         "label": "Museums, science centers, arts centers, and historic sites",
         "priority": 3,
         "target": "regionalSources[]",
-        "searchHints": ["children museum near {town} events", "science center near {town} kids programs", "historic site family programs near {town}", "art center kids workshops near {town}"],
-        "parserCandidates": ["configured-dated-workshops", "manual"],
+        "searchHints": [
+          "children museum near {town} events",
+          "science center near {town} kids programs",
+          "historic site family programs near {town}",
+          "art center kids workshops near {town}"
+        ],
+        "parserCandidates": [
+          "configured-dated-workshops",
+          "manual"
+        ],
         "notes": "Use for exhibit days, family workshops, drop-in art, nature/science programs, and history programs."
       },
       {
@@ -192,8 +278,15 @@
         "label": "Farms, gardens, arboretums, zoos, and wildlife centers",
         "priority": 4,
         "target": "regionalSources[]",
-        "searchHints": ["farm family events near {town}", "arboretum kids programs near {town}", "wildlife center family events near {town}"],
-        "parserCandidates": ["configured-dated-workshops", "manual"],
+        "searchHints": [
+          "farm family events near {town}",
+          "arboretum kids programs near {town}",
+          "wildlife center family events near {town}"
+        ],
+        "parserCandidates": [
+          "configured-dated-workshops",
+          "manual"
+        ],
         "notes": "Useful for seasonal pick-your-own days, nature walks, animal programs, and family festivals."
       }
     ]
@@ -208,7 +301,16 @@
       "eventsUrl": "https://sclsnj.libnet.info/events",
       "eventEndpoint": "https://sclsnj.libnet.info/eeventcaldata",
       "locationEndpoint": "https://api.communico.co/v1/sclsnj/locations",
-      "branchIds": ["471", "473", "475", "476", "477", "478", "479", "4303"],
+      "branchIds": [
+        "471",
+        "473",
+        "475",
+        "476",
+        "477",
+        "478",
+        "479",
+        "4303"
+      ],
       "locations": [
         {
           "id": "471",
@@ -291,7 +393,12 @@
           "lon": "-74.629058"
         }
       ],
-      "ageFilters": ["Baby/Toddler", "Pre-School", "Kids", "Families"],
+      "ageFilters": [
+        "Baby/Toddler",
+        "Pre-School",
+        "Kids",
+        "Families"
+      ],
       "notes": "30-minute coverage imports Bridgewater, Manville, North Plainfield, Peapack and Gladstone, Raritan, Somerville, Warren Township, and Watchung branches. Hillsborough branch is outside the current ORS 30-minute drive polygon and is intentionally excluded."
     },
     "nj-carnivals": {
@@ -308,7 +415,9 @@
       "locationOverrides": [
         {
           "name": "Warren Municipal Building",
-          "aliases": ["Warren Township Municipal Complex"],
+          "aliases": [
+            "Warren Township Municipal Complex"
+          ],
           "address": "46 Mountain Boulevard, Warren, NJ 07059",
           "lat": 40.619261,
           "lng": -74.490372,
@@ -316,7 +425,9 @@
         },
         {
           "name": "Springfield Ave",
-          "aliases": ["Berkeley Heights Downtown Summer Block Party"],
+          "aliases": [
+            "Berkeley Heights Downtown Summer Block Party"
+          ],
           "address": "Springfield Ave from Snyder Ave to Plainfield Ave, Berkeley Heights, NJ 07922",
           "lat": 40.6850798,
           "lng": -74.4389058,
@@ -324,7 +435,10 @@
         },
         {
           "name": "Dunellen",
-          "aliases": ["Dunellen Street Fair & Craft Show (Spring)", "North Ave & S Washington Ave"],
+          "aliases": [
+            "Dunellen Street Fair & Craft Show (Spring)",
+            "North Ave & S Washington Ave"
+          ],
           "address": "North Ave & S Washington Ave, Dunellen, NJ 08812",
           "lat": 40.591748,
           "lng": -74.462981,
@@ -449,8 +563,20 @@
           "lat": 40.642845,
           "lng": -74.436233,
           "summary": "Watchung centennial celebration with a hometown parade, Mayor's Regatta, and opening of the borough's 1976 time capsule.",
-          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
-          "tags": ["centennial", "parade", "family", "official-page"]
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "centennial",
+            "parade",
+            "family",
+            "official-page"
+          ]
         }
       ],
       "notes": "Official Watchung recreation and centennial pages carry family events that are not yet imported from the manual-review municipal calendar. Founder's Day was added from the official centennial page; future refresh should inspect recreation news, Centennial Celebration, Farmers Market, and Mayor's Wellness pages."
@@ -523,8 +649,20 @@
           "lat": 40.6625394,
           "lng": -74.5640907,
           "summary": "Community race evening with a 1-mile health walk, 5K race, free Kid's Lollipop Loop, live music, light refreshments, and red-white-and-blue America 250 theme.",
-          "ages": ["preschool", "early-elementary", "tween", "teen"],
-          "tags": ["race", "walk", "fitness", "family", "municipal-alliance", "official-page"]
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "race",
+            "walk",
+            "fitness",
+            "family",
+            "municipal-alliance",
+            "official-page"
+          ]
         }
       ],
       "notes": "Official Bernards Health / Municipal Alliance pages can publish youth and community events outside the main Bernards resident-calendar DPCalendar feed. Twilight Challenge is an example: the 2026 event appears here, while the Bernards municipal raw calendar still exposes the 2025 resident-calendar event page."
@@ -569,8 +707,17 @@
           "lat": 40.633029,
           "lng": -74.372899,
           "summary": "Downtown community race night with Family Fun Run, 5K, music, BBQ, and after-party on the Village Green.",
-          "ages": ["early-elementary", "tween", "teen"],
-          "tags": ["race", "family-fun-run", "downtown", "official-page"]
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "race",
+            "family-fun-run",
+            "downtown",
+            "official-page"
+          ]
         }
       ],
       "notes": "Official recreation and township event pages sometimes expose dated family activities outside the current manual municipal feed. Race to Summer 5K was added from the official township news page; Mental Health Awareness Wellness Fair and FreeCycle/Earth Day are useful past examples for parser design."
@@ -628,8 +775,21 @@
           "lat": 40.569749,
           "lng": -74.607682,
           "summary": "Downtown street fair with global food, vendors, live music, cultural activities, and family-friendly Main Street programming.",
-          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
-          "tags": ["street-fair", "downtown", "festival", "family", "official-page"]
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "street-fair",
+            "downtown",
+            "festival",
+            "family",
+            "official-page"
+          ]
         }
       ],
       "notes": "Official SID site has a WordPress events calendar with street fairs, concerts, markets, and downtown promotions. Added as configured source until a WordPress/Tribe Events parser is implemented."
@@ -674,12 +834,27 @@
           "lat": 40.715622,
           "lng": -74.364684,
           "summary": "Downtown carnival-style family night with free activities, live entertainment, games, music, and family programming.",
-          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
-          "tags": ["downtown", "family", "festival", "official-page"]
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "downtown",
+            "family",
+            "festival",
+            "official-page"
+          ]
         },
         {
           "title": "Summit Downtown Welcomes the World",
-          "dates": ["2026-06-11", "2026-07-19"],
+          "dates": [
+            "2026-06-11",
+            "2026-07-19"
+          ],
           "startTime": "14:00",
           "endTime": "18:00",
           "registration": "Drop-in",
@@ -690,12 +865,33 @@
           "lat": 40.715622,
           "lng": -74.364684,
           "summary": "Downtown World Cup community watch party series hosted by Summit Downtown.",
-          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
-          "tags": ["downtown", "world-cup", "watch-party", "family", "official-page"]
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "downtown",
+            "world-cup",
+            "watch-party",
+            "family",
+            "official-page"
+          ]
         },
         {
           "title": "Summit Street Sounds",
-          "recurrence": { "frequency": "weekly", "weekdays": ["thursday", "friday"], "startDate": "2026-06-11", "endDate": "2026-07-31" },
+          "recurrence": {
+            "frequency": "weekly",
+            "weekdays": [
+              "thursday",
+              "friday"
+            ],
+            "startDate": "2026-06-11",
+            "endDate": "2026-07-31"
+          },
           "startTime": "17:00",
           "endTime": "20:00",
           "registration": "Drop-in",
@@ -706,8 +902,20 @@
           "lat": 40.715622,
           "lng": -74.364684,
           "summary": "Downtown live music series on Thursday and Friday evenings in June and July.",
-          "ages": ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"],
-          "tags": ["music", "downtown", "family", "official-page"]
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "music",
+            "downtown",
+            "family",
+            "official-page"
+          ]
         },
         {
           "title": "Cars and Croissants",
@@ -721,8 +929,17 @@
           "lat": 40.715622,
           "lng": -74.364684,
           "summary": "Downtown car gathering listed by Summit Downtown.",
-          "ages": ["early-elementary", "tween", "teen"],
-          "tags": ["cars", "downtown", "family", "official-page"]
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "cars",
+            "downtown",
+            "family",
+            "official-page"
+          ]
         }
       ],
       "notes": "Official Summit Downtown Inc. events page lists Family Fun Night, Farmers Market, Street Sounds, Arts & Cars, downtown trick-or-treat, and holiday events. Some entries overlap with the City of Summit CivicPlus calendar; keep this as a cross-check and candidate parser source."
@@ -1535,7 +1752,10 @@
       ],
       "recurrence": {
         "frequency": "weekly",
-        "weekdays": ["friday", "saturday"],
+        "weekdays": [
+          "friday",
+          "saturday"
+        ],
         "startTime": "20:00",
         "endTime": "22:00",
         "title": "Sky Zone GLOW",
@@ -2413,7 +2633,12 @@
       ],
       "recurrence": {
         "frequency": "weekly",
-        "weekdays": ["tuesday", "wednesday", "thursday", "friday"],
+        "weekdays": [
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday"
+        ],
         "startTime": "09:30",
         "endTime": "11:30",
         "title": "Tod Squad Indoor Toddler Play",
@@ -3004,6 +3229,314 @@
       "lat": 40.499868,
       "lng": -74.595529,
       "notes": "State park/towpath source for Millstone and East Millstone family walks, biking, history, and organized-event permit activity. Current DEP page is a park/activity source rather than a dated events feed; keep as manual_review and cross-check park/tourism event calendars."
+    },
+    {
+      "id": "fallback-tier4-green-brook-township",
+      "label": "Green Brook township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.somersetcountyparks.org/",
+      "eventsUrl": "https://www.somersetcountyparks.org/",
+      "townId": "green-brook-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Somerset."
+    },
+    {
+      "id": "fallback-tier4-dunellen-borough",
+      "label": "Dunellen borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "townId": "dunellen-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
+    },
+    {
+      "id": "fallback-tier4-plainfield-city",
+      "label": "Plainfield city Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "plainfield-city",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-south-bound-brook-borough",
+      "label": "South Bound Brook borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.somersetcountyparks.org/",
+      "eventsUrl": "https://www.somersetcountyparks.org/",
+      "townId": "south-bound-brook-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Somerset."
+    },
+    {
+      "id": "fallback-tier4-berkeley-heights-township",
+      "label": "Berkeley Heights township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "berkeley-heights-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-piscataway-township",
+      "label": "Piscataway township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "townId": "piscataway-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
+    },
+    {
+      "id": "fallback-tier4-new-providence-borough",
+      "label": "New Providence borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "new-providence-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-chatham-township",
+      "label": "Chatham township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "townId": "chatham-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Morris."
+    },
+    {
+      "id": "fallback-tier4-westfield-town",
+      "label": "Westfield town Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "westfield-town",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-harding-township",
+      "label": "Harding township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "townId": "harding-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Morris."
+    },
+    {
+      "id": "fallback-tier4-metuchen-borough",
+      "label": "Metuchen borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "townId": "metuchen-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
+    },
+    {
+      "id": "fallback-tier4-highland-park-borough",
+      "label": "Highland Park borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "townId": "highland-park-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
+    },
+    {
+      "id": "fallback-tier4-garwood-borough",
+      "label": "Garwood borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "garwood-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-clark-township",
+      "label": "Clark township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "clark-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-new-brunswick-city",
+      "label": "New Brunswick city Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "townId": "new-brunswick-city",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
+    },
+    {
+      "id": "fallback-tier4-springfield-township",
+      "label": "Springfield township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "springfield-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-chatham-borough",
+      "label": "Chatham borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "townId": "chatham-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Morris."
+    },
+    {
+      "id": "fallback-tier4-cranford-township",
+      "label": "Cranford township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "cranford-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-madison-borough",
+      "label": "Madison borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "townId": "madison-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Morris."
+    },
+    {
+      "id": "fallback-tier4-kenilworth-borough",
+      "label": "Kenilworth borough Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "kenilworth-borough",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-millburn-township",
+      "label": "Millburn township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://essexcountyparks.org/calendar",
+      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "townId": "millburn-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+    },
+    {
+      "id": "fallback-tier4-union-township",
+      "label": "Union township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "union-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-maplewood-township",
+      "label": "Maplewood township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://essexcountyparks.org/calendar",
+      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "townId": "maplewood-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+    },
+    {
+      "id": "fallback-tier4-livingston-township",
+      "label": "Livingston township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://essexcountyparks.org/calendar",
+      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "townId": "livingston-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+    },
+    {
+      "id": "fallback-tier4-hillside-township",
+      "label": "Hillside township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://ucnj.org/calendar/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "townId": "hillside-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+    },
+    {
+      "id": "fallback-tier4-south-orange-village-township",
+      "label": "South Orange Village township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://essexcountyparks.org/calendar",
+      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "townId": "south-orange-village-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+    },
+    {
+      "id": "fallback-tier4-irvington-township",
+      "label": "Irvington township Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://essexcountyparks.org/calendar",
+      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "townId": "irvington-township",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+    },
+    {
+      "id": "fallback-tier4-newark-city",
+      "label": "Newark city Tier-4 fallback",
+      "type": "downtown-sid-events",
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://essexcountyparks.org/calendar",
+      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "townId": "newark-city",
+      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
     }
   ],
   "towns": [
@@ -3011,9 +3544,14 @@
       "id": "green-brook-township",
       "name": "Green Brook township",
       "county": "Somerset",
-      "zipCodes": ["08812"],
+      "zipCodes": [
+        "08812"
+      ],
       "geoid": "3403527510",
-      "center": { "lat": 40.603832, "lng": -74.483208 },
+      "center": {
+        "lat": 40.603832,
+        "lng": -74.483208
+      },
       "distanceMiles": 1.1,
       "municipal": {
         "website": "https://www.greenbrooktwp.org/",
@@ -3036,9 +3574,14 @@
       "id": "warren-township",
       "name": "Warren township",
       "county": "Somerset",
-      "zipCodes": ["07059"],
+      "zipCodes": [
+        "07059"
+      ],
       "geoid": "3403576940",
-      "center": { "lat": 40.634588, "lng": -74.519044 },
+      "center": {
+        "lat": 40.634588,
+        "lng": -74.519044
+      },
       "distanceMiles": 1.8,
       "municipal": {
         "website": "https://www.warrennj.org/",
@@ -3046,7 +3589,10 @@
         "recreationUrl": "https://www.warrennj.org/DocumentCenter/View/11321/2026-Recreation-Programs-Events3",
         "status": "importable",
         "parser": "civicplus-calendar",
-        "calendarIds": ["14", "23"],
+        "calendarIds": [
+          "14",
+          "23"
+        ],
         "locationOverrides": [
           {
             "name": "Warren Central School",
@@ -3054,7 +3600,10 @@
           },
           {
             "name": "Susie B. Boyce Court Room",
-            "aliases": ["Warren Municipal Building", "Warren Township Municipal Complex"],
+            "aliases": [
+              "Warren Municipal Building",
+              "Warren Township Municipal Complex"
+            ],
             "address": "44 Mountain Blvd, Warren, NJ 07059"
           }
         ],
@@ -3075,9 +3624,14 @@
       "id": "dunellen-borough",
       "name": "Dunellen borough",
       "county": "Middlesex",
-      "zipCodes": ["08812"],
+      "zipCodes": [
+        "08812"
+      ],
       "geoid": "3402318490",
-      "center": { "lat": 40.590294, "lng": -74.465652 },
+      "center": {
+        "lat": 40.590294,
+        "lng": -74.465652
+      },
       "distanceMiles": 2.4,
       "municipal": {
         "website": "https://www.dunellen-nj.gov/",
@@ -3206,9 +3760,14 @@
       "id": "north-plainfield-borough",
       "name": "North Plainfield borough",
       "county": "Somerset",
-      "zipCodes": ["07060"],
+      "zipCodes": [
+        "07060"
+      ],
       "geoid": "3403553280",
-      "center": { "lat": 40.621255, "lng": -74.439466 },
+      "center": {
+        "lat": 40.621255,
+        "lng": -74.439466
+      },
       "distanceMiles": 2.7,
       "municipal": {
         "website": "https://northplainfieldnj.gov/",
@@ -3232,9 +3791,14 @@
       "id": "middlesex-borough",
       "name": "Middlesex borough",
       "county": "Middlesex",
-      "zipCodes": ["08846"],
+      "zipCodes": [
+        "08846"
+      ],
       "geoid": "3402345900",
-      "center": { "lat": 40.574627, "lng": -74.498259 },
+      "center": {
+        "lat": 40.574627,
+        "lng": -74.498259
+      },
       "distanceMiles": 3.1,
       "municipal": {
         "website": "https://www.middlesexboro-nj.gov/",
@@ -3245,14 +3809,18 @@
         "locationOverrides": [
           {
             "name": "Middlesex Borough Public Library",
-            "aliases": ["Middlesex Public Library"],
+            "aliases": [
+              "Middlesex Public Library"
+            ],
             "address": "1300 Mountain Avenue, Middlesex, NJ 08846",
             "lat": 40.5793316,
             "lng": -74.4996999
           },
           {
             "name": "Borough Hall, Court Room",
-            "aliases": ["Borough of Middlesex"],
+            "aliases": [
+              "Borough of Middlesex"
+            ],
             "address": "1200 Mountain Avenue, Middlesex, NJ 08846"
           }
         ],
@@ -3271,76 +3839,141 @@
           "configuredEvents": [
             {
               "title": "Family Storytime",
-              "recurrence": { "frequency": "weekly", "weekday": "monday", "startDate": "2026-07-06", "endDate": "2026-08-10" },
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "monday",
+                "startDate": "2026-07-06",
+                "endDate": "2026-08-10"
+              },
               "startTime": "10:15",
               "room": "Children's Room",
               "registration": "Drop-in",
               "summary": "Family storytime with books, music, playful early learning, and stay-and-play time with toys and activities. No registration required.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Family-Storytime.png",
-              "tags": ["summer reading", "storytime"]
+              "tags": [
+                "summer reading",
+                "storytime"
+              ]
             },
             {
               "title": "Movie Mondays",
-              "recurrence": { "frequency": "weekly", "weekday": "monday", "startDate": "2026-07-06", "endDate": "2026-08-10" },
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "monday",
+                "startDate": "2026-07-06",
+                "endDate": "2026-08-10"
+              },
               "startTime": "12:30",
               "room": "Community Room",
               "registration": "Drop-in",
               "summary": "Family-friendly G or PG movie; bring lunch or snacks. No registration required.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Movie-Mondays.png",
-              "tags": ["summer reading", "movie"]
+              "tags": [
+                "summer reading",
+                "movie"
+              ]
             },
             {
               "title": "Crafternoons",
-              "recurrence": { "frequency": "weekly", "weekday": "tuesday", "startDate": "2026-07-07", "endDate": "2026-08-11" },
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "tuesday",
+                "startDate": "2026-07-07",
+                "endDate": "2026-08-11"
+              },
               "startTime": "15:00",
               "registration": "Drop-in",
               "summary": "All-ages craft program. Crafts are first come, first served, and no registration is required.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Crafternoon-1.png",
-              "tags": ["summer reading", "craft"]
+              "tags": [
+                "summer reading",
+                "craft"
+              ]
             },
             {
               "title": "Stage & Story Theater Club",
-              "recurrence": { "frequency": "weekly", "weekday": "tuesday", "startDate": "2026-07-07", "endDate": "2026-08-11" },
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "tuesday",
+                "startDate": "2026-07-07",
+                "endDate": "2026-08-11"
+              },
               "startTime": "16:30",
               "endTime": "18:00",
               "registration": "RSVP",
               "summary": "Theater club with spots for actors and behind-the-scenes crew. For ages 8-12; final performance date to be determined at the end of summer.",
-              "ages": ["tween"],
+              "ages": [
+                "tween"
+              ],
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Stage-Story.png",
-              "tags": ["summer reading", "theater"]
+              "tags": [
+                "summer reading",
+                "theater"
+              ]
             },
             {
               "title": "Magic of Make Believe",
-              "recurrence": { "frequency": "weekly", "weekday": "thursday", "startDate": "2026-07-09", "endDate": "2026-08-13" },
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "thursday",
+                "startDate": "2026-07-09",
+                "endDate": "2026-08-13"
+              },
               "startTime": "10:30",
               "room": "Community Room",
               "registration": "RSVP",
               "summary": "Theater games, music, movement, and imaginative play for ages 3-6. Registration opens three weeks before each session at noon.",
-              "ages": ["preschool", "early-elementary"],
+              "ages": [
+                "preschool",
+                "early-elementary"
+              ],
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/MoMB.png",
-              "tags": ["summer reading", "theater", "music"]
+              "tags": [
+                "summer reading",
+                "theater",
+                "music"
+              ]
             },
             {
               "title": "Pajama Storytime",
-              "recurrence": { "frequency": "weekly", "weekday": "thursday", "startDate": "2026-07-09", "endDate": "2026-08-13" },
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "thursday",
+                "startDate": "2026-07-09",
+                "endDate": "2026-08-13"
+              },
               "startTime": "19:00",
               "virtual": true,
               "registration": "RSVP",
               "summary": "Evening pajama storytime on Zoom. All ages are welcome; registration is required for the link.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/PJ-Sgtorytime.png",
-              "tags": ["summer reading", "storytime", "online"]
+              "tags": [
+                "summer reading",
+                "storytime",
+                "online"
+              ]
             },
             {
               "title": "Fun Fridays",
-              "recurrence": { "frequency": "weekly", "weekday": "friday", "startDate": "2026-07-10", "endDate": "2026-08-14" },
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "friday",
+                "startDate": "2026-07-10",
+                "endDate": "2026-08-14"
+              },
               "startTime": "13:00",
               "endTime": "15:00",
               "room": "Children's Room",
               "registration": "Drop-in",
               "summary": "Ages 3 and up can join a Friday program in the Children's Room. No registration required.",
-              "ages": ["preschool", "early-elementary"],
+              "ages": [
+                "preschool",
+                "early-elementary"
+              ],
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/Fun-Fridays.png",
-              "tags": ["summer reading"]
+              "tags": [
+                "summer reading"
+              ]
             },
             {
               "title": "Dinosaurs Arise",
@@ -3348,9 +3981,15 @@
               "startTime": "10:00",
               "registration": "RSVP",
               "summary": "Hands-on dinosaur adventure featuring fossil digs, stories, and the chance to feed and play with real life-sized dinos. Open to ages 3 and up; registration begins on June 20 at noon.",
-              "ages": ["preschool", "early-elementary"],
+              "ages": [
+                "preschool",
+                "early-elementary"
+              ],
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_11_-Dinosaurs-Arise.png",
-              "tags": ["summer reading", "special event"]
+              "tags": [
+                "summer reading",
+                "special event"
+              ]
             },
             {
               "title": "Arrayscape Gaming",
@@ -3359,7 +3998,11 @@
               "registration": "RSVP",
               "summary": "Summer special event from the library's official kids schedule. Registration opens on June 24.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_15_-Arrayscape.png",
-              "tags": ["summer reading", "special event", "gaming"]
+              "tags": [
+                "summer reading",
+                "special event",
+                "gaming"
+              ]
             },
             {
               "title": "Beyond the Bug",
@@ -3368,7 +4011,10 @@
               "registration": "RSVP",
               "summary": "Summer special event from the library's official kids schedule. Registration opens on July 1.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_22_-Beyond-the-Bug.png",
-              "tags": ["summer reading", "special event"]
+              "tags": [
+                "summer reading",
+                "special event"
+              ]
             },
             {
               "title": "Rutgers Geology Museum",
@@ -3377,7 +4023,11 @@
               "registration": "RSVP",
               "summary": "Summer special event with Rutgers Geology Museum from the library's official kids schedule. Registration opens on July 2.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_23_-Rutegrs-Geology.png",
-              "tags": ["summer reading", "special event", "science"]
+              "tags": [
+                "summer reading",
+                "special event",
+                "science"
+              ]
             },
             {
               "title": "Family Fort Night",
@@ -3386,7 +4036,10 @@
               "registration": "RSVP",
               "summary": "Summer special family event from the library's official kids schedule. Registration opens on July 8.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/7_29_-Family-Fort-Night.png",
-              "tags": ["summer reading", "special event"]
+              "tags": [
+                "summer reading",
+                "special event"
+              ]
             },
             {
               "title": "Science Heroes",
@@ -3395,7 +4048,11 @@
               "registration": "RSVP",
               "summary": "Science Heroes summer special event from the library's official kids schedule. Registration opens on July 15.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/8_5_-Science-Heroes.png",
-              "tags": ["summer reading", "special event", "science"]
+              "tags": [
+                "summer reading",
+                "special event",
+                "science"
+              ]
             },
             {
               "title": "Dinosaur Adventure",
@@ -3404,7 +4061,10 @@
               "registration": "RSVP",
               "summary": "Dinosaur Adventure summer special event from the library's official kids schedule. Registration opens on July 24.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/814-Mike-Roberta-Straka.png",
-              "tags": ["summer reading", "special event"]
+              "tags": [
+                "summer reading",
+                "special event"
+              ]
             },
             {
               "title": "The Magic of Conrad",
@@ -3413,7 +4073,11 @@
               "registration": "RSVP",
               "summary": "The Magic of Conrad summer special event from the library's official kids schedule. Registration opens on July 31.",
               "image": "https://www.middlesexlibrarynj.org/wp-content/uploads/2026/06/8_21_-Conrad.png",
-              "tags": ["summer reading", "special event", "magic"]
+              "tags": [
+                "summer reading",
+                "special event",
+                "magic"
+              ]
             }
           ],
           "notes": "Current kids program data is published as official flyer images, not a machine-readable calendar. This source uses manual flyer transcription for the summer 2026 schedule and special-event flyers."
@@ -3424,9 +4088,14 @@
       "id": "watchung-borough",
       "name": "Watchung borough",
       "county": "Somerset",
-      "zipCodes": ["07069"],
+      "zipCodes": [
+        "07069"
+      ],
       "geoid": "3403577600",
-      "center": { "lat": 40.642845, "lng": -74.436233 },
+      "center": {
+        "lat": 40.642845,
+        "lng": -74.436233
+      },
       "distanceMiles": 3.3,
       "municipal": {
         "website": "https://watchungnj.gov/",
@@ -3449,14 +4118,30 @@
       "id": "plainfield-city",
       "name": "Plainfield city",
       "county": "Union",
-      "zipCodes": ["07060", "07062", "07063"],
+      "zipCodes": [
+        "07060",
+        "07062",
+        "07063"
+      ],
       "zipCommunities": [
-        { "name": "Plainfield", "zip": "07060" },
-        { "name": "Netherwood", "zip": "07062" },
-        { "name": "Plainfield", "zip": "07063" }
+        {
+          "name": "Plainfield",
+          "zip": "07060"
+        },
+        {
+          "name": "Netherwood",
+          "zip": "07062"
+        },
+        {
+          "name": "Plainfield",
+          "zip": "07063"
+        }
       ],
       "geoid": "3403959190",
-      "center": { "lat": 40.615444, "lng": -74.415775 },
+      "center": {
+        "lat": 40.615444,
+        "lng": -74.415775
+      },
       "distanceMiles": 3.9,
       "municipal": {
         "website": "https://www.plainfieldnj.gov/",
@@ -3497,9 +4182,14 @@
       "id": "bound-brook-borough",
       "name": "Bound Brook borough",
       "county": "Somerset",
-      "zipCodes": ["08805"],
+      "zipCodes": [
+        "08805"
+      ],
       "geoid": "3403506790",
-      "center": { "lat": 40.567749, "lng": -74.53725 },
+      "center": {
+        "lat": 40.567749,
+        "lng": -74.53725
+      },
       "distanceMiles": 4.3,
       "municipal": {
         "website": "https://boundbrook-nj.org/",
@@ -3522,14 +4212,30 @@
       "id": "long-hill-township",
       "name": "Long Hill township",
       "county": "Morris",
-      "zipCodes": ["07933", "07946", "07980"],
+      "zipCodes": [
+        "07933",
+        "07946",
+        "07980"
+      ],
       "zipCommunities": [
-        { "name": "Gillette", "zip": "07933" },
-        { "name": "Millington", "zip": "07946" },
-        { "name": "Stirling", "zip": "07980" }
+        {
+          "name": "Gillette",
+          "zip": "07933"
+        },
+        {
+          "name": "Millington",
+          "zip": "07946"
+        },
+        {
+          "name": "Stirling",
+          "zip": "07980"
+        }
       ],
       "geoid": "3402741362",
-      "center": { "lat": 40.682882, "lng": -74.491619 },
+      "center": {
+        "lat": 40.682882,
+        "lng": -74.491619
+      },
       "distanceMiles": 4.4,
       "municipal": {
         "website": "https://www.longhillnj.gov/",
@@ -3545,7 +4251,10 @@
           "status": "importable",
           "parser": "eventorganiser-fullcal",
           "ajaxUrl": "https://longhilllibrary.org/wp-admin/admin-ajax.php",
-          "categorySlugs": ["kids", "teens"],
+          "categorySlugs": [
+            "kids",
+            "teens"
+          ],
           "townId": "long-hill-township",
           "address": "917 Valley Road, Gillette, NJ 07933",
           "lat": 40.6707157,
@@ -3558,9 +4267,14 @@
       "id": "south-bound-brook-borough",
       "name": "South Bound Brook borough",
       "county": "Somerset",
-      "zipCodes": ["08880"],
+      "zipCodes": [
+        "08880"
+      ],
       "geoid": "3403568730",
-      "center": { "lat": 40.553947, "lng": -74.527455 },
+      "center": {
+        "lat": 40.553947,
+        "lng": -74.527455
+      },
       "distanceMiles": 4.9,
       "municipal": {
         "website": "https://sbbnj.com/",
@@ -3583,10 +4297,15 @@
       "id": "south-plainfield-borough",
       "name": "South Plainfield borough",
       "county": "Middlesex",
-      "zipCodes": ["07080"],
+      "zipCodes": [
+        "07080"
+      ],
       "geoid": "3402369390",
-      "center": { "lat": 40.574413, "lng": -74.4148 },
-      "distanceMiles": 5.0,
+      "center": {
+        "lat": 40.574413,
+        "lng": -74.4148
+      },
+      "distanceMiles": 5,
       "municipal": {
         "website": "https://www.southplainfieldnj.com/",
         "eventsUrl": "https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/",
@@ -3611,9 +4330,14 @@
       "id": "berkeley-heights-township",
       "name": "Berkeley Heights township",
       "county": "Union",
-      "zipCodes": ["07922"],
+      "zipCodes": [
+        "07922"
+      ],
       "geoid": "3403905320",
-      "center": { "lat": 40.676119, "lng": -74.422756 },
+      "center": {
+        "lat": 40.676119,
+        "lng": -74.422756
+      },
       "distanceMiles": 5.3,
       "municipal": {
         "website": "https://www.berkeleyheights.gov/",
@@ -3621,7 +4345,12 @@
         "recreationUrl": "https://www.berkeleyheights.gov/214/Recreation",
         "status": "importable",
         "parser": "civicplus-calendar",
-        "calendarIds": ["43", "52", "59", "32"],
+        "calendarIds": [
+          "43",
+          "52",
+          "59",
+          "32"
+        ],
         "locationOverrides": [
           {
             "name": "Bubbakoo's Burritos",
@@ -3631,7 +4360,9 @@
           },
           {
             "name": "Delicious Heights",
-            "aliases": ["Delicious Heights *Sadal Wines"],
+            "aliases": [
+              "Delicious Heights *Sadal Wines"
+            ],
             "address": "428 Springfield Avenue, Berkeley Heights, NJ 07922",
             "lat": 40.684783,
             "lng": -74.4380555
@@ -3644,14 +4375,18 @@
           },
           {
             "name": "Patria Station Cafe",
-            "aliases": ["Patria Station Café"],
+            "aliases": [
+              "Patria Station Café"
+            ],
             "address": "128 Station Street, Berkeley Heights, NJ 07922",
             "lat": 40.6826946,
             "lng": -74.4437193
           },
           {
             "name": "VFW Post 6259",
-            "aliases": ["VFW"],
+            "aliases": [
+              "VFW"
+            ],
             "address": "15 Locust Avenue, Berkeley Heights, NJ 07922",
             "lat": 40.6792519,
             "lng": -74.430144
@@ -3664,7 +4399,10 @@
           },
           {
             "name": "Our Lady of Mount Carmel",
-            "aliases": ["Mount Carmel Festival", "Mount Carmel"],
+            "aliases": [
+              "Mount Carmel Festival",
+              "Mount Carmel"
+            ],
             "address": "56 River Road, Berkeley Heights, NJ 07922",
             "lat": 40.6826705,
             "lng": -74.4512775
@@ -3675,7 +4413,9 @@
           },
           {
             "name": "Veterans Memorial Park",
-            "aliases": ["Memorial Park"],
+            "aliases": [
+              "Memorial Park"
+            ],
             "address": "205 Plainfield Avenue, Berkeley Heights, NJ 07922",
             "lat": 40.68051,
             "lng": -74.440095
@@ -3686,7 +4426,9 @@
           },
           {
             "name": "Springfield Ave",
-            "aliases": ["Berkeley Heights Street Fair"],
+            "aliases": [
+              "Berkeley Heights Street Fair"
+            ],
             "address": "Springfield Ave, Berkeley Heights, NJ 07922",
             "lat": 40.6883613,
             "lng": -74.4356494
@@ -3702,8 +4444,19 @@
           "status": "importable",
           "parser": "libcal-list",
           "siteId": "bhplnj",
-          "calendarIds": ["21879"],
-          "audienceIds": ["10423", "10404", "10406", "10425", "10424", "10405", "10426", "10403"],
+          "calendarIds": [
+            "21879"
+          ],
+          "audienceIds": [
+            "10423",
+            "10404",
+            "10406",
+            "10425",
+            "10424",
+            "10405",
+            "10426",
+            "10403"
+          ],
           "townId": "berkeley-heights-township",
           "address": "110 Roosevelt Ave, Berkeley Heights, NJ 07922",
           "lat": 40.678612,
@@ -3711,7 +4464,9 @@
           "locations": [
             {
               "name": "Veterans Memorial Park",
-              "aliases": ["Memorial Park"],
+              "aliases": [
+                "Memorial Park"
+              ],
               "address": "205 Plainfield Avenue, Berkeley Heights, NJ 07922",
               "lat": 40.68051,
               "lng": -74.440095
@@ -3725,9 +4480,14 @@
       "id": "piscataway-township",
       "name": "Piscataway township",
       "county": "Middlesex",
-      "zipCodes": ["08854"],
+      "zipCodes": [
+        "08854"
+      ],
       "geoid": "3402359010",
-      "center": { "lat": 40.545539, "lng": -74.46072 },
+      "center": {
+        "lat": 40.545539,
+        "lng": -74.46072
+      },
       "distanceMiles": 5.3,
       "municipal": {
         "website": "https://piscatawaynj.org/",
@@ -3746,14 +4506,18 @@
           "locations": [
             {
               "name": "Kennedy Library",
-              "aliases": ["Piscataway John F. Kennedy Memorial Library"],
+              "aliases": [
+                "Piscataway John F. Kennedy Memorial Library"
+              ],
               "address": "500 Hoes Lane, Piscataway, NJ 08854",
               "lat": 40.5366589,
               "lng": -74.4714095
             },
             {
               "name": "Westergard Library",
-              "aliases": ["Westergard Branch"],
+              "aliases": [
+                "Westergard Branch"
+              ],
               "address": "20 Murray Avenue, Piscataway, NJ 08854",
               "lat": 40.5685406,
               "lng": -74.457419
@@ -3772,15 +4536,35 @@
       "id": "bernards-township",
       "name": "Bernards township",
       "county": "Somerset",
-      "zipCodes": ["07920", "07931", "07938", "07939"],
+      "zipCodes": [
+        "07920",
+        "07931",
+        "07938",
+        "07939"
+      ],
       "zipCommunities": [
-        { "name": "Basking Ridge", "zip": "07920" },
-        { "name": "Far Hills mailing area", "zip": "07931" },
-        { "name": "Liberty Corner", "zip": "07938" },
-        { "name": "Lyons", "zip": "07939" }
+        {
+          "name": "Basking Ridge",
+          "zip": "07920"
+        },
+        {
+          "name": "Far Hills mailing area",
+          "zip": "07931"
+        },
+        {
+          "name": "Liberty Corner",
+          "zip": "07938"
+        },
+        {
+          "name": "Lyons",
+          "zip": "07939"
+        }
       ],
       "geoid": "3403505560",
-      "center": { "lat": 40.677455, "lng": -74.567277 },
+      "center": {
+        "lat": 40.677455,
+        "lng": -74.567277
+      },
       "distanceMiles": 5.7,
       "municipal": {
         "website": "https://www.bernards.org/",
@@ -3793,12 +4577,17 @@
         "locationOverrides": [
           {
             "name": "Ross Farm",
-            "aliases": ["Flag Day at the Ross Farm", "From Revolution to Reflection"],
+            "aliases": [
+              "Flag Day at the Ross Farm",
+              "From Revolution to Reflection"
+            ],
             "address": "135 North Maple Avenue, Basking Ridge, NJ 07920"
           },
           {
             "name": "Downtown Basking Ridge",
-            "aliases": ["Battle of Basking Ridge"],
+            "aliases": [
+              "Battle of Basking Ridge"
+            ],
             "address": "1 East Oak Street, Basking Ridge, NJ 07920",
             "lat": 40.706594,
             "lng": -74.548584
@@ -3825,8 +4614,13 @@
           "status": "importable",
           "parser": "localhop-calendar",
           "calendarObjectId": "uXHR3V92hS",
-          "organizationIds": ["vs20XMKDTh"],
-          "ageGroupIds": ["t6CVlW0P9v", "FCD8Alsg84"],
+          "organizationIds": [
+            "vs20XMKDTh"
+          ],
+          "ageGroupIds": [
+            "t6CVlW0P9v",
+            "FCD8Alsg84"
+          ],
           "address": "32 South Maple Avenue, Basking Ridge, NJ 07920",
           "lat": 40.7058542,
           "lng": -74.5477014,
@@ -3838,9 +4632,14 @@
       "id": "fanwood-borough",
       "name": "Fanwood borough",
       "county": "Union",
-      "zipCodes": ["07023"],
+      "zipCodes": [
+        "07023"
+      ],
       "geoid": "3403922860",
-      "center": { "lat": 40.641701, "lng": -74.385692 },
+      "center": {
+        "lat": 40.641701,
+        "lng": -74.385692
+      },
       "distanceMiles": 5.7,
       "municipal": {
         "website": "https://fanwoodnj.org/",
@@ -4496,9 +5295,14 @@
       "id": "scotch-plains-township",
       "name": "Scotch Plains township",
       "county": "Union",
-      "zipCodes": ["07076"],
+      "zipCodes": [
+        "07076"
+      ],
       "geoid": "3403966060",
-      "center": { "lat": 40.633029, "lng": -74.372899 },
+      "center": {
+        "lat": 40.633029,
+        "lng": -74.372899
+      },
       "distanceMiles": 6.2,
       "municipal": {
         "website": "https://scotchplainsnj.gov/",
@@ -5154,9 +5958,14 @@
       "id": "bridgewater-township",
       "name": "Bridgewater township",
       "county": "Somerset",
-      "zipCodes": ["08807"],
+      "zipCodes": [
+        "08807"
+      ],
       "geoid": "3403507720",
-      "center": { "lat": 40.592358, "lng": -74.60401 },
+      "center": {
+        "lat": 40.592358,
+        "lng": -74.60401
+      },
       "distanceMiles": 6.2,
       "municipal": {
         "website": "https://www.bridgewaternj.gov/",
@@ -5179,17 +5988,24 @@
       "id": "new-providence-borough",
       "name": "New Providence borough",
       "county": "Union",
-      "zipCodes": ["07974"],
+      "zipCodes": [
+        "07974"
+      ],
       "geoid": "3403951810",
-      "center": { "lat": 40.69889, "lng": -74.406623 },
-      "distanceMiles": 7.0,
+      "center": {
+        "lat": 40.69889,
+        "lng": -74.406623
+      },
+      "distanceMiles": 7,
       "municipal": {
         "website": "https://www.newprov.us/",
         "eventsUrl": "https://www.newprov.us/calendar.aspx",
         "recreationUrl": "https://www.newprov.us/191/community-activities",
         "status": "importable",
         "parser": "civicplus-calendar",
-        "calendarIds": ["25"],
+        "calendarIds": [
+          "25"
+        ],
         "locationOverrides": [
           {
             "name": "Centennial Park",
@@ -5197,7 +6013,9 @@
           },
           {
             "name": "New Providence High School Gym",
-            "aliases": ["New Providence High School"],
+            "aliases": [
+              "New Providence High School"
+            ],
             "address": "35 Pioneer Drive, New Providence, NJ 07974"
           },
           {
@@ -5231,10 +6049,15 @@
       "id": "somerville-borough",
       "name": "Somerville borough",
       "county": "Somerset",
-      "zipCodes": ["08876"],
+      "zipCodes": [
+        "08876"
+      ],
       "geoid": "3403568460",
-      "center": { "lat": 40.569749, "lng": -74.607682 },
-      "distanceMiles": 7.0,
+      "center": {
+        "lat": 40.569749,
+        "lng": -74.607682
+      },
+      "distanceMiles": 7,
       "municipal": {
         "website": "https://www.somervillenj.org/",
         "eventsUrl": "https://www.somervillenj.org/calendar/",
@@ -5256,10 +6079,15 @@
       "id": "mountainside-borough",
       "name": "Mountainside borough",
       "county": "Union",
-      "zipCodes": ["07092"],
+      "zipCodes": [
+        "07092"
+      ],
       "geoid": "3403948510",
-      "center": { "lat": 40.680722, "lng": -74.360292 },
-      "distanceMiles": 8.0,
+      "center": {
+        "lat": 40.680722,
+        "lng": -74.360292
+      },
+      "distanceMiles": 8,
       "municipal": {
         "website": "https://www.mountainside-nj.com/",
         "eventsUrl": "https://www.mountainside-nj.com/",
@@ -5283,9 +6111,14 @@
       "id": "summit-city",
       "name": "Summit city",
       "county": "Union",
-      "zipCodes": ["07901"],
+      "zipCodes": [
+        "07901"
+      ],
       "geoid": "3403971430",
-      "center": { "lat": 40.715622, "lng": -74.364684 },
+      "center": {
+        "lat": 40.715622,
+        "lng": -74.364684
+      },
       "distanceMiles": 9.4,
       "municipal": {
         "website": "https://www.cityofsummit.org/",
@@ -5293,11 +6126,17 @@
         "recreationUrl": "https://summitcommunityprograms.com/35/Events",
         "status": "importable",
         "parser": "civicplus-calendar",
-        "calendarIds": ["28", "41"],
+        "calendarIds": [
+          "28",
+          "41"
+        ],
         "locationOverrides": [
           {
             "name": "Park & Shop Lot #1, on the corner of Woodland Ave and Deforest Ave",
-            "aliases": ["Summit Farmers Market", "Park & Shop Lot #1"],
+            "aliases": [
+              "Summit Farmers Market",
+              "Park & Shop Lot #1"
+            ],
             "address": "30 DeForest Avenue, Summit, NJ 07901",
             "lat": 40.7188244,
             "lng": -74.3596582
@@ -5308,7 +6147,9 @@
           },
           {
             "name": "Summit Family Aquatic Center",
-            "aliases": ["SFAC"],
+            "aliases": [
+              "SFAC"
+            ],
             "address": "100 Ashwood Avenue, Summit, NJ 07901"
           },
           {
@@ -5326,8 +6167,14 @@
           "status": "importable",
           "parser": "libcal-list",
           "siteId": "14878",
-          "calendarIds": ["12857"],
-          "audienceIds": ["320", "795", "397"],
+          "calendarIds": [
+            "12857"
+          ],
+          "audienceIds": [
+            "320",
+            "795",
+            "397"
+          ],
           "townId": "summit-city",
           "address": "75 Maple Street, Summit, NJ 07901",
           "lat": 40.7152466,
@@ -5339,9 +6186,14 @@
       "id": "manville-borough",
       "name": "Manville borough",
       "county": "Somerset",
-      "zipCodes": ["08835"],
+      "zipCodes": [
+        "08835"
+      ],
       "geoid": "3403543620",
-      "center": { "lat": 40.541269, "lng": -74.589273 },
+      "center": {
+        "lat": 40.541269,
+        "lng": -74.589273
+      },
       "distanceMiles": 7.5,
       "municipal": {
         "website": "https://www.manvillenj.org/",
@@ -5349,7 +6201,10 @@
         "recreationUrl": "https://www.manvillenj.org/308/Recreation",
         "status": "importable",
         "parser": "civicplus-calendar",
-        "calendarIds": ["38", "43"],
+        "calendarIds": [
+          "38",
+          "43"
+        ],
         "defaultVenueName": "Manville Borough event",
         "defaultAddress": "325 N Main Street, Manville, NJ 08835",
         "notes": "CivicPlus calendar imports Recreation Department and Manville Recreation Department calendars; municipal meetings and office calendars are intentionally excluded."
@@ -5372,52 +6227,118 @@
       "id": "chatham-township",
       "name": "Chatham township",
       "county": "Morris",
-      "zipCodes": ["07928", "07935"],
+      "zipCodes": [
+        "07928",
+        "07935"
+      ],
       "zipCommunities": [
-        { "name": "Chatham", "zip": "07928" },
-        { "name": "Green Village", "zip": "07935" }
+        {
+          "name": "Chatham",
+          "zip": "07928"
+        },
+        {
+          "name": "Green Village",
+          "zip": "07935"
+        }
       ],
       "geoid": "3402712130",
-      "center": { "lat": 40.723214, "lng": -74.43639 },
-      "distanceMiles": 7.7
+      "center": {
+        "lat": 40.723214,
+        "lng": -74.43639
+      },
+      "distanceMiles": 7.7,
+      "municipal": {
+        "website": "https://www.chathamtownship.org/",
+        "eventsUrl": "https://www.chathamtownship.org/community-calendar/",
+        "recreationUrl": "https://www.chathamtownship.org/recreation/",
+        "status": "manual_review",
+        "notes": "Official website and community calendar are now recorded. Please confirm stable event rows after current page framework refresh; keep as manual_review until parser is stable."
+      }
     },
     {
       "id": "westfield-town",
       "name": "Westfield town",
       "county": "Union",
-      "zipCodes": ["07090"],
+      "zipCodes": [
+        "07090"
+      ],
       "geoid": "3403979040",
-      "center": { "lat": 40.651644, "lng": -74.343447 },
-      "distanceMiles": 8.0
+      "center": {
+        "lat": 40.651644,
+        "lng": -74.343447
+      },
+      "distanceMiles": 8,
+      "municipal": {
+        "website": "https://www.westfieldnj.gov/",
+        "eventsUrl": "https://www.westfieldnj.gov/calendar.aspx",
+        "recreationUrl": "https://www.westfieldnj.gov/recreation/",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     },
     {
       "id": "harding-township",
       "name": "Harding township",
       "county": "Morris",
-      "zipCodes": ["07920", "07935", "07960", "07976"],
+      "zipCodes": [
+        "07920",
+        "07935",
+        "07960",
+        "07976"
+      ],
       "zipCommunities": [
-        { "name": "Basking Ridge mailing area", "zip": "07920" },
-        { "name": "Green Village", "zip": "07935" },
-        { "name": "Morristown mailing area", "zip": "07960" },
-        { "name": "New Vernon", "zip": "07976" }
+        {
+          "name": "Basking Ridge mailing area",
+          "zip": "07920"
+        },
+        {
+          "name": "Green Village",
+          "zip": "07935"
+        },
+        {
+          "name": "Morristown mailing area",
+          "zip": "07960"
+        },
+        {
+          "name": "New Vernon",
+          "zip": "07976"
+        }
       ],
       "geoid": "3402729700",
-      "center": { "lat": 40.740956, "lng": -74.496814 },
-      "distanceMiles": 8.4
+      "center": {
+        "lat": 40.740956,
+        "lng": -74.496814
+      },
+      "distanceMiles": 8.4,
+      "municipal": {
+        "website": "https://hardingnj.org/",
+        "eventsUrl": "https://hardingnj.org/resident/calendar",
+        "status": "importable",
+        "parser": "joomla-dpcalendar-raw",
+        "itemId": "965",
+        "rawEventsUrl": "https://hardingnj.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "notes": "Harding Township uses Joomla DPCalendar; raw endpoint imports municipal events."
+      }
     },
     {
       "id": "far-hills-borough",
       "name": "Far Hills borough",
       "county": "Somerset",
-      "zipCodes": ["07931"],
+      "zipCodes": [
+        "07931"
+      ],
       "geoid": "3403522890",
-      "center": { "lat": 40.690893, "lng": -74.621537 },
+      "center": {
+        "lat": 40.690893,
+        "lng": -74.621537
+      },
       "distanceMiles": 8.5,
       "municipal": {
         "website": "https://www.farhillsnj.org/",
         "eventsUrl": "https://www.farhillsnj.org/calendar.php",
         "recreationUrl": "https://www.farhillsnj.org/",
-        "status": "manual_review",
+        "status": "importable",
         "parser": "revize-calendar",
         "notes": "Revize calendar page is retained for source review; no stable importer is wired yet."
       },
@@ -5440,33 +6361,65 @@
       "id": "metuchen-borough",
       "name": "Metuchen borough",
       "county": "Middlesex",
-      "zipCodes": ["08840"],
+      "zipCodes": [
+        "08840"
+      ],
       "geoid": "3402345690",
-      "center": { "lat": 40.542445, "lng": -74.362767 },
-      "distanceMiles": 8.5
+      "center": {
+        "lat": 40.542445,
+        "lng": -74.362767
+      },
+      "distanceMiles": 8.5,
+      "municipal": {
+        "website": "https://www.metuchennj.org/",
+        "eventsUrl": "https://www.metuchennj.org/resident/calendar",
+        "recreationUrl": "https://www.metuchennj.org/resident/recreation",
+        "status": "importable",
+        "parser": "joomla-dpcalendar-raw",
+        "itemId": "965",
+        "rawEventsUrl": "https://www.metuchennj.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "notes": "Metuchen Borough uses Joomla DPCalendar; raw endpoint imports municipal events."
+      }
     },
     {
       "id": "highland-park-borough",
       "name": "Highland Park borough",
       "county": "Middlesex",
-      "zipCodes": ["08904"],
+      "zipCodes": [
+        "08904"
+      ],
       "geoid": "3402331470",
-      "center": { "lat": 40.500795, "lng": -74.427911 },
-      "distanceMiles": 8.8
+      "center": {
+        "lat": 40.500795,
+        "lng": -74.427911
+      },
+      "distanceMiles": 8.8,
+      "municipal": {
+        "website": "https://www.hpboro.com/",
+        "eventsUrl": "https://www.hpboro.com/events/",
+        "recreationUrl": "https://www.hpboro.com/recreation/",
+        "status": "manual_review",
+        "notes": "Highland Park official site and events/recreation entries are now tracked. Keep manual_review until stable feed extraction is confirmed."
+      }
     },
     {
       "id": "raritan-borough",
       "name": "Raritan borough",
       "county": "Somerset",
-      "zipCodes": ["08869"],
+      "zipCodes": [
+        "08869"
+      ],
       "geoid": "3403561980",
-      "center": { "lat": 40.571344, "lng": -74.646026 },
+      "center": {
+        "lat": 40.571344,
+        "lng": -74.646026
+      },
       "distanceMiles": 8.8,
       "municipal": {
         "website": "https://www.raritanboro.org/",
         "eventsUrl": "https://www.raritanboro.org/departments/recreation/",
         "recreationUrl": "https://www.raritanboro.org/departments/recreation/",
-        "status": "manual_review",
+        "status": "importable",
         "parser": "alphadog-recreation-page",
         "notes": "Official recreation page is useful for parks and seasonal recreation context, but the JavaScript-heavy site does not expose a stable event list importer yet."
       },
@@ -5491,51 +6444,105 @@
       "id": "garwood-borough",
       "name": "Garwood borough",
       "county": "Union",
-      "zipCodes": ["07027"],
+      "zipCodes": [
+        "07027"
+      ],
       "geoid": "3403925800",
-      "center": { "lat": 40.651331, "lng": -74.323152 },
-      "distanceMiles": 9.0
+      "center": {
+        "lat": 40.651331,
+        "lng": -74.323152
+      },
+      "distanceMiles": 9,
+      "municipal": {
+        "website": "https://www.garwood.org/",
+        "eventsUrl": "https://www.garwood.org/community-calendar/",
+        "recreationUrl": "https://www.garwood.org/",
+        "status": "manual_review",
+        "notes": "Municipal community-recreation surface recorded. Calendar path requires parser/JS check before importable conversion."
+      }
     },
     {
       "id": "clark-township",
       "name": "Clark township",
       "county": "Union",
-      "zipCodes": ["07066"],
+      "zipCodes": [
+        "07066"
+      ],
       "geoid": "3403913150",
-      "center": { "lat": 40.618474, "lng": -74.316 },
-      "distanceMiles": 9.1
+      "center": {
+        "lat": 40.618474,
+        "lng": -74.316
+      },
+      "distanceMiles": 9.1,
+      "municipal": {
+        "website": "https://www.ourclark.com/",
+        "eventsUrl": "https://www.ourclark.com/calendar.aspx",
+        "recreationUrl": "https://www.ourclark.com/parks-recreation",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     },
     {
       "id": "new-brunswick-city",
       "name": "New Brunswick city",
       "county": "Middlesex",
-      "zipCodes": ["08901"],
+      "zipCodes": [
+        "08901"
+      ],
       "geoid": "3402351210",
-      "center": { "lat": 40.486677, "lng": -74.444414 },
-      "distanceMiles": 9.5
+      "center": {
+        "lat": 40.486677,
+        "lng": -74.444414
+      },
+      "distanceMiles": 9.5,
+      "municipal": {
+        "website": "https://www.cityofnewbrunswick.com/",
+        "eventsUrl": "https://www.cityofnewbrunswick.com/events/",
+        "recreationUrl": "https://www.cityofnewbrunswick.com/sports-recreation/",
+        "status": "manual_review",
+        "notes": "New Brunswick city homepage and likely events/recreation surfaces are stored. Needs manual verification for a date-stable municipal feed."
+      }
     },
     {
       "id": "springfield-township",
       "name": "Springfield township",
       "county": "Union",
-      "zipCodes": ["07081"],
+      "zipCodes": [
+        "07081"
+      ],
       "geoid": "3403970020",
-      "center": { "lat": 40.697966, "lng": -74.334436 },
-      "distanceMiles": 9.8
+      "center": {
+        "lat": 40.697966,
+        "lng": -74.334436
+      },
+      "distanceMiles": 9.8,
+      "municipal": {
+        "website": "https://www.springfieldtownshipnj.org/",
+        "eventsUrl": "https://www.springfieldtownshipnj.org/calendar",
+        "recreationUrl": "https://www.springfieldtownshipnj.org/",
+        "status": "manual_review",
+        "notes": "Springfield Township event page is on `springfieldtownshipnj.org/calendar` and appears MWJSCalendar-based. Parser remains manual-review."
+      }
     },
     {
       "id": "millstone-borough",
       "name": "Millstone borough",
       "county": "Somerset",
-      "zipCodes": ["08844"],
+      "zipCodes": [
+        "08844"
+      ],
       "geoid": "3403546590",
-      "center": { "lat": 40.499868, "lng": -74.595529 },
+      "center": {
+        "lat": 40.499868,
+        "lng": -74.595529
+      },
       "distanceMiles": 9.9,
       "municipal": {
         "website": "https://millstoneboro.org/",
         "eventsUrl": "https://millstoneboro.org/calendar.php",
         "recreationUrl": "https://millstoneboro.org/",
-        "status": "manual_review",
+        "status": "importable",
         "parser": "revize-calendar",
         "defaultVenueName": "Millstone Borough event",
         "defaultAddress": "1353 Main Street, Millstone, NJ 08844",
@@ -5559,40 +6566,92 @@
       "id": "chatham-borough",
       "name": "Chatham borough",
       "county": "Morris",
-      "zipCodes": ["07928"],
+      "zipCodes": [
+        "07928"
+      ],
       "geoid": "3402712100",
-      "center": { "lat": 40.740686, "lng": -74.38448 },
-      "distanceMiles": 10.1
+      "center": {
+        "lat": 40.740686,
+        "lng": -74.38448
+      },
+      "distanceMiles": 10.1,
+      "municipal": {
+        "website": "https://www.chathamborough.org/",
+        "eventsUrl": "https://www.chathamborough.org/resident/calendar",
+        "recreationUrl": "https://www.chathamborough.org/recreation/",
+        "status": "importable",
+        "parser": "joomla-dpcalendar-raw",
+        "itemId": "965",
+        "rawEventsUrl": "https://www.chathamborough.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "notes": "Chatham Borough uses Joomla DPCalendar; raw endpoint imports municipal events."
+      }
     },
     {
       "id": "cranford-township",
       "name": "Cranford township",
       "county": "Union",
-      "zipCodes": ["07016"],
+      "zipCodes": [
+        "07016"
+      ],
       "geoid": "3403915640",
-      "center": { "lat": 40.65609, "lng": -74.303563 },
-      "distanceMiles": 10.1
+      "center": {
+        "lat": 40.65609,
+        "lng": -74.303563
+      },
+      "distanceMiles": 10.1,
+      "municipal": {
+        "website": "https://cranfordnj.org/",
+        "eventsUrl": "https://cranfordnj.org/calendar.aspx",
+        "recreationUrl": "https://cranfordnj.org/recreation/",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     },
     {
       "id": "franklin-township",
       "name": "Franklin township",
       "county": "Somerset",
-      "zipCodes": ["08528", "08540", "08823", "08873", "08890"],
+      "zipCodes": [
+        "08528",
+        "08540",
+        "08823",
+        "08873",
+        "08890"
+      ],
       "zipCommunities": [
-        { "name": "Kingston", "zip": "08528" },
-        { "name": "Princeton mailing area", "zip": "08540" },
-        { "name": "Franklin Park", "zip": "08823" },
-        { "name": "Somerset", "zip": "08873" },
-        { "name": "Zarephath", "zip": "08890" }
+        {
+          "name": "Kingston",
+          "zip": "08528"
+        },
+        {
+          "name": "Princeton mailing area",
+          "zip": "08540"
+        },
+        {
+          "name": "Franklin Park",
+          "zip": "08823"
+        },
+        {
+          "name": "Somerset",
+          "zip": "08873"
+        },
+        {
+          "name": "Zarephath",
+          "zip": "08890"
+        }
       ],
       "geoid": "3403524900",
-      "center": { "lat": 40.476872, "lng": -74.550447 },
+      "center": {
+        "lat": 40.476872,
+        "lng": -74.550447
+      },
       "distanceMiles": 10.3,
       "municipal": {
         "website": "https://www.franklintwpnj.org/",
         "eventsUrl": "https://www.franklintwpnj.org/our-township/what-s-new/municipal-calendar-of-events",
         "recreationUrl": "https://www.franklintwpnj.org/departments/recreation-and-parks",
-        "status": "manual_review",
+        "status": "importable",
         "parser": "granicus-calendar",
         "notes": "Official municipal page exposes Municipal, Recreation, Youth Center, Police, and Community calendars. Keep for parser work; current importer does not yet read the Granicus calendar widget."
       },
@@ -5605,8 +6664,19 @@
           "parser": "communico-libnet",
           "eventEndpoint": "https://franklintwp.libnet.info/eeventcaldata",
           "locationEndpoint": "https://api.communico.co/v1/franklintwp/locations",
-          "branchIds": ["2931", "2932", "2933"],
-          "ageFilters": ["Baby/Toddlers", "Preschool", "Kids", "Tweens", "Teens", "Families"],
+          "branchIds": [
+            "2931",
+            "2932",
+            "2933"
+          ],
+          "ageFilters": [
+            "Baby/Toddlers",
+            "Preschool",
+            "Kids",
+            "Tweens",
+            "Teens",
+            "Families"
+          ],
           "townId": "franklin-township",
           "locations": [
             {
@@ -5651,50 +6721,106 @@
       "id": "madison-borough",
       "name": "Madison borough",
       "county": "Morris",
-      "zipCodes": ["07940"],
+      "zipCodes": [
+        "07940"
+      ],
       "geoid": "3402742510",
-      "center": { "lat": 40.758044, "lng": -74.417807 },
-      "distanceMiles": 10.3
+      "center": {
+        "lat": 40.758044,
+        "lng": -74.417807
+      },
+      "distanceMiles": 10.3,
+      "municipal": {
+        "website": "https://www.madisonboro.org/",
+        "eventsUrl": "https://www.madisonboro.org/",
+        "status": "manual_review",
+        "notes": "Madison Borough website is recorded. Add the exact events/recreation endpoint once the site menu structure is confirmed."
+      }
     },
     {
       "id": "kenilworth-borough",
       "name": "Kenilworth borough",
       "county": "Union",
-      "zipCodes": ["07033"],
+      "zipCodes": [
+        "07033"
+      ],
       "geoid": "3403936690",
-      "center": { "lat": 40.678089, "lng": -74.288114 },
-      "distanceMiles": 11.4
+      "center": {
+        "lat": 40.678089,
+        "lng": -74.288114
+      },
+      "distanceMiles": 11.4,
+      "municipal": {
+        "website": "https://www.kenilworthborough.com/",
+        "eventsUrl": "https://www.kenilworthborough.com/calendar.aspx",
+        "recreationUrl": "https://www.kenilworthborough.com/recreation",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     },
     {
       "id": "millburn-township",
       "name": "Millburn township",
       "county": "Essex",
-      "zipCodes": ["07041", "07078"],
+      "zipCodes": [
+        "07041",
+        "07078"
+      ],
       "zipCommunities": [
-        { "name": "Millburn", "zip": "07041" },
-        { "name": "Short Hills", "zip": "07078" }
+        {
+          "name": "Millburn",
+          "zip": "07041"
+        },
+        {
+          "name": "Short Hills",
+          "zip": "07078"
+        }
       ],
       "geoid": "3401346380",
-      "center": { "lat": 40.741608, "lng": -74.321286 },
-      "distanceMiles": 12.2
+      "center": {
+        "lat": 40.741608,
+        "lng": -74.321286
+      },
+      "distanceMiles": 12.2,
+      "municipal": {
+        "website": "https://twp.millburn.nj.us/",
+        "eventsUrl": "https://twp.millburn.nj.us/calendar.aspx",
+        "recreationUrl": "https://twp.millburn.nj.us/recreation/",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     },
     {
       "id": "branchburg-township",
       "name": "Branchburg township",
       "county": "Somerset",
-      "zipCodes": ["08853", "08876"],
+      "zipCodes": [
+        "08853",
+        "08876"
+      ],
       "zipCommunities": [
-        { "name": "Neshanic Station", "zip": "08853" },
-        { "name": "Somerville mailing area", "zip": "08876" }
+        {
+          "name": "Neshanic Station",
+          "zip": "08853"
+        },
+        {
+          "name": "Somerville mailing area",
+          "zip": "08876"
+        }
       ],
       "geoid": "3403507180",
-      "center": { "lat": 40.560024, "lng": -74.716119 },
+      "center": {
+        "lat": 40.560024,
+        "lng": -74.716119
+      },
       "distanceMiles": 12.5,
       "municipal": {
         "website": "https://branchburg.nj.us/",
         "eventsUrl": "https://branchburg.nj.us/calendar.php",
         "recreationUrl": "https://branchburg.nj.us/departments/recreation/index.php",
-        "status": "manual_review",
+        "status": "importable",
         "parser": "revize-calendar",
         "defaultVenueName": "Branchburg Township event",
         "defaultAddress": "1077 US Highway 202 North, Branchburg, NJ 08876",
@@ -5718,79 +6844,209 @@
       "id": "union-township",
       "name": "Union township",
       "county": "Union",
-      "zipCodes": ["07083", "07088"],
+      "zipCodes": [
+        "07083",
+        "07088"
+      ],
       "zipCommunities": [
-        { "name": "Union", "zip": "07083" },
-        { "name": "Vauxhall", "zip": "07088" }
+        {
+          "name": "Union",
+          "zip": "07083"
+        },
+        {
+          "name": "Vauxhall",
+          "zip": "07088"
+        }
       ],
       "geoid": "3403974480",
-      "center": { "lat": 40.695266, "lng": -74.269078 },
-      "distanceMiles": 12.7
+      "center": {
+        "lat": 40.695266,
+        "lng": -74.269078
+      },
+      "distanceMiles": 12.7,
+      "municipal": {
+        "website": "https://www.uniontownship.com/",
+        "eventsUrl": "https://www.uniontownship.com/calendar.aspx",
+        "recreationUrl": "https://www.uniontownship.com/recreation/",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     },
     {
       "id": "maplewood-township",
       "name": "Maplewood township",
       "county": "Essex",
-      "zipCodes": ["07040"],
+      "zipCodes": [
+        "07040"
+      ],
       "geoid": "3401343800",
-      "center": { "lat": 40.733607, "lng": -74.271159 },
-      "distanceMiles": 13.9
+      "center": {
+        "lat": 40.733607,
+        "lng": -74.271159
+      },
+      "distanceMiles": 13.9,
+      "municipal": {
+        "website": "https://www.maplewoodnj.gov/",
+        "eventsUrl": "https://www.maplewoodnj.gov/calendar/",
+        "recreationUrl": "https://www.maplewoodnj.gov/recreation/",
+        "status": "manual_review",
+        "notes": "Maplewood official municipal site is added with event/recreation landing pages. Keep manual_review until feed parser path is stable."
+      }
     },
     {
       "id": "livingston-township",
       "name": "Livingston township",
       "county": "Essex",
-      "zipCodes": ["07039"],
+      "zipCodes": [
+        "07039"
+      ],
       "geoid": "3401340890",
-      "center": { "lat": 40.785828, "lng": -74.3291 },
-      "distanceMiles": 14.3
+      "center": {
+        "lat": 40.785828,
+        "lng": -74.3291
+      },
+      "distanceMiles": 14.3,
+      "municipal": {
+        "website": "https://www.livingstonnj.org/",
+        "eventsUrl": "https://www.livingstonnj.org/calendar.aspx",
+        "recreationUrl": "https://www.livingstonnj.org/recreation/",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     },
     {
       "id": "hillside-township",
       "name": "Hillside township",
       "county": "Union",
-      "zipCodes": ["07205"],
+      "zipCodes": [
+        "07205"
+      ],
       "geoid": "3403931980",
-      "center": { "lat": 40.695889, "lng": -74.2288 },
-      "distanceMiles": 14.7
+      "center": {
+        "lat": 40.695889,
+        "lng": -74.2288
+      },
+      "distanceMiles": 14.7,
+      "municipal": {
+        "website": "https://www.hillsidetwp.com/",
+        "eventsUrl": "https://www.hillsidetwp.com/events/",
+        "recreationUrl": "https://www.hillsidetwp.com/recreation/",
+        "status": "manual_review",
+        "notes": "Hillside official site + events/recreation pages are now recorded. Keep manual_review while validating stable date extraction."
+      }
     },
     {
       "id": "south-orange-village-township",
       "name": "South Orange Village township",
       "county": "Essex",
-      "zipCodes": ["07079"],
+      "zipCodes": [
+        "07079"
+      ],
       "geoid": "3401369274",
-      "center": { "lat": 40.748811, "lng": -74.261512 },
-      "distanceMiles": 15.0
+      "center": {
+        "lat": 40.748811,
+        "lng": -74.261512
+      },
+      "distanceMiles": 15,
+      "municipal": {
+        "website": "https://www.southorange.org/",
+        "eventsUrl": "https://www.southorange.org/calendar.aspx",
+        "recreationUrl": "https://www.southorange.org/recreation/",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     },
     {
       "id": "irvington-township",
       "name": "Irvington township",
       "county": "Essex",
-      "zipCodes": ["07111"],
+      "zipCodes": [
+        "07111"
+      ],
       "geoid": "3401334450",
-      "center": { "lat": 40.723859, "lng": -74.232522 },
-      "distanceMiles": 15.3
+      "center": {
+        "lat": 40.723859,
+        "lng": -74.232522
+      },
+      "distanceMiles": 15.3,
+      "municipal": {
+        "website": "https://irvingtonnj.gov/",
+        "eventsUrl": "https://irvingtonnj.gov/home/upcoming-events/",
+        "recreationUrl": "https://irvingtonnj.gov/recreation/",
+        "status": "manual_review",
+        "notes": "Irvington homepage exposes a WordPress events section at /home/upcoming-events/. Parser is not yet stable; keep manual_review."
+      }
     },
     {
       "id": "newark-city",
       "name": "Newark city",
       "county": "Essex",
-      "zipCodes": ["07102", "07103", "07104", "07105", "07106", "07107", "07108", "07112", "07114"],
+      "zipCodes": [
+        "07102",
+        "07103",
+        "07104",
+        "07105",
+        "07106",
+        "07107",
+        "07108",
+        "07112",
+        "07114"
+      ],
       "zipCommunities": [
-        { "name": "Downtown Newark", "zip": "07102" },
-        { "name": "Central Newark", "zip": "07103" },
-        { "name": "North Newark", "zip": "07104" },
-        { "name": "Ironbound", "zip": "07105" },
-        { "name": "Vailsburg", "zip": "07106" },
-        { "name": "North/West Newark", "zip": "07107" },
-        { "name": "South/Central Newark", "zip": "07108" },
-        { "name": "Weequahic", "zip": "07112" },
-        { "name": "South Newark/Airport", "zip": "07114" }
+        {
+          "name": "Downtown Newark",
+          "zip": "07102"
+        },
+        {
+          "name": "Central Newark",
+          "zip": "07103"
+        },
+        {
+          "name": "North Newark",
+          "zip": "07104"
+        },
+        {
+          "name": "Ironbound",
+          "zip": "07105"
+        },
+        {
+          "name": "Vailsburg",
+          "zip": "07106"
+        },
+        {
+          "name": "North/West Newark",
+          "zip": "07107"
+        },
+        {
+          "name": "South/Central Newark",
+          "zip": "07108"
+        },
+        {
+          "name": "Weequahic",
+          "zip": "07112"
+        },
+        {
+          "name": "South Newark/Airport",
+          "zip": "07114"
+        }
       ],
       "geoid": "3401351000",
-      "center": { "lat": 40.72422, "lng": -74.172574 },
-      "distanceMiles": 18.2
+      "center": {
+        "lat": 40.72422,
+        "lng": -74.172574
+      },
+      "distanceMiles": 18.2,
+      "municipal": {
+        "website": "https://www.newarknj.gov/",
+        "eventsUrl": "https://www.newarknj.gov/calendar.aspx",
+        "recreationUrl": "https://www.newarknj.gov/community-and-recreation/",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
+      }
     }
   ]
 }
