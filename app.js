@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260611-cache-v81";
+const APP_VERSION = "20260611-cache-v85";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -376,8 +376,12 @@ function uniqueDates(events) {
   return [...new Set(events.map((event) => event.dateKey))];
 }
 
-function visibleDates(events) {
-  return [...new Set([...uniqueDates(events), localDateKey(new Date())])].sort();
+function visibleDates(events, options = {}) {
+  const dates = uniqueDates(events);
+  if (options.includeToday) {
+    dates.push(localDateKey(new Date()));
+  }
+  return [...new Set(dates)].sort();
 }
 
 function defaultSelectedDate(dates) {
@@ -1197,7 +1201,7 @@ function bindMoreMenu() {
 }
 
 function syncDatesForActiveFilter() {
-  state.dates = visibleDates(eventsForActiveFilter());
+  state.dates = visibleDates(eventsForActiveFilter(), { includeToday: state.eventFilter === EVENT_FILTERS.all });
   if (!state.dates.includes(state.selectedDate)) {
     state.selectedDate = defaultSelectedDate(state.dates);
     state.selectedEventId = "";

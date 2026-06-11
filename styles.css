@@ -52,7 +52,7 @@ a {
 
 .app-shell {
   display: grid;
-  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
   grid-template-areas:
     "topbar"
     "install"
@@ -636,7 +636,6 @@ h2 {
 }
 
 .event-filter-control {
-  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   width: 112px;
@@ -647,60 +646,39 @@ h2 {
   background: #eef3f0;
 }
 
-.event-filter-control::before {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: calc((100% - 4px) / 2);
-  height: calc(100% - 4px);
-  border-radius: 6px;
-  background: var(--surface);
-  box-shadow: 0 4px 10px rgba(23, 33, 29, 0.1);
-  content: "";
-  transition:
-    transform 160ms ease,
-    background 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.event-filter-control.is-world-cup::before {
-  background: url("assets/world-cup-filter-bg.svg") center / cover no-repeat;
-  box-shadow:
-    inset 0 0 0 2px rgba(255, 255, 255, 0.82),
-    0 0 0 1px rgba(22, 75, 67, 0.28),
-    0 4px 12px rgba(23, 33, 29, 0.16);
-  transform: translateX(100%);
-}
-
 .event-filter-button {
-  position: relative;
-  z-index: 1;
   min-width: 0;
   min-height: 22px;
   border: 0;
   border-radius: 6px;
-  background: transparent;
+  background: var(--surface);
   color: var(--muted);
   font-size: 0.68rem;
   font-weight: 950;
   line-height: 1;
   white-space: nowrap;
+  box-shadow: inset 0 0 0 1px rgba(23, 33, 29, 0.06);
 }
 
 .event-filter-button[data-event-filter="worldCup"] {
-  background: url("assets/world-cup-filter-bg.svg") center / cover no-repeat;
-  opacity: 0.82;
-  box-shadow: inset 0 0 0 1px rgba(23, 33, 29, 0.08);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)),
+    url("assets/world-cup-filter-bg.svg") center / cover no-repeat;
 }
 
 .event-filter-button.is-active {
-  color: var(--green-dark);
+  background: var(--green);
+  color: white;
+  box-shadow: 0 4px 10px rgba(23, 33, 29, 0.1);
 }
 
 .event-filter-button[data-event-filter="worldCup"].is-active {
-  background: transparent;
-  opacity: 1;
-  box-shadow: none;
+  background: url("assets/world-cup-filter-bg.svg") center / cover no-repeat;
+  color: transparent;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.82),
+    0 0 0 1px rgba(22, 75, 67, 0.28),
+    0 4px 12px rgba(23, 33, 29, 0.16);
 }
 
 .map-section {
