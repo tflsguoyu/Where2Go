@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Where2Go Data Status</title>
+    <link rel="icon" href="assets/icon.svg" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17202a;
+        --muted: #667085;
+        --line: #d9e2ec;
+        --paper: #f7fafc;
+        --panel: #ffffff;
+        --good: #15803d;
+        --warn: #b45309;
+        --bad: #b42318;
+        --info: #2563eb;
+        --soft-good: #dcfce7;
+        --soft-warn: #fef3c7;
+        --soft-bad: #fee4e2;
+        --soft-info: #dbeafe;
+        --disabled: #8a8580;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.45;
+      }
+
+      main {
+        width: min(1440px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 28px 0 44px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: end;
+        margin-bottom: 20px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(28px, 4vw, 44px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      h3 {
+        font-size: 15px;
+      }
+
+      .subtitle {
+        margin-top: 8px;
+        color: var(--muted);
+      }
+
+      .toolbar,
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .toolbar {
+        justify-content: flex-end;
+      }
+
+      button,
+      input,
+      select {
+        min-height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        color: var(--ink);
+        font: inherit;
+      }
+
+      button {
+        padding: 0 14px;
+        cursor: pointer;
+      }
+
+      input,
+      select {
+        min-width: 150px;
+        padding: 0 10px;
+      }
+
+      input[type="date"] {
+        min-width: 158px;
+      }
+
+      section,
+      .metric {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      section {
+        margin-top: 14px;
+        padding: 16px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: start;
+        margin-bottom: 12px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .summary-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .town-layout {
+        grid-template-columns: minmax(360px, 0.85fr) minmax(0, 1.15fr);
+      }
+
+      .metric {
+        padding: 14px;
+      }
+
+      .metric-label {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .metric-value {
+        margin-top: 6px;
+        font-size: 30px;
+        font-weight: 750;
+        line-height: 1;
+      }
+
+      .metric-note {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      #townMap {
+        height: 520px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #edf2f7;
+      }
+
+      .map-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        margin-bottom: 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .legend-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 999px;
+        background: var(--info);
+      }
+
+      .legend-dot.town {
+        background: var(--good);
+      }
+
+      .legend-dot.zip {
+        border-radius: 3px;
+        background: #2563eb;
+      }
+
+      .legend-dot.mailing {
+        border-radius: 3px;
+        background: var(--warn);
+      }
+
+      .town-list {
+        max-height: 520px;
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .town-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .town-row:last-child {
+        border-bottom: 0;
+      }
+
+      .town-row strong {
+        display: block;
+      }
+
+      .zip-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 6px;
+      }
+
+      .zip-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 22px;
+        padding: 1px 7px;
+        border-radius: 6px;
+        background: var(--soft-info);
+        color: var(--info);
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .zip-chip.mailing {
+        background: var(--soft-warn);
+        color: var(--warn);
+      }
+
+      .zip-chip.missing {
+        background: #e7e5e4;
+        color: var(--disabled);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 9px 8px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        font-size: 14px;
+      }
+
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--panel);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .table-wrap {
+        max-height: 620px;
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .table-wrap table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        margin: 0 4px 4px 0;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .good {
+        background: var(--soft-good);
+        color: var(--good);
+      }
+
+      .needs-events,
+      .manual,
+      .manual-review,
+      .approximate {
+        background: var(--soft-warn);
+        color: var(--warn);
+      }
+
+      .source-gap,
+      .broken,
+      .missing,
+      .blocked-by-bot-protection {
+        background: var(--soft-bad);
+        color: var(--bad);
+      }
+
+      .neutral,
+      .importable,
+      .service-area,
+      .reference-only,
+      .blocked,
+      .ok {
+        background: var(--soft-info);
+        color: var(--info);
+      }
+
+      .score {
+        font-weight: 800;
+      }
+
+      .score.high {
+        color: var(--good);
+      }
+
+      .score.mid {
+        color: var(--warn);
+      }
+
+      .score.low {
+        color: var(--bad);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .small {
+        font-size: 13px;
+      }
+
+      .error {
+        padding: 14px;
+        border: 1px solid var(--bad);
+        border-radius: 8px;
+        background: var(--soft-bad);
+        color: var(--bad);
+      }
+
+      .source-link {
+        color: var(--info);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .source-link:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 980px) {
+        header,
+        .section-head,
+        .town-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .toolbar {
+          justify-content: flex-start;
+        }
+
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #townMap {
+          height: 420px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>Data Status</h1>
+          <p class="subtitle" id="subtitle">Loading local JSON...</p>
+        </div>
+        <div class="toolbar">
+          <button id="reloadButton" type="button">Reload</button>
+          <button id="copySummaryButton" type="button">Copy Summary</button>
+        </div>
+      </header>
+
+      <div id="error" class="error" hidden></div>
+
+      <div class="grid summary-grid" id="metrics"></div>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>1. Town Coverage</h2>
+            <p class="muted small">Map marks towns and ZIP-level coverage already included in the local search registry.</p>
+          </div>
+          <div class="filters">
+            <select id="townStatusFilter">
+              <option value="">All town statuses</option>
+            </select>
+            <select id="townCountyFilter">
+              <option value="">All counties</option>
+            </select>
+          </div>
+        </div>
+        <div class="map-legend">
+          <span class="legend-item"><span class="legend-dot town"></span>Town included</span>
+          <span class="legend-item"><span class="legend-dot zip"></span>ZCTA / ZIP boundary</span>
+          <span class="legend-item"><span class="legend-dot mailing"></span>Mailing-area / cross-town ZCTA</span>
+        </div>
+        <div class="grid town-layout">
+          <div id="townMap" aria-label="Covered town map"></div>
+          <div class="town-list" id="townList"></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>2. Source Review</h2>
+            <p class="muted small">Every recorded source by town, source type, parser, and status.</p>
+          </div>
+          <div class="filters">
+            <input id="sourceSearchInput" type="search" placeholder="Search source, town, parser..." />
+            <select id="sourceTownFilter">
+              <option value="">All towns</option>
+            </select>
+            <select id="sourceStatusFilter">
+              <option value="">All source statuses</option>
+            </select>
+            <select id="sourceKindFilter">
+              <option value="">All source kinds</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Town</th>
+                <th>Source</th>
+                <th>Kind</th>
+                <th>Status</th>
+                <th>Parser</th>
+                <th>Link</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="sourceTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>3. Event Review</h2>
+            <p class="muted small">Filter and sort events for manual QA by date, accuracy, and missing fields.</p>
+          </div>
+          <div class="filters">
+            <input id="eventSearchInput" type="search" placeholder="Search event, venue, source..." />
+            <input id="eventDateFilter" type="date" />
+            <select id="eventTownFilter">
+              <option value="">All towns</option>
+            </select>
+            <select id="eventIssueFilter">
+              <option value="">All quality states</option>
+              <option value="missing">Has missing info</option>
+              <option value="summary">Missing summary</option>
+              <option value="coordinates">Missing coordinates</option>
+              <option value="address">Missing address</option>
+              <option value="sourceUrl">Missing source URL</option>
+              <option value="approximate">Approximate address</option>
+              <option value="ok">No visible gaps</option>
+            </select>
+            <select id="eventSortSelect">
+              <option value="accuracyAsc">Lowest accuracy first</option>
+              <option value="accuracyDesc">Highest accuracy first</option>
+              <option value="dateAsc">Date ascending</option>
+              <option value="dateDesc">Date descending</option>
+              <option value="town">Town</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Event</th>
+                <th>Town</th>
+                <th>Place</th>
+                <th>Accuracy</th>
+                <th>Missing / Flags</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody id="eventTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data-status.js"></script>
+  </body>
+</html>

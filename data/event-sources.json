@@ -48,7 +48,9 @@
     "manual_review": "Source is useful but does not have a stable importer yet; keep the link and parser notes.",
     "service_area": "Town is covered by a system source or nearby branch, but there is not a separate branch feed to import.",
     "blocked_by_bot_protection": "Source is useful but direct script fetching is blocked; keep it for future browser-backed or manual review.",
-    "reference_only": "Keep as a directory, venue, or planning reference; do not import events automatically."
+    "reference_only": "Keep as a directory, venue, or planning reference; do not import events automatically.",
+    "not_found": "A source type was checked for a town and no useful dated-event source was found.",
+    "broken": "A previously useful source or parser is currently failing and needs review before import."
   },
   "appDisplayPolicy": {
     "townMenuRule": "The More menu displays short town names without Township, Borough, or City suffixes.",
@@ -463,7 +465,19 @@
       "parser": "county-events-calendar",
       "website": "https://www.morriscountynj.gov/",
       "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "notes": "Official Morris County events calendar and county department activities. The page renders through JavaScript; keep for county-level activity discovery and browser-backed refresh."
+      "notes": "Official Morris County events calendar and county department activities. The page renders through JavaScript; keep for county-level activity discovery and browser-backed refresh. Rediscovery 2026-06-11: use this shared county source instead of duplicate per-town fallback rows.",
+      "tier": 1,
+      "sourceTypes": [
+        "county_government",
+        "regional_event_directory"
+      ],
+      "servesTownIds": [
+        "long-hill-township",
+        "chatham-township",
+        "harding-township",
+        "chatham-borough",
+        "madison-borough"
+      ]
     },
     "morris-county-parks-commission": {
       "label": "Morris County Park Commission",
@@ -472,7 +486,20 @@
       "parser": "county-events-calendar",
       "website": "https://www.morriscountynj.gov/Departments/Park-Commission",
       "eventsUrl": "https://www.morriscountynj.gov/Departments/Park-Commission",
-      "notes": "Official Morris County park commission and nature center page family activities, seasonal fairs, and open event announcements."
+      "notes": "Official Morris County park commission and nature center page family activities, seasonal fairs, and open event announcements. Rediscovery 2026-06-11: shared county parks source covers Morris towns and replaces per-town fallback use.",
+      "tier": 2,
+      "sourceTypes": [
+        "county_parks",
+        "nature_center",
+        "regional_event_directory"
+      ],
+      "servesTownIds": [
+        "long-hill-township",
+        "chatham-township",
+        "harding-township",
+        "chatham-borough",
+        "madison-borough"
+      ]
     },
     "middlesex-county-events": {
       "label": "Middlesex County Events",
@@ -481,7 +508,22 @@
       "parser": "county-events-calendar",
       "website": "https://www.middlesexcountynj.gov/",
       "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "notes": "Official Middlesex County events calendar includes county programs, youth/teens activities, and parks-based family announcements."
+      "notes": "Official Middlesex County events calendar includes county programs, youth/teens activities, and parks-based family announcements. Rediscovery 2026-06-11: use this shared county source instead of duplicate per-town fallback rows.",
+      "tier": 1,
+      "sourceTypes": [
+        "county_government",
+        "county_parks",
+        "regional_event_directory"
+      ],
+      "servesTownIds": [
+        "dunellen-borough",
+        "middlesex-borough",
+        "south-plainfield-borough",
+        "piscataway-township",
+        "metuchen-borough",
+        "highland-park-borough",
+        "new-brunswick-city"
+      ]
     },
     "essex-county-government": {
       "label": "Essex County Government",
@@ -521,7 +563,7 @@
       "address": "93 Greenbrook Road, North Plainfield, NJ 07060",
       "lat": 40.621255,
       "lng": -74.439466,
-      "notes": "Official borough-linked recreation portal exposes youth sports, cheer/dance, NFL Flag, summer camp, and registration news. It is WordPress/Stack Sports oriented and does not yet expose a stable dated public event feed; review homepage cards and linked registration pages."
+      "notes": "Official borough-linked recreation portal exposes youth sports, cheer/dance, NFL Flag, summer camp, and registration news. It is WordPress/Stack Sports oriented and does not yet expose a stable dated public event feed; review homepage cards and linked registration pages. Rediscovery 2026-06-11 confirmed events/summer camp/youth program value."
     },
     {
       "id": "middlesex-recreation",
@@ -593,7 +635,7 @@
       "address": "200 Thompson Avenue, Bound Brook, NJ 08805",
       "lat": 40.569749,
       "lng": -74.538489,
-      "notes": "Official recreation page describes seasonal programs, pool/family events, summer camp, sports, and therapeutic recreation. The WordPress event archive is noisy with court/meeting rows, so recreation page review should precede parser work."
+      "notes": "Official recreation page describes seasonal programs, pool/family events, summer camp, sports, and therapeutic recreation. The WordPress event archive is noisy with court/meeting rows, so recreation page review should precede parser work. Rediscovery/image-flyer check on 2026-06-11 found the public page Cloudflare-blocked from shell, but prior accessible text confirmed youth programs, pool family events, and Fun in the Sun Summer Camp. Do not import the camp as a one-day event unless camp/session rules are added."
     },
     {
       "id": "long-hill-parks-recreation",
@@ -734,7 +776,7 @@
       "address": "100 Commons Way, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Official Bridgewater recreation and parks microsite links township parks, recreation department information, and Somerset County park events/programs. Current municipal calendar remains manual review; SCLSNJ covers library events."
+      "notes": "Official Bridgewater recreation and parks microsite links township parks, recreation department information, and Somerset County park events/programs. Current municipal calendar remains manual review; SCLSNJ covers library events. Rediscovery 2026-06-11 confirmed parks microsite remains useful."
     },
     {
       "id": "somerville-recreation",
@@ -2001,7 +2043,7 @@
       "type": "science-nature-center",
       "status": "importable",
       "parser": "configured-dated-workshops",
-      "website": "https://ucnj.org/trailside/",
+      "website": "https://ucnj.org/trailside-nature-and-science-center/",
       "eventsUrl": "https://ucnj.org/trailside-nature-and-science-center/workshops/",
       "locations": [
         {
@@ -2026,7 +2068,7 @@
           "summary": "Trailside summer nature camp three-day session starting June 30. Morning, afternoon, and full-day options may vary by age group; open the source page for exact session choice."
         }
       ],
-      "notes": "Union County nature/science center with workshops, camps, and family nature programs. Public page requires manual review for session-specific times."
+      "notes": "Union County nature/science center with workshops, camps, and family nature programs. Public page requires manual review for session-specific times. Website URL updated to specific Trailside page during 2026-06-11 cleanup."
     },
     {
       "id": "liberty-science-center",
@@ -3248,312 +3290,515 @@
       "notes": "State park/towpath source for Millstone and East Millstone family walks, biking, history, and organized-event permit activity. Current DEP page is a park/activity source rather than a dated events feed; keep as manual_review and cross-check park/tourism event calendars."
     },
     {
-      "id": "fallback-tier4-green-brook-township",
-      "label": "Green Brook township Tier-4 fallback",
-      "type": "downtown-sid-events",
+      "id": "essex-county-parks-calendar",
+      "label": "Essex County Parks Calendar",
+      "type": "county-park-family-activities",
+      "tier": 2,
+      "sourceTypes": [
+        "county_parks",
+        "nature_center",
+        "regional_event_directory"
+      ],
       "status": "manual_review",
       "parser": "manual",
-      "website": "https://www.somersetcountyparks.org/",
-      "eventsUrl": "https://www.somersetcountyparks.org/",
-      "townId": "green-brook-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Somerset."
-    },
-    {
-      "id": "fallback-tier4-dunellen-borough",
-      "label": "Dunellen borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "townId": "dunellen-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
-    },
-    {
-      "id": "fallback-tier4-plainfield-city",
-      "label": "Plainfield city Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "plainfield-city",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-south-bound-brook-borough",
-      "label": "South Bound Brook borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.somersetcountyparks.org/",
-      "eventsUrl": "https://www.somersetcountyparks.org/",
-      "townId": "south-bound-brook-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Somerset."
-    },
-    {
-      "id": "fallback-tier4-berkeley-heights-township",
-      "label": "Berkeley Heights township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "berkeley-heights-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-piscataway-township",
-      "label": "Piscataway township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "townId": "piscataway-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
-    },
-    {
-      "id": "fallback-tier4-new-providence-borough",
-      "label": "New Providence borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "new-providence-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-chatham-township",
-      "label": "Chatham township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "townId": "chatham-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Morris."
-    },
-    {
-      "id": "fallback-tier4-westfield-town",
-      "label": "Westfield town Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "westfield-town",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-harding-township",
-      "label": "Harding township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "townId": "harding-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Morris."
-    },
-    {
-      "id": "fallback-tier4-metuchen-borough",
-      "label": "Metuchen borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "townId": "metuchen-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
-    },
-    {
-      "id": "fallback-tier4-highland-park-borough",
-      "label": "Highland Park borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "townId": "highland-park-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
-    },
-    {
-      "id": "fallback-tier4-garwood-borough",
-      "label": "Garwood borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "garwood-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-clark-township",
-      "label": "Clark township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "clark-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-new-brunswick-city",
-      "label": "New Brunswick city Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
-      "townId": "new-brunswick-city",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Middlesex."
-    },
-    {
-      "id": "fallback-tier4-springfield-township",
-      "label": "Springfield township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "springfield-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-chatham-borough",
-      "label": "Chatham borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "townId": "chatham-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Morris."
-    },
-    {
-      "id": "fallback-tier4-cranford-township",
-      "label": "Cranford township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "cranford-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-madison-borough",
-      "label": "Madison borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
-      "townId": "madison-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Morris."
-    },
-    {
-      "id": "fallback-tier4-kenilworth-borough",
-      "label": "Kenilworth borough Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "kenilworth-borough",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-millburn-township",
-      "label": "Millburn township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://essexcountyparks.org/calendar",
+      "website": "https://essexcountyparks.org/",
       "eventsUrl": "https://essexcountyparks.org/calendar",
+      "servesTownIds": [
+        "millburn-township",
+        "maplewood-township",
+        "livingston-township",
+        "south-orange-village-township",
+        "irvington-township",
+        "newark-city"
+      ],
+      "notes": "Rediscovered 2026-06-11. Replaces duplicate per-town Essex fallback sources. Review county park calendar for family activities at South Mountain, Branch Brook, Weequahic, Irvington Park, Riker Hill, and nearby Essex facilities."
+    },
+    {
+      "id": "paper-mill-playhouse",
+      "label": "Paper Mill Playhouse",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "arts_center"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://papermill.org/",
+      "eventsUrl": "https://papermill.org/",
       "townId": "millburn-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+      "address": "22 Brookside Drive, Millburn, NJ 07041",
+      "lat": 40.728154,
+      "lng": -74.309759,
+      "notes": "Rediscovered 2026-06-11. Official theater source with family/youth performances and education programs; inspect event pages before importing."
     },
     {
-      "id": "fallback-tier4-union-township",
-      "label": "Union township Tier-4 fallback",
-      "type": "downtown-sid-events",
+      "id": "cora-hartshorn-arboretum",
+      "label": "Cora Hartshorn Arboretum",
+      "type": "arboretum-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "nature_center",
+        "farm_garden_arboretum",
+        "nonprofit"
+      ],
       "status": "manual_review",
       "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "union-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
+      "website": "https://hartshornarboretum.org/",
+      "eventsUrl": "https://hartshornarboretum.org/",
+      "townId": "millburn-township",
+      "address": "324 Forest Drive South, Short Hills, NJ 07078",
+      "lat": 40.738965,
+      "lng": -74.327175,
+      "notes": "Rediscovered 2026-06-11. Nature center/arboretum with children and family program potential; inspect events/program pages."
     },
     {
-      "id": "fallback-tier4-maplewood-township",
-      "label": "Maplewood township Tier-4 fallback",
-      "type": "downtown-sid-events",
+      "id": "greenwood-gardens",
+      "label": "Greenwood Gardens",
+      "type": "public-garden-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "farm_garden_arboretum",
+        "nonprofit"
+      ],
       "status": "manual_review",
       "parser": "manual",
-      "website": "https://essexcountyparks.org/calendar",
-      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "website": "https://greenwoodgardens.org/",
+      "eventsUrl": "https://greenwoodgardens.org/",
+      "townId": "millburn-township",
+      "address": "274 Old Short Hills Road, Short Hills, NJ 07078",
+      "lat": 40.740283,
+      "lng": -74.312336,
+      "notes": "Rediscovered 2026-06-11. Public garden with seasonal family/garden events; inspect official event listings before importing."
+    },
+    {
+      "id": "maplewood-village-alliance",
+      "label": "Maplewood Village Alliance",
+      "type": "downtown-sid-events",
+      "tier": 2,
+      "sourceTypes": [
+        "downtown_sid_chamber"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://maplewoodvillagenj.com/",
+      "eventsUrl": "https://maplewoodvillagenj.com/",
       "townId": "maplewood-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+      "notes": "Rediscovered 2026-06-11. Downtown/community event source; inspect for family-compatible street fairs, markets, and seasonal events."
     },
     {
-      "id": "fallback-tier4-livingston-township",
-      "label": "Livingston township Tier-4 fallback",
+      "id": "springfield-avenue-partnership-maplewood",
+      "label": "Springfield Avenue Partnership",
       "type": "downtown-sid-events",
+      "tier": 2,
+      "sourceTypes": [
+        "downtown_sid_chamber"
+      ],
       "status": "manual_review",
       "parser": "manual",
-      "website": "https://essexcountyparks.org/calendar",
-      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "website": "https://springfieldavenue.com/",
+      "eventsUrl": "https://springfieldavenue.com/",
+      "townId": "maplewood-township",
+      "notes": "Rediscovered 2026-06-11. Business district/corridor source for community and family events."
+    },
+    {
+      "id": "maplewoodstock",
+      "label": "Maplewoodstock",
+      "type": "festival-sports-family-events",
+      "tier": 4,
+      "sourceTypes": [
+        "regional_event_directory"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://maplewoodstock.com/",
+      "eventsUrl": "https://maplewoodstock.com/",
+      "townId": "maplewood-township",
+      "notes": "Rediscovered 2026-06-11. Annual community music/art festival; keep family-compatible event dates when posted."
+    },
+    {
+      "id": "childrens-theatre-of-livingston",
+      "label": "Children's Theatre of Livingston",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "arts_center",
+        "nonprofit"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.childrenstheatreoflivingston.org/",
+      "eventsUrl": "https://www.childrenstheatreoflivingston.org/",
       "townId": "livingston-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+      "notes": "Rediscovered 2026-06-11. Youth theater source; inspect productions, auditions, and family performances before importing."
     },
     {
-      "id": "fallback-tier4-hillside-township",
-      "label": "Hillside township Tier-4 fallback",
-      "type": "downtown-sid-events",
+      "id": "sopac",
+      "label": "South Orange Performing Arts Center",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "arts_center"
+      ],
       "status": "manual_review",
       "parser": "manual",
-      "website": "https://ucnj.org/calendar/",
-      "eventsUrl": "https://ucnj.org/calendar/",
-      "townId": "hillside-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Union."
-    },
-    {
-      "id": "fallback-tier4-south-orange-village-township",
-      "label": "South Orange Village township Tier-4 fallback",
-      "type": "downtown-sid-events",
-      "status": "manual_review",
-      "parser": "manual",
-      "website": "https://essexcountyparks.org/calendar",
-      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "website": "https://www.sopacnow.org/",
+      "eventsUrl": "https://www.sopacnow.org/events/",
       "townId": "south-orange-village-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+      "notes": "Rediscovered 2026-06-11. Performing arts center; filter for family, youth, and all-ages shows only."
     },
     {
-      "id": "fallback-tier4-irvington-township",
-      "label": "Irvington township Tier-4 fallback",
+      "id": "south-orange-village-center-alliance",
+      "label": "South Orange Village Center Alliance",
       "type": "downtown-sid-events",
+      "tier": 2,
+      "sourceTypes": [
+        "downtown_sid_chamber"
+      ],
       "status": "manual_review",
       "parser": "manual",
-      "website": "https://essexcountyparks.org/calendar",
-      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "website": "https://www.sovillagecenter.org/",
+      "eventsUrl": "https://www.sovillagecenter.org/",
+      "townId": "south-orange-village-township",
+      "notes": "Rediscovered 2026-06-11. Downtown event source for family-compatible community events."
+    },
+    {
+      "id": "irvington-chamber-reference",
+      "label": "Irvington Chamber and Business Reference",
+      "type": "downtown-sid-events",
+      "tier": 2,
+      "sourceTypes": [
+        "downtown_sid_chamber"
+      ],
+      "status": "reference_only",
+      "parser": "manual",
+      "website": "https://www.irvington-nj.com/",
+      "eventsUrl": "https://www.irvington-nj.com/",
       "townId": "irvington-township",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+      "notes": "Rediscovered 2026-06-11. Business/community reference only; no stable dated kid/family event feed confirmed."
     },
     {
-      "id": "fallback-tier4-newark-city",
-      "label": "Newark city Tier-4 fallback",
-      "type": "downtown-sid-events",
+      "id": "newark-museum-of-art",
+      "label": "Newark Museum of Art",
+      "type": "science-museum-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "museum",
+        "arts_center"
+      ],
+      "status": "importable",
+      "parser": "newark-museum-events",
+      "website": "https://newarkmuseumart.org/",
+      "eventsUrl": "https://newarkmuseumart.org/events/",
+      "townId": "newark-city",
+      "address": "49 Washington Street, Newark, NJ 07102",
+      "lat": 40.742998,
+      "lng": -74.171174,
+      "notes": "Official events page is readable from shell and exposes event-item cards with dates, times, family/audience terms, images, and event links. Converted to importable on 2026-06-11 using newark-museum-events parser.",
+      "parserVersion": "2026-06-11",
+      "lastCheckedAt": "2026-06-11"
+    },
+    {
+      "id": "njpac-family-events",
+      "label": "New Jersey Performing Arts Center",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "arts_center"
+      ],
+      "status": "importable",
+      "parser": "njpac-events-list",
+      "website": "https://www.njpac.org/",
+      "eventsUrl": "https://www.njpac.org/tickets-events/",
+      "townId": "newark-city",
+      "address": "1 Center Street, Newark, NJ 07102",
+      "lat": 40.740259,
+      "lng": -74.167037,
+      "notes": "Official tickets/events page is readable from shell and exposes listing cards with performance datetimes. Converted to importable on 2026-06-11 using njpac-events-list parser; importer filters for kid/family/teen/community-compatible signals.",
+      "parserVersion": "2026-06-11",
+      "lastCheckedAt": "2026-06-11"
+    },
+    {
+      "id": "prudential-center-family-events",
+      "label": "Prudential Center Family Events",
+      "type": "arena-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "regional_event_directory"
+      ],
+      "status": "importable",
+      "parser": "prudential-center-events",
+      "website": "https://www.prucenter.com/",
+      "eventsUrl": "https://www.prucenter.com/events",
+      "townId": "newark-city",
+      "address": "25 Lafayette Street, Newark, NJ 07102",
+      "lat": 40.733611,
+      "lng": -74.171111,
+      "notes": "Official events page is readable from shell and exposes family-shows cards. Converted to importable on 2026-06-11 using prudential-center-events parser; importer only reads cards marked family-shows.",
+      "parserVersion": "2026-06-11",
+      "lastCheckedAt": "2026-06-11"
+    },
+    {
+      "id": "union-county-events-calendar",
+      "label": "Union County Events Calendar",
+      "type": "county-government-events",
+      "tier": 1,
+      "sourceTypes": [
+        "county_government",
+        "county_parks",
+        "regional_event_directory"
+      ],
       "status": "manual_review",
       "parser": "manual",
-      "website": "https://essexcountyparks.org/calendar",
-      "eventsUrl": "https://essexcountyparks.org/calendar",
-      "townId": "newark-city",
-      "notes": "County-level fallback for Tier-4 child-friendly source discovery in Essex."
+      "website": "https://ucnj.org/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "servesTownIds": [
+        "plainfield-city",
+        "berkeley-heights-township",
+        "fanwood-borough",
+        "scotch-plains-township",
+        "new-providence-borough",
+        "mountainside-borough",
+        "summit-city",
+        "westfield-town",
+        "garwood-borough",
+        "clark-township",
+        "springfield-township",
+        "cranford-township",
+        "kenilworth-borough",
+        "union-township",
+        "hillside-township"
+      ],
+      "notes": "Rediscovered 2026-06-11. Replaces duplicate per-town Union County fallback sources. Review for family-compatible county parks, cultural, seasonal, and community events mapped to covered towns."
+    },
+    {
+      "id": "downtown-cranford-events",
+      "label": "Downtown Cranford Events",
+      "type": "downtown-sid-events",
+      "tier": 2,
+      "sourceTypes": [
+        "downtown_sid_chamber"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://downtowncranford.org/",
+      "eventsUrl": "https://downtowncranford.org/events/",
+      "townId": "cranford-township",
+      "notes": "Rediscovered 2026-06-11. Downtown calendar has family-compatible events such as music, kids days, markets, and seasonal events; inspect official entries before importing."
+    },
+    {
+      "id": "somerset-county-parks-family-calendar",
+      "label": "Somerset County Parks Family Calendar",
+      "type": "county-park-family-activities",
+      "tier": 2,
+      "sourceTypes": [
+        "county_parks",
+        "nature_center",
+        "regional_event_directory"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.somersetcountyparks.org/",
+      "eventsUrl": "https://www.somersetcountyparks.org/",
+      "servesTownIds": [
+        "green-brook-township",
+        "warren-township",
+        "north-plainfield-borough",
+        "watchung-borough",
+        "bound-brook-borough",
+        "south-bound-brook-borough",
+        "bernards-township",
+        "bridgewater-township",
+        "somerville-borough",
+        "manville-borough",
+        "far-hills-borough",
+        "raritan-borough",
+        "millstone-borough",
+        "franklin-township",
+        "branchburg-township"
+      ],
+      "notes": "Rediscovered 2026-06-11. Shared Somerset County parks source replacing duplicate per-town fallback rows. Review county parks and environmental education programs for family-compatible activities."
+    },
+    {
+      "id": "watchung-arts-center",
+      "label": "Watchung Arts Center",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "arts_center",
+        "camp_provider"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://watchungarts.org/",
+      "eventsUrl": "https://watchungarts.org/",
+      "townId": "watchung-borough",
+      "notes": "Rediscovered 2026-06-11. Official arts center with children/preteen/teen classes and summer art camp; import dated kid/family programs only."
+    },
+    {
+      "id": "brook-arts-center",
+      "label": "Brook Arts Center",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "arts_center"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.brookarts.org/",
+      "eventsUrl": "https://www.brookarts.org/",
+      "townId": "bound-brook-borough",
+      "notes": "Rediscovered 2026-06-11. Bound Brook arts/theater venue; filter for family/kid-suitable shows."
+    },
+    {
+      "id": "abraham-staats-house",
+      "label": "Abraham Staats House",
+      "type": "history-museum",
+      "tier": 2,
+      "sourceTypes": [
+        "historic_site",
+        "museum",
+        "community_center"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.staatshouse.org/",
+      "eventsUrl": "https://www.staatshouse.org/",
+      "townId": "south-bound-brook-borough",
+      "notes": "Rediscovered 2026-06-11. Historic site with 2026 events calendar/open houses/community events; exclude adult-only or unsuitable rows."
+    },
+    {
+      "id": "ross-farm-events",
+      "label": "The Ross Farm Events",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "historic_site",
+        "arts_center",
+        "community_center"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://rossfarm.org/",
+      "eventsUrl": "https://rossfarm.org/events/",
+      "townId": "bernards-township",
+      "notes": "Rediscovered 2026-06-11. Official events page has dated 2026 events; keep family-compatible community/arts/history events."
+    },
+    {
+      "id": "somerset-patriots-promotions",
+      "label": "Somerset Patriots Promotions",
+      "type": "arena-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "sports_complex",
+        "regional_event_directory"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.milb.com/somerset",
+      "eventsUrl": "https://www.milb.com/somerset/tickets/promotions",
+      "townId": "bridgewater-township",
+      "notes": "Rediscovered 2026-06-11. Official MiLB promotions source with family sports promotions, Kids Club, scout nights, and field trips; import only family-compatible dated events."
+    },
+    {
+      "id": "downtown-metuchen-events",
+      "label": "Downtown Metuchen Events",
+      "type": "downtown-sid-events",
+      "tier": 2,
+      "sourceTypes": [
+        "downtown_sid_chamber"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.downtownmetuchen.org/",
+      "eventsUrl": "https://www.downtownmetuchen.org/events",
+      "townId": "metuchen-borough",
+      "notes": "Rediscovered 2026-06-11. Downtown/community event source; keep family-compatible street fairs, concerts, markets, and seasonal events."
+    },
+    {
+      "id": "main-street-highland-park",
+      "label": "Main Street Highland Park",
+      "type": "downtown-sid-events",
+      "tier": 2,
+      "sourceTypes": [
+        "downtown_sid_chamber"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.mainstreethp.org/",
+      "eventsUrl": "https://www.mainstreethp.org/events",
+      "townId": "highland-park-borough",
+      "notes": "Rediscovered 2026-06-11. Downtown/business district source for markets, festivals, and family-compatible community events."
+    },
+    {
+      "id": "state-theatre-new-jersey",
+      "label": "State Theatre New Jersey",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "arts_center"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.stnj.org/",
+      "eventsUrl": "https://www.stnj.org/events/",
+      "townId": "new-brunswick-city",
+      "address": "15 Livingston Avenue, New Brunswick, NJ 08901",
+      "lat": 40.493965,
+      "lng": -74.444147,
+      "notes": "Rediscovered 2026-06-11. Official performing arts venue with family shows and education programs; import only kid/family-compatible events."
+    },
+    {
+      "id": "zimmerli-art-museum-events",
+      "label": "Zimmerli Art Museum Events",
+      "type": "arts-center-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "museum",
+        "arts_center"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://zimmerli.rutgers.edu/",
+      "eventsUrl": "https://zimmerli.rutgers.edu/events",
+      "townId": "new-brunswick-city",
+      "address": "71 Hamilton Street, New Brunswick, NJ 08901",
+      "lat": 40.500786,
+      "lng": -74.445469,
+      "notes": "Rediscovered 2026-06-11. Rutgers art museum event source; filter for family days, youth workshops, and all-ages museum events."
+    },
+    {
+      "id": "rutgers-geology-museum",
+      "label": "Rutgers Geology Museum",
+      "type": "science-museum-family-programs",
+      "tier": 2,
+      "sourceTypes": [
+        "museum",
+        "science_center"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://geologymuseum.rutgers.edu/",
+      "eventsUrl": "https://geologymuseum.rutgers.edu/",
+      "townId": "new-brunswick-city",
+      "address": "85 Somerset Street, New Brunswick, NJ 08901",
+      "lat": 40.499552,
+      "lng": -74.445699,
+      "notes": "Rediscovered 2026-06-11. Rutgers science museum source; check public events, family days, and educational programs."
+    },
+    {
+      "id": "madison-main-street-events",
+      "label": "Madison Main Street Events",
+      "type": "downtown-sid-events",
+      "tier": 2,
+      "sourceTypes": [
+        "downtown_sid_chamber"
+      ],
+      "status": "manual_review",
+      "parser": "manual",
+      "website": "https://www.madisonmainstreet.com/",
+      "eventsUrl": "https://www.madisonmainstreet.com/events",
+      "townId": "madison-borough",
+      "notes": "Rediscovered 2026-06-11. Downtown source for family-compatible community events, markets, and seasonal programming."
     }
   ],
   "towns": [
@@ -3572,10 +3817,17 @@
       "distanceMiles": 1.1,
       "municipal": {
         "website": "https://www.greenbrooktwp.org/",
-        "eventsUrl": "https://www.greenbrooktwp.org/",
+        "eventsUrl": "https://www.greenbrooktwp.org/ajax/get_all_events.php",
         "recreationUrl": "https://www.greenbrooktwp.org/",
-        "status": "manual_review",
-        "notes": "Official site uses JavaScript/challenge pages in simple fetches; check news/recreation flyers manually."
+        "status": "importable",
+        "notes": "Converted to importable on 2026-06-11. Official site exposes JSON at /ajax/get_all_events.php; parser imports community/family-safe rows and skips meetings/recycling/collection rows. Current future rows after 2026-06-11 are non-event civic/service items, so no events are imported right now. Image/flyer查漏 on 2026-06-11 also checked the recreation path; greenbrookrec.org currently resolves to a domain-for-sale page, not an active recreation calendar.",
+        "rawEventsUrl": "https://www.greenbrooktwp.org/ajax/get_all_events.php",
+        "parser": "greenbrook-ajax-calendar",
+        "defaultVenueName": "Green Brook Township event",
+        "defaultAddress": "111 Greenbrook Road, Green Brook, NJ 08812",
+        "lat": 40.603832,
+        "lng": -74.483208,
+        "lastCheckedAt": "2026-06-11"
       },
       "libraries": [
         {
@@ -4116,9 +4368,11 @@
       "distanceMiles": 3.3,
       "municipal": {
         "website": "https://watchungnj.gov/",
-        "eventsUrl": "https://watchungnj.gov/recreation-dates",
-        "recreationUrl": "https://watchungnj.gov/recreation-dates",
-        "status": "manual_review"
+        "eventsUrl": "https://watchungnj.gov/resident/recreation-programs-events",
+        "recreationUrl": "https://watchungnj.gov/resident/recreation-programs-events",
+        "status": "manual_review",
+        "lastCheckedAt": "2026-06-11",
+        "notes": "Recreation programs/events URL confirmed during 2026-06-11 rediscovery; widget may show no events but page has youth programs/flyers."
       },
       "libraries": [
         {
@@ -4212,7 +4466,15 @@
         "website": "https://boundbrook-nj.org/",
         "eventsUrl": "https://boundbrook-nj.org/calendar/",
         "recreationUrl": "https://boundbrook-nj.org/recreation/",
-        "status": "manual_review"
+        "status": "importable",
+        "rawEventsUrl": "https://boundbrook-nj.org/?plugin=all-in-one-event-calendar&controller=ai1ec_exporter_controller&action=export_events&no_html=true",
+        "parser": "ai1ec-ical-calendar",
+        "defaultVenueName": "Bound Brook municipal event",
+        "defaultAddress": "230 Hamilton Street, Bound Brook, NJ 08805",
+        "lat": 40.56844,
+        "lng": -74.53849,
+        "lastCheckedAt": "2026-06-11",
+        "notes": "Converted to importable on 2026-06-11. WordPress All-in-One Event Calendar exposes an iCal export; ai1ec-ical-calendar imports community/family-safe rows and skips meetings/court/commission rows. Current future rows are civic meetings/court sessions, so no kid/family events are imported right now."
       },
       "libraries": [
         {
@@ -4510,7 +4772,10 @@
         "website": "https://piscatawaynj.org/",
         "eventsUrl": "https://drupalpway.piscatawaynj.org/calendar",
         "recreationUrl": "https://drupalpway.piscatawaynj.org/recreation/about-us",
-        "status": "manual_review"
+        "status": "manual_review",
+        "lastCheckedAt": "2026-06-11",
+        "lastFailureReason": "Municipal calendar/recreation URLs failed 2026-06-11 URL audit with TLS hostname mismatch on drupalpway.piscatawaynj.org; rediscovery needed before parser work.",
+        "notes": "Municipal calendar/recreation URLs failed 2026-06-11 URL audit with TLS hostname mismatch on drupalpway.piscatawaynj.org; rediscovery needed before parser work."
       },
       "libraries": [
         {
@@ -4619,6 +4884,91 @@
               "National Night Out"
             ],
             "address": "3405 Valley Road, Basking Ridge, NJ 07920"
+          },
+          {
+            "name": "Dunham Park",
+            "aliases": [
+              "Street Smart Campaign"
+            ],
+            "address": "Dunham Park, Somerville Road, Basking Ridge, NJ 07920",
+            "addressStatus": "approximate",
+            "directionsDisabled": true
+          },
+          {
+            "name": "Farmstead Arts Center",
+            "aliases": [
+              "Kennedy Martin Stelle Farmstead",
+              "Kennedy-Martin-Stelle Farmstead"
+            ],
+            "address": "450 King George Road, Basking Ridge, NJ 07920"
+          },
+          {
+            "name": "Environmental Education Center",
+            "aliases": [
+              "The Lord Stirling 1770's Festival"
+            ],
+            "address": "190 Lord Stirling Road, Basking Ridge, NJ 07920",
+            "lat": 40.677455,
+            "lng": -74.567277
+          },
+          {
+            "name": "The Stable at Lord Stirling Park",
+            "aliases": [
+              "Stables at Lord Stirling Park"
+            ],
+            "address": "256 South Maple Avenue, Basking Ridge, NJ 07920"
+          },
+          {
+            "name": "Brick Academy",
+            "aliases": [
+              "Brick Academy",
+              "George Washington's Nemesis",
+              "Strangers Stop and Cast an Eye"
+            ],
+            "address": "15 West Oak Street, Basking Ridge, NJ 07920"
+          },
+          {
+            "name": "Bernards Township Library",
+            "aliases": [
+              "Bernards Township Library"
+            ],
+            "address": "32 South Maple Avenue, Basking Ridge, NJ 07920",
+            "lat": 40.7058542,
+            "lng": -74.5477014
+          },
+          {
+            "name": "Downtown Basking Ridge",
+            "aliases": [
+              "Winter Market and Tree Lighting"
+            ],
+            "address": "1 East Oak Street, Basking Ridge, NJ 07920",
+            "lat": 40.706594,
+            "lng": -74.548584
+          },
+          {
+            "name": "Bernards Township Municipal Building",
+            "aliases": [
+              "Field of Honor Dedication Ceremony"
+            ],
+            "address": "1 Collyer Lane, Basking Ridge, NJ 07920"
+          },
+          {
+            "name": "Bernards Township",
+            "aliases": [
+              "Mayor's Fall Festival"
+            ],
+            "address": "Bernards Township, Basking Ridge, NJ 07920",
+            "addressStatus": "approximate",
+            "directionsDisabled": true
+          },
+          {
+            "name": "Bernards Township historic sites",
+            "aliases": [
+              "Somerset County's Journey Through the Past"
+            ],
+            "address": "Bernards Township historic sites, Basking Ridge, NJ 07920",
+            "addressStatus": "approximate",
+            "directionsDisabled": true
           }
         ],
         "notes": "Joomla DPCalendar raw endpoint imports public recreation/America 250 events and filters municipal meetings/closures."
@@ -4662,7 +5012,10 @@
         "website": "https://fanwoodnj.org/",
         "eventsUrl": "https://fanwoodnj.org/calendar/",
         "recreationUrl": "https://fanwoodnj.org/departments/recreation-info/",
-        "status": "manual_review"
+        "status": "manual_review",
+        "lastCheckedAt": "2026-06-11",
+        "lastFailureReason": "Municipal calendar URL returned 404 during 2026-06-11 URL audit; rediscovery needed before parser work.",
+        "notes": "Municipal calendar URL returned 404 during 2026-06-11 URL audit; rediscovery needed before parser work."
       },
       "libraries": [
         {
@@ -6269,8 +6622,35 @@
         "eventsUrl": "https://www.chathamtownship.org/community-calendar/",
         "recreationUrl": "https://www.chathamtownship.org/recreation/",
         "status": "manual_review",
-        "notes": "Official website and community calendar are now recorded. Please confirm stable event rows after current page framework refresh; keep as manual_review until parser is stable."
-      }
+        "notes": "Official website and community calendar are now recorded. Please confirm stable event rows after current page framework refresh; keep as manual_review until parser is stable. Community calendar URL returned 404 during 2026-06-11 URL audit; rediscovery needed before parser work. Keep official website tracked; community calendar path was not replaced because no stable official replacement was confirmed during rediscovery.",
+        "lastCheckedAt": "2026-06-11",
+        "lastFailureReason": "Community calendar URL returned 404 during 2026-06-11 URL audit; rediscovery needed before parser work."
+      },
+      "libraries": [
+        {
+          "name": "Library of the Chathams",
+          "website": "https://chathamlibrary.org/",
+          "eventsUrl": "https://chathamlibrary.librarycalendar.com/events/list?age_groups%5B57%5D=57&age_groups%5B58%5D=58&age_groups%5B60%5D=60",
+          "status": "importable",
+          "townId": "chatham-township",
+          "servesTownIds": [
+            "chatham-township",
+            "chatham-borough"
+          ],
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Converted to importable on 2026-06-11. Official site links to chathamlibrary.librarycalendar.com; librarycalendar-list reads Children, Teens, and All Ages filters. idPrefix prevents shared Chathams events from overwriting the borough/township copy.",
+          "parser": "librarycalendar-list",
+          "parserVersion": "2026-06-11",
+          "idPrefix": "chathams-library-chatham-township",
+          "address": "214 Main Street, Chatham, NJ 07928",
+          "lat": 40.74043,
+          "lng": -74.38378,
+          "lastCheckedAt": "2026-06-11"
+        }
+      ]
     },
     {
       "id": "westfield-town",
@@ -6292,7 +6672,21 @@
         "status": "importable",
         "parser": "civicplus-calendar",
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Westfield Memorial Library",
+          "website": "https://wmlnj.org/",
+          "eventsUrl": "https://events.wmlnj.org/",
+          "status": "manual_review",
+          "townId": "westfield-town",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Rediscovered 2026-06-11. Official library events site with children and teen event categories; inspect endpoint before importing."
+        }
+      ]
     },
     {
       "id": "harding-township",
@@ -6336,7 +6730,39 @@
         "itemId": "965",
         "rawEventsUrl": "https://hardingnj.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
         "notes": "Harding Township uses Joomla DPCalendar; raw endpoint imports municipal events."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Kemmerer Library",
+          "website": "https://www.hardinglibrary.org/",
+          "eventsUrl": "https://engagedpatrons.org/Events.cfm?SiteID=4662&Audience=C",
+          "status": "importable",
+          "townId": "harding-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Converted to importable on 2026-06-11 during flyer/image查漏. Official Harding Library navigation exposes EngagedPatrons SiteID 4662 kids/teen feeds; engagedpatrons-list parses dated library event cards and image-backed event rows.",
+          "parser": "engagedpatrons-list",
+          "parserVersion": "2026-06-11",
+          "eventUrls": [
+            {
+              "url": "https://engagedpatrons.org/Events.cfm?SiteID=4662&Audience=C",
+              "audience": "C",
+              "label": "Kids events"
+            },
+            {
+              "url": "https://engagedpatrons.org/Events.cfm?SiteID=4662&Audience=T",
+              "audience": "T",
+              "label": "Teen events"
+            }
+          ],
+          "address": "19 Blue Mill Road, New Vernon, NJ 07976",
+          "lat": 40.74261,
+          "lng": -74.49782,
+          "lastCheckedAt": "2026-06-11"
+        }
+      ]
     },
     {
       "id": "far-hills-borough",
@@ -6390,13 +6816,40 @@
       "municipal": {
         "website": "https://www.metuchennj.org/",
         "eventsUrl": "https://www.metuchennj.org/resident/calendar",
-        "recreationUrl": "https://www.metuchennj.org/resident/recreation",
+        "recreationUrl": "https://www.metuchennj.org/resident/recreation_and_pool",
         "status": "importable",
         "parser": "joomla-dpcalendar-raw",
         "itemId": "965",
         "rawEventsUrl": "https://www.metuchennj.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
-        "notes": "Metuchen Borough uses Joomla DPCalendar; raw endpoint imports municipal events."
-      }
+        "locationOverrides": [
+          {
+            "name": "Downtown Metuchen",
+            "aliases": [
+              "Metuchen Street Fair"
+            ],
+            "address": "Main Street, Metuchen, NJ 08840",
+            "lat": 40.542445,
+            "lng": -74.362767,
+            "addressStatus": "approximate",
+            "directionsDisabled": true
+          }
+        ],
+        "notes": "Metuchen Borough uses Joomla DPCalendar; raw endpoint imports municipal events. Recreation URL refreshed during 2026-06-11 source rediscovery; verify final path before relying on parser."
+      },
+      "libraries": [
+        {
+          "name": "Metuchen Public Library",
+          "website": "https://www.metuchenlibrary.org/",
+          "eventsUrl": "https://www.metuchenlibrary.org/events",
+          "status": "manual_review",
+          "townId": "metuchen-borough",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Rediscovered 2026-06-11. Official public library source; inspect event calendar endpoint and youth/family filters before import."
+        }
+      ]
     },
     {
       "id": "highland-park-borough",
@@ -6417,7 +6870,27 @@
         "recreationUrl": "https://www.hpboro.com/recreation/",
         "status": "manual_review",
         "notes": "Highland Park official site and events/recreation entries are now tracked. Keep manual_review until stable feed extraction is confirmed."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Highland Park Public Library",
+          "website": "https://www.hpplnj.org/",
+          "eventsUrl": "https://hpplnj.events.mylibrary.digital/embed/featured_carousel",
+          "status": "importable",
+          "townId": "highland-park-borough",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Converted to importable on 2026-06-11 using mylibrary.digital featured carousel embed. Direct event detail pages remain Cloudflare-protected; parser imports featured kid/family/teen-friendly rows from embed/featured_carousel until a fuller browser-backed parser exists.",
+          "parser": "mylibrary-featured-carousel",
+          "parserVersion": "2026-06-11",
+          "address": "31 North 5th Avenue, Highland Park, NJ 08904",
+          "lat": 40.49971,
+          "lng": -74.42978,
+          "lastCheckedAt": "2026-06-11"
+        }
+      ]
     },
     {
       "id": "raritan-borough",
@@ -6471,11 +6944,21 @@
       },
       "distanceMiles": 9,
       "municipal": {
-        "website": "https://www.garwood.org/",
-        "eventsUrl": "https://www.garwood.org/community-calendar/",
+        "website": "https://garwood.org/",
+        "eventsUrl": "https://garwood.org/calendar",
         "recreationUrl": "https://www.garwood.org/",
-        "status": "manual_review",
-        "notes": "Municipal community-recreation surface recorded. Calendar path requires parser/JS check before importable conversion."
+        "status": "importable",
+        "notes": "Converted to importable on 2026-06-11. GovOffice community calendar exposes month/year HTML rows under Type=B_EV and SEC=3477EEE2-E343-45A7-8C90-353E30FEBED9; govoffice-calendar imports community/family-safe rows and skips meetings/recycling/collection rows.",
+        "lastCheckedAt": "2026-06-11",
+        "lastFailureReason": "Community calendar URL returned 404 during 2026-06-11 URL audit; rediscovery needed before parser work.",
+        "parser": "govoffice-calendar",
+        "parserVersion": "2026-06-11",
+        "sectionId": "3477EEE2-E343-45A7-8C90-353E30FEBED9",
+        "type": "B_EV",
+        "defaultVenueName": "Garwood community event",
+        "defaultAddress": "403 South Avenue, Garwood, NJ 07027",
+        "lat": 40.65133,
+        "lng": -74.32315
       }
     },
     {
@@ -6498,7 +6981,21 @@
         "status": "importable",
         "parser": "civicplus-calendar",
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Clark Public Library",
+          "website": "https://www.clarklibrary.org/",
+          "eventsUrl": "https://clarkpl.librarycalendar.com/",
+          "status": "manual_review",
+          "townId": "clark-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Rediscovered 2026-06-11. Official librarycalendar source with kids/teens categories; candidate for librarycalendar parser."
+        }
+      ]
     },
     {
       "id": "new-brunswick-city",
@@ -6519,7 +7016,21 @@
         "recreationUrl": "https://www.cityofnewbrunswick.com/sports-recreation/",
         "status": "manual_review",
         "notes": "New Brunswick city homepage and likely events/recreation surfaces are stored. Needs manual verification for a date-stable municipal feed."
-      }
+      },
+      "libraries": [
+        {
+          "name": "New Brunswick Free Public Library",
+          "website": "https://www.nbfpl.org/",
+          "eventsUrl": "https://www.nbfpl.org/events",
+          "status": "manual_review",
+          "townId": "new-brunswick-city",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Rediscovered 2026-06-11. Official city library source; inspect calendar endpoint and children/teen filters before import."
+        }
+      ]
     },
     {
       "id": "springfield-township",
@@ -6540,7 +7051,27 @@
         "recreationUrl": "https://www.springfieldtownshipnj.org/",
         "status": "manual_review",
         "notes": "Springfield Township event page is on `springfieldtownshipnj.org/calendar` and appears MWJSCalendar-based. Parser remains manual-review."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Springfield Free Public Library",
+          "website": "https://www.springfieldpubliclibrary.com/",
+          "eventsUrl": "https://www.springfieldpubliclibrary.com/calendar/kids-teens/month.calendar/2026/06/11/-",
+          "status": "importable",
+          "parser": "joomla-jevents-calendar",
+          "parserVersion": "2026-06-11",
+          "townId": "springfield-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "address": "66 Mountain Avenue, Springfield, NJ 07081",
+          "lat": 40.70321,
+          "lng": -74.3178,
+          "lastCheckedAt": "2026-06-11",
+          "notes": "Added 2026-06-11. Kids/Teens calendar uses Joomla JEvents and exposes responsiveEvents JSON in page HTML; joomla-jevents-calendar parser reads child/teen/family events."
+        }
+      ]
     },
     {
       "id": "millstone-borough",
@@ -6560,10 +7091,11 @@
         "eventsUrl": "https://millstoneboro.org/calendar.php",
         "recreationUrl": "https://millstoneboro.org/",
         "status": "importable",
-        "parser": "revize-calendar",
+        "rawEventsUrl": "https://savvycitizenapp.com/plugin/c9b8e2fe-5413-49f4-8981-ea8d5745c62b",
+        "parser": "savvycitizen-plugin",
         "defaultVenueName": "Millstone Borough event",
         "defaultAddress": "1353 Main Street, Millstone, NJ 08844",
-        "notes": "Revize calendar is retained for manual/source review; current page requires a Revize/SavvyCitizen-specific parser. Hillsborough SCLSNJ branch is outside the current 30-minute drive polygon and is intentionally not imported for Millstone."
+        "notes": "Converted to importable SavvyCitizen plugin parsing on 2026-06-11 during image/flyer查漏. The official Revize calendar embeds SavvyCitizen; the homepage agenda plugin c9b8e2fe-5413-49f4-8981-ea8d5745c62b has a stable list format, while calendar.php uses monthly plugin 896a1589-c762-4364-ae7f-09291af41da6. Importer keeps family-safe/community rows such as yard sales and skips bulk pickup/meetings. Hillsborough SCLSNJ branch is outside the current 30-minute drive polygon and is intentionally not imported for Millstone."
       },
       "libraries": [
         {
@@ -6600,8 +7132,50 @@
         "parser": "joomla-dpcalendar-raw",
         "itemId": "965",
         "rawEventsUrl": "https://www.chathamborough.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "locationOverrides": [
+          {
+            "name": "Chatham Borough Municipal Building",
+            "aliases": [
+              "Flag Day",
+              "Gazebo Concert",
+              "4th of July Parade & Fireworks",
+              "National Night Out",
+              "Mid - Autumn Festival"
+            ],
+            "address": "54 Fairmount Avenue, Chatham, NJ 07928",
+            "lat": 40.740686,
+            "lng": -74.38448,
+            "addressStatus": "approximate",
+            "directionsDisabled": true
+          }
+        ],
         "notes": "Chatham Borough uses Joomla DPCalendar; raw endpoint imports municipal events."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Library of the Chathams",
+          "website": "https://chathamlibrary.org/",
+          "eventsUrl": "https://chathamlibrary.librarycalendar.com/events/list?age_groups%5B57%5D=57&age_groups%5B58%5D=58&age_groups%5B60%5D=60",
+          "status": "importable",
+          "townId": "chatham-borough",
+          "servesTownIds": [
+            "chatham-township",
+            "chatham-borough"
+          ],
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Converted to importable on 2026-06-11. Official site links to chathamlibrary.librarycalendar.com; librarycalendar-list reads Children, Teens, and All Ages filters. idPrefix prevents shared Chathams events from overwriting the borough/township copy.",
+          "parser": "librarycalendar-list",
+          "parserVersion": "2026-06-11",
+          "idPrefix": "chathams-library-chatham-borough",
+          "address": "214 Main Street, Chatham, NJ 07928",
+          "lat": 40.74043,
+          "lng": -74.38378,
+          "lastCheckedAt": "2026-06-11"
+        }
+      ]
     },
     {
       "id": "cranford-township",
@@ -6623,7 +7197,21 @@
         "status": "importable",
         "parser": "civicplus-calendar",
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Cranford Public Library",
+          "website": "https://www.cranfordlibrary.org/",
+          "eventsUrl": "https://www.cranfordlibrary.org/events",
+          "status": "manual_review",
+          "townId": "cranford-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Rediscovered 2026-06-11. Official library events page with children/teen program potential; inspect stable endpoint before importing."
+        }
+      ]
     },
     {
       "id": "franklin-township",
@@ -6748,11 +7336,46 @@
       },
       "distanceMiles": 10.3,
       "municipal": {
-        "website": "https://www.madisonboro.org/",
-        "eventsUrl": "https://www.madisonboro.org/",
+        "website": "https://www.rosenet.org/",
+        "eventsUrl": "https://www.rosenet.org/Calendar.aspx",
         "status": "manual_review",
-        "notes": "Madison Borough website is recorded. Add the exact events/recreation endpoint once the site menu structure is confirmed."
-      }
+        "notes": "Official Madison municipal source updated from stale madisonboro.org to RoseNet during 2026-06-11 rediscovery. Keep manual_review until CivicPlus/calendar parser path is confirmed.",
+        "lastCheckedAt": "2026-06-11",
+        "lastFailureReason": "Municipal domain madisonboro.org did not resolve during 2026-06-11 URL audit; rediscovery needed.",
+        "recreationUrl": "https://www.rosenet.org/178/Recreation"
+      },
+      "libraries": [
+        {
+          "name": "Madison Public Library",
+          "website": "https://www.madisonnjlibrary.org/",
+          "eventsUrl": "https://engagedpatrons.org/Events.cfm?SiteID=1689&Audience=C",
+          "status": "importable",
+          "townId": "madison-borough",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Converted to importable on 2026-06-11. Official library navigation links Kids and Teen events to engagedpatrons.org SiteID 1689; engagedpatrons-list parses LEEventWrapper rows from Kids and Teen audience feeds.",
+          "parser": "engagedpatrons-list",
+          "parserVersion": "2026-06-11",
+          "eventUrls": [
+            {
+              "url": "https://engagedpatrons.org/Events.cfm?SiteID=1689&Audience=C",
+              "audience": "C",
+              "label": "Kids events"
+            },
+            {
+              "url": "https://engagedpatrons.org/Events.cfm?SiteID=1689&Audience=T",
+              "audience": "T",
+              "label": "Teen events"
+            }
+          ],
+          "address": "39 Keep Street, Madison, NJ 07940",
+          "lat": 40.752162,
+          "lng": -74.413769,
+          "lastCheckedAt": "2026-06-11"
+        }
+      ]
     },
     {
       "id": "kenilworth-borough",
@@ -6774,7 +7397,27 @@
         "status": "importable",
         "parser": "civicplus-calendar",
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Kenilworth Public Library",
+          "website": "https://kenilworthlibrary.org/",
+          "eventsUrl": "https://kenilworthlibrary.events.mylibrary.digital/",
+          "status": "importable",
+          "townId": "kenilworth-borough",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Converted to importable on 2026-06-11 during flyer/image查漏. mylibrary.digital detail pages are Cloudflare-protected, but the official WordPress homepage publishes an Upcoming Events list with title/date/time/location and mylibrary event ids; mylibrary-homepage-events imports kid/family-compatible rows from that list.",
+          "parser": "mylibrary-homepage-events",
+          "parserVersion": "2026-06-11",
+          "address": "548 Boulevard, Kenilworth, NJ 07033",
+          "lat": 40.67646,
+          "lng": -74.28961,
+          "lastCheckedAt": "2026-06-11"
+        }
+      ]
     },
     {
       "id": "millburn-township",
@@ -6803,11 +7446,25 @@
       "municipal": {
         "website": "https://twp.millburn.nj.us/",
         "eventsUrl": "https://twp.millburn.nj.us/calendar.aspx",
-        "recreationUrl": "https://twp.millburn.nj.us/recreation/",
+        "recreationUrl": "https://twp.millburn.nj.us/175/Recreation-Programs",
         "status": "importable",
         "parser": "civicplus-calendar",
-        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+        "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx. Recreation URL refreshed during 2026-06-11 source rediscovery."
+      },
+      "libraries": [
+        {
+          "name": "Millburn Free Public Library",
+          "website": "https://millburnlibrary.org/",
+          "eventsUrl": "https://millburnlibrary.org/calendar/",
+          "status": "manual_review",
+          "townId": "millburn-township",
+          "sourceTypes": [
+            "public_library"
+          ],
+          "tier": 1,
+          "notes": "Rediscovered 2026-06-11. Official library calendar page links to children/teen/adult calendar views; inspect stable LibCal endpoint before importing."
+        }
+      ]
     },
     {
       "id": "branchburg-township",
@@ -6888,7 +7545,21 @@
         "status": "importable",
         "parser": "civicplus-calendar",
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Union Public Library",
+          "website": "https://uplnj.org/",
+          "eventsUrl": "https://uplnj.events.mylibrary.digital/",
+          "status": "manual_review",
+          "townId": "union-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Rediscovered 2026-06-11. mylibrary.digital calendar shows children/family activities; configured or browser-backed parser may be needed."
+        }
+      ]
     },
     {
       "id": "maplewood-township",
@@ -6909,7 +7580,64 @@
         "recreationUrl": "https://www.maplewoodnj.gov/recreation/",
         "status": "manual_review",
         "notes": "Maplewood official municipal site is added with event/recreation landing pages. Keep manual_review until feed parser path is stable."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Maplewood Memorial Library",
+          "website": "https://www.maplewoodlibrary.org/",
+          "eventsUrl": "https://maplewoodlibrary.libnet.info/events",
+          "status": "importable",
+          "townId": "maplewood-township",
+          "sourceTypes": [
+            "public_library"
+          ],
+          "tier": 1,
+          "notes": "Converted to importable on 2026-06-11. Official site links to maplewoodlibrary.libnet.info; Communico /eeventcaldata and locations API verified. Uses youth/family ageFilters from API labels.",
+          "parser": "communico-libnet",
+          "eventEndpoint": "https://maplewoodlibrary.libnet.info/eeventcaldata",
+          "locationEndpoint": "https://api.communico.co/v1/maplewoodlibrary/locations",
+          "branchIds": [
+            "4165",
+            "4214"
+          ],
+          "ageFilters": [
+            "Babies",
+            "Toddlers",
+            "Pre-K",
+            "Elementary school age",
+            "Family (all ages)",
+            "Tweens",
+            "Teen"
+          ],
+          "address": "51 Baker Street, Maplewood, NJ 07040",
+          "lat": 40.731426,
+          "lng": -74.278327,
+          "locations": [
+            {
+              "id": "4165",
+              "name": "Maplewood Hilton Branch",
+              "line1": "1688 Springfield Avenue",
+              "locality": "Maplewood",
+              "stateprovincecounty": "NJ",
+              "ziporpostcode": "07040",
+              "lat": "40.7222403",
+              "lon": "-74.2610384"
+            },
+            {
+              "id": "4214",
+              "name": "Maplewood Memorial Library",
+              "line1": "51 Baker Street",
+              "locality": "Maplewood",
+              "stateprovincecounty": "NJ",
+              "ziporpostcode": "07040",
+              "lat": "40.731426",
+              "lon": "-74.278327"
+            }
+          ],
+          "parserVersion": "2026-06-11",
+          "lastCheckedAt": "2026-06-11"
+        }
+      ]
     },
     {
       "id": "livingston-township",
@@ -6931,7 +7659,21 @@
         "status": "importable",
         "parser": "civicplus-calendar",
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Livingston Public Library",
+          "website": "https://www.livingstonlibrary.org/",
+          "eventsUrl": "https://www.livingstonlibrary.org/",
+          "status": "manual_review",
+          "townId": "livingston-township",
+          "sourceTypes": [
+            "public_library"
+          ],
+          "tier": 1,
+          "notes": "Rediscovered 2026-06-11. Official public library source; find stable calendar endpoint before importing."
+        }
+      ]
     },
     {
       "id": "hillside-township",
@@ -6947,12 +7689,38 @@
       },
       "distanceMiles": 14.7,
       "municipal": {
-        "website": "https://www.hillsidetwp.com/",
-        "eventsUrl": "https://www.hillsidetwp.com/events/",
-        "recreationUrl": "https://www.hillsidetwp.com/recreation/",
-        "status": "manual_review",
-        "notes": "Hillside official site + events/recreation pages are now recorded. Keep manual_review while validating stable date extraction."
-      }
+        "website": "https://www.hillsidenj.us/",
+        "eventsUrl": "https://www.hillsidenj.us/eventsarchive",
+        "recreationUrl": "https://www.hillsidenj.us/recreation",
+        "status": "importable",
+        "notes": "Converted to importable on 2026-06-11. Official Hillside Township Events Archive is EggZack server-rendered HTML; eggzack-event-archive parses event cards and skips meetings/service-only rows. Current archive has only past May 2026 events after the project cutoff, so no future kid/family events are imported right now.",
+        "lastCheckedAt": "2026-06-11",
+        "parser": "eggzack-event-archive",
+        "defaultVenueName": "Hillside Township event",
+        "defaultAddress": "1409 Liberty Avenue, Hillside, NJ 07205",
+        "lat": 40.70123,
+        "lng": -74.22866
+      },
+      "libraries": [
+        {
+          "name": "Hillside Public Library",
+          "website": "https://hillsidepl.org/",
+          "eventsUrl": "https://hillsidepl.events.mylibrary.digital/",
+          "status": "importable",
+          "townId": "hillside-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Converted to importable on 2026-06-11 during flyer/image查漏. Official homepage exposes June 2026 slideshow images plus an Upcoming Events text list with mylibrary ids; mylibrary-homepage-events imports kid/family-compatible rows while skipping board meetings and non-events. Detail pages remain Cloudflare-protected.",
+          "parser": "mylibrary-homepage-events",
+          "parserVersion": "2026-06-11",
+          "address": "1409 Liberty Avenue, Hillside, NJ 07205",
+          "lat": 40.70123,
+          "lng": -74.22866,
+          "lastCheckedAt": "2026-06-11"
+        }
+      ]
     },
     {
       "id": "south-orange-village-township",
@@ -6974,7 +7742,21 @@
         "status": "importable",
         "parser": "civicplus-calendar",
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+      },
+      "libraries": [
+        {
+          "name": "South Orange Public Library",
+          "website": "https://www.sopl.org/",
+          "eventsUrl": "https://www.sopl.org/",
+          "status": "manual_review",
+          "townId": "south-orange-village-township",
+          "sourceTypes": [
+            "public_library"
+          ],
+          "tier": 1,
+          "notes": "Rediscovered 2026-06-11. Municipal CivicPlus calendar also includes library categories; keep separate source for direct library review."
+        }
+      ]
     },
     {
       "id": "irvington-township",
@@ -6995,7 +7777,91 @@
         "recreationUrl": "https://irvingtonnj.gov/recreation/",
         "status": "manual_review",
         "notes": "Irvington homepage exposes a WordPress events section at /home/upcoming-events/. Parser is not yet stable; keep manual_review."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Irvington Public Library",
+          "website": "https://www.irvingtonpubliclibrary.org/",
+          "eventsUrl": "https://www.irvingtonpubliclibrary.org/kids/special-events",
+          "status": "importable",
+          "townId": "irvington-township",
+          "sourceTypes": [
+            "public_library"
+          ],
+          "tier": 1,
+          "notes": "Converted to importable on 2026-06-11 using official Kids/Special Events and site sidebar text. The site uses Joomla Event Booking but current month calendar has no event rows; configured-library-events captures the recurring children programs published on the official page.",
+          "parser": "configured-library-events",
+          "parserVersion": "2026-06-11",
+          "address": "Civic Square, Irvington, NJ 07111",
+          "lat": 40.73232,
+          "lng": -74.23487,
+          "lastCheckedAt": "2026-06-11",
+          "configuredEvents": [
+            {
+              "title": "Crochet Club",
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "monday",
+                "startDate": "2026-06-15",
+                "endDate": "2026-08-31"
+              },
+              "startTime": "16:00",
+              "endTime": "18:00",
+              "venue": "Irvington Public Library",
+              "room": "Children's Room",
+              "registration": "Drop-in",
+              "url": "https://www.irvingtonpubliclibrary.org/kids/special-events",
+              "summary": "Weekly children's Crochet Club listed on the official Irvington Public Library kids/special events page.",
+              "ages": [
+                "early-elementary",
+                "tween",
+                "teen"
+              ],
+              "audiences": [
+                "Children",
+                "Tweens",
+                "Teens"
+              ],
+              "tags": [
+                "craft",
+                "crochet",
+                "configured-recurring"
+              ]
+            },
+            {
+              "title": "Babies and Toddlers Storytime",
+              "recurrence": {
+                "frequency": "weekly",
+                "weekday": "tuesday",
+                "startDate": "2026-06-16",
+                "endDate": "2026-08-31"
+              },
+              "startTime": "10:00",
+              "endTime": "10:30",
+              "venue": "Irvington Public Library",
+              "room": "Children's Room",
+              "registration": "Drop-in",
+              "url": "https://www.irvingtonpubliclibrary.org/kids/special-events",
+              "summary": "Weekly babies and toddlers storytime listed on the official Irvington Public Library kids/special events page.",
+              "ages": [
+                "baby",
+                "toddler",
+                "preschool"
+              ],
+              "audiences": [
+                "Babies",
+                "Toddlers",
+                "Caregivers"
+              ],
+              "tags": [
+                "storytime",
+                "early-literacy",
+                "configured-recurring"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "newark-city",
@@ -7063,7 +7929,21 @@
         "status": "importable",
         "parser": "civicplus-calendar",
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
-      }
+      },
+      "libraries": [
+        {
+          "name": "Newark Public Library",
+          "website": "https://www.npl.org/",
+          "eventsUrl": "https://www.npl.org/",
+          "status": "manual_review",
+          "townId": "newark-city",
+          "sourceTypes": [
+            "public_library"
+          ],
+          "tier": 1,
+          "notes": "Rediscovered 2026-06-11. Multi-branch library system; inspect branch/event calendar before importing children/family rows."
+        }
+      ]
     }
   ]
 }

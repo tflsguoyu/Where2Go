@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260609-cache-v72";
+const APP_VERSION = "20260611-cache-v81";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -12,6 +12,14 @@ const STATS_ENDPOINT = String(ANALYTICS_CONFIG.statsEndpoint || "").trim();
 const AREA_ANALYTICS_MAX_DISTANCE_MILES = Number.isFinite(Number(ANALYTICS_CONFIG.areaMaxDistanceMiles))
   ? Number(ANALYTICS_CONFIG.areaMaxDistanceMiles)
   : 12;
+const EVENT_FILTERS = {
+  all: "all",
+  worldCup: "worldCup"
+};
+// Temporary 2026 World Cup filter; remove this block with the UI after the tournament.
+const WORLD_CUP_TEXT_PATTERN = /\b(?:world\s*cup|fifa)\b|世界杯/i;
+const WORLD_CUP_OBVIOUS_EVENT_PATTERN =
+  /\b(?:dream fan fest|goal zone @ the commons|battle of basking ridge|summit downtown welcomes the world)\b/i;
 const AREA_ANALYTICS_SENT_KEY = "where2go-area-analytics-sent-v1";
 const STATS_ROW_LIMIT = 8;
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
@@ -87,11 +95,13 @@ const state = {
   driveTimeEnabled: false,
   driveTimeLoading: false,
   driveTimeOrigin: null,
+  eventFilter: EVENT_FILTERS.all,
   installPromptEvent: null,
   installPromptMode: "",
   initialLocationRequested: false,
   sourceRegistry: null,
   moreMenuOpen: false,
+  aboutOpen: false,
   coveredTownsOpen: false,
   statsOpen: false,
   termsOpen: false,
@@ -105,9 +115,13 @@ const state = {
 
 const elements = {
   dateStrip: document.querySelector("#dateStrip"),
+  eventFilterControl: document.querySelector("#eventFilterControl"),
   mapSurface: document.querySelector("#mapSurface"),
   eventDetail: document.querySelector("#eventDetail"),
   updatedLabel: document.querySelector("#updatedLabel"),
+  aboutToggle: document.querySelector("#aboutToggle"),
+  aboutPanel: document.querySelector("#aboutPanel"),
+  aboutUpdatedLabel: document.querySelector("#aboutUpdatedLabel"),
   moreMenuButton: document.querySelector("#moreMenuButton"),
   moreMenuPanel: document.querySelector("#moreMenuPanel"),
   coveredTownsToggle: document.querySelector("#coveredTownsToggle"),
@@ -331,6 +345,33 @@ function normalizeEvents(events) {
     .sort((a, b) => a.startsAt - b.startsAt);
 }
 
+function eventTextForFilter(event) {
+  return [
+    event.id,
+    event.title,
+    event.summary,
+    event.source,
+    event.sourceId,
+    event.venue,
+    event.venueName,
+    Array.isArray(event.tags) ? event.tags.join(" ") : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function isWorldCupRelatedEvent(event) {
+  const text = eventTextForFilter(event);
+  return WORLD_CUP_TEXT_PATTERN.test(text) || WORLD_CUP_OBVIOUS_EVENT_PATTERN.test(text);
+}
+
+function eventsForActiveFilter() {
+  if (state.eventFilter === EVENT_FILTERS.worldCup) {
+    return state.events.filter(isWorldCupRelatedEvent);
+  }
+  return state.events;
+}
+
 function uniqueDates(events) {
   return [...new Set(events.map((event) => event.dateKey))];
 }
@@ -356,7 +397,7 @@ function alignActiveDateToStart() {
 }
 
 function eventsForSelectedDate() {
-  return state.events.filter((event) => event.dateKey === state.selectedDate);
+  return eventsForActiveFilter().filter((event) => event.dateKey === state.selectedDate);
 }
 
 function normalizedLocationName(event) {
@@ -378,6 +419,11 @@ function locationKey(event) {
 
 function placeLabel(event) {
   return event.venueName || event.venue || event.address || "Event location";
+}
+
+function hasUncertainAddress(event) {
+  const status = String(event?.addressStatus || event?.addressConfidence || "").toLowerCase();
+  return Boolean(event?.directionsDisabled || event?.addressApproximate || status === "approximate" || status === "uncertain");
 }
 
 function distanceMiles(pointA, pointB) {
@@ -405,6 +451,7 @@ function locationGroupsForEvents(events) {
         lng: event.lng,
         place: placeLabel(event),
         address: event.address || "",
+        hasUncertainAddress: hasUncertainAddress(event),
         events: []
       });
     }
@@ -412,6 +459,9 @@ function locationGroupsForEvents(events) {
     group.events.push(event);
     if (!group.address && event.address) {
       group.address = event.address;
+    }
+    if (hasUncertainAddress(event)) {
+      group.hasUncertainAddress = true;
     }
   });
   const origin = distanceSortOrigin();
@@ -569,14 +619,34 @@ function formatTimeRange(event) {
   return `${formatter.format(event.startsAt)} - ${formatter.format(event.endsAt)}`;
 }
 
-function formatUpdatedLabel(date) {
+function formatUpdatedShortLabel(date) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    timeZone: TIMEZONE
+  }).format(date);
+}
+
+function formatUpdatedFullLabel(date) {
   const formatter = new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
+    year: "numeric",
     hour: "numeric",
-    minute: "2-digit"
+    minute: "2-digit",
+    timeZone: TIMEZONE,
+    timeZoneName: "short"
   });
-  return `Updated ${formatter.format(date)}`;
+  return formatter.format(date);
+}
+
+function setUpdatedLabels(date) {
+  if (elements.updatedLabel) {
+    elements.updatedLabel.textContent = formatUpdatedShortLabel(date);
+  }
+  if (elements.aboutUpdatedLabel) {
+    elements.aboutUpdatedLabel.textContent = formatUpdatedFullLabel(date);
+  }
 }
 
 function parseValidDate(value) {
@@ -668,14 +738,14 @@ async function latestGitHubPushDate() {
 
 async function updateUpdatedLabel(events) {
   const fallbackDate = latestEventRefreshDate(events) || new Date();
-  elements.updatedLabel.textContent = formatUpdatedLabel(fallbackDate);
+  setUpdatedLabels(fallbackDate);
   try {
     const pushDate = await latestGitHubPushDate();
     if (pushDate) {
-      elements.updatedLabel.textContent = formatUpdatedLabel(pushDate);
+      setUpdatedLabels(pushDate);
     }
   } catch {
-    elements.updatedLabel.textContent = formatUpdatedLabel(fallbackDate);
+    setUpdatedLabels(fallbackDate);
   }
 }
 
@@ -719,10 +789,6 @@ function zipCommunitiesForTown(town) {
     .filter((community) => community.name || community.zip);
 }
 
-function hasSearchableLibrary(town) {
-  return Array.isArray(town?.libraries) && town.libraries.some((library) => library?.status === "importable");
-}
-
 function coveredTownItems(sourceRegistry) {
   return (sourceRegistry?.towns || [])
     .map((town) => {
@@ -731,8 +797,7 @@ function coveredTownItems(sourceRegistry) {
         id: town.id,
         name: compactTownMenuName(town.name || town.id || "Town"),
         zipCodes,
-        communities: zipCommunitiesForTown(town),
-        hasSearchableLibrary: hasSearchableLibrary(town)
+        communities: zipCommunitiesForTown(town)
       };
     })
     .sort((a, b) => {
@@ -859,7 +924,7 @@ function renderCoveredTowns(sourceRegistry) {
   elements.coveredTownsList.innerHTML = towns
     .map((town) => {
       const zipLabel = town.zipCodes.length ? town.zipCodes.join(", ") : "ZIP TBD";
-      const itemClass = `town-list-item${town.communities.length ? " has-communities" : ""}${town.hasSearchableLibrary ? " has-search-library" : ""}`;
+      const itemClass = `town-list-item${town.communities.length ? " has-communities" : ""}`;
       if (town.communities.length) {
         const communities = town.communities
           .map((community) => {
@@ -881,6 +946,19 @@ function renderCoveredTownsPanel() {
   }
   elements.coveredTownsPanel.hidden = !state.coveredTownsOpen;
   elements.coveredTownsToggle.setAttribute("aria-expanded", String(state.coveredTownsOpen));
+}
+
+function renderAboutPanel() {
+  if (!elements.aboutToggle || !elements.aboutPanel) {
+    return;
+  }
+  elements.aboutPanel.hidden = !state.aboutOpen;
+  elements.aboutToggle.setAttribute("aria-expanded", String(state.aboutOpen));
+}
+
+function toggleAboutPanel() {
+  state.aboutOpen = !state.aboutOpen;
+  renderAboutPanel();
 }
 
 function toggleCoveredTownsPanel() {
@@ -1069,6 +1147,10 @@ function bindMoreMenu() {
     event.stopPropagation();
     toggleMoreMenu();
   });
+  elements.aboutToggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleAboutPanel();
+  });
   elements.coveredTownsToggle?.addEventListener("click", (event) => {
     event.stopPropagation();
     toggleCoveredTownsPanel();
@@ -1111,6 +1193,46 @@ function bindMoreMenu() {
       setMoreMenuOpen(false);
       elements.moreMenuButton?.focus();
     }
+  });
+}
+
+function syncDatesForActiveFilter() {
+  state.dates = visibleDates(eventsForActiveFilter());
+  if (!state.dates.includes(state.selectedDate)) {
+    state.selectedDate = defaultSelectedDate(state.dates);
+    state.selectedEventId = "";
+    state.mapFocus = "events";
+  }
+}
+
+function renderEventFilter() {
+  elements.eventFilterControl?.classList.toggle("is-world-cup", state.eventFilter === EVENT_FILTERS.worldCup);
+  elements.eventFilterControl?.querySelectorAll("[data-event-filter]").forEach((button) => {
+    const isActive = button.dataset.eventFilter === state.eventFilter;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function setEventFilter(filter) {
+  if (!Object.values(EVENT_FILTERS).includes(filter) || filter === state.eventFilter) {
+    return;
+  }
+  state.eventFilter = filter;
+  state.selectedEventId = "";
+  state.mapFocus = "events";
+  state.dateStripAligned = false;
+  syncDatesForActiveFilter();
+  render();
+}
+
+function bindEventFilter() {
+  elements.eventFilterControl?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-event-filter]");
+    if (!button || !elements.eventFilterControl.contains(button)) {
+      return;
+    }
+    setEventFilter(button.dataset.eventFilter);
   });
 }
 
@@ -2043,6 +2165,9 @@ function renderMap() {
 }
 
 function directionsUrl(group) {
+  if (group?.hasUncertainAddress) {
+    return "#";
+  }
   const address = String(group?.address || "").trim();
   const place = String(group?.place || "").trim();
   const hasExactStreetAddress = /\d/.test(address) && !/\b(?:from|behind|between|near)\b|&/i.test(address);
@@ -2056,6 +2181,13 @@ function directionsUrl(group) {
     return "#";
   }
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`;
+}
+
+function directionsControlHtml(group) {
+  if (group?.hasUncertainAddress) {
+    return `<span class="directions-link is-disabled" aria-disabled="true" title="Directions are unavailable because this address is approximate">Directions</span>`;
+  }
+  return `<a class="directions-link" href="${escapeHtml(directionsUrl(group))}" target="_blank" rel="noreferrer">Directions</a>`;
 }
 
 function renderDetail() {
@@ -2100,7 +2232,7 @@ function renderDetail() {
           <div class="place-line ${pinNumber ? "" : "has-no-pin"}">
             ${pinBadgeHtml}
             <strong class="place-name">${escapeHtml(displayPlace || group.place)}</strong>
-            <a class="directions-link" href="${escapeHtml(directionsUrl(group))}" target="_blank" rel="noreferrer">Directions</a>
+            ${directionsControlHtml(group)}
           </div>
           <div class="detail-events">${eventsHtml}</div>
         </section>
@@ -2110,6 +2242,8 @@ function renderDetail() {
 }
 
 function render() {
+  syncDatesForActiveFilter();
+  renderEventFilter();
   renderDates();
   renderMap();
   renderDetail();
@@ -2119,11 +2253,12 @@ async function init() {
   const [events, sourceRegistry] = await Promise.all([loadEventsData(), loadSourceRegistryData()]);
   state.sourceRegistry = sourceRegistry;
   state.events = normalizeEvents(events);
-  state.dates = visibleDates(state.events);
+  syncDatesForActiveFilter();
   state.selectedDate = defaultSelectedDate(state.dates);
   state.selectedEventId = "";
   updateUpdatedLabel(events);
   renderCoveredTowns(sourceRegistry);
+  renderAboutPanel();
   renderCoveredTownsPanel();
   hydrateTermsContent();
   renderTermsPanel();
@@ -2164,9 +2299,15 @@ function setupInstallPrompt() {
 initAnalytics();
 setupInstallPrompt();
 bindMoreMenu();
+bindEventFilter();
 
 init().catch((error) => {
-  elements.updatedLabel.textContent = "Load failed";
+  if (elements.updatedLabel) {
+    elements.updatedLabel.textContent = "Load failed";
+  }
+  if (elements.aboutUpdatedLabel) {
+    elements.aboutUpdatedLabel.textContent = "Load failed";
+  }
   elements.mapSurface.innerHTML = `<div class="map-empty"><strong>${escapeHtml(error.message)}</strong></div>`;
   elements.eventDetail.innerHTML = "";
 });

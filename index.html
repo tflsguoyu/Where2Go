@@ -31,27 +31,39 @@
     />
     <meta name="twitter:image" content="https://tflsguoyu.github.io/Where2Go/assets/share-card.png" />
     <title>Where2Go</title>
-    <link rel="manifest" href="manifest.webmanifest?v=20260609-cache-v72" />
+    <link rel="manifest" href="manifest.webmanifest?v=20260611-cache-v81" />
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="assets/icon-192.png" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css?v=20260609-cache-v72" />
+    <link rel="stylesheet" href="styles.css?v=20260611-cache-v81" />
   </head>
   <body>
     <main class="app-shell" aria-label="Where2Go event map">
       <header class="topbar">
-        <div>
-          <h1>Where2Go</h1>
+        <div class="brand-block">
+          <h1>Where2Go <span class="updated" id="updatedLabel">Loading</span></h1>
         </div>
         <div class="topbar-actions">
-          <p class="updated" id="updatedLabel">Loading</p>
+          <section class="event-filter" aria-label="Event filter">
+            <div class="event-filter-control" id="eventFilterControl" role="group" aria-label="Show events">
+              <button class="event-filter-button is-active" type="button" data-event-filter="all" aria-pressed="true">All</button>
+              <button class="event-filter-button" type="button" data-event-filter="worldCup" aria-label="World Cup" aria-pressed="false"></button>
+            </div>
+          </section>
           <div class="more-menu">
             <button class="more-button" id="moreMenuButton" type="button" aria-label="More" aria-expanded="false" aria-controls="moreMenuPanel">
               <span class="more-icon" aria-hidden="true"><span></span><span></span><span></span></span>
             </button>
             <div class="more-panel" id="moreMenuPanel" hidden>
               <section class="more-section">
+                <button class="more-link more-action" id="aboutToggle" type="button" aria-expanded="false" aria-controls="aboutPanel">About</button>
+                <div class="about-panel" id="aboutPanel" hidden>
+                  <div class="about-row">
+                    <span>Updated</span>
+                    <strong id="aboutUpdatedLabel">Loading</strong>
+                  </div>
+                </div>
                 <button class="more-link more-action" id="coveredTownsToggle" type="button" aria-expanded="false" aria-controls="coveredTownsPanel">Covered towns</button>
                 <div class="covered-towns-panel" id="coveredTownsPanel" hidden>
                   <ul class="town-list" id="coveredTownsList"></ul>
@@ -165,7 +177,7 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="config.js?v=20260609-cache-v72"></script>
-    <script type="module" src="app.js?v=20260609-cache-v72"></script>
+    <script src="config.js?v=20260611-cache-v81"></script>
+    <script type="module" src="app.js?v=20260611-cache-v81"></script>
   </body>
 </html>

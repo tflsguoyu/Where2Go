@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-11",
+  "principles": [
+    "Frontend files do not own discovery, crawling, filtering, or event cleanup rules.",
+    "data/event-sources.json is the durable registry for towns, sources, source configuration, and source notes.",
+    "data/events.json is an append/update-oriented event history consumed by the app.",
+    "Routine event refreshes reuse known sources; they do not perform broad source rediscovery unless explicitly requested.",
+    "New town work and explicit rediscovery work must record both found and not_found source-type results so future runs do not repeat the same search."
+  ],
+  "sourceRecordGuidance": {
+    "recommendedFields": [
+      "id",
+      "label",
+      "tier",
+      "sourceTypes",
+      "status",
+      "website",
+      "eventsUrl",
+      "parser",
+      "parserVersion",
+      "townId",
+      "servesTownIds",
+      "address",
+      "lat",
+      "lng",
+      "notes",
+      "lastCheckedAt",
+      "lastSuccessfulImportAt",
+      "lastFailedImportAt",
+      "lastFailureReason"
+    ],
+    "relationshipRules": [
+      "source.townId is the source or venue's primary physical town when there is one.",
+      "source.servesTownIds lists towns served by a regional, county, library-system, mall, or nearby venue source.",
+      "event.townId means the event's actual location town, not the source's service area.",
+      "A source may have multiple sourceTypes."
+    ],
+    "statusVocabulary": {
+      "importable": "Importer should automatically read this source and write or update events.",
+      "manual_review": "Useful source, but no stable importer exists yet or human review is needed.",
+      "service_area": "Town is covered by a broader source or shared system.",
+      "blocked_by_bot_protection": "Useful source, but direct script fetching is blocked.",
+      "reference_only": "Keep for planning or discovery; do not import events automatically.",
+      "not_found": "A source type was checked for a town and no useful dated-event source was found.",
+      "broken": "A previously useful source or parser is currently failing and needs review."
+    }
+  },
+  "workflows": [
+    {
+      "id": "add_town",
+      "label": "Add a new town",
+      "defaultDateWindow": "today forward; keep historical events already stored",
+      "steps": [
+        "Create or update the town record with stable id, official name, county, state, ZIPs when known, and center coordinates when available.",
+        "Use data/source-taxonomy.json to search across all source families, not only government and library sources.",
+        "Record every useful source in data/event-sources.json with sourceTypes, status, URL fields, parser or parser notes, and service-town relationships.",
+        "Record not_found discovery results for source families that were searched but produced no useful dated-event source.",
+        "For importable sources, reuse or add parser configuration and import kid/family-compatible events from today forward.",
+        "Normalize events into data/events.json while preserving older historical records.",
+        "Run validation and record any unresolved source or event quality issues."
+      ],
+      "deliverables": [
+        "town record",
+        "source discovery audit",
+        "found source records",
+        "not_found source-type notes",
+        "parser/config notes for importable sources",
+        "new or updated event records",
+        "quality report"
+      ]
+    },
+    {
+      "id": "refresh_existing_sources",
+      "label": "Refresh known sources",
+      "defaultDateWindow": "today through source lookahead window; default 60 days unless source config says otherwise",
+      "steps": [
+        "Read known importable and configured manual sources from data/event-sources.json.",
+        "Reuse stored parser names, endpoints, parameters, fallback locations, and notes.",
+        "Fetch current events from each source without deleting historical events.",
+        "Merge events by stable event id or duplicate matching rules.",
+        "Update lastSeenAt for observed events and firstSeenAt for new events.",
+        "Do not mark missing future events as cancelled unless the official source explicitly says cancelled.",
+        "Record parser failures on the source with lastFailedImportAt and lastFailureReason when practical."
+      ],
+      "doesNotDo": [
+        "Broad web search for newly opened venues",
+        "Town-wide source rediscovery",
+        "UI changes"
+      ]
+    },
+    {
+      "id": "manual_add_source",
+      "label": "Manually add a source",
+      "steps": [
+        "Ask whether the user wants registration only or registration plus immediate event import if the request is ambiguous.",
+        "Classify the source using data/source-taxonomy.json.",
+        "Record URL, sourceTypes, townId, servesTownIds, status, and parser notes.",
+        "If events should be imported immediately, capture source evidence and normalize eligible events into data/events.json.",
+        "If no stable importer is available, keep the source as manual_review with enough notes to revisit efficiently."
+      ]
+    },
+    {
+      "id": "rediscover_sources",
+      "label": "Rediscover sources for a town",
+      "steps": [
+        "Use this workflow only when explicitly asked or when adding a new town.",
+        "Search each source family in data/source-taxonomy.json for the town, county, and nearby relevant venues.",
+        "Look for newly opened or previously missed malls, play venues, kids gyms, bookstores, farms, museums, parks, and community sources.",
+        "Add new useful sources, update changed URLs or statuses, and record not_found checks.",
+        "Do not import events until the source is classified and the user request includes import/update work or the add-town workflow requires it."
+      ]
+    }
+  ],
+  "mergeRules": {
+    "sourceId": "Stable source ids should not change when URLs, parser names, or notes change.",
+    "eventId": [
+      "Prefer sourceId + upstream externalId + event date.",
+      "If no externalId exists, use sourceId + normalized title + startsAt + venue hash.",
+      "Avoid creating a new event for small title, URL, or summary changes."
+    ],
+    "duplicatePreference": [
+      "Organizer or venue official page",
+      "Official town, county, library, or partner repost",
+      "Registration or ticketing page",
+      "Third-party directory"
+    ]
+  }
+}

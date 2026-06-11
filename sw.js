@@ -1,30 +1,35 @@
-const CACHE_NAME = "where2go-public-v72";
+const CACHE_NAME = "where2go-public-v81";
 const APP_ASSETS = [
   "./",
   "index.html",
-  "terms.html",
   "styles.css",
   "app.js",
   "config.js",
+  "data-status.html",
+  "data-status.js",
   "manifest.webmanifest",
   "assets/icon.svg",
   "assets/icon-192.png",
   "assets/icon-512.png",
+  "assets/world-cup-filter-bg.svg",
   "assets/share-card.png",
   "data/events.json",
   "data/event-sources.json",
+  "data/geo/zip-boundaries.geojson",
   "data/sample-events.json"
 ];
 
 const NETWORK_FIRST_SUFFIXES = [
   "/",
   "/index.html",
-  "/terms.html",
   "/app.js",
   "/config.js",
+  "/data-status.html",
+  "/data-status.js",
   "/styles.css",
   "/data/events.json",
   "/data/event-sources.json",
+  "/data/geo/zip-boundaries.geojson",
   "/data/sample-events.json"
 ];
 

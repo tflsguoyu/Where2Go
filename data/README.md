@@ -1,113 +1,229 @@
-# Event Data
+# Where2Go Data System
 
-The app loads `data/events.json` first, then falls back to
-`data/sample-events.json` if imported data is unavailable.
+This folder owns source discovery, source configuration, event import, event
+eligibility, data cleanup, and maintenance documentation.
 
-The broader source-driven workflow uses two durable files:
+The frontend reads standardized data from this folder. It should not know how a
+source was found, how a website is crawled, or why an event was accepted or
+excluded.
 
-- `data/event-sources.json`: Warren-centered 30-minute coverage, township
-  websites, library websites, event URLs, and parser status.
-- `data/events.json`: merged event records from all importable sources. This
-  file is append/update oriented: old events are kept so source pages can be
-  revisited later.
+## Durable Files
 
-## Required Fields
+```text
+source-taxonomy.json    Source family tiers and sourceTypes
+source-workflows.json   Add-town, refresh, manual source, rediscovery flows
+event-rules.json        Event eligibility, lifecycle, and quality rules
+event-sources.json      Durable town/source registry and parser config
+events.json             Source-driven merged event history used by the app
+sample-events.json      Fallback sample events
+```
 
-Each event should include:
+## Three Layers
 
-- `id`: Stable unique ID.
-- `title`: Event name shown in the detail panel.
-- `venue` or `venueName`: Human-readable location.
-- `source`: Calendar/provider label.
-- `summary`: Useful activity-only description shown in the detail panel; do not
-  include date, time, venue, room, place, or address text.
-- `url` or `sourceUrl`: Link to the source event page.
+The data backend has three layers:
 
-Real imported events should also include:
+- Source taxonomy: reusable source families. Tiers describe source type, not
+  priority. A source may have multiple `sourceTypes`.
+- Source registry: specific websites, URLs, parser names, parser parameters,
+  service areas, source notes, and discovery audit results.
+- Events: normalized activities in `data/events.json`, ready for app display.
 
-- `startsAt`: Local ISO timestamp, for example `2026-06-06T11:00:00`.
-- `endsAt`: Local ISO timestamp.
-- `timezone`: Currently `America/New_York`.
-- `lat` and `lng`: Coordinates used by Leaflet markers.
-- `address`: Used for Google Maps directions when coordinates are missing.
+## Source Taxonomy
 
-Sample events may use `dayOffset`, `time`, and `durationMinutes` instead of
-absolute timestamps.
+Use `source-taxonomy.json` when adding a town or rediscovering sources.
 
-## Maintenance
+Tier meaning is fixed:
 
-When adding a new town, use `townExpansion.sourceTypes` in
-`data/event-sources.json` as the source checklist. Add links first, then run the
-importer so `data/events.json` is refreshed from those sources. The app should
-continue reading event records from `data/events.json`; `event-sources.json`
-stays the durable source registry and expansion notes.
+- Tier 1: official public sources such as municipal government, county
+  government, parks/recreation, public libraries, schools, municipal alliance,
+  and official town news.
+- Tier 2: public-interest institutions such as county parks, nature centers,
+  museums, arts centers, historic sites, nonprofits, downtown groups, farmers
+  markets, farms, gardens, and arboretums.
+- Tier 3: commercial family activity sources such as malls, bookstores, craft
+  stores, home-improvement workshops, indoor playgrounds, trampoline parks, kids
+  gyms, sports complexes, studios, STEM centers, camps, restaurants, and cafes.
+- Tier 4: regional discovery sources such as event directories, tourism
+  calendars, fair/carnival directories, ticketing platforms, social/flyer
+  sources, and search-result candidates.
 
-### New Town Source Sweep
+Do not use tier as priority or trust. If priority is needed, use a separate
+field such as `crawlPriority` or `authorityRank`.
 
-For every newly added town, source discovery must go beyond government and
-library calendars. A town source update is incomplete until every category in
-`townExpansion.requiredSourceSweep.minimumChecklist` has either a recorded source
-entry or a note explaining why no useful dated-event source was found.
+## Source Registry
 
-Search the town itself plus nearby venues inside the active drive-time coverage
-area. Treat any place where children can play, learn, watch, build, craft, read,
-explore, or attend seasonal programs as a potential event source. This includes:
+`event-sources.json` is the durable source registry. Existing fields should
+continue to work, but new source records should prefer these fields when
+practical:
 
-- Municipal calendars, parks/recreation pages, registration portals, municipal
-  alliance pages, official news/flyers, and community supplement pages.
-- Public library branches, county library systems, service-area branches, and
-  youth/teen/family pages.
-- Downtown/SID/chamber/business association calendars, street fairs, farmers
-  markets, and local business district pages.
-- County parks, nature centers, environmental education centers, gardens,
-  arboretums, farms, wildlife centers, zoos, and seasonal outdoor venues.
-- Museums, science centers, art centers, historic sites, theaters, music venues,
-  maker spaces, and cultural centers with family or youth programs.
-- Indoor playgrounds, trampoline parks, sensory gyms, kids gyms, sports
-  complexes, swim schools, dance/martial arts studios, STEM/coding centers,
-  party venues, and camp/class providers.
-- Malls, shopping centers, bookstores, toy/game stores, LEGO/Apple-style retail
-  programs, craft stores, home-improvement kids workshops, and restaurants or
-  cafes that host family events.
-- Regional festival, carnival, fair, market, and tourism directories that can be
-  mapped back to covered towns.
+- `id`: stable source id that should not change when URLs or parser notes change.
+- `label`: human-readable source label.
+- `tier`: source family tier from `source-taxonomy.json`.
+- `sourceTypes`: one or more source type ids from `source-taxonomy.json`.
+- `status`: importability/review status.
+- `website`, `eventsUrl`: source URLs.
+- `parser`, `parserVersion`: importer method and version/date when practical.
+- `townId`: primary physical town for the source or venue.
+- `servesTownIds`: towns served by a regional, county, library-system, mall, or
+  nearby venue source.
+- `address`, `lat`, `lng`: physical venue/source location when useful.
+- `notes`: enough crawl notes to avoid rediscovery next time.
+- `lastCheckedAt`, `lastSuccessfulImportAt`, `lastFailedImportAt`,
+  `lastFailureReason`: source maintenance state when practical.
 
-Record useful sources even when they are not importable yet. Use
-`manual_review`, `blocked_by_bot_protection`, or `service_area` rather than
-dropping the source. Use `reference_only` only for directories or venues with no
-real dated-event potential.
+Relationship rules:
 
-Use `sourceStatusVocabulary` in `data/event-sources.json` for source statuses:
-`importable` means the importer should read it automatically, `manual_review`
-means useful but not automated yet, `service_area` means covered by a broader
-system source, `blocked_by_bot_protection` means direct script fetching is
-blocked, and `reference_only` means keep the link but do not import it.
+- `event.townId` means the event's actual location town.
+- `source.townId` means the source or venue's primary physical town.
+- `source.servesTownIds` means the source is relevant to those towns.
+- Shared systems should keep branch/location fallback records in source config,
+  not hard-coded importer logic.
 
-For towns with multiple ZIP codes, add `zipCommunities` so the app can show a
-tree in the More menu. The menu display follows `appDisplayPolicy`: town labels
-are shortened for readability, ZIPs are right-aligned without parentheses, and
-towns with an importable library source are highlighted. Keep full official
-venue names in source/event data even when the app shortens them for display.
+## Status Rules
 
-Shared systems such as SCLSNJ should keep branch fallback locations in
-`sharedSources[*].locations`, not in importer code. Each branch location should
-include the external branch `id`, display `name`, address fields, and coordinates
-so imports remain stable when an upstream location API fails or returns noisy
-names.
+Use the existing source statuses and the workflow extensions below:
 
-Every import should finish with a quality audit. The importer automatically
-repairs deterministic gaps such as mirrored `url`/`sourceUrl`, mirrored
-`venue`/`venueName`, missing timezone, missing duration, and missing in-coverage
-coordinates when an address can be geocoded. Summaries should contain activity
-content only; date, time, venue, room, place, and address belong in structured
-fields. Any remaining missing time, place, coordinates, source URL, or concrete
-summary must be reported for manual review; do not invent descriptions when the
-source page does not provide one.
+- `importable`: importer should automatically read this source.
+- `manual_review`: useful source, but no stable importer exists yet or human
+  review is needed.
+- `service_area`: town is covered by a broader source or shared system.
+- `blocked_by_bot_protection`: useful source, but direct script fetching is
+  blocked.
+- `reference_only`: keep for planning or discovery; do not import events
+  automatically.
+- `not_found`: a source type was checked for a town and no useful dated-event
+  source was found.
+- `broken`: a previously useful source or parser is currently failing and needs
+  review.
+
+## Event Rules
+
+`event-rules.json` is the source of truth for event inclusion and quality.
+
+Current policy:
+
+- Routine refresh starts at today and looks forward, defaulting to 60 days unless
+  source config says otherwise.
+- Historical events already stored in `events.json` are kept.
+- Do not delete future events only because they disappeared from a listing page.
+- Mark an event cancelled only when the official source explicitly says
+  cancelled.
+- Keep kid-friendly and family-compatible events.
+- Keep gray-area community events such as farmers markets, street fairs,
+  outdoor concerts, movie nights, festivals, nature walks, and museum open days.
+- Exclude only events children clearly cannot attend or that are clearly not
+  suitable for children.
+
+Every real imported event should include a stable `id`, `sourceId`, `title`,
+`source`, `startsAt`, `endsAt`, `timezone`, `venue` or `venueName`, and `url` or
+`sourceUrl`. Displayed map events should also have coordinates or a geocodable
+address.
+
+Summaries must contain activity content only. Date, time, venue, room, place,
+and address belong in structured fields, not in `summary`.
+
+## Workflows
+
+Use `source-workflows.json` as the machine-readable workflow reference.
+
+## Data Requests You Can Make
+
+Use these request patterns for data work:
+
+- "更新活动" or "refresh activities": refresh saved sources from today forward,
+  keep historical events, and do not perform broad source rediscovery.
+- "添加某 town": add or update the town record, discover source families from
+  `source-taxonomy.json`, record found and `not_found` sources, then import
+  eligible events from importable sources.
+- "重新扫某 town 的信息源": run source rediscovery for that town, looking for new
+  or missed sources such as malls, play venues, bookstores, farms, museums, kids
+  gyms, parks, community sources, and regional directories.
+- "添加这个信息源": classify and register the source. If it is ambiguous whether
+  to import immediately, ask first.
+- "添加这个信息源并抓活动": register the source, inspect or create parser notes,
+  and import eligible kid/family-compatible events.
+- "检查数据质量": run event validation and source/event audits, then report
+  missing summaries, missing times, missing coordinates, broken source URLs, or
+  parser failures.
+- "整理规则/文档": update `source-taxonomy.json`, `source-workflows.json`,
+  `event-rules.json`, or this README without changing frontend UI.
+- "清理文件": identify obsolete generated files, temporary files, old audits, or
+  duplicated docs before deleting them.
+
+When the request says only "更新活动", do not search the wider web for new
+venues. When the request says "新增 town" or "重新扫信息源", do perform source
+discovery and record `not_found` results to avoid repeating the same search next
+time.
+
+### Add Town
+
+When asked to add a town:
+
+1. Create or update the town record with stable id, official name, county,
+   state, ZIPs when known, and center coordinates when available.
+2. Use `source-taxonomy.json` to search every source family, not just government
+   and library sources.
+3. Record found sources in `event-sources.json` with source types, status, URL
+   fields, parser notes, and service-town relationships.
+4. Record `not_found` discovery results for source families that were searched
+   but produced no useful dated-event source.
+5. Import eligible kid/family-compatible events from today forward for
+   importable sources.
+6. Merge events into `events.json` without deleting older historical records.
+7. Run validation and record unresolved quality issues.
+
+### Refresh Existing Sources
+
+When asked to update activities without rediscovery:
+
+1. Reuse known importable/configured sources from `event-sources.json`.
+2. Reuse stored parser names, endpoints, parameters, fallback locations, and
+   crawl notes.
+3. Fetch events from today forward through the source lookahead window.
+4. Merge by stable event id or duplicate matching rules.
+5. Update `lastSeenAt` for observed events and preserve `firstSeenAt`.
+6. Record source failures when practical.
+7. Do not perform broad web search for newly opened venues.
+
+### Rediscover Sources
+
+Use rediscovery only when adding a new town or when explicitly asked to rescan a
+town's sources. Rediscovery should look for newly opened or previously missed
+malls, play venues, kids gyms, bookstores, farms, museums, parks, community
+sources, and regional sources. Record both found and `not_found` results.
+
+### Manually Add Source
+
+When asked to add a specific source, ask whether the user wants source
+registration only or registration plus immediate event import if the request is
+ambiguous. Classify the source, record enough parser/review notes to revisit it,
+and import events only when requested or clearly implied.
+
+## Merge And Duplicate Rules
+
+- `sourceId` should be stable.
+- Prefer event ids based on `sourceId + upstream externalId + date`.
+- If no upstream id exists, use `sourceId + normalized title + startsAt + venue
+  hash`.
+- Avoid creating new records for small title, URL, or summary changes.
+- For duplicates, prefer organizer/venue official pages, then official
+  municipal/county/library reposts, then ticketing pages, then third-party
+  directories.
+
+## Quality Rules
+
+Every import should finish with a quality audit. The importer may repair
+deterministic gaps such as mirrored `url`/`sourceUrl`, mirrored
+`venue`/`venueName`, missing timezone, missing duration, and missing coordinates
+when a known venue or address can be geocoded.
+
+Do not invent activity descriptions. Extract concrete activity content from the
+source page when possible; otherwise leave `summary` empty and report it.
 
 When an official event page includes flyer images or other event images, check
 normal page text first. Only inspect image text when the HTML text does not
 provide the needed address, room, date, or time. Use image alt text, captions,
-visible flyer text, or OCR/manual review before deciding that the field is truly
+visible flyer text, OCR, or manual review before deciding that the field is truly
 missing.
 
 ## Source Crawl Runbook
@@ -126,6 +242,8 @@ known blockers so future refreshes do not need fresh discovery.
 | `localhop-calendar` | Bernards Township Library | Fetch `WidgetConfigCalendar/{calendarObjectId}` with `X-Parse-Application-Id`, derive organizations when not configured, then page `EventInstance` with Parse `where` on organization, date range, status, event type, and age group IDs. | Bernards currently uses organization `vs20XMKDTh` and age groups `t6CVlW0P9v`, `FCD8Alsg84`. |
 | `eventorganiser-fullcal` | Long Hill Township Library | Call WordPress AJAX `admin-ajax.php?action=eventorganiser-fullcal&start=YYYY-MM-DD&end=YYYY-MM-DD&timeformat=g:i a&users_events=false`, plus category slugs. | Current slugs are `kids` and `teens`. |
 | `joomla-event-booking-calendar` | Mountainside Public Library | Fetch the youth calendar page, parse `eb_event_link` anchors and tooltip text for title/date/time, then open detail pages for `eb-description-details` summaries. | Calendar tooltip is the canonical date source. |
+| `engagedpatrons-list` | Harding Kemmerer Library | Fetch EngagedPatrons `Events.cfm` audience pages, parse `LEEventWrapper` rows, normalize single or ranged times, and keep child/family-compatible programs. | Some useful event details are represented by image-backed rows on the library site; use the EngagedPatrons list as the stable text source. |
+| `mylibrary-homepage-events` | Kenilworth and Hillside public libraries | Fetch the official WordPress homepage, read the server-rendered `Upcoming Events` list, parse title/date/time/location and mylibrary event IDs, then filter kid/family-compatible rows. | Detail pages on `mylibrary.digital` are Cloudflare-protected, but the official homepage exposes enough text for import. Check homepage slider images when a title looks incomplete. |
 | `configured-library-events` | Middlesex, Dunellen, Fanwood, Scotch Plains libraries | Use manually transcribed official flyer/search-indexed calendar data in `configuredEvents`; expand explicit dates and weekly/monthly recurrence. | Use only when source publishes flyer images, static program grids, or Cloudflare-blocked public calendar pages without a stable script-fetchable feed. |
 | `configured-dated-workshops` | Lowe's, Michaels, arboretums, museums, nature centers, arts venues | Use dated `workshops[]` and `locations[]` from source config. | Refresh by checking the official program page and editing config, then run importer. |
 | `configured-recurring-workshops` | Home Depot Kids Workshops, Sky Zone GLOW | Expand recurrence from source config across nearby locations. | Keep title/time/summary in source config; for Sky Zone, confirm the events-calendar JSON still lists Friday/Saturday GLOW before trusting recurrence. |
@@ -138,20 +256,24 @@ known blockers so future refreshes do not need fresh discovery.
 | `civicplus-calendar` | Warren, Berkeley Heights, New Providence, Summit municipal calendars | For every configured `calendarIds[]` and every month in the import window, fetch `calendar.aspx?view=list&month=M&year=YYYY&CID=ID`. Parse `eventTitle_` list items, microdata dates/addresses, then open detail pages for summary and image. | Keep venue aliases in `municipal.locationOverrides`. Filter with `MUNICIPAL_COMMUNITY_EVENT_PATTERN` and `MUNICIPAL_SKIP_TITLE_PATTERN`. |
 | `joomla-dpcalendar-raw` | Bernards municipal calendar | Call the DPCalendar raw endpoint with `option=com_dpcalendar&view=events&format=raw&limit=0`, optional `Itemid`, `start`, and `end`. Map `data.events`, tooltip calendar label, summary, and location. | Bernards current raw URL is stored in `municipal.rawEventsUrl`; do not scrape rendered calendar HTML. |
 | `squarespace-calendar-list` | Middlesex municipal calendar | Fetch calendar page, read the `<noscript>` event list, split by event `<li><h1>`, parse title link, date range, image, and nested location list. | Do not stop at inner location `</ul>`. Community events can include "Committee Presents"; skip only explicit meetings/notices. |
+| `greenbrook-ajax-calendar` | Green Brook municipal calendar | Fetch official `/ajax/get_all_events.php` JSON rows, strip leading time from titles, and keep community/family-safe rows. | Current future rows after 2026-06-11 are meetings/recycling/service items, so the parser may import zero visible events. |
+| `ai1ec-ical-calendar` | Bound Brook municipal calendar | Fetch WordPress All-in-One Event Calendar iCal export, parse VEVENT date/title/description/URL, and keep community/family-safe rows. | Current future rows after 2026-06-11 are meetings/court/commission rows, so the parser may import zero visible events. |
+| `savvycitizen-plugin` | Millstone municipal calendar | Fetch the official embedded SavvyCitizen agenda plugin, parse month/day/item blocks, and keep community/family-safe rows. | Millstone `calendar.php` uses a monthly plugin view; the homepage agenda plugin has the stable list format. Yard sales are imported as family-safe gray-area events, while bulk pickup and meetings are skipped. |
+| `eggzack-event-archive` | Hillside municipal events archive | Fetch EggZack server-rendered event archive cards, parse title/detail URL/listing date/time, and keep community/family-safe rows. | Current archive has only past May 2026 events after the project cutoff, so the parser may import zero visible events. |
 | `nj-carnivals-jsonld-list` | NJ Carnivals shared source | Fetch paginated listing pages, parse structured Event JSON-LD inside listing sections, expand multi-day ranges, then open detail pages for per-date hours and better summary. | Use `locationOverrides` for noisy fair locations and intersection-based events. |
 
 ### Current Municipal Links
 
 | Town | Link | Status | Next crawl path |
 | --- | --- | --- | --- |
-| Green Brook | `https://www.greenbrooktwp.org/` | `manual_review` | JavaScript/challenge-like official site; check news and recreation flyers manually before writing a parser. |
+| Green Brook | `https://www.greenbrooktwp.org/ajax/get_all_events.php` | `importable` | `greenbrook-ajax-calendar`; official AJAX JSON currently has no future kid/family rows after 2026-06-11, only meetings/recycling/service items. |
 | Warren | `https://www.warrennj.org/calendar.aspx` | `importable` | `civicplus-calendar`, CIDs `14`, `23`. Annual recreation PDF remains manual. |
 | Dunellen | `https://www.dunellen-nj.gov/` | `manual_review` | No stable municipal event feed found yet; check official news/recreation pages. |
 | North Plainfield | `https://northplainfieldnj.gov/` | `manual_review` | Homepage exposes borough calendar/news snippets; likely needs site-specific parser plus recreation portal check. |
 | Middlesex | `https://www.middlesexboro-nj.gov/calendar` | `importable` | `squarespace-calendar-list`; read static `<noscript>` list and filter meetings. |
 | Watchung | `https://watchungnj.gov/recreation-dates` | `manual_review` | Direct fetch returns challenge/sparse content; manual recreation-date review or browser-backed parser. |
 | Plainfield | `https://plainfieldsid.org/events-calendar` | `manual_review` | Strong public events source but GoDaddy/JS rendered; needs browser/JS parser. |
-| Bound Brook | `https://boundbrook-nj.org/calendar/` | `manual_review` | All-in-One Event Calendar page; good candidate for an `ai1ec` parser. |
+| Bound Brook | `https://boundbrook-nj.org/calendar/` | `importable` | `ai1ec-ical-calendar`; official iCal export currently has no future kid/family rows after 2026-06-11, only meetings/court/commission rows. |
 | Long Hill | `https://www.longhillnj.gov/calendar` | `manual_review` | Angular/fullcalendar style site; inspect network/API route before scraping. |
 | South Bound Brook | `https://sbbnj.com/events/` | `manual_review` | Needs source-specific event page check; library coverage is via SCLSNJ. |
 | South Plainfield | `https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/` | `manual_review` | Old Zumu-style calendar is sparse; recreation/program PDF parser may be more useful. |
@@ -165,6 +287,7 @@ known blockers so future refreshes do not need fresh discovery.
 | Somerville | `https://www.somervillenj.org/calendar/` | `manual_review` | WordPress calendar currently showed office/notice items; find family/community source first. |
 | Mountainside | `https://www.mountainside-nj.com/` | `manual_review` | No stable dated municipal event feed found yet; library parser is separate. |
 | Summit | `https://www.cityofsummit.org/Calendar.aspx` | `importable` | `civicplus-calendar`, CIDs `28`, `41`; enrich detail pages for summaries/images. |
+| Millstone | `https://millstoneboro.org/calendar.php` | `importable` | `savvycitizen-plugin`; fetch the official homepage agenda plugin and keep community/family rows such as Annual Yard Sale while skipping bulk pickup and meetings. |
 
 ### Current Library Links
 
@@ -184,6 +307,9 @@ known blockers so future refreshes do not need fresh discovery.
 | Dunellen Public Library | `https://dunellenlibrary.events.mylibrary.digital/` | `importable` | `configured-library-events` from public search-indexed mylibrary.digital pages; direct fetch still gets Cloudflare challenge. |
 | Fanwood Memorial Library | `https://fanwoodlibrary.events.mylibrary.digital/` | `importable` | `configured-library-events` from public search-indexed mylibrary.digital pages; direct fetch still gets Cloudflare challenge. |
 | Scotch Plains Public Library | `https://scotlib.events.mylibrary.digital/` | `importable` | `configured-library-events` from public search-indexed mylibrary.digital pages; direct fetch still gets Cloudflare challenge. |
+| Harding Kemmerer Library | `https://engagedpatrons.org/Events.cfm?SiteID=4662&Audience=C` | `importable` | `engagedpatrons-list`; use children/teen audience pages from EngagedPatrons. |
+| Kenilworth Public Library | `https://kenilworthlibrary.org/` | `importable` | `mylibrary-homepage-events`; parse the official homepage `Upcoming Events` list because detail pages are Cloudflare-protected. |
+| Hillside Public Library | `https://hillsidepl.org/` | `importable` | `mylibrary-homepage-events`; parse homepage text and cross-check slideshow images for flyer-only clues. |
 
 ### Regional Links
 

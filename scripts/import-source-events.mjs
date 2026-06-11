@@ -75,7 +75,7 @@ const SUMMARY_ACTIVITY_SIGNAL_PATTERN =
   /\b(?:story|craft|club|kids|children|family|families|baby|toddler|preschool|teen|tween|lego|game|games|movie|music|concert|festival|market|rides?|food|workshop|camp|art|paint|build|read|reading|learn|discover|explore|nature|garden|science|theater|performance|play|party|parade|fireworks|foam|jump|slime)\b/i;
 const QUALITY_REPORT_SAMPLE_LIMIT = 8;
 const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
-  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|tree lighting|unity day|watch part(?:y|ies)|world cup|yoga)\b/i;
+  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|tree lighting|unity day|watch part(?:y|ies)|world cup|yard sale|yoga)\b/i;
 const MUNICIPAL_SKIP_TITLE_PATTERN =
   /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|stormwater|township committee|wine tasting|zoning board)\b/i;
 const MONTHS = new Map([
@@ -410,6 +410,15 @@ function addDateDays(dateKey, days) {
   return new Date(dateStamp(dateKey) + days * DAY_MS).toISOString().slice(0, 10);
 }
 
+function addMinutes(localDateTime, minutes) {
+  const [datePart, timePart = "00:00:00"] = String(localDateTime).split("T");
+  const [year, month, day] = datePart.split("-").map(Number);
+  const [hour = 0, minute = 0, second = 0] = timePart.split(":").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+  date.setUTCMinutes(date.getUTCMinutes() + minutes);
+  return date.toISOString().slice(0, 19);
+}
+
 function datesInRange(startDate, endDate) {
   const dates = [];
   const endStamp = Math.max(dateStamp(startDate), dateStamp(endDate || startDate));
@@ -507,11 +516,11 @@ function hasChildAudience(audiences, title = "") {
   const audienceText = audiences.join(" ").toLowerCase();
   const titleText = title.toLowerCase();
   const explicitYouthTitle =
-    /baby|babies|toddler|preschool|pre-school|children|child|kids|family|families|elem|tween|teen|storytime|lego/.test(
+    /baby|babies|toddler|preschool|pre-school|children|child|kids|family|families|elem|tween|teen|youth|storytime|story time|lego|chess|lap sit|lapsit/.test(
       titleText
     );
   const youthAudience =
-    /baby|babies|toddler|preschool|pre-school|children|child|kids|family|families|elem|tween|teen/.test(
+    /baby|babies|toddler|preschool|pre-school|children|child|kids|family|families|elem|tween|teen|youth/.test(
       audienceText
     );
   const adultsOnly = audiences.length > 0 && audiences.every((audience) => /adult|senior/.test(audience.toLowerCase()));
@@ -2162,6 +2171,7 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
   const cards = html.split('<div class="lc-event lc-event--list"').slice(1);
   const events = [];
   const host = new URL(baseUrl).host.replace(/[^a-z0-9]+/gi, "-").replace(/-$/g, "").toLowerCase();
+  const idPrefix = source.library.idPrefix || host;
 
   cards.forEach((card) => {
     if (/\bnode--type-lc-closing\b|\blc-closing\b/i.test(card)) {
@@ -2196,7 +2206,7 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
 
     const sourceUrl = absoluteUrl(baseUrl, linkMatch[2]);
     events.push({
-      id: `librarycalendar-${host}-${selectorId}`,
+      id: `librarycalendar-${idPrefix}-${selectorId}`,
       externalId: selectorId,
       sourceId: `librarycalendar-${host}`,
       townId: source.library.townId || source.town.id,
@@ -2276,6 +2286,348 @@ async function importLibraryCalendarEvents(sources, startDate, days) {
     }
   }
   return imported;
+}
+
+function allEngagedPatronsLibrarySources(sources) {
+  return sources.towns.flatMap((town) =>
+    (town.libraries ?? [])
+      .filter((library) => library.status === "importable" && library.parser === "engagedpatrons-list")
+      .map((library) => ({ town, library }))
+  );
+}
+
+function parseEngagedPatronsDateTime(value, startDate) {
+  const normalized = collapseWhitespace(value)
+    .replace(/\ba\.m\./gi, "AM")
+    .replace(/\bp\.m\./gi, "PM")
+    .replace(/\ba\.m\b/gi, "AM")
+    .replace(/\bp\.m\b/gi, "PM");
+  const dateMatch = normalized.match(
+    /^[A-Za-z]+,\s+([A-Za-z]+)\.?\s+(\d{1,2}),\s+(.+?)$/i
+  );
+  if (!dateMatch) {
+    return { startsAt: null, endsAt: null };
+  }
+  const month = MONTH_NAME_MAP.get(dateMatch[1].toLowerCase().slice(0, 3));
+  if (!month) {
+    return { startsAt: null, endsAt: null };
+  }
+  const day = String(dateMatch[2]).padStart(2, "0");
+  let year = Number(startDate.slice(0, 4));
+  if (`${year}-${month}-${day}` < startDate) {
+    year += 1;
+  }
+
+  const formatTime = (hourRaw, minuteRaw, meridiemRaw) => {
+    let hour = Number(hourRaw);
+    const meridiem = meridiemRaw.toLowerCase();
+    if (meridiem === "pm" && hour !== 12) {
+      hour += 12;
+    }
+    if (meridiem === "am" && hour === 12) {
+      hour = 0;
+    }
+    return `${String(hour).padStart(2, "0")}:${minuteRaw || "00"}:00`;
+  };
+  const dateKey = `${year}-${month}-${day}`;
+  const timeMatch = dateMatch[3].match(
+    /(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?\s*(?:-|to|–|—)\s*(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i
+  );
+  if (timeMatch) {
+    const startMeridiem = timeMatch[3] || timeMatch[6];
+    return {
+      startsAt: `${dateKey}T${formatTime(timeMatch[1], timeMatch[2], startMeridiem)}`,
+      endsAt: `${dateKey}T${formatTime(timeMatch[4], timeMatch[5], timeMatch[6])}`
+    };
+  }
+  const singleTimeMatch = dateMatch[3].match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
+  if (!singleTimeMatch) {
+    return { startsAt: null, endsAt: null };
+  }
+  const startsAt = `${dateKey}T${formatTime(singleTimeMatch[1], singleTimeMatch[2], singleTimeMatch[3])}`;
+  return { startsAt, endsAt: addMinutes(startsAt, 60) };
+}
+
+function parseEngagedPatronsCards(html, source, calendarUrl, audience, startDate, days) {
+  const cards = html.split('<div class="LEEventWrapper"').slice(1);
+  const events = [];
+  const siteId = firstMatch(calendarUrl, /SiteID=(\d+)/i) || slugify(source.library.name);
+  cards.forEach((card) => {
+    const titleMatch = card.match(/<div class="LETitle">\s*<a href="([^"]+)">([\s\S]*?)<\/a>\s*<\/div>/i);
+    const eventId = firstMatch(card, /EventID=(\d+)/i);
+    const dateText = stripHtml(firstMatch(card, /<div class="LEDate LEAgeRange">\s*([\s\S]*?)\s*<\/div>/i));
+    if (!titleMatch || !eventId || !dateText) {
+      return;
+    }
+    const title = stripHtml(titleMatch[2]);
+    const description = cleanImportedSummary(firstMatch(card, /<div class="LEDescription">\s*([\s\S]*?)\s*<\/div>/i));
+    if (isClosureOrNonEvent(title, description)) {
+      return;
+    }
+
+    const { startsAt, endsAt } = parseEngagedPatronsDateTime(dateText, startDate);
+    if (!startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      return;
+    }
+    const audienceLabel = audience === "T" ? "Teens" : "Kids";
+    if (!hasChildAudience([audienceLabel], title, description)) {
+      return;
+    }
+    const branch = stripHtml(firstMatch(card, /<div class="LEBranch">\s*([\s\S]*?)\s*<\/div>/i));
+    const registrationLabel = stripHtml(firstMatch(card, /<input\b[^>]*class="button"[^>]*value="([^"]+)"/i));
+    const sourceUrl = absoluteUrl(calendarUrl, titleMatch[1]);
+    events.push({
+      id: `engagedpatrons-${siteId}-${eventId}`,
+      externalId: eventId,
+      sourceId: `engagedpatrons-${siteId}`,
+      townId: source.library.townId || source.town.id,
+      title,
+      venue: branch || source.library.name,
+      venueName: branch || source.library.name,
+      category: "library",
+      source: source.library.name,
+      startsAt,
+      endsAt,
+      timezone: TIMEZONE,
+      durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : null,
+      ages: inferAgeBandsFromText(title, audienceLabel, description),
+      audiences: [audienceLabel],
+      cost: "Free",
+      registration: registrationLabel || "See source",
+      summary: description,
+      url: sourceUrl,
+      sourceUrl,
+      sourceCalendarUrl: calendarUrl,
+      address: source.library.address || null,
+      lat: libraryLat(source),
+      lng: libraryLng(source),
+      status: "published",
+      confidence: 0.82
+    });
+  });
+  return events;
+}
+
+async function importEngagedPatronsLibraryEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allEngagedPatronsLibrarySources(sources)) {
+    const urls = source.library.eventUrls || [{ url: source.library.eventsUrl, audience: source.library.audience || "C" }];
+    for (const entry of urls) {
+      try {
+        const html = await fetchText(entry.url);
+        imported.push(...parseEngagedPatronsCards(html, source, entry.url, entry.audience, startDate, days));
+      } catch (error) {
+        console.warn(`warning: could not import ${entry.url}: ${error.message}`);
+      }
+    }
+  }
+  return imported;
+}
+
+function allMylibraryHomepageSources(sources) {
+  return sources.towns.flatMap((town) =>
+    (town.libraries ?? [])
+      .filter((library) => library.status === "importable" && library.parser === "mylibrary-homepage-events")
+      .map((library) => ({ town, library }))
+  );
+}
+
+function parseHomepageLibraryDateTime(value, startDate) {
+  const normalized = collapseWhitespace(value)
+    .replace(/\ba\.m\./gi, "AM")
+    .replace(/\bp\.m\./gi, "PM")
+    .replace(/\ba\.m\b/gi, "AM")
+    .replace(/\bp\.m\b/gi, "PM");
+  const match = normalized.match(/^([A-Za-z]+)\s+(\d{1,2})\s+-\s+(\d{1,2})(?::(\d{2}))?\s*(AM|PM)$/i);
+  if (!match) {
+    return { startsAt: null, endsAt: null };
+  }
+  const month = MONTH_NAME_MAP.get(match[1].toLowerCase().slice(0, 3));
+  if (!month) {
+    return { startsAt: null, endsAt: null };
+  }
+  let year = Number(startDate.slice(0, 4));
+  const day = String(match[2]).padStart(2, "0");
+  if (`${year}-${month}-${day}` < startDate) {
+    year += 1;
+  }
+  let hour = Number(match[3]);
+  const meridiem = match[5].toLowerCase();
+  if (meridiem === "pm" && hour !== 12) {
+    hour += 12;
+  }
+  if (meridiem === "am" && hour === 12) {
+    hour = 0;
+  }
+  const startsAt = `${year}-${month}-${day}T${String(hour).padStart(2, "0")}:${match[4] || "00"}:00`;
+  return { startsAt, endsAt: addMinutes(startsAt, 60) };
+}
+
+function isFamilyCompatibleLibraryHomepageTitle(title) {
+  if (!title || isClosureOrNonEvent(title)) {
+    return false;
+  }
+  if (hasChildAudience([], title)) {
+    return true;
+  }
+  return /\b(?:summer reading|music day|world music|hip hop|kickoff|challenge|game night|volunteer information)\b/i.test(title);
+}
+
+function parseMylibraryHomepageEvents(html, source, startDate, days) {
+  const sanitized = html.replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<script[\s\S]*?<\/script>/gi, " ");
+  const startIndex = sanitized.indexOf("Upcoming Events");
+  const endIndex = sanitized.indexOf("View All Events", startIndex);
+  if (startIndex === -1 || endIndex === -1) {
+    return [];
+  }
+  const block = sanitized.slice(startIndex, endIndex);
+  const cards = block.split('<li class="events"').slice(1);
+  const imported = [];
+  for (const card of cards) {
+    const sourceUrl = firstMatch(card, /<a[^>]+href=["']([^"']+)["']/i);
+    const title = stripHtml(firstMatch(card, /<h4[^>]*>([\s\S]*?)<\/h4>/i));
+    const timeText = stripHtml(firstMatch(card, /<p class=["']time["'][^>]*>([\s\S]*?)<\/p>/i));
+    const location = stripHtml(firstMatch(card, /<p class=["']location["'][^>]*>([\s\S]*?)<\/p>/i));
+    const { startsAt, endsAt } = parseHomepageLibraryDateTime(timeText, startDate);
+    if (!sourceUrl || !title || !startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+    if (!isFamilyCompatibleLibraryHomepageTitle(title)) {
+      continue;
+    }
+    const venue = location || source.library.name;
+    imported.push({
+      id: `mylibrary-homepage-${source.town.id}-${firstMatch(sourceUrl, /id=(\d+)/i) || slugify(title)}-${startsAt.slice(0, 10)}`,
+      externalId: firstMatch(sourceUrl, /id=(\d+)/i) || slugify(title),
+      sourceId: `mylibrary-homepage-${source.town.id}`,
+      townId: source.library.townId || source.town.id,
+      title,
+      venue,
+      venueName: venue,
+      category: "library",
+      source: source.library.name,
+      startsAt,
+      endsAt,
+      timezone: TIMEZONE,
+      durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : null,
+      ages: inferAgeBandsFromText(title),
+      audiences: hasChildAudience([], title) ? ["Kids"] : ["community"],
+      cost: "Free",
+      registration: "See source",
+      summary: title,
+      url: sourceUrl,
+      sourceUrl,
+      sourceCalendarUrl: source.library.eventsUrl || source.library.website,
+      address: source.library.address || null,
+      lat: libraryLat(source),
+      lng: libraryLng(source),
+      tags: ["library", "mylibrary-homepage"],
+      status: "published",
+      confidence: 0.78
+    });
+  }
+  return imported;
+}
+
+async function importMylibraryHomepageEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMylibraryHomepageSources(sources)) {
+    try {
+      const html = await fetchText(source.library.website);
+      imported.push(...parseMylibraryHomepageEvents(html, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.library.website}: ${error.message}`);
+    }
+  }
+  return imported;
+}
+
+function allMylibraryCarouselSources(sources) {
+  return sources.towns.flatMap((town) =>
+    (town.libraries ?? [])
+      .filter((library) => library.status === "importable" && library.parser === "mylibrary-featured-carousel")
+      .map((library) => ({ town, library }))
+  );
+}
+
+function parseMylibraryCarouselDate(value, startDate) {
+  const match = collapseWhitespace(value).match(/([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?/i);
+  if (!match) {
+    return null;
+  }
+  const month = MONTH_NAME_MAP.get(match[1].toLowerCase().slice(0, 3));
+  if (!month) {
+    return null;
+  }
+  const day = String(match[2]).padStart(2, "0");
+  let year = Number(startDate.slice(0, 4));
+  if (`${year}-${month}-${day}` < startDate) {
+    year += 1;
+  }
+  return `${year}-${month}-${day}T00:00:00`;
+}
+
+function parseMylibraryCarouselEvents(html, source, startDate, days) {
+  const cards = html.split('<div class="carousel-item').slice(1);
+  const host = new URL(source.library.eventsUrl).host.replace(/[^a-z0-9]+/gi, "-").replace(/-$/g, "").toLowerCase();
+  const imported = [];
+  for (const card of cards) {
+    const href = firstMatch(card, /<a\b[^>]*href=["']([^"']*\/event\?id=\d+[^"']*)["']/i);
+    const title = stripHtml(firstMatch(card, /data-original-title=["']([^"']+)["']/i) || firstMatch(card, /<img\b[^>]*alt=["']([^"']+)["']/i));
+    const dateText = stripHtml(firstMatch(card, /<small>\s*-\s*([\s\S]*?)<\/small>/i));
+    const startsAt = parseMylibraryCarouselDate(dateText, startDate);
+    if (!href || !title || !startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+    if (isClosureOrNonEvent(title, "") || !hasChildAudience(["Featured"], title)) {
+      continue;
+    }
+    const eventId = firstMatch(href, /id=(\d+)/i) || slugFromUrl(href);
+    const sourceUrl = absoluteUrl(source.library.eventsUrl, href);
+    imported.push({
+      id: `mylibrary-carousel-${host}-${eventId}`,
+      externalId: eventId,
+      sourceId: `mylibrary-carousel-${host}`,
+      townId: source.library.townId || source.town.id,
+      title,
+      venue: source.library.name,
+      venueName: source.library.name,
+      category: "library",
+      source: source.library.name,
+      startsAt,
+      endsAt: null,
+      timezone: TIMEZONE,
+      durationMinutes: null,
+      ages: inferAgeBandsFromText(title, "Featured"),
+      audiences: ["Featured"],
+      cost: null,
+      registration: "See source",
+      summary: `Featured library event listed for ${dateText}.`,
+      url: sourceUrl,
+      sourceUrl,
+      sourceCalendarUrl: source.library.eventsUrl,
+      address: source.library.address || null,
+      lat: libraryLat(source),
+      lng: libraryLng(source),
+      tags: ["mylibrary-featured"],
+      status: "published",
+      confidence: 0.72
+    });
+  }
+  return imported;
+}
+
+async function importMylibraryCarouselEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMylibraryCarouselSources(sources)) {
+    try {
+      const html = await fetchText(source.library.eventsUrl);
+      imported.push(...parseMylibraryCarouselEvents(html, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.library.eventsUrl}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
 }
 
 function allLibCalSources(sources) {
@@ -2603,6 +2955,146 @@ async function importJoomlaEventBookingEvents(sources, startDate, days) {
     }
   }
   return enrichJoomlaEventBookingSummaries(imported.filter((event) => event.startsAt && event.sourceUrl));
+}
+
+function allJoomlaJEventsLibrarySources(sources) {
+  return sources.towns.flatMap((town) =>
+    (town.libraries ?? [])
+      .filter((library) => library.status === "importable" && library.parser === "joomla-jevents-calendar")
+      .map((library) => ({ town, library }))
+  );
+}
+
+function parseJEventsStartEnd(text) {
+  const normalized = collapseWhitespace(text);
+  const match = normalized.match(
+    /([A-Za-z]+,\s+[A-Za-z]+\s+\d{1,2},\s+\d{4})\s+(\d{1,2}:\d{2}\s*(?:am|pm))(?:\s*-\s*(\d{1,2}:\d{2}\s*(?:am|pm)))?/i
+  );
+  if (!match) {
+    return { startsAt: null, endsAt: null };
+  }
+  const startsAt = parseLocalDateTime(match[1], match[2].replace(/\s+/g, ""));
+  const endsAt = match[3] ? parseLocalDateTime(match[1], match[3].replace(/\s+/g, "")) : null;
+  return { startsAt, endsAt };
+}
+
+function extractAssignedJsonObject(html, variableName) {
+  const marker = new RegExp(`var\\s+${variableName}\\s*=\\s*`, "i");
+  const match = marker.exec(html);
+  if (!match) {
+    return "";
+  }
+  const open = html.indexOf("{", match.index + match[0].length);
+  if (open === -1) {
+    return "";
+  }
+
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let index = open; index < html.length; index += 1) {
+    const char = html[index];
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (char === "\\") {
+        escaped = true;
+      } else if (char === '"') {
+        inString = false;
+      }
+      continue;
+    }
+    if (char === '"') {
+      inString = true;
+    } else if (char === "{") {
+      depth += 1;
+    } else if (char === "}") {
+      depth -= 1;
+      if (depth === 0) {
+        return html.slice(open, index + 1);
+      }
+    }
+  }
+  return "";
+}
+
+function parseJEventsResponsiveEvents(html, source, startDate, days) {
+  const rawJson = extractAssignedJsonObject(html, "responsiveEvents");
+  if (!rawJson) {
+    return [];
+  }
+
+  let buckets;
+  try {
+    buckets = JSON.parse(rawJson);
+  } catch {
+    return [];
+  }
+
+  const host = new URL(source.library.website || source.library.eventsUrl).host.replace(/[^a-z0-9]+/gi, "-").replace(/-$/g, "").toLowerCase();
+  const events = [];
+  Object.values(buckets).flat().forEach((item) => {
+    const block = item.eventcontent || "";
+    const title = stripHtml(firstMatch(block, /<a\b[^>]*class=["']ev_link_row["'][^>]*title=["']([^"']+)["']/i));
+    const href = firstMatch(block, /<a\b[^>]*class=["']ev_link_row["'][^>]*href=["']([^"']+)["']/i);
+    const category = stripHtml(firstMatch(block, /::\s*&nbsp;\s*([^<]+)<\/div>/i));
+    const text = stripHtml(block);
+    const { startsAt, endsAt } = parseJEventsStartEnd(text);
+    if (!title || !href || !startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      return;
+    }
+    if (/^(?:no\s+|library closed|closed\b|cancel)/i.test(title) || isClosureOrNonEvent(title, category)) {
+      return;
+    }
+    if (!hasChildAudience([category], title)) {
+      return;
+    }
+    const sourceUrl = absoluteUrl(source.library.website || source.library.eventsUrl, href);
+    events.push({
+      id: `joomla-jevents-${host}-${item.rpid || slugFromUrl(sourceUrl)}-${startsAt.slice(0, 10)}`,
+      externalId: String(item.rpid || slugFromUrl(sourceUrl)),
+      sourceId: `joomla-jevents-${host}`,
+      townId: source.library.townId || source.town.id,
+      title,
+      venue: source.library.name,
+      venueName: source.library.name,
+      category: "library",
+      source: source.library.name,
+      startsAt,
+      endsAt,
+      timezone: TIMEZONE,
+      durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : null,
+      ages: inferAgeBandsFromText(title, category),
+      audiences: category ? [category] : [],
+      cost: null,
+      registration: /eventbrite|register/i.test(block) ? "RSVP" : "See source",
+      summary: category,
+      url: sourceUrl,
+      sourceUrl,
+      sourceCalendarUrl: source.library.eventsUrl,
+      address: source.library.address || null,
+      lat: libraryLat(source),
+      lng: libraryLng(source),
+      tags: category ? [category] : [],
+      status: "published",
+      confidence: 0.84
+    });
+  });
+
+  return [...new Map(events.map((event) => [event.id, event])).values()];
+}
+
+async function importJoomlaJEventsLibraryEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allJoomlaJEventsLibrarySources(sources)) {
+    try {
+      const html = await fetchText(source.library.eventsUrl);
+      imported.push(...parseJEventsResponsiveEvents(html, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.library.eventsUrl}: ${error.message}`);
+    }
+  }
+  return imported.filter((event) => event.startsAt && event.sourceUrl);
 }
 
 const WEEKDAY_INDEX = new Map([
@@ -3922,6 +4414,177 @@ async function importSquarespaceRegionalEvents(sources, startDate, days) {
   return [...new Map(imported.map((event) => [event.id, event])).values()];
 }
 
+function parseCompactDateTime(value) {
+  const match = String(value || "").match(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/);
+  if (!match) {
+    return null;
+  }
+  return `${match[1]}-${match[2]}-${match[3]}T${match[4]}:${match[5]}:00`;
+}
+
+function parseEventListingCards(html, source, startDate, days) {
+  const imported = [];
+  const itemPattern = /<div\b([^>]*)class=["'][^"']*\bevent-item\b[^"']*["']([^>]*)>([\s\S]*?)(?=<div\b[^>]*class=["'][^"']*\bevent-item\b|<\/div>\s*<\/div>\s*<\/div>|<\/section>)/gi;
+
+  for (const match of html.matchAll(itemPattern)) {
+    const attrs = `${match[1]} ${match[2]}`;
+    const block = match[3];
+    const startsAt = parseCompactDateTime(firstMatch(attrs, /data-datetime=["'](\d{12})["']/i));
+    const href = firstMatch(block, /<a\b[^>]*href=["']([^"']+)["']/i);
+    const title = stripHtml(firstMatch(block, /<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i)) || stripHtml(firstMatch(block, /aria-label=["'](?:Info about|View details for)\s*([^"']+)["']/i));
+    const terms = stripHtml(firstMatch(attrs, /data-terms=["']([^"']+)["']/i));
+    const image = firstMatch(block, /\bdata-src=["']([^"']+)["']/i) || firstMatch(block, /\bsrc=["']([^"']+)["']/i);
+    const sourceUrl = href ? absoluteUrl(source.eventsUrl || source.website, href) : "";
+    if (!startsAt || !sourceUrl || !title || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+    if (!isImportableRegionalEvent(title, terms)) {
+      continue;
+    }
+    imported.push(
+      regionalEventRecord(source, {
+        id: `${source.id}-${firstMatch(attrs, /data-id=["']([^"']+)["']/i) || slugify(title)}-${startsAt.slice(0, 10)}-${slugify(startsAt.slice(11, 16))}`,
+        externalId: `${firstMatch(attrs, /data-id=["']([^"']+)["']/i) || slugFromUrl(sourceUrl)}-${startsAt}`,
+        title,
+        startsAt,
+        summary: terms,
+        sourceUrl,
+        image: image ? absoluteUrl(source.eventsUrl || source.website, image) : null,
+        tags: terms.split(/\s+/).filter(Boolean),
+        confidence: 0.82
+      })
+    );
+  }
+
+  return imported;
+}
+
+function parseNjpacPerformances(value) {
+  const decoded = decodeEntities(value).replace(/&quot;/g, '"');
+  try {
+    const parsed = JSON.parse(decoded);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [...decoded.matchAll(/(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2})/g)].map((match) => match[1]);
+  }
+}
+
+function isImportableNjpacEvent(title, genre = "", highlights = "") {
+  const text = `${title} ${genre} ${highlights}`;
+  if (/\b(comedy|r&b|latin|concert|world music|country)\b/i.test(text) && !/\b(family|families|kids|children|teen|arts ed|community engagement|reading|stem|festival)\b/i.test(text)) {
+    return false;
+  }
+  return /\b(family|families|kids|children|teen|arts ed|community engagement|reading|stem|festival|north to shore|poetry teen|student|youth)\b/i.test(text);
+}
+
+function parseNjpacEventCards(html, source, startDate, days) {
+  const imported = [];
+  const rowPattern = /<div\b[^>]*class=["'][^"']*\bcontent-row\b[^"']*["'][^>]*>([\s\S]*?)(?=<div\b[^>]*class=["'][^"']*\bcontent-row\b|<\/div>\s*<\/div>\s*<\/div>\s*<\/div>)/gi;
+
+  for (const rowMatch of html.matchAll(rowPattern)) {
+    const block = rowMatch[1];
+    const performancesRaw = firstMatch(block, /data-performances=["']([^"']+)["']/i);
+    const performances = parseNjpacPerformances(performancesRaw);
+    if (!performances.length) {
+      continue;
+    }
+    const title = stripHtml(firstMatch(block, /<h3\b[^>]*>[\s\S]*?<a\b[^>]*>([\s\S]*?)<\/a>[\s\S]*?<\/h3>/i));
+    const href = firstMatch(block, /<h3\b[^>]*>[\s\S]*?<a\b[^>]*href=["']([^"']+)["']/i) || firstMatch(block, /content-listing-card__link[^>]*href=["']([^"']+)["']/i);
+    const genre = stripHtml(firstMatch(block, /content-listing-card__pretitle[\s\S]*?<a\b[^>]*>([\s\S]*?)<\/a>/i));
+    const highlights = stripHtml(firstMatch(block, /<span\b[^>]*class=["'][^"']*\bevent-highlights\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i));
+    const imageJson = decodeEntities(firstMatch(block, /data-lazy-image=["']([^"']+)["']/i));
+    const image = firstMatch(imageJson, /"src"\s*:\s*"([^"]+)"/i)?.replace(/\\\//g, "/");
+    const sourceUrl = href ? absoluteUrl(source.eventsUrl || source.website, href) : "";
+    if (!title || !sourceUrl || !isImportableNjpacEvent(title, genre, highlights)) {
+      continue;
+    }
+    performances.forEach((performance) => {
+      const startsAt = localIso(performance);
+      if (!eventStartsWithinWindow(startsAt, startDate, days)) {
+        return;
+      }
+      imported.push(
+        regionalEventRecord(source, {
+          id: `${source.id}-${slugFromUrl(sourceUrl)}-${slugify(startsAt)}`,
+          externalId: `${slugFromUrl(sourceUrl)}-${startsAt}`,
+          title,
+          startsAt,
+          summary: [genre, highlights].filter(Boolean).join(" · "),
+          sourceUrl,
+          image: image || null,
+          tags: [genre, ...highlights.split(/\s+/)].filter(Boolean),
+          registration: "Tickets",
+          confidence: 0.8
+        })
+      );
+    });
+  }
+
+  return imported;
+}
+
+function parsePrudentialCenterCards(html, source, startDate, days) {
+  const imported = [];
+  const itemPattern = /<div\b[^>]*class=["'][^"']*\belement-item\b[^"']*\bfamily-shows\b[^"']*["'][^>]*>([\s\S]*?)(?=<div\b[^>]*class=["'][^"']*\belement-item\b|<\/div>\s*<\/div>\s*<\/div>)/gi;
+  const pageYear = Number(todayInNewYork().slice(0, 4));
+
+  for (const match of html.matchAll(itemPattern)) {
+    const block = match[1];
+    const href = firstMatch(block, /<a\b[^>]*href=["']([^"']+)["']/i);
+    const title = stripHtml(firstMatch(block, /<h3\b[^>]*>([\s\S]*?)<\/h3>/i)) || stripHtml(firstMatch(block, /alt=["']([^"']+)["']/i));
+    const monthName = stripHtml(firstMatch(block, /class=["'][^"']*\beventmonth\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i));
+    const day = stripHtml(firstMatch(block, /class=["'][^"']*\beventday\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i));
+    const timeLabel = stripHtml(firstMatch(block, /class=["'][^"']*\beventtime\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i));
+    const image = firstMatch(block, /<img\b[^>]*src=["']([^"']+)["'][^>]*alt=["'][^"']*["']/i);
+    const month = MONTH_NAME_MAP.get(monthName.toLowerCase().slice(0, 3));
+    const sourceUrl = href ? absoluteUrl(source.eventsUrl || source.website, href) : "";
+    if (!title || !month || !day || !sourceUrl || !isImportableRegionalEvent(title, "family shows")) {
+      continue;
+    }
+    const dateKey = `${pageYear}-${month}-${String(Number(day)).padStart(2, "0")}`;
+    const startsAt = parseMeridiemTimeLabel(dateKey, timeLabel || "12pm");
+    if (!eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+    imported.push(
+      regionalEventRecord(source, {
+        id: `${source.id}-${slugFromUrl(sourceUrl)}-${startsAt.slice(0, 10)}`,
+        externalId: `${slugFromUrl(sourceUrl)}-${startsAt}`,
+        title,
+        startsAt,
+        summary: "Family show at Prudential Center.",
+        sourceUrl,
+        image: image ? absoluteUrl(source.eventsUrl || source.website, image) : null,
+        tags: ["family-shows"],
+        registration: "Tickets",
+        confidence: 0.78
+      })
+    );
+  }
+
+  return imported;
+}
+
+async function importHtmlRegionalEvents(sources, startDate, days) {
+  const parsers = new Map([
+    ["newark-museum-events", parseEventListingCards],
+    ["njpac-events-list", parseNjpacEventCards],
+    ["prudential-center-events", parsePrudentialCenterCards]
+  ]);
+  const imported = [];
+  for (const [parser, parse] of parsers) {
+    for (const source of allRegionalParserSources(sources, parser)) {
+      try {
+        const html = await fetchText(source.eventsUrl || source.website);
+        imported.push(...parse(html, source, startDate, days));
+      } catch (error) {
+        console.warn(`warning: could not import ${source.label}: ${error.message}`);
+      }
+    }
+  }
+  return [...new Map(imported.filter((event) => event.startsAt && event.sourceUrl).map((event) => [event.id, event])).values()];
+}
+
 function allMunicipalParserSources(sources, parser) {
   return (sources.towns ?? [])
     .filter((town) => town.municipal?.status === "importable" && town.municipal?.parser === parser)
@@ -3993,6 +4656,8 @@ function municipalVenueDetails(source, { title, summary, venueName, address }) {
     address: resolvedAddress || null,
     lat: coordinates?.lat ?? (fallbackToTownCenter ? numericCoordinate(source.town.center?.lat) : undefined),
     lng: coordinates?.lng ?? (fallbackToTownCenter ? numericCoordinate(source.town.center?.lng) : undefined),
+    addressStatus: location?.addressStatus || location?.addressConfidence || null,
+    directionsDisabled: Boolean(location?.directionsDisabled),
     confidence: coordinates ? 0.9 : resolvedAddress ? 0.84 : 0.72
   };
 }
@@ -4353,6 +5018,8 @@ function mapDpCalendarMunicipalEvent(source, item, startDate, days) {
     sourceUrl,
     sourceCalendarUrl: source.municipal.eventsUrl || source.municipal.website,
     address: venue.address,
+    addressStatus: venue.addressStatus || undefined,
+    directionsDisabled: venue.directionsDisabled || undefined,
     lat: venue.lat,
     lng: venue.lng,
     tags: ["municipal", source.town.id, category, "family"].filter(Boolean),
@@ -4541,6 +5208,501 @@ async function importJsonLdMunicipalEvents(sources, startDate, days, parser) {
   return [...new Map(imported.map((event) => [event.id, event])).values()];
 }
 
+function parseGovOfficeCalendarDateTime(value, startDate) {
+  const normalized = collapseWhitespace(value).replace(/\s+to\s+$/i, "");
+  const match = normalized.match(
+    /^[A-Za-z]+,\s+([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})(?:\s+at\s+(\d{1,2})(?::(\d{2}))?\s*(AM|PM))?/i
+  );
+  if (!match) {
+    return null;
+  }
+  const month = MONTHS.get(match[1].toLowerCase());
+  if (!month) {
+    return null;
+  }
+  const dateKey = `${match[3]}-${month}-${String(match[2]).padStart(2, "0")}`;
+  if (!match[4]) {
+    return `${dateKey}T00:00:00`;
+  }
+  let hour = Number(match[4]);
+  const meridiem = match[6].toLowerCase();
+  if (meridiem === "pm" && hour !== 12) {
+    hour += 12;
+  }
+  if (meridiem === "am" && hour === 12) {
+    hour = 0;
+  }
+  return `${dateKey}T${String(hour).padStart(2, "0")}:${match[5] || "00"}:00`;
+}
+
+function cleanCalendarTitle(value) {
+  return stripHtml(value)
+    .replace(/^\d{1,2}:\d{2}\s*(?:AM|PM)\s*/i, "")
+    .replace(/^\d{1,2}\s*(?:AM|PM)\s*/i, "")
+    .trim();
+}
+
+function parseGreenBrookAjaxEvents(rawText, source, sourceUrl, startDate, days) {
+  let rows = [];
+  try {
+    rows = JSON.parse(rawText);
+  } catch {
+    return [];
+  }
+  if (!Array.isArray(rows)) {
+    return [];
+  }
+
+  const imported = [];
+  for (const row of rows) {
+    const startsAt = row.start ? `${String(row.start).slice(0, 10)}T00:00:00` : null;
+    if (!startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+    const title = cleanCalendarTitle(row.title);
+    if (!isImportableMunicipalEvent(title, "", "community")) {
+      continue;
+    }
+    const venue = {
+      name: source.municipal.defaultVenueName || municipalSourceLabel(source),
+      address: source.municipal.defaultAddress || null,
+      lat: source.municipal.lat || null,
+      lng: source.municipal.lng || null,
+      confidence: 0.68
+    };
+    imported.push({
+      id: `greenbrook-ajax-${source.town.id}-${row.ev_id || slugify(title)}-${startsAt.slice(0, 10)}`,
+      externalId: row.ev_id ? String(row.ev_id) : slugify(title),
+      sourceId: municipalSourceId(source, "greenbrook-ajax-calendar"),
+      townId: source.town.id,
+      title,
+      venue: venue.name,
+      venueName: venue.name,
+      category: civicPlusMunicipalCategory(title, "", "community"),
+      source: municipalSourceLabel(source),
+      startsAt,
+      endsAt: row.end ? `${String(row.end).slice(0, 10)}T23:59:00` : null,
+      timezone: TIMEZONE,
+      durationMinutes: null,
+      ages: inferAgeBandsFromText(title),
+      audiences: ["community"],
+      cost: null,
+      registration: "See source",
+      summary: title,
+      url: source.municipal.website || sourceUrl,
+      sourceUrl: source.municipal.website || sourceUrl,
+      sourceCalendarUrl: sourceUrl,
+      address: venue.address,
+      lat: venue.lat,
+      lng: venue.lng,
+      tags: ["municipal", "community"],
+      status: "published",
+      confidence: venue.confidence
+    });
+  }
+  return imported;
+}
+
+async function importGreenBrookAjaxMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "greenbrook-ajax-calendar")) {
+    try {
+      const sourceUrl = source.municipal.rawEventsUrl || source.municipal.eventsUrl || source.municipal.website;
+      const rawText = await fetchText(sourceUrl);
+      imported.push(...parseGreenBrookAjaxEvents(rawText, source, sourceUrl, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
+function unfoldICalendar(value) {
+  return String(value || "").replace(/\r?\n[ \t]/g, "");
+}
+
+function parseICalProperty(block, name) {
+  const match = unfoldICalendar(block).match(new RegExp(`(?:^|\\n)${name}(?:;[^:]*)?:(.*)`, "i"));
+  return match ? decodeICalText(match[1].trim()) : "";
+}
+
+function decodeICalText(value) {
+  return decodeEntities(String(value || ""))
+    .replace(/\\n/gi, " ")
+    .replace(/\\,/g, ",")
+    .replace(/\\;/g, ";")
+    .replace(/\\\\/g, "\\")
+    .trim();
+}
+
+function parseICalDateTime(value) {
+  const raw = String(value || "").trim();
+  const match = raw.match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2})?)?/);
+  if (!match) {
+    return null;
+  }
+  return `${match[1]}-${match[2]}-${match[3]}T${match[4] || "00"}:${match[5] || "00"}:${match[6] || "00"}`;
+}
+
+function parseAi1ecIcalEvents(text, source, sourceUrl, startDate, days) {
+  const imported = [];
+  const blocks = unfoldICalendar(text).split("BEGIN:VEVENT").slice(1).map((block) => block.split("END:VEVENT")[0]);
+  for (const block of blocks) {
+    const rawStart = parseICalProperty(block, "DTSTART");
+    const startsAt = parseICalDateTime(rawStart);
+    if (!startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+    const title = cleanCalendarTitle(parseICalProperty(block, "SUMMARY"));
+    const summary = cleanImportedSummary(parseICalProperty(block, "DESCRIPTION"), { title });
+    if (!isImportableMunicipalEvent(title, summary, "community")) {
+      continue;
+    }
+    const eventUrl = parseICalProperty(block, "URL") || sourceUrl;
+    const venue = {
+      name: source.municipal.defaultVenueName || municipalSourceLabel(source),
+      address: source.municipal.defaultAddress || null,
+      lat: source.municipal.lat || null,
+      lng: source.municipal.lng || null,
+      confidence: 0.68
+    };
+    imported.push({
+      id: `ai1ec-${source.town.id}-${parseICalProperty(block, "UID") || slugify(`${title}-${startsAt}`)}`,
+      externalId: parseICalProperty(block, "UID") || slugify(`${title}-${startsAt}`),
+      sourceId: municipalSourceId(source, "ai1ec-ical-calendar"),
+      townId: source.town.id,
+      title,
+      venue: venue.name,
+      venueName: venue.name,
+      category: civicPlusMunicipalCategory(title, summary, "community"),
+      source: municipalSourceLabel(source),
+      startsAt,
+      endsAt: parseICalDateTime(parseICalProperty(block, "DTEND")),
+      timezone: TIMEZONE,
+      durationMinutes: null,
+      ages: inferAgeBandsFromText(title, summary),
+      audiences: ["community"],
+      cost: null,
+      registration: "See source",
+      summary: summary || title,
+      url: eventUrl,
+      sourceUrl: eventUrl,
+      sourceCalendarUrl: sourceUrl,
+      address: venue.address,
+      lat: venue.lat,
+      lng: venue.lng,
+      tags: ["municipal", "community"],
+      status: "published",
+      confidence: venue.confidence
+    });
+  }
+  return imported;
+}
+
+async function importAi1ecIcalMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "ai1ec-ical-calendar")) {
+    try {
+      const sourceUrl = source.municipal.rawEventsUrl || source.municipal.eventsUrl || source.municipal.website;
+      const text = await fetchText(sourceUrl);
+      imported.push(...parseAi1ecIcalEvents(text, source, sourceUrl, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
+function parseSavvyCitizenTime(dateKey, value) {
+  const match = collapseWhitespace(value).match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);
+  if (!match) {
+    return `${dateKey}T12:00:00`;
+  }
+  let hour = Number(match[1]);
+  const meridiem = match[3].toLowerCase();
+  if (meridiem === "pm" && hour !== 12) {
+    hour += 12;
+  }
+  if (meridiem === "am" && hour === 12) {
+    hour = 0;
+  }
+  return `${dateKey}T${String(hour).padStart(2, "0")}:${match[2] || "00"}:00`;
+}
+
+function parseSavvyCitizenPluginEvents(html, source, sourceUrl, startDate, days) {
+  const imported = [];
+  let currentMonth = null;
+  let currentYear = null;
+  const blockPattern =
+    /<div class=["']agenda-month["'][^>]*>([\s\S]*?)<\/div>|<div class=["']agenda-day["']>([\s\S]*?)(?=<div class=["']agenda-day["']|<div class=["']agenda-month["']|<div id=["']more-|<script|<div class=["']powered["']|$)/gi;
+
+  for (const match of html.matchAll(blockPattern)) {
+    if (match[1]) {
+      const monthMatch = stripHtml(match[1]).match(/^([A-Za-z]+)\s+(\d{4})$/);
+      currentMonth = monthMatch ? MONTHS.get(monthMatch[1].toLowerCase()) : null;
+      currentYear = monthMatch ? monthMatch[2] : null;
+      continue;
+    }
+    if (!currentMonth || !currentYear || !match[2]) {
+      continue;
+    }
+    const day = firstMatch(match[2], /<div class=["']agenda-day-date["'][^>]*>[\s\S]*?,\s*(\d{1,2})<\/div>/i);
+    if (!day) {
+      continue;
+    }
+    const dateKey = `${currentYear}-${currentMonth}-${String(day).padStart(2, "0")}`;
+    const itemPattern = /<div class=["']agenda-item["']>([\s\S]*?)(?=<div class=["']agenda-item["']|<\/div>\s*<\/div>|$)/gi;
+    for (const itemMatch of match[2].matchAll(itemPattern)) {
+      const item = itemMatch[1];
+      const eventUrl = firstMatch(item, /<a[^>]+href=["']([^"']+)["']/i) || sourceUrl;
+      const externalId = firstMatch(eventUrl, /\/o\/(\d+)/i) || slugify(`${dateKey}-${stripHtml(item)}`);
+      const title = cleanCalendarTitle(stripHtml(firstMatch(item, /<span[^>]*>([\s\S]*?)<\/span>/i)));
+      const timeText = stripHtml(firstMatch(item, /<div class=["']agenda-item-time["'][^>]*>([\s\S]*?)<\/div>/i));
+      const startsAt = parseSavvyCitizenTime(dateKey, timeText);
+      if (!title || !eventStartsWithinWindow(startsAt, startDate, days)) {
+        continue;
+      }
+      if (!isImportableMunicipalEvent(title, "", "community")) {
+        continue;
+      }
+      const venue = {
+        name: source.municipal.defaultVenueName || municipalSourceLabel(source),
+        address: source.municipal.defaultAddress || null,
+        lat: source.municipal.lat || numericCoordinate(source.town.center?.lat),
+        lng: source.municipal.lng || numericCoordinate(source.town.center?.lng),
+        confidence: source.municipal.defaultAddress ? 0.82 : 0.7
+      };
+      imported.push({
+        id: `savvycitizen-${source.town.id}-${externalId}-${dateKey}`,
+        externalId,
+        sourceId: municipalSourceId(source, "savvycitizen-plugin"),
+        townId: source.town.id,
+        title,
+        venue: venue.name,
+        venueName: venue.name,
+        category: civicPlusMunicipalCategory(title, "", "community"),
+        source: municipalSourceLabel(source),
+        startsAt,
+        endsAt: addMinutes(startsAt, 60),
+        timezone: TIMEZONE,
+        durationMinutes: 60,
+        ages: inferAgeBandsFromText(title),
+        audiences: ["community"],
+        cost: null,
+        registration: "See source",
+        summary: title,
+        url: eventUrl,
+        sourceUrl: eventUrl,
+        sourceCalendarUrl: sourceUrl,
+        address: venue.address,
+        lat: venue.lat,
+        lng: venue.lng,
+        tags: ["municipal", "community", "savvycitizen"],
+        status: "published",
+        confidence: venue.confidence
+      });
+    }
+  }
+  return imported;
+}
+
+async function importSavvyCitizenMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "savvycitizen-plugin")) {
+    try {
+      const sourceUrl = source.municipal.rawEventsUrl || source.municipal.eventsUrl || source.municipal.website;
+      const html = await fetchText(sourceUrl);
+      imported.push(...parseSavvyCitizenPluginEvents(html, source, sourceUrl, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
+function parseEggZackDateTime(value) {
+  const text = collapseWhitespace(value);
+  const match = text.match(/^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4}),\s+(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
+  if (!match) {
+    return null;
+  }
+  const month = MONTHS.get(match[1].toLowerCase());
+  if (!month) {
+    return null;
+  }
+  let hour = Number(match[4]);
+  const meridiem = match[6].toLowerCase();
+  if (meridiem === "pm" && hour !== 12) {
+    hour += 12;
+  }
+  if (meridiem === "am" && hour === 12) {
+    hour = 0;
+  }
+  return `${match[3]}-${month}-${String(match[2]).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${match[5] || "00"}:00`;
+}
+
+function parseEggZackEventArchive(html, source, sourceUrl, startDate, days) {
+  const imported = [];
+  const cards = html.split(/<div class="listing_a listing_article\b/i).slice(1);
+  for (const card of cards) {
+    const href = firstMatch(card, /<h2>\s*<a href=["']([^"']+)["']/i) || firstMatch(card, /<a href=["']([^"']+)["'][^>]*title=/i);
+    const title = stripHtml(firstMatch(card, /<h2>\s*<a[^>]*>([\s\S]*?)<\/a>\s*<\/h2>/i));
+    const desc = stripHtml(firstMatch(card, /<div class="listing_desc">([\s\S]*?)<\/div>/i));
+    const timeText = stripHtml(firstMatch(card, /<span class="listing_event_time">([\s\S]*?)<\/span>/i));
+    const timeParts = [...timeText.matchAll(/[A-Za-z]+\s+\d{1,2},\s+\d{4},\s+\d{1,2}(?::\d{2})?\s*(?:AM|PM)/gi)].map(
+      (match) => match[0]
+    );
+    const startsAt = parseEggZackDateTime(timeParts[0] || timeText);
+    const endsAt = timeParts[1] ? parseEggZackDateTime(timeParts[1]) : null;
+    if (!href || !title || !startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+    if (!isImportableMunicipalEvent(title, desc, "community")) {
+      continue;
+    }
+    const eventUrl = absoluteUrl(sourceUrl, href);
+    const venue = {
+      name: source.municipal.defaultVenueName || municipalSourceLabel(source),
+      address: source.municipal.defaultAddress || null,
+      lat: source.municipal.lat || null,
+      lng: source.municipal.lng || null,
+      confidence: 0.68
+    };
+    imported.push({
+      id: `eggzack-${source.town.id}-${slugFromUrl(eventUrl)}-${startsAt.slice(0, 10)}`,
+      externalId: firstMatch(card, /data-article=["']([^"']+)["']/i) || slugFromUrl(eventUrl),
+      sourceId: municipalSourceId(source, "eggzack-event-archive"),
+      townId: source.town.id,
+      title,
+      venue: venue.name,
+      venueName: venue.name,
+      category: civicPlusMunicipalCategory(title, desc, "community"),
+      source: municipalSourceLabel(source),
+      startsAt,
+      endsAt,
+      timezone: TIMEZONE,
+      durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : null,
+      ages: inferAgeBandsFromText(title, desc),
+      audiences: ["community"],
+      cost: null,
+      registration: "See source",
+      summary: cleanImportedSummary(desc, { title }) || title,
+      url: eventUrl,
+      sourceUrl: eventUrl,
+      sourceCalendarUrl: sourceUrl,
+      address: venue.address,
+      lat: venue.lat,
+      lng: venue.lng,
+      tags: ["municipal", "community"],
+      status: "published",
+      confidence: venue.confidence
+    });
+  }
+  return imported;
+}
+
+async function importEggZackMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "eggzack-event-archive")) {
+    try {
+      const sourceUrl = source.municipal.eventsUrl || source.municipal.website;
+      const html = await fetchText(sourceUrl);
+      imported.push(...parseEggZackEventArchive(html, source, sourceUrl, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
+function govOfficeCalendarUrl(source, year, month) {
+  const base = source.municipal.eventsUrl || source.municipal.website;
+  const url = new URL(base);
+  if (!url.searchParams.get("Type")) {
+    url.searchParams.set("Type", source.municipal.type || "B_EV");
+  }
+  if (source.municipal.sectionId && !url.searchParams.get("SEC")) {
+    url.searchParams.set("SEC", source.municipal.sectionId);
+  }
+  url.searchParams.set("month", String(month));
+  url.searchParams.set("year", String(year));
+  return url.toString();
+}
+
+function parseGovOfficeCalendarEvents(html, source, calendarUrl, startDate, days) {
+  const links = html.split('<a class="eventLink"').slice(1);
+  const imported = [];
+  for (const link of links) {
+    const href = firstMatch(link, /href=["']([^"']+)["']/i);
+    const title = stripHtml(firstMatch(link, /<span class="eventTitle">([\s\S]*?)<\/span>/i));
+    const tip = stripHtml(firstMatch(link, /<div class="eventTip">([\s\S]*?)<\/div>\s*<\/div>/i));
+    const dateTip = tip.replace(new RegExp(`^${escapeRegExp(title)}\\s*`, "i"), "").trim();
+    const timeParts = dateTip.split(/\s+to\s+/i).map((part) => part.trim()).filter(Boolean);
+    const startsAt = parseGovOfficeCalendarDateTime(timeParts[0] || "", startDate);
+    const endsAt = timeParts[1] ? parseGovOfficeCalendarDateTime(timeParts[1], startDate) : null;
+    if (!href || !title || !startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+      continue;
+    }
+    if (!isImportableMunicipalEvent(title, tip, "community")) {
+      continue;
+    }
+    const sourceUrl = absoluteUrl(calendarUrl, decodeEntities(href));
+    const venue = findMunicipalLocationOverride(source, "", source.municipal.defaultAddress, title, tip) || {
+      name: source.municipal.defaultVenueName || municipalSourceLabel(source),
+      address: source.municipal.defaultAddress || null,
+      lat: source.municipal.lat || null,
+      lng: source.municipal.lng || null,
+      confidence: 0.72
+    };
+    imported.push({
+      id: `govoffice-${source.town.id}-${slugFromUrl(sourceUrl)}-${startsAt.slice(0, 10)}`,
+      externalId: firstMatch(sourceUrl, /DE=([^&]+)/i) || slugFromUrl(sourceUrl),
+      sourceId: municipalSourceId(source, "govoffice-calendar"),
+      townId: source.town.id,
+      title,
+      venue: venue.name,
+      venueName: venue.name,
+      category: civicPlusMunicipalCategory(title, tip, "community"),
+      source: municipalSourceLabel(source),
+      startsAt,
+      endsAt,
+      timezone: TIMEZONE,
+      durationMinutes: endsAt ? durationMinutes(startsAt, endsAt) : null,
+      ages: inferAgeBandsFromText(title, tip, "community"),
+      audiences: ["community"],
+      cost: null,
+      registration: "See source",
+      summary: cleanImportedSummary(tip.replace(title, "")) || title,
+      url: sourceUrl,
+      sourceUrl,
+      sourceCalendarUrl: calendarUrl,
+      address: venue.address,
+      lat: venue.lat,
+      lng: venue.lng,
+      tags: ["municipal", "community"],
+      status: "published",
+      confidence: venue.confidence
+    });
+  }
+  return imported;
+}
+
+async function importGovOfficeMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "govoffice-calendar")) {
+    for (const { year, month } of monthsInWindow(startDate, days)) {
+      const url = govOfficeCalendarUrl(source, year, month);
+      try {
+        const html = await fetchText(url);
+        imported.push(...parseGovOfficeCalendarEvents(html, source, url, startDate, days));
+      } catch (error) {
+        console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+      }
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
 async function importSquarespaceMunicipalEvents(sources, startDate, days) {
   const imported = [];
   for (const source of allMunicipalParserSources(sources, "squarespace-calendar-list")) {
@@ -4631,13 +5793,22 @@ async function main() {
     importSquarespaceMunicipalEvents(sources, startDate, days),
     importCommunicoLibnetLibraryEvents(sources, startDate, days),
     importLibraryCalendarEvents(sources, startDate, days),
+    importEngagedPatronsLibraryEvents(sources, startDate, days),
+    importMylibraryHomepageEvents(sources, startDate, days),
+    importMylibraryCarouselEvents(sources, startDate, days),
     importLibCalEvents(sources, startDate, days),
     importEventOrganiserEvents(sources, startDate, days),
     importJoomlaEventBookingEvents(sources, startDate, days),
+    importJoomlaJEventsLibraryEvents(sources, startDate, days),
     importConfiguredLibraryEvents(sources, startDate, days),
     importConfiguredWorkshopEvents(sources, startDate, days),
     importConfiguredRegionalEvents(sources, startDate, days),
     importCountyCalendarEvents(sources, startDate, days),
+    importGreenBrookAjaxMunicipalEvents(sources, startDate, days),
+    importAi1ecIcalMunicipalEvents(sources, startDate, days),
+    importSavvyCitizenMunicipalEvents(sources, startDate, days),
+    importEggZackMunicipalEvents(sources, startDate, days),
+    importGovOfficeMunicipalEvents(sources, startDate, days),
     importJsonLdMunicipalEvents(sources, startDate, days, "revize-calendar"),
     importJsonLdMunicipalEvents(sources, startDate, days, "granicus-calendar"),
     importJsonLdMunicipalEvents(sources, startDate, days, "alphadog-recreation-page"),
@@ -4646,6 +5817,7 @@ async function main() {
     importWixEventsList(sources, startDate, days),
     importFarmsteadCalendarEvents(sources, startDate, days),
     importSquarespaceRegionalEvents(sources, startDate, days),
+    importHtmlRegionalEvents(sources, startDate, days),
     importTribeEventsCalendar(sources, startDate, days),
     importNjCarnivalsEvents(sources, startDate, days)
   ]);

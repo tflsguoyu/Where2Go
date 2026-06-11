@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-11",
+  "datePolicy": {
+    "refreshStart": "today",
+    "defaultLookaheadDays": 60,
+    "keepPastEvents": true,
+    "deletionRule": "Do not delete historical events during refresh. Do not remove future events only because they disappeared from a listing page.",
+    "cancelRule": "Mark an event cancelled only when the official source explicitly says it is cancelled."
+  },
+  "eligibilityPolicy": {
+    "defaultRule": "Keep events that children can reasonably attend or that are family-compatible, even when the event is not exclusively for children.",
+    "grayAreaRule": "Keep gray-area community events unless the event is clearly adult-only, unsafe, or inappropriate for children.",
+    "includeSignals": [
+      "kids",
+      "children",
+      "child",
+      "youth",
+      "teen",
+      "tween",
+      "family",
+      "all ages",
+      "storytime",
+      "craft",
+      "maker",
+      "STEM",
+      "coding",
+      "robotics",
+      "nature",
+      "farm",
+      "museum",
+      "festival",
+      "fair",
+      "carnival",
+      "movie night",
+      "concert in the park",
+      "farmers market",
+      "parade",
+      "holiday event",
+      "camp",
+      "workshop",
+      "open play",
+      "sensory"
+    ],
+    "grayAreaExamplesToKeep": [
+      "farmers markets",
+      "street fairs",
+      "outdoor concerts",
+      "movie nights",
+      "town festivals",
+      "holiday celebrations",
+      "nature walks",
+      "museum open days",
+      "community health or safety events with family participation"
+    ],
+    "excludeSignals": [
+      "adult only",
+      "adults only",
+      "21+",
+      "bar crawl",
+      "wine tasting",
+      "beer garden as the primary activity",
+      "professional networking",
+      "adult book club",
+      "senior only",
+      "council meeting",
+      "zoning board",
+      "planning board",
+      "budget hearing",
+      "garbage pickup",
+      "tax notice",
+      "road closure",
+      "court session",
+      "explicitly unsafe or inappropriate for children"
+    ],
+    "exclusionRule": "Exclude only when children clearly cannot attend or the event is clearly not suitable for children."
+  },
+  "eventSchemaGuidance": {
+    "requiredForRealEvents": [
+      "id",
+      "sourceId",
+      "title",
+      "source",
+      "startsAt",
+      "endsAt",
+      "timezone",
+      "venue or venueName",
+      "address when available",
+      "sourceUrl or url"
+    ],
+    "mapFields": [
+      "lat",
+      "lng",
+      "townId"
+    ],
+    "recommendedFields": [
+      "category",
+      "ages",
+      "cost",
+      "registration",
+      "summary",
+      "tags",
+      "confidence",
+      "firstSeenAt",
+      "lastSeenAt",
+      "externalId",
+      "image"
+    ],
+    "summaryRule": "Summary should contain activity content only. Do not put date, time, venue, room, place, or address text in summary.",
+    "sourceUrlRule": "Keep the original official event page when available. If only a calendar listing exists, keep that listing URL.",
+    "evidenceRule": "Manual or configured events should keep evidenceUrl, evidenceType, and checkedAt when practical."
+  },
+  "eventStatuses": {
+    "published": "Normal event ready for display.",
+    "review": "Event is useful but has incomplete or uncertain fields.",
+    "cancelled": "Official source explicitly says the event is cancelled.",
+    "stale_possible": "Future event was previously seen but no longer appears on the source; not enough evidence to cancel.",
+    "duplicate": "Event was merged into a better canonical record."
+  },
+  "confidenceGuidance": [
+    {
+      "confidence": 0.95,
+      "meaning": "Official API or structured official detail page with complete fields."
+    },
+    {
+      "confidence": 0.85,
+      "meaning": "Official page with some inferred or cleaned fields."
+    },
+    {
+      "confidence": 0.7,
+      "meaning": "Official flyer, manual transcription, or configured source with enough evidence."
+    },
+    {
+      "confidence": 0.5,
+      "meaning": "Third-party directory or incomplete source; keep only if useful and mark for review."
+    }
+  ],
+  "qualityChecks": [
+    "Every real event should have a stable id and sourceId.",
+    "Every real event should have a sourceUrl or url back to the source.",
+    "Every displayed map event should have coordinates or a geocodable address.",
+    "Do not invent activity descriptions when the source does not provide one.",
+    "Prefer official HTML text before image, flyer, or OCR text.",
+    "Use image or flyer text only when normal page text is missing needed date, time, room, address, or venue detail."
+  ]
+}

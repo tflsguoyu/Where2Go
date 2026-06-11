@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-11",
+  "semantics": {
+    "tierMeaning": "Tiers describe source families, not search priority or trust ranking.",
+    "sourceTypesRule": "A source may have multiple sourceTypes when one website fits more than one family.",
+    "priorityRule": "If a future workflow needs search priority, add a separate crawlPriority or authorityRank field instead of changing tier semantics."
+  },
+  "tiers": [
+    {
+      "tier": 1,
+      "id": "official_public_sources",
+      "label": "Official public sources",
+      "description": "Government, library, school, and other official public-service sources.",
+      "sourceTypes": [
+        {
+          "id": "municipal_government",
+          "label": "Municipal government",
+          "examples": ["town calendar", "borough events", "official city calendar"]
+        },
+        {
+          "id": "county_government",
+          "label": "County government",
+          "examples": ["county events", "county health or cultural calendars"]
+        },
+        {
+          "id": "parks_recreation",
+          "label": "Parks and recreation",
+          "examples": ["parks department", "recreation calendar", "registration portal"]
+        },
+        {
+          "id": "public_library",
+          "label": "Public library",
+          "examples": ["branch youth calendar", "county library system", "library event API"]
+        },
+        {
+          "id": "school_or_community_education",
+          "label": "School or community education",
+          "examples": ["school district community programs", "adult school youth classes"]
+        },
+        {
+          "id": "municipal_alliance",
+          "label": "Municipal alliance",
+          "examples": ["health alliance", "youth and family prevention programs"]
+        },
+        {
+          "id": "official_town_news",
+          "label": "Official town news or flyers",
+          "examples": ["official news posts", "seasonal flyer pages", "PDF program guides"]
+        }
+      ]
+    },
+    {
+      "tier": 2,
+      "id": "public_interest_institutions",
+      "label": "Public-interest institutions",
+      "description": "Community, cultural, nonprofit, education, and destination sources with family programs.",
+      "sourceTypes": [
+        {
+          "id": "county_parks",
+          "label": "County parks",
+          "examples": ["county park programs", "environmental education calendars"]
+        },
+        {
+          "id": "nature_center",
+          "label": "Nature center",
+          "examples": ["nature walks", "wildlife programs", "family outdoor classes"]
+        },
+        {
+          "id": "museum",
+          "label": "Museum or science center",
+          "examples": ["family museum days", "science workshops", "planetarium programs"]
+        },
+        {
+          "id": "arts_center",
+          "label": "Arts center or theater",
+          "examples": ["kids art workshops", "family theater", "youth music programs"]
+        },
+        {
+          "id": "historic_site",
+          "label": "Historic site",
+          "examples": ["family history days", "living history programs"]
+        },
+        {
+          "id": "community_center",
+          "label": "Community center",
+          "examples": ["family programs", "youth events", "open community days"]
+        },
+        {
+          "id": "nonprofit",
+          "label": "Nonprofit or civic group",
+          "examples": ["family fundraisers", "community festivals", "youth programs"]
+        },
+        {
+          "id": "downtown_sid_chamber",
+          "label": "Downtown, SID, chamber, or business district",
+          "examples": ["street fairs", "farmers markets", "downtown family events"]
+        },
+        {
+          "id": "farmers_market",
+          "label": "Farmers market or public market",
+          "examples": ["seasonal markets", "market family days"]
+        },
+        {
+          "id": "farm_garden_arboretum",
+          "label": "Farm, garden, or arboretum",
+          "examples": ["u-pick events", "garden workshops", "arboretum family programs"]
+        }
+      ]
+    },
+    {
+      "tier": 3,
+      "id": "commercial_family_activity_sources",
+      "label": "Commercial family activity sources",
+      "description": "Commercial venues and retailers that publish dated child or family programs.",
+      "sourceTypes": [
+        {
+          "id": "retail_mall",
+          "label": "Mall or shopping center",
+          "examples": ["mall events", "holiday activities", "family pop-ups"]
+        },
+        {
+          "id": "bookstore",
+          "label": "Bookstore",
+          "examples": ["storytime", "young reader events", "summer reading"]
+        },
+        {
+          "id": "craft_store",
+          "label": "Craft store",
+          "examples": ["kids craft workshops", "make-and-take events"]
+        },
+        {
+          "id": "home_improvement_workshop",
+          "label": "Home improvement kids workshop",
+          "examples": ["kids building workshops", "store craft days"]
+        },
+        {
+          "id": "indoor_playground",
+          "label": "Indoor playground",
+          "examples": ["open play events", "special parties", "sensory play"]
+        },
+        {
+          "id": "trampoline_park",
+          "label": "Trampoline park",
+          "examples": ["glow nights", "toddler jump", "family events"]
+        },
+        {
+          "id": "kids_gym",
+          "label": "Kids gym",
+          "examples": ["trial classes", "open gym", "holiday events"]
+        },
+        {
+          "id": "sports_complex",
+          "label": "Sports complex",
+          "examples": ["toddler play", "youth clinics", "sports camps"]
+        },
+        {
+          "id": "swim_dance_martial_arts",
+          "label": "Swim, dance, or martial arts studio",
+          "examples": ["family open house", "youth workshops", "camp sessions"]
+        },
+        {
+          "id": "stem_coding_center",
+          "label": "STEM or coding center",
+          "examples": ["coding workshops", "robotics camps", "maker events"]
+        },
+        {
+          "id": "camp_provider",
+          "label": "Camp provider",
+          "examples": ["day camp sessions", "school break camp", "summer camp"]
+        },
+        {
+          "id": "restaurant_cafe_family_events",
+          "label": "Restaurant or cafe family events",
+          "examples": ["family trivia", "kids nights", "character meals"]
+        }
+      ]
+    },
+    {
+      "tier": 4,
+      "id": "regional_discovery_sources",
+      "label": "Regional discovery sources",
+      "description": "Aggregators, directories, ticketing pages, and discovery-only sources used to find official sources or supplemental events.",
+      "sourceTypes": [
+        {
+          "id": "regional_event_directory",
+          "label": "Regional event directory",
+          "examples": ["family event lists", "local media calendars"]
+        },
+        {
+          "id": "tourism_calendar",
+          "label": "Tourism calendar",
+          "examples": ["county tourism", "destination marketing calendars"]
+        },
+        {
+          "id": "carnival_fair_directory",
+          "label": "Carnival, fair, or festival directory",
+          "examples": ["fair listings", "carnival schedules", "festival directories"]
+        },
+        {
+          "id": "eventbrite_or_ticketing",
+          "label": "Ticketing or registration platform",
+          "examples": ["Eventbrite", "ticketed classes", "registration portals"]
+        },
+        {
+          "id": "social_media_or_flyer",
+          "label": "Social media or flyer",
+          "examples": ["official Facebook events", "Instagram flyers", "PDF flyers"]
+        },
+        {
+          "id": "search_result_candidate",
+          "label": "Search result candidate",
+          "examples": ["candidate venue found by search", "unverified dated-event page"]
+        }
+      ]
+    }
+  ],
+  "authorityRankGuidance": [
+    {
+      "rank": 1,
+      "label": "Organizer or venue official page",
+      "rule": "Prefer this when deduplicating or resolving conflicts."
+    },
+    {
+      "rank": 2,
+      "label": "Official town, county, library, or partner repost",
+      "rule": "Useful when the organizer page is missing details."
+    },
+    {
+      "rank": 3,
+      "label": "Ticketing or registration page",
+      "rule": "Use when official and registration details match."
+    },
+    {
+      "rank": 4,
+      "label": "Third-party directory",
+      "rule": "Use mainly for discovery unless no official page is available."
+    }
+  ]
+}
