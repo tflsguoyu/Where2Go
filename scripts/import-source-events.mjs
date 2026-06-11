@@ -357,6 +357,16 @@ function cleanImportedSummary(value, context = {}) {
   return normalizeSummaryPunctuation(summary);
 }
 
+function markSummaryStatus(event, status = "source_detail_unavailable") {
+  if (isNonEmptyText(event.summary)) {
+    delete event.summaryStatus;
+    return event;
+  }
+  event.summary = "";
+  event.summaryStatus = status;
+  return event;
+}
+
 function collapseWhitespace(value) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
 }
@@ -833,7 +843,7 @@ async function geocodeMissingEventCoordinates(events) {
   let lastLookupAt = 0;
 
   for (const event of events) {
-    if (event.withinCoverage === false || hasValidCoordinates(event)) {
+    if (hasValidCoordinates(event)) {
       continue;
     }
     const address = geocodeableAddress(event.address);
@@ -902,6 +912,7 @@ function repairEventQuality(events) {
         event.summary = cleanedSummary;
         noteRepair("summary");
       }
+      delete event.summaryStatus;
     }
   });
 
@@ -1828,6 +1839,7 @@ function parseNjCarnivalsListings(html, source, sources, startDate, days) {
     const address = location.address || {};
     const locality = stripHtml(address.addressLocality || "");
     const matchedTown = townLookup.get(normalizePlaceName(locality));
+    const townAssignmentStatus = matchedTown ? "assigned" : locality ? "needs_registry_town" : "unknown";
     const eventSlug = slugFromUrl(event.url);
     const tags = collectTagsFromListingSection(section);
     const venueName = stripHtml(location.name || locality || "NJ Carnivals event");
@@ -1846,6 +1858,9 @@ function parseNjCarnivalsListings(html, source, sources, startDate, days) {
           externalId: eventSlug,
           sourceId: "nj-carnivals",
           townId: matchedTown?.id || null,
+          townNameRaw: matchedTown ? null : locality || null,
+          townAssignmentStatus,
+          townAssignmentSource: locality ? "addressLocality" : "unresolved",
           withinCoverage: Boolean(matchedTown),
           title,
           venue: locality ? `${venueName} · ${locality}` : venueName,
@@ -1869,7 +1884,7 @@ function parseNjCarnivalsListings(html, source, sources, startDate, days) {
           lng: coordinates?.lng ?? (fullAddress ? undefined : matchedTown ? Number(matchedTown.center?.lng || 0) : undefined),
           image: event.image || null,
           tags,
-          status: "published",
+          status: matchedTown ? "published" : "review",
           confidence: matchedTown ? 0.82 : 0.72
         });
       });
@@ -3718,6 +3733,9 @@ function regionalEventRecord(source, fields) {
     externalId: fields.externalId || fields.id,
     sourceId: source.id,
     townId: location.townId,
+    townNameRaw: location.townNameRaw || null,
+    townAssignmentStatus: location.townAssignmentStatus || (location.townId ? "assigned" : "unknown"),
+    townAssignmentSource: location.townAssignmentSource || null,
     title: stripHtml(fields.title),
     venue: location.name,
     venueName: location.name,
@@ -3740,18 +3758,23 @@ function regionalEventRecord(source, fields) {
     lng: location.lng,
     image: fields.image || null,
     tags: [source.type, ...(fields.tags || []), "family"].filter(Boolean),
-    status: "published",
+    status: location.townId ? "published" : "review",
     confidence: fields.confidence ?? 0.78
   };
 }
 
 function configuredRegionalLocation(source, config) {
   const baseLocation = primaryRegionalLocation(source);
+  const hasConfiguredTown = Object.prototype.hasOwnProperty.call(config, "townId");
   return {
     ...baseLocation,
     id: config.locationId || baseLocation.id,
     name: config.venue || baseLocation.name,
-    townId: config.townId || baseLocation.townId,
+    townId: hasConfiguredTown ? config.townId : baseLocation.townId,
+    townNameRaw: config.townNameRaw || null,
+    townAssignmentStatus:
+      config.townAssignmentStatus || (hasConfiguredTown ? (config.townId ? "assigned" : "needs_registry_town") : baseLocation.townAssignmentStatus),
+    townAssignmentSource: config.townAssignmentSource || (config.townNameRaw ? "configuredLocation" : baseLocation.townAssignmentSource),
     address: config.address || baseLocation.address,
     lat: Number(config.lat ?? baseLocation.lat),
     lng: Number(config.lng ?? baseLocation.lng),
@@ -4176,7 +4199,10 @@ function parseTribeEventsCalendar(events, source, sources, startDate, days) {
       location: {
         id: venue.name || source.id,
         name: venue.name || matchedTown?.name || source.label,
-        townId: matchedTown?.id || source.townId || null,
+        townId: matchedTown?.id || null,
+        townNameRaw: matchedTown ? null : venue.city || null,
+        townAssignmentStatus: matchedTown ? "assigned" : venue.city ? "needs_registry_town" : "unknown",
+        townAssignmentSource: venue.city ? "venueCity" : "sourceFallback",
         address: venue.address || source.address || null,
         lat: Number.isFinite(venue.lat) && venue.lat !== 0 ? venue.lat : Number(source.lat || 0),
         lng: Number.isFinite(venue.lng) && venue.lng !== 0 ? venue.lng : Number(source.lng || 0)
@@ -4894,11 +4920,11 @@ async function enrichCivicPlusDetails(events) {
 
   return events.map((event) => {
     const details = cache.get(event.sourceUrl) || {};
-    return {
+    return markSummaryStatus({
       ...event,
       summary: details.summary || event.summary,
       image: details.image || event.image
-    };
+    });
   });
 }
 
@@ -4959,6 +4985,17 @@ function extractDpCalendarSummary(description) {
       /<div\b[^>]*class=["'][^"']*\bdp-event-tooltip__description\b[^"']*["'][^>]*>([\s\S]*?)<\/div>\s*<div\b[^>]*class=["'][^"']*\bdp-event-tooltip__actions\b/i
     ) || firstMatch(description, /<div\b[^>]*class=["'][^"']*\bdp-event-tooltip__description\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
   return cleanImportedSummary(tooltipDescription);
+}
+
+function extractDpCalendarDetailSummary(html) {
+  const description =
+    firstMatch(html, /<div\b[^>]*class=["'][^"']*\bcom-dpcalendar-event__description\b[^"']*["'][^>]*>([\s\S]*?)<\/div>\s*(?:<div\b[^>]*class=["'][^"']*\bcom-dpcalendar-event__locations\b|<h2\b|<script\b|$)/i) ||
+    firstMatch(html, /<div\b[^>]*class=["'][^"']*\bdp-event-description\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i) ||
+    firstMatch(html, /<[^>]+itemprop=["']description["'][^>]*>([\s\S]*?)<\/[^>]+>/i) ||
+    firstMatch(html, /"description"\s*:\s*"([^"]+)"/i) ||
+    extractMetaContent(html, "og:description") ||
+    extractMetaContent(html, "description");
+  return cleanImportedSummary(description);
 }
 
 function dpCalendarLocationDetails(location) {
@@ -5028,6 +5065,33 @@ function mapDpCalendarMunicipalEvent(source, item, startDate, days) {
   };
 }
 
+async function enrichDpCalendarDetails(events) {
+  const cache = new Map();
+  for (const event of events) {
+    if (isNonEmptyText(event.summary) || !event.sourceUrl || cache.has(event.sourceUrl)) {
+      continue;
+    }
+    try {
+      const html = await fetchText(event.sourceUrl);
+      cache.set(event.sourceUrl, {
+        summary: extractDpCalendarDetailSummary(html)
+      });
+      await sleep(100);
+    } catch (error) {
+      console.warn(`warning: could not enrich DPCalendar summary for ${event.sourceUrl}: ${error.message}`);
+      cache.set(event.sourceUrl, {});
+    }
+  }
+
+  return events.map((event) => {
+    const details = cache.get(event.sourceUrl) || {};
+    return markSummaryStatus({
+      ...event,
+      summary: details.summary || event.summary
+    });
+  });
+}
+
 async function importDpCalendarMunicipalEvents(sources, startDate, days) {
   const imported = [];
   for (const source of allMunicipalParserSources(sources, "joomla-dpcalendar-raw")) {
@@ -5044,7 +5108,8 @@ async function importDpCalendarMunicipalEvents(sources, startDate, days) {
       console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
     }
   }
-  return [...new Map(imported.map((event) => [event.id, event])).values()];
+  const deduped = [...new Map(imported.map((event) => [event.id, event])).values()];
+  return enrichDpCalendarDetails(deduped);
 }
 
 function parseSquarespaceDateRange(dateText) {

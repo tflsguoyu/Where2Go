@@ -18,14 +18,18 @@
     "timezone": "America/New_York",
     "costRule": "Keep paid events and record cost/registration fields when visible.",
     "sourceUrlRule": "Every event must keep the original event page or source calendar URL.",
-    "qualityRule": "Every import must check time, place, coordinates, source URL, and activity summary before writing events.json; summaries must contain only useful activity content, not date, time, venue, room, place, or address text; automatically repair deterministic gaps and report anything still missing."
+    "qualityRule": "Every import must check date coverage, time, place, coordinates, source URL, and activity summary before writing events.json; summaries must contain only useful activity content, not date, time, venue, room, place, or address text; automatically repair deterministic gaps and report anything still missing.",
+    "dateRangeRule": "When an event is listed as a date range, expand it so every calendar day in the range is represented unless the source clearly describes one overnight event.",
+    "allDayTimeRule": "When an event is listed as all day, check official venue/source hours for that date before filling exact times; if exact hours are not confirmed, leave exact time fields blank where possible and mark timeStatus for review.",
+    "missingAddressRule": "When an event gives a venue but no address, search official venue/source pages first, then reliable map or directory sources for the exact street address; if still not found, leave address blank or mark approximate/needs_review rather than guessing."
   },
   "importQuality": {
     "requiredChecks": [
       "title",
-      "startsAt or a clear timeLabel",
+      "date range expansion so every active calendar day has a record or a review marker",
+      "startsAt, an exact time, or a clear timeLabel with timeStatus when exact time is unavailable",
       "venue or venueName",
-      "address when available from the source",
+      "address when available from the source, official venue page, or reliable address reference",
       "official page text first, then image/flyer text for address, time, room, and venue only when HTML text is incomplete",
       "lat/lng for every in-coverage event shown on the map",
       "summary with concrete activity content only, excluding date, time, venue, room, place, and address text",
@@ -36,12 +40,16 @@
       "Copy venue and venueName from each other when one is missing.",
       "Fill timezone from eventPolicy.timezone when startsAt is present.",
       "Calculate durationMinutes from startsAt and endsAt when possible.",
+      "Expand multi-day date ranges into per-day event records when the source indicates the event is active across the range.",
+      "For all-day rows, fill exact times only from official operating hours for the event date; otherwise preserve a timeLabel and mark timeStatus.",
+      "Look up missing venue addresses from official venue/source pages, then reliable map or directory references; do not write guessed addresses.",
       "Use source library/location coordinates first, then town center fallback, then address geocoding for missing in-coverage lat/lng.",
       "Clean generic source-page/update/registration filler and date/time/place/address/venue text out of summaries."
     ],
     "unresolvedReportRule": "If time, place, coordinates, source URL, or concrete summary are still missing after auto-repair, print an import quality audit with counts and sample event IDs/titles for manual review.",
     "contentRule": "Do not invent activity descriptions. Extract concrete activity content from the source page when possible; if unavailable, leave summary empty and report it. Put date, time, venue, room, place, and address only in structured fields such as startsAt, endsAt, timeLabel, venueName, venue, and address, never in summary.",
-    "imageTextRule": "Always inspect official page HTML text first. Only when the page text does not provide the needed address, time, room, or venue detail should the importer inspect image alt/title/captions or OCR-visible flyer text; if the importer cannot read the image text, report the event/source for manual image review."
+    "imageTextRule": "Always inspect official page HTML text first. Only when the page text does not provide the needed address, time, room, or venue detail should the importer inspect image alt/title/captions or OCR-visible flyer text; if the importer cannot read the image text, report the event/source for manual image review.",
+    "uncertaintyRule": "If date coverage, time, address, venue, town assignment, or summary is inferred, image-derived, approximate, missing, or uncertain, keep the event useful but mark it with status review, lower confidence, and field-level markers such as dateStatus, dateExpansionStatus, timeStatus, addressStatus, townAssignmentStatus, summaryStatus, or reviewNotes so accuracy-based QA can find it."
   },
   "sourceStatusVocabulary": {
     "importable": "Importer should automatically read this source and write events to data/events.json.",
@@ -835,6 +843,300 @@
         }
       ],
       "notes": "Official SID site has a WordPress events calendar with street fairs, concerts, markets, and downtown promotions. Added as configured source until a WordPress/Tribe Events parser is implemented."
+    },
+    {
+      "id": "big-show-card-show",
+      "label": "The Big Show Card Show",
+      "type": "regional-discovery",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://linktr.ee/bigshow_cardshow",
+      "eventsUrl": "https://linktr.ee/bigshow_cardshow",
+      "townId": "piscataway-township",
+      "address": "121 Centennial Avenue, Piscataway, NJ 08854",
+      "lat": 40.5427888,
+      "lng": -74.5018204,
+      "configuredEvents": [
+        {
+          "title": "The Big Show Card Show at Bridgewater Marriott",
+          "date": "2026-06-14",
+          "startTime": "09:00",
+          "endTime": "16:30",
+          "registration": "Drop-in",
+          "cost": "See source",
+          "url": "https://www.ontreasure.com/events/the-big-show-card-show-sunday-june-14-2026-06142026",
+          "venue": "Bridgewater Marriott",
+          "townId": "bridgewater-township",
+          "address": "700 Commons Way, Bridgewater, NJ 08807",
+          "lat": 40.5846244,
+          "lng": -74.6129903,
+          "summary": "Trading card show at Bridgewater Marriott with vendors, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/posters1770425380685",
+          "confidence": 0.86
+        },
+        {
+          "title": "The Big Show Card Show",
+          "date": "2026-06-18",
+          "startTime": "17:00",
+          "endTime": "22:00",
+          "registration": "Drop-in",
+          "cost": "Free admission",
+          "url": "https://www.ontreasure.com/events/the-big-show-card-show-thursday-may-18-free-admission-06182026",
+          "venue": "Embassy Suites by Hilton Piscataway Somerset",
+          "townId": "piscataway-township",
+          "address": "121 Centennial Avenue, Piscataway, NJ 08854",
+          "lat": 40.5427896,
+          "lng": -74.5017457,
+          "summary": "Trading card show with free admission, 60+ TCG vendor tables, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/posters1779409588785",
+          "confidence": 0.86
+        },
+        {
+          "title": "The Big Show at Quaker Bridge Mall",
+          "date": "2026-06-27",
+          "startTime": "10:00",
+          "endTime": "18:00",
+          "registration": "Drop-in",
+          "cost": "See source",
+          "url": "https://www.ontreasure.com/events/the-big-show-at-quaker-bridge-mall-06272026",
+          "venue": "Quaker Bridge Mall",
+          "townId": null,
+          "townNameRaw": "Lawrence Township",
+          "townAssignmentStatus": "needs_registry_town",
+          "address": "Quaker Bridge Mall, U.S. 1, Lawrenceville, NJ, USA",
+          "lat": 40.2910777,
+          "lng": -74.6829937,
+          "summary": "Two-day trading card show with 120 TCG vendor tables, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/poster_coming_soon",
+          "confidence": 0.82
+        },
+        {
+          "title": "The Big Show at Quaker Bridge Mall",
+          "date": "2026-06-28",
+          "startTime": "11:00",
+          "endTime": "17:00",
+          "registration": "Drop-in",
+          "cost": "See source",
+          "url": "https://www.ontreasure.com/events/the-big-show-at-quaker-bridge-mall-06272026",
+          "venue": "Quaker Bridge Mall",
+          "townId": null,
+          "townNameRaw": "Lawrence Township",
+          "townAssignmentStatus": "needs_registry_town",
+          "address": "Quaker Bridge Mall, U.S. 1, Lawrenceville, NJ, USA",
+          "lat": 40.2910777,
+          "lng": -74.6829937,
+          "summary": "Two-day trading card show with 120 TCG vendor tables, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/poster_coming_soon",
+          "confidence": 0.82
+        },
+        {
+          "title": "The Big Show Card Show at Bridgewater Commons",
+          "date": "2026-07-11",
+          "startTime": "10:00",
+          "endTime": "16:30",
+          "registration": "Drop-in",
+          "cost": "Free admission",
+          "url": "https://www.ontreasure.com/events/the-big-show-card-show-at-bridgewater-commons-february-28march-1-07112026",
+          "venue": "Bridgewater Commons Mall",
+          "townId": "bridgewater-township",
+          "address": "Commons Way, Bridgewater, NJ, USA",
+          "lat": 40.5888912,
+          "lng": -74.619966,
+          "summary": "Trading card show with vendors, giveaways, Dancing Pikachu, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/posters1778096138582",
+          "confidence": 0.86
+        },
+        {
+          "title": "The Big Show Card Show at Bridgewater Commons",
+          "date": "2026-07-12",
+          "startTime": "10:00",
+          "endTime": "16:30",
+          "registration": "Drop-in",
+          "cost": "Free admission",
+          "url": "https://www.ontreasure.com/events/the-big-show-card-show-at-bridgewater-commons-february-28march-1-07112026",
+          "venue": "Bridgewater Commons Mall",
+          "townId": "bridgewater-township",
+          "address": "Commons Way, Bridgewater, NJ, USA",
+          "lat": 40.5888912,
+          "lng": -74.619966,
+          "summary": "Trading card show with vendors, giveaways, Dancing Pikachu, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/posters1778096138582",
+          "confidence": 0.86
+        },
+        {
+          "title": "The Big Show at Quaker Bridge Mall",
+          "date": "2026-07-25",
+          "startTime": "10:00",
+          "endTime": "18:00",
+          "registration": "Drop-in",
+          "cost": "See source",
+          "url": "https://www.ontreasure.com/events/the-big-show-at-quaker-bridge-mall-2-day-show-june-2728-07252026",
+          "venue": "Quaker Bridge Mall",
+          "townId": null,
+          "townNameRaw": "Lawrence Township",
+          "townAssignmentStatus": "needs_registry_town",
+          "address": "Quaker Bridge Mall, U.S. 1, Lawrenceville, NJ, USA",
+          "lat": 40.2910777,
+          "lng": -74.6829937,
+          "summary": "Two-day trading card show with 120 TCG vendor tables, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/poster_coming_soon",
+          "confidence": 0.82
+        },
+        {
+          "title": "The Big Show at Quaker Bridge Mall",
+          "date": "2026-07-26",
+          "startTime": "10:00",
+          "endTime": "18:00",
+          "registration": "Drop-in",
+          "cost": "See source",
+          "url": "https://www.ontreasure.com/events/the-big-show-at-quaker-bridge-mall-2-day-show-june-2728-07252026",
+          "venue": "Quaker Bridge Mall",
+          "townId": null,
+          "townNameRaw": "Lawrence Township",
+          "townAssignmentStatus": "needs_registry_town",
+          "address": "Quaker Bridge Mall, U.S. 1, Lawrenceville, NJ, USA",
+          "lat": 40.2910777,
+          "lng": -74.6829937,
+          "summary": "Two-day trading card show with 120 TCG vendor tables, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/poster_coming_soon",
+          "confidence": 0.82
+        },
+        {
+          "title": "The Big Show Card Show at Bridgewater Commons",
+          "date": "2026-08-01",
+          "startTime": "09:00",
+          "endTime": "17:00",
+          "registration": "Drop-in",
+          "cost": "Free admission",
+          "url": "https://www.ontreasure.com/events/the-big-show-card-show-at-bridgewater-commons-august-1-2026-08012026",
+          "venue": "Bridgewater Commons Mall",
+          "townId": "bridgewater-township",
+          "address": "Commons Way, Bridgewater, NJ, USA",
+          "lat": 40.5888912,
+          "lng": -74.619966,
+          "summary": "Trading card show with vendors, giveaways, Dancing Pikachu, cards, collectibles, sealed products, graded cards, and related hobby items.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "trading-cards",
+            "collectibles",
+            "tcg",
+            "indoor",
+            "free-admission",
+            "family-compatible"
+          ],
+          "image": "https://qkdlfshzugzeqlznyqfv.supabase.co/storage/v1/object/public/posters/posters1778096169543",
+          "confidence": 0.86
+        }
+      ],
+      "notes": "User-requested source added 2026-06-11 from Linktree. Linktree lists multiple Treasure event pages for Big Show Card Show dates at Bridgewater Marriott, Embassy Suites Piscataway, Quaker Bridge Mall, and Bridgewater Commons. Treat as family-compatible gray-area hobby events; refresh by checking Linktree for newer Treasure event links. Quaker Bridge Mall events are marked needs_registry_town because Lawrence Township is not currently in the town registry."
     },
     {
       "id": "mountainside-recreation",
@@ -4891,6 +5193,8 @@
               "Street Smart Campaign"
             ],
             "address": "Dunham Park, Somerville Road, Basking Ridge, NJ 07920",
+            "lat": 40.677455,
+            "lng": -74.567277,
             "addressStatus": "approximate",
             "directionsDisabled": true
           },
@@ -6648,6 +6952,14 @@
           "address": "214 Main Street, Chatham, NJ 07928",
           "lat": 40.74043,
           "lng": -74.38378,
+          "locationOverrides": [
+            {
+              "name": "Chatham Borough Farmers Market",
+              "address": "RR Plaza South off Fairmount Ave, Chatham, NJ 07928",
+              "lat": 40.740686,
+              "lng": -74.38448
+            }
+          ],
           "lastCheckedAt": "2026-06-11"
         }
       ]
@@ -7173,6 +7485,14 @@
           "address": "214 Main Street, Chatham, NJ 07928",
           "lat": 40.74043,
           "lng": -74.38378,
+          "locationOverrides": [
+            {
+              "name": "Chatham Borough Farmers Market",
+              "address": "RR Plaza South off Fairmount Ave, Chatham, NJ 07928",
+              "lat": 40.740686,
+              "lng": -74.38448
+            }
+          ],
           "lastCheckedAt": "2026-06-11"
         }
       ]
@@ -7196,6 +7516,14 @@
         "recreationUrl": "https://cranfordnj.org/recreation/",
         "status": "importable",
         "parser": "civicplus-calendar",
+        "locationOverrides": [
+          {
+            "name": "Floods Hill",
+            "address": "North Ridgewood Road and Mead Street, South Orange, NJ 07079",
+            "lat": 40.744314,
+            "lng": -74.258873
+          }
+        ],
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
       },
       "libraries": [

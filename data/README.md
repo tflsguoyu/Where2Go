@@ -76,6 +76,12 @@ Relationship rules:
 - `event.townId` means the event's actual location town.
 - `source.townId` means the source or venue's primary physical town.
 - `source.servesTownIds` means the source is relevant to those towns.
+- Statewide, regional, county, tourism, directory, and carnival sources still
+  write each event to the town where the event physically happens.
+- If the physical town can be read from an address but that town is not yet in
+  the registry, do not auto-add the town. Keep `event.townId` empty, preserve
+  the raw locality/address, mark `townAssignmentStatus: "needs_registry_town"`,
+  and treat the event as pending review.
 - Shared systems should keep branch/location fallback records in source config,
   not hard-coded importer logic.
 
@@ -117,7 +123,36 @@ Current policy:
 Every real imported event should include a stable `id`, `sourceId`, `title`,
 `source`, `startsAt`, `endsAt`, `timezone`, `venue` or `venueName`, and `url` or
 `sourceUrl`. Displayed map events should also have coordinates or a geocodable
-address.
+address. Every event should ultimately have a `townId`; events from regional or
+statewide sources are assigned by physical venue/address. If the town is outside
+the current registry, leave the event pending review instead of adding a town
+automatically.
+
+Date ranges should be expanded so every calendar day inside the range is
+represented. Prefer one event record per active day unless the source clearly
+describes a single overnight event. If the source only gives a broad range and it
+is unclear which days are active, keep the useful records but mark the
+uncertainty with fields such as `dateStatus`, `dateExpansionStatus`, `status:
+"review"`, lower `confidence`, or `reviewNotes`.
+
+When a source says an event is all day, do not invent a start or end time. Check
+official venue/source hours for that date first. If exact hours are confirmed,
+use them. If exact hours are not available or not trustworthy, leave the exact
+time blank where the event shape allows it, keep `timeLabel: "All day"` when
+useful, and mark `timeStatus` as unconfirmed or needing review.
+
+When a source gives a venue but no street address, search for the exact address
+before writing the event: first the official venue/source page, then reliable map
+or directory references. If an exact address still cannot be found, leave
+`address` blank rather than guessing. If only a likely or approximate address is
+available, mark `addressStatus: "approximate"` or `addressStatus:
+"needs_review"` and lower `confidence`.
+
+Prefer accurate missing data plus explicit review markers over guessed data.
+When page text is incomplete, inspect official images/flyers for date, time,
+room, venue, or address details. If a value comes from weak evidence, image text,
+or judgment, mark it clearly so the data status page and accuracy score can help
+with later manual QA.
 
 Summaries must contain activity content only. Date, time, venue, room, place,
 and address belong in structured fields, not in `summary`.
@@ -225,6 +260,12 @@ normal page text first. Only inspect image text when the HTML text does not
 provide the needed address, room, date, or time. Use image alt text, captions,
 visible flyer text, OCR, or manual review before deciding that the field is truly
 missing.
+
+Field-level uncertainty should be explicit. Use markers such as `dateStatus`,
+`dateExpansionStatus`, `timeStatus`, `addressStatus`, `townAssignmentStatus`,
+`summaryStatus`, `status: "review"`, `confidence`, and `reviewNotes` when dates,
+times, addresses, town assignment, or summaries are inferred, incomplete, or
+need human confirmation.
 
 ## Source Crawl Runbook
 

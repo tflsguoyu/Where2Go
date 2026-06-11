@@ -6,8 +6,33 @@
     "data/event-sources.json is the durable registry for towns, sources, source configuration, and source notes.",
     "data/events.json is an append/update-oriented event history consumed by the app.",
     "Routine event refreshes reuse known sources; they do not perform broad source rediscovery unless explicitly requested.",
-    "New town work and explicit rediscovery work must record both found and not_found source-type results so future runs do not repeat the same search."
+    "New town work and explicit rediscovery work must record both found and not_found source-type results so future runs do not repeat the same search.",
+    "Event normalization should prefer accurate source-backed fields; when a date, time, address, or venue value is inferred or uncertain, mark that uncertainty for accuracy-based manual review instead of silently guessing."
   ],
+  "eventNormalizationGuidance": {
+    "dateRanges": "If a source lists an event across a date range, expand the event so every calendar day inside the range is represented. Use one record per active day unless the listing clearly describes a single overnight event. Mark dateStatus or dateExpansionStatus when the active dates are inferred or incomplete.",
+    "allDayTimes": "If a source says all day, check official operating hours for that venue/source/date before filling exact times. If exact hours cannot be confirmed, leave exact time fields blank when possible, preserve timeLabel such as All day, and mark timeStatus as all_day_hours_unconfirmed or needs_review.",
+    "missingAddresses": "If an event has a venue but no street address, search official venue/source pages first, then reliable map or directory sources. Write the exact address only when found; otherwise leave address blank or mark addressStatus as approximate/needs_review when using a likely location.",
+    "evidenceOrder": [
+      "Official event detail HTML or structured data",
+      "Official calendar/listing HTML",
+      "Official image, flyer, alt text, caption, or OCR-visible text",
+      "Official venue/source hours or location page",
+      "Reliable map or directory source for address only",
+      "Conservative judgment with explicit review marker"
+    ],
+    "reviewMarkers": [
+      "status: review",
+      "confidence below the normal source confidence",
+      "dateStatus",
+      "dateExpansionStatus",
+      "timeStatus",
+      "addressStatus",
+      "townAssignmentStatus",
+      "summaryStatus",
+      "reviewNotes"
+    ]
+  },
   "sourceRecordGuidance": {
     "recommendedFields": [
       "id",
@@ -34,6 +59,8 @@
       "source.townId is the source or venue's primary physical town when there is one.",
       "source.servesTownIds lists towns served by a regional, county, library-system, mall, or nearby venue source.",
       "event.townId means the event's actual location town, not the source's service area.",
+      "Statewide, regional, county, tourism, directory, and carnival sources still assign each event by the event venue/address town.",
+      "If the event address town is not already in the town registry, do not auto-create it; keep townId null, preserve the raw locality/address, set townAssignmentStatus to needs_registry_town, and leave the event for review.",
       "A source may have multiple sourceTypes."
     ],
     "statusVocabulary": {
@@ -57,6 +84,7 @@
         "Record every useful source in data/event-sources.json with sourceTypes, status, URL fields, parser or parser notes, and service-town relationships.",
         "Record not_found discovery results for source families that were searched but produced no useful dated-event source.",
         "For importable sources, reuse or add parser configuration and import kid/family-compatible events from today forward.",
+        "When normalizing events, expand date ranges, verify all-day hours before using exact times, look up missing venue addresses, inspect official images when page text is incomplete, and mark uncertain fields for review.",
         "Normalize events into data/events.json while preserving older historical records.",
         "Run validation and record any unresolved source or event quality issues."
       ],
@@ -78,6 +106,9 @@
         "Read known importable and configured manual sources from data/event-sources.json.",
         "Reuse stored parser names, endpoints, parameters, fallback locations, and notes.",
         "Fetch current events from each source without deleting historical events.",
+        "Expand date ranges into daily event records, verify all-day hours before filling exact times, and search for exact venue addresses when the source omits them.",
+        "Inspect official image/flyer text only when page text does not contain needed date, time, room, venue, or address details.",
+        "Mark inferred, missing, approximate, image-derived, or uncertain fields with field-level status markers and lower confidence for manual review.",
         "Merge events by stable event id or duplicate matching rules.",
         "Update lastSeenAt for observed events and firstSeenAt for new events.",
         "Do not mark missing future events as cancelled unless the official source explicitly says cancelled.",

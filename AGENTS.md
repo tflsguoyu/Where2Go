@@ -18,6 +18,7 @@
 
 - In a fresh Codex chat/session, external network access may be restricted. When that happens, activity import and source discovery can fail with DNS errors such as `getaddrinfo ENOTFOUND`, `Could not resolve host`, or no DNS configuration from macOS network checks.
 - This is usually a Codex network-permission issue, not necessarily a problem with the user's Wi-Fi or the target websites.
+- For any task that needs external fetching, source discovery, address lookup, geocoding, business-hours lookup, or event import, proactively request network permission for the current Codex session before running the full command.
 - If DNS/network fails, request network permission for the session before retrying external fetches. After permission is granted, verify with a small DNS/HTTP check before running a full import.
 - Useful verification commands:
   ```sh

@@ -103,6 +103,7 @@ const els = {
   eventDateFilter: document.querySelector("#eventDateFilter"),
   eventTownFilter: document.querySelector("#eventTownFilter"),
   eventIssueFilter: document.querySelector("#eventIssueFilter"),
+  eventAppVisibilityFilter: document.querySelector("#eventAppVisibilityFilter"),
   eventSortSelect: document.querySelector("#eventSortSelect"),
   eventTable: document.querySelector("#eventTable")
 };
@@ -138,6 +139,12 @@ function eventTime(event) {
 
 function hasText(value) {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function hasReviewStatus(value) {
+  return /\b(?:approx(?:imate)?|fallback|image|implied|inferred|manual|missing|needs?_?review|ocr|uncertain|unconfirmed|unknown)\b/i.test(
+    String(value || "")
+  );
 }
 
 function hasCoordinates(value) {
@@ -306,36 +313,49 @@ function sourceEntries(sources) {
 function eventIssues(event) {
   const issues = [];
   if (!hasText(event.summary)) issues.push("summary");
+  if (!hasText(event.summary) && hasText(event.summaryStatus)) issues.push("summaryStatus");
+  if (!hasText(event.townId)) issues.push("town");
   if (!hasCoordinates(event)) issues.push("coordinates");
   if (hasCoordinates(event) && !hasText(event.address)) issues.push("address");
   if (!hasText(event.sourceUrl || event.url)) issues.push("sourceUrl");
   if (!hasText(event.venue || event.venueName)) issues.push("venue");
   if (!hasText(event.startsAt || event.date)) issues.push("date");
-  if (event.addressStatus === "approximate" || event.directionsDisabled) issues.push("approximate");
+  if (hasReviewStatus(event.dateStatus || event.dateExpansionStatus)) issues.push("dateReview");
+  if (hasReviewStatus(event.timeStatus)) issues.push("timeReview");
+  if (hasReviewStatus(event.addressStatus) || event.directionsDisabled) issues.push("addressReview");
+  if (hasReviewStatus(event.townAssignmentStatus)) issues.push("townReview");
   return issues;
 }
 
 function issueLabel(issue) {
   return {
     summary: "Missing summary",
+    summaryStatus: "Needs source summary",
+    town: "Missing town",
     coordinates: "Missing coordinates",
     address: "Missing address",
     sourceUrl: "Missing source URL",
     venue: "Missing venue",
     date: "Missing date",
-    approximate: "Approx address"
+    dateReview: "Date review",
+    timeReview: "Time review",
+    addressReview: "Address review",
+    townReview: "Town review"
   }[issue] || issue;
 }
 
 function eventAccuracy(event) {
   let score = 100;
   if (!hasText(event.summary)) score -= 15;
+  if (!hasText(event.townId)) score -= 30;
   if (!hasCoordinates(event)) score -= 25;
   if (hasCoordinates(event) && !hasText(event.address)) score -= 10;
   if (!hasText(event.sourceUrl || event.url)) score -= 20;
   if (!hasText(event.venue || event.venueName)) score -= 10;
-  if (!hasText(event.endsAt)) score -= 5;
-  if (event.addressStatus === "approximate" || event.directionsDisabled) score -= 12;
+  if (hasReviewStatus(event.dateStatus || event.dateExpansionStatus)) score -= 10;
+  if (hasReviewStatus(event.timeStatus)) score -= 8;
+  if (hasReviewStatus(event.addressStatus) || event.directionsDisabled) score -= 12;
+  if (hasReviewStatus(event.townAssignmentStatus)) score -= 10;
   if (event.status === "review") score -= 15;
   return Math.max(0, score);
 }
@@ -353,6 +373,10 @@ function computeEventRows(events, today) {
       isFuture: eventDate(event) >= today
     };
   });
+}
+
+function isVisibleInApp(event) {
+  return event.status !== "review" && event.status !== "hidden" && event.withinCoverage !== false;
 }
 
 function countBy(rows, getKey) {
@@ -661,6 +685,7 @@ function filteredEventRows() {
   const date = els.eventDateFilter.value;
   const town = els.eventTownFilter.value;
   const issue = els.eventIssueFilter.value;
+  const appVisibility = els.eventAppVisibilityFilter.value;
   const rows = state.eventRows.filter((event) => {
     const haystack = [
       event.title,
@@ -668,23 +693,30 @@ function filteredEventRows() {
       event.venueName,
       event.venue,
       event.address,
+      event.townNameRaw,
+      event.townAssignmentStatus,
       event.source,
       event.summary,
+      event.summaryStatus,
       event.issues.join(" ")
     ]
       .join(" ")
       .toLowerCase();
-    const hasMissing = event.issues.some((item) => item !== "approximate");
+    const hasMissing = event.issues.length > 0;
     const issueMatch =
       !issue ||
       (issue === "missing" && hasMissing) ||
       (issue === "ok" && event.issues.length === 0) ||
       event.issues.includes(issue);
+    const appVisible = isVisibleInApp(event);
+    const appVisibilityMatch =
+      !appVisibility || (appVisibility === "visible" && appVisible) || (appVisibility === "hidden" && !appVisible);
     return (
       (!query || haystack.includes(query)) &&
       (!date || event.dateKey === date) &&
       (!town || event.townId === town) &&
-      issueMatch
+      issueMatch &&
+      appVisibilityMatch
     );
   });
 
@@ -723,11 +755,18 @@ function renderEventTable() {
             <strong>${escapeHtml(event.dateKey || "No date")}</strong>
             <div class="muted small">${escapeHtml(event.timeKey)}</div>
           </td>
+	          <td>
+	            <strong>${escapeHtml(event.title || "Untitled")}</strong>
+	            <div class="muted small">${escapeHtml(event.summary || event.summaryStatus || "").slice(0, 180)}</div>
+	          </td>
           <td>
-            <strong>${escapeHtml(event.title || "Untitled")}</strong>
-            <div class="muted small">${escapeHtml(event.summary || "").slice(0, 180)}</div>
+            ${escapeHtml(event.townName || event.townId || event.townNameRaw || "")}
+            ${
+              event.townAssignmentStatus
+                ? `<div class="muted small">${escapeHtml(event.townAssignmentStatus)}</div>`
+                : ""
+            }
           </td>
-          <td>${escapeHtml(event.townName || event.townId || "")}</td>
           <td>
             ${escapeHtml(event.venueName || event.venue || "")}
             <div class="muted small">${escapeHtml(event.address || "No address")}</div>
@@ -832,6 +871,7 @@ els.eventSearchInput.addEventListener("input", renderEventTable);
 els.eventDateFilter.addEventListener("change", renderEventTable);
 els.eventTownFilter.addEventListener("change", renderEventTable);
 els.eventIssueFilter.addEventListener("change", renderEventTable);
+els.eventAppVisibilityFilter.addEventListener("change", renderEventTable);
 els.eventSortSelect.addEventListener("change", renderEventTable);
 
 loadData().catch(showError);
