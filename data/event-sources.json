@@ -332,6 +332,51 @@
         }
       ],
       "notes": "Imports structured Event JSON-LD from paginated listings, expands multi-day fairs into daily occurrences, and keeps source event URLs for refresh/review."
+    },
+    "union-county-government": {
+      "label": "Union County Government",
+      "type": "county-government",
+      "status": "importable",
+      "parser": "county-events-calendar",
+      "website": "https://ucnj.org/",
+      "eventsUrl": "https://ucnj.org/calendar/",
+      "notes": "Official Union County government and events hub with countywide community, culture, public safety, and park activity announcements. The events calendar is updated frequently; review manually when needed."
+    },
+    "morris-county-events": {
+      "label": "Morris County Events Calendar",
+      "type": "county-government-events",
+      "status": "importable",
+      "parser": "county-events-calendar",
+      "website": "https://www.morriscountynj.gov/",
+      "eventsUrl": "https://www.morriscountynj.gov/Morris-County-Events/Calendar",
+      "notes": "Official Morris County events calendar and county department activities. The page renders through JavaScript; keep for county-level activity discovery and browser-backed refresh."
+    },
+    "morris-county-parks-commission": {
+      "label": "Morris County Park Commission",
+      "type": "county-parks-recreation",
+      "status": "importable",
+      "parser": "county-events-calendar",
+      "website": "https://www.morriscountynj.gov/Departments/Park-Commission",
+      "eventsUrl": "https://www.morriscountynj.gov/Departments/Park-Commission",
+      "notes": "Official Morris County park commission and nature center page family activities, seasonal fairs, and open event announcements."
+    },
+    "middlesex-county-events": {
+      "label": "Middlesex County Events",
+      "type": "county-government-events",
+      "status": "importable",
+      "parser": "county-events-calendar",
+      "website": "https://www.middlesexcountynj.gov/",
+      "eventsUrl": "https://www.middlesexcountynj.gov/find-programs-and-resources/events",
+      "notes": "Official Middlesex County events calendar includes county programs, youth/teens activities, and parks-based family announcements."
+    },
+    "essex-county-government": {
+      "label": "Essex County Government",
+      "type": "county-government",
+      "status": "importable",
+      "parser": "county-events-calendar",
+      "website": "https://www.essexcountynj.org/",
+      "eventsUrl": "https://essexcountyparks.org/calendar",
+      "notes": "Official Essex County government portal plus County Parks calendar for regional family activities and community events."
     }
   },
   "regionalSources": [
@@ -2115,14 +2160,15 @@
       "id": "somerset-county-government",
       "label": "Somerset County Government",
       "type": "county-government",
-      "status": "blocked_by_bot_protection",
-      "parser": "manual",
-      "website": "https://www.co.somerset.nj.us/",
-      "eventsUrl": "https://www.co.somerset.nj.us/calendar",
+      "status": "importable",
+      "parser": "county-events-calendar",
+      "website": "https://www.somersetcountynj.gov/",
+      "eventsUrl": "https://www.somersetcountynj.gov/about/calendar",
+      "calendarMonthQuery": "curm",
       "address": "20 Grove Street, Somerville, NJ 08876",
       "lat": 40.569749,
       "lng": -74.607682,
-      "notes": "Official Somerset County government site and public calendar for county departments, board meetings, and civic events. Direct script fetching currently receives bot-protection challenges; keep for browser-backed or manual review."
+      "notes": "Official Somerset County government site and public calendar for county departments, board meetings, and civic events. This feed is exposed as a Granicus monthly calendar grid; parser reads month pages from /about/calendar."
     },
     {
       "id": "somerset-county-cultural-heritage",

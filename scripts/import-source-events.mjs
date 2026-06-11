@@ -10,6 +10,7 @@ const GEOCODE_DELAY_MS = 1100;
 const LOCALHOP_API_URL = "https://api.getlocalhop.com/1";
 const LOCALHOP_PARSE_APP_ID = "zesqKJEzK7ncFXe57x4uWc4Moow3I2wGCq7zFcqI";
 const LOCALHOP_PAGE_LIMIT = 500;
+const IMPORT_CUTOFF_START_DATE = "2026-05-31";
 
 const AGE_ORDER = ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"];
 const IMPORT_QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
@@ -89,6 +90,30 @@ const MONTHS = new Map([
   ["november", "11"],
   ["december", "12"]
 ]);
+
+const MONTH_NAME_MAP = new Map([
+  ["jan", "01"],
+  ["feb", "02"],
+  ["mar", "03"],
+  ["apr", "04"],
+  ["may", "05"],
+  ["jun", "06"],
+  ["jul", "07"],
+  ["aug", "08"],
+  ["sep", "09"],
+  ["sept", "09"],
+  ["oct", "10"],
+  ["nov", "11"],
+  ["dec", "12"]
+]);
+
+function eventStartsAtOrAfter(dateText, cutoffDate = IMPORT_CUTOFF_START_DATE) {
+  const startsAt = String(dateText || "").slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(startsAt)) {
+    return true;
+  }
+  return startsAt >= cutoffDate;
+}
 
 function argValue(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -547,6 +572,121 @@ function parseUsNumericDateTime(value) {
     hour = 0;
   }
   return `${year}-${monthRaw.padStart(2, "0")}-${dayRaw.padStart(2, "0")}T${String(hour).padStart(2, "0")}:${minute}:00`;
+}
+
+function countyMonthNumber(monthName) {
+  const normalized = String(monthName ?? "")
+    .trim()
+    .toLowerCase();
+  if (MONTH_NAME_MAP.has(normalized.slice(0, 3))) {
+    return MONTH_NAME_MAP.get(normalized.slice(0, 3));
+  }
+  return MONTHS.get(normalized);
+}
+
+function countyInferDateKey(monthName, dayRaw, yearHint, startDate, days) {
+  const month = countyMonthNumber(monthName);
+  const day = Number(dayRaw);
+  if (!month || Number.isNaN(day) || day < 1 || day > 31) {
+    return "";
+  }
+
+  const preferredYears = [Number(yearHint || startDate.slice(0, 4)), Number(startDate.slice(0, 4)) + 1].filter((value, index, all) =>
+    all.indexOf(value) === index
+  );
+  const candidates = preferredYears.map((year) => `${String(year)}-${month}-${String(day).padStart(2, "0")}`);
+  const inWindow = candidates.find((dateKey) => isDateWithinWindow(dateKey, startDate, days));
+  if (inWindow) {
+    return inWindow;
+  }
+  const fallbackKey = candidates.find((dateKey) => Number.isFinite(dateStamp(dateKey)));
+  if (fallbackKey) {
+    return fallbackKey;
+  }
+  return "";
+}
+
+function countyNormalizeMeridiem(value) {
+  return String(value ?? "").replace(/\s+/g, "").toLowerCase().replace(/\./g, "").slice(0, 2);
+}
+
+function countyToMilitaryClock(hourRaw, minuteRaw, meridiemRaw = "") {
+  let hour = Number(hourRaw);
+  const minute = Number(minuteRaw || "00");
+  if (!Number.isFinite(hour) || !Number.isFinite(minute)) {
+    return null;
+  }
+  const meridiem = countyNormalizeMeridiem(meridiemRaw);
+  if (meridiem === "pm" && hour !== 12) {
+    hour += 12;
+  }
+  if (meridiem === "am" && hour === 12) {
+    hour = 0;
+  }
+  return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+}
+
+function parseCountyTimeText(value, defaultMeridiem = "am") {
+  const text = collapseWhitespace(String(value ?? "")).replace(/[\u2012\u2013\u2014]/g, "-");
+  const range = text.match(/(\d{1,2})(?::(\d{2}))?\s*([ap]m)?\s*-\s*(\d{1,2})(?::(\d{2}))?\s*([ap]m)?/i);
+  if (range) {
+    const [, startHourRaw, startMinuteRaw = "00", startMeridiemRaw = "", endHourRaw, endMinuteRaw = "00", endMeridiemRaw = ""] = range;
+    const normalizedEndMeridiem = countyNormalizeMeridiem(endMeridiemRaw || startMeridiemRaw || defaultMeridiem);
+    const normalizedStartMeridiem = countyNormalizeMeridiem(startMeridiemRaw || normalizedEndMeridiem);
+    const start = countyToMilitaryClock(startHourRaw, startMinuteRaw, normalizedStartMeridiem);
+    const end = countyToMilitaryClock(endHourRaw, endMinuteRaw, normalizedEndMeridiem);
+    if (!start) {
+      return null;
+    }
+    return { startTime: `${start}:00`, endTime: end ? `${end}:00` : null };
+  }
+
+  const single = text.match(/(\d{1,2})(?::(\d{2}))?\s*([ap]m)/i);
+  if (!single) {
+    return null;
+  }
+  const [, hourRaw, minuteRaw = "00", meridiemRaw] = single;
+  const start = countyToMilitaryClock(hourRaw, minuteRaw, meridiemRaw || defaultMeridiem);
+  if (!start) {
+    return null;
+  }
+  return { startTime: `${start}:00`, endTime: null };
+}
+
+function parseCountyDateText(value, yearHint, startDate, days) {
+  const raw = collapseWhitespace(stripHtml(value));
+  let dateKey = "";
+  let remainder = raw;
+
+  const withWeekday = raw.match(/(?:\b(?:Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\b,?\s*)?([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s*,?\s*(\d{4}))?(?:\s*[•·]?\s*(.+))?/i);
+  if (withWeekday) {
+    dateKey = countyInferDateKey(withWeekday[1], withWeekday[2], withWeekday[3] || yearHint, startDate, days);
+    remainder = withWeekday[4] || "";
+    return { dateKey, timeText: remainder };
+  }
+
+  const alpha = raw.match(/(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/i);
+  if (alpha) {
+    dateKey = countyInferDateKey(alpha[2], alpha[1], alpha[3], startDate, days);
+    return { dateKey, timeText: "" };
+  }
+
+  const numeric = raw.match(/\b(\d{1,2})-(\d{1,2})(?:-(\d{2,4}))?/);
+  if (numeric) {
+    const [, monthRaw, dayRaw, yearRaw] = numeric;
+    const month = countyMonthNumber(monthRaw);
+    const day = Number(dayRaw);
+    if (month && Number.isFinite(day)) {
+      dateKey = countyInferDateKey(month, String(day), yearRaw, startDate, days);
+      return { dateKey, timeText: raw.replace(numeric[0], "") };
+    }
+  }
+
+  return { dateKey: "", timeText: raw };
+}
+
+function isCountyEventActionable(title, summary = "") {
+  return !isClosureOrNonEvent(title, summary);
 }
 
 function getAttr(tag, name) {
@@ -2621,6 +2761,410 @@ function allRegionalParserSources(sources, parser) {
   return (sources.regionalSources ?? []).filter((source) => source.status === "importable" && source.parser === parser);
 }
 
+function allSharedParserSources(sources, parser) {
+  return Object.values(sources.sharedSources || {}).filter(
+    (source) => source && source.status === "importable" && source.parser === parser
+  );
+}
+
+function plainTextLinesFromHtml(html) {
+  return html
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, "\n")
+    .split(/\r?\n/)
+    .map((line) => collapseWhitespace(line))
+    .filter((line) => line.length > 0 && line.length < 180);
+}
+
+function countyEventRecord(source, event, sources) {
+  const location = {
+    id: event.locationId || source.id,
+    name: event.locationName || source.label,
+    townId: event.townId || source.townId || null,
+    address: event.locationAddress || source.address || null,
+    lat: Number(event.locationLat ?? source.lat ?? 0),
+    lng: Number(event.locationLng ?? source.lng ?? 0),
+    url: event.sourceUrl || source.eventsUrl || source.website
+  };
+
+  const title = stripHtml(event.title);
+  const summary = cleanImportedSummary(event.summary || "");
+  const startsAt = event.startsAt;
+  if (!title || !startsAt) {
+    return null;
+  }
+  if (!isCountyEventActionable(title, summary)) {
+    return null;
+  }
+  if (!isDateWithinWindow(startsAt.slice(0, 10), sources.startDate, sources.days)) {
+    return null;
+  }
+
+  return regionalEventRecord(source, {
+    id: `${source.id}-${event.dateKey}-${slugify(title)}-${event.locationId || slugify(event.sourceUrl || "") || "event"}`,
+    externalId: event.externalId || `${slugify(title)}-${event.dateKey}`,
+    title,
+    startsAt,
+    endsAt: event.endsAt || null,
+    summary,
+    sourceUrl: event.sourceUrl || source.eventsUrl || source.website,
+    location,
+    category: event.category || "county",
+    confidence: event.confidence || 0.67,
+    tags: ["county", source.type],
+    room: event.room || null
+  });
+}
+
+function parseUnionCountyEvents(html, source, sources, startDate, days) {
+  const imported = [];
+  const sections = [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>([\s\S]*?)(?=<h2\b|$)/gi)];
+  sections.forEach((sectionMatch) => {
+    const title = stripHtml(sectionMatch[1]);
+    if (!title || /^calendar|park activities|visit your local/i.test(title) || /^events calendar$/i.test(title)) {
+      return;
+    }
+    const dateLine =
+      firstMatch(sectionMatch[2], /<h4\b[^>]*>([\s\S]*?)<\/h4>/i) ||
+      firstMatch(sectionMatch[2], /<h3\b[^>]*>([\s\S]*?)<\/h3>/i);
+    const dateParts = parseCountyDateText(dateLine, startDate.slice(0, 4), startDate, days);
+    if (!dateParts.dateKey) {
+      return;
+    }
+    const timeParts = parseCountyTimeText(dateParts.timeText || dateLine, "am");
+    const sourceUrl = firstMatch(sectionMatch[2], /href=["']([^"']+)["']/i) || source.eventsUrl;
+    const venue = source.label;
+    const event = {
+      title,
+      dateKey: dateParts.dateKey,
+      startsAt: `${dateParts.dateKey}T${timeParts?.startTime || "12:00"}`,
+      endsAt: timeParts?.endTime ? `${dateParts.dateKey}T${timeParts.endTime}` : null,
+      summary: cleanImportedSummary(sectionMatch[2]),
+      sourceUrl: sourceUrl ? absoluteUrl(source.eventsUrl || source.website, sourceUrl) : source.eventsUrl,
+      locationName: venue,
+      category: "park",
+      confidence: 0.72
+    };
+    const mapped = countyEventRecord(source, event, { ...sources, startDate, days });
+    if (mapped) {
+      imported.push(mapped);
+    }
+  });
+  return imported;
+}
+
+function extractAnchorsByTitle(html, source) {
+  const byTitle = new Map();
+  for (const match of html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const title = stripHtml(match[2]);
+    if (!title) {
+      continue;
+    }
+    const key = title.toLowerCase();
+    const href = absoluteUrl(source.eventsUrl || source.website, match[1]);
+    const list = byTitle.get(key) || [];
+    list.push(href);
+    byTitle.set(key, list);
+  }
+  return byTitle;
+}
+
+function parseMiddlesexCountyEvents(html, source, sources, startDate, days) {
+  const imported = [];
+  const anchorsByTitle = extractAnchorsByTitle(html, source);
+  const lines = plainTextLinesFromHtml(html);
+
+  let month = "june";
+  let year = startDate.slice(0, 4);
+  let currentDay = null;
+
+  lines.forEach((line) => {
+    const monthMatch = line.match(/^##\s*([A-Za-z]+)\s+(\d{4})/i);
+    if (monthMatch) {
+      month = monthMatch[1];
+      year = monthMatch[2];
+      return;
+    }
+
+    const rowMatch = line.match(/^(\d{1,2})(?:\s+\d{1,2})+$/);
+    if (rowMatch) {
+      const rowDays = [...line.matchAll(/\d+/g)].map((match) => Number(match[0]));
+      const sanitized = rowDays.filter((day) => day >= 1 && day <= 31);
+      const clipped = sanitized[0] > 20 && sanitized.some((item) => item <= 7)
+        ? (() => {
+            const cleaned = [...sanitized];
+            while (cleaned[0] > 7 && cleaned.length > 1 && cleaned.some((item) => item <= 7)) {
+              cleaned.shift();
+            }
+            return cleaned;
+          })()
+        : sanitized;
+      if (clipped.length) {
+        currentDay = clipped[0];
+      }
+      return;
+    }
+
+    const dayMatch = line.match(/^(\d{1,2})$/);
+    if (dayMatch) {
+      const day = Number(dayMatch[1]);
+      if (day >= 1 && day <= 31) {
+        currentDay = day;
+      }
+      return;
+    }
+
+    const eventMatch = line.match(/^(\d{1,2}:\d{2}\s*(?:am|pm|AM|PM))\s+(.+)$/);
+    if (!eventMatch || !currentDay) {
+      return;
+    }
+    const time = parseCountyTimeText(eventMatch[1], "am");
+    if (!time?.startTime) {
+      return;
+    }
+    const title = stripHtml(eventMatch[2]);
+    if (!title || !isCountyEventActionable(title)) {
+      return;
+    }
+    const dateKey = countyInferDateKey(month, currentDay, year, startDate, days);
+    if (!dateKey || !isDateWithinWindow(dateKey, startDate, days)) {
+      return;
+    }
+    const key = title.toLowerCase();
+    const urls = anchorsByTitle.get(key) || [];
+    const resolvedUrl = urls.shift() || source.eventsUrl;
+    const sourceUrl = resolvedUrl || source.eventsUrl;
+    if (urls.length === 0) {
+      anchorsByTitle.delete(key);
+    }
+    const mapped = countyEventRecord(source, {
+      title,
+      dateKey,
+      startsAt: `${dateKey}T${time.startTime}`,
+      endsAt: time.endTime ? `${dateKey}T${time.endTime}` : null,
+      summary: "",
+      sourceUrl,
+      category: "county",
+      confidence: 0.69
+    }, { ...sources, startDate, days });
+    if (mapped) {
+      imported.push(mapped);
+    }
+  });
+
+  return imported;
+}
+
+function countyCalendarMonthUrl(source, year, month) {
+  const base = new URL(source.eventsUrl || source.website);
+  const monthQuery = source.calendarMonthQuery || "curm";
+  const yearQuery = source.calendarYearQuery || "cury";
+  base.searchParams.set(monthQuery, String(month));
+  base.searchParams.set(yearQuery, String(year));
+  return base.toString();
+}
+
+function parseGranicusTimeToIso(timeText, dateKey, fallbackMeridiem = "") {
+  const normalized = collapseWhitespace(String(timeText || "").replace(/[–—]/g, "-"));
+  const match = normalized.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?$/i);
+  if (!match) {
+    return "";
+  }
+  let hour = Number(match[1]);
+  const minute = (match[2] || "00").padStart(2, "0");
+  const meridiem = (match[3] || fallbackMeridiem || "am").toLowerCase();
+  if (meridiem === "pm" && hour !== 12) {
+    hour += 12;
+  }
+  if (meridiem === "am" && hour === 12) {
+    hour = 0;
+  }
+  return `${dateKey}T${String(hour).padStart(2, "0")}:${minute}:00`;
+}
+
+function parseGranicusTimeRange(timeText, dateKey) {
+  const normalized = collapseWhitespace(String(timeText || "").replace(/[–—]/g, "-"));
+  const match = normalized.match(
+    /^(\d{1,2}(?::\d{2})?\s*(?:AM|PM))(?:\s*(?:-|to)\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM)?)?)?$/i
+  );
+  if (!match) {
+    return { startsAt: "", endsAt: null };
+  }
+  const startText = match[1];
+  const endText = normalized.slice(startText.length).replace(/^(?:\s*(?:-|to)\s*)/i, "");
+  const startMeridiem = firstMatch(startText, /\b(am|pm)\b/i);
+  const startsAt = parseGranicusTimeToIso(startText, dateKey);
+  if (!startsAt) {
+    return { startsAt: "", endsAt: null };
+  }
+  const endsAt = endText ? parseGranicusTimeToIso(endText, dateKey, startMeridiem) : null;
+  return { startsAt, endsAt };
+}
+
+function buildSomersetCalendarEventLinkLookup(html, source) {
+  const lookup = new Map();
+  const eventPattern = /<a\b[^>]*href=["']([^"']*Home\/Components\/Calendar\/Event\/\d+\/\d+[^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  for (const match of html.matchAll(eventPattern)) {
+    const title = stripHtml(match[2]).toLowerCase();
+    if (!title) {
+      continue;
+    }
+    const href = absoluteUrl(source.eventsUrl || source.website, match[1]);
+    if (!lookup.has(title)) {
+      lookup.set(title, href);
+    }
+  }
+  return lookup;
+}
+
+function parseSomersetCountyCalendarEvents(html, source, sources, startDate, days) {
+  const imported = [];
+  const lines = plainTextLinesFromHtml(html).map((line) => collapseWhitespace(line).replace(/\s+/g, " "));
+  const eventLinks = buildSomersetCalendarEventLinkLookup(html, source);
+  let month = "june";
+  let year = startDate.slice(0, 4);
+  const pendingDays = [];
+  let pendingTitle = "";
+
+  function pushEvent(rawTitle, timeText) {
+    if (!rawTitle || pendingDays.length === 0 || !month || !year) {
+      return;
+    }
+    const day = pendingDays.shift();
+    const dateKey = countyInferDateKey(month, String(day), year, startDate, days);
+    if (!dateKey || !isDateWithinWindow(dateKey, startDate, days)) {
+      return;
+    }
+
+    const { startsAt, endsAt } = parseGranicusTimeRange(timeText, dateKey);
+    const title = stripHtml(rawTitle);
+    const sourceUrl = eventLinks.get(title.toLowerCase()) || source.eventsUrl || source.website;
+    const mapped = countyEventRecord(
+      source,
+      {
+        title,
+        dateKey,
+        startsAt,
+        endsAt,
+        summary: "",
+        sourceUrl,
+        category: "county",
+        confidence: 0.74
+      },
+      { ...sources, startDate, days }
+    );
+    if (mapped) {
+      imported.push(mapped);
+    }
+  }
+
+  lines.forEach((line) => {
+    if (!line) {
+      return;
+    }
+    const monthMatch = line.match(/^##?\s*([A-Za-z]+)\s+(\d{4})/i);
+    if (monthMatch) {
+      month = monthMatch[1].toLowerCase();
+      year = monthMatch[2];
+      pendingDays.length = 0;
+      pendingTitle = "";
+      return;
+    }
+
+    const rowMatch = line.match(/^(\d{1,2})(?:\s+\d{1,2})+$/);
+    if (rowMatch) {
+      const rowDays = [...line.matchAll(/\d+/g)].map((item) => Number(item[0]));
+      const sanitized = rowDays.filter((day) => day >= 1 && day <= 31);
+      const clipped =
+        sanitized[0] > 20 && sanitized.some((item) => item <= 7)
+          ? (() => {
+              const shifted = [...sanitized];
+              while (shifted[0] > 7 && shifted.length > 1 && shifted.some((item) => item <= 7)) {
+                shifted.shift();
+              }
+              return shifted;
+            })()
+          : sanitized;
+      if (clipped.length) {
+        pendingDays.push(...clipped);
+      }
+      return;
+    }
+
+    const timeMatch = line.match(/^(\d{1,2}(?::\d{2})?\s*(?:AM|PM))(?:\s*(?:-|to)\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM)?)?)?(?:\s+(.+))?$/i);
+    if (timeMatch) {
+      const startTime = timeMatch[1];
+      const rangeEnd = timeMatch[2] || "";
+      const title = (timeMatch[3] || "").trim();
+      const timeText = `${startTime}${rangeEnd ? ` - ${rangeEnd}` : ""}`;
+      if (title) {
+        pushEvent(title, timeText);
+      } else {
+        pendingTitle = timeText;
+      }
+      return;
+    }
+
+    if (pendingTitle && /[A-Za-z]/.test(line)) {
+      pushEvent(line, pendingTitle);
+      pendingTitle = "";
+    }
+  });
+
+  return imported.filter((event) => event?.startsAt);
+}
+
+function countyDateFromJson(event) {
+  if (!event?.startDate) {
+    return "";
+  }
+  const normalized = String(event.startDate);
+  const direct = normalized.trim().slice(0, 10);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(direct)) {
+    return direct;
+  }
+  const stamped = zonedWallIso(normalized, TIMEZONE);
+  return stamped ? stamped.slice(0, 10) : "";
+}
+
+function parseCountyEventsFromSource(html, source, sources, startDate, days) {
+  const jsonEvents = parseJsonLdEvents(html).map((event) => {
+    const dateKey = countyDateFromJson(event);
+    if (!dateKey) {
+      return null;
+    }
+    const time = parseCountyTimeText(String(event.startDate || ""), "am");
+    return countyEventRecord(source, {
+      title: stripHtml(event.name || ""),
+      dateKey,
+      startsAt: `${dateKey}T${time?.startTime || "12:00"}`,
+      endsAt: time?.endTime ? `${dateKey}T${time.endTime}` : null,
+      sourceUrl: event.url || source.eventsUrl || source.website,
+      summary: cleanImportedSummary(event.description || event.about || ""),
+      locationName: stripHtml(event.location?.name || ""),
+      category: "county",
+      confidence: 0.75
+    }, { ...sources, startDate, days });
+  })
+  .filter(Boolean);
+
+  if (jsonEvents.length > 0) {
+    return jsonEvents;
+  }
+
+  if (source.id === "union-county-government") {
+    return parseUnionCountyEvents(html, source, sources, startDate, days);
+  }
+  if (source.id === "somerset-county-government") {
+    return parseSomersetCountyCalendarEvents(html, source, sources, startDate, days);
+  }
+  if (source.id === "middlesex-county-events") {
+    return parseMiddlesexCountyEvents(html, source, sources, startDate, days);
+  }
+  return [];
+}
+
 function primaryRegionalLocation(source) {
   const configuredLocation = (source.locations || [])[0] || {};
   return {
@@ -2734,6 +3278,27 @@ function importConfiguredRegionalEvents(sources, startDate, days) {
     });
   });
   return imported.filter((event) => event.startsAt && event.sourceUrl);
+}
+
+async function importCountyCalendarEvents(sources, startDate, days) {
+  const imported = [];
+  const sharedSources = allSharedParserSources(sources, "county-events-calendar");
+  for (const source of sharedSources) {
+    try {
+      if (source.id === "somerset-county-government") {
+        for (const { year, month } of monthsInWindow(startDate, days)) {
+          const html = await fetchText(countyCalendarMonthUrl(source, year, month));
+          imported.push(...parseCountyEventsFromSource(html, source, sources, startDate, days));
+        }
+        continue;
+      }
+      const html = await fetchText(source.eventsUrl || source.website);
+      imported.push(...parseCountyEventsFromSource(html, source, sources, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${source.eventsUrl || source.website}: ${error.message}`);
+    }
+  }
+  return imported.filter((event) => event?.startsAt && event?.sourceUrl);
 }
 
 function decodeEscapedJsonText(value) {
@@ -3928,7 +4493,9 @@ function mergeEvents(existing, incoming, importedAt) {
     });
   });
 
-  return [...byId.values()].filter((event) => !isClosureOrNonEvent(event.title, event.summary)).sort((a, b) => {
+  return [...byId.values()]
+    .filter((event) => eventStartsAtOrAfter(event.startsAt) && !isClosureOrNonEvent(event.title, event.summary))
+    .sort((a, b) => {
     const dateCompare = String(a.startsAt || "").localeCompare(String(b.startsAt || ""));
     if (dateCompare !== 0) return dateCompare;
     return String(a.title || "").localeCompare(String(b.title || ""));
@@ -3963,6 +4530,7 @@ async function main() {
     importConfiguredLibraryEvents(sources, startDate, days),
     importConfiguredWorkshopEvents(sources, startDate, days),
     importConfiguredRegionalEvents(sources, startDate, days),
+    importCountyCalendarEvents(sources, startDate, days),
     importBarnesNobleStoreEvents(sources, startDate, days),
     importTodayAtAppleEvents(sources, startDate, days),
     importWixEventsList(sources, startDate, days),
