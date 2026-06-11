@@ -2377,6 +2377,23 @@
       "notes": "Official Somerset County destination marketing events calendar with countywide fairs, festivals, farmers markets, family activities, and venue listings. Wallace House programs already import from a venue page here; keep the main calendar for broader county event discovery and future parser work."
     },
     {
+      "id": "south-bound-brook-events",
+      "label": "South Bound Brook Municipal Events",
+      "type": "municipal-events",
+      "status": "importable",
+      "parser": "tribe-events-calendar",
+      "townId": "south-bound-brook-borough",
+      "website": "https://sbbnj.com/",
+      "eventsUrl": "https://sbbnj.com/events/",
+      "eventEndpoint": "https://sbbnj.com/wp-json/tribe/events/v1/events",
+      "perPage": 50,
+      "maxPages": 12,
+      "address": "SBBNJ Town Hall, South Bound Brook, NJ",
+      "lat": 40.553947,
+      "lng": -74.527455,
+      "notes": "South Bound Brook municipal calendar is powered by Tribe Events Calendar API and is now importable."
+    },
+    {
       "id": "somerset-county-government",
       "label": "Somerset County Government",
       "type": "county-government",

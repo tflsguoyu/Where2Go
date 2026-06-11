@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import { readFile, writeFile } from "node:fs/promises";
+import * as http from "node:http";
+import * as https from "node:https";
 
 const TIMEZONE = "America/New_York";
 const SOURCES_FILE = new URL("../data/event-sources.json", import.meta.url);
@@ -729,30 +731,61 @@ async function readJson(url, fallback) {
 }
 
 async function fetchJson(url, extraHeaders = {}) {
-  const response = await fetch(url, {
-    headers: {
-      accept: "application/json,text/plain,*/*",
-      "user-agent": "Where2Go data importer",
-      ...extraHeaders
-    }
+  const text = await fetchText(url, {
+    ...extraHeaders,
+    accept: "application/json,text/plain,*/*"
   });
-  if (!response.ok) {
-    throw new Error(`Fetch failed ${response.status} for ${url}`);
-  }
-  return response.json();
+  return JSON.parse(text);
 }
 
-async function fetchText(url) {
-  const response = await fetch(url, {
-    headers: {
-      accept: "text/html,application/xhtml+xml,*/*",
-      "user-agent": "Where2Go data importer"
-    }
+async function fetchText(url, extraHeaders = {}) {
+  return requestWithNativeHttp(url, {
+    accept: "text/html,application/xhtml+xml,*/*",
+    "user-agent": "Where2Go data importer",
+    ...extraHeaders
   });
-  if (!response.ok) {
-    throw new Error(`Fetch failed ${response.status} for ${url}`);
+}
+
+async function requestWithNativeHttp(url, headers = {}, redirectCount = 0) {
+  if (redirectCount > 8) {
+    throw new Error(`Fetch failed too many redirects for ${url}`);
   }
-  return response.text();
+  const timeoutMs = 12000;
+  const uri = new URL(url);
+  const transport = uri.protocol === "https:" ? https : http;
+  const requestOptions = {
+    protocol: uri.protocol,
+    hostname: uri.hostname,
+    port: uri.port || undefined,
+    path: `${uri.pathname}${uri.search}`,
+    headers
+  };
+
+  return new Promise((resolve, reject) => {
+    const req = transport.request(requestOptions, (res) => {
+      const status = res.statusCode || 0;
+      if ([301, 302, 307, 308].includes(status) && res.headers.location) {
+        const nextUrl = new URL(res.headers.location, uri);
+        res.resume();
+        return resolve(requestWithNativeHttp(nextUrl.toString(), headers, redirectCount + 1));
+      }
+      if (status >= 400) {
+        res.resume();
+        reject(new Error(`Fetch failed ${status} for ${url}`));
+        return;
+      }
+      const chunks = [];
+      res.on("data", (chunk) => chunks.push(chunk));
+      res.on("end", () => {
+        resolve(Buffer.concat(chunks).toString("utf8"));
+      });
+    });
+    req.setTimeout(timeoutMs, () => {
+      req.destroy(new Error(`Fetch timeout for ${url}`));
+    });
+    req.on("error", (error) => reject(error));
+    req.end();
+  });
 }
 
 function sleep(ms) {
