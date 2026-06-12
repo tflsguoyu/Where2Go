@@ -23435,60 +23435,6 @@
     "townId": "summit-city"
   },
   {
-    "id": "patch-f0d50488-5fa7-402c-a929-4eff7cb449f1-2026-06-14",
-    "externalId": "f0d50488-5fa7-402c-a929-4eff7cb449f1",
-    "sourceId": "patch",
-    "townId": "west-orange-township",
-    "townNameRaw": "West Orange",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "patch-calendar",
-    "title": "🏡 West Orange Town-Wide YARD SALE🏡",
-    "venue": "Nestro Road",
-    "venueName": "Nestro Road",
-    "room": null,
-    "category": "patch",
-    "source": "Patch local calendars",
-    "startsAt": "2026-06-14T09:00:00",
-    "endsAt": "2026-06-14T10:30:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 90,
-    "ages": [
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "Patch",
-    "summary": "West Orange, New Jersey Dozens of homes across West Orange participating in one BIG",
-    "url": "https://patch.com/new-jersey/westorange/calendar/event/20260614/f0d50488-5fa7-402c-a929-4eff7cb449f1/west-orange-town-wide-yard-sale",
-    "sourceUrl": "https://patch.com/new-jersey/westorange/calendar/event/20260614/f0d50488-5fa7-402c-a929-4eff7cb449f1/west-orange-town-wide-yard-sale",
-    "sourceCalendarUrl": "https://patch.com/new-jersey/warren/calendar",
-    "address": "Nestro Rd, West Orange, NJ 07052",
-    "lat": 40.8177359,
-    "lng": -74.257895,
-    "image": "https://patch.com/img/cdn20/users/23021088/20260611/051416/chatgpt-image-may-23-2026-11-41-15-am___11171415402.jpg",
-    "tags": [
-      "regional_event_directory",
-      "patch",
-      "third-party-directory",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.62,
-    "sourcePages": [
-      {
-        "url": "https://patch.com/new-jersey/westorange/calendar/event/20260614/f0d50488-5fa7-402c-a929-4eff7cb449f1/west-orange-town-wide-yard-sale",
-        "source": "Patch discovery page"
-      }
-    ],
-    "discoverySource": "Patch",
-    "discoverySourceUrl": "https://patch.com/new-jersey/westorange/calendar/event/20260614/f0d50488-5fa7-402c-a929-4eff7cb449f1/west-orange-town-wide-yard-sale",
-    "sourceStatus": "patch_as_source",
-    "reviewNotes": "Patch is used as the source because no separate event source URL was listed.",
-    "firstSeenAt": "2026-06-12T19:56:29.124Z",
-    "lastSeenAt": "2026-06-12T19:56:29.124Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
-  },
-  {
     "id": "savvycitizen-millstone-borough-126087-2026-06-14",
     "externalId": "126087",
     "sourceId": "savvycitizen-plugin-millstone-borough",
@@ -28997,63 +28943,6 @@
     "image": "https://www.piscatawaylibrary.org/sites/default/files/2026-05/2023%20%282%29.png",
     "firstSeenAt": "2026-06-09T05:53:51.321Z",
     "lastSeenAt": "2026-06-12T02:20:23.550Z"
-  },
-  {
-    "id": "patch-ac5ee0c6-839f-47b4-a9e6-34c8c86736d5-2026-06-15",
-    "externalId": "ac5ee0c6-839f-47b4-a9e6-34c8c86736d5",
-    "sourceId": "patch",
-    "townId": "north-brunswick-township",
-    "townNameRaw": "North Brunswick Township",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "patch-calendar",
-    "title": "Al-Anon: Do you worry about someone else’s drinking? Al‑Anon can help.",
-    "venue": "Our Lady of Peace Church",
-    "venueName": "Our Lady of Peace Church",
-    "room": null,
-    "category": "patch",
-    "source": "Patch local calendars",
-    "startsAt": "2026-06-15T19:30:00",
-    "endsAt": "2026-06-15T21:00:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 90,
-    "ages": [
-      "baby",
-      "toddler",
-      "preschool",
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "Patch",
-    "summary": "The North Brunswick Courage to Change Al-Anon Family Group Our Lady of Peace Church 1730 US-130 North Brunswick,",
-    "url": "https://patch.com/new-jersey/newbrunswick/calendar/event/20260615/ac5ee0c6-839f-47b4-a9e6-34c8c86736d5/al-anon-do-you-worry-about-someone-else-s-drinking-al-anon-can-help",
-    "sourceUrl": "https://patch.com/new-jersey/newbrunswick/calendar/event/20260615/ac5ee0c6-839f-47b4-a9e6-34c8c86736d5/al-anon-do-you-worry-about-someone-else-s-drinking-al-anon-can-help",
-    "sourceCalendarUrl": "https://patch.com/new-jersey/warren/calendar",
-    "address": "1730 US-130, North Brunswick Township, NJ 08902",
-    "lat": 40.4417581,
-    "lng": -74.4707353,
-    "image": "https://patch.com/img/cdn20/users/26285180/20231114/112533/fall-sml___14112530539.jpg",
-    "tags": [
-      "regional_event_directory",
-      "patch",
-      "third-party-directory",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.62,
-    "sourcePages": [
-      {
-        "url": "https://patch.com/new-jersey/newbrunswick/calendar/event/20260615/ac5ee0c6-839f-47b4-a9e6-34c8c86736d5/al-anon-do-you-worry-about-someone-else-s-drinking-al-anon-can-help",
-        "source": "Patch discovery page"
-      }
-    ],
-    "discoverySource": "Patch",
-    "discoverySourceUrl": "https://patch.com/new-jersey/newbrunswick/calendar/event/20260615/ac5ee0c6-839f-47b4-a9e6-34c8c86736d5/al-anon-do-you-worry-about-someone-else-s-drinking-al-anon-can-help",
-    "sourceStatus": "patch_as_source",
-    "reviewNotes": "Patch is used as the source because no separate event source URL was listed.",
-    "firstSeenAt": "2026-06-12T19:56:29.124Z",
-    "lastSeenAt": "2026-06-12T19:56:29.124Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
   },
   {
     "id": "mylibrary-carousel-uplnj-events-mylibrary-digital-355947",
@@ -45827,60 +45716,6 @@
     "lastSeenAt": "2026-06-12T02:49:27.190Z"
   },
   {
-    "id": "eventbrite-fathers-day-paint-class-tickets-1985994953367-2026-06-21",
-    "externalId": "fathers-day-paint-class-tickets-1985994953367-2026-06-21",
-    "sourceId": "eventbrite",
-    "townId": "rahway-city",
-    "townNameRaw": "Rahway",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "eventbrite-jsonld",
-    "title": "Father’s Day Paint Class",
-    "venue": "1579 Irving St",
-    "venueName": "1579 Irving St",
-    "room": null,
-    "category": "eventbrite",
-    "source": "Eventbrite discovery",
-    "startsAt": "2026-06-21T13:00:00",
-    "endsAt": "2026-06-21T15:00:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 120,
-    "ages": [
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "Eventbrite",
-    "summary": "Grab Dad and join our fun Father’s Day Paint Class to create cool art memories together!",
-    "url": "https://www.eventbrite.com/e/fathers-day-paint-class-tickets-1985994953367",
-    "sourceUrl": "https://www.eventbrite.com/e/fathers-day-paint-class-tickets-1985994953367",
-    "sourceCalendarUrl": "https://www.eventbrite.com/d/nj--warren/kids/",
-    "address": "1579 Irving Street, Rahway, NJ 07065, Rahway, NJ",
-    "lat": 40.610195,
-    "lng": -74.2767334,
-    "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1180748762%2F2991853665904%2F1%2Foriginal.20260326-132133?crop=focalpoint&fit=crop&w=940&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.485&fp-y=0.227&s=59a88bd412f20ee0d295e00458700993",
-    "tags": [
-      "eventbrite_or_ticketing",
-      "eventbrite",
-      "ticketing",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.58,
-    "sourcePages": [
-      {
-        "url": "https://www.eventbrite.com/e/fathers-day-paint-class-tickets-1985994953367",
-        "source": "Eventbrite discovery page"
-      }
-    ],
-    "discoverySource": "Eventbrite",
-    "discoverySourceUrl": "https://www.eventbrite.com/e/fathers-day-paint-class-tickets-1985994953367",
-    "sourceStatus": "eventbrite_as_source",
-    "reviewNotes": "Eventbrite is used as the source because no official non-Eventbrite event notice was found automatically.",
-    "firstSeenAt": "2026-06-12T19:38:04.547Z",
-    "lastSeenAt": "2026-06-12T19:38:04.547Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
-  },
-  {
     "id": "newark-museum-of-art-7905-2026-06-21-13-00",
     "externalId": "7905-2026-06-21T13:00:00",
     "sourceId": "newark-museum-of-art",
@@ -46998,61 +46833,6 @@
     "firstSeenAt": "2026-06-11T04:59:36.958Z",
     "lastSeenAt": "2026-06-12T02:20:23.550Z",
     "summaryStatus": "source_detail_unavailable"
-  },
-  {
-    "id": "eventbrite-art-is-smart-summer-sessions-for-youth-tickets-1989306583542-2026-06-22",
-    "externalId": "art-is-smart-summer-sessions-for-youth-tickets-1989306583542-2026-06-22",
-    "sourceId": "eventbrite",
-    "townId": "east-orange-city",
-    "townNameRaw": "East Orange",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "eventbrite-jsonld",
-    "title": "Art IS Smart! Summer Sessions for Youth",
-    "venue": "Elmwood United Presbyterian",
-    "venueName": "Elmwood United Presbyterian",
-    "room": null,
-    "category": "eventbrite",
-    "source": "Eventbrite discovery",
-    "startsAt": "2026-06-22T10:00:00",
-    "endsAt": "2026-06-22T14:00:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 240,
-    "ages": [
-      "preschool",
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "Eventbrite",
-    "summary": "Art Summer Sessions are opportunities for kids' (ages 5 to 12) creative expression in Visual, Performing, Media, Literary & Culinary Arts.",
-    "url": "https://www.eventbrite.com/e/art-is-smart-summer-sessions-for-youth-tickets-1989306583542",
-    "sourceUrl": "https://www.eventbrite.com/e/art-is-smart-summer-sessions-for-youth-tickets-1989306583542",
-    "sourceCalendarUrl": "https://www.eventbrite.com/d/nj--warren/kids/",
-    "address": "135 Elmwood Avenue, East Orange, NJ 07018, East Orange, NJ",
-    "lat": 40.753883,
-    "lng": -74.220152,
-    "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1184398612%2F136105494653%2F1%2Foriginal.20260512-141639?crop=focalpoint&fit=crop&w=940&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.506&fp-y=0.075&s=920a759715e78a730f7d419367cdcec2",
-    "tags": [
-      "eventbrite_or_ticketing",
-      "eventbrite",
-      "ticketing",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.58,
-    "sourcePages": [
-      {
-        "url": "https://www.eventbrite.com/e/art-is-smart-summer-sessions-for-youth-tickets-1989310602563",
-        "source": "Eventbrite discovery page"
-      }
-    ],
-    "discoverySource": "Eventbrite",
-    "discoverySourceUrl": "https://www.eventbrite.com/e/art-is-smart-summer-sessions-for-youth-tickets-1989310602563",
-    "sourceStatus": "eventbrite_as_source",
-    "reviewNotes": "Eventbrite is used as the source because no official non-Eventbrite event notice was found automatically.",
-    "firstSeenAt": "2026-06-12T19:38:04.547Z",
-    "lastSeenAt": "2026-06-12T19:38:04.547Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
   },
   {
     "id": "libcal-bhplnj-16979487",
@@ -61311,62 +61091,6 @@
     "lastSeenAt": "2026-06-12T02:20:23.550Z"
   },
   {
-    "id": "patch-739f9831-c8b9-4c81-ad28-8baa11ae2a5f-2026-06-27",
-    "externalId": "739f9831-c8b9-4c81-ad28-8baa11ae2a5f",
-    "sourceId": "patch",
-    "townId": "linden-city",
-    "townNameRaw": "Linden",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "patch-calendar",
-    "title": "NJ Audubon: Binocular Basics at Hawk Rise",
-    "venue": "Hawk Rise Sanctuary",
-    "venueName": "Hawk Rise Sanctuary",
-    "room": null,
-    "category": "patch",
-    "source": "Patch local calendars",
-    "startsAt": "2026-06-27T08:00:00",
-    "endsAt": "2026-06-27T09:30:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 90,
-    "ages": [
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Led by Angus Macaulay, NJ Audubon Teacher Naturalist Interested in binoculars, but not sure where to start? Join us at Hawk",
-    "url": "https://njaudubon.org/event/nj-audubon-binocular-basics-at-hawk-rise-2/",
-    "sourceUrl": "https://njaudubon.org/event/nj-audubon-binocular-basics-at-hawk-rise-2/",
-    "sourceCalendarUrl": "https://patch.com/new-jersey/warren/calendar",
-    "address": "1811 Lower Rd, Linden, NJ 07036",
-    "lat": 40.60412609999999,
-    "lng": -74.2519277,
-    "image": "https://patch.com/img/cdn20/users/23831081/20260426/031808/nj-audubon-binocular-basics-at-hawk-rise-1536x1152___26151807598.jpg",
-    "tags": [
-      "regional_event_directory",
-      "patch",
-      "third-party-directory",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.74,
-    "sourcePages": [
-      {
-        "url": "https://njaudubon.org/event/nj-audubon-binocular-basics-at-hawk-rise-2/",
-        "source": "Event source page"
-      },
-      {
-        "url": "https://patch.com/new-jersey/bernardsville-bedminster/calendar/event/20260627/739f9831-c8b9-4c81-ad28-8baa11ae2a5f/nj-audubon-binocular-basics-at-hawk-rise",
-        "source": "Patch discovery page"
-      }
-    ],
-    "discoverySource": "Patch",
-    "discoverySourceUrl": "https://patch.com/new-jersey/bernardsville-bedminster/calendar/event/20260627/739f9831-c8b9-4c81-ad28-8baa11ae2a5f/nj-audubon-binocular-basics-at-hawk-rise",
-    "firstSeenAt": "2026-06-12T19:56:29.124Z",
-    "lastSeenAt": "2026-06-12T19:56:29.124Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
-  },
-  {
     "id": "visit-somerset-nj-events-10054991-2026-06-27",
     "externalId": "10054991",
     "sourceId": "visit-somerset-nj-events",
@@ -63557,62 +63281,6 @@
     "townAssignmentSource": "addressLocality",
     "lat": 40.256192,
     "lng": -74.624936
-  },
-  {
-    "id": "patch-fde9db8c-5711-4a28-879d-207f00e98372-2026-06-27",
-    "externalId": "fde9db8c-5711-4a28-879d-207f00e98372",
-    "sourceId": "patch",
-    "townId": "rahway-city",
-    "townNameRaw": "Rahway",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "patch-calendar",
-    "title": "Hasini Rangaswamy’s Bharatanatyam Rangapravesha & Tanjavur Art Display",
-    "venue": "Hamilton Stage, Union County Performing Arts Center",
-    "venueName": "Hamilton Stage, Union County Performing Arts Center",
-    "room": null,
-    "category": "patch",
-    "source": "Patch local calendars",
-    "startsAt": "2026-06-27T15:30:00",
-    "endsAt": "2026-06-27T17:00:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 90,
-    "ages": [
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Local Edison Student to Present Bharatanatyam Arangetram and Tanjavur Art Display Supporting Children’s Mental Health",
-    "url": "https://sites.google.com/view/hasini-rangapravesha/rsvp",
-    "sourceUrl": "https://sites.google.com/view/hasini-rangapravesha/rsvp",
-    "sourceCalendarUrl": "https://patch.com/new-jersey/warren/calendar",
-    "address": "360 Hamilton St, Rahway, NJ 07065",
-    "lat": 40.6116097,
-    "lng": -74.27982659999999,
-    "image": "https://patch.com/img/cdn/assets/calendar/events1_800x600.jpg",
-    "tags": [
-      "regional_event_directory",
-      "patch",
-      "third-party-directory",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.74,
-    "sourcePages": [
-      {
-        "url": "https://sites.google.com/view/hasini-rangapravesha/rsvp",
-        "source": "Event source page"
-      },
-      {
-        "url": "https://patch.com/new-jersey/edison-metuchen/calendar/event/20260627/fde9db8c-5711-4a28-879d-207f00e98372/hasini-rangaswamy-s-bharatanatyam-rangapravesha-tanjavur-art-display",
-        "source": "Patch discovery page"
-      }
-    ],
-    "discoverySource": "Patch",
-    "discoverySourceUrl": "https://patch.com/new-jersey/edison-metuchen/calendar/event/20260627/fde9db8c-5711-4a28-879d-207f00e98372/hasini-rangaswamy-s-bharatanatyam-rangapravesha-tanjavur-art-display",
-    "firstSeenAt": "2026-06-12T19:56:29.124Z",
-    "lastSeenAt": "2026-06-12T19:56:29.124Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
   },
   {
     "id": "morris-plains-borough-timely-events-2026-06-27-family-day-and-fireworks",
@@ -77504,63 +77172,6 @@
     "townId": "summit-city"
   },
   {
-    "id": "eventbrite-mommy-daddy-tea-picnic-tickets-1991017005460-2026-07-05",
-    "externalId": "mommy-daddy-tea-picnic-tickets-1991017005460-2026-07-05",
-    "sourceId": "eventbrite",
-    "townId": "rahway-city",
-    "townNameRaw": "Rahway",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "eventbrite-jsonld",
-    "title": "Mommy Daddy Tea Picnic",
-    "venue": "Rahway River Park",
-    "venueName": "Rahway River Park",
-    "room": null,
-    "category": "eventbrite",
-    "source": "Eventbrite discovery",
-    "startsAt": "2026-07-05T13:00:00",
-    "endsAt": "2026-07-05T15:00:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 120,
-    "ages": [
-      "baby",
-      "toddler",
-      "preschool",
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "Eventbrite",
-    "summary": "Connect with professionals, caregivers, and like minded families while gaining valuable information on herbs and mental wellness.",
-    "url": "https://www.eventbrite.com/e/mommy-daddy-tea-picnic-tickets-1991017005460",
-    "sourceUrl": "https://www.eventbrite.com/e/mommy-daddy-tea-picnic-tickets-1991017005460",
-    "sourceCalendarUrl": "https://www.eventbrite.com/d/nj--warren/kids/",
-    "address": "Saint Georges Avenue, Rahway, NJ 07065, Rahway, NJ",
-    "lat": 40.5938531,
-    "lng": -74.2907929,
-    "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1186175801%2F94177609643%2F1%2Foriginal.20260604-174013?crop=focalpoint&fit=crop&w=940&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.5&fp-y=0.5&s=4d81200095cd40ae7b7bbe7acbad98f8",
-    "tags": [
-      "eventbrite_or_ticketing",
-      "eventbrite",
-      "ticketing",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.58,
-    "sourcePages": [
-      {
-        "url": "https://www.eventbrite.com/e/mommy-daddy-tea-picnic-tickets-1991017005460",
-        "source": "Eventbrite discovery page"
-      }
-    ],
-    "discoverySource": "Eventbrite",
-    "discoverySourceUrl": "https://www.eventbrite.com/e/mommy-daddy-tea-picnic-tickets-1991017005460",
-    "sourceStatus": "eventbrite_as_source",
-    "reviewNotes": "Eventbrite is used as the source because no official non-Eventbrite event notice was found automatically.",
-    "firstSeenAt": "2026-06-12T19:38:04.547Z",
-    "lastSeenAt": "2026-06-12T19:38:04.547Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
-  },
-  {
     "id": "visit-somerset-nj-events-43347-2026-07-05",
     "externalId": "43347",
     "sourceId": "visit-somerset-nj-events",
@@ -90452,60 +90063,6 @@
     "lng": -74.6629832
   },
   {
-    "id": "patch-e8664433-8bec-45be-a3d2-2087b62a212a-2026-07-11",
-    "externalId": "e8664433-8bec-45be-a3d2-2087b62a212a",
-    "sourceId": "patch",
-    "townId": "east-orange-city",
-    "townNameRaw": "East Orange",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "patch-calendar",
-    "title": "The Tea - Interview With The Stars",
-    "venue": "Guiding Star United Holy Church",
-    "venueName": "Guiding Star United Holy Church",
-    "room": null,
-    "category": "patch",
-    "source": "Patch local calendars",
-    "startsAt": "2026-07-11T18:00:00",
-    "endsAt": "2026-07-11T19:30:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 90,
-    "ages": [
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "Patch",
-    "summary": "My name is Tony Williams with Get Write Entertainment, a theater and production company created to bring good wholesome",
-    "url": "https://patch.com/new-jersey/east-orange-nj/calendar/event/20260711/e8664433-8bec-45be-a3d2-2087b62a212a/the-tea-interview-with-the-stars",
-    "sourceUrl": "https://patch.com/new-jersey/east-orange-nj/calendar/event/20260711/e8664433-8bec-45be-a3d2-2087b62a212a/the-tea-interview-with-the-stars",
-    "sourceCalendarUrl": "https://patch.com/new-jersey/warren/calendar",
-    "address": "400 Main St, East Orange, NJ 07018",
-    "lat": 40.7633728,
-    "lng": -74.2128292,
-    "image": "https://patch.com/img/cdn20/users/26014453/20260601/025241/the-tea-flyer-july-2026-updated___01145240634.jpg",
-    "tags": [
-      "regional_event_directory",
-      "patch",
-      "third-party-directory",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.62,
-    "sourcePages": [
-      {
-        "url": "https://patch.com/new-jersey/east-orange-nj/calendar/event/20260711/e8664433-8bec-45be-a3d2-2087b62a212a/the-tea-interview-with-the-stars",
-        "source": "Patch discovery page"
-      }
-    ],
-    "discoverySource": "Patch",
-    "discoverySourceUrl": "https://patch.com/new-jersey/east-orange-nj/calendar/event/20260711/e8664433-8bec-45be-a3d2-2087b62a212a/the-tea-interview-with-the-stars",
-    "sourceStatus": "patch_as_source",
-    "reviewNotes": "Patch is used as the source because no separate event source URL was listed.",
-    "firstSeenAt": "2026-06-12T19:56:29.124Z",
-    "lastSeenAt": "2026-06-12T19:56:29.124Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
-  },
-  {
     "id": "sky-zone-south-plainfield-south-plainfield-piscataway-2026-07-11-sky-zone-glow",
     "externalId": "south-plainfield-piscataway-2026-07-11-sky-zone-glow",
     "sourceId": "sky-zone-south-plainfield",
@@ -103024,62 +102581,6 @@
     "lastSeenAt": "2026-06-12T02:20:23.550Z"
   },
   {
-    "id": "patch-1b47a41f-85e4-4a2a-acf4-ec95aede11af-2026-07-18",
-    "externalId": "1b47a41f-85e4-4a2a-acf4-ec95aede11af",
-    "sourceId": "patch",
-    "townId": "orange-township",
-    "townNameRaw": "City of Orange",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "patch-calendar",
-    "title": "5th Annual Jazz, Health & Food Truck Festival",
-    "venue": "Monte Irvin Orange Park",
-    "venueName": "Monte Irvin Orange Park",
-    "room": null,
-    "category": "patch",
-    "source": "Patch local calendars",
-    "startsAt": "2026-07-18T11:00:00",
-    "endsAt": "2026-07-18T12:30:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 90,
-    "ages": [
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Experience a jumpin' jazz music festival featuring a vibrant range of performances from the sounds of New Orleans to the sounds",
-    "url": "https://gregoryburrusproductions.com",
-    "sourceUrl": "https://gregoryburrusproductions.com",
-    "sourceCalendarUrl": "https://patch.com/new-jersey/warren/calendar",
-    "address": "City of Orange, NJ 07050",
-    "lat": 40.7709499,
-    "lng": -74.2264601,
-    "image": "https://patch.com/img/cdn20/users/1110/20260427/100800/flyer-2bb6d3c0-4445-499f-bff6-e3104314297f___27220759904.jpg",
-    "tags": [
-      "regional_event_directory",
-      "patch",
-      "third-party-directory",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.74,
-    "sourcePages": [
-      {
-        "url": "https://gregoryburrusproductions.com",
-        "source": "Event source page"
-      },
-      {
-        "url": "https://patch.com/new-jersey/southorange/calendar/event/20260718/1b47a41f-85e4-4a2a-acf4-ec95aede11af/5th-annual-jazz-health-food-truck-festival",
-        "source": "Patch discovery page"
-      }
-    ],
-    "discoverySource": "Patch",
-    "discoverySourceUrl": "https://patch.com/new-jersey/southorange/calendar/event/20260718/1b47a41f-85e4-4a2a-acf4-ec95aede11af/5th-annual-jazz-health-food-truck-festival",
-    "firstSeenAt": "2026-06-12T19:56:29.124Z",
-    "lastSeenAt": "2026-06-12T19:56:29.124Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
-  },
-  {
     "id": "libcal-6423-16809858",
     "externalId": "16809858",
     "sourceId": "libcal-mmtlibrary.libcal.com",
@@ -115535,62 +115036,6 @@
     "confidence": 0.82,
     "firstSeenAt": "2026-06-11T23:30:19.360Z",
     "lastSeenAt": "2026-06-12T04:18:47.213Z"
-  },
-  {
-    "id": "patch-fb5e1418-9cbd-4407-b84c-d7b291a3d38f-2026-07-26",
-    "externalId": "fb5e1418-9cbd-4407-b84c-d7b291a3d38f",
-    "sourceId": "patch",
-    "townId": "linden-city",
-    "townNameRaw": "Linden",
-    "townAssignmentStatus": "assigned",
-    "townAssignmentSource": "patch-calendar",
-    "title": "NJ Audubon: Birding With Technology at Hawk Rise Sanctuary",
-    "venue": "Hawk Rise Sanctuary",
-    "venueName": "Hawk Rise Sanctuary",
-    "room": null,
-    "category": "patch",
-    "source": "Patch local calendars",
-    "startsAt": "2026-07-26T08:00:00",
-    "endsAt": "2026-07-26T09:30:00",
-    "timezone": "America/New_York",
-    "durationMinutes": 90,
-    "ages": [
-      "early-elementary"
-    ],
-    "cost": null,
-    "registration": "See source",
-    "summary": "Led by Angus Macaulay, NJ Audubon Teacher Naturalist Can technology improve your birding experience? Join us on the trails Hawk",
-    "url": "https://njaudubon.org/event/nj-audubon-birding-with-technology-at-hawk-rise-sanctuary-2/",
-    "sourceUrl": "https://njaudubon.org/event/nj-audubon-birding-with-technology-at-hawk-rise-sanctuary-2/",
-    "sourceCalendarUrl": "https://patch.com/new-jersey/warren/calendar",
-    "address": "1811 Lower Rd, Linden, NJ 07036",
-    "lat": 40.60412609999999,
-    "lng": -74.2519277,
-    "image": "https://patch.com/img/cdn20/users/23831081/20260426/033849/dsc-0764___26153848227.jpg",
-    "tags": [
-      "regional_event_directory",
-      "patch",
-      "third-party-directory",
-      "family"
-    ],
-    "status": "published",
-    "confidence": 0.74,
-    "sourcePages": [
-      {
-        "url": "https://njaudubon.org/event/nj-audubon-birding-with-technology-at-hawk-rise-sanctuary-2/",
-        "source": "Event source page"
-      },
-      {
-        "url": "https://patch.com/new-jersey/bernardsville-bedminster/calendar/event/20260726/fb5e1418-9cbd-4407-b84c-d7b291a3d38f/nj-audubon-birding-with-technology-at-hawk-rise-sanctuary",
-        "source": "Patch discovery page"
-      }
-    ],
-    "discoverySource": "Patch",
-    "discoverySourceUrl": "https://patch.com/new-jersey/bernardsville-bedminster/calendar/event/20260726/fb5e1418-9cbd-4407-b84c-d7b291a3d38f/nj-audubon-birding-with-technology-at-hawk-rise-sanctuary",
-    "firstSeenAt": "2026-06-12T19:56:29.124Z",
-    "lastSeenAt": "2026-06-12T19:56:29.124Z",
-    "withinCoverage": false,
-    "coverageStatus": "town_removed_no_data_source"
   },
   {
     "id": "civicplus-summit-city-3705-2026-07-26",

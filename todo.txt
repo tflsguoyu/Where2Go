@@ -1,0 +1,34 @@
+Towns removed from the active registry because they do not yet have local source records:
+
+- Winfield township (Union) - winfield-township
+- Rahway city (Union) - rahway-city
+- Roselle Park borough (Union) - roselle-park-borough
+- Roselle borough (Union) - roselle-borough
+- Linden city (Union) - linden-city
+- Elizabeth city (Union) - elizabeth-city
+- Woodbridge township (Middlesex) - woodbridge-township
+- North Brunswick township (Middlesex) - north-brunswick-township
+- Milltown borough (Middlesex) - milltown-borough
+- South River borough (Middlesex) - south-river-borough
+- Perth Amboy city (Middlesex) - perth-amboy-city
+- West Orange township (Essex) - west-orange-township
+- Roseland borough (Essex) - roseland-borough
+- City of Orange township (Essex) - orange-township
+- East Orange city (Essex) - east-orange-city
+- Glen Ridge borough (Essex) - glen-ridge-borough
+- Bloomfield township (Essex) - bloomfield-township
+- Readington township (Hunterdon) - readington-township
+- Tewksbury township (Hunterdon) - tewksbury-township
+- Lebanon borough (Hunterdon) - lebanon-borough
+- Califon borough (Hunterdon) - califon-borough
+- Clinton township (Hunterdon) - clinton-township
+- High Bridge borough (Hunterdon) - high-bridge-borough
+- Clinton town (Hunterdon) - clinton-town
+- Glen Gardner borough (Hunterdon) - glen-gardner-borough
+- Union township (Hunterdon) - union-township-hunterdon
+- Hampton borough (Hunterdon) - hampton-borough
+- Bloomsbury borough (Hunterdon) - bloomsbury-borough
+- East Newark borough (Hudson) - east-newark-borough
+- Harrison town (Hudson) - harrison-town
+- Bayonne city (Hudson) - bayonne-city
+- Kearny town (Hudson) - kearny-town
