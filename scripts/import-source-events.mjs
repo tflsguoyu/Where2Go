@@ -1397,10 +1397,22 @@ function buildTownLookup(sources) {
 function cleanAddress(value) {
   return stripHtml(value)
     .replace(/,\s*(?:US|USA|United States)$/i, "")
+    .replace(/,\s*([^,]+),\s*(NJ|NY|PA)\s+(\d{5}(?:-\d{4})?),\s*\1,\s*\2$/i, ", $1, $2 $3")
     .replace(/,\s*(NJ|NY|PA),\s*(\d{5}(?:-\d{4})?)\b/gi, ", $1 $2")
     .replace(/\s*,\s*/g, ", ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function looksLikeStreetAddress(value) {
+  return /^\s*\d+\s+.+\b(?:ave|avenue|st|street|rd|road|dr|drive|blvd|boulevard|ln|lane|way|hwy|highway|route|rt\.?)\b/i.test(
+    String(value || "")
+  );
+}
+
+function displayVenueName(rawVenueName, fallbackName) {
+  const venueName = stripHtml(rawVenueName || "");
+  return looksLikeStreetAddress(venueName) && fallbackName ? fallbackName : venueName || fallbackName || "";
 }
 
 function addressFromPostalAddress(address) {
@@ -2473,6 +2485,7 @@ function parseEngagedPatronsCards(html, source, calendarUrl, audience, startDate
       return;
     }
     const branch = stripHtml(firstMatch(card, /<div class="LEBranch">\s*([\s\S]*?)\s*<\/div>/i));
+    const venueName = displayVenueName(branch, source.library.name);
     const registrationLabel = stripHtml(firstMatch(card, /<input\b[^>]*class="button"[^>]*value="([^"]+)"/i));
     const sourceUrl = absoluteUrl(calendarUrl, titleMatch[1]);
     events.push({
@@ -2481,8 +2494,8 @@ function parseEngagedPatronsCards(html, source, calendarUrl, audience, startDate
       sourceId: `engagedpatrons-${siteId}`,
       townId: source.library.townId || source.town.id,
       title,
-      venue: branch || source.library.name,
-      venueName: branch || source.library.name,
+      venue: venueName,
+      venueName,
       category: "library",
       source: source.library.name,
       startsAt,
@@ -3901,8 +3914,9 @@ function allConfiguredLibraryEventSources(sources) {
 function configuredEventDates(config, startDate, days) {
   const windowEndDate = addDateDays(startDate, Math.max(0, days - 1));
   const explicitDates = config.dates || (config.date ? [config.date] : []);
+  const excludeDates = new Set(config.excludeDates || config.recurrence?.excludeDates || []);
   if (explicitDates.length) {
-    return explicitDates.filter((dateKey) => isDateWithinWindow(dateKey, startDate, days));
+    return explicitDates.filter((dateKey) => isDateWithinWindow(dateKey, startDate, days) && !excludeDates.has(dateKey));
   }
   const recurrence = config.recurrence;
   if (!recurrence) {
@@ -3911,7 +3925,7 @@ function configuredEventDates(config, startDate, days) {
   const rangeStart = recurrence.startDate && dateStamp(recurrence.startDate) > dateStamp(startDate) ? recurrence.startDate : startDate;
   const rangeEnd =
     recurrence.endDate && dateStamp(recurrence.endDate) < dateStamp(windowEndDate) ? recurrence.endDate : windowEndDate;
-  return datesInRange(rangeStart, rangeEnd).filter((dateKey) => recurrenceMatches(dateKey, recurrence));
+  return datesInRange(rangeStart, rangeEnd).filter((dateKey) => recurrenceMatches(dateKey, recurrence) && !excludeDates.has(dateKey));
 }
 
 function configuredLibraryEvent(source, config, dateKey) {
@@ -4461,6 +4475,8 @@ function primaryRegionalLocation(source) {
     name: configuredLocation.name || source.label,
     townId: configuredLocation.townId || source.townId || null,
     address: configuredLocation.address || source.address || null,
+    addressStatus: configuredLocation.addressStatus || source.addressStatus || null,
+    reviewNotes: configuredLocation.reviewNotes || source.reviewNotes || null,
     lat: Number(configuredLocation.lat ?? source.lat ?? 0),
     lng: Number(configuredLocation.lng ?? source.lng ?? 0),
     url: configuredLocation.storeUrl || source.eventsUrl || source.website
@@ -4503,6 +4519,8 @@ function regionalEventRecord(source, fields) {
     sourceUrl: fields.sourceUrl,
     sourceCalendarUrl: source.eventsUrl || source.website,
     address: location.address,
+    addressStatus: location.addressStatus || fields.addressStatus || null,
+    reviewNotes: fields.reviewNotes || location.reviewNotes || null,
     lat: location.lat,
     lng: location.lng,
     image: fields.image || null,
@@ -4525,6 +4543,8 @@ function configuredRegionalLocation(source, config) {
       config.townAssignmentStatus || (hasConfiguredTown ? (config.townId ? "assigned" : "needs_registry_town") : baseLocation.townAssignmentStatus),
     townAssignmentSource: config.townAssignmentSource || (config.townNameRaw ? "configuredLocation" : baseLocation.townAssignmentSource),
     address: config.address || baseLocation.address,
+    addressStatus: config.addressStatus || baseLocation.addressStatus || null,
+    reviewNotes: config.reviewNotes || baseLocation.reviewNotes || null,
     lat: Number(config.lat ?? baseLocation.lat),
     lng: Number(config.lng ?? baseLocation.lng),
     url: config.locationUrl || baseLocation.url
@@ -6871,6 +6891,17 @@ function eventbriteAddress(address) {
   return cleanAddress(addressFromPostalAddress(address));
 }
 
+function eventbriteVenueName(location, address) {
+  const locationName = stripHtml(location?.name || "");
+  if (looksLikeStreetAddress(locationName)) {
+    const addressLead = stripHtml(String(address || "").split(",")[0] || "");
+    if (addressLead && !looksLikeStreetAddress(addressLead)) {
+      return addressLead;
+    }
+  }
+  return displayVenueName(locationName, address || "Eventbrite event");
+}
+
 function eventbriteTownIdForLocation(location, townLookup) {
   const locality = normalizePlaceName(location?.address?.addressLocality || "");
   if (!locality) {
@@ -7010,7 +7041,7 @@ function eventbriteEventRecords(source, event, sources, startDate, days, evidenc
   const location = event.location || {};
   const address = eventbriteAddress(location.address);
   const geo = location.geo || {};
-  const venueName = stripHtml(location.name || address || "Eventbrite event");
+  const venueName = eventbriteVenueName(location, address);
   const baseLocation = {
     id: slugify(`${venueName}-${address || url}`),
     name: venueName,

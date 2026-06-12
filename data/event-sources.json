@@ -64,7 +64,8 @@
     "townMenuRule": "The More menu displays short town names without Township, Borough, or City suffixes.",
     "zipRule": "Single-ZIP towns show ZIP right-aligned without parentheses; multi-ZIP towns show a parent town row with indented community ZIP rows.",
     "librarySearchColorRule": "Towns with at least one library source marked importable are highlighted in the More menu.",
-    "placeNameRule": "Event detail place names may be shortened for display, but source data should keep the original venue name for refresh and review."
+    "placeNameRule": "Event detail place names may be shortened for display, but source data should keep the original venue name for refresh and review.",
+    "placeDisplayRule": "venueName should be a readable venue/place label, not only a street address, intersection, vague downtown area, route, or source placeholder. If the source gives only an address but the registry has a confirmed venue/library name, use the confirmed name for venueName and keep the address in address. For true street-fair, parade, downtown, route, or multi-site events, keep the broad place label only with addressStatus approximate or needs_review and reviewNotes."
   },
   "townExpansion": {
     "workflow": [
@@ -1748,18 +1749,24 @@
               "friday"
             ],
             "startDate": "2026-06-11",
-            "endDate": "2026-07-31"
+            "endDate": "2026-07-31",
+            "excludeDates": [
+              "2026-06-19",
+              "2026-07-03"
+            ]
           },
           "startTime": "17:00",
           "endTime": "20:00",
           "registration": "Drop-in",
           "cost": "Free",
-          "url": "https://www.summitdowntown.org/events/",
-          "venue": "Downtown Summit",
-          "address": "Summit, NJ 07901",
+          "url": "https://www.summitdowntown.org/events/summit-street-sounds/",
+          "venue": "Downtown Summit performance locations",
+          "address": "426 Springfield Avenue, Summit, NJ 07901",
           "lat": 40.715622,
           "lng": -74.364684,
-          "summary": "Downtown live music series on Thursday and Friday evenings in June and July.",
+          "addressStatus": "approximate",
+          "reviewNotes": "Multiple downtown performance spots; source page lists the date-specific musicians and locations.",
+          "summary": "Downtown live music series on Thursday and Friday evenings in June and July, with musicians at multiple posted performance spots.",
           "ages": [
             "baby",
             "toddler",
@@ -1786,6 +1793,8 @@
           "address": "Summit, NJ 07901",
           "lat": 40.715622,
           "lng": -74.364684,
+          "addressStatus": "approximate",
+          "reviewNotes": "Downtown event; exact activity spot is not specified by the source.",
           "summary": "Downtown car gathering listed by Summit Downtown.",
           "ages": [
             "early-elementary",
@@ -6591,8 +6600,10 @@
               "Battle of Basking Ridge"
             ],
             "address": "1 East Oak Street, Basking Ridge, NJ 07920",
-            "lat": 40.706594,
-            "lng": -74.548584
+            "lat": 40.706626,
+            "lng": -74.5481,
+            "addressStatus": "approximate",
+            "directionsDisabled": true
           },
           {
             "name": "Pleasant Valley Park",
@@ -6630,15 +6641,18 @@
               "The Lord Stirling 1770's Festival"
             ],
             "address": "190 Lord Stirling Road, Basking Ridge, NJ 07920",
-            "lat": 40.677455,
-            "lng": -74.567277
+            "lat": 40.6946591,
+            "lng": -74.5200361
           },
           {
-            "name": "The Stable at Lord Stirling Park",
+            "name": "Lord Stirling Stable",
             "aliases": [
+              "The Stable at Lord Stirling Park",
               "Stables at Lord Stirling Park"
             ],
-            "address": "256 South Maple Avenue, Basking Ridge, NJ 07920"
+            "address": "256 South Maple Avenue, Basking Ridge, NJ 07920",
+            "lat": 40.6969342,
+            "lng": -74.5410818
           },
           {
             "name": "Brick Academy",
@@ -6664,15 +6678,19 @@
               "Winter Market and Tree Lighting"
             ],
             "address": "1 East Oak Street, Basking Ridge, NJ 07920",
-            "lat": 40.706594,
-            "lng": -74.548584
+            "lat": 40.706626,
+            "lng": -74.5481,
+            "addressStatus": "approximate",
+            "directionsDisabled": true
           },
           {
             "name": "Bernards Township Municipal Building",
             "aliases": [
               "Field of Honor Dedication Ceremony"
             ],
-            "address": "1 Collyer Lane, Basking Ridge, NJ 07920"
+            "address": "1 Collyer Lane, Basking Ridge, NJ 07920",
+            "lat": 40.698365,
+            "lng": -74.544331
           },
           {
             "name": "Bernards Township",
@@ -8224,10 +8242,11 @@
         ],
         "locationOverrides": [
           {
-            "name": "Park & Shop Lot #1, on the corner of Woodland Ave and Deforest Ave",
+            "name": "Park & Shop Lot #1",
             "aliases": [
               "Summit Farmers Market",
-              "Park & Shop Lot #1"
+              "Park & Shop Lot #1",
+              "Park & Shop Lot #1, on the corner of Woodland Ave and Deforest Ave"
             ],
             "address": "30 DeForest Avenue, Summit, NJ 07901",
             "lat": 40.7188244,

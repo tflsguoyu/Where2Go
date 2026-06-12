@@ -149,6 +149,14 @@ or directory references. If an exact address still cannot be found, leave
 available, mark `addressStatus: "approximate"` or `addressStatus:
 "needs_review"` and lower `confidence`.
 
+`venueName` is the app's readable place label. It should not be only a street
+address, intersection, route, vague downtown area, or generic source placeholder.
+If the source gives only an address but the registry has a confirmed venue or
+library name, use the confirmed name for `venueName` and keep the street address
+in `address`. For true street-fair, parade, downtown, route, or multi-site
+events, keep the broad place label only with `addressStatus: "approximate"` or
+`addressStatus: "needs_review"` and a short `reviewNotes` explanation.
+
 Prefer accurate missing data plus explicit review markers over guessed data.
 When page text is incomplete, inspect official images/flyers for date, time,
 room, venue, or address details. If a value comes from weak evidence, image text,

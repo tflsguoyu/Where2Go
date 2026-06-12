@@ -112,6 +112,7 @@
       "image"
     ],
     "summaryRule": "Summary should contain activity content only. Do not put date, time, venue, room, place, or address text in summary.",
+    "placeDisplayRule": "venueName should be a human-readable place or venue name, not just a street address, intersection, vague area, route, or source placeholder. If a source location field is only a street address and the source registry has a confirmed venue/library name, use the confirmed name for venueName and keep the street address in address. If an event is genuinely spread across downtown, a route, or multiple sites, keep the broad place name only with addressStatus approximate or needs_review and reviewNotes explaining the uncertainty.",
     "sourceUrlRule": "Keep the original official event page when available. If only a calendar listing exists, keep that listing URL.",
     "evidenceRule": "Manual or configured events should keep evidenceUrl, evidenceType, and checkedAt when practical.",
     "dateExpansionRule": "For multi-day listings, keep each active day visible in data/events.json. If the source gives a continuous range but no per-day schedule, repeat the best-known title/source/venue details for each date and mark dateStatus as inferred_range or dateExpansionStatus as needs_review when the active days are not certain.",
