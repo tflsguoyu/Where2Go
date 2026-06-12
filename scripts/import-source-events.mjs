@@ -79,7 +79,7 @@ const QUALITY_REPORT_SAMPLE_LIMIT = 8;
 const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
   /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|time capsule|tree lighting|unity day|watch part(?:y|ies)|world cup|yard sale|yoga)\b/i;
 const MUNICIPAL_SKIP_TITLE_PATTERN =
-  /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|stormwater|township committee|wine tasting|zoning board)\b/i;
+  /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|chair yoga|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|senior|seniors|stormwater|township committee|wine tasting|zoning board)\b/i;
 const MONTHS = new Map([
   ["january", "01"],
   ["february", "02"],
@@ -5412,10 +5412,11 @@ function eventStartsWithinWindow(startsAt, startDate, days) {
 }
 
 function isImportableMunicipalEvent(title, summary = "", calendar = "") {
-  if (!title || MUNICIPAL_SKIP_TITLE_PATTERN.test(title)) {
+  const text = `${title || ""} ${summary || ""} ${calendar || ""}`;
+  if (!title || MUNICIPAL_SKIP_TITLE_PATTERN.test(text)) {
     return false;
   }
-  return MUNICIPAL_COMMUNITY_EVENT_PATTERN.test(`${title} ${summary} ${calendar}`);
+  return MUNICIPAL_COMMUNITY_EVENT_PATTERN.test(text);
 }
 
 function isImportableEventEspressoMunicipalEvent(title, summary = "") {

@@ -119,7 +119,10 @@ Current policy:
 - Keep gray-area community events such as farmers markets, street fairs,
   outdoor concerts, movie nights, festivals, nature walks, and museum open days.
 - Exclude only events children clearly cannot attend or that are clearly not
-  suitable for children.
+  suitable for children. Municipal adult/senior programming such as chair yoga,
+  senior-center movie days, adult wellness classes, and senior camp/social
+  activities should not be imported even when the title contains otherwise
+  kid-compatible words such as yoga, movie, or camp.
 
 Every real imported event should include a stable `id`, `sourceId`, `title`,
 `source`, `startsAt`, `endsAt`, `timezone`, `venue` or `venueName`, and `url` or
@@ -156,6 +159,22 @@ library name, use the confirmed name for `venueName` and keep the street address
 in `address`. For true street-fair, parade, downtown, route, or multi-site
 events, keep the broad place label only with `addressStatus: "approximate"` or
 `addressStatus: "needs_review"` and a short `reviewNotes` explanation.
+When a source gives a place-like display name without a full address, such as a
+gazebo, bandstand, field, playground, pavilion, plaza, or named room, look up
+that display name together with the town/venue context and use the resolved
+address or coordinates for navigation. Mark the lookup with
+`addressLookupSource: "place_name_reverse_lookup"` when practical. If the lookup
+finds a likely but not official match, keep the useful address, mark
+`addressStatus: "approximate"` or `addressStatus: "needs_review"`, and preserve
+the display name in `venueName` instead of falling back to a generic municipal
+default.
+
+When the same activity has multiple source pages, the app should display only
+one source link. Prefer the official organizer, venue, municipal, library, or
+program detail page. Use discovery, directory, ticketing, or reposted pages such
+as Patch or Eventbrite only when no official page is available. Extra evidence
+links may stay in source data for review, but the visible app button should
+remain a single `Source page`.
 
 Prefer accurate missing data plus explicit review markers over guessed data.
 When page text is incomplete, inspect official images/flyers for date, time,

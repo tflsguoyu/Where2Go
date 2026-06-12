@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260612-cache-v97";
+const APP_VERSION = "20260612-cache-v100";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -1605,6 +1605,17 @@ function sourceUrl(event) {
   return event.sourceUrl || event.url || "#";
 }
 
+function isDiscoverySourcePage(page) {
+  const source = String(page?.source || page?.label || "").toLowerCase();
+  const url = String(page?.url || "").toLowerCase();
+  return /\b(?:discovery|patch|eventbrite|ticketing|directory)\b/.test(source) || /(?:^|\/\/)(?:[^/]+\.)?(?:patch\.com|eventbrite\.com)\b/.test(url);
+}
+
+function isOfficialSourcePage(page) {
+  const source = String(page?.source || page?.label || "").toLowerCase();
+  return /\bofficial\b/.test(source) || /\bevent source page\b/.test(source);
+}
+
 function sourcePages(event) {
   const pages = [];
   const seen = new Set();
@@ -1619,26 +1630,21 @@ function sourcePages(event) {
   };
   (event.sourcePages || []).forEach(pushPage);
   pushPage({ url: sourceUrl(event), source: event.source });
-  return pages;
+  const officialPage = pages.find(isOfficialSourcePage);
+  if (officialPage) {
+    return [officialPage];
+  }
+  const nonDiscoveryPage = pages.find((page) => !isDiscoverySourcePage(page));
+  return [nonDiscoveryPage || pages[0]].filter(Boolean);
 }
 
 function sourcePagesHtml(event) {
   const pages = sourcePages(event);
   if (!pages.length) return "";
-  const sourceCounts = pages.reduce((counts, page) => {
-    const source = page.source || "Source";
-    counts.set(source, (counts.get(source) || 0) + 1);
-    return counts;
-  }, new Map());
   return `
     <div class="source-links">
       ${pages
-        .map((page, index) => {
-          const repeatedSource = sourceCounts.get(page.source || "Source") > 1;
-          const suffix = pages.length > 1 && !repeatedSource ? ` (${page.source})` : "";
-          const number = pages.length > 1 && repeatedSource ? ` ${index + 1}` : "";
-          return `<a class="source-link" href="${escapeHtml(page.url)}" target="_blank" rel="noreferrer">Source page${number}${escapeHtml(suffix)}</a>`;
-        })
+        .map((page) => `<a class="source-link" href="${escapeHtml(page.url)}" target="_blank" rel="noreferrer">Source page</a>`)
         .join("")}
     </div>
   `;
@@ -1760,6 +1766,46 @@ function markerIcon(index, isActive, isExpired) {
     iconAnchor: [13, 31],
     popupAnchor: [0, -30]
   });
+}
+
+const MARKER_SPREAD_MIN_GAP_PX = 36;
+const MARKER_SPREAD_STEP_PX = 26;
+
+function spreadMarkerLatLngs(points) {
+  if (!mapState.map || points.length < 2) {
+    return points.map((group) => ({ group, latLng: [group.lat, group.lng] }));
+  }
+
+  const entries = points.map((group, index) => ({
+    group,
+    index,
+    point: mapState.map.latLngToLayerPoint([group.lat, group.lng])
+  }));
+
+  const displayEntries = [];
+  entries.forEach((entry) => {
+    let displayPoint = entry.point;
+    const collides = (point) => displayEntries.some((placed) => point.distanceTo(placed.displayPoint) < MARKER_SPREAD_MIN_GAP_PX);
+
+    if (collides(displayPoint)) {
+      const angles = [0, Math.PI, -Math.PI / 2, Math.PI / 2, -Math.PI / 4, Math.PI / 4, (-3 * Math.PI) / 4, (3 * Math.PI) / 4];
+      for (let ring = 1; ring <= 4 && collides(displayPoint); ring += 1) {
+        const radius = MARKER_SPREAD_STEP_PX * ring;
+        for (const angle of angles) {
+          const candidate = L.point(entry.point.x + Math.cos(angle) * radius, entry.point.y + Math.sin(angle) * radius);
+          if (!collides(candidate)) {
+            displayPoint = candidate;
+            break;
+          }
+        }
+      }
+    }
+
+    const displayLatLng = mapState.map.layerPointToLatLng(displayPoint);
+    displayEntries.push({ index: entry.index, group: entry.group, displayPoint, latLng: [displayLatLng.lat, displayLatLng.lng] });
+  });
+
+  return displayEntries.sort((a, b) => a.index - b.index);
 }
 
 function setMapMessage(title, body = "") {
@@ -2292,6 +2338,9 @@ function initMap() {
   mapState.driveTimeLayer = L.layerGroup().addTo(map);
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
+  map.on("zoomend", () => {
+    syncMarkers(eventsForSelectedDate(), selectedGroup());
+  });
   fitMapAroundPoint(HOME, { animate: false });
   setTimeout(() => map.invalidateSize(), 0);
   return true;
@@ -2313,10 +2362,10 @@ function syncMarkers(dayEvents, activeGroup) {
   const groups = locationGroupsForEvents(dayEvents);
   const points = groupsWithCoordinates(groups);
   const now = new Date();
-  points.forEach((group, index) => {
+  spreadMarkerLatLngs(points).forEach(({ group, latLng }, index) => {
     const isActive = group.key === activeGroup?.key;
     const isExpired = isGroupExpired(group, now);
-    L.marker([group.lat, group.lng], { icon: markerIcon(index, isActive, isExpired), keyboard: true })
+    L.marker(latLng, { icon: markerIcon(index, isActive, isExpired), keyboard: true })
       .addTo(mapState.markerLayer)
       .on("click", () => {
         state.selectedEventId = group.events[0].id;
