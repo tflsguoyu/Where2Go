@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260612-cache-v93";
+const APP_VERSION = "20260612-cache-v94";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -653,9 +653,6 @@ function formatVersionLabel(date) {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
     timeZone: TIMEZONE
   })
     .formatToParts(date)
@@ -663,7 +660,7 @@ function formatVersionLabel(date) {
       values[part.type] = part.value;
       return values;
     }, {});
-  return `v${parts.year}.${parts.month}.${parts.day}.${parts.hour}.${parts.minute}`;
+  return `v${parts.year.slice(-2)}.${parts.month}.${parts.day}`;
 }
 
 function setUpdatedLabels(date) {
