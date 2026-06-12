@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260612-cache-v94";
+const APP_VERSION = "20260612-cache-v97";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -625,6 +625,60 @@ function formatTimeRange(event) {
     minute: "2-digit"
   });
   return `${formatter.format(event.startsAt)} - ${formatter.format(event.endsAt)}`;
+}
+
+function formatTimeRanges(events) {
+  const ranges = [...new Set(events.sort((a, b) => a.startsAt - b.startsAt).map(formatTimeRange))];
+  return ranges.length > 1 ? ranges.join("; ") : ranges[0] || "";
+}
+
+function normalizedEventMergeText(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[’‘]/g, "'")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function eventDisplayMergeKey(event) {
+  return [normalizedEventMergeText(displayTitle(event)), event.dateKey].join("|");
+}
+
+function mergedSourcePages(events) {
+  const seen = new Set();
+  return events.flatMap(sourcePages).filter((page) => {
+    const key = String(page.url || "").trim();
+    if (!key || seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
+function displayEventsForGroup(group) {
+  const merged = new Map();
+  group.events.forEach((event) => {
+    const key = eventDisplayMergeKey(event);
+    if (!merged.has(key)) {
+      merged.set(key, []);
+    }
+    merged.get(key).push(event);
+  });
+  return [...merged.values()]
+    .map((events) => {
+      const sortedEvents = [...events].sort((a, b) => a.startsAt - b.startsAt);
+      const primaryEvent = sortedEvents.find((event) => summaryText(event)) || sortedEvents[0];
+      return {
+        ...primaryEvent,
+        timeLabel: formatTimeRanges(sortedEvents),
+        sourcePages: mergedSourcePages(sortedEvents)
+      };
+    })
+    .sort((a, b) => a.startsAt - b.startsAt);
 }
 
 function formatUpdatedShortLabel(date) {
@@ -1571,14 +1625,79 @@ function sourcePages(event) {
 function sourcePagesHtml(event) {
   const pages = sourcePages(event);
   if (!pages.length) return "";
+  const sourceCounts = pages.reduce((counts, page) => {
+    const source = page.source || "Source";
+    counts.set(source, (counts.get(source) || 0) + 1);
+    return counts;
+  }, new Map());
   return `
     <div class="source-links">
       ${pages
-        .map((page) => {
-          const suffix = pages.length > 1 ? ` (${page.source})` : "";
-          return `<a class="source-link" href="${escapeHtml(page.url)}" target="_blank" rel="noreferrer">Source page${escapeHtml(suffix)}</a>`;
+        .map((page, index) => {
+          const repeatedSource = sourceCounts.get(page.source || "Source") > 1;
+          const suffix = pages.length > 1 && !repeatedSource ? ` (${page.source})` : "";
+          const number = pages.length > 1 && repeatedSource ? ` ${index + 1}` : "";
+          return `<a class="source-link" href="${escapeHtml(page.url)}" target="_blank" rel="noreferrer">Source page${number}${escapeHtml(suffix)}</a>`;
         })
         .join("")}
+    </div>
+  `;
+}
+
+function normalizedTagText(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function eventHasPaidCost(event) {
+  if (typeof event.cost === "number") {
+    return event.cost > 0;
+  }
+  const cost = String(event.cost ?? "").trim();
+  if (!cost) {
+    return false;
+  }
+  const normalized = normalizedTagText(cost);
+  if (/\b(?:free|no cost|no charge)\b/.test(normalized) || /^(?:0|\$0)(?:\.00)?$/.test(normalized)) {
+    return false;
+  }
+  return cost.includes("$") || /\b(?:paid|fee|admission)\b/.test(normalized);
+}
+
+function eventNeedsRegistration(event) {
+  const registration = normalizedTagText(event.registration);
+  const text = normalizedTagText([event.title, event.summary, event.sourceId].filter(Boolean).join(" "));
+  if (/\bdrop[- ]?in\b/.test(registration) || /\bdrop[- ]?in\b/.test(text)) {
+    return false;
+  }
+  if (!registration || /\bsee source\b/.test(registration)) {
+    return /\b(?:eventbrite|ticketed|tickets required|registration required|register to attend|waitlist)\b/.test(text);
+  }
+  return /\b(?:rsvp|reservation|reserve|ticket|tickets|eventbrite|register|registration|sign up|sign-up|waitlist)\b/.test(registration);
+}
+
+function groupStatusBadges(group) {
+  const events = group?.events || [];
+  const badges = [];
+  if (events.some(eventHasPaidCost)) {
+    badges.push("$");
+  }
+  if (events.some(eventNeedsRegistration)) {
+    badges.push("RSVP");
+  }
+  return badges;
+}
+
+function groupStatusBadgesHtml(group) {
+  const badges = groupStatusBadges(group);
+  if (!badges.length) {
+    return "";
+  }
+  return `
+    <div class="place-status-tags" aria-label="Cost and registration">
+      ${badges.map((badge) => `<span class="place-status-tag">${escapeHtml(badge)}</span>`).join("")}
     </div>
   `;
 }
@@ -2322,7 +2441,7 @@ function renderDetail() {
       const pinBadgeHtml = pinNumber
         ? `<span class="pin-badge ${isExpired ? "is-expired" : ""}" aria-label="Pin ${escapeHtml(pinNumber)}">${escapeHtml(pinNumber)}</span>`
         : "";
-      const eventsHtml = group.events
+      const eventsHtml = displayEventsForGroup(group)
         .map(
           (event) => {
             const summary = summaryText(event);
@@ -2343,6 +2462,7 @@ function renderDetail() {
           <div class="place-line ${pinNumber ? "" : "has-no-pin"}">
             ${pinBadgeHtml}
             <strong class="place-name">${escapeHtml(displayPlace || group.place)}</strong>
+            ${groupStatusBadgesHtml(group)}
             ${directionsControlHtml(group)}
           </div>
           <div class="detail-events">${eventsHtml}</div>

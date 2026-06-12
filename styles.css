@@ -1097,13 +1097,13 @@ h2 {
 
 .place-line {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   gap: 6px;
   align-items: center;
 }
 
 .place-line.has-no-pin {
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
 }
 
 .pin-badge {
@@ -1179,6 +1179,31 @@ h2 {
 .detail-event h2 {
   font-size: 1rem;
   line-height: 1.12;
+}
+
+.place-status-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 3px;
+  min-width: 0;
+}
+
+.place-status-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  min-height: 22px;
+  padding: 0 5px;
+  border: 1px solid #d9e5d8;
+  border-radius: 6px;
+  background: #f5faf2;
+  color: var(--green-dark);
+  font-size: 0.66rem;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .event-time {
