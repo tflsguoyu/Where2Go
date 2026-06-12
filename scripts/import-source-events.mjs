@@ -13,6 +13,8 @@ const LOCALHOP_API_URL = "https://api.getlocalhop.com/1";
 const LOCALHOP_PARSE_APP_ID = "zesqKJEzK7ncFXe57x4uWc4Moow3I2wGCq7zFcqI";
 const LOCALHOP_PAGE_LIMIT = 500;
 const IMPORT_CUTOFF_START_DATE = "2026-05-31";
+const KID_SAFE_LATEST_START_HOUR = 22;
+const KID_SAFE_EARLIEST_START_HOUR = 5;
 
 const AGE_ORDER = ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"];
 const IMPORT_QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
@@ -115,6 +117,30 @@ function eventStartsAtOrAfter(dateText, cutoffDate = IMPORT_CUTOFF_START_DATE) {
     return true;
   }
   return startsAt >= cutoffDate;
+}
+
+function localStartHour(startsAt) {
+  const match = String(startsAt || "").match(/T(\d{2}):(\d{2})/);
+  if (!match) {
+    return null;
+  }
+  return Number(match[1]) + Number(match[2]) / 60;
+}
+
+function hasExplicitOvernightTime(event) {
+  const text = [event.timeLabel, event.rawTime, event.title, event.summary].filter(Boolean).join(" ");
+  return /\b(?:midnight|12(?::00)?\s*a\.?m\.?|[1-4](?::\d{2})?\s*a\.?m\.?)\b/i.test(text);
+}
+
+function startsTooLateForKids(event) {
+  const hour = localStartHour(event.startsAt);
+  if (hour === null) {
+    return false;
+  }
+  if (hour >= KID_SAFE_LATEST_START_HOUR) {
+    return true;
+  }
+  return hour < KID_SAFE_EARLIEST_START_HOUR && hasExplicitOvernightTime(event);
 }
 
 function argValue(name, fallback) {
@@ -1436,9 +1462,42 @@ function jsonLdNodes(data) {
   return nodes;
 }
 
+function jsonLdDeepNodes(data) {
+  const nodes = [];
+  const stack = [data];
+  const seen = new Set();
+  while (stack.length) {
+    const item = stack.shift();
+    if (!item) {
+      continue;
+    }
+    if (Array.isArray(item)) {
+      stack.push(...item);
+      continue;
+    }
+    if (typeof item !== "object" || seen.has(item)) {
+      continue;
+    }
+    seen.add(item);
+    nodes.push(item);
+    Object.values(item).forEach((value) => {
+      if (value && typeof value === "object") {
+        stack.push(value);
+      }
+    });
+  }
+  return nodes;
+}
+
 function isJsonLdType(item, typeName) {
   const type = item?.["@type"];
   return type === typeName || (Array.isArray(type) && type.includes(typeName));
+}
+
+function isJsonLdEventType(item) {
+  const type = item?.["@type"];
+  const values = Array.isArray(type) ? type : [type];
+  return values.some((value) => typeof value === "string" && /Event$/.test(value));
 }
 
 function parseJsonLdEvents(section) {
@@ -6774,6 +6833,504 @@ async function importNjCarnivalsEvents(sources, startDate, days) {
   return [...new Map(enriched.map((event) => [event.id, event])).values()];
 }
 
+function eventbriteJsonLdItems(html) {
+  const scripts = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  const events = [];
+  scripts.forEach((script) => {
+    try {
+      const data = JSON.parse(script[1].trim());
+      jsonLdDeepNodes(data)
+        .filter(isJsonLdEventType)
+        .forEach((item) => events.push(item));
+    } catch {
+      // Eventbrite can include non-event JSON-LD blocks; skip malformed or unrelated blocks.
+    }
+  });
+  return events;
+}
+
+function eventbriteCanonicalUrl(html, fallbackUrl) {
+  const canonical = firstMatch(html, /<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i);
+  return canonical ? decodeEntities(canonical) : fallbackUrl;
+}
+
+function eventbriteDateKey(value) {
+  const dateKey = String(value || "").slice(0, 10);
+  return /^\d{4}-\d{2}-\d{2}$/.test(dateKey) ? dateKey : "";
+}
+
+function eventbriteIsoDateTime(value, fallbackDateKey, fallbackTime) {
+  const raw = String(value || "");
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(raw)) {
+    return raw.slice(0, 19);
+  }
+  return fallbackDateKey ? localDateTime(fallbackDateKey, fallbackTime) : null;
+}
+
+function eventbriteAddress(address) {
+  return cleanAddress(addressFromPostalAddress(address));
+}
+
+function eventbriteTownIdForLocation(location, townLookup) {
+  const locality = normalizePlaceName(location?.address?.addressLocality || "");
+  if (!locality) {
+    return null;
+  }
+  return townLookup.get(locality)?.id || null;
+}
+
+const EVENTBRITE_INCLUDE_PATTERN =
+  /\b(?:kids?|children|child|family|families|youth|teen|tween|toddler|preschool|baby|babies|all ages|craft|stem|coding|robotics|science|maker|lego|art|paint|music|story|yoga|camp|workshop|market|festival|fair|carnival|play|dance|nature|farm|juneteenth|summer)\b/i;
+const EVENTBRITE_EXCLUDE_PATTERN =
+  /\b(?:adult only|adults only|21\+|18\+|bar crawl|cocktail|wine tasting|beer|brewery|nightclub|after dark|speed dating|singles|networking|real estate|investing|trading|crypto|career fair|job fair|conference|summit|webinar|professional development)\b/i;
+
+function isImportableEventbriteEvent(event) {
+  const text = [event.name, event.description, event.location?.name].filter(Boolean).join(" ");
+  if (!EVENTBRITE_INCLUDE_PATTERN.test(text)) {
+    return false;
+  }
+  if (EVENTBRITE_EXCLUDE_PATTERN.test(text)) {
+    return false;
+  }
+  return !isClosureOrNonEvent(event.name, event.description);
+}
+
+function eventbriteCandidateLinksFromText(...values) {
+  const urls = new Set();
+  values.forEach((value) => {
+    for (const match of stripHtml(value || "").matchAll(/\b(?:https?:\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+\/?[^\s<>"')]*(?=\s|$|[),.])/gi)) {
+      const raw = match[0].replace(/[),.]+$/g, "");
+      if (!raw || !raw.includes(".")) {
+        continue;
+      }
+      urls.add(/^https?:\/\//i.test(raw) ? raw : `https://${raw}`);
+    }
+  });
+  return [...urls];
+}
+
+function eventbriteOfficialUrlCandidate(_html, event) {
+  const blockedHostPattern = /(?:^|\.)eventbrite\.[a-z.]+$|(?:^|\.)eventbrite$|(?:^|\.)evbstatic(?:\.com)?$|(?:^|\.)evbuc(?:\.com)?$|(?:^|\.)google\.com$|(?:^|\.)googletagmanager\.com$|(?:^|\.)gstatic\.com$|(?:^|\.)schema\.org$|(?:^|\.)twitter\.com$|(?:^|\.)x\.com$|(?:^|\.)facebook\.com$|(?:^|\.)instagram\.com$/i;
+  const titleTokens = new Set(
+    String(event.name || "")
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((token) => token.length > 3)
+  );
+  const organizerName = normalizePlaceName(event.organizer?.name || "");
+  const organizerUrl = event.organizer?.url ? [event.organizer.url] : [];
+  const candidates = [...organizerUrl, ...eventbriteCandidateLinksFromText(event.description, event.organizer?.description)]
+    .map((url) => {
+      try {
+        return new URL(url).toString();
+      } catch {
+        return "";
+      }
+    })
+    .filter(Boolean)
+    .filter((url) => {
+      const host = new URL(url).hostname.replace(/^www\./, "");
+      return /\.[a-z]{2,}$/i.test(host) && !blockedHostPattern.test(host) && !/\.(?:jpg|jpeg|png|gif|webp|svg|css|js)$/i.test(new URL(url).pathname);
+    });
+
+  let best = "";
+  let bestScore = 0;
+  candidates.forEach((url) => {
+    const parsed = new URL(url);
+    const haystack = `${parsed.hostname} ${parsed.pathname}`.toLowerCase();
+    let score = 0;
+    titleTokens.forEach((token) => {
+      if (haystack.includes(token)) {
+        score += 2;
+      }
+    });
+    if (organizerName && normalizePlaceName(parsed.hostname).includes(organizerName.split(" ")[0])) {
+      score += 2;
+    }
+    if (/event|calendar|workshop|program|kids|family|camp/i.test(url)) {
+      score += 1;
+    }
+    if (url === event.organizer?.url) {
+      score += 1;
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      best = url;
+    }
+  });
+  return bestScore >= 1 ? best : "";
+}
+
+async function eventbriteDetailEvent(source, event, fetchPage = fetchText) {
+  if (!event.url) {
+    return { event, eventbriteUrl: "", officialUrl: "" };
+  }
+  try {
+    const html = await fetchPage(event.url);
+    const detail = eventbriteJsonLdItems(html)[0] || {};
+    const merged = {
+      ...event,
+      ...detail,
+      location: detail.location || event.location,
+      organizer: detail.organizer || event.organizer,
+      url: detail.url || eventbriteCanonicalUrl(html, event.url) || event.url,
+      image: detail.image || event.image,
+      description: detail.description || event.description
+    };
+    return {
+      event: merged,
+      eventbriteUrl: event.url,
+      officialUrl: eventbriteOfficialUrlCandidate(html, merged)
+    };
+  } catch (error) {
+    console.warn(`warning: could not inspect Eventbrite detail ${event.url}: ${error.message}`);
+    return { event, eventbriteUrl: event.url, officialUrl: "" };
+  }
+}
+
+function eventbriteEventRecords(source, event, sources, startDate, days, evidence = {}) {
+  if (!isImportableEventbriteEvent(event)) {
+    return [];
+  }
+  const url = event.url || "";
+  const title = stripHtml(event.name || "");
+  const firstDate = eventbriteDateKey(event.startDate);
+  const lastDate = eventbriteDateKey(event.endDate) || firstDate;
+  if (!title || !url || !firstDate) {
+    return [];
+  }
+
+  const allowedStates = new Set(source.allowedStates || ["NJ"]);
+  const state = stripHtml(event.location?.address?.addressRegion || "");
+  if (allowedStates.size && state && !allowedStates.has(state)) {
+    return [];
+  }
+
+  const townLookup = buildTownLookup(sources);
+  const location = event.location || {};
+  const address = eventbriteAddress(location.address);
+  const geo = location.geo || {};
+  const venueName = stripHtml(location.name || address || "Eventbrite event");
+  const baseLocation = {
+    id: slugify(`${venueName}-${address || url}`),
+    name: venueName,
+    townId: eventbriteTownIdForLocation(location, townLookup),
+    townNameRaw: stripHtml(location.address?.addressLocality || ""),
+    townAssignmentSource: "eventbrite-jsonld",
+    address,
+    lat: Number(geo.latitude || 0),
+    lng: Number(geo.longitude || 0),
+    url
+  };
+  if (!baseLocation.townId) {
+    baseLocation.townAssignmentStatus = "needs_registry_town";
+  }
+
+  const hasStartTime = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(String(event.startDate || ""));
+  const hasEndTime = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(String(event.endDate || ""));
+  return datesInRange(firstDate, lastDate)
+    .filter((dateKey) => isDateWithinWindow(dateKey, startDate, days))
+    .map((dateKey) => {
+      const startsAt = hasStartTime && dateKey === firstDate
+        ? eventbriteIsoDateTime(event.startDate, dateKey, "00:00")
+        : localDateTime(dateKey, "00:00");
+      const endsAt = hasEndTime && dateKey === lastDate
+        ? eventbriteIsoDateTime(event.endDate, dateKey, "23:59")
+        : localDateTime(dateKey, "23:59");
+      const record = regionalEventRecord(source, {
+        id: `${source.id}-${slugFromUrl(url)}-${dateKey}`,
+        externalId: `${slugFromUrl(url)}-${dateKey}`,
+        title,
+        startsAt,
+        endsAt,
+        summary: event.description || "",
+        sourceUrl: evidence.officialUrl || url,
+        location: baseLocation,
+        category: "eventbrite",
+        ages: inferAgeBandsFromText(title, event.description || ""),
+        registration: "Eventbrite",
+        image: Array.isArray(event.image) ? event.image[0] : event.image || null,
+        tags: ["eventbrite", "ticketing"],
+        confidence: evidence.officialUrl ? (baseLocation.townId ? 0.78 : 0.6) : (baseLocation.townId ? 0.58 : 0.45)
+      });
+      record.sourcePages = [
+        evidence.officialUrl ? { url: evidence.officialUrl, source: "Official source candidate" } : null,
+        { url: evidence.eventbriteUrl || url, source: "Eventbrite discovery page" }
+      ].filter(Boolean);
+      record.discoverySource = "Eventbrite";
+      record.discoverySourceUrl = evidence.eventbriteUrl || url;
+      if (!evidence.officialUrl) {
+        record.sourceStatus = "eventbrite_as_source";
+        record.reviewNotes = record.status === "review"
+          ? "Eventbrite is used as the source; physical town or location still needs registry/coordinate review."
+          : "Eventbrite is used as the source because no official non-Eventbrite event notice was found automatically.";
+      }
+      if (!hasStartTime) {
+        record.timeLabel = "Date listed; time TBA";
+        record.timeStatus = "date_only_time_unconfirmed";
+      }
+      if (firstDate !== lastDate) {
+        record.dateExpansionStatus = "expanded_from_eventbrite_range";
+      }
+      return record;
+    });
+}
+
+function eventbritePageUrl(template, page) {
+  return String(template).replace("{page}", String(page));
+}
+
+function eventbriteTownSearchSlug(town) {
+  return normalizePlaceName(String(town.name || "").replace(/^city of\s+/i, ""))
+    .replace(/^city of\s+/, "")
+    .replace(/\s+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function eventbriteSearchTemplates(source, sources) {
+  const templates = [];
+  if (source.searchMode === "covered-towns") {
+    const pathTemplates = source.townSearchPathTemplates?.length
+      ? source.townSearchPathTemplates
+      : ["https://www.eventbrite.com/d/nj--{town}/kids/?page={page}"];
+    (sources.towns || [])
+      .filter((town) => town.withinCoverage !== false)
+      .forEach((town) => {
+        const townSlug = eventbriteTownSearchSlug(town);
+        if (!townSlug) {
+          return;
+        }
+        pathTemplates.forEach((template) => {
+          templates.push(template.replace("{town}", townSlug));
+        });
+      });
+  }
+  if (source.searchUrls?.length) {
+    templates.push(...source.searchUrls);
+  }
+  if (!templates.length && (source.eventsUrl || source.website)) {
+    templates.push(source.eventsUrl || source.website);
+  }
+  return [...new Set(templates)];
+}
+
+async function importEventbriteEvents(sources, startDate, days) {
+  const configuredSource = sources.sharedSources?.eventbrite;
+  if (!configuredSource || configuredSource.status !== "importable") {
+    return [];
+  }
+  const source = { id: "eventbrite", ...configuredSource };
+  const imported = [];
+  const templates = eventbriteSearchTemplates(source, sources);
+  const maxPages = Math.max(1, Number(source.maxPages || 1));
+  const detailCache = new Map();
+  let lastRequestAt = 0;
+  const requestDelayMs = Math.max(0, Number(source.requestDelayMs || 0));
+  async function fetchEventbriteText(url) {
+    const elapsed = Date.now() - lastRequestAt;
+    if (lastRequestAt && elapsed < requestDelayMs) {
+      await sleep(requestDelayMs - elapsed);
+    }
+    lastRequestAt = Date.now();
+    return fetchText(url, { "user-agent": "Mozilla/5.0 Where2Go data importer" });
+  }
+  for (const template of templates) {
+    for (let page = 1; page <= maxPages; page += 1) {
+      const url = eventbritePageUrl(template, page);
+      try {
+        const html = await fetchEventbriteText(url);
+        for (const event of eventbriteJsonLdItems(html)) {
+          if (!event.url) {
+            continue;
+          }
+          if (!detailCache.has(event.url)) {
+            detailCache.set(event.url, await eventbriteDetailEvent(source, event, fetchEventbriteText));
+          }
+          const detail = detailCache.get(event.url);
+          imported.push(...eventbriteEventRecords(source, detail.event, sources, startDate, days, detail));
+        }
+      } catch (error) {
+        console.warn(`warning: could not import Eventbrite page ${url}: ${error.message}`);
+      }
+    }
+  }
+  return [...new Map(imported.filter((event) => event.startsAt && event.sourceUrl).map((event) => [event.id, event])).values()];
+}
+
+function patchNextData(html) {
+  const match = html.match(/<script\b[^>]*id=["']__NEXT_DATA__["'][^>]*type=["']application\/json["'][^>]*>([\s\S]*?)<\/script>/i);
+  if (!match) {
+    return null;
+  }
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    return null;
+  }
+}
+
+function patchCalendarEvents(html) {
+  const data = patchNextData(html);
+  const allEvents = data?.props?.pageProps?.mainContent?.allEvents || {};
+  return Object.values(allEvents)
+    .flatMap((items) => (Array.isArray(items) ? items : []))
+    .filter((event) => event?.type === "event" && event.id);
+}
+
+function patchEditionSlugFromTown(town) {
+  return normalizePlaceName(town.name)
+    .replace(/\band\b/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function patchCalendarUrl(source, editionSlug) {
+  return String(source.calendarUrlTemplate || "https://patch.com/new-jersey/{editionSlug}/calendar").replace(
+    "{editionSlug}",
+    editionSlug
+  );
+}
+
+function patchEditionUrls(source, sources) {
+  const urls = [];
+  const configuredTownIds = new Set();
+  (source.editionOverrides || []).forEach((edition) => {
+    if (!edition?.editionSlug) {
+      return;
+    }
+    urls.push({ url: patchCalendarUrl(source, edition.editionSlug), edition });
+    (edition.servesTownIds || []).forEach((townId) => configuredTownIds.add(townId));
+  });
+
+  if (source.includeGeneratedTownSlugs !== false) {
+    (sources.towns || [])
+      .filter((town) => town.withinCoverage !== false && !configuredTownIds.has(town.id))
+      .forEach((town) => {
+        const editionSlug = patchEditionSlugFromTown(town);
+        if (editionSlug) {
+          urls.push({ url: patchCalendarUrl(source, editionSlug), edition: { editionSlug, label: town.name, servesTownIds: [town.id] } });
+        }
+      });
+  }
+  return [...new Map(urls.map((entry) => [entry.url, entry])).values()];
+}
+
+function patchEventDateTime(event) {
+  const raw = event.displayDate || (Number(event.displayDateTimestamp) ? Number(event.displayDateTimestamp) * 1000 : null);
+  return raw ? zonedWallIso(raw, TIMEZONE) : null;
+}
+
+function patchEventAddress(address) {
+  if (!address) {
+    return "";
+  }
+  const structured = [
+    address.streetAddress,
+    address.city,
+    [address.region, address.postalCode].filter(Boolean).join(" ")
+  ]
+    .filter(Boolean)
+    .join(", ");
+  return cleanAddress(structured || address.name || "");
+}
+
+function patchLocationFromEvent(event, townLookup) {
+  const address = event.address || {};
+  const town = townLookup.get(normalizePlaceName(address.city || ""));
+  const lat = Number(address.latitude || 0);
+  const lng = Number(address.longitude || 0);
+  return {
+    id: slugify(`${address.name || event.title}-${patchEventAddress(address) || event.id}`),
+    name: stripHtml(address.name || event.patch?.name || "Patch event"),
+    townId: town?.id || null,
+    townNameRaw: stripHtml(address.city || event.patch?.name || ""),
+    townAssignmentStatus: town?.id ? "assigned" : "needs_registry_town",
+    townAssignmentSource: "patch-calendar",
+    address: patchEventAddress(address),
+    lat: Number.isFinite(lat) ? lat : 0,
+    lng: Number.isFinite(lng) ? lng : 0,
+    url: event.canonicalUrl ? absoluteUrl("https://patch.com", event.canonicalUrl) : "https://patch.com/"
+  };
+}
+
+const PATCH_INCLUDE_PATTERN =
+  /\b(?:kids?|children|child|family|families|youth|teen|tween|toddler|preschool|baby|babies|all ages|craft|stem|science|maker|lego|music|concert|chorale|story|camp|market|festival|festa|fair|carnival|fireworks|parade|play|dance|nature|farm|juneteenth|summer|holiday|library|museum)\b/i;
+const PATCH_EXCLUDE_PATTERN =
+  /\b(?:adult only|adults only|21\+|18\+|senior|seniors|bar crawl|cocktail|wine tasting|beer|brewery|nightclub|psychic|readings?|real estate|open house|self-care|unemployed|training grant|certifications?|webinar|networking|estate jewelry|jewelry event|investment|crypto|career fair|job fair|professional development)\b/i;
+
+function isImportablePatchEvent(event) {
+  const text = [event.title, event.summary, event.body, event.address?.name].filter(Boolean).join(" ");
+  if (PATCH_EXCLUDE_PATTERN.test(text)) {
+    return false;
+  }
+  return PATCH_INCLUDE_PATTERN.test(text) && !isClosureOrNonEvent(event.title, event.summary || event.body);
+}
+
+function patchEventRecord(source, event, sources, startDate, days) {
+  if (!isImportablePatchEvent(event)) {
+    return null;
+  }
+  const startsAt = patchEventDateTime(event);
+  if (!startsAt || !eventStartsWithinWindow(startsAt, startDate, days)) {
+    return null;
+  }
+  const patchUrl = event.canonicalUrl ? absoluteUrl("https://patch.com", event.canonicalUrl) : source.eventsUrl || source.website;
+  const officialUrl = event.eventSiteUrl || "";
+  const location = patchLocationFromEvent(event, buildTownLookup(sources));
+  const record = regionalEventRecord(source, {
+    id: `${source.id}-${slugify(event.id)}-${startsAt.slice(0, 10)}`,
+    externalId: event.id,
+    title: event.title,
+    startsAt,
+    endsAt: addMinutes(startsAt, Number(source.defaultDurationMinutes || 90)),
+    summary: event.summary || event.body || "",
+    sourceUrl: officialUrl || patchUrl,
+    location,
+    category: "patch",
+    ages: inferAgeBandsFromText(event.title, event.summary || event.body || ""),
+    registration: officialUrl ? "See source" : "Patch",
+    image: event.imageThumbnail || event.ogImageUrl || event.images?.[0]?.url || null,
+    tags: ["patch", "third-party-directory"],
+    confidence: officialUrl ? (location.townId ? 0.74 : 0.58) : (location.townId ? 0.62 : 0.48)
+  });
+  record.sourcePages = [
+    officialUrl ? { url: officialUrl, source: "Event source page" } : null,
+    { url: patchUrl, source: "Patch discovery page" }
+  ].filter(Boolean);
+  record.discoverySource = "Patch";
+  record.discoverySourceUrl = patchUrl;
+  if (!officialUrl) {
+    record.sourceStatus = "patch_as_source";
+    record.reviewNotes = record.status === "review"
+      ? "Patch is used as the source; physical town or location still needs registry/coordinate review."
+      : "Patch is used as the source because no separate event source URL was listed.";
+  }
+  return record;
+}
+
+async function importPatchEvents(sources, startDate, days) {
+  const configuredSource = sources.sharedSources?.patch;
+  if (!configuredSource || configuredSource.status !== "importable") {
+    return [];
+  }
+  const source = { id: "patch", ...configuredSource };
+  const imported = [];
+  for (const entry of patchEditionUrls(source, sources)) {
+    try {
+      const html = await fetchText(entry.url, { "user-agent": "Mozilla/5.0 Where2Go data importer" });
+      patchCalendarEvents(html).forEach((event) => {
+        const record = patchEventRecord(source, event, sources, startDate, days);
+        if (record) {
+          imported.push(record);
+        }
+      });
+    } catch (error) {
+      console.warn(`warning: could not import Patch page ${entry.url}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.filter((event) => event.startsAt && event.sourceUrl).map((event) => [event.id, event])).values()];
+}
+
 function mergeEvents(existing, incoming, importedAt) {
   const byId = new Map(existing.map((event) => [event.id, event]));
 
@@ -6788,11 +7345,30 @@ function mergeEvents(existing, incoming, importedAt) {
   });
 
   return [...byId.values()]
-    .filter((event) => eventStartsAtOrAfter(event.startsAt) && !isClosureOrNonEvent(event.title, event.summary))
+    .filter(
+      (event) =>
+        eventStartsAtOrAfter(event.startsAt) &&
+        !isClosureOrNonEvent(event.title, event.summary) &&
+        !startsTooLateForKids(event)
+    )
     .sort((a, b) => {
     const dateCompare = String(a.startsAt || "").localeCompare(String(b.startsAt || ""));
     if (dateCompare !== 0) return dateCompare;
     return String(a.title || "").localeCompare(String(b.title || ""));
+  });
+}
+
+function applyTownCoverage(events, sources) {
+  const removedTownIds = new Set(
+    (sources.towns || [])
+      .filter((town) => town.withinCoverage === false)
+      .map((town) => town.id)
+  );
+  events.forEach((event) => {
+    if (removedTownIds.has(event.townId)) {
+      event.withinCoverage = false;
+      event.coverageStatus = "town_removed_no_data_source";
+    }
   });
 }
 
@@ -6851,12 +7427,15 @@ async function main() {
     { name: "squarespace-eventlist", run: importSquarespaceRegionalEvents },
     { name: "html-regional-events", run: importHtmlRegionalEvents },
     { name: "tribe-events-calendar", run: importTribeEventsCalendar },
+    { name: "eventbrite-list", run: importEventbriteEvents },
+    { name: "patch-calendar", run: importPatchEvents },
     { name: "nj-carnivals-jsonld-list", run: importNjCarnivalsEvents }
   ];
 
   const importedGroups = await runSelectedImporters(importers, selected, sources, startDate, days);
   const incoming = importedGroups.flat();
   const events = mergeEvents(existingEvents, incoming, importedAt);
+  applyTownCoverage(events, sources);
   const repairs = repairEventQuality(events);
   const geocodeSummary = await geocodeMissingEventCoordinates(events);
   const audit = auditEventQuality(events);

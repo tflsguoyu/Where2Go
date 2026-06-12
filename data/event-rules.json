@@ -72,9 +72,12 @@
       "tax notice",
       "road closure",
       "court session",
+      "events starting at 10 PM or later unless explicitly reviewed",
+      "overnight or midnight events when the source explicitly lists a midnight/early-morning start time",
       "explicitly unsafe or inappropriate for children"
     ],
-    "exclusionRule": "Exclude only when children clearly cannot attend or the event is clearly not suitable for children."
+    "exclusionRule": "Exclude only when children clearly cannot attend or the event is clearly not suitable for children.",
+    "timeExclusionRule": "Exclude events that start at 10 PM or later. For 12 AM-4:59 AM starts, exclude only when the source explicitly gives an overnight/midnight/early-morning time, because some sources use 00:00 as a date-only placeholder."
   },
   "eventSchemaGuidance": {
     "requiredForRealEvents": [

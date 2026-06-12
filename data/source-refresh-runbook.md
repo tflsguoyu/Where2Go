@@ -29,6 +29,7 @@ This runbook exists so every site that has been made importable keeps a repeatab
 | county-events-calendar | 6 |
 | eggzack-event-archive | 1 |
 | engagedpatrons-list | 4 |
+| eventbrite-list | 1 |
 | eventespresso-datetimes | 1 |
 | eventorganiser-fullcal | 1 |
 | events-manager-grid | 1 |
@@ -49,6 +50,7 @@ This runbook exists so every site that has been made importable keeps a repeatab
 | newark-museum-events | 1 |
 | nj-carnivals-jsonld-list | 1 |
 | njpac-events-list | 1 |
+| patch-calendar | 1 |
 | prudential-center-events | 1 |
 | revize-calendar | 2 |
 | savvycitizen-plugin | 1 |
@@ -224,10 +226,12 @@ This runbook exists so every site that has been made importable keeps a repeatab
 | Name | Town | Parser | URL | Key refresh details | Config path | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | Essex County Government |  | county-events-calendar | https://essexcountyparks.org/calendar | type: county-government | sharedSources.essex-county-government | Official Essex County government portal plus County Parks calendar for regional family activities and community events. |
+| Eventbrite discovery |  | eventbrite-list | https://www.eventbrite.com/d/nj--warren/kids/ | type: eventbrite_or_ticketing; searchMode: covered-towns; townSearchPathTemplates: https://www.eventbrite.com/d/nj--{town}/kids/?page={page}; https://www.eventbrite.com/d/nj--{town}/family-and-education--events/?page={page}; maxPages: 1; requestDelayMs: 750; allowedStates: NJ | sharedSources.eventbrite | Added 2026-06-12 as an independent discovery source. Eventbrite is a third-party ticketing platform, so importer searches Eventbrite by every covered app town, inspects each Eventbrite detail page, prefers a non-Event... |
 | Middlesex County Events |  | county-events-calendar | https://www.middlesexcountynj.gov/find-programs-and-resources/events | type: county-government-events | sharedSources.middlesex-county-events | Official Middlesex County events calendar includes county programs, youth/teens activities, and parks-based family announcements. Rediscovery 2026-06-11: use this shared county source instead of duplicate per-town fal... |
 | Morris County Events Calendar |  | county-events-calendar | https://www.morriscountynj.gov/Morris-County-Events/Calendar | type: county-government-events | sharedSources.morris-county-events | Official Morris County events calendar and county department activities. The page renders through JavaScript; keep for county-level activity discovery and browser-backed refresh. Rediscovery 2026-06-11: use this share... |
 | Morris County Park Commission |  | county-events-calendar | https://www.morriscountynj.gov/Departments/Park-Commission | type: county-parks-recreation | sharedSources.morris-county-parks-commission | Official Morris County park commission and nature center page family activities, seasonal fairs, and open event announcements. Rediscovery 2026-06-11: shared county parks source covers Morris towns and replaces per-to... |
 | NJ Carnivals |  | nj-carnivals-jsonld-list | https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all | type: statewide-events-directory; locationOverrides: 4 configured rows; searchUrl: https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all; timeframe: all; county: all; maxPages: 8 | sharedSources.nj-carnivals | Imports structured Event JSON-LD from paginated listings, expands multi-day fairs into daily occurrences, and keeps source event URLs for refresh/review. |
+| Patch local calendars |  | patch-calendar | https://patch.com/new-jersey/warren/calendar | type: regional_event_directory; calendarUrlTemplate: https://patch.com/new-jersey/{editionSlug}/calendar; includeGeneratedTownSlugs: false; defaultDurationMinutes: 90; editionOverrides: 25 configured rows | sharedSources.patch | Added 2026-06-12 as an independent third-party discovery source. Patch uses regional community editions rather than one page per municipality; importer reads configured editions, extracts Next.js calendar events, pref... |
 | Somerset County Library System |  | sclsnj-libnet | https://sclsnj.libnet.info/events | branchIds: 471, 473, 475, 476, 477, 478 ... (8 total); type: library-system; locations: 8 configured rows; eventEndpoint: https://sclsnj.libnet.info/eeventcaldata; locationEndpoint: https://api.communico.co/v1/sclsnj/locations; ageFilters: Baby/Toddler; Pre-School; Kids; Families | sharedSources.sclsnj-libnet | 30-minute coverage imports Bridgewater, Manville, North Plainfield, Peapack and Gladstone, Raritan, Somerville, Warren Township, and Watchung branches. Hillsborough branch is outside the current ORS 30-minute drive po... |
 | Union County Government |  | county-events-calendar | https://ucnj.org/calendar/ | type: county-government | sharedSources.union-county-government | Official Union County government and events hub with countywide community, culture, public safety, and park activity announcements. The events calendar is updated frequently; review manually when needed. |
 

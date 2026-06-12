@@ -9,7 +9,7 @@
   "coverage": {
     "driveTimeMinutes": 40,
     "method": "OpenRouteService driving-car isochrone; 2024 Census county subdivision internal points inside the isochrone",
-    "townCount": 96
+    "townCount": 64
   },
   "eventPolicy": {
     "keepPastEvents": true,
@@ -308,6 +308,66 @@
     ]
   },
   "sharedSources": {
+    "eventbrite": {
+      "id": "eventbrite",
+      "label": "Eventbrite discovery",
+      "type": "eventbrite_or_ticketing",
+      "status": "importable",
+      "parser": "eventbrite-list",
+      "website": "https://www.eventbrite.com/",
+      "eventsUrl": "https://www.eventbrite.com/d/nj--warren/kids/",
+      "searchMode": "covered-towns",
+      "townSearchPathTemplates": [
+        "https://www.eventbrite.com/d/nj--{town}/kids/?page={page}",
+        "https://www.eventbrite.com/d/nj--{town}/family-and-education--events/?page={page}"
+      ],
+      "maxPages": 1,
+      "requestDelayMs": 750,
+      "allowedStates": [
+        "NJ"
+      ],
+      "notes": "Added 2026-06-12 as an independent discovery source. Eventbrite is a third-party ticketing platform, so importer searches Eventbrite by every covered app town, inspects each Eventbrite detail page, prefers a non-Eventbrite official source candidate when found, keeps Eventbrite in sourcePages, and uses Eventbrite itself as the source when no official non-Eventbrite page is found automatically."
+    },
+    "patch": {
+      "id": "patch",
+      "label": "Patch local calendars",
+      "type": "regional_event_directory",
+      "status": "importable",
+      "parser": "patch-calendar",
+      "website": "https://patch.com/new-jersey",
+      "eventsUrl": "https://patch.com/new-jersey/warren/calendar",
+      "calendarUrlTemplate": "https://patch.com/new-jersey/{editionSlug}/calendar",
+      "includeGeneratedTownSlugs": false,
+      "defaultDurationMinutes": 90,
+      "editionOverrides": [
+        { "editionSlug": "warren", "label": "Warren Patch", "servesTownIds": ["warren-township"] },
+        { "editionSlug": "watchung-greenbrook", "label": "Watchung-Green Brook Patch", "servesTownIds": ["watchung-borough", "green-brook-township"] },
+        { "editionSlug": "bridgewater", "label": "Bridgewater Patch", "servesTownIds": ["bridgewater-township"] },
+        { "editionSlug": "baskingridge", "label": "Basking Ridge Patch", "servesTownIds": ["bernards-township"] },
+        { "editionSlug": "bernardsville-bedminster", "label": "Bernardsville-Bedminster Patch", "servesTownIds": ["bernardsville-borough", "bedminster-township", "far-hills-borough", "peapack-and-gladstone-borough"] },
+        { "editionSlug": "scotchplains", "label": "Scotch Plains-Fanwood Patch", "servesTownIds": ["scotch-plains-township", "fanwood-borough"] },
+        { "editionSlug": "newprovidence", "label": "New Providence-Berkeley Heights Patch", "servesTownIds": ["new-providence-borough", "berkeley-heights-township"] },
+        { "editionSlug": "summit", "label": "Summit Patch", "servesTownIds": ["summit-city"] },
+        { "editionSlug": "chatham", "label": "Chatham Patch", "servesTownIds": ["chatham-township", "chatham-borough"] },
+        { "editionSlug": "westfield", "label": "Westfield Patch", "servesTownIds": ["westfield-town"] },
+        { "editionSlug": "clark", "label": "Clark-Garwood Patch", "servesTownIds": ["clark-township", "garwood-borough"] },
+        { "editionSlug": "edison-metuchen", "label": "Edison-Metuchen Patch", "servesTownIds": ["edison-township", "metuchen-borough"] },
+        { "editionSlug": "cranford", "label": "Cranford Patch", "servesTownIds": ["cranford-township"] },
+        { "editionSlug": "madison", "label": "Madison Patch", "servesTownIds": ["madison-borough"] },
+        { "editionSlug": "easthanover-florhampark", "label": "East Hanover-Florham Park Patch", "servesTownIds": ["east-hanover-township", "florham-park-borough"] },
+        { "editionSlug": "mendham-chester", "label": "Mendham-Chester Patch", "servesTownIds": ["mendham-borough", "chester-township", "chester-borough"] },
+        { "editionSlug": "morristown", "label": "Morristown Patch", "servesTownIds": ["morristown-town"] },
+        { "editionSlug": "millburn", "label": "Millburn-Short Hills Patch", "servesTownIds": ["millburn-township"] },
+        { "editionSlug": "morris", "label": "Morris Township-Morris Plains Patch", "servesTownIds": ["morris-township", "morris-plains-borough"] },
+        { "editionSlug": "parsippany", "label": "Parsippany Patch", "servesTownIds": ["parsippany-troy-hills-township"] },
+        { "editionSlug": "hillsborough", "label": "Hillsborough Patch", "servesTownIds": ["hillsborough-township"] },
+        { "editionSlug": "maplewood", "label": "Maplewood Patch", "servesTownIds": ["maplewood-township"] },
+        { "editionSlug": "livingston", "label": "Livingston Patch", "servesTownIds": ["livingston-township"] },
+        { "editionSlug": "southorange", "label": "South Orange Patch", "servesTownIds": ["south-orange-village-township"] },
+        { "editionSlug": "newbrunswick", "label": "New Brunswick Patch", "servesTownIds": ["new-brunswick-city"] }
+      ],
+      "notes": "Added 2026-06-12 as an independent third-party discovery source. Patch uses regional community editions rather than one page per municipality; importer reads configured editions, extracts Next.js calendar events, prefers eventSiteUrl when listed, and otherwise uses Patch itself as the source."
+    },
     "sclsnj-libnet": {
       "label": "Somerset County Library System",
       "type": "library-system",
@@ -10897,7 +10957,9 @@
         "lat": 40.634884,
         "lng": -74.289847
       },
-      "distanceMiles": 11.5
+      "distanceMiles": 11.5,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "rahway-city",
@@ -10911,7 +10973,9 @@
         "lat": 40.607152,
         "lng": -74.280531
       },
-      "distanceMiles": 12.2
+      "distanceMiles": 12.2,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "roselle-park-borough",
@@ -10925,7 +10989,9 @@
         "lat": 40.665309,
         "lng": -74.266558
       },
-      "distanceMiles": 12.9
+      "distanceMiles": 12.9,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "roselle-borough",
@@ -10939,7 +11005,9 @@
         "lat": 40.652211,
         "lng": -74.260158
       },
-      "distanceMiles": 13.2
+      "distanceMiles": 13.2,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "linden-city",
@@ -10953,7 +11021,9 @@
         "lat": 40.627337,
         "lng": -74.23631
       },
-      "distanceMiles": 14.4
+      "distanceMiles": 14.4,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "elizabeth-city",
@@ -10988,7 +11058,9 @@
         "lat": 40.666367,
         "lng": -74.193503
       },
-      "distanceMiles": 16.7
+      "distanceMiles": 16.7,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "woodbridge-township",
@@ -11048,7 +11120,9 @@
         "lat": 40.561262,
         "lng": -74.292377
       },
-      "distanceMiles": 12.5
+      "distanceMiles": 12.5,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "north-brunswick-township",
@@ -11062,7 +11136,9 @@
         "lat": 40.450392,
         "lng": -74.479416
       },
-      "distanceMiles": 12.8
+      "distanceMiles": 12.8,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "milltown-borough",
@@ -11076,7 +11152,9 @@
         "lat": 40.450223,
         "lng": -74.434786
       },
-      "distanceMiles": 13.3
+      "distanceMiles": 13.3,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "south-river-borough",
@@ -11090,7 +11168,9 @@
         "lat": 40.445652,
         "lng": -74.378458
       },
-      "distanceMiles": 14.7
+      "distanceMiles": 14.7,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "perth-amboy-city",
@@ -11104,7 +11184,9 @@
         "lat": 40.52016,
         "lng": -74.271331
       },
-      "distanceMiles": 14.8
+      "distanceMiles": 14.8,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "west-orange-township",
@@ -11118,7 +11200,9 @@
         "lat": 40.785755,
         "lng": -74.265058
       },
-      "distanceMiles": 16.6
+      "distanceMiles": 16.6,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "roseland-borough",
@@ -11132,7 +11216,9 @@
         "lat": 40.82121,
         "lng": -74.310473
       },
-      "distanceMiles": 16.6
+      "distanceMiles": 16.6,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "orange-township",
@@ -11146,7 +11232,9 @@
         "lat": 40.76804,
         "lng": -74.235692
       },
-      "distanceMiles": 17.1
+      "distanceMiles": 17.1,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "east-orange-city",
@@ -11176,7 +11264,9 @@
         "lat": 40.765055,
         "lng": -74.211655
       },
-      "distanceMiles": 18.1
+      "distanceMiles": 18.1,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "glen-ridge-borough",
@@ -11190,7 +11280,9 @@
         "lat": 40.804798,
         "lng": -74.204569
       },
-      "distanceMiles": 19.9
+      "distanceMiles": 19.9,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "bloomfield-township",
@@ -11204,7 +11296,9 @@
         "lat": 40.809141,
         "lng": -74.187142
       },
-      "distanceMiles": 20.8
+      "distanceMiles": 20.8,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "readington-township",
@@ -11234,7 +11328,9 @@
         "lat": 40.584111,
         "lng": -74.769986
       },
-      "distanceMiles": 14.1
+      "distanceMiles": 14.1,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "tewksbury-township",
@@ -11269,7 +11365,9 @@
         "lat": 40.692031,
         "lng": -74.776965
       },
-      "distanceMiles": 14.6
+      "distanceMiles": 14.6,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "lebanon-borough",
@@ -11283,7 +11381,9 @@
         "lat": 40.641862,
         "lng": -74.833312
       },
-      "distanceMiles": 17
+      "distanceMiles": 17,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "califon-borough",
@@ -11297,7 +11397,9 @@
         "lat": 40.719471,
         "lng": -74.836915
       },
-      "distanceMiles": 18.1
+      "distanceMiles": 18.1,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "clinton-township",
@@ -11327,7 +11429,9 @@
         "lat": 40.630098,
         "lng": -74.867202
       },
-      "distanceMiles": 18.7
+      "distanceMiles": 18.7,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "high-bridge-borough",
@@ -11341,7 +11445,9 @@
         "lat": 40.670111,
         "lng": -74.890212
       },
-      "distanceMiles": 20.1
+      "distanceMiles": 20.1,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "clinton-town",
@@ -11355,7 +11461,9 @@
         "lat": 40.636794,
         "lng": -74.915205
       },
-      "distanceMiles": 21.3
+      "distanceMiles": 21.3,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "glen-gardner-borough",
@@ -11369,7 +11477,9 @@
         "lat": 40.700385,
         "lng": -74.939521
       },
-      "distanceMiles": 23
+      "distanceMiles": 23,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "union-township-hunterdon",
@@ -11399,7 +11509,9 @@
         "lat": 40.631422,
         "lng": -74.964077
       },
-      "distanceMiles": 23.8
+      "distanceMiles": 23.8,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "hampton-borough",
@@ -11413,7 +11525,9 @@
         "lat": 40.704569,
         "lng": -74.971525
       },
-      "distanceMiles": 24.7
+      "distanceMiles": 24.7,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "bloomsbury-borough",
@@ -11427,7 +11541,9 @@
         "lat": 40.657174,
         "lng": -75.075474
       },
-      "distanceMiles": 29.7
+      "distanceMiles": 29.7,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "east-newark-borough",
@@ -11441,7 +11557,9 @@
         "lat": 40.752011,
         "lng": -74.162189
       },
-      "distanceMiles": 20
+      "distanceMiles": 20,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "harrison-town",
@@ -11455,7 +11573,9 @@
         "lat": 40.742978,
         "lng": -74.152911
       },
-      "distanceMiles": 20.2
+      "distanceMiles": 20.2,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "bayonne-city",
@@ -11469,7 +11589,9 @@
         "lat": 40.662218,
         "lng": -74.110544
       },
-      "distanceMiles": 21
+      "distanceMiles": 21,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     },
     {
       "id": "kearny-town",
@@ -11483,7 +11605,9 @@
         "lat": 40.752332,
         "lng": -74.123092
       },
-      "distanceMiles": 21.9
+      "distanceMiles": 21.9,
+      "withinCoverage": false,
+      "coverageStatus": "removed_no_data_source"
     }
   ]
 }
