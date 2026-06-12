@@ -86,6 +86,9 @@ a {
 }
 
 .brand-block h1 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: 0;
   white-space: nowrap;
 }
@@ -97,15 +100,22 @@ a {
   align-items: center;
 }
 
-.updated {
-  display: inline-block;
-  margin-left: 5px;
+.brand-mark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
   color: var(--muted);
-  font-size: 0.72rem;
   font-weight: 900;
-  line-height: 1;
-  vertical-align: baseline;
+  line-height: 0.95;
   white-space: nowrap;
+}
+
+.brand-mark-label {
+  font-size: 0.78rem;
+}
+
+.brand-mark-version {
+  font-size: 0.52rem;
 }
 
 .more-menu {

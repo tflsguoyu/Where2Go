@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260611-cache-v85";
+const APP_VERSION = "20260612-cache-v92";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -119,6 +119,7 @@ const elements = {
   mapSurface: document.querySelector("#mapSurface"),
   eventDetail: document.querySelector("#eventDetail"),
   updatedLabel: document.querySelector("#updatedLabel"),
+  brandVersionLabel: document.querySelector("#brandVersionLabel"),
   aboutToggle: document.querySelector("#aboutToggle"),
   aboutPanel: document.querySelector("#aboutPanel"),
   aboutUpdatedLabel: document.querySelector("#aboutUpdatedLabel"),
@@ -361,6 +362,9 @@ function eventTextForFilter(event) {
 }
 
 function isWorldCupRelatedEvent(event) {
+  if (Array.isArray(event.tags) && event.tags.includes("world-cup")) {
+    return true;
+  }
   const text = eventTextForFilter(event);
   return WORLD_CUP_TEXT_PATTERN.test(text) || WORLD_CUP_OBVIOUS_EVENT_PATTERN.test(text);
 }
@@ -644,9 +648,29 @@ function formatUpdatedFullLabel(date) {
   return formatter.format(date);
 }
 
+function formatVersionLabel(date) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: TIMEZONE
+  })
+    .formatToParts(date)
+    .reduce((values, part) => {
+      values[part.type] = part.value;
+      return values;
+    }, {});
+  return `v${parts.year}.${parts.month}.${parts.day}.${parts.hour}.${parts.minute}`;
+}
+
 function setUpdatedLabels(date) {
-  if (elements.updatedLabel) {
-    elements.updatedLabel.textContent = formatUpdatedShortLabel(date);
+  if (elements.brandVersionLabel) {
+    const versionLabel = formatVersionLabel(date);
+    elements.brandVersionLabel.textContent = versionLabel;
+    elements.updatedLabel?.setAttribute("aria-label", `Kids version ${versionLabel}`);
   }
   if (elements.aboutUpdatedLabel) {
     elements.aboutUpdatedLabel.textContent = formatUpdatedFullLabel(date);
@@ -1303,10 +1327,6 @@ function titleVenueAliases(event) {
         .filter((part) => part.length >= 4)
     )
     .sort((a, b) => b.length - a.length);
-}
-
-function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function stripTitleDateTime(text) {
@@ -2396,11 +2416,12 @@ bindMoreMenu();
 bindEventFilter();
 
 init().catch((error) => {
-  if (elements.updatedLabel) {
-    elements.updatedLabel.textContent = "Load failed";
-  }
   if (elements.aboutUpdatedLabel) {
     elements.aboutUpdatedLabel.textContent = "Load failed";
+  }
+  if (elements.brandVersionLabel) {
+    elements.brandVersionLabel.textContent = "Load failed";
+    elements.updatedLabel?.setAttribute("aria-label", "Kids version load failed");
   }
   elements.mapSurface.innerHTML = `<div class="map-empty"><strong>${escapeHtml(error.message)}</strong></div>`;
   elements.eventDetail.innerHTML = "";
