@@ -1,4 +1,4 @@
-const CACHE_NAME = "where2go-public-v85";
+const CACHE_NAME = "where2go-public-v87";
 const APP_ASSETS = [
   "./",
   "index.html",
@@ -15,7 +15,7 @@ const APP_ASSETS = [
   "assets/share-card.png",
   "data/events.json",
   "data/event-sources.json",
-  "data/geo/zip-boundaries.geojson",
+  "data/geo/town-boundaries.geojson",
   "data/sample-events.json"
 ];
 
@@ -29,7 +29,7 @@ const NETWORK_FIRST_SUFFIXES = [
   "/styles.css",
   "/data/events.json",
   "/data/event-sources.json",
-  "/data/geo/zip-boundaries.geojson",
+  "/data/geo/town-boundaries.geojson",
   "/data/sample-events.json"
 ];
 

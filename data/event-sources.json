@@ -9,7 +9,7 @@
   "coverage": {
     "driveTimeMinutes": 30,
     "method": "OpenRouteService driving-car isochrone; 2024 Census county subdivision internal points inside the isochrone",
-    "townCount": 48
+    "townCount": 63
   },
   "eventPolicy": {
     "keepPastEvents": true,
@@ -453,6 +453,17 @@
           "lat": 40.591748,
           "lng": -74.462981,
           "notes": "Street fair listing places the event at North Ave and S Washington Ave; point uses the nearby 2 S Washington Ave map anchor for the intersection."
+        },
+        {
+          "name": "Downtown Bernardsville",
+          "aliases": [
+            "Bernardsville Street Fair & Craft Show",
+            "Mine Brk Rd & Mt Airy Rd"
+          ],
+          "address": "Mine Brook Road and Mount Airy Road, Bernardsville, NJ 07924",
+          "lat": 40.71834076251,
+          "lng": -74.569291371025,
+          "notes": "Census geocoder match for Mine Brook Road and Mount Airy Road, used as the downtown street-fair anchor."
         }
       ],
       "notes": "Imports structured Event JSON-LD from paginated listings, expands multi-day fairs into daily occurrences, and keeps source event URLs for refresh/review."
@@ -484,7 +495,18 @@
         "chatham-township",
         "harding-township",
         "chatham-borough",
-        "madison-borough"
+        "madison-borough",
+        "mendham-borough",
+        "morris-township",
+        "morristown-town",
+        "florham-park-borough",
+        "chester-township",
+        "hanover-township",
+        "morris-plains-borough",
+        "chester-borough",
+        "east-hanover-township",
+        "parsippany-troy-hills-township",
+        "boonton-town"
       ]
     },
     "morris-county-parks-commission": {
@@ -506,7 +528,18 @@
         "chatham-township",
         "harding-township",
         "chatham-borough",
-        "madison-borough"
+        "madison-borough",
+        "mendham-borough",
+        "morris-township",
+        "morristown-town",
+        "florham-park-borough",
+        "chester-township",
+        "hanover-township",
+        "morris-plains-borough",
+        "chester-borough",
+        "east-hanover-township",
+        "parsippany-troy-hills-township",
+        "boonton-town"
       ]
     },
     "middlesex-county-events": {
@@ -548,7 +581,7 @@
       "id": "warren-recreation-events",
       "label": "Warren Township Recreation Events",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.warrennj.org/175/Recreation",
       "eventsUrl": "https://warrennj.org/178/Events",
@@ -557,13 +590,13 @@
       "address": "46 Mountain Boulevard, Warren, NJ 07059",
       "lat": 40.619261,
       "lng": -74.490372,
-      "notes": "Official recreation event page and annual program guide list seasonal family events such as the fishing derby, soccer watch party, summer concerts, movie nights, fall community event, Fall 5K, and holiday festival. Current CivicPlus calendar importer sees some recreation rows but not every recreation landing-page/PDF item; keep this as the refresh checklist before writing a page/PDF parser."
+      "notes": "Official recreation event page and annual program guide list seasonal family events such as the fishing derby, soccer watch party, summer concerts, movie nights, fall community event, Fall 5K, and holiday festival. Current CivicPlus calendar importer sees some recreation rows but not every recreation landing-page/PDF item; keep this as the refresh checklist before writing a page/PDF parser. Manual refresh 2026-06-11: reviewed official Events page; only town hall holiday closure text appeared in the fetched page, not an importable family event."
     },
     {
       "id": "north-plainfield-recreation",
       "label": "North Plainfield Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://nprecreation.com/",
       "eventsUrl": "https://nprecreation.com/",
@@ -571,13 +604,13 @@
       "address": "93 Greenbrook Road, North Plainfield, NJ 07060",
       "lat": 40.621255,
       "lng": -74.439466,
-      "notes": "Official borough-linked recreation portal exposes youth sports, cheer/dance, NFL Flag, summer camp, and registration news. It is WordPress/Stack Sports oriented and does not yet expose a stable dated public event feed; review homepage cards and linked registration pages. Rediscovery 2026-06-11 confirmed events/summer camp/youth program value."
+      "notes": "Official borough-linked recreation portal exposes youth sports, cheer/dance, NFL Flag, summer camp, and registration news. It is WordPress/Stack Sports oriented and does not yet expose a stable dated public event feed; review homepage cards and linked registration pages. Rediscovery 2026-06-11 confirmed events/summer camp/youth program value. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "middlesex-recreation",
       "label": "Middlesex Borough Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.middlesexboro-nj.gov/recreation",
       "eventsUrl": "https://www.middlesexboro-nj.gov/recreation",
@@ -585,7 +618,7 @@
       "address": "1400 Mountain Avenue, Middlesex, NJ 08846",
       "lat": 40.579332,
       "lng": -74.4997,
-      "notes": "Official recreation page lists toddler, youth, adult, special event, and seasonal activity cards plus recent recreation news. Current municipal calendar importer handles the borough calendar, but the recreation landing page can publish separate program and event announcements."
+      "notes": "Official recreation page lists toddler, youth, adult, special event, and seasonal activity cards plus recent recreation news. Current municipal calendar importer handles the borough calendar, but the recreation landing page can publish separate program and event announcements. Manual refresh 2026-06-11: reviewed official recreation page; found youth programs/camps and adult classes, but no complete one-day family event with date/time for import in the current window."
     },
     {
       "id": "watchung-recreation-centennial",
@@ -635,7 +668,7 @@
       "id": "bound-brook-recreation",
       "label": "Bound Brook Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://boundbrook-nj.org/recreation/",
       "eventsUrl": "https://boundbrook-nj.org/recreation/",
@@ -643,13 +676,13 @@
       "address": "200 Thompson Avenue, Bound Brook, NJ 08805",
       "lat": 40.569749,
       "lng": -74.538489,
-      "notes": "Official recreation page describes seasonal programs, pool/family events, summer camp, sports, and therapeutic recreation. The WordPress event archive is noisy with court/meeting rows, so recreation page review should precede parser work. Rediscovery/image-flyer check on 2026-06-11 found the public page Cloudflare-blocked from shell, but prior accessible text confirmed youth programs, pool family events, and Fun in the Sun Summer Camp. Do not import the camp as a one-day event unless camp/session rules are added."
+      "notes": "Official recreation page describes seasonal programs, pool/family events, summer camp, sports, and therapeutic recreation. The WordPress event archive is noisy with court/meeting rows, so recreation page review should precede parser work. Rediscovery/image-flyer check on 2026-06-11 found the public page Cloudflare-blocked from shell, but prior accessible text confirmed youth programs, pool family events, and Fun in the Sun Summer Camp. Do not import the camp as a one-day event unless camp/session rules are added. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "long-hill-parks-recreation",
       "label": "Long Hill Parks and Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.longhillnj.gov/departments/parks-and-recreation",
       "eventsUrl": "https://www.longhillnj.gov/departments/parks-and-recreation",
@@ -657,13 +690,13 @@
       "address": "915 Valley Road, Gillette, NJ 07933",
       "lat": 40.681823,
       "lng": -74.493456,
-      "notes": "Official recreation department pages link seasonal programs and recurring community events such as lake dances, summer concerts, movies, spring egg hunt, Halloween parade, tree lighting, holiday contests, TryCAN, and camps. Current municipal calendar is manual review; library importer is separate."
+      "notes": "Official recreation department pages link seasonal programs and recurring community events such as lake dances, summer concerts, movies, spring egg hunt, Halloween parade, tree lighting, holiday contests, TryCAN, and camps. Current municipal calendar is manual review; library importer is separate. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "south-plainfield-recreation",
       "label": "South Plainfield Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.southplainfieldnj.com/recreation",
       "eventsUrl": "https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/",
@@ -671,7 +704,7 @@
       "address": "1250 Maple Avenue, South Plainfield, NJ 07080",
       "lat": 40.574628,
       "lng": -74.415199,
-      "notes": "Official recreation calendar and department pages are separate from the library feed. Current public page uses an older Zumu-style calendar and needs source-specific review before import."
+      "notes": "Official recreation calendar and department pages are separate from the library feed. Current public page uses an older Zumu-style calendar and needs source-specific review before import. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "bernards-health-municipal-alliance",
@@ -721,7 +754,7 @@
       "id": "fanwood-recreation",
       "label": "Fanwood Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://fanwoodnj.org/departments/recreation-info/",
       "eventsUrl": "https://fanwoodnj.org/departments/recreation-info/",
@@ -729,7 +762,7 @@
       "address": "75 North Martine Avenue, Fanwood, NJ 07023",
       "lat": 40.640936,
       "lng": -74.382342,
-      "notes": "Official recreation page highlights town-wide events such as Summer Free Movie Series, Halloween Parade and Costume Contest, Holiday Celebration, camps, and recreation programs. Current municipal calendar remains manual review; library events use configured mylibrary entries."
+      "notes": "Official recreation page highlights town-wide events such as Summer Free Movie Series, Halloween Parade and Costume Contest, Holiday Celebration, camps, and recreation programs. Current municipal calendar remains manual review; library events use configured mylibrary entries. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "scotch-plains-parks-recreation",
@@ -776,7 +809,7 @@
       "id": "bridgewater-recreation-parks",
       "label": "Bridgewater Recreation and Parks",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://parks.bridgewaternj.gov/",
       "eventsUrl": "https://parks.bridgewaternj.gov/township/",
@@ -784,13 +817,13 @@
       "address": "100 Commons Way, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Official Bridgewater recreation and parks microsite links township parks, recreation department information, and Somerset County park events/programs. Current municipal calendar remains manual review; SCLSNJ covers library events. Rediscovery 2026-06-11 confirmed parks microsite remains useful."
+      "notes": "Official Bridgewater recreation and parks microsite links township parks, recreation department information, and Somerset County park events/programs. Current municipal calendar remains manual review; SCLSNJ covers library events. Rediscovery 2026-06-11 confirmed parks microsite remains useful. Manual refresh 2026-06-11: reviewed parks microsite; no complete dated public family event was visible in the fetched page."
     },
     {
       "id": "somerville-recreation",
       "label": "Somerville Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.somervillenj.org/departments/recreation/",
       "eventsUrl": "https://www.somervillenj.org/recreation-activities/",
@@ -798,7 +831,7 @@
       "address": "25 West End Avenue, Somerville, NJ 08876",
       "lat": 40.569749,
       "lng": -74.607682,
-      "notes": "Official recreation activity pages list youth sports, clinics, seasonal programs, and local youth organizations. Current borough events page is mostly office closings and needs a separate parser or manual recreation refresh."
+      "notes": "Official recreation activity pages list youth sports, clinics, seasonal programs, and local youth organizations. Current borough events page is mostly office closings and needs a separate parser or manual recreation refresh. Manual refresh 2026-06-11: reviewed recreation activities page; no complete dated public family event was visible in the fetched page."
     },
     {
       "id": "downtown-somerville-alliance",
@@ -1142,7 +1175,7 @@
       "id": "mountainside-recreation",
       "label": "Mountainside Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.mountainside-nj.com/department/recreation/",
       "eventsUrl": "https://www.mountainside-nj.com/department/recreation/",
@@ -1150,7 +1183,7 @@
       "address": "1385 Route 22, Mountainside, NJ 07092",
       "lat": 40.67227,
       "lng": -74.357372,
-      "notes": "Official recreation department source for borough camps, pool, youth programs, holiday activities, kids triathlon, robotics, theater, and seasonal programs. Public pages are mostly landing pages/PDFs and need manual review."
+      "notes": "Official recreation department source for borough camps, pool, youth programs, holiday activities, kids triathlon, robotics, theater, and seasonal programs. Public pages are mostly landing pages/PDFs and need manual review. Manual refresh 2026-06-11: reviewed recreation page; no complete dated public family event was visible in the fetched page."
     },
     {
       "id": "summit-downtown",
@@ -1749,7 +1782,8 @@
             "workshop",
             "eataly",
             "official-index"
-          ]
+          ],
+          "townId": "millburn-township"
         },
         {
           "title": "Hands-On: Tiramisu Classico",
@@ -1777,7 +1811,8 @@
             "workshop",
             "eataly",
             "official-index"
-          ]
+          ],
+          "townId": "millburn-township"
         },
         {
           "title": "Dad & Me: Hands On Pizza Making (Father's Day Edition)",
@@ -1805,7 +1840,8 @@
             "father's-day",
             "eataly",
             "official-index"
-          ]
+          ],
+          "townId": "millburn-township"
         },
         {
           "title": "Hands On: Gnocchi Pomodoro",
@@ -1832,7 +1868,8 @@
             "workshop",
             "eataly",
             "official-index"
-          ]
+          ],
+          "townId": "millburn-township"
         }
       ],
       "notes": "Simon contentstream API still returns PerimeterX challenge to direct scripts. Current child/family-suitable Eataly cooking events were transcribed from public search-indexed Simon/Eventbrite pages on 2026-06-08 and imported through configured-regional-events until a browser-backed/API parser is available."
@@ -2017,15 +2054,48 @@
       "id": "lego-bridgewater-commons",
       "label": "LEGO Store Bridgewater Commons",
       "type": "retail-kids-events",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-regional-events",
       "website": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
       "eventsUrl": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
       "townId": "bridgewater-township",
       "address": "400 Commons Way, Bridgewater Commons, Bridgewater, NJ 08807",
       "lat": 40.585616,
       "lng": -74.619682,
-      "notes": "Official store page exposes StoreEvent promo cards such as Little Builder Classes, but current cards do not include store-specific dated sessions. Keep manual until a detail/API route exposes dates."
+      "notes": "Official store page exposes StoreEvent promo cards such as Little Builder Classes, but current cards do not include store-specific dated sessions. Keep manual until a detail/API route exposes dates. Converted to importable on 2026-06-11 after manual review found a dated in-store LEGO Duck build event. Soccer activity card lacked a visible date/time and was not imported.",
+      "parserVersion": "2026-06-11",
+      "configuredEvents": [
+        {
+          "date": "2026-06-11",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "title": "Build a LEGO Duck and take it home",
+          "venue": "LEGO Store Bridgewater Commons",
+          "address": "400 Commons Way, Bridgewater Commons, Bridgewater, NJ 08807",
+          "townId": "bridgewater-township",
+          "lat": 40.585753482967,
+          "lng": -74.615238231176,
+          "category": "retail-kids-events",
+          "url": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
+          "summary": "In-store LEGO build-and-take event at the Bridgewater Commons LEGO Store.",
+          "ages": [
+            "preschool",
+            "early-elementary"
+          ],
+          "audiences": [
+            "Children",
+            "Families"
+          ],
+          "cost": null,
+          "registration": "See source",
+          "tags": [
+            "lego",
+            "kids",
+            "family"
+          ],
+          "confidence": 0.74
+        }
+      ]
     },
     {
       "id": "barnes-noble-bridgewater",
@@ -2061,7 +2131,7 @@
       "id": "clubair-warren",
       "label": "ClubAir Warren",
       "type": "indoor-play-trampoline",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://clubair.fun/",
       "eventsUrl": "https://clubair.fun/specials/",
@@ -2069,7 +2139,7 @@
       "address": "150 Mt Bethel Rd Building 1, Warren, NJ 07059",
       "lat": 40.634588,
       "lng": -74.519044,
-      "notes": "Specials page lists possible weekly themes but currently says the specials are not available and coming soon. Do not import until the page republishes active dates/times."
+      "notes": "Specials page lists possible weekly themes but currently says the specials are not available and coming soon. Do not import until the page republishes active dates/times. Manual refresh 2026-06-11: reviewed specials page; it lists possible specials but no active dated public event to import."
     },
     {
       "id": "sky-zone-south-plainfield",
@@ -2113,7 +2183,7 @@
       "id": "kidstrong-watchung",
       "label": "KidStrong Watchung",
       "type": "kids-gym-classes",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://watchung.kidstrong.com/",
       "eventsUrl": "https://watchung.kidstrong.com/",
@@ -2121,7 +2191,7 @@
       "address": "1701 US Highway 22 Unit 27, Watchung, NJ 07069",
       "lat": 40.642845,
       "lng": -74.436233,
-      "notes": "Camps page describes ages 4-9 and asks users to view camp dates/contact the center, but direct HTML does not expose dated sessions. Needs booking-system or browser-backed parser."
+      "notes": "Camps page describes ages 4-9 and asks users to view camp dates/contact the center, but direct HTML does not expose dated sessions. Needs booking-system or browser-backed parser. Manual refresh 2026-06-11: reviewed local center page; it describes recurring classes/trials but no public dated event feed for import."
     },
     {
       "id": "dainty-den-warren",
@@ -2141,7 +2211,7 @@
       "id": "fun-factory-sensory-gym",
       "label": "Fun Factory Sensory Gym",
       "type": "sensory-gym",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.funfactorysensorygym.com/",
       "eventsUrl": "https://www.funfactorysensorygym.com/contact-us",
@@ -2149,13 +2219,13 @@
       "address": "991 US Highway 22, Suite 200, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Sensory gym / indoor-play provider; current public pages are contact/service oriented and do not expose public dated events."
+      "notes": "Sensory gym / indoor-play provider; current public pages are contact/service oriented and do not expose public dated events. Manual refresh 2026-06-11: reviewed contact/service page; no public dated events were visible."
     },
     {
       "id": "kids-empire-watchung",
       "label": "Kids Empire Watchung",
       "type": "indoor-playground",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.kidsempire.com/store-locator/kids-empire-watchung",
       "eventsUrl": "https://www.kidsempire.com/store-locator/kids-empire-watchung",
@@ -2163,13 +2233,13 @@
       "address": "1515 US-22, Watchung, NJ 07069",
       "lat": 40.642845,
       "lng": -74.436233,
-      "notes": "Indoor playground for ages 1-12 with all-day play; store page has location/hours but no public dated events feed yet."
+      "notes": "Indoor playground for ages 1-12 with all-day play; store page has location/hours but no public dated events feed yet. Manual refresh 2026-06-11: reviewed store page; it lists play/hours information but no public dated event feed."
     },
     {
       "id": "code-ninjas-local",
       "label": "Code Ninjas Local Centers",
       "type": "kids-stem-coding",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.codeninjas.com/",
       "eventsUrl": "https://www.codeninjas.com/",
@@ -2196,13 +2266,13 @@
           "storeUrl": "https://www.codeninjas.com/locations/en-us/nj/piscataway/coding-school-376.html"
         }
       ],
-      "notes": "Local NJ center pages describe classes, camps, birthdays, and parent night out but do not expose dated schedules in simple HTML. codeninjascamps.com search results can show schedules for other states, so verify center location before manual import."
+      "notes": "Local NJ center pages describe classes, camps, birthdays, and parent night out but do not expose dated schedules in simple HTML. codeninjascamps.com search results can show schedules for other states, so verify center location before manual import. Manual refresh 2026-06-11: reviewed national/local entry page; no verified local dated Watchung/Bridgewater-area event was visible."
     },
     {
       "id": "valhallan-bridgewater",
       "label": "Valhallan Esports Training Bridgewater",
       "type": "kids-esports-stem",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://arenas.valhallan.com/bridgewater-nj-us",
       "eventsUrl": "https://arenas.valhallan.com/bridgewater-nj-us",
@@ -2210,7 +2280,7 @@
       "address": "Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Youth esports training arena; current public arena page does not expose dated camps, tryouts, tournaments, or events in script-fetchable HTML."
+      "notes": "Youth esports training arena; current public arena page does not expose dated camps, tryouts, tournaments, or events in script-fetchable HTML. Manual refresh 2026-06-11: reviewed arena URL; page returned not found, so no current importable local events were available."
     },
     {
       "id": "wagner-farm-arboretum",
@@ -2612,8 +2682,8 @@
           "name": "Environmental Education Center",
           "townId": "bernards-township",
           "address": "190 Lord Stirling Rd, Basking Ridge, NJ 07920",
-          "lat": 40.677455,
-          "lng": -74.567277,
+          "lat": 40.694634069909,
+          "lng": -74.519960885231,
           "storeUrl": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration"
         }
       ],
@@ -2687,22 +2757,117 @@
           "registration": "RSVP",
           "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/programs-registration",
           "summary": "Somerset County EEC Eco-Explorers nature camp week. Open the source page for age group, fee, and registration."
+        },
+        {
+          "dates": [
+            "2026-06-14",
+            "2026-07-12",
+            "2026-08-09"
+          ],
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "title": "Family Nature Walk",
+          "category": "nature",
+          "registration": "Not required",
+          "cost": "Free",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-june-2026",
+          "summary": "Free all-ages guided family nature walk at Somerset County Environmental Education Center."
+        },
+        {
+          "date": "2026-06-14",
+          "startTime": "15:00",
+          "endTime": "16:00",
+          "title": "Cool Critters",
+          "category": "nature",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-june-2026",
+          "summary": "Meet and learn about live animals and cool critters at the Environmental Education Center."
+        },
+        {
+          "date": "2026-07-19",
+          "startTime": "15:00",
+          "endTime": "16:00",
+          "title": "Cool Critters",
+          "category": "nature",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-july-2026",
+          "summary": "Meet and learn about live animals and cool critters at the Environmental Education Center."
+        },
+        {
+          "date": "2026-06-28",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "title": "Storytime Adventure",
+          "category": "storytime",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-june-2026",
+          "summary": "Nature-themed storytime adventure at the Somerset County Environmental Education Center."
+        },
+        {
+          "date": "2026-07-26",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "title": "Storytime Adventure",
+          "category": "storytime",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-july-2026",
+          "summary": "Nature-themed storytime adventure at the Somerset County Environmental Education Center."
+        },
+        {
+          "date": "2026-06-29",
+          "startTime": "15:30",
+          "endTime": "16:30",
+          "title": "Tot Trek",
+          "category": "nature",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-june-2026",
+          "summary": "Outdoor nature program for young children at the Somerset County Environmental Education Center."
+        },
+        {
+          "date": "2026-07-13",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "title": "Tot Trek",
+          "category": "nature",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-july-2026",
+          "summary": "Outdoor nature program for young children at the Somerset County Environmental Education Center."
+        },
+        {
+          "date": "2026-07-27",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "title": "Raindrops to Rainbows",
+          "category": "nature",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-july-2026",
+          "summary": "Children’s nature program exploring weather, water, and color at the Environmental Education Center."
+        },
+        {
+          "date": "2026-08-05",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "title": "Diggin' Dinosaurs",
+          "category": "nature",
+          "registration": "RSVP",
+          "url": "https://www.somersetcountyparks.org/environmental-education-center/pages/educational-public-programs-august-2026",
+          "summary": "Dinosaur-themed children’s nature program at the Somerset County Environmental Education Center."
         }
       ],
-      "notes": "Nature/science education center at Lord Stirling Park with public programs and summer camps; dates are stored from the public Programs & Registration page."
+      "notes": "Nature/science education center at Lord Stirling Park with public programs and summer camps; dates are stored from the public Programs & Registration page. Manual refresh on 2026-06-11 added public nature programs from June-August 2026 EEC program pages; late-night moth walks and multiweek camps were reviewed but not expanded as routine event rows."
     },
     {
       "id": "somerset-county-parks-commission",
       "label": "Somerset County Park Commission",
       "type": "county-parks-recreation",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.somersetcountyparks.org/",
       "eventsUrl": "https://www.somersetcountyparks.org/",
       "address": "355 Milltown Road, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Official Somerset County Park Commission hub with countywide news, upcoming events calendar, summer camps, golf, therapeutic recreation, gardens, and park program registration. Use as the parent source above individual park feeds such as EEC, Buck Garden, and Colonial Park."
+      "notes": "Official Somerset County Park Commission hub with countywide news, upcoming events calendar, summer camps, golf, therapeutic recreation, gardens, and park program registration. Use as the parent source above individual park feeds such as EEC, Buck Garden, and Colonial Park. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "visit-somerset-nj-events",
@@ -2768,33 +2933,33 @@
       "id": "somerset-county-rutgers-extension",
       "label": "Rutgers Cooperative Extension of Somerset County",
       "type": "county-extension-4h",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://somerset.njaes.rutgers.edu/",
       "eventsUrl": "https://somerset.njaes.rutgers.edu/events/",
       "address": "310 Milltown Road, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Official Rutgers Cooperative Extension county source for 4-H youth development, Family & Community Health Sciences workshops, Master Gardener programs, and the Somerset County 4-H Fair at North Branch Park."
+      "notes": "Official Rutgers Cooperative Extension county source for 4-H youth development, Family & Community Health Sciences workshops, Master Gardener programs, and the Somerset County 4-H Fair at North Branch Park. Manual refresh 2026-06-11: reviewed Rutgers Extension events page; no complete family/youth date-time row in the current window was visible in the fetched page."
     },
     {
       "id": "somerset-county-4h",
       "label": "Somerset County 4-H Youth Development",
       "type": "county-extension-4h",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://somerset.njaes.rutgers.edu/4h/",
       "eventsUrl": "https://somerset.njaes.rutgers.edu/4h/",
       "address": "310 Milltown Road, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Official Somerset County 4-H clubs, camps, and youth programs. SomersetCounty4H.org resolves to the same Rutgers extension 4-H pages; North Branch Park hosts the annual county 4-H Fair."
+      "notes": "Official Somerset County 4-H clubs, camps, and youth programs. SomersetCounty4H.org resolves to the same Rutgers extension 4-H pages; North Branch Park hosts the annual county 4-H Fair. Manual refresh 2026-06-11: reviewed 4-H page; useful youth source but no complete public date-time row in the current window was visible in the fetched page."
     },
     {
       "id": "stable-lord-stirling-park",
       "label": "The Stable at Lord Stirling Park",
       "type": "county-park-family-activities",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.somersetcountyparks.org/stable-lord-stirling-park",
       "eventsUrl": "https://www.somersetcountyparks.org/stable-lord-stirling-park/pages/programs-activities",
@@ -2802,13 +2967,13 @@
       "address": "256 South Maple Avenue, Basking Ridge, NJ 07920",
       "lat": 40.677455,
       "lng": -74.567277,
-      "notes": "Official Somerset County Park Commission stable with youth horseback riding lessons, pony rides, summer camp, seasonal hayrides, and family events at Lord Stirling Park. Programs & Activities page lists dated registration items beyond the EEC nature programs."
+      "notes": "Official Somerset County Park Commission stable with youth horseback riding lessons, pony rides, summer camp, seasonal hayrides, and family events at Lord Stirling Park. Programs & Activities page lists dated registration items beyond the EEC nature programs. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "north-branch-park",
       "label": "North Branch Park",
       "type": "county-park-family-activities",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.somersetcountyparks.org/north-branch-park",
       "eventsUrl": "https://www.somersetcountyparks.org/north-branch-park",
@@ -2816,13 +2981,13 @@
       "address": "355 Milltown Road, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Official Somerset County park and Park Commission administrative offices in Bridgewater. Hosts the annual Somerset County 4-H Fair plus major exhibits, shows, and community fairs."
+      "notes": "Official Somerset County park and Park Commission administrative offices in Bridgewater. Hosts the annual Somerset County 4-H Fair plus major exhibits, shows, and community fairs. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "duke-island-park",
       "label": "Duke Island Park",
       "type": "county-park-family-activities",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.somersetcountyparks.org/duke-island-park",
       "eventsUrl": "https://www.somersetcountyparks.org/duke-island-park",
@@ -2830,13 +2995,13 @@
       "address": "191 Old York Road, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Official Somerset County park in Bridgewater with trails, canal views, active recreation, and special events published through county park pages."
+      "notes": "Official Somerset County park in Bridgewater with trails, canal views, active recreation, and special events published through county park pages. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "washington-valley-park",
       "label": "Washington Valley Park",
       "type": "county-park-family-activities",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.somersetcountyparks.org/washington-valley-park",
       "eventsUrl": "https://www.somersetcountyparks.org/washington-valley-park",
@@ -2844,20 +3009,20 @@
       "address": "Vosseller Avenue at Millers Lane, Bridgewater, NJ 08807",
       "lat": 40.6055,
       "lng": -74.5755,
-      "notes": "Official Somerset County park in Bridgewater with reservoir trails, hawk watch, hiking, and fishing. Better as a seasonal family-activity source than a dense dated-event feed."
+      "notes": "Official Somerset County park in Bridgewater with reservoir trails, hawk watch, hiking, and fishing. Better as a seasonal family-activity source than a dense dated-event feed. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "somerset-county-therapeutic-recreation",
       "label": "Somerset County Therapeutic Recreation",
       "type": "county-parks-recreation",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.somersetcountyparks.org/therapeutic-recreation",
       "eventsUrl": "https://www.somersetcountyparks.org/therapeutic-recreation",
       "address": "355 Milltown Road, Bridgewater, NJ 08807",
       "lat": 40.592358,
       "lng": -74.60401,
-      "notes": "Official Somerset County Park Commission therapeutic recreation programs, including adaptive and inclusive recreation for children and families. Review program registration pages for dated public offerings."
+      "notes": "Official Somerset County Park Commission therapeutic recreation programs, including adaptive and inclusive recreation for children and families. Review program registration pages for dated public offerings. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "raptor-trust",
@@ -3214,15 +3379,68 @@
       "id": "rvcc-planetarium",
       "label": "RVCC Planetarium",
       "type": "science-planetarium-family-programs",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-regional-events",
       "website": "https://www.raritanval.edu/planetarium",
       "eventsUrl": "https://www.raritanval.edu/planetarium/public-shows",
       "townId": "branchburg-township",
       "address": "118 Lamington Road, Branchburg, NJ 08876",
       "lat": 40.560024,
       "lng": -74.716119,
-      "notes": "College planetarium with public and family shows. June 2026 public-show page says no public shows in June and to check back for July; keep this source for the next schedule refresh instead of dropping it."
+      "notes": "College planetarium with public and family shows. June 2026 public-show page says no public shows in June and to check back for July; keep this source for the next schedule refresh instead of dropping it. Manual refresh 2026-06-11: converted to configured import from the official public-shows page; added dated planetarium programs with visible times and age guidance.",
+      "parserVersion": "2026-06-11",
+      "configuredEvents": [
+        {
+          "dates": [
+            "2026-06-12",
+            "2026-07-10",
+            "2026-08-14"
+          ],
+          "startTime": "19:00",
+          "endTime": "20:00",
+          "title": "Sunset Meditation",
+          "category": "science-planetarium-family-programs",
+          "ages": [
+            "10+",
+            "teen",
+            "adult"
+          ],
+          "cost": 11,
+          "registration": "Tickets",
+          "url": "https://www.raritanval.edu/planetarium/public-shows",
+          "summary": "Guided meditation under the planetarium night sky, recommended for ages 10 through adult."
+        },
+        {
+          "date": "2026-07-31",
+          "startTime": "19:00",
+          "endTime": "20:00",
+          "title": "Happy Birthday Harry Potter",
+          "category": "science-planetarium-family-programs",
+          "ages": [
+            "8+",
+            "family"
+          ],
+          "cost": 11,
+          "registration": "Tickets",
+          "url": "https://www.raritanval.edu/planetarium/public-shows",
+          "summary": "Harry Potter-themed tour of the night sky exploring astronomy connections behind character names; recommended for ages 8 through adult."
+        },
+        {
+          "date": "2026-07-31",
+          "startTime": "20:00",
+          "endTime": "21:00",
+          "title": "Happy Birthday Harry Potter",
+          "category": "science-planetarium-family-programs",
+          "ages": [
+            "8+",
+            "family"
+          ],
+          "cost": 11,
+          "registration": "Tickets",
+          "url": "https://www.raritanval.edu/planetarium/public-shows",
+          "summary": "Harry Potter-themed tour of the night sky exploring astronomy connections behind character names; recommended for ages 8 through adult."
+        }
+      ]
     },
     {
       "id": "raritan-headwaters-fairview-farm",
@@ -3261,7 +3479,7 @@
       "id": "leonard-j-buck-garden",
       "label": "Leonard J. Buck Garden",
       "type": "public-garden-family-programs",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.somersetcountyparks.org/leonard-j-buck-garden",
       "eventsUrl": "https://www.somersetcountyparks.org/node/1251/events/year/2026",
@@ -3269,13 +3487,13 @@
       "address": "11 Layton Road, Far Hills, NJ 07931",
       "lat": 40.690893,
       "lng": -74.621537,
-      "notes": "Somerset County public garden in Far Hills; children are welcome with adult supervision, and the park calendar can list plant sales, tours, photography, horticultural programming, woodland walks, and seasonal family-friendly garden events. Current future dated kid-specific events need manual review."
+      "notes": "Somerset County public garden in Far Hills; children are welcome with adult supervision, and the park calendar can list plant sales, tours, photography, horticultural programming, woodland walks, and seasonal family-friendly garden events. Current future dated kid-specific events need manual review. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "far-hills-race-meeting",
       "label": "Far Hills Race Meeting",
       "type": "festival-sports-family-events",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://farhillsrace.org/",
       "eventsUrl": "https://farhillsrace.org/buy-now/",
@@ -3283,7 +3501,7 @@
       "address": "Moorland Farm, Far Hills, NJ 07931",
       "lat": 40.690893,
       "lng": -74.621537,
-      "notes": "Annual Far Hills community steeplechase event. Official 2026 pages list October 17, 2026, family/friend tailgating, vendor village, and free admission for children 13 and under with an adult; source is outside the current 60-day import window but should be refreshed before fall."
+      "notes": "Annual Far Hills community steeplechase event. Official 2026 pages list October 17, 2026, family/friend tailgating, vendor village, and free admission for children 13 and under with an adult; source is outside the current 60-day import window but should be refreshed before fall. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "hummingbird-studio-raritan",
@@ -3372,7 +3590,7 @@
       "id": "raritan-music-center",
       "label": "Raritan Music Center",
       "type": "kids-music-classes-camps",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.raritanmusiccenter.com/",
       "eventsUrl": "https://www.raritanmusiccenter.com/",
@@ -3380,13 +3598,13 @@
       "address": "55 West Somerset Street, Raritan, NJ 08869",
       "lat": 40.568866,
       "lng": -74.629058,
-      "notes": "Music lesson studio with 2026 summer camp links for string, piano, and voice programs. Public homepage does not expose enough dated camp detail for import yet; review sign-up links or booking pages when refreshing Raritan business sources."
+      "notes": "Music lesson studio with 2026 summer camp links for string, piano, and voice programs. Public homepage does not expose enough dated camp detail for import yet; review sign-up links or booking pages when refreshing Raritan business sources. Manual refresh 2026-06-11: reviewed homepage; visible summer music-camp reference is outside the current 60-day import window or lacks enough detail for a one-day public event."
     },
     {
       "id": "manville-recreation-programs",
       "label": "Manville Recreation Programs",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.manvillenj.org/308/Recreation",
       "eventsUrl": "https://www.manvillenj.org/308/Recreation",
@@ -3394,13 +3612,13 @@
       "address": "325 N Main Street, Manville, NJ 08835",
       "lat": 40.541269,
       "lng": -74.589273,
-      "notes": "Official recreation department source for day camp, summer recreation, parks, and flyers that may not appear on the CivicPlus calendar importer. Keep alongside the importable municipal calendar."
+      "notes": "Official recreation department source for day camp, summer recreation, parks, and flyers that may not appear on the CivicPlus calendar importer. Keep alongside the importable municipal calendar. Manual refresh 2026-06-11: reviewed official recreation page; no complete dated public family event was visible in the fetched page."
     },
     {
       "id": "kids-empire-manville",
       "label": "Kids Empire Manville",
       "type": "indoor-playground",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.kidsempire.com/store-locator/kids-empire-manville",
       "eventsUrl": "https://www.kidsempire.com/store-locator/kids-empire-manville",
@@ -3408,27 +3626,62 @@
       "address": "114 N Main St Unit 11, Manville, NJ 08835",
       "lat": 40.541269,
       "lng": -74.589273,
-      "notes": "Indoor playground for ages 1-12 with all-day play, toddler zone, parties, group outings, and long daily hours. Current store page has no stable dated event feed, so keep as manual_review for future special events."
+      "notes": "Indoor playground for ages 1-12 with all-day play, toddler zone, parties, group outings, and long daily hours. Current store page has no stable dated event feed, so keep as manual_review for future special events. Manual refresh 2026-06-11: reviewed store page; it lists play/hours information but no public dated event feed."
     },
     {
       "id": "franklin-township-youth-center",
       "label": "Franklin Township Youth Center and Recreation",
       "type": "municipal-supplemental-events",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-regional-events",
       "website": "https://www.franklintwpnj.org/departments/youth-center",
       "eventsUrl": "https://www.franklintwpnj.org/departments/recreation-and-parks",
       "townId": "franklin-township",
       "address": "429 Lewis Street, Somerset, NJ 08873",
       "lat": 40.476872,
       "lng": -74.550447,
-      "notes": "Official Franklin pages expose Youth Center, Recreation, Municipal, Police, and Community calendar items through a Granicus/Akamai-rendered site that direct scripts cannot fetch. Keep for manual review or a future browser-backed parser; do not rely only on the Franklin library feed."
+      "notes": "Official Franklin pages expose Youth Center, Recreation, Municipal, Police, and Community calendar items through a Granicus/Akamai-rendered site that direct scripts cannot fetch. Keep for manual review or a future browser-backed parser; do not rely only on the Franklin library feed. Manual refresh 2026-06-11: converted to configured import from Franklin Recreation and Parks news/calendar text; added Youth Center takeover and Independence Day Celebration rows.",
+      "parserVersion": "2026-06-11",
+      "configuredEvents": [
+        {
+          "date": "2026-06-13",
+          "startTime": "14:00",
+          "endTime": "18:00",
+          "title": "Rise of the 6th Graders",
+          "venue": "Franklin Youth Center",
+          "address": "429 Lewis Street, Somerset, NJ 08873",
+          "lat": 40.476872,
+          "lng": -74.550447,
+          "category": "youth-center-event",
+          "ages": [
+            "grade 5",
+            "tween"
+          ],
+          "registration": "See source",
+          "url": "https://www.franklintwpnj.org/departments/recreation-and-parks",
+          "summary": "Exclusive Franklin Youth Center takeover for current 5th graders entering 6th grade in Fall 2026."
+        },
+        {
+          "date": "2026-07-02",
+          "startTime": "18:00",
+          "endTime": "21:30",
+          "title": "Independence Day Celebration and Fireworks",
+          "category": "community-fireworks",
+          "ages": [
+            "family"
+          ],
+          "cost": 0,
+          "registration": "Not required",
+          "url": "https://www.franklintwpnj.org/departments/recreation-and-parks",
+          "summary": "Free community event with live music, food trucks, local exhibitors, family fun, and fireworks at 9:15 PM."
+        }
+      ]
     },
     {
       "id": "colonial-park-spray-park",
       "label": "Colonial Park Spray Park and Gardens",
       "type": "county-park-family-activities",
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.somersetcountyparks.org/colonial-park",
       "eventsUrl": "https://www.somersetcountyparks.org/colonial-park/pages/colonial-park-spray-park",
@@ -3436,7 +3689,7 @@
       "address": "156 Mettlers Road, Somerset, NJ 08873",
       "lat": 40.476872,
       "lng": -74.550447,
-      "notes": "Somerset County park source in Franklin with Morgan Pellowski Playground, children's spray park, paddle boats, putting, gardens, and seasonal festivals. Spray Park runs through September 1 with posted weekday/weekend hours; kept manual to avoid daily open-hour event spam."
+      "notes": "Somerset County park source in Franklin with Morgan Pellowski Playground, children's spray park, paddle boats, putting, gardens, and seasonal festivals. Spray Park runs through September 1 with posted weekday/weekend hours; kept manual to avoid daily open-hour event spam. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "camp-soar-franklin-ymca",
@@ -3525,21 +3778,69 @@
       "id": "wonderworld-playzone-somerset",
       "label": "Wonderworld Playzone",
       "type": "indoor-playground",
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-regional-events",
       "website": "https://www.wonderworldplayzone.com/",
       "eventsUrl": "https://www.wonderworldplayzone.com/",
       "townId": "franklin-township",
       "address": "28 Worlds Fair Drive, Suite C, Somerset, NJ 08873",
       "lat": 40.476872,
       "lng": -74.550447,
-      "notes": "Somerset indoor playground with obstacle course, ball pits, slides, pretend-play/tiny town, arcade, daily passes, party bookings, and a special-events section. Current official page says no events at the moment; keep as manual_review for future limited-time events."
+      "notes": "Somerset indoor playground with obstacle course, ball pits, slides, pretend-play/tiny town, arcade, daily passes, party bookings, and a special-events section. Current official page says no events at the moment; keep as manual_review for future limited-time events. Manual refresh 2026-06-11: converted to configured import from official Wix event-detail pages; added all dated Craft & Play rows visible in the current listing.",
+      "parserVersion": "2026-06-11",
+      "configuredEvents": [
+        {
+          "date": "2026-06-16",
+          "startTime": "11:00",
+          "endTime": "12:00",
+          "title": "Craft & Play - Ages 8 and under",
+          "category": "indoor-playground-craft",
+          "ages": [
+            "0-8",
+            "family"
+          ],
+          "cost": 34.99,
+          "registration": "Tickets",
+          "url": "https://www.wonderworldplayzone.com/event-details/craft-play-ages-8-and-under-4",
+          "summary": "One-hour craft followed by unlimited playtime, with free kids tattoo or face art after the craft."
+        },
+        {
+          "date": "2026-06-18",
+          "startTime": "11:00",
+          "endTime": "12:00",
+          "title": "Craft & Play - Ages 8 and under",
+          "category": "indoor-playground-craft",
+          "ages": [
+            "0-8",
+            "family"
+          ],
+          "cost": 34.99,
+          "registration": "Tickets",
+          "url": "https://www.wonderworldplayzone.com/event-details/craft-play-ages-8-and-under-5",
+          "summary": "One-hour craft followed by unlimited playtime, with free kids tattoo or face art after the craft."
+        },
+        {
+          "date": "2026-06-23",
+          "startTime": "11:00",
+          "endTime": "12:00",
+          "title": "Craft & Play - Ages 8 and under",
+          "category": "indoor-playground-craft",
+          "ages": [
+            "0-8",
+            "family"
+          ],
+          "cost": 34.99,
+          "registration": "Tickets",
+          "url": "https://www.wonderworldplayzone.com/event-details/craft-play-ages-8-and-under-6",
+          "summary": "One-hour craft followed by unlimited playtime, with free kids tattoo or face art after the craft."
+        }
+      ]
     },
     {
       "id": "snyders-farm-somerset",
       "label": "Snyder's Farm",
       "type": "farm-family-activities",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.snyders-farm.com/",
       "eventsUrl": "https://www.snyders-farm.com/",
@@ -3547,13 +3848,13 @@
       "address": "586 South Middlebush Road, Somerset, NJ 08873",
       "lat": 40.476872,
       "lng": -74.550447,
-      "notes": "Seasonal family farm with U-pick strawberries, blueberries, vegetables, market, and fall festival potential. Official Wix site is script-heavy; VisitNJ/Visit Somerset confirm farm activities, so keep for manual/browser-backed refresh before berry and fall festival seasons."
+      "notes": "Seasonal family farm with U-pick strawberries, blueberries, vegetables, market, and fall festival potential. Official Wix site is script-heavy; VisitNJ/Visit Somerset confirm farm activities, so keep for manual/browser-backed refresh before berry and fall festival seasons. Manual refresh 2026-06-11: reviewed farm homepage; no complete dated u-pick/family event was visible in the fetched page."
     },
     {
       "id": "modern-motion-somerset",
       "label": "Modern Motion",
       "type": "kids-dance-art-camps",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://modernmotion.org/",
       "eventsUrl": "https://modernmotion.org/summer",
@@ -3561,13 +3862,13 @@
       "address": "1 Railroad Avenue, Somerset, NJ 08873",
       "lat": 40.476872,
       "lng": -74.550447,
-      "notes": "Franklin Township nonprofit dance/art school with K-5 summer day camp, art, dance, and special-needs classes. Summer page lists hours and availability but not clear dated week starts in simple HTML; keep as manual_review."
+      "notes": "Franklin Township nonprofit dance/art school with K-5 summer day camp, art, dance, and special-needs classes. Summer page lists hours and availability but not clear dated week starts in simple HTML; keep as manual_review. Manual refresh 2026-06-11: reviewed summer camp page; it lists camp program information but no one-day public event row for import."
     },
     {
       "id": "millstone-valley-scenic-byway",
       "label": "Millstone Valley Scenic Byway",
       "type": "history-nature-family-programs",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.millstonevalley.org/",
       "eventsUrl": "https://www.millstonevalley.org/",
@@ -3575,13 +3876,13 @@
       "address": "Millstone Borough, NJ 08844",
       "lat": 40.499868,
       "lng": -74.595529,
-      "notes": "Historic/nature corridor serving Millstone and Franklin river communities. Official site says the 2026 season is coming soon and asks users to subscribe for events; keep for family history, byway, and preservation event refreshes."
+      "notes": "Historic/nature corridor serving Millstone and Franklin river communities. Official site says the 2026 season is coming soon and asks users to subscribe for events; keep for family history, byway, and preservation event refreshes. Manual refresh 2026-06-11: reviewed official site; no current complete dated family/history event row was visible."
     },
     {
       "id": "dr-canal-state-park-millstone",
       "label": "D&R Canal State Park - Millstone Valley",
       "type": "state-park-family-activities",
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://dep.nj.gov/parksandforests/state-park/dr-canal-state-park/",
       "eventsUrl": "https://dep.nj.gov/parksandforests/state-park/dr-canal-state-park/",
@@ -3589,7 +3890,7 @@
       "address": "Millstone Borough, NJ 08844",
       "lat": 40.499868,
       "lng": -74.595529,
-      "notes": "State park/towpath source for Millstone and East Millstone family walks, biking, history, and organized-event permit activity. Current DEP page is a park/activity source rather than a dated events feed; keep as manual_review and cross-check park/tourism event calendars."
+      "notes": "State park/towpath source for Millstone and East Millstone family walks, biking, history, and organized-event permit activity. Current DEP page is a park/activity source rather than a dated events feed; keep as manual_review and cross-check park/tourism event calendars. Manual refresh 2026-06-11: reviewed DEP page; it is a park/activity reference, not a dated events feed."
     },
     {
       "id": "essex-county-parks-calendar",
@@ -3601,8 +3902,8 @@
         "nature_center",
         "regional_event_directory"
       ],
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "service_area",
+      "parser": "covered-by-shared-source",
       "website": "https://essexcountyparks.org/",
       "eventsUrl": "https://essexcountyparks.org/calendar",
       "servesTownIds": [
@@ -3613,7 +3914,7 @@
         "irvington-township",
         "newark-city"
       ],
-      "notes": "Rediscovered 2026-06-11. Replaces duplicate per-town Essex fallback sources. Review county park calendar for family activities at South Mountain, Branch Brook, Weequahic, Irvington Park, Riker Hill, and nearby Essex facilities."
+      "notes": "Rediscovered 2026-06-11. Replaces duplicate per-town Essex fallback sources. Review county park calendar for family activities at South Mountain, Branch Brook, Weequahic, Irvington Park, Riker Hill, and nearby Essex facilities. Manual refresh 2026-06-11: covered by shared source essex-county-government, which is already importable from the same Essex County Parks calendar URL."
     },
     {
       "id": "paper-mill-playhouse",
@@ -3623,7 +3924,7 @@
       "sourceTypes": [
         "arts_center"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://papermill.org/",
       "eventsUrl": "https://papermill.org/",
@@ -3631,7 +3932,7 @@
       "address": "22 Brookside Drive, Millburn, NJ 07041",
       "lat": 40.728154,
       "lng": -74.309759,
-      "notes": "Rediscovered 2026-06-11. Official theater source with family/youth performances and education programs; inspect event pages before importing."
+      "notes": "Rediscovered 2026-06-11. Official theater source with family/youth performances and education programs; inspect event pages before importing. Manual refresh 2026-06-11: reviewed homepage; no family/youth event with complete date/time in the current 60-day window was visible in the fetched page."
     },
     {
       "id": "cora-hartshorn-arboretum",
@@ -3643,15 +3944,17 @@
         "farm_garden_arboretum",
         "nonprofit"
       ],
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "tribe-events-calendar",
       "website": "https://hartshornarboretum.org/",
       "eventsUrl": "https://hartshornarboretum.org/",
+      "eventEndpoint": "https://hartshornarboretum.org/wp-json/tribe/events/v1/events",
+      "maxPages": 3,
       "townId": "millburn-township",
       "address": "324 Forest Drive South, Short Hills, NJ 07078",
       "lat": 40.738965,
       "lng": -74.327175,
-      "notes": "Rediscovered 2026-06-11. Nature center/arboretum with children and family program potential; inspect events/program pages."
+      "notes": "Rediscovered 2026-06-11. Converted to Tribe Events Calendar API import on 2026-06-11; importer keeps family/nature/camp/workshop-style rows and skips unrelated listings."
     },
     {
       "id": "greenwood-gardens",
@@ -3662,7 +3965,7 @@
         "farm_garden_arboretum",
         "nonprofit"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://greenwoodgardens.org/",
       "eventsUrl": "https://greenwoodgardens.org/",
@@ -3670,7 +3973,7 @@
       "address": "274 Old Short Hills Road, Short Hills, NJ 07078",
       "lat": 40.740283,
       "lng": -74.312336,
-      "notes": "Rediscovered 2026-06-11. Public garden with seasonal family/garden events; inspect official event listings before importing."
+      "notes": "Rediscovered 2026-06-11. Public garden with seasonal family/garden events; inspect official event listings before importing. Manual refresh 2026-06-11: reviewed homepage; found garden hours/admission and program navigation, but no complete child/family event row in the current window."
     },
     {
       "id": "maplewood-village-alliance",
@@ -3680,12 +3983,12 @@
       "sourceTypes": [
         "downtown_sid_chamber"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://maplewoodvillagenj.com/",
       "eventsUrl": "https://maplewoodvillagenj.com/",
       "townId": "maplewood-township",
-      "notes": "Rediscovered 2026-06-11. Downtown/community event source; inspect for family-compatible street fairs, markets, and seasonal events."
+      "notes": "Rediscovered 2026-06-11. Downtown/community event source; inspect for family-compatible street fairs, markets, and seasonal events. Manual refresh 2026-06-11: reviewed homepage; no current dated public family event was visible in fetched text."
     },
     {
       "id": "springfield-avenue-partnership-maplewood",
@@ -3695,12 +3998,12 @@
       "sourceTypes": [
         "downtown_sid_chamber"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://springfieldavenue.com/",
       "eventsUrl": "https://springfieldavenue.com/",
       "townId": "maplewood-township",
-      "notes": "Rediscovered 2026-06-11. Business district/corridor source for community and family events."
+      "notes": "Rediscovered 2026-06-11. Business district/corridor source for community and family events. Manual refresh 2026-06-11: reviewed homepage; no complete dated public family event was visible in fetched text."
     },
     {
       "id": "maplewoodstock",
@@ -3710,12 +4013,12 @@
       "sourceTypes": [
         "regional_event_directory"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://maplewoodstock.com/",
       "eventsUrl": "https://maplewoodstock.com/",
       "townId": "maplewood-township",
-      "notes": "Rediscovered 2026-06-11. Annual community music/art festival; keep family-compatible event dates when posted."
+      "notes": "Rediscovered 2026-06-11. Annual community music/art festival; keep family-compatible event dates when posted. Manual refresh 2026-06-11: reviewed official festival homepage; July 11-12, 2026 dates are posted, but schedule/time details are not yet posted for event import."
     },
     {
       "id": "childrens-theatre-of-livingston",
@@ -3726,12 +4029,12 @@
         "arts_center",
         "nonprofit"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.childrenstheatreoflivingston.org/",
       "eventsUrl": "https://www.childrenstheatreoflivingston.org/",
       "townId": "livingston-township",
-      "notes": "Rediscovered 2026-06-11. Youth theater source; inspect productions, auditions, and family performances before importing."
+      "notes": "Rediscovered 2026-06-11. Youth theater source; inspect productions, auditions, and family performances before importing. Manual refresh 2026-06-11: reviewed official site; no current production/performance date-time row was visible in fetched text."
     },
     {
       "id": "sopac",
@@ -3741,12 +4044,87 @@
       "sourceTypes": [
         "arts_center"
       ],
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-regional-events",
       "website": "https://www.sopacnow.org/",
       "eventsUrl": "https://www.sopacnow.org/events/",
       "townId": "south-orange-village-township",
-      "notes": "Rediscovered 2026-06-11. Performing arts center; filter for family, youth, and all-ages shows only."
+      "notes": "Rediscovered 2026-06-11. Performing arts center; filter for family, youth, and all-ages shows only. Manual refresh 2026-06-11: converted to configured import from the official events page; added youth/family-compatible performance and free Summer Nights concerts with visible dates/times.",
+      "parserVersion": "2026-06-11",
+      "configuredEvents": [
+        {
+          "date": "2026-06-13",
+          "startTime": "18:00",
+          "endTime": "20:00",
+          "title": "Zawadi African Dance & Drum 32nd Annual Spring Concert",
+          "venue": "South Orange Performing Arts Center",
+          "address": "1 SOPAC Way, South Orange, NJ 07079",
+          "lat": 40.74558,
+          "lng": -74.260517,
+          "category": "arts-performance",
+          "ages": [
+            "family",
+            "teen"
+          ],
+          "registration": "Tickets",
+          "url": "https://www.sopacnow.org/events/",
+          "summary": "Multi-generational West African dance concert performed by youth, teens, adults, and live musicians."
+        },
+        {
+          "date": "2026-07-01",
+          "startTime": "19:30",
+          "endTime": "21:00",
+          "title": "South Orange Summer Nights: Essex Funk Soul Collective",
+          "venue": "Flood's Hill in Meadowland Park",
+          "address": "North Ridgewood Road and Mead Street, South Orange, NJ 07079",
+          "lat": 40.750271,
+          "lng": -74.262482,
+          "category": "outdoor-concert",
+          "ages": [
+            "family"
+          ],
+          "cost": 0,
+          "registration": "Not required",
+          "url": "https://www.sopacnow.org/events/",
+          "summary": "Free community concert at Floods Hill in Meadowland Park presented by SOPAC and South Orange Village."
+        },
+        {
+          "date": "2026-07-08",
+          "startTime": "19:30",
+          "endTime": "21:00",
+          "title": "South Orange Summer Nights: Forget The Whale",
+          "venue": "Flood's Hill in Meadowland Park",
+          "address": "North Ridgewood Road and Mead Street, South Orange, NJ 07079",
+          "lat": 40.750271,
+          "lng": -74.262482,
+          "category": "outdoor-concert",
+          "ages": [
+            "family"
+          ],
+          "cost": 0,
+          "registration": "Not required",
+          "url": "https://www.sopacnow.org/events/",
+          "summary": "Free community concert at Floods Hill in Meadowland Park presented by SOPAC and South Orange Village."
+        },
+        {
+          "date": "2026-07-15",
+          "startTime": "19:30",
+          "endTime": "21:00",
+          "title": "South Orange Summer Nights: Water Towers",
+          "venue": "Flood's Hill in Meadowland Park",
+          "address": "North Ridgewood Road and Mead Street, South Orange, NJ 07079",
+          "lat": 40.750271,
+          "lng": -74.262482,
+          "category": "outdoor-concert",
+          "ages": [
+            "family"
+          ],
+          "cost": 0,
+          "registration": "Not required",
+          "url": "https://www.sopacnow.org/events/",
+          "summary": "Free all-ages outdoor concert at Floods Hill in Meadowland Park."
+        }
+      ]
     },
     {
       "id": "south-orange-village-center-alliance",
@@ -3756,12 +4134,12 @@
       "sourceTypes": [
         "downtown_sid_chamber"
       ],
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.sovillagecenter.org/",
       "eventsUrl": "https://www.sovillagecenter.org/",
       "townId": "south-orange-village-township",
-      "notes": "Rediscovered 2026-06-11. Downtown event source for family-compatible community events."
+      "notes": "Rediscovered 2026-06-11. Downtown event source for family-compatible community events. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "irvington-chamber-reference",
@@ -3849,8 +4227,8 @@
         "county_parks",
         "regional_event_directory"
       ],
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "service_area",
+      "parser": "covered-by-shared-source",
       "website": "https://ucnj.org/",
       "eventsUrl": "https://ucnj.org/calendar/",
       "servesTownIds": [
@@ -3870,7 +4248,7 @@
         "union-township",
         "hillside-township"
       ],
-      "notes": "Rediscovered 2026-06-11. Replaces duplicate per-town Union County fallback sources. Review for family-compatible county parks, cultural, seasonal, and community events mapped to covered towns."
+      "notes": "Rediscovered 2026-06-11. Replaces duplicate per-town Union County fallback sources. Review for family-compatible county parks, cultural, seasonal, and community events mapped to covered towns. Manual refresh 2026-06-11: covered by shared source union-county-government, which is already importable from the same official Union County calendar URL."
     },
     {
       "id": "downtown-cranford-events",
@@ -3880,12 +4258,12 @@
       "sourceTypes": [
         "downtown_sid_chamber"
       ],
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://downtowncranford.org/",
       "eventsUrl": "https://downtowncranford.org/events/",
       "townId": "cranford-township",
-      "notes": "Rediscovered 2026-06-11. Downtown calendar has family-compatible events such as music, kids days, markets, and seasonal events; inspect official entries before importing."
+      "notes": "Rediscovered 2026-06-11. Downtown calendar has family-compatible events such as music, kids days, markets, and seasonal events; inspect official entries before importing. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "somerset-county-parks-family-calendar",
@@ -3897,8 +4275,8 @@
         "nature_center",
         "regional_event_directory"
       ],
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "service_area",
+      "parser": "covered-by-shared-source",
       "website": "https://www.somersetcountyparks.org/",
       "eventsUrl": "https://www.somersetcountyparks.org/",
       "servesTownIds": [
@@ -3918,7 +4296,7 @@
         "franklin-township",
         "branchburg-township"
       ],
-      "notes": "Rediscovered 2026-06-11. Shared Somerset County parks source replacing duplicate per-town fallback rows. Review county parks and environmental education programs for family-compatible activities."
+      "notes": "Rediscovered 2026-06-11. Shared Somerset County parks source replacing duplicate per-town fallback rows. Review county parks and environmental education programs for family-compatible activities. Manual refresh 2026-06-11: covered by existing Somerset County Government/EEC/importable park-related sources; direct park pages were Cloudflare-blocked in shell."
     },
     {
       "id": "watchung-arts-center",
@@ -3929,12 +4307,12 @@
         "arts_center",
         "camp_provider"
       ],
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://watchungarts.org/",
       "eventsUrl": "https://watchungarts.org/",
       "townId": "watchung-borough",
-      "notes": "Rediscovered 2026-06-11. Official arts center with children/preteen/teen classes and summer art camp; import dated kid/family programs only."
+      "notes": "Rediscovered 2026-06-11. Official arts center with children/preteen/teen classes and summer art camp; import dated kid/family programs only. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "brook-arts-center",
@@ -3944,12 +4322,12 @@
       "sourceTypes": [
         "arts_center"
       ],
-      "status": "manual_review",
+      "status": "blocked_by_bot_protection",
       "parser": "manual",
       "website": "https://www.brookarts.org/",
       "eventsUrl": "https://www.brookarts.org/",
       "townId": "bound-brook-borough",
-      "notes": "Rediscovered 2026-06-11. Bound Brook arts/theater venue; filter for family/kid-suitable shows."
+      "notes": "Rediscovered 2026-06-11. Bound Brook arts/theater venue; filter for family/kid-suitable shows. Manual refresh 2026-06-11: direct fetch was blocked or failed, so keep for browser-backed/manual refresh instead of event import."
     },
     {
       "id": "abraham-staats-house",
@@ -3961,12 +4339,12 @@
         "museum",
         "community_center"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.staatshouse.org/",
       "eventsUrl": "https://www.staatshouse.org/",
       "townId": "south-bound-brook-borough",
-      "notes": "Rediscovered 2026-06-11. Historic site with 2026 events calendar/open houses/community events; exclude adult-only or unsuitable rows."
+      "notes": "Rediscovered 2026-06-11. Historic site with 2026 events calendar/open houses/community events; exclude adult-only or unsuitable rows. Manual refresh 2026-06-11: official June open houses were reviewed but left out because routine open-house rows are filtered as non-event/open-hours; the paid June paranormal listing is already covered by the importable Visit Somerset feed."
     },
     {
       "id": "ross-farm-events",
@@ -3978,12 +4356,14 @@
         "arts_center",
         "community_center"
       ],
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "tribe-events-calendar",
       "website": "https://rossfarm.org/",
       "eventsUrl": "https://rossfarm.org/events/",
+      "eventEndpoint": "https://rossfarm.org/wp-json/tribe/events/v1/events",
+      "maxPages": 3,
       "townId": "bernards-township",
-      "notes": "Rediscovered 2026-06-11. Official events page has dated 2026 events; keep family-compatible community/arts/history events."
+      "notes": "Rediscovered 2026-06-11. Converted to Tribe Events Calendar API import on 2026-06-11; importer keeps family-compatible community, arts, history, festival, concert, and workshop rows."
     },
     {
       "id": "somerset-patriots-promotions",
@@ -3994,12 +4374,12 @@
         "sports_complex",
         "regional_event_directory"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.milb.com/somerset",
       "eventsUrl": "https://www.milb.com/somerset/tickets/promotions",
       "townId": "bridgewater-township",
-      "notes": "Rediscovered 2026-06-11. Official MiLB promotions source with family sports promotions, Kids Club, scout nights, and field trips; import only family-compatible dated events."
+      "notes": "Rediscovered 2026-06-11. Official MiLB promotions source with family sports promotions, Kids Club, scout nights, and field trips; import only family-compatible dated events. Manual refresh 2026-06-11: reviewed promotions page; no complete family promotion date/time rows were visible in fetched text."
     },
     {
       "id": "downtown-metuchen-events",
@@ -4009,12 +4389,14 @@
       "sourceTypes": [
         "downtown_sid_chamber"
       ],
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "tribe-events-calendar",
       "website": "https://www.downtownmetuchen.org/",
       "eventsUrl": "https://www.downtownmetuchen.org/events",
+      "eventEndpoint": "https://downtownmetuchen.org/wp-json/tribe/events/v1/events",
+      "maxPages": 4,
       "townId": "metuchen-borough",
-      "notes": "Rediscovered 2026-06-11. Downtown/community event source; keep family-compatible street fairs, concerts, markets, and seasonal events."
+      "notes": "Rediscovered 2026-06-11. Converted to Tribe Events Calendar API import on 2026-06-11; importer filters out meetings and keeps family-compatible downtown rows such as Kids Takeover, celebrations, concerts, markets, and festivals."
     },
     {
       "id": "main-street-highland-park",
@@ -4024,12 +4406,12 @@
       "sourceTypes": [
         "downtown_sid_chamber"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.mainstreethp.org/",
       "eventsUrl": "https://www.mainstreethp.org/events",
       "townId": "highland-park-borough",
-      "notes": "Rediscovered 2026-06-11. Downtown/business district source for markets, festivals, and family-compatible community events."
+      "notes": "Rediscovered 2026-06-11. Downtown/business district source for markets, festivals, and family-compatible community events. Manual refresh 2026-06-11: reviewed events URL; it returned a 404 page, so no current importable downtown event was available."
     },
     {
       "id": "state-theatre-new-jersey",
@@ -4039,15 +4421,78 @@
       "sourceTypes": [
         "arts_center"
       ],
-      "status": "manual_review",
-      "parser": "manual",
+      "status": "importable",
+      "parser": "configured-regional-events",
       "website": "https://www.stnj.org/",
       "eventsUrl": "https://www.stnj.org/events/",
       "townId": "new-brunswick-city",
       "address": "15 Livingston Avenue, New Brunswick, NJ 08901",
       "lat": 40.493965,
       "lng": -74.444147,
-      "notes": "Rediscovered 2026-06-11. Official performing arts venue with family shows and education programs; import only kid/family-compatible events."
+      "notes": "Rediscovered 2026-06-11. Official performing arts venue with family shows and education programs; import only kid/family-compatible events. Manual refresh 2026-06-11: converted to configured import from official event pages/listing JSON-LD; added family theater and free summer movie rows.",
+      "parserVersion": "2026-06-11",
+      "configuredEvents": [
+        {
+          "date": "2026-06-16",
+          "startTime": "18:00",
+          "endTime": "20:00",
+          "title": "Bluey's Big Play",
+          "category": "family-theater",
+          "ages": [
+            "family",
+            "kids"
+          ],
+          "cost": 39.5,
+          "registration": "Tickets",
+          "url": "https://www.stnj.org/events/detail/blueys-big-play-2026",
+          "summary": "Live Bluey stage show from the official State Theatre family-series listing."
+        },
+        {
+          "date": "2026-07-07",
+          "startTime": "10:30",
+          "endTime": "12:30",
+          "title": "Free Summer Movie: A Minecraft Movie",
+          "category": "family-film",
+          "ages": [
+            "family",
+            "kids"
+          ],
+          "cost": 0,
+          "registration": "Reserve free tickets",
+          "url": "https://www.stnj.org/events/detail/minecraft-movie",
+          "summary": "Free summer movie screening; official detail page also lists a 6:30 PM screening with free movie-themed arts and crafts beginning at 5:30 PM."
+        },
+        {
+          "date": "2026-07-14",
+          "startTime": "10:30",
+          "endTime": "12:30",
+          "title": "Free Summer Movie: Lilo & Stitch",
+          "category": "family-film",
+          "ages": [
+            "family",
+            "kids"
+          ],
+          "cost": 0,
+          "registration": "Reserve free tickets",
+          "url": "https://www.stnj.org/events/detail/lilo-and-stitch",
+          "summary": "Free summer movie screening; official detail page also lists a 6:30 PM screening with free movie-themed arts and crafts beginning at 5:30 PM."
+        },
+        {
+          "date": "2026-07-21",
+          "startTime": "10:30",
+          "endTime": "12:30",
+          "title": "Free Summer Movie: Zootopia 2",
+          "category": "family-film",
+          "ages": [
+            "family",
+            "kids"
+          ],
+          "cost": 0,
+          "registration": "Reserve free tickets",
+          "url": "https://www.stnj.org/events/detail/zootopia2",
+          "summary": "Free summer movie screening; official detail page also lists a 6:30 PM screening with free movie-themed arts and crafts beginning at 5:30 PM."
+        }
+      ]
     },
     {
       "id": "zimmerli-art-museum-events",
@@ -4058,7 +4503,7 @@
         "museum",
         "arts_center"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://zimmerli.rutgers.edu/",
       "eventsUrl": "https://zimmerli.rutgers.edu/events",
@@ -4066,7 +4511,7 @@
       "address": "71 Hamilton Street, New Brunswick, NJ 08901",
       "lat": 40.500786,
       "lng": -74.445469,
-      "notes": "Rediscovered 2026-06-11. Rutgers art museum event source; filter for family days, youth workshops, and all-ages museum events."
+      "notes": "Rediscovered 2026-06-11. Rutgers art museum event source; filter for family days, youth workshops, and all-ages museum events. Manual refresh 2026-06-11: reviewed events page; current visible row was a general Highlights Tour rather than a family/youth event."
     },
     {
       "id": "rutgers-geology-museum",
@@ -4077,7 +4522,7 @@
         "museum",
         "science_center"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://geologymuseum.rutgers.edu/",
       "eventsUrl": "https://geologymuseum.rutgers.edu/",
@@ -4085,7 +4530,7 @@
       "address": "85 Somerset Street, New Brunswick, NJ 08901",
       "lat": 40.499552,
       "lng": -74.445699,
-      "notes": "Rediscovered 2026-06-11. Rutgers science museum source; check public events, family days, and educational programs."
+      "notes": "Rediscovered 2026-06-11. Rutgers science museum source; check public events, family days, and educational programs. Manual refresh 2026-06-11: reviewed museum homepage; no complete current public family event date/time was visible."
     },
     {
       "id": "madison-main-street-events",
@@ -4095,12 +4540,383 @@
       "sourceTypes": [
         "downtown_sid_chamber"
       ],
-      "status": "manual_review",
+      "status": "reference_only",
       "parser": "manual",
       "website": "https://www.madisonmainstreet.com/",
       "eventsUrl": "https://www.madisonmainstreet.com/events",
       "townId": "madison-borough",
-      "notes": "Rediscovered 2026-06-11. Downtown source for family-compatible community events, markets, and seasonal programming."
+      "notes": "Rediscovered 2026-06-11. Downtown source for family-compatible community events, markets, and seasonal programming. Manual refresh 2026-06-11: reviewed events URL; it returned a 404 page, so no current importable downtown event was available."
+    },
+    {
+      "id": "duke-farms-programs",
+      "label": "Duke Farms Programs",
+      "type": "nature-center-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.dukefarms.org/",
+      "eventsUrl": "https://www.dukefarms.org/events/category/programs/list/",
+      "townId": "hillsborough-township",
+      "address": "1112 Dukes Parkway West, Hillsborough Township, NJ 08844",
+      "lat": 40.546356644386,
+      "lng": -74.622936975052,
+      "tier": 2,
+      "sourceTypes": [
+        "nature_center",
+        "farm_garden",
+        "outdoor_activity",
+        "regional_event_directory"
+      ],
+      "configuredEvents": [
+        {
+          "title": "Birds of Duke Farms",
+          "date": "2026-06-12",
+          "startTime": "16:00",
+          "endTime": "17:30",
+          "registration": "Required",
+          "url": "https://www.dukefarms.org/event/birds-of-duke-farms/",
+          "summary": "Guided birdwatching walk with a seasonal educator to identify common birds around Duke Farms and log observations with eBird.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "nature",
+            "birds",
+            "guided-walk",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Tick Talk: Let's Talk Ticks",
+          "date": "2026-06-25",
+          "startTime": "18:00",
+          "endTime": "19:00",
+          "registration": "Required",
+          "url": "https://www.dukefarms.org/event/tick-talk-lets-talk-ticks/",
+          "summary": "Educational program about tick facts, prevention, and local research from Rutgers Center for Vector Biology.",
+          "ages": [
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "nature",
+            "science",
+            "health",
+            "official-page"
+          ]
+        },
+        {
+          "title": "An Evening Chat with Bats",
+          "date": "2026-06-25",
+          "startTime": "20:00",
+          "endTime": "21:30",
+          "registration": "Required",
+          "url": "https://www.dukefarms.org/event/an-evening-chat-with-bats/",
+          "summary": "Nighttime walk to observe bats, listen to their calls, and learn about the ecological roles bats perform.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "nature",
+            "bats",
+            "guided-walk",
+            "night-program",
+            "official-page"
+          ]
+        },
+        {
+          "title": "A Frolic with Fireflies",
+          "date": "2026-07-10",
+          "startTime": "20:00",
+          "endTime": "22:00",
+          "registration": "Required",
+          "url": "https://www.dukefarms.org/event/a-frolic-with-fireflies/",
+          "summary": "Evening meadow and woods walk to watch fireflies glow and learn about these summer insects.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "nature",
+            "fireflies",
+            "guided-walk",
+            "night-program",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Nighttime Moth Walk",
+          "date": "2026-07-17",
+          "startTime": "20:00",
+          "endTime": "21:30",
+          "registration": "Required",
+          "url": "https://www.dukefarms.org/event/nighttime-moth-walk/",
+          "summary": "Nighttime walk with an educator to search for local moth species and see them up close.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "nature",
+            "moths",
+            "guided-walk",
+            "night-program",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Nighttime Moth Walk for National Moth Week",
+          "date": "2026-07-24",
+          "startTime": "20:00",
+          "endTime": "21:30",
+          "registration": "Required",
+          "url": "https://www.dukefarms.org/event/nighttime-moth-walk-for-national-moth-week/",
+          "summary": "National Moth Week nighttime walk to look for moth species and learn how they compare with butterflies.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "nature",
+            "moths",
+            "guided-walk",
+            "night-program",
+            "official-page"
+          ]
+        }
+      ],
+      "notes": "Added 2026-06-11 from the official Duke Farms programs list. Configured rows focus on public family-compatible nature programs inside the current 60-day window and skip routine open-hours rows, adult policy talks, member-only events, and book-club rows."
+    },
+    {
+      "id": "mpac-free-summer-arts",
+      "label": "Mayo Performing Arts Center Free Summer Arts",
+      "type": "performing-arts-community-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.mayoarts.org/",
+      "eventsUrl": "https://www.mayoarts.org/community-engagement/free-summer-events/",
+      "townId": "morristown-town",
+      "tier": 2,
+      "sourceTypes": [
+        "performing_arts",
+        "downtown_events",
+        "community_event"
+      ],
+      "configuredEvents": [
+        {
+          "title": "Free Summer Event: Bollywood Dance Party with DJ Arjun",
+          "date": "2026-06-16",
+          "startTime": "18:00",
+          "endTime": "19:30",
+          "registration": "No ticket needed",
+          "cost": "Free",
+          "url": "https://www.mayoarts.org/shows/free-summer-event-bollywood-dance-party-with-dj-arjun/",
+          "venue": "Pioneer Park at Headquarters Plaza",
+          "address": "3 Speedwell Ave, Morristown, NJ 07960",
+          "townId": "morristown-town",
+          "lat": 40.799307657448,
+          "lng": -74.481215593034,
+          "summary": "Outdoor Bollywood dance party with DJ Arjun and B2Z Dance School, including Indian dance instruction, music, and henna art.",
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "dance",
+            "music",
+            "outdoor",
+            "free",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Free Summer Event: Salsa at Sunset",
+          "date": "2026-07-14",
+          "startTime": "18:00",
+          "endTime": "19:30",
+          "registration": "No ticket needed",
+          "cost": "Free",
+          "url": "https://www.mayoarts.org/shows/free-summer-event-salsa-at-sunset/",
+          "venue": "Pioneer Park at Headquarters Plaza",
+          "address": "3 Speedwell Ave, Morristown, NJ 07960",
+          "townId": "morristown-town",
+          "lat": 40.799307657448,
+          "lng": -74.481215593034,
+          "summary": "Outdoor salsa dance event with a DJ, Latin rhythms, and dance instruction for attendees to learn the steps.",
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "dance",
+            "music",
+            "outdoor",
+            "free",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Free Summer Event: Country Line Dancing with Paul Stoddard",
+          "date": "2026-07-28",
+          "startTime": "18:00",
+          "endTime": "19:30",
+          "registration": "No ticket needed",
+          "cost": "Free",
+          "url": "https://www.mayoarts.org/shows/free-summer-event-country-line-dancing-with-paul-stoddard/",
+          "venue": "Pioneer Park at Headquarters Plaza",
+          "address": "3 Speedwell Ave, Morristown, NJ 07960",
+          "townId": "morristown-town",
+          "lat": 40.799307657448,
+          "lng": -74.481215593034,
+          "summary": "Outdoor country line dancing event with instructor and DJ Paul Stoddard, welcoming experienced dancers and beginners.",
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "dance",
+            "music",
+            "outdoor",
+            "free",
+            "official-page"
+          ]
+        },
+        {
+          "title": "Free Summer Event: Joshua Van Ness and Garrett Lash",
+          "date": "2026-08-04",
+          "startTime": "18:00",
+          "endTime": "19:30",
+          "registration": "No ticket needed",
+          "cost": "Free",
+          "url": "https://www.mayoarts.org/shows/free-summer-event-joshua-van-ness/",
+          "venue": "The Vail Mansion",
+          "address": "110 South St, Morristown, NJ 07960",
+          "townId": "morristown-town",
+          "lat": 40.793537092922,
+          "lng": -74.477676507548,
+          "summary": "Outdoor singer-songwriter performance with Joshua Van Ness and Garrett Lash as part of MPAC Arts in the Community.",
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "music",
+            "outdoor",
+            "free",
+            "official-page"
+          ]
+        }
+      ],
+      "notes": "Added 2026-06-11 from official MPAC event pages. Configured events use the exact visible dates, 6 PM start times, free/no-ticket labels, official rain-site notes as source context, and Morristown outdoor venue addresses."
+    },
+    {
+      "id": "whippany-railway-museum-excursions",
+      "label": "Whippany Railway Museum Excursions",
+      "type": "railway-museum-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://whippanyrailwaymuseum.net/",
+      "eventsUrl": "https://whippanyrailwaymuseum.net/events/",
+      "townId": "hanover-township",
+      "address": "1 Railroad Plaza, Whippany, NJ 07981",
+      "lat": 40.821433574949,
+      "lng": -74.412430621219,
+      "tier": 2,
+      "sourceTypes": [
+        "museum",
+        "historic_site",
+        "family_activity"
+      ],
+      "configuredEvents": [
+        {
+          "title": "Father's Day Excursion Train Rides",
+          "date": "2026-06-21",
+          "startTime": "13:00",
+          "endTime": "16:00",
+          "timeLabel": "Trips at 1, 2, 3, and 4 PM; museum open noon-4 PM",
+          "registration": "Advance tickets online; remaining tickets first come, first served",
+          "cost": "Children $13-$25; adults $18-$26 depending on seating; infants on laps free",
+          "url": "https://whippanyrailwaymuseum.net/events/fathers-day/",
+          "summary": "Father's Day excursion train rides with caboose and premium railcar seating, plus museum admission, railroad and steamship memorabilia, model trains, and gift shop access.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "train",
+            "museum",
+            "father-day",
+            "family",
+            "official-page"
+          ]
+        }
+      ],
+      "notes": "Added 2026-06-11 from the official Whippany Railway Museum event page. Page lists June 21 trips at 1, 2, 3, and 4 PM and museum access from noon to 4 PM."
+    },
+    {
+      "id": "chester-recreation-special-events",
+      "label": "Chester Recreation Special Events",
+      "type": "municipal-recreation-special-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://chesterrecreationnj.org/",
+      "eventsUrl": "https://chesterrecreationnj.org/events/",
+      "townId": "chester-borough",
+      "address": "134 Main Street, Chester, NJ 07930",
+      "lat": 40.781875968269,
+      "lng": -74.70338929874,
+      "tier": 1,
+      "sourceTypes": [
+        "municipal_recreation",
+        "community_event",
+        "festival"
+      ],
+      "configuredEvents": [
+        {
+          "title": "Chester 250 Day",
+          "date": "2026-06-14",
+          "startTime": "12:00",
+          "endTime": "19:00",
+          "registration": "Drop-in",
+          "url": "https://chesterborough.org/resident/calendar/chester-250-day",
+          "venue": "Municipal Field",
+          "address": "134 Main Street, Chester, NJ 07930",
+          "townId": "chester-borough",
+          "lat": 40.781875968269,
+          "lng": -74.70338929874,
+          "summary": "Once-in-a-century Chester 250 community celebration at Municipal Field, gathered from the official Chester recreation event page and borough calendar raw feed.",
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "festival",
+            "community",
+            "america-250",
+            "official-page"
+          ]
+        }
+      ],
+      "notes": "Added 2026-06-11. Chester Recreation page announces Chester 250 on Sunday, June 14, 2026; official Chester Borough DPCalendar raw feed gives the noon-7 PM time window."
     }
   ],
   "towns": [
@@ -6989,14 +7805,38 @@
         {
           "name": "Westfield Memorial Library",
           "website": "https://wmlnj.org/",
-          "eventsUrl": "https://events.wmlnj.org/",
-          "status": "manual_review",
+          "eventsUrl": "https://events.wmlnj.org/calendar",
+          "status": "importable",
           "townId": "westfield-town",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Rediscovered 2026-06-11. Official library events site with children and teen event categories; inspect endpoint before importing."
+          "notes": "Rediscovered 2026-06-11. Official library events site with children and teen event categories; inspect endpoint before importing. Converted to importable on 2026-06-11 using LibCal calendar 15909 and youth/family audience filters.",
+          "parser": "libcal-list",
+          "parserVersion": "2026-06-11",
+          "address": "550 East Broad Street, Westfield, NJ 07090",
+          "lat": 40.6565116207,
+          "lng": -74.342953121533,
+          "lastCheckedAt": "2026-06-11",
+          "siteId": "5657",
+          "calendarIds": [
+            "15909"
+          ],
+          "audienceIds": [
+            "4601",
+            "4603",
+            "8061",
+            "11461"
+          ],
+          "locations": [
+            {
+              "name": "Westfield Memorial Library",
+              "address": "550 East Broad Street, Westfield, NJ 07090",
+              "lat": 40.6565116207,
+              "lng": -74.342953121533
+            }
+          ]
         }
       ]
     },
@@ -7243,6 +8083,49 @@
       ]
     },
     {
+      "id": "bernardsville-borough",
+      "name": "Bernardsville borough",
+      "county": "Somerset",
+      "zipCodes": [
+        "07924"
+      ],
+      "geoid": "3403505590",
+      "center": {
+        "lat": 40.730384,
+        "lng": -74.592602
+      },
+      "distanceMiles": 9.4,
+      "municipal": {
+        "website": "https://bernardsville.gov/",
+        "eventsUrl": "https://bernardsville.gov/resident/calendar",
+        "recreationUrl": "https://bernardsville.gov/departments/recreation",
+        "status": "importable",
+        "parser": "joomla-dpcalendar-raw",
+        "itemId": "965",
+        "rawEventsUrl": "https://bernardsville.gov/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "defaultVenueName": "Bernardsville Borough event",
+        "defaultAddress": "166 Mine Brook Road, Bernardsville, NJ 07924",
+        "notes": "Added 2026-06-11. Official borough calendar uses Joomla DPCalendar and exposes the raw events endpoint; importer should keep family/community events and skip meetings, recycling, and municipal service rows."
+      },
+      "libraries": [
+        {
+          "name": "Bernardsville Public Library",
+          "website": "https://www.bernardsvillelibrary.org/",
+          "eventsUrl": "https://www.bernardsvillelibrary.org/events",
+          "status": "manual_review",
+          "townId": "bernardsville-borough",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Bernardsville library is outside SCLSNJ; inspect MAIN/library event endpoints and youth/family filters before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 new-town sweep added official borough calendar, recreation page, and Bernardsville Public Library. Existing Visit Somerset regional events already map Bernardsville Farmers Market rows to this town when townId coverage is available; keep downtown/farmers-market and local cultural venues under rediscovery."
+      ]
+    },
+    {
       "id": "garwood-borough",
       "name": "Garwood borough",
       "county": "Union",
@@ -7298,14 +8181,47 @@
         {
           "name": "Clark Public Library",
           "website": "https://www.clarklibrary.org/",
-          "eventsUrl": "https://clarkpl.librarycalendar.com/",
-          "status": "manual_review",
+          "eventsUrl": "https://clarkpl.librarycalendar.com/events/month",
+          "status": "importable",
           "townId": "clark-township",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Rediscovered 2026-06-11. Official librarycalendar source with kids/teens categories; candidate for librarycalendar parser."
+          "notes": "Rediscovered 2026-06-11. Official librarycalendar source with kids/teens categories; candidate for librarycalendar parser. Converted to importable on 2026-06-11. Official clarkpl.librarycalendar.com page exposes LibraryCalendar event cards with child/tween/teen audience indicators.",
+          "parser": "librarycalendar-list",
+          "parserVersion": "2026-06-11",
+          "idPrefix": "clark-library",
+          "address": "303 Westfield Avenue, Clark, NJ 07066",
+          "lat": 40.622068537352,
+          "lng": -74.310117054956,
+          "locations": [
+            {
+              "name": "Clark Public Library",
+              "address": "303 Westfield Avenue, Clark, NJ 07066",
+              "lat": 40.622068537352,
+              "lng": -74.310117054956
+            },
+            {
+              "name": "Children's Activity Room",
+              "aliases": [
+                "Children's Activity Room at Clark Public Library"
+              ],
+              "address": "303 Westfield Avenue, Clark, NJ 07066",
+              "lat": 40.622068537352,
+              "lng": -74.310117054956
+            },
+            {
+              "name": "Ayers Room",
+              "aliases": [
+                "Ayers Room at Clark Public Library"
+              ],
+              "address": "303 Westfield Avenue, Clark, NJ 07066",
+              "lat": 40.622068537352,
+              "lng": -74.310117054956
+            }
+          ],
+          "lastCheckedAt": "2026-06-11"
         }
       ]
     },
@@ -7421,6 +8337,120 @@
       ],
       "sourceSweepNotes": [
         "2026-06-09 Somerset new-town sweep added Millstone Valley Scenic Byway and D&R Canal State Park - Millstone Valley in regionalSources. No in-borough commercial kids venue, museum calendar, farm event feed, or downtown/SID source was found during this pass."
+      ]
+    },
+    {
+      "id": "peapack-and-gladstone-borough",
+      "name": "Peapack and Gladstone borough",
+      "county": "Somerset",
+      "zipCodes": [
+        "07934",
+        "07977"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Gladstone",
+          "zip": "07934"
+        },
+        {
+          "name": "Peapack",
+          "zip": "07977"
+        }
+      ],
+      "geoid": "3403557300",
+      "center": {
+        "lat": 40.715782,
+        "lng": -74.654054
+      },
+      "distanceMiles": 10.9,
+      "municipal": {
+        "website": "https://www.peapackgladstone.org/",
+        "eventsUrl": "https://www.peapackgladstone.org/resident/calendar",
+        "recreationUrl": "https://www.peapackgladstone.org/departments/recreation",
+        "status": "importable",
+        "parser": "joomla-dpcalendar-raw",
+        "itemId": "965",
+        "rawEventsUrl": "https://www.peapackgladstone.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "defaultVenueName": "Peapack and Gladstone Borough event",
+        "defaultAddress": "1 School Street, Peapack, NJ 07977",
+        "notes": "Added 2026-06-11. Official borough calendar uses Joomla DPCalendar and exposes the raw events endpoint; importer should keep family/community events and skip meetings, recycling, and municipal service rows."
+      },
+      "libraries": [
+        {
+          "name": "Peapack and Gladstone Library",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "branchId": "476",
+          "status": "importable",
+          "address": "1 School St., Peapack, NJ 07977",
+          "lat": 40.7171066,
+          "lng": -74.6593562
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 new-town sweep added official borough calendar, recreation page, and in-town SCLSNJ branch. Continue rediscovery for USET/equestrian, local school/community, and seasonal downtown sources."
+      ]
+    },
+    {
+      "id": "bedminster-township",
+      "name": "Bedminster township",
+      "county": "Somerset",
+      "zipCodes": [
+        "07921",
+        "07931",
+        "07934",
+        "07979"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Bedminster",
+          "zip": "07921"
+        },
+        {
+          "name": "Far Hills mailing area",
+          "zip": "07931"
+        },
+        {
+          "name": "Gladstone mailing area",
+          "zip": "07934"
+        },
+        {
+          "name": "Pottersville",
+          "zip": "07979"
+        }
+      ],
+      "geoid": "3403504450",
+      "center": {
+        "lat": 40.673089,
+        "lng": -74.686325
+      },
+      "distanceMiles": 10.9,
+      "municipal": {
+        "website": "https://www.bedminster.us/",
+        "eventsUrl": "https://www.bedminster.us/government/calendar",
+        "recreationUrl": "https://www.bedminster.us/services/recreation_department",
+        "status": "manual_review",
+        "defaultVenueName": "Bedminster Township event",
+        "defaultAddress": "1 Miller Lane, Bedminster, NJ 07921",
+        "notes": "Added 2026-06-11. Official calendar is published on the township site, but no stable raw feed was confirmed during initial discovery; keep manual review until a parser is identified."
+      },
+      "libraries": [
+        {
+          "name": "Clarence Dillon Public Library",
+          "website": "https://www.clarencedillonpl.org/",
+          "eventsUrl": "https://www.clarencedillonpl.org/",
+          "status": "manual_review",
+          "townId": "bedminster-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Independent public library source; inspect event/calendar endpoint and youth/family filters before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 new-town sweep added official township calendar, recreation registration link, Clarence Dillon Public Library, and noted township community pages for Center for Contemporary Art, Jacobus Vanderveer House, Fall Fest, Somerset Hills Youth Services Municipal Alliance, and therapeutic recreation as follow-up sources."
       ]
     },
     {
@@ -7706,6 +8736,641 @@
       ]
     },
     {
+      "id": "mendham-borough",
+      "name": "Mendham borough",
+      "county": "Morris",
+      "zipCodes": [
+        "07945"
+      ],
+      "geoid": "3402745330",
+      "center": {
+        "lat": 40.76729,
+        "lng": -74.597766
+      },
+      "distanceMiles": 11.7,
+      "municipal": {
+        "website": "https://www.mendhamnj.org/",
+        "eventsUrl": "https://www.mendhamnj.org/cn/EventsCalendar?tpid=9674",
+        "recreationUrl": "https://www.mendhamnj.org/cn/webpage.cfm?tpid=12582",
+        "status": "manual_review",
+        "defaultVenueName": "Mendham Borough event",
+        "defaultAddress": "2 West Main Street, Mendham, NJ 07945",
+        "notes": "Added 2026-06-11. Official borough site exposes EventsCalendar and Recreation Programs/Events pages, but no stable importer is configured for the CivicPlus/Cit-e-Net calendar shape yet."
+      },
+      "libraries": [
+        {
+          "name": "Mendham Borough Library",
+          "website": "https://mendhamboroughlibrary.org/",
+          "eventsUrl": "https://engagedpatrons.org/Events.cfm?SiteID=5343&Audience=C",
+          "status": "importable",
+          "parser": "engagedpatrons-list",
+          "parserVersion": "2026-06-11",
+          "townId": "mendham-borough",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "eventUrls": [
+            {
+              "url": "https://engagedpatrons.org/Events.cfm?SiteID=5343&Audience=C",
+              "audience": "C",
+              "label": "Kids events"
+            },
+            {
+              "url": "https://engagedpatrons.org/Events.cfm?SiteID=5343&Audience=T",
+              "audience": "T",
+              "label": "Teen events"
+            }
+          ],
+          "address": "10 Hilltop Road, Mendham, NJ 07945",
+          "lat": 40.7751,
+          "lng": -74.6005,
+          "lastCheckedAt": "2026-06-11",
+          "notes": "Added 2026-06-11. Official library page links EngagedPatrons SiteID 5343 event detail and registration pages including children/family programs such as Lego Club, Touch a Truck, slime workshops, Snakes-N-Scales, Babies and Books, and Toddler Sing Along."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added official borough events/recreation and Mendham Borough Library. Follow-up sources include Borough Park, local market/community events, and nearby Schiff Nature Preserve/Mendham area nature programming."
+      ]
+    },
+    {
+      "id": "florham-park-borough",
+      "name": "Florham Park borough",
+      "county": "Morris",
+      "zipCodes": [
+        "07932"
+      ],
+      "geoid": "3402723910",
+      "center": {
+        "lat": 40.775992,
+        "lng": -74.394315
+      },
+      "distanceMiles": 11.9,
+      "municipal": {
+        "website": "https://www.florhamparknj.gov/",
+        "eventsUrl": "https://www.florhamparknj.gov/calendar/492/",
+        "recreationUrl": "https://register.capturepoint.com/reg/login.cfm?cuBOAvnV0p4trnasCJNBkrfRqBZdA8M1ugTdgJwcwr%2BLxIFL2ZCtvf%2Fw",
+        "status": "manual_review",
+        "defaultVenueName": "Florham Park Borough event",
+        "defaultAddress": "111 Ridgedale Avenue, Florham Park, NJ 07932",
+        "notes": "Added 2026-06-11. Official Evogov calendar and CapturePoint recreation registration are recorded; keep manual_review until a stable event endpoint/parser is configured."
+      },
+      "libraries": [
+        {
+          "name": "Florham Park Public Library",
+          "website": "https://florhamparklib.org/",
+          "eventsUrl": "https://florhamparklib.org/events/",
+          "status": "manual_review",
+          "townId": "florham-park-borough",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Official library events page links Assabet Interactive event detail pages for youth/family programs; inspect a parser before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added official borough calendar, CapturePoint recreation registration, and Florham Park Public Library. Follow-up sources include gazebo concerts, borough recreation, library youth events, Fairleigh Dickinson/Drew-adjacent family programming, and nearby Great Swamp/Loantaka sources."
+      ]
+    },
+    {
+      "id": "morris-township",
+      "name": "Morris township",
+      "county": "Morris",
+      "zipCodes": [
+        "07960",
+        "07961"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Morristown mailing area",
+          "zip": "07960"
+        },
+        {
+          "name": "Convent Station",
+          "zip": "07961"
+        }
+      ],
+      "geoid": "3402748090",
+      "center": {
+        "lat": 40.796131,
+        "lng": -74.493803
+      },
+      "distanceMiles": 12.2,
+      "municipal": {
+        "website": "https://www.morristwp.com/",
+        "eventsUrl": "https://www.morristwp.com/calendar.aspx",
+        "recreationUrl": "https://www.morristwp.com/31/Community",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "defaultVenueName": "Morris Township event",
+        "defaultAddress": "50 Woodland Avenue, Convent Station, NJ 07961",
+        "notes": "Added 2026-06-11. Official CivicPlus calendar exposes municipal, recreation, and community event categories; importer should keep family/community rows and skip meetings/service collections."
+      },
+      "libraries": [
+        {
+          "name": "Morristown and Morris Township Library",
+          "website": "https://mmtlibrary.org/",
+          "eventsUrl": "https://mmtlibrary.libcal.com/calendar/events-for-kids",
+          "status": "importable",
+          "townId": "morris-township",
+          "servesTownIds": [
+            "morris-township",
+            "morristown-town"
+          ],
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Joint library serves Morris Township and Morristown; kids and teen calendars are LibCal, but current importer does not have a libcal-list parser. Converted to importable on 2026-06-11 using existing libcal-list parser. Calendar IDs 21894/21895 cover kids and teens; audience IDs 9111/9112/9110 cover Children, All Ages, and Teen.",
+          "parser": "libcal-list",
+          "parserVersion": "2026-06-11",
+          "siteId": "6423",
+          "calendarIds": [
+            "21894",
+            "21895"
+          ],
+          "audienceIds": [
+            "9111",
+            "9112",
+            "9110"
+          ],
+          "address": "1 Miller Road, Morristown, NJ 07960",
+          "lat": 40.793700738851,
+          "lng": -74.478075351319,
+          "locations": [
+            {
+              "name": "Children's Room",
+              "address": "1 Miller Road, Morristown, NJ 07960",
+              "lat": 40.793700738851,
+              "lng": -74.478075351319
+            },
+            {
+              "name": "Meeting Room",
+              "address": "1 Miller Road, Morristown, NJ 07960",
+              "lat": 40.793700738851,
+              "lng": -74.478075351319
+            }
+          ],
+          "lastCheckedAt": "2026-06-11"
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added official township calendar and joint library. Follow-up family sources include Morris Museum, Frelinghuysen Arboretum, Fosterfields, Lewis Morris Park, Morristown National Historical Park/Jockey Hollow, and Loantaka Brook Reservation."
+      ]
+    },
+    {
+      "id": "morristown-town",
+      "name": "Morristown town",
+      "county": "Morris",
+      "zipCodes": [
+        "07960",
+        "07961",
+        "07962",
+        "07963"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Morristown",
+          "zip": "07960"
+        },
+        {
+          "name": "Convent Station mailing area",
+          "zip": "07961"
+        },
+        {
+          "name": "Morristown PO box",
+          "zip": "07962"
+        },
+        {
+          "name": "Morristown PO box",
+          "zip": "07963"
+        }
+      ],
+      "geoid": "3402748300",
+      "center": {
+        "lat": 40.796562,
+        "lng": -74.477318
+      },
+      "distanceMiles": 12.3,
+      "municipal": {
+        "website": "https://www.townofmorristown.org/",
+        "eventsUrl": "https://www.townofmorristown.org/calendar",
+        "recreationUrl": "https://www.townofmorristown.org/rec",
+        "status": "manual_review",
+        "defaultVenueName": "Morristown town event",
+        "defaultAddress": "200 South Street, Morristown, NJ 07960",
+        "notes": "Added 2026-06-11. Official town calendar, recreation, activities, parks, and special-events pages are recorded; keep manual_review until a GovOffice calendar parser is configured."
+      },
+      "libraries": [
+        {
+          "name": "Morristown and Morris Township Library",
+          "website": "https://mmtlibrary.org/",
+          "eventsUrl": "https://mmtlibrary.libcal.com/calendar/events-for-kids",
+          "status": "importable",
+          "townId": "morristown-town",
+          "servesTownIds": [
+            "morris-township",
+            "morristown-town"
+          ],
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Joint library serves Morristown and Morris Township; kids and teen calendars are LibCal, but current importer does not have a libcal-list parser. Converted to importable on 2026-06-11 using existing libcal-list parser. Calendar IDs 21894/21895 cover kids and teens; audience IDs 9111/9112/9110 cover Children, All Ages, and Teen.",
+          "parser": "libcal-list",
+          "parserVersion": "2026-06-11",
+          "siteId": "6423",
+          "calendarIds": [
+            "21894",
+            "21895"
+          ],
+          "audienceIds": [
+            "9111",
+            "9112",
+            "9110"
+          ],
+          "address": "1 Miller Road, Morristown, NJ 07960",
+          "lat": 40.793700738851,
+          "lng": -74.478075351319,
+          "locations": [
+            {
+              "name": "Children's Room",
+              "address": "1 Miller Road, Morristown, NJ 07960",
+              "lat": 40.793700738851,
+              "lng": -74.478075351319
+            },
+            {
+              "name": "Meeting Room",
+              "address": "1 Miller Road, Morristown, NJ 07960",
+              "lat": 40.793700738851,
+              "lng": -74.478075351319
+            }
+          ],
+          "lastCheckedAt": "2026-06-11"
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added official town calendar/recreation/special-events pages and joint library. Follow-up sources include Morristown Partnership, Mayo Performing Arts Center, Macculloch Hall, Morris Museum area events, Morristown Green events, Revolution NJ/America 250 programming, and downtown festivals."
+      ]
+    },
+    {
+      "id": "hanover-township",
+      "name": "Hanover township",
+      "county": "Morris",
+      "zipCodes": [
+        "07927",
+        "07981"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Cedar Knolls",
+          "zip": "07927"
+        },
+        {
+          "name": "Whippany",
+          "zip": "07981"
+        }
+      ],
+      "geoid": "3402729550",
+      "center": {
+        "lat": 40.81995,
+        "lng": -74.427986
+      },
+      "distanceMiles": 14.2,
+      "municipal": {
+        "website": "https://www.hanovertownship.com/",
+        "eventsUrl": "https://www.hanovertownship.com/calendar.aspx",
+        "recreationUrl": "https://www.hanovertownship.com/292/Programs",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "defaultVenueName": "Hanover Township event",
+        "defaultAddress": "1000 Route 10, Whippany, NJ 07981",
+        "notes": "Added 2026-06-11. Official CivicPlus calendar exposes community events and recreation rows; importer should keep family/community rows and skip meetings/service rows.",
+        "locationOverrides": [
+          {
+            "name": "Municipal Building",
+            "aliases": [
+              "Hanover Township Municipal Building",
+              "Hanover Township Day Patriotic Celebration"
+            ],
+            "address": "1000 Route 10, Whippany, NJ 07981",
+            "lat": 40.82978477008,
+            "lng": -74.4330467499
+          }
+        ]
+      },
+      "libraries": [
+        {
+          "name": "Whippanong Library",
+          "website": "https://www.whippanong.org/",
+          "eventsUrl": "https://www.whippanong.org/events-calendar/",
+          "status": "manual_review",
+          "townId": "hanover-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Official library events calendar is recorded; inspect event endpoint before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added official township CivicPlus calendar, recreation programs, community-events page, and Whippanong Library. Follow-up sources include Whippany Railway Museum, Frelinghuysen Arboretum, Morris County Library/parks, Bee Meadow events, and Hanover Wind Symphony."
+      ]
+    },
+    {
+      "id": "chester-township",
+      "name": "Chester township",
+      "county": "Morris",
+      "zipCodes": [
+        "07930"
+      ],
+      "geoid": "3402712610",
+      "center": {
+        "lat": 40.776758,
+        "lng": -74.686512
+      },
+      "distanceMiles": 15,
+      "municipal": {
+        "website": "https://www.chestertownship.org/",
+        "eventsUrl": "https://www.chestertownship.org/index.php/calendar",
+        "recreationUrl": "https://www.chestertownship.org/index.php/departments/recreation",
+        "status": "manual_review",
+        "defaultVenueName": "Chester Township event",
+        "defaultAddress": "1 Parker Road, Chester, NJ 07930",
+        "notes": "Added 2026-06-11. Official Joomla/DPCalendar page embeds Google calendar IDs and recreation events, but the raw Itemid=231 endpoint returned no event rows during discovery; keep manual_review until a Google-calendar-backed parser is configured."
+      },
+      "libraries": [
+        {
+          "name": "Chester Library",
+          "website": "https://chesterlib.org/",
+          "eventsUrl": "https://chesterlib.org/events-calendar/",
+          "status": "manual_review",
+          "townId": "chester-township",
+          "servesTownIds": [
+            "chester-township",
+            "chester-borough"
+          ],
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Official library has children and teen calendars backed by Assabet Interactive event pages; inspect a parser before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added township calendar/recreation/events, Chester Library, Chubb Park, Tiger Brook Park, Hacklebarney State Park, Willowwood/Bamboo Brook, Cooper Mill, Kay Environmental Center, Patriots Path, and Black River outdoor sources for follow-up."
+      ]
+    },
+    {
+      "id": "morris-plains-borough",
+      "name": "Morris Plains borough",
+      "county": "Morris",
+      "zipCodes": [
+        "07950"
+      ],
+      "geoid": "3402748210",
+      "center": {
+        "lat": 40.838806,
+        "lng": -74.474196
+      },
+      "distanceMiles": 15.2,
+      "municipal": {
+        "website": "https://morrisplainsboro.org/",
+        "eventsUrl": "https://morrisplainsboro.org/calendar/",
+        "recreationUrl": "https://morrisplainsboro.org/recreation/",
+        "status": "manual_review",
+        "defaultVenueName": "Morris Plains Borough event",
+        "defaultAddress": "531 Speedwell Avenue, Morris Plains, NJ 07950",
+        "notes": "Added 2026-06-11. Official borough WordPress calendar, recreation pages, events registration, and BrownBear community-center calendar are recorded; keep manual_review until a parser is configured."
+      },
+      "libraries": [
+        {
+          "name": "Morris Plains Library",
+          "website": "https://morrisplainsboro.org/library/",
+          "eventsUrl": "https://morrisplainsboro.org/library/",
+          "status": "manual_review",
+          "townId": "morris-plains-borough",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Borough library page is recorded; inspect whether events are published through borough calendar, MAIN/Aspen, or a separate endpoint before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added borough calendar, recreation, events registration, library page, sports programs, teen center, community garden/pool, Family Day/Fireworks style community events, and Community Center calendar for follow-up."
+      ]
+    },
+    {
+      "id": "east-hanover-township",
+      "name": "East Hanover township",
+      "county": "Morris",
+      "zipCodes": [
+        "07936"
+      ],
+      "geoid": "3402719210",
+      "center": {
+        "lat": 40.818553,
+        "lng": -74.363742
+      },
+      "distanceMiles": 15.3,
+      "municipal": {
+        "website": "https://www.easthanovertownship.com/",
+        "eventsUrl": "https://www.easthanovertownship.com/calendar",
+        "recreationUrl": "https://www.easthanovertownship.com/",
+        "status": "manual_review",
+        "defaultVenueName": "East Hanover Township event",
+        "defaultAddress": "411 Ridgedale Avenue, East Hanover, NJ 07936",
+        "notes": "Added 2026-06-11. Official calendar/news/community-events pages are recorded; page appears JavaScript/Google-calendar backed and needs parser work before import."
+      },
+      "libraries": [
+        {
+          "name": "East Hanover Public Library",
+          "website": "https://easthanoverlibrary.com/",
+          "eventsUrl": "https://easthanoverlibrary.com/calendar/",
+          "status": "manual_review",
+          "townId": "east-hanover-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Official library calendar publishes children and teen rows such as LEGO Club, Pajama Story Time, Story Time Sprouts, and Preschool Pages; inspect a parser before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added official township calendar/news, East Hanover Public Library, Lurker Park/recreation center, Town Square, and nearby Troy Meadows as follow-up sources."
+      ]
+    },
+    {
+      "id": "chester-borough",
+      "name": "Chester borough",
+      "county": "Morris",
+      "zipCodes": [
+        "07930"
+      ],
+      "geoid": "3402712580",
+      "center": {
+        "lat": 40.790628,
+        "lng": -74.690085
+      },
+      "distanceMiles": 15.8,
+      "municipal": {
+        "website": "https://chesterborough.org/",
+        "eventsUrl": "https://chesterborough.org/resident/calendar",
+        "recreationUrl": "https://chesterrecreationnj.org/",
+        "status": "importable",
+        "parser": "joomla-dpcalendar-raw",
+        "itemId": "965",
+        "rawEventsUrl": "https://chesterborough.org/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "defaultVenueName": "Chester Borough event",
+        "defaultAddress": "50 North Road, Chester, NJ 07930",
+        "notes": "Added 2026-06-11. Official borough calendar uses Joomla DPCalendar and exposes the raw events endpoint; importer should keep family/community events and skip meetings/service rows. Recreation uses the shared Chester Recreation site."
+      },
+      "libraries": [
+        {
+          "name": "Chester Library",
+          "website": "https://chesterlib.org/",
+          "eventsUrl": "https://chesterlib.org/events-calendar/",
+          "status": "manual_review",
+          "townId": "chester-borough",
+          "servesTownIds": [
+            "chester-township",
+            "chester-borough"
+          ],
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Official library has children and teen calendars backed by Assabet Interactive event pages; inspect a parser before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added borough calendar, shared Chester Recreation, Chester Library, downtown Chester events, Chester 250 Day, Cooper Mill, Hacklebarney, Willowwood, and other county/state park family sources for follow-up."
+      ]
+    },
+    {
+      "id": "parsippany-troy-hills-township",
+      "name": "Parsippany-Troy Hills township",
+      "county": "Morris",
+      "zipCodes": [
+        "07054",
+        "07034",
+        "07878"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Parsippany",
+          "zip": "07054"
+        },
+        {
+          "name": "Lake Hiawatha",
+          "zip": "07034"
+        },
+        {
+          "name": "Mount Tabor",
+          "zip": "07878"
+        }
+      ],
+      "geoid": "3402756460",
+      "center": {
+        "lat": 40.859636,
+        "lng": -74.423348
+      },
+      "distanceMiles": 17,
+      "municipal": {
+        "website": "https://www.parsippany.net/",
+        "eventsUrl": "https://www.parsippany.net/calendar",
+        "recreationUrl": "https://www.parsippany.net/Departments/recreation-department",
+        "status": "manual_review",
+        "defaultVenueName": "Parsippany-Troy Hills Township event",
+        "defaultAddress": "1001 Parsippany Boulevard, Parsippany, NJ 07054",
+        "notes": "Added 2026-06-11. Official township calendar/news and recreation pages are recorded; recreation links ActiveNet/flyers and the calendar appears JavaScript/Google-calendar backed, so keep manual_review until parser work."
+      },
+      "libraries": [
+        {
+          "name": "Parsippany Library",
+          "website": "https://parsippanylibrary.org/",
+          "eventsUrl": "https://parsippany.librarycalendar.com/events/month",
+          "status": "importable",
+          "parser": "librarycalendar-list",
+          "parserVersion": "2026-06-11",
+          "townId": "parsippany-troy-hills-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "address": "449 Halsey Road, Parsippany, NJ 07054",
+          "lat": 40.8566,
+          "lng": -74.4277,
+          "locations": [
+            {
+              "name": "Parsippany Main Library",
+              "aliases": [
+                "Main Library"
+              ],
+              "address": "449 Halsey Road, Parsippany, NJ 07054",
+              "lat": 40.8566,
+              "lng": -74.4277
+            },
+            {
+              "name": "Lake Hiawatha Branch Library",
+              "address": "68 Nokomis Avenue, Lake Hiawatha, NJ 07034"
+            },
+            {
+              "name": "Mount Tabor Branch Library",
+              "address": "31 Trinity Park, Mount Tabor, NJ 07878"
+            }
+          ],
+          "notes": "Added 2026-06-11. Official library links parsippany.librarycalendar.com with Main, Lake Hiawatha, and Mount Tabor branch filters; librarycalendar-list can import child/family-compatible rows from this platform."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added official township calendar/recreation and Parsippany Library. Follow-up sources include Stickley Museum/Craftsman Farms, Parsippany recreation/PAL/sports, Lake Hiawatha and Mount Tabor branch programming, county parks, and nearby Troy Meadows."
+      ]
+    },
+    {
+      "id": "boonton-town",
+      "name": "Boonton town",
+      "county": "Morris",
+      "zipCodes": [
+        "07005"
+      ],
+      "geoid": "3402706610",
+      "center": {
+        "lat": 40.903818,
+        "lng": -74.406369
+      },
+      "distanceMiles": 20.1,
+      "municipal": {
+        "website": "https://www.boonton.org/",
+        "eventsUrl": "https://www.boonton.org/calendar.aspx",
+        "recreationUrl": "https://www.boonton.org/179/Recreation-Sports",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "defaultVenueName": "Boonton town event",
+        "defaultAddress": "100 Washington Street, Boonton, NJ 07005",
+        "notes": "Added 2026-06-11. Official CivicPlus calendar exposes community/recreation rows such as movie nights and farmers market; importer should keep family/community rows and skip meetings/service rows."
+      },
+      "libraries": [
+        {
+          "name": "Boonton Holmes Public Library",
+          "website": "https://www.boonton.org/31/Community",
+          "eventsUrl": "https://www.boonton.org/31/Community",
+          "status": "manual_review",
+          "townId": "boonton-town",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "notes": "Added 2026-06-11. Boonton library is tracked from official town/community context; find current standalone library event endpoint before importing."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 Morris new-town sweep added official town CivicPlus calendar and recreation. Follow-up sources include Boonton Farmers Market, Boonton Main Street/downtown events, Boonton Holmes Public Library, Grace Lord Park, and nearby county park/activity sources."
+      ]
+    },
+    {
       "id": "kenilworth-borough",
       "name": "Kenilworth borough",
       "county": "Union",
@@ -7783,14 +9448,33 @@
         {
           "name": "Millburn Free Public Library",
           "website": "https://millburnlibrary.org/",
-          "eventsUrl": "https://millburnlibrary.org/calendar/",
-          "status": "manual_review",
+          "eventsUrl": "https://millburnlibrary.libcal.com/calendar?cid=6309&t=m&d=0000-00-00&cal=6309&inc=0",
+          "status": "importable",
           "townId": "millburn-township",
           "sourceTypes": [
             "public_library"
           ],
           "tier": 1,
-          "notes": "Rediscovered 2026-06-11. Official library calendar page links to children/teen/adult calendar views; inspect stable LibCal endpoint before importing."
+          "notes": "Rediscovered 2026-06-11. Official library calendar page links to children/teen/adult calendar views; inspect stable LibCal endpoint before importing. Converted to importable on 2026-06-11 after official calendar page redirected to millburnlibrary.libcal.com calendar 6309.",
+          "parser": "libcal-list",
+          "parserVersion": "2026-06-11",
+          "address": "200 Glen Avenue, Millburn, NJ 07041",
+          "lat": 40.726565801282,
+          "lng": -74.305106813933,
+          "lastCheckedAt": "2026-06-11",
+          "siteId": "millburnlibrary",
+          "calendarIds": [
+            "6309"
+          ],
+          "audienceIds": [],
+          "locations": [
+            {
+              "name": "Millburn Free Public Library",
+              "address": "200 Glen Avenue, Millburn, NJ 07041",
+              "lat": 40.726565801282,
+              "lng": -74.305106813933
+            }
+          ]
         }
       ]
     },
@@ -7840,6 +9524,45 @@
       ],
       "sourceSweepNotes": [
         "2026-06-09 Somerset new-town sweep added Branchburg Sports Complex, Future Stars at RVCC, and RVCC Planetarium in regionalSources. No dedicated downtown/SID calendar was found; RVCC and BSC are the primary non-library child activity sources."
+      ]
+    },
+    {
+      "id": "hillsborough-township",
+      "name": "Hillsborough township",
+      "county": "Somerset",
+      "zipCodes": [
+        "08844"
+      ],
+      "geoid": "3403531890",
+      "center": {
+        "lat": 40.497692,
+        "lng": -74.670505
+      },
+      "distanceMiles": 12.6,
+      "municipal": {
+        "website": "https://hillsboroughnj.gov/",
+        "eventsUrl": "https://hillsboroughnj.gov/resident/calendar",
+        "recreationUrl": "https://www.leaguelineup.com/welcome.asp?url=hillsboroughnjrecreation",
+        "status": "importable",
+        "parser": "joomla-dpcalendar-raw",
+        "itemId": "965",
+        "rawEventsUrl": "https://hillsboroughnj.gov/index.php?option=com_dpcalendar&view=events&format=raw&limit=0&Itemid=965",
+        "defaultVenueName": "Hillsborough Township event",
+        "defaultAddress": "379 South Branch Road, Hillsborough, NJ 08844",
+        "notes": "Added 2026-06-11. Official township calendar uses Joomla DPCalendar and exposes the raw events endpoint; importer should keep family/community events and skip meetings, recycling, and municipal service rows. Recreation programs are on the township-linked LeagueLineup site."
+      },
+      "libraries": [
+        {
+          "name": "Somerset County Library System service area",
+          "website": "https://www.sclsnj.org/",
+          "eventsUrl": "https://sclsnj.libnet.info/events",
+          "sourceRef": "sclsnj-libnet",
+          "status": "service_area",
+          "notes": "SCLSNJ member municipality. The Hillsborough branch is intentionally not in sclsnj-libnet branchIds because existing coverage notes mark it outside the current ORS 30-minute drive polygon."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-11 new-town sweep added official township calendar, recreation portal, SCLSNJ service-area coverage, and noted Duke Farms, Iron Peak Sports & Events, Sourland Mountain Preserve, and Hillsborough-Millstone Municipal Alliance as follow-up family/activity sources. Bridgewater Commons partner events already include an Iron Peak event mapped to hillsborough-township."
       ]
     },
     {
@@ -7992,14 +9715,29 @@
         {
           "name": "Livingston Public Library",
           "website": "https://www.livingstonlibrary.org/",
-          "eventsUrl": "https://www.livingstonlibrary.org/",
-          "status": "manual_review",
+          "eventsUrl": "https://livingston.librarycalendar.com/events/month",
+          "status": "importable",
           "townId": "livingston-township",
           "sourceTypes": [
             "public_library"
           ],
           "tier": 1,
-          "notes": "Rediscovered 2026-06-11. Official public library source; find stable calendar endpoint before importing."
+          "notes": "Rediscovered 2026-06-11. Official public library source; find stable calendar endpoint before importing. Converted to importable on 2026-06-11 after official site linked to livingston.librarycalendar.com; LibraryCalendar page exposes Children and Teens event groups.",
+          "parser": "librarycalendar-list",
+          "parserVersion": "2026-06-11",
+          "address": "10 Robert H Harp Drive, Livingston, NJ 07039",
+          "lat": 40.782495188981,
+          "lng": -74.317190369214,
+          "lastCheckedAt": "2026-06-11",
+          "idPrefix": "livingston-library",
+          "locations": [
+            {
+              "name": "Livingston Public Library",
+              "address": "10 Robert H Harp Drive, Livingston, NJ 07039",
+              "lat": 40.782495188981,
+              "lng": -74.317190369214
+            }
+          ]
         }
       ]
     },
@@ -8069,20 +9807,48 @@
         "recreationUrl": "https://www.southorange.org/recreation/",
         "status": "importable",
         "parser": "civicplus-calendar",
+        "locationOverrides": [
+          {
+            "name": "Floods Hill",
+            "address": "North Ridgewood Road and Mead Street, South Orange, NJ 07079",
+            "lat": 40.750803745173,
+            "lng": -74.26132496746
+          }
+        ],
         "notes": "CivicPlus monthly list endpoint confirmed on /calendar.aspx."
       },
       "libraries": [
         {
           "name": "South Orange Public Library",
           "website": "https://www.sopl.org/",
-          "eventsUrl": "https://www.sopl.org/",
-          "status": "manual_review",
+          "eventsUrl": "https://bccls.libcal.com/calendar/southorange",
+          "status": "importable",
           "townId": "south-orange-village-township",
           "sourceTypes": [
             "public_library"
           ],
           "tier": 1,
-          "notes": "Rediscovered 2026-06-11. Municipal CivicPlus calendar also includes library categories; keep separate source for direct library review."
+          "notes": "Rediscovered 2026-06-11. Municipal CivicPlus calendar also includes library categories; keep separate source for direct library review. Converted to importable on 2026-06-11 using BCCLS LibCal South Orange calendars; no stable youth audience filter was visible, so importer filters by youth/family title and audience signals.",
+          "parser": "libcal-list",
+          "parserVersion": "2026-06-11",
+          "address": "65 Scotland Road, South Orange, NJ 07079",
+          "lat": 40.748811,
+          "lng": -74.261512,
+          "lastCheckedAt": "2026-06-11",
+          "siteId": "bccls-south-orange",
+          "calendarIds": [
+            "19324",
+            "8063"
+          ],
+          "audienceIds": [],
+          "locations": [
+            {
+              "name": "South Orange Public Library",
+              "address": "65 Scotland Road, South Orange, NJ 07079",
+              "lat": 40.748811,
+              "lng": -74.261512
+            }
+          ]
         }
       ]
     },

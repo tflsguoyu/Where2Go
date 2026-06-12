@@ -1293,6 +1293,64 @@ function normalizeDisplayTitle(value) {
     .trim();
 }
 
+function titleVenueAliases(event) {
+  return [event.venueName, event.venue]
+    .filter(Boolean)
+    .flatMap((value) =>
+      String(value)
+        .split(/[·,]/)
+        .map((part) => collapseWhitespace(part))
+        .filter((part) => part.length >= 4)
+    )
+    .sort((a, b) => b.length - a.length);
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function stripTitleDateTime(text) {
+  return collapseWhitespace(text)
+    .replace(/\s*\b\d{1,2}\/\d{1,2}(?:\/\d{2,4})?\b\s*$/i, "")
+    .replace(/\s*\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?\s+\d{1,2}(?:,\s*\d{4})?\b\s*$/i, "")
+    .replace(/\s*\b\d{1,2}(?::\d{2})?\s*(?:am|pm)(?:\s*[-\u2013\u2014]\s*\d{1,2}(?::\d{2})?\s*(?:am|pm))?\b\s*$/i, "")
+    .replace(/\s*\*?\s*Pickup Date:\s*[^*]+$/i, "")
+    .trim();
+}
+
+function stripWrappingTitleQuotes(text) {
+  return String(text)
+    .replace(/^"([^"]+)"$/g, "$1")
+    .replace(/^'([^']+)'$/g, "$1")
+    .replace(/^“([^”]+)”$/g, "$1")
+    .replace(/^‘([^’]+)’$/g, "$1");
+}
+
+function stripTitleVenue(text, event) {
+  let cleaned = text;
+  titleVenueAliases(event).forEach((alias) => {
+    const escaped = escapeRegExp(alias);
+    cleaned = cleaned
+      .replace(new RegExp(`\\s+@\\s*${escaped}\\b`, "i"), "")
+      .replace(new RegExp(`\\s+at\\s+${escaped}\\b`, "i"), "")
+      .replace(new RegExp(`\\s+\\(\\s*${escaped}\\s*\\)\\s*$`, "i"), "");
+  });
+  return cleaned
+    .replace(/\s+@\s+(?:[A-Z][\w'&.-]+(?:\s+[A-Z][\w'&.-]+){0,5}(?:\s+Branch|\s+Room|\s+Park|\s+Commons|\s+Library|\s+Lane|\s+Street|\s+Plaza|\s+Center))\b.*$/i, "")
+    .replace(/\s+\bat\s+(?:RVCC|Bridgewater Commons|Bridgewater Marriott|Memorial Park|the Ross Farm|The Commons)\b/i, "")
+    .trim();
+}
+
+function eventDisplayTitleFromRaw(event, rawTitle) {
+  const original = collapseWhitespace(rawTitle) || "Event";
+  const cleaned = stripWrappingTitleQuotes(collapseWhitespace(stripTitleDateTime(stripTitleVenue(stripTitleDateTime(original), event))))
+    .replace(/\s+(?:at|@)\s*$/i, "")
+    .replace(/\s+([:;,.!?])/g, "$1")
+    .replace(/(?:\s+[-\u2013\u2014|:])+\s*$/g, "")
+    .trim();
+  return cleaned.length >= 3 ? cleaned : original;
+}
+
 function isQuestionLikeTitle(title) {
   return QUESTION_LIKE_TITLE_PATTERN.test(title) || /\?$/.test(title);
 }
@@ -1312,7 +1370,7 @@ function summaryTitleCandidate(event) {
 }
 
 function displayTitle(event) {
-  const title = collapseWhitespace(event.title) || "Event";
+  const title = eventDisplayTitleFromRaw(event, event.title);
   if (!isQuestionLikeTitle(title)) {
     return title;
   }
@@ -1474,6 +1532,38 @@ function dismissInstallPrompt() {
 
 function sourceUrl(event) {
   return event.sourceUrl || event.url || "#";
+}
+
+function sourcePages(event) {
+  const pages = [];
+  const seen = new Set();
+  const pushPage = (page) => {
+    const url = String(page?.url || "").trim();
+    if (!url || seen.has(url)) return;
+    seen.add(url);
+    pages.push({
+      url,
+      source: page.source || page.label || event.source || "Source"
+    });
+  };
+  (event.sourcePages || []).forEach(pushPage);
+  pushPage({ url: sourceUrl(event), source: event.source });
+  return pages;
+}
+
+function sourcePagesHtml(event) {
+  const pages = sourcePages(event);
+  if (!pages.length) return "";
+  return `
+    <div class="source-links">
+      ${pages
+        .map((page) => {
+          const suffix = pages.length > 1 ? ` (${page.source})` : "";
+          return `<a class="source-link" href="${escapeHtml(page.url)}" target="_blank" rel="noreferrer">Source page${escapeHtml(suffix)}</a>`;
+        })
+        .join("")}
+    </div>
+  `;
 }
 
 function hasCoordinates(event) {
@@ -2224,7 +2314,7 @@ function renderDetail() {
                 <h2>${escapeHtml(displayTitle(event))}</h2>
                 <p class="event-time">${formatTimeRange(event)}</p>
                 ${summary ? `<p class="event-summary">${escapeHtml(summary)}</p>` : ""}
-                <a class="source-link" href="${escapeHtml(sourceUrl(event))}" target="_blank" rel="noreferrer">Open source page</a>
+                ${sourcePagesHtml(event)}
               </article>
             `;
           }

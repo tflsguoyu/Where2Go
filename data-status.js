@@ -76,12 +76,12 @@ const state = {
   towns: [],
   sourcesFlat: [],
   eventRows: [],
-  zipGeoJson: null,
-  zipBoundaryZips: new Set(),
+  townGeoJson: null,
+  townBoundaryIds: new Set(),
   summaryText: "",
   map: null,
   markerLayer: null,
-  zipBoundaryLayer: null
+  townBoundaryLayer: null
 };
 
 const els = {
@@ -500,7 +500,7 @@ function zipCoverageForTown(town) {
         lat: center?.[0],
         lng: center?.[1],
         hasCentroid: Boolean(center),
-        hasBoundary: state.zipBoundaryZips.has(row.zip)
+        hasBoundary: state.townBoundaryIds.has(town.id)
       };
     });
 }
@@ -523,20 +523,12 @@ function initMap() {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(state.map);
   state.markerLayer = L.layerGroup().addTo(state.map);
-  state.zipBoundaryLayer = L.featureGroup().addTo(state.map);
+  state.townBoundaryLayer = L.featureGroup().addTo(state.map);
 }
 
 function renderTownCoverage() {
   const rows = filteredTownRows();
-  const zipLookup = new Map();
-  rows.forEach((town) => {
-    zipCoverageForTown(town).forEach((zip) => {
-      if (!zipLookup.has(zip.zip)) {
-        zipLookup.set(zip.zip, []);
-      }
-      zipLookup.get(zip.zip).push({ town, zip });
-    });
-  });
+  const townLookup = new Map(rows.map((town) => [town.id, town]));
 
   els.townList.innerHTML = rows
     .sort((a, b) => a.name.localeCompare(b.name))
@@ -552,7 +544,7 @@ function renderTownCoverage() {
                 .map(
                   (zip) =>
                     `<span class="zip-chip ${zip.hasBoundary ? zip.type : "missing"}" title="${escapeHtml(
-                      zip.hasBoundary ? "ZCTA boundary shown on map" : "No ZCTA boundary found"
+                      zip.hasBoundary ? "Town boundary shown on map" : "No town boundary found"
                     )}">${escapeHtml(zipLabel(zip))}</span>`
                 )
                 .join("")}
@@ -565,38 +557,35 @@ function renderTownCoverage() {
     .join("");
 
   initMap();
-  if (!state.map || !state.markerLayer || !state.zipBoundaryLayer) return;
+  if (!state.map || !state.markerLayer || !state.townBoundaryLayer) return;
   state.markerLayer.clearLayers();
-  state.zipBoundaryLayer.clearLayers();
+  state.townBoundaryLayer.clearLayers();
   const bounds = [];
 
-  if (state.zipGeoJson) {
-    const selectedZips = new Set(zipLookup.keys());
-    L.geoJSON(state.zipGeoJson, {
-      filter: (feature) => selectedZips.has(String(feature.properties?.zip || "")),
+  if (state.townGeoJson) {
+    L.geoJSON(state.townGeoJson, {
+      filter: (feature) => townLookup.has(String(feature.properties?.townId || "")),
       style: (feature) => {
-        const zip = String(feature.properties?.zip || "");
-        const entries = zipLookup.get(zip) || [];
-        const isMailing = entries.some((entry) => entry.zip.type === "mailing");
+        const town = townLookup.get(String(feature.properties?.townId || ""));
+        const color = markerColor(town?.status);
         return {
-          color: isMailing ? "#b45309" : "#2563eb",
+          color,
           weight: 2,
           opacity: 0.9,
-          fillColor: isMailing ? "#f59e0b" : "#60a5fa",
-          fillOpacity: 0.14
+          fillColor: color,
+          fillOpacity: 0.11
         };
       },
       onEachFeature: (feature, layer) => {
-        const zip = String(feature.properties?.zip || "");
-        const entries = zipLookup.get(zip) || [];
-        const towns = [...new Set(entries.map((entry) => entry.town.name))].join(", ");
-        const labels = [...new Set(entries.map((entry) => entry.zip.name).filter(Boolean))].join(", ");
+        const town = townLookup.get(String(feature.properties?.townId || ""));
         layer.bindPopup(
-          `<strong>${escapeHtml(zip)}</strong><br>${escapeHtml(labels || "ZIP boundary")}<br>${escapeHtml(towns)}`
+          `<strong>${escapeHtml(town?.name || feature.properties?.name || "Town boundary")}</strong><br>${escapeHtml(
+            town?.county || feature.properties?.county || ""
+          )} County<br>${escapeHtml(labelStatus(town?.status))}`
         );
       }
-    }).addTo(state.zipBoundaryLayer);
-    const layerBounds = state.zipBoundaryLayer.getBounds();
+    }).addTo(state.townBoundaryLayer);
+    const layerBounds = state.townBoundaryLayer.getBounds();
     if (layerBounds.isValid()) {
       bounds.push(layerBounds.getSouthWest(), layerBounds.getNorthEast());
     }
@@ -608,11 +597,11 @@ function renderTownCoverage() {
     const lng = Number(town.center.lng);
     bounds.push([lat, lng]);
     L.circleMarker([lat, lng], {
-      radius: 8,
+      radius: 5,
       color: markerColor(town.status),
-      weight: 2,
+      weight: 1.5,
       fillColor: markerColor(town.status),
-      fillOpacity: 0.78
+      fillOpacity: 0.82
     })
       .bindPopup(
         `<strong>${escapeHtml(town.name)}</strong><br>${escapeHtml(labelStatus(town.status))}<br>${town.futureEvents} future events`
@@ -815,10 +804,10 @@ async function loadData() {
   els.error.hidden = true;
   els.subtitle.textContent = "Loading local JSON...";
 
-  const [sources, events, zipGeoJson] = await Promise.all([
+  const [sources, events, townGeoJson] = await Promise.all([
     loadJson("data/event-sources.json"),
     loadJson("data/events.json"),
-    loadJson("data/geo/zip-boundaries.geojson")
+    loadJson("data/geo/town-boundaries.geojson")
   ]);
   const today = todayInNewYork();
   const townRows = computeTownRows(sources, events, today);
@@ -827,8 +816,8 @@ async function loadData() {
 
   state.sources = sources;
   state.events = events;
-  state.zipGeoJson = zipGeoJson;
-  state.zipBoundaryZips = new Set((zipGeoJson.features || []).map((feature) => String(feature.properties?.zip || "")));
+  state.townGeoJson = townGeoJson;
+  state.townBoundaryIds = new Set((townGeoJson.features || []).map((feature) => String(feature.properties?.townId || "")));
   state.towns = townRows;
   state.sourcesFlat = flatSources;
   state.eventRows = eventRows;

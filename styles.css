@@ -1187,13 +1187,19 @@ h2 {
   -webkit-line-clamp: 2;
 }
 
+.source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 1px;
+}
+
 .source-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 26px;
   width: fit-content;
-  margin-top: 1px;
   padding: 0 9px;
   border-radius: 999px;
   background: var(--green-dark);

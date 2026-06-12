@@ -204,7 +204,7 @@
         background: var(--good);
       }
 
-      .legend-dot.zip {
+      .legend-dot.boundary {
         border-radius: 3px;
         background: #2563eb;
       }
@@ -429,7 +429,7 @@
         <div class="section-head">
           <div>
             <h2>1. Town Coverage</h2>
-            <p class="muted small">Map marks towns and ZIP-level coverage already included in the local search registry.</p>
+            <p class="muted small">Map marks towns and municipal boundaries already included in the local search registry.</p>
           </div>
           <div class="filters">
             <select id="townStatusFilter">
@@ -442,8 +442,7 @@
         </div>
         <div class="map-legend">
           <span class="legend-item"><span class="legend-dot town"></span>Town included</span>
-          <span class="legend-item"><span class="legend-dot zip"></span>ZCTA / ZIP boundary</span>
-          <span class="legend-item"><span class="legend-dot mailing"></span>Mailing-area / cross-town ZCTA</span>
+          <span class="legend-item"><span class="legend-dot boundary"></span>Town boundary</span>
         </div>
         <div class="grid town-layout">
           <div id="townMap" aria-label="Covered town map"></div>
@@ -549,6 +548,6 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="data-status.js"></script>
+    <script src="data-status.js?v=town-boundaries"></script>
   </body>
 </html>

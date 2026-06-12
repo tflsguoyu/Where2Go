@@ -2183,7 +2183,7 @@ async function importLocalHopEvents(sources, startDate, days) {
 }
 
 function parseLibraryCalendarCards(html, baseUrl, source) {
-  const cards = html.split('<div class="lc-event lc-event--list"').slice(1);
+  const cards = html.split(/<div(?=[^>]*class="[^"]*\blc-event\b)/i).slice(1);
   const events = [];
   const host = new URL(baseUrl).host.replace(/[^a-z0-9]+/gi, "-").replace(/-$/g, "").toLowerCase();
   const idPrefix = source.library.idPrefix || host;
@@ -2192,11 +2192,11 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
     if (/\bnode--type-lc-closing\b|\blc-closing\b/i.test(card)) {
       return;
     }
-    const selectorId = firstMatch(card, /data-drupal-selector="edit-([^"]+)"/);
     const linkMatch = card.match(/<a aria-label="([^"]+)" href="([^"]+)"/);
-    if (!selectorId || !linkMatch) {
+    if (!linkMatch) {
       return;
     }
+    const selectorId = firstMatch(card, /data-drupal-selector="edit-([^"]+)"/) || slugFromUrl(linkMatch[2]);
 
     const actionLabel = decodeEntities(linkMatch[1]);
     const titleMatch = actionLabel.match(/^(?:View Details|Register Now) - "([\s\S]+)" on ([A-Za-z]+,\s+[A-Za-z]+\s+\d{1,2},\s+\d{4}) @ (\d{1,2}:\d{2}(?:am|pm))$/i);
@@ -5038,6 +5038,9 @@ function mapDpCalendarMunicipalEvent(source, item, startDate, days) {
   return {
     id: `dpcalendar-${source.town.id}-${item.id}-${startsAt.slice(0, 10)}`,
     sourceId: municipalSourceId(source, "dpcalendar"),
+    townId: source.town.id,
+    townAssignmentStatus: "assigned",
+    townAssignmentSource: "municipalSource",
     title,
     venue: venue.venueName,
     venueName: venue.venueName,
