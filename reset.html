@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Where2Go Reset</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #1f2a2f;
+        background: #f8faf7;
+      }
+
+      body {
+        display: grid;
+        min-height: 100svh;
+        margin: 0;
+        place-items: center;
+      }
+
+      main {
+        width: min(86vw, 320px);
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.35rem;
+      }
+
+      p {
+        margin: 0;
+        color: #5f6d69;
+        font-size: 0.95rem;
+        line-height: 1.45;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Refreshing Where2Go</h1>
+      <p>Clearing the old mobile cache and opening the latest version.</p>
+    </main>
+    <script>
+      const NEXT_URL = "./?v=20260612-cache-v93&reset=1";
+
+      async function clearOldAppCache() {
+        if ("serviceWorker" in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map((registration) => registration.unregister()));
+        }
+        if ("caches" in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map((key) => caches.delete(key)));
+        }
+      }
+
+      clearOldAppCache()
+        .catch(() => {})
+        .finally(() => {
+          window.location.replace(NEXT_URL);
+        });
+    </script>
+  </body>
+</html>
