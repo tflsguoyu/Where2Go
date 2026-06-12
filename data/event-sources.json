@@ -1788,6 +1788,15 @@
           "lat": 40.574413,
           "lng": -74.4148,
           "storeUrl": "https://www.homedepot.com/l/South-Plainfield/NJ/South-Plainfield/07080/903"
+        },
+        {
+          "id": "colonia-981",
+          "name": "The Home Depot Colonia",
+          "townId": "edison-township",
+          "address": "1035 US Highway 1 South, Colonia, NJ 07067",
+          "lat": 40.57521,
+          "lng": -74.30174,
+          "storeUrl": "https://www.homedepot.com/l/Colonia/NJ/Colonia/07067/981"
         }
       ],
       "notes": "Home Depot pages are bot-protected for direct scripts, so this source generates first-Saturday kids workshops from the official workshop program and keeps store/source URLs for confirmation."
@@ -2547,6 +2556,118 @@
       "storeNum": "R104",
       "topicCollId": "kids-and-families",
       "notes": "Calendar page embeds Next.js/RSC data with courses, schedules, topics, and stores. Parser imports only the Kids & Families topic for Apple Bridgewater."
+    },
+    {
+      "id": "apple-menlo-park",
+      "label": "Today at Apple Menlo Park",
+      "type": "store-creative-sessions",
+      "status": "importable",
+      "parser": "today-at-apple-calendar",
+      "website": "https://www.apple.com/retail/menlopark/",
+      "eventsUrl": "https://www.apple.com/today/calendar/menlopark/",
+      "townId": "edison-township",
+      "servesTownIds": [
+        "edison-township"
+      ],
+      "address": "55 Parsonage Road, Edison, NJ 08837",
+      "lat": 40.549111,
+      "lng": -74.335811,
+      "storeNum": "R067",
+      "topicCollId": "kids-and-families",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_mall",
+        "stem_coding_center"
+      ],
+      "notes": "Today at Apple calendar embeds Next.js/RSC data with Kids & Families schedule IDs for Apple Menlo Park. Added 2026-06-12 after verifying store R067 at 55 Parsonage Road, Edison."
+    },
+    {
+      "id": "thomas-edison-center-menlo-park",
+      "label": "Thomas Edison Center at Menlo Park",
+      "type": "museum-history-events",
+      "status": "importable",
+      "parser": "squarespace-eventlist",
+      "website": "https://www.menloparkmuseum.org/",
+      "eventsUrl": "https://www.menloparkmuseum.org/calendar",
+      "townId": "edison-township",
+      "servesTownIds": [
+        "edison-township"
+      ],
+      "address": "37 Christie Street, Edison, NJ 08820",
+      "lat": 40.563173,
+      "lng": -74.33901,
+      "tier": 2,
+      "sourceTypes": [
+        "museum",
+        "historic_site"
+      ],
+      "notes": "Official Squarespace Special Events page exposes eventlist markup and site location metadata. Added 2026-06-12; current page mostly exposes past events, so import may be empty until new upcoming rows are published."
+    },
+    {
+      "id": "menlo-park-mall",
+      "label": "Menlo Park Mall",
+      "type": "mall-events",
+      "status": "blocked_by_bot_protection",
+      "parser": "manual",
+      "website": "https://www.simon.com/mall/menlo-park-mall",
+      "eventsUrl": "https://www.simon.com/mall/menlo-park-mall/news-and-events",
+      "townId": "edison-township",
+      "servesTownIds": [
+        "edison-township"
+      ],
+      "address": "55 Parsonage Road, Edison, NJ 08837",
+      "lat": 40.549,
+      "lng": -74.3358,
+      "tier": 3,
+      "sourceTypes": [
+        "retail_mall"
+      ],
+      "notes": "Simon news-and-events page is protected by PerimeterX for direct script fetches. Keep as manual/browser-backed candidate for mall activations and tenant events."
+    },
+    {
+      "id": "round1-menlo-park-mall",
+      "label": "Round1 Menlo Park Mall",
+      "type": "indoor-play-arcade",
+      "status": "reference_only",
+      "parser": "manual",
+      "website": "https://www.round1usa.com/locations/064mlp",
+      "eventsUrl": "https://www.round1usa.com/locations/064mlp",
+      "townId": "edison-township",
+      "servesTownIds": [
+        "edison-township"
+      ],
+      "address": "55 Parsonage Road Space 1850A, Edison, NJ 08837",
+      "lat": 40.549,
+      "lng": -74.3358,
+      "tier": 3,
+      "sourceTypes": [
+        "indoor_play",
+        "retail_mall"
+      ],
+      "notes": "Official location page confirms arcade/bowling/karaoke venue and address, but no public dated event feed is exposed in simple HTML. Keep for party/venue reference and future event discovery."
+    },
+    {
+      "id": "plays-in-the-park",
+      "label": "Middlesex County Plays-in-the-Park",
+      "type": "performing-arts-family",
+      "status": "blocked_by_bot_protection",
+      "parser": "manual",
+      "website": "https://www.playsinthepark.com/",
+      "eventsUrl": "https://www.playsinthepark.com/",
+      "townId": "edison-township",
+      "servesTownIds": [
+        "edison-township"
+      ],
+      "address": "1 Pine Drive, Edison, NJ 08837",
+      "lat": 40.55215,
+      "lng": -74.34019,
+      "tier": 2,
+      "sourceTypes": [
+        "performing_arts",
+        "county_parks",
+        "family_theater"
+      ],
+      "notes": "Important Edison/Roosevelt Park family theater source. Added 2026-06-12 after source discovery; direct script fetches to the official playsinthepark.com/Middlesex County path returned Access Denied, so use manual or browser-backed review for summer musical and children's show dates."
     },
     {
       "id": "clubair-warren",
@@ -8354,9 +8475,11 @@
         "website": "https://www.farhillsnj.org/",
         "eventsUrl": "https://www.farhillsnj.org/calendar.php",
         "recreationUrl": "https://www.farhillsnj.org/",
-        "status": "importable",
+        "status": "manual_review",
         "parser": "revize-calendar",
-        "notes": "Revize calendar page is retained for source review; no stable importer is wired yet."
+        "lastFailedImportAt": "2026-06-12",
+        "lastFailureReason": "Revize calendar_data_handler.php returned 404 for the detected Far Hills webspace in the Codex import environment.",
+        "notes": "Revize calendar page is retained for source review; no stable importer endpoint is confirmed yet."
       },
       "libraries": [
         {
@@ -8470,13 +8593,69 @@
       },
       "distanceMiles": 8.6,
       "municipal": {
+        "label": "Edison Township municipal calendar",
         "website": "https://www.edisonnj.org/",
         "eventsUrl": "https://www.edisonnj.org/calendar.php",
         "recreationUrl": "https://www.edisonnj.gov/departments/recreation_department/recreation_events.php",
-        "status": "manual_review",
+        "status": "importable",
         "parser": "revize-calendar",
+        "parserVersion": "2026-06-12",
+        "revizeDataUrl": "https://www.edisonnj.org/_assets_/plugins/revizeCalendar/calendar_data_handler.php?webspace=edisonnj&relative_revize_url=%2F%2Fcms2.revize.com&protocol=https%3A",
+        "tier": 1,
+        "sourceTypes": [
+          "municipal_government",
+          "parks_recreation",
+          "official_town_news"
+        ],
+        "defaultVenueName": "Edison Township event",
+        "locationOverrides": [
+          {
+            "name": "Papaianni Park",
+            "aliases": [
+              "Lake Papaianni",
+              "LAKE PAPAIANNI",
+              "Papaianni Park - 100 Municipal Blvd.",
+              "Papaianni Park - 100 Municipal Blvd., Edison"
+            ],
+            "address": "100 Municipal Boulevard, Edison, NJ 08817",
+            "lat": 40.5274522,
+            "lng": -74.393304
+          },
+          {
+            "name": "Edison Municipal Complex",
+            "aliases": [
+              "Town Hall",
+              "100 Municipal Blvd",
+              "100 Municipal Blvd, Edison NJ 08817",
+              "Council Chambers"
+            ],
+            "address": "100 Municipal Boulevard, Edison, NJ 08817",
+            "lat": 40.5274522,
+            "lng": -74.393304
+          },
+          {
+            "name": "Minnie B. Veal Community Center",
+            "aliases": [
+              "MBVCC",
+              "Minni9e B. Veal Community Center",
+              "Minnie B Veal Community Center"
+            ],
+            "address": "1070 Grove Avenue, Edison, NJ 08820",
+            "lat": 40.5945882,
+            "lng": -74.3606981
+          },
+          {
+            "name": "St. Matthew School Gymnasium",
+            "aliases": [
+              "St. Matthew School Gymnasium, 100 Seymour Ave"
+            ],
+            "address": "100 Seymour Avenue, Edison, NJ 08817",
+            "lat": 40.510804,
+            "lng": -74.398115
+          }
+        ],
         "lastCheckedAt": "2026-06-12",
-        "notes": "Added during Edison expansion. Official township site uses Revize and exposes Township Events, Community Events, and Meetings calendar categories; recreation events live on a Revize document-center page. Keep manual_review until the Revize calendar endpoint is mapped and civic/service rows are filtered safely."
+        "notes": "Converted to importable on 2026-06-12. Official township site uses Revize and exposes Township Events, Community Events, and Meetings calendar categories. The stable data handler returns JSON rows from calendar_data_handler.php; revize-calendar imports family/community rows such as fireworks, time capsule, festivals, concerts, and recreation events while filtering meetings, closures, recycling, court, and municipal service rows. Recreation events also surface through the same Revize calendar and the recreation document-center page."
       },
       "libraries": [
         {
@@ -8554,7 +8733,7 @@
         }
       ],
       "sourceSweepNotes": [
-        "2026-06-12 initial Edison expansion added official municipal/recreation pages, Edison Public Library, and Middlesex County shared events coverage. Additional Edison venue sweep is in progress for mall, retail workshops, parks, indoor play, and cultural sources."
+        "2026-06-12 Edison expansion added official municipal/recreation pages, Edison Public Library, and Middlesex County shared events coverage. Converted the Edison Township Revize calendar to importable after verifying the calendar_data_handler.php JSON endpoint and adding common venue overrides for Papaianni Park, the Municipal Complex, Minnie B. Veal Community Center, and St. Matthew School Gymnasium. Additional Edison venue sweep remains useful for mall, retail workshops, parks, indoor play, and cultural sources."
       ]
     },
     {
@@ -10149,7 +10328,29 @@
         "parser": "revize-calendar",
         "defaultVenueName": "Branchburg Township event",
         "defaultAddress": "1077 US Highway 202 North, Branchburg, NJ 08876",
-        "notes": "Revize calendar lists department, home, police, recreation, and senior program event buckets. Keep for source review until a Revize parser is wired."
+        "locationOverrides": [
+          {
+            "name": "White Oak Park Pavilion",
+            "aliases": [
+              "WHITE OAK PARK PAVILION"
+            ],
+            "address": "235 Baird Road, Branchburg, NJ 08876",
+            "lat": 40.5738642,
+            "lng": -74.7161097,
+            "addressStatus": "approximate"
+          },
+          {
+            "name": "TD Bank Ballpark",
+            "aliases": [
+              "SOMERSET PATRIOTS STADIUM",
+              "Somerset Patriots Stadium"
+            ],
+            "address": "860 East Main Street, Bridgewater, NJ 08807",
+            "lat": 40.560968,
+            "lng": -74.5606945
+          }
+        ],
+        "notes": "Revize calendar lists department, home, police, recreation, and senior program event buckets. Converted through the shared revize-calendar importer on 2026-06-12; common venue overrides cover White Oak Park Pavilion and Somerset Patriots Stadium rows."
       },
       "libraries": [
         {

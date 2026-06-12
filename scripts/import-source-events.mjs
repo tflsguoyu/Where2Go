@@ -75,7 +75,7 @@ const SUMMARY_ACTIVITY_SIGNAL_PATTERN =
   /\b(?:story|craft|club|kids|children|family|families|baby|toddler|preschool|teen|tween|lego|game|games|movie|music|concert|festival|market|rides?|food|workshop|camp|art|paint|build|read|reading|learn|discover|explore|nature|garden|science|theater|performance|play|party|parade|fireworks|foam|jump|slime)\b/i;
 const QUALITY_REPORT_SAMPLE_LIMIT = 8;
 const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
-  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|tree lighting|unity day|watch part(?:y|ies)|world cup|yard sale|yoga)\b/i;
+  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|time capsule|tree lighting|unity day|watch part(?:y|ies)|world cup|yard sale|yoga)\b/i;
 const MUNICIPAL_SKIP_TITLE_PATTERN =
   /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|stormwater|township committee|wine tasting|zoning board)\b/i;
 const MONTHS = new Map([
@@ -5963,6 +5963,165 @@ function parseJsonLdMunicipalEvents(html, source, startDate, days) {
   return imported.filter((event) => event.title && event.startsAt && event.sourceUrl);
 }
 
+function safeDecodeUriComponent(value) {
+  const text = String(value || "");
+  try {
+    return decodeURIComponent(text.replace(/\+/g, "%20"));
+  } catch {
+    return text;
+  }
+}
+
+function revizeDataUrl(source, html = "") {
+  if (source.municipal.revizeDataUrl) {
+    return source.municipal.revizeDataUrl;
+  }
+
+  const baseUrl = source.municipal.eventsUrl || source.municipal.website;
+  const webspace = source.municipal.revizeWebspace || firstMatch(html, /RZ\.webspace\s*=\s*['"]([^'"]+)['"]/);
+  if (!baseUrl || !webspace) {
+    return "";
+  }
+
+  const relativeRevizeUrl =
+    source.municipal.relativeRevizeUrl ||
+    firstMatch(html, /RZ\.protocolRelativeRevizeBaseUrl\s*=\s*['"]([^'"]+)['"]/) ||
+    "//cms2.revize.com";
+  const protocol = new URL(baseUrl).protocol;
+  const url = new URL("/_assets_/plugins/revizeCalendar/calendar_data_handler.php", baseUrl);
+  url.searchParams.set("webspace", webspace);
+  url.searchParams.set("relative_revize_url", relativeRevizeUrl);
+  url.searchParams.set("protocol", protocol);
+  return url.toString();
+}
+
+function revizeEventImage(rawImage, sourceUrl) {
+  const image = safeDecodeUriComponent(rawImage);
+  const src = firstMatch(image, /<img\b[^>]*src=["']([^"']+)["']/i);
+  if (!src || /placeholder\.png/i.test(src)) {
+    return null;
+  }
+  return absoluteUrl(sourceUrl, src);
+}
+
+function revizeEventUrl(rawUrl, source) {
+  const value = decodeEntities(String(rawUrl || "").trim());
+  if (!value) {
+    return "";
+  }
+  if (/^https?:\/\//i.test(value)) {
+    return value;
+  }
+  if (/^[a-z0-9.-]+\.[a-z]{2,}(?:\/|$)/i.test(value)) {
+    return `https://${value}`;
+  }
+  return absoluteUrl(source.municipal.eventsUrl || source.municipal.website, value);
+}
+
+function revizeSummaryFallback(title) {
+  const text = String(title || "");
+  if (/time capsule/i.test(text)) {
+    return "Hands-on community activity where participants create a personal time capsule.";
+  }
+  if (/fireworks|fourth of july/i.test(text)) {
+    return "Community Fourth of July celebration with fireworks.";
+  }
+  return "";
+}
+
+function parseRevizeMunicipalEvents(rows, source, startDate, days) {
+  const imported = [];
+  for (const row of Array.isArray(rows) ? rows : []) {
+    const title = stripHtml(row.title || "");
+    const decodedDesc = safeDecodeUriComponent(row.desc || "");
+    const summary = cleanImportedSummary(decodedDesc, {
+      title,
+      venue: row.location,
+      venueName: row.location,
+      address: row.location
+    }) || revizeSummaryFallback(title);
+    const calendar = stripHtml(row.primary_calendar_name || "");
+    if (!title || !isImportableMunicipalEvent(title, summary, calendar)) {
+      continue;
+    }
+
+    let startsAt = localIso(row.start || "");
+    if (!startsAt) {
+      continue;
+    }
+    if (row.allDay && startsAt.endsWith("T00:00:00")) {
+      startsAt = `${startsAt.slice(0, 10)}T12:00:00`;
+    }
+    if (!isDateWithinWindow(startsAt.slice(0, 10), startDate, days)) {
+      continue;
+    }
+
+    const endsAt = row.end ? localIso(row.end) : row.duration && !row.allDay ? addMinutes(startsAt, Number(row.duration.split(":")[0]) * 60 + Number(row.duration.split(":")[1] || 0)) : null;
+    const venue = municipalVenueDetails(source, {
+      title,
+      summary,
+      venueName: row.location,
+      address: row.location
+    });
+    const sourceUrl = revizeEventUrl(row.url, source) || `${source.municipal.eventsUrl || source.municipal.website}?id=${row.id || row.rid || slugify(title)}`;
+    const category = civicPlusMunicipalCategory(title, summary, calendar);
+    const image =
+      revizeEventImage(row.image || "", source.municipal.eventsUrl || source.municipal.website) ||
+      revizeEventImage(decodedDesc, source.municipal.eventsUrl || source.municipal.website);
+
+    imported.push(markSummaryStatus({
+      id: `revize-${source.town.id}-${row.id || row.rid || slugify(title)}-${startsAt.slice(0, 10)}`,
+      sourceId: municipalSourceId(source, "revize-calendar"),
+      externalId: row.id || row.rid || null,
+      townId: source.town.id,
+      title,
+      venue: venue.venueName,
+      venueName: venue.venueName,
+      category,
+      source: municipalSourceLabel(source),
+      startsAt,
+      endsAt,
+      timezone: TIMEZONE,
+      durationMinutes: endsAt && endsAt !== startsAt ? durationMinutes(startsAt, endsAt) : null,
+      ages: inferAgeBandsFromText(title, summary, calendar, "families all ages community"),
+      cost: null,
+      registration: "See source",
+      summary,
+      url: sourceUrl,
+      sourceUrl,
+      sourceCalendarUrl: source.municipal.eventsUrl || source.municipal.website,
+      address: venue.address,
+      lat: venue.lat,
+      lng: venue.lng,
+      image,
+      timeLabel: row.allDay ? "All day" : null,
+      timeStatus: row.allDay ? "all_day_source_time" : null,
+      tags: ["municipal", source.town.id, category, "family"].filter(Boolean),
+      status: "published",
+      confidence: venue.confidence
+    }));
+  }
+  return imported.filter((event) => event.title && event.startsAt && event.sourceUrl);
+}
+
+async function importRevizeMunicipalEvents(sources, startDate, days) {
+  const imported = [];
+  for (const source of allMunicipalParserSources(sources, "revize-calendar")) {
+    try {
+      const html = await fetchText(source.municipal.eventsUrl || source.municipal.website);
+      const dataUrl = revizeDataUrl(source, html);
+      if (!dataUrl) {
+        throw new Error("missing Revize calendar data URL");
+      }
+      const rows = JSON.parse(await fetchText(dataUrl));
+      imported.push(...parseRevizeMunicipalEvents(rows, source, startDate, days));
+    } catch (error) {
+      console.warn(`warning: could not import ${municipalSourceLabel(source)}: ${error.message}`);
+    }
+  }
+  return [...new Map(imported.map((event) => [event.id, event])).values()];
+}
+
 async function importJsonLdMunicipalEvents(sources, startDate, days, parser) {
   const imported = [];
   for (const source of allMunicipalParserSources(sources, parser)) {
@@ -6682,7 +6841,7 @@ async function main() {
     { name: "eggzack-event-archive", run: importEggZackMunicipalEvents },
     { name: "govoffice-calendar", run: importGovOfficeMunicipalEvents },
     { name: "eventespresso-datetimes", run: importEventEspressoMunicipalEvents },
-    { name: "revize-calendar", run: (currentSources, currentStartDate, currentDays) => importJsonLdMunicipalEvents(currentSources, currentStartDate, currentDays, "revize-calendar") },
+    { name: "revize-calendar", run: importRevizeMunicipalEvents },
     { name: "granicus-calendar", run: (currentSources, currentStartDate, currentDays) => importJsonLdMunicipalEvents(currentSources, currentStartDate, currentDays, "granicus-calendar") },
     { name: "alphadog-recreation-page", run: (currentSources, currentStartDate, currentDays) => importJsonLdMunicipalEvents(currentSources, currentStartDate, currentDays, "alphadog-recreation-page") },
     { name: "barnes-noble-store-calendar", run: importBarnesNobleStoreEvents },
