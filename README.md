@@ -102,6 +102,8 @@ Where2Go/
     stats.js                 Vercel endpoint for aggregate GA4 area stats
   data/
     README.md
+    data-status.html
+    data-status.js
     source-taxonomy.json
     source-workflows.json
     event-rules.json
@@ -131,7 +133,7 @@ http://localhost:4178/
 To inspect local data coverage and quality without opening the app UI, open:
 
 ```text
-http://localhost:4178/data-status.html
+http://localhost:4178/data/data-status.html
 ```
 
 The data status page is read-only. It loads `data/event-sources.json` and

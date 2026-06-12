@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Where2Go Data Status</title>
-    <link rel="icon" href="assets/icon.svg" />
+    <link rel="icon" href="../assets/icon.svg" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
       :root {
@@ -201,12 +201,25 @@
       }
 
       .legend-dot.town {
-        background: var(--good);
+        background: var(--ink);
       }
 
       .legend-dot.boundary {
         border-radius: 3px;
-        background: #2563eb;
+        border: 2px solid var(--ink);
+        background: transparent;
+      }
+
+      .legend-dot.good {
+        background: var(--good);
+      }
+
+      .legend-dot.needs-events {
+        background: var(--warn);
+      }
+
+      .legend-dot.source-gap {
+        background: var(--bad);
       }
 
       .legend-dot.mailing {
@@ -441,8 +454,11 @@
           </div>
         </div>
         <div class="map-legend">
-          <span class="legend-item"><span class="legend-dot town"></span>Town included</span>
-          <span class="legend-item"><span class="legend-dot boundary"></span>Town boundary</span>
+          <span class="legend-item"><span class="legend-dot town"></span>Town center</span>
+          <span class="legend-item"><span class="legend-dot boundary"></span>Municipal boundary</span>
+          <span class="legend-item"><span class="legend-dot good"></span>Good</span>
+          <span class="legend-item"><span class="legend-dot needs-events"></span>Needs events</span>
+          <span class="legend-item"><span class="legend-dot source-gap"></span>Source gap</span>
         </div>
         <div class="grid town-layout">
           <div id="townMap" aria-label="Covered town map"></div>
@@ -548,6 +564,6 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="data-status.js?v=town-boundaries"></script>
+    <script src="data-status.js?v=town-boundaries-40min"></script>
   </body>
 </html>

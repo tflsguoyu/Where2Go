@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-11",
+  "updatedAt": "2026-06-12",
   "home": {
     "label": "Warren, NJ 07059",
     "lat": 40.619261,
     "lng": -74.490372
   },
   "coverage": {
-    "driveTimeMinutes": 30,
+    "driveTimeMinutes": 40,
     "method": "OpenRouteService driving-car isochrone; 2024 Census county subdivision internal points inside the isochrone",
-    "townCount": 63
+    "townCount": 96
   },
   "eventPolicy": {
     "keepPastEvents": true,
@@ -160,6 +160,12 @@
           "sclsnj-libnet",
           "librarycalendar-list",
           "libcal-list",
+          "mylibrary-homepage-events",
+          "mylibrary-featured-carousel",
+          "nbfpl-static-events",
+          "assabet-rss",
+          "events-manager-grid",
+          "modern-events-calendar-html",
           "eventorganiser-fullcal",
           "joomla-event-booking-calendar",
           "manual"
@@ -562,6 +568,7 @@
         "south-plainfield-borough",
         "piscataway-township",
         "metuchen-borough",
+        "edison-township",
         "highland-park-borough",
         "new-brunswick-city"
       ]
@@ -663,6 +670,420 @@
         }
       ],
       "notes": "Official Watchung recreation and centennial pages carry family events that are not yet imported from the manual-review municipal calendar. Founder's Day was added from the official centennial page; future refresh should inspect recreation news, Centennial Celebration, Farmers Market, and Mayor's Wellness pages."
+    },
+    {
+      "id": "bedminster-official-community-events",
+      "label": "Bedminster Official Community Events",
+      "type": "municipal-supplemental-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.bedminster.us/",
+      "eventsUrl": "https://www.bedminster.us/news",
+      "townId": "bedminster-township",
+      "address": "1 Miller Lane, Bedminster, NJ 07921",
+      "lat": 40.680334,
+      "lng": -74.645638,
+      "configuredEvents": [
+        {
+          "title": "Flag Day with Betsy Ross",
+          "date": "2026-06-14",
+          "startTime": "13:00",
+          "endTime": "14:00",
+          "registration": "RSVP",
+          "cost": null,
+          "url": "https://www.bedminster.us/news/flag_day_with_betsy_ross_-_june_14___1pm",
+          "venue": "Jacobus Vanderveer House",
+          "address": "3055 River Road, Bedminster, NJ 07921",
+          "lat": 40.662503,
+          "lng": -74.645755,
+          "summary": "Interactive Flag Day history program with Betsy Ross for history enthusiasts, students, and families, with house tours available from noon to 4 PM.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "history",
+            "museum",
+            "family",
+            "official-page"
+          ],
+          "image": "https://cdnsm5-hosted.civiclive.com/UserFiles/Servers/Server_10139962/Image/Flag%20Day%20with%20Betsy%20Ross%206.14.jpg",
+          "confidence": 0.82
+        },
+        {
+          "title": "The History of the Declaration of Independence",
+          "date": "2026-06-20",
+          "startTime": "13:00",
+          "endTime": "14:00",
+          "registration": "RSVP",
+          "cost": null,
+          "url": "https://www.bedminster.us/news/the_story_of_the_declaration_of_independence",
+          "venue": "Jacobus Vanderveer House Museum",
+          "address": "3055 River Road, Bedminster, NJ 07921",
+          "lat": 40.662503,
+          "lng": -74.645755,
+          "summary": "History program on the making of the Declaration of Independence, described as America's birth certificate from conception to celebration.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "history",
+            "museum",
+            "family",
+            "official-page"
+          ],
+          "image": "https://cdnsm5-hosted.civiclive.com/UserFiles/Servers/Server_10139962/Image/Declaration%20of%20Independence%20with%20Joel%20Farkass.jpg",
+          "confidence": 0.82
+        }
+      ],
+      "notes": "Added during 2026-06-12 Source gap rediscovery. Bedminster's CivicLive iCal feed at https://www.bedminster.us/ICalendarHandler?calendarId=11726672 is stable but currently dominated by meetings, court sessions, office closures, and service items, so these family-compatible items are imported from official township news pages as configured events. Reviewed Clarence Dillon Public Library on 2026-06-12; the current WordPress site/API returned generic/spam-like posts and no reliable library event feed, so keep the library source manual_review."
+    },
+    {
+      "id": "east-hanover-library-mec-events",
+      "label": "East Hanover Public Library Events",
+      "type": "library-events",
+      "status": "reference_only",
+      "parser": "configured-regional-events",
+      "website": "https://easthanoverlibrary.com/",
+      "eventsUrl": "https://easthanoverlibrary.com/calendar/",
+      "townId": "east-hanover-township",
+      "address": "415 Ridgedale Avenue, East Hanover, NJ 07936",
+      "lat": 40.825742,
+      "lng": -74.360775,
+      "configuredEvents": [
+        {
+          "title": "Story Time Sprouts (Monday)",
+          "date": "2026-06-15",
+          "startTime": "10:30",
+          "endTime": "11:15",
+          "registration": "Register online",
+          "cost": null,
+          "url": "https://easthanoverlibrary.com/calendar/story-time-sprouts-monday/?occurrence=2026-06-15",
+          "venue": "East Hanover Public Library",
+          "address": "415 Ridgedale Avenue, East Hanover, NJ 07936",
+          "lat": 40.825742,
+          "lng": -74.360775,
+          "summary": "Children's story time session at East Hanover Public Library; the event page notes one registration covers the May 4 to June 15 session.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "tags": [
+            "library",
+            "storytime",
+            "children",
+            "official-calendar"
+          ],
+          "confidence": 0.84
+        },
+        {
+          "title": "Preschool Pages",
+          "date": "2026-06-16",
+          "startTime": "14:00",
+          "endTime": "14:45",
+          "registration": "Register online",
+          "cost": null,
+          "url": "https://easthanoverlibrary.com/calendar/700-473/?occurrence=2026-06-16",
+          "venue": "East Hanover Public Library",
+          "address": "415 Ridgedale Avenue, East Hanover, NJ 07936",
+          "lat": 40.825742,
+          "lng": -74.360775,
+          "summary": "Preschool story time program at East Hanover Public Library; the event page notes one registration covers the May 5 to June 16 session.",
+          "ages": [
+            "preschool"
+          ],
+          "tags": [
+            "library",
+            "storytime",
+            "preschool",
+            "official-calendar"
+          ],
+          "confidence": 0.84
+        },
+        {
+          "title": "Baby Bookworms",
+          "date": "2026-06-17",
+          "startTime": "11:30",
+          "endTime": "12:00",
+          "registration": "Register online",
+          "cost": null,
+          "url": "https://easthanoverlibrary.com/calendar/700-473-337/?occurrence=2026-06-17",
+          "venue": "East Hanover Public Library",
+          "address": "415 Ridgedale Avenue, East Hanover, NJ 07936",
+          "lat": 40.825742,
+          "lng": -74.360775,
+          "summary": "Children's library program for babies and caregivers on the East Hanover Public Library calendar.",
+          "ages": [
+            "baby",
+            "toddler"
+          ],
+          "tags": [
+            "library",
+            "storytime",
+            "baby",
+            "official-calendar"
+          ],
+          "confidence": 0.82
+        },
+        {
+          "title": "Makers Club",
+          "date": "2026-06-18",
+          "startTime": "17:00",
+          "endTime": "18:00",
+          "registration": "Register online",
+          "cost": null,
+          "url": "https://easthanoverlibrary.com/calendar/makers-club-june/?occurrence=2026-06-18",
+          "venue": "East Hanover Public Library",
+          "address": "415 Ridgedale Avenue, East Hanover, NJ 07936",
+          "lat": 40.825742,
+          "lng": -74.360775,
+          "summary": "Children and teen maker activity listed on the East Hanover Public Library calendar.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "library",
+            "maker",
+            "stem",
+            "children",
+            "official-calendar"
+          ],
+          "confidence": 0.82
+        },
+        {
+          "title": "STEM Club",
+          "date": "2026-06-25",
+          "startTime": "17:00",
+          "endTime": "18:00",
+          "registration": "Register online",
+          "cost": null,
+          "url": "https://easthanoverlibrary.com/calendar/stem-club-june/?occurrence=2026-06-25",
+          "venue": "East Hanover Public Library",
+          "address": "415 Ridgedale Avenue, East Hanover, NJ 07936",
+          "lat": 40.825742,
+          "lng": -74.360775,
+          "summary": "Children and teen STEM Club activity listed on the East Hanover Public Library calendar.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "library",
+            "stem",
+            "children",
+            "official-calendar"
+          ],
+          "confidence": 0.82
+        }
+      ],
+      "notes": "Added during 2026-06-12 Source gap rediscovery. Superseded on 2026-06-12 by the town library record using modern-events-calendar-html; keep this configured snapshot as a reference for parser QA only."
+    },
+    {
+      "id": "florham-park-library-assabet-events",
+      "label": "Florham Park Public Library Assabet Events",
+      "type": "library-events",
+      "status": "reference_only",
+      "parser": "configured-regional-events",
+      "website": "https://florhamparklib.org/",
+      "eventsUrl": "https://florhamparklib.assabetinteractive.com/calendar/upcoming-events.rss",
+      "townId": "florham-park-borough",
+      "address": "107 Ridgedale Avenue, Florham Park, NJ 07932",
+      "lat": 40.7832242,
+      "lng": -74.3997529,
+      "configuredEvents": [
+        {
+          "title": "Move & Shake with Ms. Carol",
+          "date": "2026-06-12",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "registration": "Register online",
+          "cost": null,
+          "url": "https://florhamparklib.assabetinteractive.com/calendar/move-shake-with-ms-carol-57/",
+          "venue": "Florham Park Public Library",
+          "room": "Akhoury Room",
+          "address": "107 Ridgedale Avenue, Florham Park, NJ 07932",
+          "lat": 40.7832242,
+          "lng": -74.3997529,
+          "summary": "Movement, dancing, and play class for ages 3 to 6 with a caregiver, listed in the Florham Park Public Library Assabet RSS feed.",
+          "ages": [
+            "preschool",
+            "early-elementary"
+          ],
+          "tags": [
+            "library",
+            "movement",
+            "children",
+            "family",
+            "rss"
+          ],
+          "confidence": 0.88
+        },
+        {
+          "title": "Saturday Sherlocks",
+          "date": "2026-06-13",
+          "startTime": "10:30",
+          "endTime": "15:30",
+          "registration": "Drop in",
+          "cost": null,
+          "url": "https://florhamparklib.assabetinteractive.com/calendar/saturday-sherlocks-18/",
+          "venue": "Florham Park Public Library",
+          "room": "Children's Room",
+          "address": "107 Ridgedale Avenue, Florham Park, NJ 07932",
+          "lat": 40.7832242,
+          "lng": -74.3997529,
+          "summary": "Drop-in library scavenger hunt for ages 3 and up and their families, listed in the Florham Park Public Library Assabet RSS feed.",
+          "ages": [
+            "preschool",
+            "early-elementary"
+          ],
+          "tags": [
+            "library",
+            "scavenger-hunt",
+            "children",
+            "family",
+            "rss"
+          ],
+          "confidence": 0.88
+        },
+        {
+          "title": "Touch-a-Truck Summer Reading Kick Off!",
+          "date": "2026-06-19",
+          "startTime": "14:00",
+          "endTime": "16:00",
+          "registration": "See source",
+          "cost": null,
+          "url": "https://florhamparklib.assabetinteractive.com/calendar/touch-a-truck-summer-reading-kick-off/",
+          "venue": "Florham Park Public Library",
+          "address": "107 Ridgedale Avenue, Florham Park, NJ 07932",
+          "lat": 40.7832242,
+          "lng": -74.3997529,
+          "summary": "Touch-a-Truck summer reading kickoff listed by the library for adults, children, families, infants/toddlers, performances, and tweens/teens.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "library",
+            "touch-a-truck",
+            "summer-reading",
+            "family",
+            "rss"
+          ],
+          "confidence": 0.86
+        },
+        {
+          "title": "Little Learners",
+          "date": "2026-06-22",
+          "startTime": "10:30",
+          "endTime": "11:15",
+          "registration": "See source",
+          "cost": null,
+          "url": "https://florhamparklib.assabetinteractive.com/calendar/little-learners-177/",
+          "venue": "Florham Park Public Library",
+          "address": "107 Ridgedale Avenue, Florham Park, NJ 07932",
+          "lat": 40.7832242,
+          "lng": -74.3997529,
+          "summary": "Family and infant/toddler STEM learning program listed in the Florham Park Public Library Assabet RSS feed.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "tags": [
+            "library",
+            "stem",
+            "children",
+            "family",
+            "rss"
+          ],
+          "confidence": 0.84
+        },
+        {
+          "title": "Ninja Course with Pinnacle Parkour",
+          "date": "2026-06-24",
+          "startTime": "16:00",
+          "endTime": "17:00",
+          "registration": "See source",
+          "cost": null,
+          "url": "https://florhamparklib.assabetinteractive.com/calendar/ninja-course-with-pinnacle-parkour/",
+          "venue": "Florham Park Public Library",
+          "address": "107 Ridgedale Avenue, Florham Park, NJ 07932",
+          "lat": 40.7832242,
+          "lng": -74.3997529,
+          "summary": "Children and family ninja-course program listed in the Florham Park Public Library Assabet RSS feed.",
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween"
+          ],
+          "tags": [
+            "library",
+            "movement",
+            "children",
+            "family",
+            "rss"
+          ],
+          "confidence": 0.84
+        }
+      ],
+      "notes": "Added during 2026-06-12 Source gap rediscovery. Superseded on 2026-06-12 by the Florham Park Public Library town record using assabet-rss; keep this configured snapshot as a reference for parser QA only."
+    },
+    {
+      "id": "morris-plains-borough-timely-events",
+      "label": "Morris Plains Borough Timely Events",
+      "type": "municipal-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://morrisplainsboro.org/",
+      "eventsUrl": "https://events.timely.fun/xayy3jsd/agenda",
+      "townId": "morris-plains-borough",
+      "address": "531 Speedwell Avenue, Morris Plains, NJ 07950",
+      "lat": 40.8320441,
+      "lng": -74.4682102,
+      "configuredEvents": [
+        {
+          "title": "Family Day and Fireworks",
+          "date": "2026-06-27",
+          "startTime": "17:00",
+          "endTime": "22:00",
+          "registration": "See source",
+          "cost": null,
+          "url": "https://events.timely.fun/xayy3jsd/agenda",
+          "venue": "Morris Plains Community Park",
+          "address": "Morris Plains Community Park, Morris Plains, NJ 07950",
+          "lat": 40.8320441,
+          "lng": -74.4682102,
+          "summary": "Morris Plains borough Timely calendar lists Family Day and Fireworks on June 27 under Recreation Events and All Events.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "tags": [
+            "municipal",
+            "recreation",
+            "fireworks",
+            "family",
+            "timely-calendar"
+          ],
+          "confidence": 0.78
+        }
+      ],
+      "notes": "Added during 2026-06-12 Source gap rediscovery. The borough website embeds a Timely calendar at https://events.timely.fun/xayy3jsd/agenda; the rendered agenda lists Family Day and Fireworks on 2026-06-27 under Recreation Events and All Events."
     },
     {
       "id": "bound-brook-recreation",
@@ -7992,15 +8413,148 @@
         {
           "name": "Metuchen Public Library",
           "website": "https://www.metuchenlibrary.org/",
-          "eventsUrl": "https://www.metuchenlibrary.org/events",
-          "status": "manual_review",
+          "eventsUrl": "https://www.metuchenlibrary.org/calendar/event-grid/",
+          "status": "importable",
+          "parser": "events-manager-grid",
+          "parserVersion": "2026-06-12",
+          "maxPages": 12,
+          "address": "480 Middlesex Avenue, Metuchen, NJ 08840",
+          "lat": 40.541836,
+          "lng": -74.360305,
           "townId": "metuchen-borough",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Rediscovered 2026-06-11. Official public library source; inspect event calendar endpoint and youth/family filters before import."
+          "notes": "Rediscovered 2026-06-11. Converted to importable on 2026-06-12. Official WordPress Events Manager grid at /calendar/event-grid/ is server-rendered and paginated with pno=N; cards expose title, detail URL, date, time, audience categories, and tags. events-manager-grid imports Children, Elementary, Infant to PreK, Teens/Tweens, All Ages, and other child/family-compatible rows."
         }
+      ]
+    },
+    {
+      "id": "edison-township",
+      "name": "Edison township",
+      "county": "Middlesex",
+      "zipCodes": [
+        "08817",
+        "08818",
+        "08820",
+        "08837",
+        "08899"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Edison",
+          "zip": "08817"
+        },
+        {
+          "name": "Edison",
+          "zip": "08818"
+        },
+        {
+          "name": "North Edison",
+          "zip": "08820"
+        },
+        {
+          "name": "Edison",
+          "zip": "08837"
+        },
+        {
+          "name": "Edison",
+          "zip": "08899"
+        }
+      ],
+      "geoid": "3402320230",
+      "center": {
+        "lat": 40.536538,
+        "lng": -74.36914
+      },
+      "distanceMiles": 8.6,
+      "municipal": {
+        "website": "https://www.edisonnj.org/",
+        "eventsUrl": "https://www.edisonnj.org/calendar.php",
+        "recreationUrl": "https://www.edisonnj.gov/departments/recreation_department/recreation_events.php",
+        "status": "manual_review",
+        "parser": "revize-calendar",
+        "lastCheckedAt": "2026-06-12",
+        "notes": "Added during Edison expansion. Official township site uses Revize and exposes Township Events, Community Events, and Meetings calendar categories; recreation events live on a Revize document-center page. Keep manual_review until the Revize calendar endpoint is mapped and civic/service rows are filtered safely."
+      },
+      "libraries": [
+        {
+          "name": "Edison Public Library",
+          "website": "https://edisonpubliclibrary.org/",
+          "eventsUrl": "https://edisonpubliclibrary.libnet.info/events?r=thismonth",
+          "status": "importable",
+          "parser": "communico-libnet",
+          "eventEndpoint": "https://edisonpubliclibrary.libnet.info/eeventcaldata",
+          "locationEndpoint": "https://api.communico.co/v1/edisonpubliclibrary/locations",
+          "branchIds": [
+            "3260",
+            "3280",
+            "3281",
+            "3313"
+          ],
+          "ageFilters": [
+            "Childrens",
+            "Early Learning",
+            "Family",
+            "All Ages",
+            "Tweens",
+            "Teens"
+          ],
+          "townId": "edison-township",
+          "tier": 1,
+          "sourceTypes": [
+            "public_library"
+          ],
+          "address": "340 Plainfield Avenue, Edison, NJ 08817",
+          "lat": 40.5174913,
+          "lng": -74.4081806,
+          "locations": [
+            {
+              "id": "3260",
+              "name": "Main Library",
+              "line1": "340 Plainfield Avenue",
+              "locality": "Edison",
+              "stateprovincecounty": "NJ",
+              "ziporpostcode": "08817",
+              "lat": "40.5174913",
+              "lon": "-74.4081806"
+            },
+            {
+              "id": "3280",
+              "name": "North Edison Temporary Branch",
+              "line1": "1907 Oak Tree Road",
+              "line2": "Suite 102",
+              "locality": "Edison",
+              "stateprovincecounty": "NJ",
+              "ziporpostcode": "08820",
+              "lat": "40.5756848",
+              "lon": "-74.3589527"
+            },
+            {
+              "id": "3281",
+              "name": "Clara Barton Branch",
+              "line1": "141 Hoover Avenue",
+              "locality": "Edison",
+              "stateprovincecounty": "NJ",
+              "ziporpostcode": "08837",
+              "lat": "40.5339676",
+              "lon": "-74.3300359"
+            },
+            {
+              "id": "3313",
+              "name": "Bookmobile",
+              "locality": "Edison",
+              "stateprovincecounty": "NJ",
+              "lat": "0",
+              "lon": "0"
+            }
+          ],
+          "notes": "Added 2026-06-12. Official library homepage links to edisonpubliclibrary.libnet.info; Communico locations API and /eeventcaldata were verified. Age labels include Childrens, Early Learning, Family, All Ages, Tweens, and Teens; parser filters to child/family-compatible events."
+        }
+      ],
+      "sourceSweepNotes": [
+        "2026-06-12 initial Edison expansion added official municipal/recreation pages, Edison Public Library, and Middlesex County shared events coverage. Additional Edison venue sweep is in progress for mall, retail workshops, parks, indoor play, and cultural sources."
       ]
     },
     {
@@ -8111,14 +8665,28 @@
         {
           "name": "Bernardsville Public Library",
           "website": "https://www.bernardsvillelibrary.org/",
-          "eventsUrl": "https://www.bernardsvillelibrary.org/events",
-          "status": "manual_review",
+          "eventsUrl": "https://events.bernardsvillelibrary.org/",
+          "status": "importable",
+          "parser": "libcal-list",
+          "parserVersion": "2026-06-12",
+          "siteId": "6838",
+          "calendarIds": [
+            "21381"
+          ],
+          "audienceIds": [
+            "9909",
+            "9910",
+            "9908"
+          ],
+          "address": "1 Anderson Hill Road, Bernardsville, NJ 07924",
+          "lat": 40.717802,
+          "lng": -74.571481,
           "townId": "bernardsville-borough",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Bernardsville library is outside SCLSNJ; inspect MAIN/library event endpoints and youth/family filters before importing."
+          "notes": "Added 2026-06-11. Converted to importable on 2026-06-12 after confirming LibCal iid 6838, calendar 21381, and audience IDs 9909 All Ages, 9910 Children, 9908 Preteen/Teen. Refresh path: GET https://events.bernardsvillelibrary.org/ajax/calendar/list with c=21381, perpage=100, audience=9909,9910,9908, and one date per import-window day."
         }
       ],
       "sourceSweepNotes": [
@@ -8250,13 +8818,18 @@
           "name": "New Brunswick Free Public Library",
           "website": "https://www.nbfpl.org/",
           "eventsUrl": "https://www.nbfpl.org/events",
-          "status": "manual_review",
+          "status": "importable",
+          "parser": "nbfpl-static-events",
+          "parserVersion": "2026-06-12",
+          "address": "60 Livingston Avenue, New Brunswick, NJ 08901",
+          "lat": 40.491851,
+          "lng": -74.445117,
           "townId": "new-brunswick-city",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Rediscovered 2026-06-11. Official city library source; inspect calendar endpoint and children/teen filters before import."
+          "notes": "Rediscovered 2026-06-11. Converted to importable on 2026-06-12. Official /events page exposes server-rendered div.event rows with event-title, details date/time text, room, summary, and occasional nbfpl.events.mylibrary.digital registration links. nbfpl-static-events parses the static page, expands explicit multi-date/weekly rows, and keeps kids/teen/all-ages rows while skipping appointment-only and undated entries."
         }
       ]
     },
@@ -8433,7 +9006,7 @@
         "status": "manual_review",
         "defaultVenueName": "Bedminster Township event",
         "defaultAddress": "1 Miller Lane, Bedminster, NJ 07921",
-        "notes": "Added 2026-06-11. Official calendar is published on the township site, but no stable raw feed was confirmed during initial discovery; keep manual review until a parser is identified."
+        "notes": "Added 2026-06-11. Rechecked 2026-06-12. Official CivicLive calendar exposes a stable iCal feed at https://www.bedminster.us/ICalendarHandler?calendarId=11726672, but the feed is dominated by municipal court, land use, township committee, board, office-closed, and service rows, so do not import it as a family event source without a stricter parser. Recreation pages link to current offerings and online registration, but online registration redirects to CommunityPass/Capturepoint login and does not expose a public dated program feed. Useful official family/community news items are already tracked separately under the Bedminster Official Community Events configured source."
       },
       "libraries": [
         {
@@ -8446,7 +9019,8 @@
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Independent public library source; inspect event/calendar endpoint and youth/family filters before importing."
+          "notes": "Rechecked 2026-06-12. Direct homepage fetch returned malformed/spam-like WordPress content and no reliable event/calendar/feed links. Keep manual_review until the official site is repaired or a separate stable library calendar endpoint is found.",
+          "lastCheckedAt": "2026-06-12"
         }
       ],
       "sourceSweepNotes": [
@@ -8560,14 +9134,19 @@
         {
           "name": "Cranford Public Library",
           "website": "https://www.cranfordlibrary.org/",
-          "eventsUrl": "https://www.cranfordlibrary.org/events",
-          "status": "manual_review",
+          "eventsUrl": "https://www.cranfordlibrary.org/cranford-library-calendar",
+          "status": "importable",
           "townId": "cranford-township",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Rediscovered 2026-06-11. Official library events page with children/teen program potential; inspect stable endpoint before importing."
+          "notes": "Converted to importable on 2026-06-12. Official Squarespace calendar page renders eventlist-event articles with title, detail URL, date, and 24-hour start/end times; detail pages include Google Calendar/ICS links and richer descriptions. Refresh by fetching /cranford-library-calendar with parser squarespace-library-calendar and filtering children, teen, family, craft, storytime, D&D, and similar rows while skipping adult book clubs/lectures.",
+          "parser": "squarespace-library-calendar",
+          "parserVersion": "2026-06-12",
+          "address": "224 Walnut Avenue, Cranford, NJ 07016",
+          "lat": 40.65158,
+          "lng": -74.30428
         }
       ]
     },
@@ -8696,8 +9275,23 @@
       "municipal": {
         "website": "https://www.rosenet.org/",
         "eventsUrl": "https://www.rosenet.org/Calendar.aspx",
-        "status": "manual_review",
-        "notes": "Official Madison municipal source updated from stale madisonboro.org to RoseNet during 2026-06-11 rediscovery. Keep manual_review until CivicPlus/calendar parser path is confirmed.",
+        "status": "importable",
+        "parser": "civicplus-calendar",
+        "parserVersion": "2026-06-12",
+        "calendarIds": [
+          "61",
+          "34",
+          "24",
+          "25",
+          "52",
+          "23",
+          "31",
+          "37",
+          "49"
+        ],
+        "defaultVenueName": "Madison borough event",
+        "defaultAddress": "50 Kings Road, Madison, NJ 07940",
+        "notes": "Official Madison municipal source updated from stale madisonboro.org to RoseNet during 2026-06-11 rediscovery. Converted to importable on 2026-06-12 after confirming CivicPlus calendar list CIDs 61, 34, 24, 25, 52, 23, 31, 37, and 49 on /Calendar.aspx.",
         "lastCheckedAt": "2026-06-11",
         "lastFailureReason": "Municipal domain madisonboro.org did not resolve during 2026-06-11 URL audit; rediscovery needed.",
         "recreationUrl": "https://www.rosenet.org/178/Recreation"
@@ -8819,14 +9413,19 @@
         {
           "name": "Florham Park Public Library",
           "website": "https://florhamparklib.org/",
-          "eventsUrl": "https://florhamparklib.org/events/",
-          "status": "manual_review",
+          "eventsUrl": "https://florhamparklib.assabetinteractive.com/calendar/upcoming-events.rss",
+          "status": "importable",
+          "parser": "assabet-rss",
+          "parserVersion": "2026-06-12",
           "townId": "florham-park-borough",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Official library events page links Assabet Interactive event detail pages for youth/family programs; inspect a parser before importing."
+          "address": "107 Ridgedale Avenue, Florham Park, NJ 07932",
+          "lat": 40.777248,
+          "lng": -74.393366,
+          "notes": "Added 2026-06-11. Converted to importable on 2026-06-12. Official events page embeds https://florhamparklib.assabetinteractive.com/calendar/ and the stable RSS feed at /calendar/upcoming-events.rss exposes title, detail URL, description, categories, room/location, and address. assabet-rss imports children, teen, family, and all-ages rows while skipping adult-only categories."
         }
       ],
       "sourceSweepNotes": [
@@ -8957,10 +9556,14 @@
         "website": "https://www.townofmorristown.org/",
         "eventsUrl": "https://www.townofmorristown.org/calendar",
         "recreationUrl": "https://www.townofmorristown.org/rec",
-        "status": "manual_review",
+        "status": "importable",
+        "parser": "govoffice-calendar",
+        "parserVersion": "2026-06-12",
+        "sectionId": "628EFB01-0730-43EB-A0E0-F3CAACDEDF56",
+        "type": "B_EV",
         "defaultVenueName": "Morristown town event",
         "defaultAddress": "200 South Street, Morristown, NJ 07960",
-        "notes": "Added 2026-06-11. Official town calendar, recreation, activities, parks, and special-events pages are recorded; keep manual_review until a GovOffice calendar parser is configured."
+        "notes": "Added 2026-06-11. Converted to importable on 2026-06-12. Official GovOffice town calendar exposes month/year HTML rows under Type=B_EV and SEC=628EFB01-0730-43EB-A0E0-F3CAACDEDF56; govoffice-calendar imports community/family-safe rows and skips meetings/service rows."
       },
       "libraries": [
         {
@@ -9064,14 +9667,29 @@
         {
           "name": "Whippanong Library",
           "website": "https://www.whippanong.org/",
-          "eventsUrl": "https://www.whippanong.org/events-calendar/",
-          "status": "manual_review",
+          "eventsUrl": "https://engagedpatrons.org/Events.cfm?SiteID=8537",
+          "status": "importable",
+          "parser": "engagedpatrons-list",
+          "parserVersion": "2026-06-12",
           "townId": "hanover-township",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Official library events calendar is recorded; inspect event endpoint before importing."
+          "eventUrls": [
+            {
+              "url": "https://engagedpatrons.org/Events.cfm?SiteID=8537&Audience=C",
+              "audience": "C"
+            },
+            {
+              "url": "https://engagedpatrons.org/Events.cfm?SiteID=8537&Audience=T",
+              "audience": "T"
+            }
+          ],
+          "address": "1000 Route 10, Whippany, NJ 07981",
+          "lat": 40.829785,
+          "lng": -74.433047,
+          "notes": "Added 2026-06-11. Converted to importable on 2026-06-12. Official library page embeds Engaged Patrons SiteID 8537; engagedpatrons-list imports children and teen rows from the C/T audience URLs."
         }
       ],
       "sourceSweepNotes": [
@@ -9105,7 +9723,7 @@
           "name": "Chester Library",
           "website": "https://chesterlib.org/",
           "eventsUrl": "https://chesterlib.org/events-calendar/",
-          "status": "manual_review",
+          "status": "service_area",
           "townId": "chester-township",
           "servesTownIds": [
             "chester-township",
@@ -9115,7 +9733,7 @@
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Official library has children and teen calendars backed by Assabet Interactive event pages; inspect a parser before importing."
+          "notes": "Added 2026-06-11. Covered by the Chester Library importable source recorded under Chester borough; that source uses the Assabet Interactive RSS feed and serves both Chester township and Chester borough."
         }
       ],
       "sourceSweepNotes": [
@@ -9139,23 +9757,33 @@
         "website": "https://morrisplainsboro.org/",
         "eventsUrl": "https://morrisplainsboro.org/calendar/",
         "recreationUrl": "https://morrisplainsboro.org/recreation/",
-        "status": "manual_review",
-        "defaultVenueName": "Morris Plains Borough event",
-        "defaultAddress": "531 Speedwell Avenue, Morris Plains, NJ 07950",
-        "notes": "Added 2026-06-11. Official borough WordPress calendar, recreation pages, events registration, and BrownBear community-center calendar are recorded; keep manual_review until a parser is configured."
+        "status": "importable",
+        "defaultVenueName": "Morris Plains Community Center",
+        "defaultAddress": "51 Jim Fear Drive, Morris Plains, NJ 07950",
+        "notes": "Converted to importable on 2026-06-12. Official borough recreation registration uses Event Espresso; importer reads /wp-json/ee/v4.8.36/datetimes with order_by=DTT_EVT_start and fetches matching /events/{EVT_ID} details, then filters to kid/family programs such as camps, LEGO, science, sports, art, theatre, and workshops while skipping memberships, permits, early drop-off, and other registration/admin rows.",
+        "parser": "eventespresso-datetimes",
+        "parserVersion": "2026-06-12",
+        "eventEspressoApiBase": "https://morrisplainsboro.org/wp-json/ee/v4.8.36",
+        "eventEspressoLimit": 100,
+        "lat": 40.831861,
+        "lng": -74.478561
       },
       "libraries": [
         {
           "name": "Morris Plains Library",
-          "website": "https://morrisplainsboro.org/library/",
-          "eventsUrl": "https://morrisplainsboro.org/library/",
+          "website": "https://morrisplainslibrary.org/",
+          "eventsUrl": "https://morrisplainslibrary.org/",
           "status": "manual_review",
           "townId": "morris-plains-borough",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Borough library page is recorded; inspect whether events are published through borough calendar, MAIN/Aspen, or a separate endpoint before importing."
+          "notes": "Rechecked 2026-06-12. Borough page links to the standalone library site at morrisplainslibrary.org. The public site lists a school-year Wednesday 10:30 AM storytime and general Kids/Teens page, but no dated event feed/API/ICS was found. Keep manual_review unless recurring storytime expansion is intentionally added or a separate dated calendar appears.",
+          "address": "77 Glenbrook Road, Morris Plains, NJ 07950",
+          "lat": 40.828516,
+          "lng": -74.478338,
+          "lastCheckedAt": "2026-06-12"
         }
       ],
       "sourceSweepNotes": [
@@ -9189,13 +9817,18 @@
           "name": "East Hanover Public Library",
           "website": "https://easthanoverlibrary.com/",
           "eventsUrl": "https://easthanoverlibrary.com/calendar/",
-          "status": "manual_review",
+          "status": "importable",
+          "parser": "modern-events-calendar-html",
+          "parserVersion": "2026-06-12",
           "townId": "east-hanover-township",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Official library calendar publishes children and teen rows such as LEGO Club, Pajama Story Time, Story Time Sprouts, and Preschool Pages; inspect a parser before importing."
+          "address": "415 Ridgedale Avenue, East Hanover, NJ 07936",
+          "lat": 40.825742,
+          "lng": -74.360775,
+          "notes": "Added 2026-06-11. Converted to importable on 2026-06-12. Official WordPress Modern Events Calendar page server-renders list/month cards with title, detail URL, occurrence date, time, Children/Pre-School/Teen labels, and categories; modern-events-calendar-html imports child/family rows from the public HTML."
         }
       ],
       "sourceSweepNotes": [
@@ -9231,8 +9864,13 @@
         {
           "name": "Chester Library",
           "website": "https://chesterlib.org/",
-          "eventsUrl": "https://chesterlib.org/events-calendar/",
-          "status": "manual_review",
+          "eventsUrl": "https://chesterlib.assabetinteractive.com/calendar/upcoming-events.rss",
+          "status": "importable",
+          "parser": "assabet-rss",
+          "parserVersion": "2026-06-12",
+          "address": "250 W. Main St, Chester, NJ 07930",
+          "lat": 40.785051,
+          "lng": -74.704815,
           "townId": "chester-borough",
           "servesTownIds": [
             "chester-township",
@@ -9242,7 +9880,7 @@
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Official library has children and teen calendars backed by Assabet Interactive event pages; inspect a parser before importing."
+          "notes": "Added 2026-06-11. Converted to importable on 2026-06-12. Official events page embeds https://chesterlib.assabetinteractive.com/calendar/ and the stable RSS feed at /calendar/upcoming-events.rss exposes title, detail URL, description, categories, pubDate, image, room, and address. assabet-rss imports children, teen, family, and all-ages rows while skipping adult-only categories."
         }
       ],
       "sourceSweepNotes": [
@@ -9355,15 +9993,16 @@
       "libraries": [
         {
           "name": "Boonton Holmes Public Library",
-          "website": "https://www.boonton.org/31/Community",
-          "eventsUrl": "https://www.boonton.org/31/Community",
+          "website": "https://www.boontonholmeslibrary.org/",
+          "eventsUrl": "https://www.boontonholmeslibrary.org/",
           "status": "manual_review",
           "townId": "boonton-town",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Added 2026-06-11. Boonton library is tracked from official town/community context; find current standalone library event endpoint before importing."
+          "notes": "Rechecked 2026-06-12. Boonton town community page links to Boonton Holmes Library, but direct HTTP/HTTPS fetches for boontonholmeslibrary.org returned no usable public HTML in this environment. No stable dated library event source was confirmed; keep manual_review.",
+          "lastCheckedAt": "2026-06-12"
         }
       ],
       "sourceSweepNotes": [
@@ -9601,14 +10240,19 @@
         {
           "name": "Union Public Library",
           "website": "https://uplnj.org/",
-          "eventsUrl": "https://uplnj.events.mylibrary.digital/",
-          "status": "manual_review",
+          "eventsUrl": "https://uplnj.events.mylibrary.digital/embed/featured_carousel",
+          "status": "importable",
           "townId": "union-township",
           "tier": 1,
           "sourceTypes": [
             "public_library"
           ],
-          "notes": "Rediscovered 2026-06-11. mylibrary.digital calendar shows children/family activities; configured or browser-backed parser may be needed."
+          "notes": "Converted to importable on 2026-06-12. Direct mylibrary.digital event pages are Cloudflare-protected for script fetches, but the public embed/featured_carousel endpoint returns server-rendered carousel items with event IDs, titles, images, and dates. Refresh by fetching https://uplnj.events.mylibrary.digital/embed/featured_carousel with parser mylibrary-featured-carousel; it imports child/family-compatible featured rows and links back to the official event detail pages.",
+          "parser": "mylibrary-featured-carousel",
+          "parserVersion": "2026-06-12",
+          "address": "1060 Stuyvesant Avenue, Union, NJ 07083",
+          "lat": 40.696589,
+          "lng": -74.265089
         }
       ]
     },
@@ -10028,16 +10672,617 @@
         {
           "name": "Newark Public Library",
           "website": "https://www.npl.org/",
-          "eventsUrl": "https://www.npl.org/",
+          "eventsUrl": "https://www.npl.org/calendar/",
           "status": "manual_review",
           "townId": "newark-city",
           "sourceTypes": [
             "public_library"
           ],
           "tier": 1,
-          "notes": "Rediscovered 2026-06-11. Multi-branch library system; inspect branch/event calendar before importing children/family rows."
+          "notes": "Rechecked 2026-06-12. Newark Public Library is WordPress; /calendar/ is a static virtual-events help page and /events/ contains an unrendered [em_events] shortcode. WP REST exposes only post/page/attachment types, not event records, and no stable child/family event feed was confirmed. Keep manual_review.",
+          "lastCheckedAt": "2026-06-12"
         }
       ]
+    },
+    {
+      "id": "winfield-township",
+      "name": "Winfield township",
+      "county": "Union",
+      "zipCodes": [
+        "07036"
+      ],
+      "geoid": "3403981650",
+      "center": {
+        "lat": 40.634884,
+        "lng": -74.289847
+      },
+      "distanceMiles": 11.5
+    },
+    {
+      "id": "rahway-city",
+      "name": "Rahway city",
+      "county": "Union",
+      "zipCodes": [
+        "07065"
+      ],
+      "geoid": "3403961530",
+      "center": {
+        "lat": 40.607152,
+        "lng": -74.280531
+      },
+      "distanceMiles": 12.2
+    },
+    {
+      "id": "roselle-park-borough",
+      "name": "Roselle Park borough",
+      "county": "Union",
+      "zipCodes": [
+        "07204"
+      ],
+      "geoid": "3403964650",
+      "center": {
+        "lat": 40.665309,
+        "lng": -74.266558
+      },
+      "distanceMiles": 12.9
+    },
+    {
+      "id": "roselle-borough",
+      "name": "Roselle borough",
+      "county": "Union",
+      "zipCodes": [
+        "07203"
+      ],
+      "geoid": "3403964620",
+      "center": {
+        "lat": 40.652211,
+        "lng": -74.260158
+      },
+      "distanceMiles": 13.2
+    },
+    {
+      "id": "linden-city",
+      "name": "Linden city",
+      "county": "Union",
+      "zipCodes": [
+        "07036"
+      ],
+      "geoid": "3403940350",
+      "center": {
+        "lat": 40.627337,
+        "lng": -74.23631
+      },
+      "distanceMiles": 14.4
+    },
+    {
+      "id": "elizabeth-city",
+      "name": "Elizabeth city",
+      "county": "Union",
+      "zipCodes": [
+        "07201",
+        "07202",
+        "07206",
+        "07208"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Elizabeth",
+          "zip": "07201"
+        },
+        {
+          "name": "Elizabeth",
+          "zip": "07202"
+        },
+        {
+          "name": "Elizabethport",
+          "zip": "07206"
+        },
+        {
+          "name": "Elmora / North Elizabeth",
+          "zip": "07208"
+        }
+      ],
+      "geoid": "3403921000",
+      "center": {
+        "lat": 40.666367,
+        "lng": -74.193503
+      },
+      "distanceMiles": 16.7
+    },
+    {
+      "id": "woodbridge-township",
+      "name": "Woodbridge township",
+      "county": "Middlesex",
+      "zipCodes": [
+        "07001",
+        "07064",
+        "07067",
+        "07077",
+        "07095",
+        "08830",
+        "08832",
+        "08861",
+        "08863"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Avenel",
+          "zip": "07001"
+        },
+        {
+          "name": "Port Reading",
+          "zip": "07064"
+        },
+        {
+          "name": "Colonia",
+          "zip": "07067"
+        },
+        {
+          "name": "Sewaren",
+          "zip": "07077"
+        },
+        {
+          "name": "Woodbridge",
+          "zip": "07095"
+        },
+        {
+          "name": "Iselin",
+          "zip": "08830"
+        },
+        {
+          "name": "Keasbey",
+          "zip": "08832"
+        },
+        {
+          "name": "Hopelawn / Perth Amboy mailing",
+          "zip": "08861"
+        },
+        {
+          "name": "Fords",
+          "zip": "08863"
+        }
+      ],
+      "geoid": "3402382000",
+      "center": {
+        "lat": 40.561262,
+        "lng": -74.292377
+      },
+      "distanceMiles": 12.5
+    },
+    {
+      "id": "north-brunswick-township",
+      "name": "North Brunswick township",
+      "county": "Middlesex",
+      "zipCodes": [
+        "08902"
+      ],
+      "geoid": "3402352560",
+      "center": {
+        "lat": 40.450392,
+        "lng": -74.479416
+      },
+      "distanceMiles": 12.8
+    },
+    {
+      "id": "milltown-borough",
+      "name": "Milltown borough",
+      "county": "Middlesex",
+      "zipCodes": [
+        "08850"
+      ],
+      "geoid": "3402346620",
+      "center": {
+        "lat": 40.450223,
+        "lng": -74.434786
+      },
+      "distanceMiles": 13.3
+    },
+    {
+      "id": "south-river-borough",
+      "name": "South River borough",
+      "county": "Middlesex",
+      "zipCodes": [
+        "08882"
+      ],
+      "geoid": "3402369420",
+      "center": {
+        "lat": 40.445652,
+        "lng": -74.378458
+      },
+      "distanceMiles": 14.7
+    },
+    {
+      "id": "perth-amboy-city",
+      "name": "Perth Amboy city",
+      "county": "Middlesex",
+      "zipCodes": [
+        "08861"
+      ],
+      "geoid": "3402358200",
+      "center": {
+        "lat": 40.52016,
+        "lng": -74.271331
+      },
+      "distanceMiles": 14.8
+    },
+    {
+      "id": "west-orange-township",
+      "name": "West Orange township",
+      "county": "Essex",
+      "zipCodes": [
+        "07052"
+      ],
+      "geoid": "3401379800",
+      "center": {
+        "lat": 40.785755,
+        "lng": -74.265058
+      },
+      "distanceMiles": 16.6
+    },
+    {
+      "id": "roseland-borough",
+      "name": "Roseland borough",
+      "county": "Essex",
+      "zipCodes": [
+        "07068"
+      ],
+      "geoid": "3401364590",
+      "center": {
+        "lat": 40.82121,
+        "lng": -74.310473
+      },
+      "distanceMiles": 16.6
+    },
+    {
+      "id": "orange-township",
+      "name": "City of Orange township",
+      "county": "Essex",
+      "zipCodes": [
+        "07050"
+      ],
+      "geoid": "3401313045",
+      "center": {
+        "lat": 40.76804,
+        "lng": -74.235692
+      },
+      "distanceMiles": 17.1
+    },
+    {
+      "id": "east-orange-city",
+      "name": "East Orange city",
+      "county": "Essex",
+      "zipCodes": [
+        "07017",
+        "07018",
+        "07019"
+      ],
+      "zipCommunities": [
+        {
+          "name": "East Orange",
+          "zip": "07017"
+        },
+        {
+          "name": "East Orange",
+          "zip": "07018"
+        },
+        {
+          "name": "East Orange",
+          "zip": "07019"
+        }
+      ],
+      "geoid": "3401319390",
+      "center": {
+        "lat": 40.765055,
+        "lng": -74.211655
+      },
+      "distanceMiles": 18.1
+    },
+    {
+      "id": "glen-ridge-borough",
+      "name": "Glen Ridge borough",
+      "county": "Essex",
+      "zipCodes": [
+        "07028"
+      ],
+      "geoid": "3401326610",
+      "center": {
+        "lat": 40.804798,
+        "lng": -74.204569
+      },
+      "distanceMiles": 19.9
+    },
+    {
+      "id": "bloomfield-township",
+      "name": "Bloomfield township",
+      "county": "Essex",
+      "zipCodes": [
+        "07003"
+      ],
+      "geoid": "3401306260",
+      "center": {
+        "lat": 40.809141,
+        "lng": -74.187142
+      },
+      "distanceMiles": 20.8
+    },
+    {
+      "id": "readington-township",
+      "name": "Readington township",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08870",
+        "08887",
+        "08889"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Readington",
+          "zip": "08870"
+        },
+        {
+          "name": "Three Bridges",
+          "zip": "08887"
+        },
+        {
+          "name": "Whitehouse Station",
+          "zip": "08889"
+        }
+      ],
+      "geoid": "3401962250",
+      "center": {
+        "lat": 40.584111,
+        "lng": -74.769986
+      },
+      "distanceMiles": 14.1
+    },
+    {
+      "id": "tewksbury-township",
+      "name": "Tewksbury township",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "07830",
+        "07979",
+        "08833",
+        "08858"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Califon mailing area",
+          "zip": "07830"
+        },
+        {
+          "name": "Pottersville",
+          "zip": "07979"
+        },
+        {
+          "name": "Lebanon mailing area",
+          "zip": "08833"
+        },
+        {
+          "name": "Oldwick",
+          "zip": "08858"
+        }
+      ],
+      "geoid": "3401972510",
+      "center": {
+        "lat": 40.692031,
+        "lng": -74.776965
+      },
+      "distanceMiles": 14.6
+    },
+    {
+      "id": "lebanon-borough",
+      "name": "Lebanon borough",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08833"
+      ],
+      "geoid": "3401939630",
+      "center": {
+        "lat": 40.641862,
+        "lng": -74.833312
+      },
+      "distanceMiles": 17
+    },
+    {
+      "id": "califon-borough",
+      "name": "Califon borough",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "07830"
+      ],
+      "geoid": "3401909280",
+      "center": {
+        "lat": 40.719471,
+        "lng": -74.836915
+      },
+      "distanceMiles": 18.1
+    },
+    {
+      "id": "clinton-township",
+      "name": "Clinton township",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08801",
+        "08809",
+        "08833"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Annandale",
+          "zip": "08801"
+        },
+        {
+          "name": "Clinton mailing area",
+          "zip": "08809"
+        },
+        {
+          "name": "Lebanon mailing area",
+          "zip": "08833"
+        }
+      ],
+      "geoid": "3401913750",
+      "center": {
+        "lat": 40.630098,
+        "lng": -74.867202
+      },
+      "distanceMiles": 18.7
+    },
+    {
+      "id": "high-bridge-borough",
+      "name": "High Bridge borough",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08829"
+      ],
+      "geoid": "3401931320",
+      "center": {
+        "lat": 40.670111,
+        "lng": -74.890212
+      },
+      "distanceMiles": 20.1
+    },
+    {
+      "id": "clinton-town",
+      "name": "Clinton town",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08809"
+      ],
+      "geoid": "3401913720",
+      "center": {
+        "lat": 40.636794,
+        "lng": -74.915205
+      },
+      "distanceMiles": 21.3
+    },
+    {
+      "id": "glen-gardner-borough",
+      "name": "Glen Gardner borough",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08826"
+      ],
+      "geoid": "3401926550",
+      "center": {
+        "lat": 40.700385,
+        "lng": -74.939521
+      },
+      "distanceMiles": 23
+    },
+    {
+      "id": "union-township-hunterdon",
+      "name": "Union township",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08809",
+        "08827",
+        "08867"
+      ],
+      "zipCommunities": [
+        {
+          "name": "Clinton mailing area",
+          "zip": "08809"
+        },
+        {
+          "name": "Hampton mailing area",
+          "zip": "08827"
+        },
+        {
+          "name": "Pittstown mailing area",
+          "zip": "08867"
+        }
+      ],
+      "geoid": "3401974420",
+      "center": {
+        "lat": 40.631422,
+        "lng": -74.964077
+      },
+      "distanceMiles": 23.8
+    },
+    {
+      "id": "hampton-borough",
+      "name": "Hampton borough",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08827"
+      ],
+      "geoid": "3401929460",
+      "center": {
+        "lat": 40.704569,
+        "lng": -74.971525
+      },
+      "distanceMiles": 24.7
+    },
+    {
+      "id": "bloomsbury-borough",
+      "name": "Bloomsbury borough",
+      "county": "Hunterdon",
+      "zipCodes": [
+        "08804"
+      ],
+      "geoid": "3401906370",
+      "center": {
+        "lat": 40.657174,
+        "lng": -75.075474
+      },
+      "distanceMiles": 29.7
+    },
+    {
+      "id": "east-newark-borough",
+      "name": "East Newark borough",
+      "county": "Hudson",
+      "zipCodes": [
+        "07029"
+      ],
+      "geoid": "3401719360",
+      "center": {
+        "lat": 40.752011,
+        "lng": -74.162189
+      },
+      "distanceMiles": 20
+    },
+    {
+      "id": "harrison-town",
+      "name": "Harrison town",
+      "county": "Hudson",
+      "zipCodes": [
+        "07029"
+      ],
+      "geoid": "3401730210",
+      "center": {
+        "lat": 40.742978,
+        "lng": -74.152911
+      },
+      "distanceMiles": 20.2
+    },
+    {
+      "id": "bayonne-city",
+      "name": "Bayonne city",
+      "county": "Hudson",
+      "zipCodes": [
+        "07002"
+      ],
+      "geoid": "3401703580",
+      "center": {
+        "lat": 40.662218,
+        "lng": -74.110544
+      },
+      "distanceMiles": 21
+    },
+    {
+      "id": "kearny-town",
+      "name": "Kearny town",
+      "county": "Hudson",
+      "zipCodes": [
+        "07032"
+      ],
+      "geoid": "3401736510",
+      "center": {
+        "lat": 40.752332,
+        "lng": -74.123092
+      },
+      "distanceMiles": 21.9
     }
   ]
 }
