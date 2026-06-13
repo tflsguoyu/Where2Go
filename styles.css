@@ -960,7 +960,7 @@ h2 {
   place-items: start center;
   background: transparent;
   backface-visibility: hidden;
-  contain: layout paint;
+  overflow: visible;
   will-change: transform;
 }
 
