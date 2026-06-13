@@ -237,6 +237,7 @@ a {
 .about-panel,
 .covered-towns-panel,
 .stats-panel,
+.install-help-panel,
 .terms-panel {
   display: grid;
   gap: 6px;
@@ -250,6 +251,7 @@ a {
 .about-panel[hidden],
 .covered-towns-panel[hidden],
 .stats-panel[hidden],
+.install-help-panel[hidden],
 .terms-panel[hidden] {
   display: none;
 }
@@ -273,7 +275,8 @@ a {
   line-height: 1.25;
 }
 
-.terms-section h3 {
+.terms-section h3,
+.install-help-section h3 {
   margin: 0;
   color: var(--ink);
   font-size: 0.72rem;
@@ -281,7 +284,8 @@ a {
 }
 
 .terms-section p,
-.terms-section ul {
+.terms-section ul,
+.install-help-section ol {
   margin: 2px 0 0;
   color: var(--ink);
   font-size: 0.69rem;
@@ -292,11 +296,17 @@ a {
   padding-left: 15px;
 }
 
-.terms-section ul li {
+.install-help-section ol {
+  padding-left: 17px;
+}
+
+.terms-section ul li,
+.install-help-section ol li {
   margin: 4px 0;
 }
 
-.terms-section + .terms-section {
+.terms-section + .terms-section,
+.install-help-section + .install-help-section {
   border-top: 1px solid rgba(215, 224, 218, 0.72);
   padding-top: 6px;
 }

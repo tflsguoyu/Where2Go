@@ -103,6 +103,7 @@ const state = {
   aboutOpen: false,
   coveredTownsOpen: false,
   statsOpen: false,
+  installHelpOpen: false,
   termsOpen: false,
   termsModalOpen: false,
   statsLoaded: false,
@@ -131,6 +132,8 @@ const elements = {
   statsRows: document.querySelector("#statsRows"),
   statsStatus: document.querySelector("#statsStatus"),
   statsUpdated: document.querySelector("#statsUpdated"),
+  installHelpToggle: document.querySelector("#installHelpToggle"),
+  installHelpPanel: document.querySelector("#installHelpPanel"),
   termsToggle: document.querySelector("#termsToggle"),
   termsPanel: document.querySelector("#termsPanel"),
   termsTemplate: document.querySelector("#termsTemplate"),
@@ -1159,6 +1162,19 @@ function toggleStatsPanel() {
   }
 }
 
+function renderInstallHelpPanel() {
+  if (!elements.installHelpPanel || !elements.installHelpToggle) {
+    return;
+  }
+  elements.installHelpPanel.hidden = !state.installHelpOpen;
+  elements.installHelpToggle.setAttribute("aria-expanded", String(state.installHelpOpen));
+}
+
+function toggleInstallHelpPanel() {
+  state.installHelpOpen = !state.installHelpOpen;
+  renderInstallHelpPanel();
+}
+
 function renderTermsPanel() {
   if (!elements.termsPanel || !elements.termsToggle) {
     return;
@@ -1236,6 +1252,10 @@ function bindMoreMenu() {
   elements.statsToggle?.addEventListener("click", (event) => {
     event.stopPropagation();
     toggleStatsPanel();
+  });
+  elements.installHelpToggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleInstallHelpPanel();
   });
   elements.termsToggle?.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -2543,6 +2563,7 @@ async function init() {
   renderCoveredTowns(sourceRegistry);
   renderAboutPanel();
   renderCoveredTownsPanel();
+  renderInstallHelpPanel();
   hydrateTermsContent();
   renderTermsPanel();
   renderTermsModal();
