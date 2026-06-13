@@ -1077,18 +1077,83 @@ async function geocodeAddress(address) {
   return { lat, lng };
 }
 
-async function geocodeMissingEventCoordinates(events) {
+function distanceMeters(pointA, pointB) {
+  const latMiles = (Number(pointA.lat) - Number(pointB.lat)) * 69;
+  const lngScale = Math.cos((((Number(pointA.lat) + Number(pointB.lat)) / 2) * Math.PI) / 180);
+  const lngMiles = (Number(pointA.lng) - Number(pointB.lng)) * 69 * lngScale;
+  return Math.hypot(latMiles, lngMiles) * 1609.344;
+}
+
+function normalizedAddressKey(value) {
+  return normalizePlaceName(cleanAddress(value || ""));
+}
+
+function suspiciousSharedCoordinateKeys(events) {
+  const buckets = new Map();
+  events.forEach((event) => {
+    if (!hasValidCoordinates(event)) {
+      return;
+    }
+    const addressKey = normalizedAddressKey(event.address);
+    if (!addressKey || !/\d/.test(addressKey)) {
+      return;
+    }
+    const coordinateKey = `${Number(event.lat).toFixed(6)},${Number(event.lng).toFixed(6)}`;
+    const bucket = buckets.get(coordinateKey) || { addressKeys: new Set(), sourceIds: new Set() };
+    bucket.addressKeys.add(addressKey);
+    bucket.sourceIds.add(event.sourceId || "");
+    buckets.set(coordinateKey, bucket);
+  });
+
+  return new Set(
+    [...buckets.entries()]
+      .filter(([, bucket]) => bucket.addressKeys.size >= 3 || (bucket.addressKeys.size >= 2 && bucket.sourceIds.size >= 2))
+      .map(([coordinateKey]) => coordinateKey)
+  );
+}
+
+function townCenterLookup(sources) {
+  return new Map(
+    (sources.towns || [])
+      .filter((town) => hasValidCoordinates(town.center))
+      .map((town) => [town.id, { lat: Number(town.center.lat), lng: Number(town.center.lng) }])
+  );
+}
+
+async function geocodeEventCoordinates(events, sources) {
   const cache = new Map();
   let filled = 0;
+  let corrected = 0;
+  let townCenterFallbacks = 0;
   let lookups = 0;
   let lastLookupAt = 0;
+  const suspiciousCoordinateKeys = suspiciousSharedCoordinateKeys(events);
+  const townCenters = townCenterLookup(sources);
 
   for (const event of events) {
-    if (hasValidCoordinates(event)) {
+    const hasCoordinates = hasValidCoordinates(event);
+    const coordinateKey = hasCoordinates ? `${Number(event.lat).toFixed(6)},${Number(event.lng).toFixed(6)}` : "";
+    const shouldCheckExistingCoordinates =
+      hasCoordinates &&
+      suspiciousCoordinateKeys.has(coordinateKey) &&
+      !["area_confirmed", "approximate", "needs_review"].includes(String(event.addressStatus || ""));
+
+    if (hasCoordinates && !shouldCheckExistingCoordinates) {
       continue;
     }
     const address = geocodeableAddress(event.address);
     if (!address) {
+      if (!hasCoordinates) {
+        const center = townCenters.get(event.townId);
+        if (center) {
+          event.lat = center.lat;
+          event.lng = center.lng;
+          event.coordinateStatus = "town_center_fallback";
+          event.addressStatus = event.addressStatus || "needs_review";
+          event.directionsDisabled = true;
+          townCenterFallbacks += 1;
+        }
+      }
       continue;
     }
     if (!cache.has(address)) {
@@ -1107,13 +1172,25 @@ async function geocodeMissingEventCoordinates(events) {
     }
     const coordinates = cache.get(address);
     if (coordinates) {
+      if (shouldCheckExistingCoordinates) {
+        const distance = distanceMeters(event, coordinates);
+        if (distance <= 800) {
+          continue;
+        }
+        event.reviewNotes = collapseWhitespace(
+          `${event.reviewNotes || ""} Coordinates corrected from repeated fallback coordinate ${coordinateKey}; address geocode was ${Math.round(distance)}m away.`
+        );
+        event.coordinateSource = "address_geocode_repair";
+        corrected += 1;
+      } else {
+        filled += 1;
+      }
       event.lat = coordinates.lat;
       event.lng = coordinates.lng;
-      filled += 1;
     }
   }
 
-  return { filled, lookups };
+  return { filled, corrected, townCenterFallbacks, lookups };
 }
 
 function repairEventQuality(events) {
@@ -1257,7 +1334,11 @@ function printImportQualityReport({ audit, repairs, geocodeSummary }) {
     console.log(`Auto-repaired event fields: ${repairText}.`);
   }
   if (geocodeSummary.lookups) {
-    console.log(`Geocoded ${geocodeSummary.filled} event record(s) from ${geocodeSummary.lookups} address lookup(s).`);
+    console.log(
+      `Geocoded ${geocodeSummary.filled} missing coordinate record(s), corrected ${geocodeSummary.corrected} suspicious coordinate record(s), and used ${geocodeSummary.townCenterFallbacks} town-center fallback record(s) from ${geocodeSummary.lookups} address lookup(s).`
+    );
+  } else if (geocodeSummary.townCenterFallbacks) {
+    console.log(`Used ${geocodeSummary.townCenterFallbacks} town-center fallback coordinate record(s) with directions disabled.`);
   }
   if (!issueEntries.length) {
     console.log("Quality audit found no unresolved gaps.");
@@ -5703,8 +5784,9 @@ function municipalVenueDetails(source, { title, summary, venueName, address }) {
     address: resolvedAddress || null,
     lat: coordinates?.lat ?? (fallbackToTownCenter ? numericCoordinate(source.town.center?.lat) : undefined),
     lng: coordinates?.lng ?? (fallbackToTownCenter ? numericCoordinate(source.town.center?.lng) : undefined),
-    addressStatus: location?.addressStatus || location?.addressConfidence || null,
-    directionsDisabled: Boolean(location?.directionsDisabled),
+    addressStatus: location?.addressStatus || location?.addressConfidence || (fallbackToTownCenter ? "needs_review" : null),
+    coordinateStatus: fallbackToTownCenter ? "town_center_fallback" : null,
+    directionsDisabled: Boolean(location?.directionsDisabled || fallbackToTownCenter),
     confidence: coordinates ? 0.9 : resolvedAddress ? 0.84 : 0.72
   };
 }
@@ -7708,7 +7790,7 @@ async function main() {
   const events = mergeEvents(existingEvents, incoming, importedAt);
   applyTownCoverage(events, sources);
   const repairs = repairEventQuality(events);
-  const geocodeSummary = await geocodeMissingEventCoordinates(events);
+  const geocodeSummary = await geocodeEventCoordinates(events, sources);
   const audit = auditEventQuality(events);
 
   await writeFile(EVENTS_FILE, `${JSON.stringify(events, null, 2)}\n`);

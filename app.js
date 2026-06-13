@@ -440,7 +440,28 @@ function placeLabel(event) {
 
 function hasUncertainAddress(event) {
   const status = String(event?.addressStatus || event?.addressConfidence || "").toLowerCase();
-  return Boolean(event?.directionsDisabled || event?.addressApproximate || status === "approximate" || status === "uncertain");
+  const coordinateStatus = String(event?.coordinateStatus || event?.coordinateSource || "").toLowerCase();
+  return Boolean(
+    event?.directionsDisabled ||
+      event?.addressApproximate ||
+      status === "approximate" ||
+      status === "uncertain" ||
+      status === "needs_review" ||
+      coordinateStatus === "town_center_fallback" ||
+      coordinateStatus === "needs_review"
+  );
+}
+
+function isTownCenterFallbackCoordinate(event) {
+  if (!hasCoordinates(event) || !event?.townId || !state.sourceRegistry?.towns) {
+    return false;
+  }
+  const town = state.sourceRegistry.towns.find((item) => item.id === event.townId);
+  const center = town?.center;
+  if (!hasCoordinates(center)) {
+    return false;
+  }
+  return distanceMeters(event, center) < 12;
 }
 
 function distanceMiles(pointA, pointB) {
@@ -472,7 +493,7 @@ function locationGroupsForEvents(events) {
         lng: event.lng,
         place: placeLabel(event),
         address: event.address || "",
-        hasUncertainAddress: hasUncertainAddress(event),
+        hasUncertainAddress: hasUncertainAddress(event) || isTownCenterFallbackCoordinate(event),
         events: []
       });
     }
@@ -481,7 +502,7 @@ function locationGroupsForEvents(events) {
     if (!group.address && event.address) {
       group.address = event.address;
     }
-    if (hasUncertainAddress(event)) {
+    if (hasUncertainAddress(event) || isTownCenterFallbackCoordinate(event)) {
       group.hasUncertainAddress = true;
     }
   });

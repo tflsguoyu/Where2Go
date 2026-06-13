@@ -3184,9 +3184,9 @@
       "website": "https://www.wfafnj.org/",
       "eventsUrl": "https://www.wfafnj.org/events",
       "townId": "warren-township",
-      "address": "197 Mountain Ave, Warren, NJ 07059",
-      "lat": 40.634588,
-      "lng": -74.519044,
+      "address": "197 Mountain Avenue, Warren, NJ 07059",
+      "lat": 40.6495926,
+      "lng": -74.5068851,
       "notes": "Squarespace event list exposes upcoming/past article blocks. Parser imports current garden/nature/family entries and expands long-running weekly Saturday listings."
     },
     {
@@ -4055,16 +4055,16 @@
       "eventsUrl": "https://branchburgsports.com/programs-camps/tod-squad/",
       "townId": "branchburg-township",
       "address": "47 Readington Rd, Branchburg, NJ 08876",
-      "lat": 40.560024,
-      "lng": -74.716119,
+      "lat": 40.5977632,
+      "lng": -74.6929397,
       "locations": [
         {
           "id": "branchburg",
           "name": "Branchburg Sports Complex",
           "townId": "branchburg-township",
           "address": "47 Readington Rd, Branchburg, NJ 08876",
-          "lat": 40.560024,
-          "lng": -74.716119,
+          "lat": 40.5977632,
+          "lng": -74.6929397,
           "storeUrl": "https://branchburgsports.com/programs-camps/tod-squad/"
         }
       ],
@@ -4100,8 +4100,8 @@
           "name": "Branchburg Sports Complex",
           "townId": "branchburg-township",
           "address": "47 Readington Rd, Branchburg, NJ 08876",
-          "lat": 40.560024,
-          "lng": -74.716119,
+          "lat": 40.5977632,
+          "lng": -74.6929397,
           "storeUrl": "https://branchburgsports.com/programs-camps/summer-camp-nj/sports-camps-nj/"
         }
       ],
@@ -4184,7 +4184,9 @@
           "summary": "Weeklong half-day sports camp session from the official BSC summer sports camp schedule; open the source page for the current sport mix and KidVenture full-day add-on."
         }
       ],
-      "notes": "Official BSC camp pages list KidVenture, sports camps, leaders-in-training, PlayMaze, arcade, laser tag, and summer week dates. This is a business-run activity source for Branchburg beyond municipal/library calendars."
+      "notes": "Official BSC camp pages list KidVenture, sports camps, leaders-in-training, PlayMaze, arcade, laser tag, and summer week dates. This is a business-run activity source for Branchburg beyond municipal/library calendars.",
+      "lat": 40.5977632,
+      "lng": -74.6929397
     },
     {
       "id": "future-stars-rvcc",
@@ -4200,8 +4202,8 @@
           "name": "Raritan Valley Community College",
           "townId": "branchburg-township",
           "address": "118 Lamington Road, Branchburg, NJ 08876",
-          "lat": 40.560024,
-          "lng": -74.716119,
+          "lat": 40.6100961,
+          "lng": -74.6882225,
           "storeUrl": "https://www.futurestars.com/rvcc/"
         }
       ],
@@ -4284,7 +4286,9 @@
           "summary": "Weeklong day camp at RVCC for ages 5-13 with traditional, all-sports, STEAM, daily swim, flexible scheduling, and before/after care."
         }
       ],
-      "notes": "Official Future Stars RVCC page lists June 22-August 21, 2026 camp dates at 118 Lamington Road in Branchburg; FAQ lists 9 AM-3 PM camp hours. Include because RVCC hosts a commercial child activity/camp source in the new Branchburg coverage."
+      "notes": "Official Future Stars RVCC page lists June 22-August 21, 2026 camp dates at 118 Lamington Road in Branchburg; FAQ lists 9 AM-3 PM camp hours. Include because RVCC hosts a commercial child activity/camp source in the new Branchburg coverage.",
+      "lat": 40.6100961,
+      "lng": -74.6882225
     },
     {
       "id": "rvcc-planetarium",
@@ -4296,8 +4300,8 @@
       "eventsUrl": "https://www.raritanval.edu/planetarium/public-shows",
       "townId": "branchburg-township",
       "address": "118 Lamington Road, Branchburg, NJ 08876",
-      "lat": 40.560024,
-      "lng": -74.716119,
+      "lat": 40.6100961,
+      "lng": -74.6882225,
       "notes": "College planetarium with public and family shows. June 2026 public-show page says no public shows in June and to check back for July; keep this source for the next schedule refresh instead of dropping it. Manual refresh 2026-06-11: converted to configured import from the official public-shows page; added dated planetarium programs with visible times and age guidance.",
       "parserVersion": "2026-06-11",
       "configuredEvents": [
@@ -4553,8 +4557,8 @@
       "eventsUrl": "https://www.franklintwpnj.org/departments/recreation-and-parks",
       "townId": "franklin-township",
       "address": "429 Lewis Street, Somerset, NJ 08873",
-      "lat": 40.476872,
-      "lng": -74.550447,
+      "lat": 40.4906896,
+      "lng": -74.4791858,
       "notes": "Official Franklin pages expose Youth Center, Recreation, Municipal, Police, and Community calendar items through a Granicus/Akamai-rendered site that direct scripts cannot fetch. Keep for manual review or a future browser-backed parser; do not rely only on the Franklin library feed. Manual refresh 2026-06-11: converted to configured import from Franklin Recreation and Parks news/calendar text; added Youth Center takeover and Independence Day Celebration rows.",
       "parserVersion": "2026-06-11",
       "configuredEvents": [
@@ -4565,8 +4569,8 @@
           "title": "Rise of the 6th Graders",
           "venue": "Franklin Youth Center",
           "address": "429 Lewis Street, Somerset, NJ 08873",
-          "lat": 40.476872,
-          "lng": -74.550447,
+          "lat": 40.4906896,
+          "lng": -74.4791858,
           "category": "youth-center-event",
           "ages": [
             "grade 5",
@@ -4622,8 +4626,8 @@
           "name": "Camp SOAR at Elizabeth Avenue School",
           "townId": "franklin-township",
           "address": "363 Elizabeth Ave, Somerset, NJ 08873",
-          "lat": 40.476872,
-          "lng": -74.550447,
+          "lat": 40.5407634,
+          "lng": -74.5354937,
           "storeUrl": "https://www.gscymca.org/child-care-camps/camp-soar/"
         }
       ],
@@ -4689,7 +4693,9 @@
           "summary": "Traditional multi-activity YMCA day camp week for children entering kindergarten through seventh grade, with STEM, arts and crafts, sports, team-building, theme days, and weekly swim time."
         }
       ],
-      "notes": "Greater Somerset County YMCA page lists Camp SOAR in Franklin Township, June 29-August 21, 2026, regular camp hours 9 AM-4 PM, and weekly themes. Added as a Franklin business/nonprofit camp source beyond government/library calendars."
+      "notes": "Greater Somerset County YMCA page lists Camp SOAR in Franklin Township, June 29-August 21, 2026, regular camp hours 9 AM-4 PM, and weekly themes. Added as a Franklin business/nonprofit camp source beyond government/library calendars.",
+      "lat": 40.5407634,
+      "lng": -74.5354937
     },
     {
       "id": "wonderworld-playzone-somerset",
@@ -10831,12 +10837,14 @@
                 "Main Library"
               ],
               "address": "449 Halsey Road, Parsippany, NJ 07054",
-              "lat": 40.8566,
-              "lng": -74.4277
+              "lat": 40.852891,
+              "lng": -74.4528126
             },
             {
               "name": "Lake Hiawatha Branch Library",
-              "address": "68 Nokomis Avenue, Lake Hiawatha, NJ 07034"
+              "address": "68 Nokomis Avenue, Lake Hiawatha, NJ 07034",
+              "lat": 40.8809271,
+              "lng": -74.3811608
             },
             {
               "name": "Mount Tabor Branch Library",

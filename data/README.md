@@ -177,6 +177,27 @@ or directory references. If an exact address still cannot be found, leave
 available, mark `addressStatus: "approximate"` or `addressStatus:
 "needs_review"` and lower `confidence`.
 
+Coordinate priority is strict:
+
+1. Use coordinates supplied by the event source or confirmed source-registry
+   location.
+2. If no coordinates are supplied but a specific street address exists, geocode
+   that address.
+3. Only when neither source coordinates nor a usable address exists may an event
+   fall back to the town center; in that case set
+   `coordinateStatus: "town_center_fallback"`, set `directionsDisabled: true`,
+   and mark `addressStatus: "needs_review"` or `addressStatus:
+   "area_confirmed"` as appropriate.
+
+When an event has a specific street address, its `lat`/`lng` must point to that
+address or a confirmed entrance/venue point for the same place. Do not copy a
+town center, source office, parser default, or unrelated venue coordinate into a
+specific-address event. If the same exact coordinate appears on multiple
+different street addresses or venues, treat it as suspicious: geocode the
+specific address, use official venue coordinates, or mark
+`coordinateStatus: "needs_review"`/`addressStatus: "needs_review"` and avoid
+publishing a misleading map pin.
+
 `venueName` is the app's readable place label. It should not be only a street
 address, intersection, route, vague downtown area, or generic source placeholder.
 If the source gives only an address but the registry has a confirmed venue or
