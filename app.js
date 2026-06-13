@@ -75,6 +75,7 @@ const mapState = {
   markerLayer: null,
   driveTimeLayer: null,
   message: null,
+  markersByKey: new Map(),
   detailScrollFrame: 0,
   locateButton: null,
   driveTimeButton: null,
@@ -2447,23 +2448,47 @@ function syncMarkers(dayEvents, activeGroup, options = {}) {
   if (!mapState.markerLayer || !mapState.map) {
     return;
   }
-  mapState.markerLayer.clearLayers();
 
   const groups = locationGroupsForEvents(dayEvents);
   const points = groupsWithCoordinates(groups);
   const now = new Date();
+  const nextKeys = new Set();
   displayLatLngsForNearbyMarkers(points).forEach(({ group, latLng }, index) => {
+    nextKeys.add(group.key);
     const isActive = group.key === activeGroup?.key;
     const isExpired = isGroupExpired(group, now);
-    L.marker(latLng, { icon: markerIcon(index, isActive, isExpired), keyboard: true })
-      .addTo(mapState.markerLayer)
-      .on("click", () => {
-        state.selectedEventId = group.events[0].id;
-        state.selectedPinNumber = String(index + 1);
-        state.mapFocus = "event";
-        render();
-        scrollActiveDetailIntoView();
-      });
+    const iconKey = `${index + 1}|${isActive ? "active" : "idle"}|${isExpired ? "expired" : "current"}`;
+    const icon = markerIcon(index, isActive, isExpired);
+    const onMarkerClick = () => {
+      state.selectedEventId = group.events[0].id;
+      state.selectedPinNumber = String(index + 1);
+      state.mapFocus = "event";
+      render();
+      scrollActiveDetailIntoView();
+    };
+
+    const existingMarker = mapState.markersByKey.get(group.key);
+    if (existingMarker) {
+      existingMarker.setLatLng(latLng);
+      if (existingMarker.where2GoIconKey !== iconKey) {
+        existingMarker.setIcon(icon);
+        existingMarker.where2GoIconKey = iconKey;
+      }
+      existingMarker.off("click");
+      existingMarker.on("click", onMarkerClick);
+      return;
+    }
+
+    const marker = L.marker(latLng, { icon, keyboard: true }).addTo(mapState.markerLayer).on("click", onMarkerClick);
+    marker.where2GoIconKey = iconKey;
+    mapState.markersByKey.set(group.key, marker);
+  });
+
+  mapState.markersByKey.forEach((marker, key) => {
+    if (!nextKeys.has(key)) {
+      marker.remove();
+      mapState.markersByKey.delete(key);
+    }
   });
 
   if (options.moveMap === false) {
@@ -2471,7 +2496,7 @@ function syncMarkers(dayEvents, activeGroup, options = {}) {
   }
 
   if (state.selectedEventId && activeGroup && hasCoordinates(activeGroup)) {
-    mapState.map.panTo([activeGroup.lat, activeGroup.lng], { animate: true });
+    mapState.map.panTo([activeGroup.lat, activeGroup.lng], { animate: false });
   } else if (state.mapFocus === "events") {
     fitMapToEventArea();
   }
