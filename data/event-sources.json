@@ -8772,6 +8772,7 @@
             {
               "id": "3260",
               "name": "Main Library",
+              "displayName": "Edison Public Library - Main Library",
               "line1": "340 Plainfield Avenue",
               "locality": "Edison",
               "stateprovincecounty": "NJ",
@@ -9483,6 +9484,7 @@
             {
               "id": "2931",
               "name": "DeMott Lane Branch",
+              "displayName": "Franklin Township Public Library - DeMott Lane Branch",
               "line1": "485 DeMott Lane",
               "locality": "Somerset",
               "stateprovincecounty": "NJ",
@@ -9493,6 +9495,7 @@
             {
               "id": "2932",
               "name": "Franklin Park Branch",
+              "displayName": "Franklin Township Public Library - Franklin Park Branch",
               "line1": "64 Clover Place",
               "locality": "Franklin Park",
               "stateprovincecounty": "NJ",
@@ -9503,6 +9506,7 @@
             {
               "id": "2933",
               "name": "Lewis Street Branch",
+              "displayName": "Franklin Township Public Library - Lewis Street Branch",
               "line1": "429 Lewis Street",
               "locality": "Somerset",
               "stateprovincecounty": "NJ",

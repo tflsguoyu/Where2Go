@@ -83,6 +83,10 @@ Relationship rules:
   the registry, do not auto-add the town. Keep `event.townId` empty, preserve
   the raw locality/address, mark `townAssignmentStatus: "needs_registry_town"`,
   and treat the event as pending review.
+- Do not assign `event.townId` from a source organization's office address or
+  placeholder venue name such as `Visit Somerset NJ Events`. Assign town only
+  from the actual event venue/address, or leave `townId` empty with an explicit
+  `townAssignmentStatus` for review.
 - Shared systems should keep branch/location fallback records in source config,
   not hard-coded importer logic.
 
@@ -144,6 +148,26 @@ official venue/source hours for that date first. If exact hours are confirmed,
 use them. If exact hours are not available or not trustworthy, leave the exact
 time blank where the event shape allows it, keep `timeLabel: "All day"` when
 useful, and mark `timeStatus` as unconfirmed or needing review.
+If a structured source encodes all-day listings as `00:00` through `23:59` or
+`24:00`, do not show a midnight-to-late-night range. First check official
+venue/source hours for that date. When official hours are confirmed, replace the
+all-day placeholder with open-to-close `startsAt`, `endsAt`, and a normal time
+range label, and mark `timeStatus: "official_venue_hours"`. If the venue is
+confirmed closed on that date, keep the row out of the app until confirmed. If a
+source only provides a date, the venue is TBA, or exact hours cannot be
+confirmed, display `timeLabel: "Date listed; time TBA"` and mark `timeStatus:
+"date_only_time_unconfirmed"` rather than guessing.
+
+Late evening is not automatically disqualifying for public community events such
+as fireworks or watch parties, but adult nightlife, club, DJ, drag-party, bar,
+brewery, or similar late/overnight social events should be excluded even when a
+directory source tags them as family or community.
+
+If an event title or URL explicitly contains an older calendar date for the same
+month/day than the structured future `startsAt` date, treat the record as stale
+instead of rolling it forward. For example, a source page titled `Jul 4, 2025`
+must not become a July 4, 2026 event unless the official page clearly confirms
+the 2026 date.
 
 When a source gives a venue but no street address, search for the exact address
 before writing the event: first the official venue/source page, then reliable map

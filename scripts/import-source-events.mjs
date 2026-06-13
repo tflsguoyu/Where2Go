@@ -15,6 +15,7 @@ const LOCALHOP_PAGE_LIMIT = 500;
 const IMPORT_CUTOFF_START_DATE = "2026-05-31";
 const KID_SAFE_LATEST_START_HOUR = 22;
 const KID_SAFE_EARLIEST_START_HOUR = 5;
+const KID_SAFE_LATE_REVIEW_START_HOUR = 21;
 
 const AGE_ORDER = ["baby", "toddler", "preschool", "early-elementary", "tween", "teen"];
 const IMPORT_QUESTION_LIKE_TITLE_PATTERN = /^(?:how|what|why|when|where|who)\b/i;
@@ -80,6 +81,8 @@ const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
   /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|time capsule|tree lighting|unity day|watch part(?:y|ies)|world cup|yard sale|yoga)\b/i;
 const MUNICIPAL_SKIP_TITLE_PATTERN =
   /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|chair yoga|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|senior|seniors|stormwater|township committee|wine tasting|zoning board)\b/i;
+const ADULT_NIGHTLIFE_PATTERN =
+  /\b(?:21\+|18\+|adults only|adult only|bar crawl|club night|nightclub|drag party|throwback party|dance tracks?|dj|sounds by|cocktails?|beer|brewery|wine tasting)\b/i;
 const MONTHS = new Map([
   ["january", "01"],
   ["february", "02"],
@@ -141,6 +144,178 @@ function startsTooLateForKids(event) {
     return true;
   }
   return hour < KID_SAFE_EARLIEST_START_HOUR && hasExplicitOvernightTime(event);
+}
+
+function eventDurationMinutes(event) {
+  if (!isValidDateText(event.startsAt) || !isValidDateText(event.endsAt)) {
+    return null;
+  }
+  return durationMinutes(event.startsAt, event.endsAt);
+}
+
+function isAllDayTimeRange(event) {
+  const start = String(event.startsAt || "");
+  const end = String(event.endsAt || "");
+  if (!start.includes("T00:00:00") || !end) {
+    return false;
+  }
+  return /T23:5[89]:/.test(end) || eventDurationMinutes(event) >= 1439;
+}
+
+function isMidnightDateOnlyPlaceholder(event) {
+  return String(event.startsAt || "").includes("T00:00:00") && !isValidDateText(event.endsAt) && !hasExplicitOvernightTime(event);
+}
+
+function isZeroDurationPlaceholder(event) {
+  return isValidDateText(event.startsAt) && isValidDateText(event.endsAt) && event.startsAt === event.endsAt;
+}
+
+function formatSingleTimeLabel(startsAt) {
+  if (!String(startsAt || "").includes("T")) {
+    return "All day";
+  }
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: TIMEZONE
+  }).format(new Date(startsAt));
+}
+
+function eventDateKey(event) {
+  const dateKey = String(event.startsAt || "").slice(0, 10);
+  return /^\d{4}-\d{2}-\d{2}$/.test(dateKey) ? dateKey : "";
+}
+
+function weekdayIndex(dateKey) {
+  const date = new Date(`${dateKey}T12:00:00`);
+  return Number.isNaN(date.getTime()) ? null : date.getDay();
+}
+
+function timeLabelForRange(startTime, endTime) {
+  const [startHour, startMinute = "00"] = startTime.split(":");
+  const [endHour, endMinute = "00"] = endTime.split(":");
+  const date = "2026-01-01";
+  return `${formatSingleTimeLabel(`${date}T${startHour}:${startMinute}:00`)} - ${formatSingleTimeLabel(`${date}T${endHour}:${endMinute}:00`)}`;
+}
+
+function hoursForWeekday(weeklyHours, dateKey) {
+  const weekday = weekdayIndex(dateKey);
+  if (weekday === null) {
+    return null;
+  }
+  return weeklyHours[weekday] || false;
+}
+
+function knownVenueOperatingHours(event) {
+  const dateKey = eventDateKey(event);
+  if (!dateKey) {
+    return null;
+  }
+  const source = normalizePlaceName(event.source);
+  const venue = normalizePlaceName(event.venueName || event.venue);
+
+  if (source.includes("morristown and morris township library") || event.sourceId === "mmtlibrary-libcal") {
+    const month = dateKey.slice(5, 7);
+    const saturday = month === "07" || month === "08" ? ["10:00", "14:00"] : ["09:00", "17:00"];
+    return hoursForWeekday(
+      [["13:00", "17:00"], ["09:00", "21:00"], ["09:00", "21:00"], ["09:00", "21:00"], ["09:00", "21:00"], ["09:00", "17:00"], saturday],
+      dateKey
+    );
+  }
+
+  if (source.includes("south orange public library") || venue.includes("south orange public library")) {
+    return hoursForWeekday(
+      [null, ["08:30", "16:30"], ["08:30", "14:00"], ["08:30", "18:00"], ["08:30", "14:00"], ["08:30", "12:00"], null],
+      dateKey
+    );
+  }
+
+  if (source.includes("somerset county library system")) {
+    if (venue.includes("north plainfield") || venue.includes("peapack and gladstone")) {
+      return hoursForWeekday([null, ["10:00", "20:00"], ["10:00", "20:00"], ["10:00", "20:00"], ["10:00", "20:00"], ["10:00", "18:00"], ["10:00", "18:00"]], dateKey);
+    }
+    if (venue.includes("somerville")) {
+      return hoursForWeekday([null, ["10:00", "20:00"], ["10:00", "20:00"], null, ["10:00", "20:00"], ["10:00", "18:00"], ["10:00", "18:00"]], dateKey);
+    }
+    if (venue.includes("raritan public library")) {
+      return hoursForWeekday([null, ["09:00", "20:00"], ["09:00", "20:00"], ["09:00", "20:00"], ["09:00", "20:00"], ["09:00", "18:00"], ["09:00", "16:00"]], dateKey);
+    }
+  }
+
+  return null;
+}
+
+function applyVenueHoursToAllDayEvent(event) {
+  if (!isAllDayTimeRange(event) && event.timeLabel !== "All day") {
+    return false;
+  }
+  const dateKey = eventDateKey(event);
+  if (!dateKey) {
+    return false;
+  }
+  const hours = knownVenueOperatingHours(event);
+  if (hours === null) {
+    return false;
+  }
+  if (hours === false) {
+    event.status = "review";
+    event.withinCoverage = false;
+    event.timeStatus = "venue_closed_on_event_date";
+    event.reviewNotes = [event.reviewNotes, "All-day source row falls on a day the venue is listed as closed; keep out of app until confirmed."]
+      .filter(Boolean)
+      .join(" ");
+    return true;
+  }
+  const [startTime, endTime] = hours;
+  event.startsAt = `${dateKey}T${startTime}:00`;
+  event.endsAt = `${dateKey}T${endTime}:00`;
+  event.durationMinutes = durationMinutes(event.startsAt, event.endsAt);
+  event.timeLabel = timeLabelForRange(startTime, endTime);
+  event.timeStatus = "official_venue_hours";
+  return true;
+}
+
+function isDateOnlyUnknownVenueEvent(event) {
+  const venue = normalizePlaceName(event.venueName || event.venue);
+  return isAllDayTimeRange(event) && (
+    normalizePlaceName(event.source).includes("eventbrite") ||
+    venue === "tba" ||
+    /\btba\b/.test(normalizePlaceName(event.address || "")) ||
+    /eventbrite/.test(String(event.sourceId || ""))
+  );
+}
+
+function isAdultNightlifeEvent(event) {
+  const text = [event.title, event.summary, event.venueName, event.venue, event.tags?.join(" ")].filter(Boolean).join(" ");
+  const hour = localStartHour(event.startsAt);
+  const overnight = isValidDateText(event.startsAt) && isValidDateText(event.endsAt) && String(event.endsAt).slice(0, 10) > String(event.startsAt).slice(0, 10);
+  return ADULT_NIGHTLIFE_PATTERN.test(text) && (overnight || hour >= KID_SAFE_LATE_REVIEW_START_HOUR);
+}
+
+function explicitMonthDateYearKeys(value) {
+  const text = String(value || "").replace(/[-_]+/g, " ");
+  const keys = [];
+  const pattern = /\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+(\d{1,2})(?:st|nd|rd|th)?(?:,|\s)?\s+(20\d{2})\b/gi;
+  let match;
+  while ((match = pattern.exec(text))) {
+    const month = MONTHS.get(match[1].toLowerCase()) || MONTH_NAME_MAP.get(match[1].toLowerCase().slice(0, 3));
+    if (month) {
+      keys.push(`${match[3]}-${month}-${String(Number(match[2])).padStart(2, "0")}`);
+    }
+  }
+  return keys;
+}
+
+function hasStaleExplicitDate(event) {
+  const startDate = String(event.startsAt || "").slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(startDate)) {
+    return false;
+  }
+  const explicitDates = [
+    ...explicitMonthDateYearKeys(event.title),
+    ...explicitMonthDateYearKeys(event.sourceUrl || event.url)
+  ];
+  return explicitDates.some((dateKey) => dateKey.slice(5) === startDate.slice(5) && dateKey.slice(0, 4) < startDate.slice(0, 4));
 }
 
 function argValue(name, fallback) {
@@ -365,6 +540,20 @@ function filterSummaryLogisticsSentences(value, context = {}) {
   return sentences.filter((sentence) => !isSummaryLogisticsSentence(sentence, context)).join(" ");
 }
 
+function removeRepeatedSummarySentences(value) {
+  const seen = new Set();
+  return (collapseWhitespace(value).match(/[^.!?]+[.!?]*/g) || [])
+    .filter((sentence) => {
+      const key = normalizePlaceName(sentence);
+      if (!key || seen.has(key)) {
+        return false;
+      }
+      seen.add(key);
+      return true;
+    })
+    .join(" ");
+}
+
 function cleanImportedSummary(value, context = {}) {
   let summary = stripHtml(value)
     .replace(SUMMARY_SOURCE_WIDGET_TAIL_PATTERN, "")
@@ -405,6 +594,7 @@ function cleanImportedSummary(value, context = {}) {
   summary = removeKnownLocationPhrases(summary, context);
   summary = filterSummaryLogisticsSentences(summary, context);
   summary = stripLeadingSummaryLogistics(summary, context);
+  summary = removeRepeatedSummarySentences(summary);
   return normalizeSummaryPunctuation(summary);
 }
 
@@ -957,6 +1147,46 @@ function repairEventQuality(events) {
       event.durationMinutes = durationMinutes(event.startsAt, event.endsAt);
       noteRepair("durationMinutes");
     }
+    if (isDateOnlyUnknownVenueEvent(event)) {
+      event.endsAt = null;
+      event.durationMinutes = null;
+      event.timeLabel = "Date listed; time TBA";
+      event.timeStatus = "date_only_time_unconfirmed";
+      noteRepair("dateOnlyUnknownVenueTime");
+    } else if (applyVenueHoursToAllDayEvent(event)) {
+      noteRepair("allDayVenueHours");
+    } else if (isAllDayTimeRange(event)) {
+      if (event.timeLabel !== "All day") {
+        event.timeLabel = "All day";
+        noteRepair("timeLabel");
+      }
+      if (!isNonEmptyText(event.timeStatus)) {
+        event.timeStatus = "all_day_source_time";
+        noteRepair("timeStatus");
+      }
+    }
+    if (isMidnightDateOnlyPlaceholder(event)) {
+      if (!isNonEmptyText(event.timeLabel)) {
+        event.timeLabel = "Date listed; time TBA";
+        noteRepair("timeLabel");
+      }
+      if (!isNonEmptyText(event.timeStatus)) {
+        event.timeStatus = "date_only_time_unconfirmed";
+        noteRepair("timeStatus");
+      }
+    }
+    if (isZeroDurationPlaceholder(event)) {
+      if (!isNonEmptyText(event.timeLabel)) {
+        event.timeLabel = formatSingleTimeLabel(event.startsAt);
+        noteRepair("timeLabel");
+      }
+      event.endsAt = null;
+      event.durationMinutes = null;
+      if (!isNonEmptyText(event.timeStatus)) {
+        event.timeStatus = String(event.startsAt || "").includes("T") ? "end_time_missing" : "date_only_time_unconfirmed";
+      }
+      noteRepair("zeroDurationTime");
+    }
     if (isNonEmptyText(event.summary)) {
       const cleanedSummary = cleanImportedSummary(event.summary, event);
       if (cleanedSummary !== event.summary) {
@@ -1269,7 +1499,7 @@ function mapCommunicoLibnetEvent(source, event, locationsById) {
     return null;
   }
 
-  const displayLocationName = location?.name || event.location || source.library.name;
+  const displayLocationName = location?.displayName || location?.name || event.location || source.library.name;
   const venueParts = [displayLocationName, event.venues].filter(Boolean);
   const startsAt = localIso(event.raw_start_time);
   const endsAt = localIso(event.raw_end_time);
@@ -7288,7 +7518,7 @@ function patchLocationFromEvent(event, townLookup) {
 const PATCH_INCLUDE_PATTERN =
   /\b(?:kids?|children|child|family|families|youth|teen|tween|toddler|preschool|baby|babies|all ages|craft|stem|science|maker|lego|music|concert|chorale|story|camp|market|festival|festa|fair|carnival|fireworks|parade|play|dance|nature|farm|juneteenth|summer|holiday|library|museum)\b/i;
 const PATCH_EXCLUDE_PATTERN =
-  /\b(?:adult only|adults only|21\+|18\+|senior|seniors|bar crawl|cocktail|wine tasting|beer|brewery|nightclub|psychic|readings?|real estate|open house|self-care|unemployed|training grant|certifications?|webinar|networking|estate jewelry|jewelry event|investment|crypto|career fair|job fair|professional development)\b/i;
+  /\b(?:adult only|adults only|21\+|18\+|senior|seniors|bar crawl|cocktail|wine tasting|beer|brewery|nightclub|psychic|readings?|real estate|open house|self-care|worship|worship service|religious service|unemployed|training grant|certifications?|webinar|networking|estate jewelry|jewelry event|investment|crypto|career fair|job fair|professional development)\b/i;
 
 function isImportablePatchEvent(event) {
   const text = [event.title, event.summary, event.body, event.address?.name].filter(Boolean).join(" ");
@@ -7381,7 +7611,9 @@ function mergeEvents(existing, incoming, importedAt) {
       (event) =>
         eventStartsAtOrAfter(event.startsAt) &&
         !isClosureOrNonEvent(event.title, event.summary) &&
-        !startsTooLateForKids(event)
+        !startsTooLateForKids(event) &&
+        !isAdultNightlifeEvent(event) &&
+        !hasStaleExplicitDate(event)
     )
     .sort((a, b) => {
     const dateCompare = String(a.startsAt || "").localeCompare(String(b.startsAt || ""));
