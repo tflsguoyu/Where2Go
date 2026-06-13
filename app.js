@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v119";
+const APP_VERSION = "20260613-cache-v120";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -25,7 +25,7 @@ const STATS_ROW_LIMIT = 8;
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
 const DEFAULT_MAP_RADIUS_MILES = 3;
 const INITIAL_MAP_FALLBACK_RADIUS_MILES = 10;
-const COVERAGE_MAP_BOUNDS_SCALE = 0.75;
+const COVERAGE_MAP_BOUNDS_SCALE = 0.6;
 const MAP_FIT_PADDING = [52, 52];
 const NEARBY_MARKER_DISTANCE_METERS = 50;
 const NEARBY_MARKER_MIN_GAP_PX = 10;
