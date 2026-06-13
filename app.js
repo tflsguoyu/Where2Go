@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v120";
+const APP_VERSION = "20260613-cache-v124";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -108,6 +108,7 @@ const state = {
   mapFocus: "events",
   timeStartMinutes: TIME_FILTER_DEFAULT_START_MINUTES,
   timeEndMinutes: TIME_FILTER_DEFAULT_END_MINUTES,
+  timeFilterAllDay: false,
   driveTimeEnabled: false,
   driveTimeLoading: false,
   driveTimeOrigin: null,
@@ -413,8 +414,33 @@ function timeFilterBounds() {
   return { min: TIME_FILTER_DEFAULT_START_MINUTES, max: TIME_FILTER_DEFAULT_END_MINUTES };
 }
 
-function isDefaultTimeFilterRange(start = state.timeStartMinutes, end = state.timeEndMinutes) {
-  return start === TIME_FILTER_DEFAULT_START_MINUTES && end === TIME_FILTER_DEFAULT_END_MINUTES;
+function todayDateKey() {
+  return localDateKey(new Date());
+}
+
+function isTodayDateKey(dateKey) {
+  return dateKey === todayDateKey();
+}
+
+function currentHalfHourStartMinutes(date = new Date()) {
+  const bounds = timeFilterBounds();
+  const currentMinutes = (date.getHours() * 60) + (Math.floor(date.getMinutes() / TIME_FILTER_STEP_MINUTES) * TIME_FILTER_STEP_MINUTES);
+  return clampNumber(currentMinutes, bounds.min, bounds.max - TIME_FILTER_MIN_RANGE_MINUTES);
+}
+
+function defaultTimeFilterRangeForDate(dateKey) {
+  return {
+    start: isTodayDateKey(dateKey) ? currentHalfHourStartMinutes() : TIME_FILTER_DEFAULT_START_MINUTES,
+    end: TIME_FILTER_DEFAULT_END_MINUTES,
+    allDay: !isTodayDateKey(dateKey)
+  };
+}
+
+function applyDefaultTimeFilterForSelectedDate() {
+  const { start, end, allDay } = defaultTimeFilterRangeForDate(state.selectedDate);
+  state.timeStartMinutes = start;
+  state.timeEndMinutes = end;
+  state.timeFilterAllDay = allDay;
 }
 
 function snapTimeMinutes(value, bounds = timeFilterBounds()) {
@@ -441,7 +467,7 @@ function timeFilterBoundaryDate(dateKey, minutes) {
 }
 
 function eventOverlapsSelectedTime(event) {
-  if (!state.selectedDate) {
+  if (!state.selectedDate || state.timeFilterAllDay) {
     return true;
   }
   const { start, end } = timeFilterRange();
@@ -1483,6 +1509,7 @@ function syncDatesForActiveFilter() {
     state.selectedDate = defaultSelectedDate(state.dates);
     state.selectedEventId = "";
     state.mapFocus = "events";
+    applyDefaultTimeFilterForSelectedDate();
   }
 }
 
@@ -1501,7 +1528,7 @@ function renderTimeFilter() {
   state.timeStartMinutes = start;
   state.timeEndMinutes = end;
   if (elements.timeFilterLabel) {
-    elements.timeFilterLabel.textContent = `${formatTimeFilterMinutes(start)} - ${formatTimeFilterMinutes(end)}`;
+    elements.timeFilterLabel.textContent = state.timeFilterAllDay ? "All day" : `${formatTimeFilterMinutes(start)} - ${formatTimeFilterMinutes(end)}`;
   }
   if (elements.timeStartInput) {
     elements.timeStartInput.min = String(bounds.min);
@@ -1523,10 +1550,12 @@ function renderTimeFilter() {
     elements.timeFilterSlider.style.setProperty("--time-end", `${endPercent}%`);
   }
   elements.timePresetButtons?.forEach((button) => {
-    const isResetDisabled = button.dataset.timePreset === "all" && isDefaultTimeFilterRange(start, end);
+    const isAllDayButton = button.dataset.timePreset === "all";
+    const isResetDisabled = isAllDayButton && state.timeFilterAllDay;
+    button.classList.toggle("is-active", isAllDayButton && state.timeFilterAllDay);
     button.disabled = isResetDisabled;
     button.setAttribute("aria-disabled", String(isResetDisabled));
-    button.setAttribute("aria-pressed", "false");
+    button.setAttribute("aria-pressed", String(isAllDayButton && state.timeFilterAllDay));
   });
 }
 
@@ -1545,6 +1574,7 @@ function setTimeFilterRange(startValue, endValue, changedSide = "") {
   }
   state.timeStartMinutes = start;
   state.timeEndMinutes = end;
+  state.timeFilterAllDay = false;
   state.selectedEventId = "";
   state.mapFocus = "events";
   render();
@@ -1560,7 +1590,12 @@ function bindTimeFilter() {
   elements.timePresetButtons?.forEach((button) => {
     button.addEventListener("click", () => {
       if (button.dataset.timePreset === "all") {
-        setTimeFilterRange(TIME_FILTER_DEFAULT_START_MINUTES, TIME_FILTER_DEFAULT_END_MINUTES);
+        state.timeStartMinutes = TIME_FILTER_DEFAULT_START_MINUTES;
+        state.timeEndMinutes = TIME_FILTER_DEFAULT_END_MINUTES;
+        state.timeFilterAllDay = true;
+        state.selectedEventId = "";
+        state.mapFocus = "events";
+        render();
       }
     });
   });
@@ -2705,6 +2740,7 @@ function renderDates() {
       state.selectedDate = button.dataset.date;
       state.selectedEventId = "";
       state.mapFocus = "events";
+      applyDefaultTimeFilterForSelectedDate();
       render();
     });
   });
@@ -2836,6 +2872,7 @@ async function init() {
   syncDatesForActiveFilter();
   state.selectedDate = defaultSelectedDate(state.dates);
   state.selectedEventId = "";
+  applyDefaultTimeFilterForSelectedDate();
   updateUpdatedLabel(events);
   renderCoveredTowns(sourceRegistry);
   renderAboutPanel();
