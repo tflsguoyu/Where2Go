@@ -78,9 +78,11 @@ const SUMMARY_ACTIVITY_SIGNAL_PATTERN =
   /\b(?:story|craft|club|kids|children|family|families|baby|toddler|preschool|teen|tween|lego|game|games|movie|music|concert|festival|market|rides?|food|workshop|camp|art|paint|build|read|reading|learn|discover|explore|nature|garden|science|theater|performance|play|party|parade|fireworks|foam|jump|slime)\b/i;
 const QUALITY_REPORT_SAMPLE_LIMIT = 8;
 const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
-  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|free market|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|time capsule|tree lighting|unity day|watch part(?:y|ies)|world cup|yard sale|yoga)\b/i;
+  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|time capsule|tree lighting|unity day|watch part(?:y|ies)|world cup|yoga)\b/i;
 const MUNICIPAL_SKIP_TITLE_PATTERN =
   /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|chair yoga|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|senior|seniors|stormwater|township committee|wine tasting|zoning board)\b/i;
+const SECONDHAND_SALE_EVENT_PATTERN =
+  /\b(?:yard sale|garage sale|rummage sale|estate sale|tag sale|moving sale|flea market|swap meet|free market)\b/i;
 const ADULT_NIGHTLIFE_PATTERN =
   /\b(?:21\+|18\+|adults only|adult only|bar crawl|club night|nightclub|drag party|throwback party|dance tracks?|dj|sounds by|cocktails?|beer|brewery|wine tasting)\b/i;
 const MONTHS = new Map([
@@ -290,6 +292,11 @@ function isAdultNightlifeEvent(event) {
   const hour = localStartHour(event.startsAt);
   const overnight = isValidDateText(event.startsAt) && isValidDateText(event.endsAt) && String(event.endsAt).slice(0, 10) > String(event.startsAt).slice(0, 10);
   return ADULT_NIGHTLIFE_PATTERN.test(text) && (overnight || hour >= KID_SAFE_LATE_REVIEW_START_HOUR);
+}
+
+function isSecondhandSaleEvent(event) {
+  const text = [event.title, event.summary, event.venueName, event.venue, event.tags?.join(" ")].filter(Boolean).join(" ");
+  return SECONDHAND_SALE_EVENT_PATTERN.test(text);
 }
 
 function explicitMonthDateYearKeys(value) {
@@ -5773,7 +5780,7 @@ function eventStartsWithinWindow(startsAt, startDate, days) {
 
 function isImportableMunicipalEvent(title, summary = "", calendar = "") {
   const text = `${title || ""} ${summary || ""} ${calendar || ""}`;
-  if (!title || MUNICIPAL_SKIP_TITLE_PATTERN.test(text)) {
+  if (!title || MUNICIPAL_SKIP_TITLE_PATTERN.test(text) || SECONDHAND_SALE_EVENT_PATTERN.test(text)) {
     return false;
   }
   return MUNICIPAL_COMMUNITY_EVENT_PATTERN.test(text);
@@ -7282,7 +7289,7 @@ function isImportableEventbriteEvent(event) {
   if (!EVENTBRITE_INCLUDE_PATTERN.test(text)) {
     return false;
   }
-  if (EVENTBRITE_EXCLUDE_PATTERN.test(text)) {
+  if (EVENTBRITE_EXCLUDE_PATTERN.test(text) || SECONDHAND_SALE_EVENT_PATTERN.test(text)) {
     return false;
   }
   return !isClosureOrNonEvent(event.name, event.description);
@@ -7653,7 +7660,7 @@ const PATCH_EXCLUDE_PATTERN =
 
 function isImportablePatchEvent(event) {
   const text = [event.title, event.summary, event.body, event.address?.name].filter(Boolean).join(" ");
-  if (PATCH_EXCLUDE_PATTERN.test(text)) {
+  if (PATCH_EXCLUDE_PATTERN.test(text) || SECONDHAND_SALE_EVENT_PATTERN.test(text)) {
     return false;
   }
   return PATCH_INCLUDE_PATTERN.test(text) && !isClosureOrNonEvent(event.title, event.summary || event.body);
@@ -7744,6 +7751,7 @@ function mergeEvents(existing, incoming, importedAt) {
         !isClosureOrNonEvent(event.title, event.summary) &&
         !startsTooLateForKids(event) &&
         !isAdultNightlifeEvent(event) &&
+        !isSecondhandSaleEvent(event) &&
         !hasStaleExplicitDate(event)
     )
     .sort((a, b) => {

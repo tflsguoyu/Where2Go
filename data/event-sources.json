@@ -9768,7 +9768,7 @@
         "parser": "savvycitizen-plugin",
         "defaultVenueName": "Millstone Borough event",
         "defaultAddress": "1353 Main Street, Millstone, NJ 08844",
-        "notes": "Converted to importable SavvyCitizen plugin parsing on 2026-06-11 during image/flyer查漏. The official Revize calendar embeds SavvyCitizen; the homepage agenda plugin c9b8e2fe-5413-49f4-8981-ea8d5745c62b has a stable list format, while calendar.php uses monthly plugin 896a1589-c762-4364-ae7f-09291af41da6. Importer keeps family-safe/community rows such as yard sales and skips bulk pickup/meetings. Hillsborough SCLSNJ branch is outside the current 30-minute drive polygon and is intentionally not imported for Millstone."
+        "notes": "Converted to importable SavvyCitizen plugin parsing on 2026-06-11 during image/flyer查漏. The official Revize calendar embeds SavvyCitizen; the homepage agenda plugin c9b8e2fe-5413-49f4-8981-ea8d5745c62b has a stable list format, while calendar.php uses monthly plugin 896a1589-c762-4364-ae7f-09291af41da6. Importer keeps family-safe/community rows and skips secondhand sale rows such as yard sales, along with bulk pickup/meetings. Hillsborough SCLSNJ branch is outside the current 30-minute drive polygon and is intentionally not imported for Millstone."
       },
       "libraries": [
         {

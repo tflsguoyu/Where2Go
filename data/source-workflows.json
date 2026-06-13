@@ -12,6 +12,7 @@
   "eventNormalizationGuidance": {
     "dateRanges": "If a source lists an event across a date range, expand the event so every calendar day inside the range is represented. Use one record per active day unless the listing clearly describes a single overnight event. Mark dateStatus or dateExpansionStatus when the active dates are inferred or incomplete.",
     "allDayTimes": "If a source says all day, the app display time should be the venue/source open-to-close hours for that date, not 12:00 AM through 11:59 PM. Check official operating hours before filling exact times. If exact hours cannot be confirmed, do not guess; leave exact time fields blank when possible, preserve a clear label such as Date listed; time TBA, and mark timeStatus as date_only_time_unconfirmed or needs_review.",
+    "excludedEventTypes": "Do not import secondhand sale or exchange rows such as yard sale, garage sale, rummage sale, estate sale, tag sale, moving sale, flea market, swap meet, or free market. These are not kid/family activity listings for Where2Go. Do not use the word market alone as an exclusion because farmers markets, craft markets, and street fairs may still be family-relevant.",
     "missingAddresses": "If an event has a venue but no street address, search official venue/source pages first, then reliable map or directory sources. Write the exact address only when found; otherwise leave address blank or mark addressStatus as approximate/needs_review when using a likely location.",
     "evidenceOrder": [
       "Official event detail HTML or structured data",
