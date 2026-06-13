@@ -5184,13 +5184,17 @@ function parseTribeEventsCalendar(events, source, sources, startDate, days) {
     const matchedTown = townLookup.get(normalizePlaceName(venue.city));
     const startsAt = String(event.start_date || "").replace(" ", "T");
     const endsAt = event.end_date ? String(event.end_date).replace(" ", "T") : null;
+    const summary =
+      !description || /^screenshot$/i.test(description)
+        ? `Community event hosted by ${venue.name || source.label}.`
+        : description;
     const record = regionalEventRecord(source, {
       id: `${source.id}-${event.id}-${dateKey}`,
       externalId: String(event.id),
       title,
       startsAt,
       endsAt,
-      summary: description,
+      summary,
       sourceUrl: event.url,
       image: event.image?.url || null,
       cost: isNonEmptyText(event.cost) ? event.cost : null,
@@ -5209,6 +5213,9 @@ function parseTribeEventsCalendar(events, source, sources, startDate, days) {
       tags: ["tribe-events", "county-tourism"],
       confidence: matchedTown ? 0.84 : 0.72
     });
+    if (!record.summary && (!description || /^screenshot$/i.test(description))) {
+      record.summary = summary;
+    }
     record.withinCoverage = Boolean(matchedTown);
     if (event.is_virtual || eventLooksOnline(record)) {
       markOnlineEvent(record);
@@ -5260,7 +5267,7 @@ function isImportableRegionalEvent(title, summary = "") {
   if (/\b(cancelled|canceled|public hours|gallery hours|office hours|closed)\b/i.test(text)) {
     return false;
   }
-  return /\b(kid|kids|children|child|family|families|teen|tween|toddler|camp|craft|workshop|story|festival|garden|nature|astronomy|butterfl|moth|plant sale|seed|earth day|brite nites|art show|theater|concert|performance|movie|slime|lego|glow|music|science)\b/i.test(
+  return /\b(kid|kids|children|child|family|families|teen|tween|toddler|camp|craft|workshop|story|festival|garden|nature|astronomy|butterfl|moth|plant sale|seed|earth day|brite nites|art show|theater|concert|performance|movie|slime|lego|glow|music|science|dedication)\b/i.test(
     text
   );
 }

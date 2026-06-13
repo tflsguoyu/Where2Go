@@ -17,6 +17,7 @@ event-sources.json      Durable town/source registry and parser config
 events.json             Source-driven merged event history used by the app
 sample-events.json      Fallback sample events
 source-refresh-runbook.md Generated per-source refresh checklist
+browser-backed-refresh-notes.md Manual/browser refresh paths for blocked sites
 ```
 
 ## Three Layers
@@ -181,8 +182,10 @@ address, intersection, route, vague downtown area, or generic source placeholder
 If the source gives only an address but the registry has a confirmed venue or
 library name, use the confirmed name for `venueName` and keep the street address
 in `address`. For true street-fair, parade, downtown, route, or multi-site
-events, keep the broad place label only with `addressStatus: "approximate"` or
-`addressStatus: "needs_review"` and a short `reviewNotes` explanation.
+events, keep the broad place label only. Use `addressStatus:
+"area_confirmed"` when the area/route is confirmed but there is no single
+precise navigation point; otherwise use `addressStatus: "approximate"` or
+`addressStatus: "needs_review"` with a short `reviewNotes` explanation.
 When a source gives a place-like display name without a full address, such as a
 gazebo, bandstand, field, playground, pavilion, plaza, or named room, look up
 that display name together with the town/venue context and use the resolved

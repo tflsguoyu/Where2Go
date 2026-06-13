@@ -377,6 +377,7 @@ function sourceEntries(sources) {
 }
 
 function eventIssues(event) {
+  if (event.withinCoverage === false) return [];
   const issues = [];
   if (!hasText(event.summary)) issues.push("summary");
   if (!hasText(event.summary) && hasText(event.summaryStatus)) issues.push("summaryStatus");
@@ -411,6 +412,7 @@ function issueLabel(issue) {
 }
 
 function eventAccuracy(event) {
+  if (event.withinCoverage === false) return 100;
   let score = 100;
   if (!hasText(event.summary)) score -= 15;
   if (!hasText(event.townId)) score -= 30;

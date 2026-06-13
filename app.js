@@ -98,7 +98,6 @@ const state = {
   eventFilter: EVENT_FILTERS.all,
   installPromptEvent: null,
   installPromptMode: "",
-  initialLocationRequested: false,
   sourceRegistry: null,
   moreMenuOpen: false,
   aboutOpen: false,
@@ -2339,7 +2338,7 @@ function initMap() {
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
   map.on("zoomend", () => {
-    syncMarkers(eventsForSelectedDate(), selectedGroup());
+    syncMarkers(eventsForSelectedDate(), selectedGroup(), { moveMap: false });
   });
   fitMapAroundPoint(HOME, { animate: false });
   setTimeout(() => map.invalidateSize(), 0);
@@ -2353,7 +2352,7 @@ function fitMapToEventArea() {
   fitMapAroundPoint(distanceSortOrigin());
 }
 
-function syncMarkers(dayEvents, activeGroup) {
+function syncMarkers(dayEvents, activeGroup, options = {}) {
   if (!mapState.markerLayer || !mapState.map) {
     return;
   }
@@ -2373,6 +2372,10 @@ function syncMarkers(dayEvents, activeGroup) {
         render();
       });
   });
+
+  if (options.moveMap === false) {
+    return;
+  }
 
   if (state.selectedEventId && activeGroup && hasCoordinates(activeGroup)) {
     mapState.map.panTo([activeGroup.lat, activeGroup.lng], { animate: true });
@@ -2544,17 +2547,6 @@ async function init() {
   renderTermsPanel();
   renderTermsModal();
   render();
-  requestInitialLocation();
-}
-
-function requestInitialLocation() {
-  if (state.initialLocationRequested) {
-    return;
-  }
-  state.initialLocationRequested = true;
-  window.requestAnimationFrame(() => {
-    locateUser();
-  });
 }
 
 function setupInstallPrompt() {
