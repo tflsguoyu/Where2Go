@@ -25,6 +25,9 @@ const STATS_ROW_LIMIT = 8;
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
 const DEFAULT_MAP_RADIUS_MILES = 5.6;
 const MAP_FIT_PADDING = [52, 52];
+const NEARBY_MARKER_DISTANCE_METERS = 50;
+const NEARBY_MARKER_MIN_GAP_PX = 10;
+const NEARBY_MARKER_STEP_PX = 10;
 const INSTALL_PROMPT_DISMISSED_KEY = "where2go-install-dismissed-at";
 const INSTALL_PROMPT_DISMISSED_MS = 7 * 24 * 60 * 60 * 1000;
 const INSTALL_PROMPT_DELAY_MS = 1600;
@@ -72,6 +75,7 @@ const mapState = {
   markerLayer: null,
   driveTimeLayer: null,
   message: null,
+  detailScrollFrame: 0,
   locateButton: null,
   driveTimeButton: null,
   driveTimeLegend: null,
@@ -90,6 +94,7 @@ const state = {
   dates: [],
   selectedDate: "",
   selectedEventId: "",
+  selectedPinNumber: "",
   dateStripAligned: false,
   mapFocus: "events",
   driveTimeEnabled: false,
@@ -110,7 +115,8 @@ const state = {
   statsLoading: false,
   statsRows: [],
   statsUpdatedAt: "",
-  statsMessage: ""
+  statsMessage: "",
+  suppressDetailScrollSync: false
 };
 
 const elements = {
@@ -446,6 +452,10 @@ function distanceMiles(pointA, pointB) {
   return Math.hypot(latMiles, lngMiles);
 }
 
+function distanceMeters(pointA, pointB) {
+  return distanceMiles(pointA, pointB) * 1609.344;
+}
+
 function distanceSortOrigin() {
   return state.driveTimeOrigin || HOME;
 }
@@ -501,20 +511,81 @@ function selectedGroup() {
 }
 
 function orderedGroupsForDetail() {
-  const groups = groupsForSelectedDate();
-  if (!state.selectedEventId) {
-    return groups;
-  }
-  const activeGroup = groups.find((group) => group.events.some((event) => event.id === state.selectedEventId));
-  if (!activeGroup) {
-    return groups;
-  }
-  return [activeGroup, ...groups.filter((group) => group.key !== activeGroup.key)];
+  return groupsForSelectedDate();
 }
 
 function groupPinNumber(group) {
   const index = groupsWithCoordinates(groupsForSelectedDate()).findIndex((item) => item.key === group?.key);
   return index === -1 ? "" : String(index + 1);
+}
+
+function scrollActiveDetailIntoView() {
+  state.suppressDetailScrollSync = true;
+  window.requestAnimationFrame(() => {
+    const activeGroup = elements.eventDetail?.querySelector?.(".detail-group.is-active");
+    if (!activeGroup) {
+      state.suppressDetailScrollSync = false;
+      return;
+    }
+    const detailRect = elements.eventDetail.getBoundingClientRect();
+    const activeRect = activeGroup.getBoundingClientRect();
+    const targetTop = elements.eventDetail.scrollTop + activeRect.top - detailRect.top;
+    elements.eventDetail.scrollTo({ top: targetTop });
+    window.setTimeout(() => {
+      state.suppressDetailScrollSync = false;
+    }, 0);
+  });
+}
+
+function updateDetailActiveState() {
+  elements.eventDetail?.querySelectorAll?.(".detail-group").forEach((groupElement) => {
+    groupElement.classList.toggle("is-active", groupElement.dataset.selectedEventId === state.selectedEventId);
+  });
+}
+
+function syncSelectionFromDetailScroll() {
+  if (state.suppressDetailScrollSync) {
+    return;
+  }
+  const detail = elements.eventDetail;
+  if (!detail) {
+    return;
+  }
+  const groups = [...detail.querySelectorAll(".detail-group[data-selected-event-id]")];
+  if (!groups.length) {
+    return;
+  }
+
+  const detailRect = detail.getBoundingClientRect();
+  const anchorY = detailRect.top + 8;
+  const activeElement =
+    groups.find((groupElement) => {
+      const rect = groupElement.getBoundingClientRect();
+      return rect.bottom > anchorY && rect.top < detailRect.bottom;
+    }) || groups[0];
+  const activePinNumber = activeElement.dataset.pinNumber || "";
+  const nextSelectedEventId = activeElement.dataset.selectedEventId || "";
+  if (!nextSelectedEventId || nextSelectedEventId === state.selectedEventId) {
+    return;
+  }
+
+  state.selectedEventId = nextSelectedEventId;
+  state.mapFocus = "event";
+  state.selectedPinNumber = activePinNumber;
+  updateDetailActiveState();
+  if (mapState.map && mapState.markerLayer) {
+    syncMarkers(eventsForSelectedDate(), selectedGroup());
+  }
+}
+
+function handleDetailScroll() {
+  if (mapState.detailScrollFrame) {
+    return;
+  }
+  mapState.detailScrollFrame = window.requestAnimationFrame(() => {
+    mapState.detailScrollFrame = 0;
+    syncSelectionFromDetailScroll();
+  });
 }
 
 function dateFromKey(dateKey) {
@@ -1334,6 +1405,10 @@ function bindEventFilter() {
   });
 }
 
+function bindDetailScroll() {
+  elements.eventDetail?.addEventListener("scroll", handleDetailScroll, { passive: true });
+}
+
 function collapseWhitespace(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
 }
@@ -1787,44 +1862,40 @@ function markerIcon(index, isActive, isExpired) {
   });
 }
 
-const MARKER_SPREAD_MIN_GAP_PX = 36;
-const MARKER_SPREAD_STEP_PX = 26;
-
-function spreadMarkerLatLngs(points) {
+function displayLatLngsForNearbyMarkers(points) {
   if (!mapState.map || points.length < 2) {
     return points.map((group) => ({ group, latLng: [group.lat, group.lng] }));
   }
 
-  const entries = points.map((group, index) => ({
-    group,
-    index,
-    point: mapState.map.latLngToLayerPoint([group.lat, group.lng])
-  }));
+  const angles = [0, Math.PI, -Math.PI / 2, Math.PI / 2, -Math.PI / 4, Math.PI / 4, (-3 * Math.PI) / 4, (3 * Math.PI) / 4];
+  const placedEntries = [];
 
-  const displayEntries = [];
-  entries.forEach((entry) => {
-    let displayPoint = entry.point;
-    const collides = (point) => displayEntries.some((placed) => point.distanceTo(placed.displayPoint) < MARKER_SPREAD_MIN_GAP_PX);
+  points.forEach((group, index) => {
+    const originalPoint = mapState.map.latLngToLayerPoint([group.lat, group.lng]);
+    let displayPoint = originalPoint;
+    const tooClose = (candidate) =>
+      placedEntries.some(
+        (placed) =>
+          distanceMeters(group, placed.group) <= NEARBY_MARKER_DISTANCE_METERS &&
+          candidate.distanceTo(placed.displayPoint) < NEARBY_MARKER_MIN_GAP_PX
+      );
 
-    if (collides(displayPoint)) {
-      const angles = [0, Math.PI, -Math.PI / 2, Math.PI / 2, -Math.PI / 4, Math.PI / 4, (-3 * Math.PI) / 4, (3 * Math.PI) / 4];
-      for (let ring = 1; ring <= 4 && collides(displayPoint); ring += 1) {
-        const radius = MARKER_SPREAD_STEP_PX * ring;
-        for (const angle of angles) {
-          const candidate = L.point(entry.point.x + Math.cos(angle) * radius, entry.point.y + Math.sin(angle) * radius);
-          if (!collides(candidate)) {
-            displayPoint = candidate;
-            break;
-          }
+    for (let ring = 1; ring <= 3 && tooClose(displayPoint); ring += 1) {
+      const radius = NEARBY_MARKER_STEP_PX * ring;
+      for (const angle of angles) {
+        const candidate = L.point(originalPoint.x + Math.cos(angle) * radius, originalPoint.y + Math.sin(angle) * radius);
+        if (!tooClose(candidate)) {
+          displayPoint = candidate;
+          break;
         }
       }
     }
 
     const displayLatLng = mapState.map.layerPointToLatLng(displayPoint);
-    displayEntries.push({ index: entry.index, group: entry.group, displayPoint, latLng: [displayLatLng.lat, displayLatLng.lng] });
+    placedEntries.push({ index, group, displayPoint, latLng: [displayLatLng.lat, displayLatLng.lng] });
   });
 
-  return displayEntries.sort((a, b) => a.index - b.index);
+  return placedEntries.sort((a, b) => a.index - b.index);
 }
 
 function setMapMessage(title, body = "") {
@@ -2381,15 +2452,17 @@ function syncMarkers(dayEvents, activeGroup, options = {}) {
   const groups = locationGroupsForEvents(dayEvents);
   const points = groupsWithCoordinates(groups);
   const now = new Date();
-  spreadMarkerLatLngs(points).forEach(({ group, latLng }, index) => {
+  displayLatLngsForNearbyMarkers(points).forEach(({ group, latLng }, index) => {
     const isActive = group.key === activeGroup?.key;
     const isExpired = isGroupExpired(group, now);
     L.marker(latLng, { icon: markerIcon(index, isActive, isExpired), keyboard: true })
       .addTo(mapState.markerLayer)
       .on("click", () => {
         state.selectedEventId = group.events[0].id;
+        state.selectedPinNumber = String(index + 1);
         state.mapFocus = "event";
         render();
+        scrollActiveDetailIntoView();
       });
   });
 
@@ -2530,7 +2603,7 @@ function renderDetail() {
         .join("");
 
       return `
-        <section class="detail-group ${isActive ? "is-active" : ""}" aria-label="${escapeHtml(group.place)}">
+        <section class="detail-group ${isActive ? "is-active" : ""}" data-pin-number="${escapeHtml(pinNumber)}" data-selected-event-id="${escapeHtml(group.events[0]?.id || "")}" aria-label="${escapeHtml(group.place)}">
           <div class="place-line ${pinNumber ? "" : "has-no-pin"}">
             ${pinBadgeHtml}
             <strong class="place-name">${escapeHtml(displayPlace || group.place)}</strong>
@@ -2593,6 +2666,7 @@ initAnalytics();
 setupInstallPrompt();
 bindMoreMenu();
 bindEventFilter();
+bindDetailScroll();
 
 init().catch((error) => {
   if (elements.aboutUpdatedLabel) {

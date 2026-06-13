@@ -972,6 +972,7 @@ h2 {
   border-radius: 999px 999px 999px 6px;
   background: var(--green);
   box-shadow: 0 12px 24px rgba(23, 33, 29, 0.22);
+  opacity: 0.72;
   transform: translateX(-50%) rotate(-45deg);
 }
 
@@ -992,6 +993,7 @@ h2 {
   height: 29px;
   background: var(--amber);
   box-shadow: 0 14px 30px rgba(126, 78, 22, 0.3);
+  opacity: 0.86;
 }
 
 .event-map-marker.is-active span {
