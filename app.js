@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260612-cache-v105";
+const APP_VERSION = "20260613-cache-v106";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -1899,6 +1899,11 @@ function displayLatLngsForNearbyMarkers(points) {
   return placedEntries.sort((a, b) => a.index - b.index);
 }
 
+function isSameDisplayLatLng(marker, latLng) {
+  const current = marker.getLatLng();
+  return Math.abs(current.lat - latLng[0]) < 0.000000001 && Math.abs(current.lng - latLng[1]) < 0.000000001;
+}
+
 function setMapMessage(title, body = "") {
   if (!mapState.message) {
     return;
@@ -2429,9 +2434,6 @@ function initMap() {
   mapState.driveTimeLayer = L.layerGroup().addTo(map);
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
-  map.on("zoomend", () => {
-    syncMarkers(eventsForSelectedDate(), selectedGroup(), { moveMap: false });
-  });
   fitMapAroundPoint(HOME, { animate: false });
   setTimeout(() => map.invalidateSize(), 0);
   return true;
@@ -2469,7 +2471,9 @@ function syncMarkers(dayEvents, activeGroup, options = {}) {
 
     const existingMarker = mapState.markersByKey.get(group.key);
     if (existingMarker) {
-      existingMarker.setLatLng(latLng);
+      if (!isSameDisplayLatLng(existingMarker, latLng)) {
+        existingMarker.setLatLng(latLng);
+      }
       if (existingMarker.where2GoIconKey !== iconKey) {
         existingMarker.setIcon(icon);
         existingMarker.where2GoIconKey = iconKey;
@@ -2496,7 +2500,7 @@ function syncMarkers(dayEvents, activeGroup, options = {}) {
   }
 
   if (state.selectedEventId && activeGroup && hasCoordinates(activeGroup)) {
-    mapState.map.panTo([activeGroup.lat, activeGroup.lng], { animate: false });
+    mapState.map.panTo([activeGroup.lat, activeGroup.lng], { animate: true });
   } else if (state.mapFocus === "events") {
     fitMapToEventArea();
   }

@@ -959,6 +959,9 @@ h2 {
   height: 34px;
   place-items: start center;
   background: transparent;
+  backface-visibility: hidden;
+  contain: layout paint;
+  will-change: transform;
 }
 
 .event-map-marker::before {
@@ -973,6 +976,7 @@ h2 {
   background: var(--green);
   box-shadow: 0 12px 24px rgba(23, 33, 29, 0.22);
   opacity: 0.72;
+  backface-visibility: hidden;
   transform: translateX(-50%) rotate(-45deg);
 }
 
