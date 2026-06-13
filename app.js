@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v113";
+const APP_VERSION = "20260613-cache-v115";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -52,9 +52,9 @@ const DRIVE_TIME_BAND_STYLES = [
 const SUMMARY_PREVIEW_LIMIT = 220;
 const TIME_FILTER_MIN_MINUTES = 0;
 const TIME_FILTER_MAX_MINUTES = 24 * 60;
-const TIME_FILTER_DEFAULT_START_MINUTES = 8 * 60;
-const TIME_FILTER_DEFAULT_END_MINUTES = 22 * 60;
-const TIME_FILTER_STEP_MINUTES = 15;
+const TIME_FILTER_DEFAULT_START_MINUTES = 9 * 60;
+const TIME_FILTER_DEFAULT_END_MINUTES = 20 * 60;
+const TIME_FILTER_STEP_MINUTES = 30;
 const TIME_FILTER_MIN_RANGE_MINUTES = TIME_FILTER_STEP_MINUTES;
 const MONTH_NAME_PATTERN =
   "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
@@ -105,7 +105,6 @@ const state = {
   selectedPinNumber: "",
   dateStripAligned: false,
   mapFocus: "events",
-  timeAxisMode: "common",
   timeStartMinutes: TIME_FILTER_DEFAULT_START_MINUTES,
   timeEndMinutes: TIME_FILTER_DEFAULT_END_MINUTES,
   driveTimeEnabled: false,
@@ -410,10 +409,11 @@ function clampNumber(value, min, max) {
 }
 
 function timeFilterBounds() {
-  if (state.timeAxisMode === "all") {
-    return { min: TIME_FILTER_MIN_MINUTES, max: TIME_FILTER_MAX_MINUTES };
-  }
   return { min: TIME_FILTER_DEFAULT_START_MINUTES, max: TIME_FILTER_DEFAULT_END_MINUTES };
+}
+
+function isDefaultTimeFilterRange(start = state.timeStartMinutes, end = state.timeEndMinutes) {
+  return start === TIME_FILTER_DEFAULT_START_MINUTES && end === TIME_FILTER_DEFAULT_END_MINUTES;
 }
 
 function snapTimeMinutes(value, bounds = timeFilterBounds()) {
@@ -1522,9 +1522,10 @@ function renderTimeFilter() {
     elements.timeFilterSlider.style.setProperty("--time-end", `${endPercent}%`);
   }
   elements.timePresetButtons?.forEach((button) => {
-    const isActive = button.dataset.timePreset === "all" && state.timeAxisMode === "all";
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
+    const isResetDisabled = button.dataset.timePreset === "all" && isDefaultTimeFilterRange(start, end);
+    button.disabled = isResetDisabled;
+    button.setAttribute("aria-disabled", String(isResetDisabled));
+    button.setAttribute("aria-pressed", "false");
   });
 }
 
@@ -1558,13 +1559,7 @@ function bindTimeFilter() {
   elements.timePresetButtons?.forEach((button) => {
     button.addEventListener("click", () => {
       if (button.dataset.timePreset === "all") {
-        if (state.timeAxisMode === "all") {
-          state.timeAxisMode = "common";
-          setTimeFilterRange(TIME_FILTER_DEFAULT_START_MINUTES, TIME_FILTER_DEFAULT_END_MINUTES);
-          return;
-        }
-        state.timeAxisMode = "all";
-        setTimeFilterRange(TIME_FILTER_MIN_MINUTES, TIME_FILTER_MAX_MINUTES);
+        setTimeFilterRange(TIME_FILTER_DEFAULT_START_MINUTES, TIME_FILTER_DEFAULT_END_MINUTES);
       }
     });
   });
@@ -1930,64 +1925,6 @@ function sourcePagesHtml(event) {
       ${pages
         .map((page) => `<a class="source-link" href="${escapeHtml(page.url)}" target="_blank" rel="noreferrer">Source page</a>`)
         .join("")}
-    </div>
-  `;
-}
-
-function normalizedTagText(value) {
-  return String(value || "")
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, " ");
-}
-
-function eventHasPaidCost(event) {
-  if (typeof event.cost === "number") {
-    return event.cost > 0;
-  }
-  const cost = String(event.cost ?? "").trim();
-  if (!cost) {
-    return false;
-  }
-  const normalized = normalizedTagText(cost);
-  if (/\b(?:free|no cost|no charge)\b/.test(normalized) || /^(?:0|\$0)(?:\.00)?$/.test(normalized)) {
-    return false;
-  }
-  return cost.includes("$") || /\b(?:paid|fee|admission)\b/.test(normalized);
-}
-
-function eventNeedsRegistration(event) {
-  const registration = normalizedTagText(event.registration);
-  const text = normalizedTagText([event.title, event.summary, event.sourceId].filter(Boolean).join(" "));
-  if (/\bdrop[- ]?in\b/.test(registration) || /\bdrop[- ]?in\b/.test(text)) {
-    return false;
-  }
-  if (!registration || /\bsee source\b/.test(registration)) {
-    return /\b(?:eventbrite|ticketed|tickets required|registration required|register to attend|waitlist)\b/.test(text);
-  }
-  return /\b(?:rsvp|reservation|reserve|ticket|tickets|eventbrite|register|registration|sign up|sign-up|waitlist)\b/.test(registration);
-}
-
-function groupStatusBadges(group) {
-  const events = group?.events || [];
-  const badges = [];
-  if (events.some(eventHasPaidCost)) {
-    badges.push("$");
-  }
-  if (events.some(eventNeedsRegistration)) {
-    badges.push("RSVP");
-  }
-  return badges;
-}
-
-function groupStatusBadgesHtml(group) {
-  const badges = groupStatusBadges(group);
-  if (!badges.length) {
-    return "";
-  }
-  return `
-    <div class="place-status-tags" aria-label="Cost and registration">
-      ${badges.map((badge) => `<span class="place-status-tag">${escapeHtml(badge)}</span>`).join("")}
     </div>
   `;
 }
@@ -2860,7 +2797,6 @@ function renderDetail() {
           <div class="place-line ${pinNumber ? "" : "has-no-pin"}">
             ${pinBadgeHtml}
             <strong class="place-name">${escapeHtml(displayPlace || group.place)}</strong>
-            ${groupStatusBadgesHtml(group)}
             ${directionsControlHtml(group)}
           </div>
           <div class="detail-events">${eventsHtml}</div>

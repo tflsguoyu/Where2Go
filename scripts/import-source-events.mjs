@@ -5241,6 +5241,33 @@ function parseTribeVenueDetails(venue) {
   };
 }
 
+function parseTribeIndividualDateTimes(text) {
+  const normalized = stripHtml(String(text || "").replace(/<br\s*\/?>/gi, "\n"));
+  if (!/\bindividual dates? and times?\b/i.test(normalized)) {
+    return [];
+  }
+  const matches = [
+    ...normalized.matchAll(
+      /\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s+([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})\s+(\d{1,2})(?::(\d{2}))?\s*([AP]M)\b/gi
+    )
+  ];
+  return matches
+    .map((match) => {
+      const month = MONTHS.get(match[1].toLowerCase()) || MONTH_NAME_MAP.get(match[1].toLowerCase().slice(0, 3));
+      if (!month) {
+        return null;
+      }
+      const day = match[2].padStart(2, "0");
+      const dateKey = `${match[3]}-${month}-${day}`;
+      return {
+        dateKey,
+        startsAt: `${dateKey}T${formatTime(match[4], match[5] || "00", match[6])}`,
+        endsAt: null
+      };
+    })
+    .filter(Boolean);
+}
+
 function parseTribeEventsCalendar(events, source, sources, startDate, days) {
   const townLookup = buildTownLookup(sources);
   const imported = [];
@@ -5256,52 +5283,67 @@ function parseTribeEventsCalendar(events, source, sources, startDate, days) {
       return;
     }
 
-    const dateKey = String(event.start_date || "").slice(0, 10);
-    if (!dateKey || !isDateWithinWindow(dateKey, startDate, days)) {
-      return;
-    }
-
     const venue = parseTribeVenueDetails(event.venue);
     const matchedTown = townLookup.get(normalizePlaceName(venue.city));
-    const startsAt = String(event.start_date || "").replace(" ", "T");
-    const endsAt = event.end_date ? String(event.end_date).replace(" ", "T") : null;
+    const occurrences = parseTribeIndividualDateTimes(event.description);
+    const fallbackDateKey = String(event.start_date || "").slice(0, 10);
+    if (!occurrences.length && (!fallbackDateKey || !isDateWithinWindow(fallbackDateKey, startDate, days))) {
+      return;
+    }
+    const fallbackStartsAt = String(event.start_date || "").replace(" ", "T");
+    const fallbackEndsAt = event.end_date ? String(event.end_date).replace(" ", "T") : null;
+    const schedule = occurrences.length ? occurrences : [{ dateKey: fallbackDateKey, startsAt: fallbackStartsAt, endsAt: fallbackEndsAt }];
     const summary =
       !description || /^screenshot$/i.test(description)
         ? `Community event hosted by ${venue.name || source.label}.`
         : description;
-    const record = regionalEventRecord(source, {
-      id: `${source.id}-${event.id}-${dateKey}`,
-      externalId: String(event.id),
-      title,
-      startsAt,
-      endsAt,
-      summary,
-      sourceUrl: event.url,
-      image: event.image?.url || null,
-      cost: isNonEmptyText(event.cost) ? event.cost : null,
-      registration: isNonEmptyText(event.cost) ? "Tickets" : "See source",
-      location: {
-        id: venue.name || source.id,
-        name: venue.name || matchedTown?.name || source.label,
-        townId: matchedTown?.id || null,
-        townNameRaw: matchedTown ? null : venue.city || null,
-        townAssignmentStatus: matchedTown ? "assigned" : venue.city ? "needs_registry_town" : "unknown",
-        townAssignmentSource: venue.city ? "venueCity" : "sourceFallback",
-        address: venue.address || source.address || null,
-        lat: Number.isFinite(venue.lat) && venue.lat !== 0 ? venue.lat : Number(source.lat || 0),
-        lng: Number.isFinite(venue.lng) && venue.lng !== 0 ? venue.lng : Number(source.lng || 0)
-      },
-      tags: ["tribe-events", "county-tourism"],
-      confidence: matchedTown ? 0.84 : 0.72
+    schedule.forEach((occurrence) => {
+      if (!occurrence.startsAt || !isDateWithinWindow(occurrence.dateKey, startDate, days)) {
+        return;
+      }
+      const record = regionalEventRecord(source, {
+        id: `${source.id}-${event.id}-${occurrence.dateKey}`,
+        externalId: String(event.id),
+        title,
+        startsAt: occurrence.startsAt,
+        endsAt: occurrence.endsAt,
+        summary,
+        sourceUrl: event.url,
+        image: event.image?.url || null,
+        cost: isNonEmptyText(event.cost) ? event.cost : null,
+        registration: isNonEmptyText(event.cost) ? "Tickets" : "See source",
+        location: {
+          id: venue.name || source.id,
+          name: venue.name || matchedTown?.name || source.label,
+          townId: matchedTown?.id || null,
+          townNameRaw: matchedTown ? null : venue.city || null,
+          townAssignmentStatus: matchedTown ? "assigned" : venue.city ? "needs_registry_town" : "unknown",
+          townAssignmentSource: venue.city ? "venueCity" : "sourceFallback",
+          address: venue.address || source.address || null,
+          lat: Number.isFinite(venue.lat) && venue.lat !== 0 ? venue.lat : Number(source.lat || 0),
+          lng: Number.isFinite(venue.lng) && venue.lng !== 0 ? venue.lng : Number(source.lng || 0)
+        },
+        tags: ["tribe-events", "county-tourism"],
+        confidence: matchedTown ? 0.84 : 0.72
+      });
+      if (!record.summary && (!description || /^screenshot$/i.test(description))) {
+        record.summary = summary;
+      }
+      if (occurrences.length) {
+        record.endsAt = null;
+        record.durationMinutes = null;
+        record.timeLabel = formatSingleTimeLabel(record.startsAt);
+        record.timeStatus = "end_time_missing";
+        record.reviewNotes = [record.reviewNotes, "Tribe event page lists individual dates/times inside an all-day wrapper; using listed show time."]
+          .filter(Boolean)
+          .join(" ");
+      }
+      record.withinCoverage = Boolean(matchedTown);
+      if (event.is_virtual || eventLooksOnline(record)) {
+        markOnlineEvent(record);
+      }
+      imported.push(record);
     });
-    if (!record.summary && (!description || /^screenshot$/i.test(description))) {
-      record.summary = summary;
-    }
-    record.withinCoverage = Boolean(matchedTown);
-    if (event.is_virtual || eventLooksOnline(record)) {
-      markOnlineEvent(record);
-    }
-    imported.push(record);
   });
 
   return imported;

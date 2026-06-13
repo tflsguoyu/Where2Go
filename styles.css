@@ -701,6 +701,11 @@ h2 {
   color: var(--green-dark);
 }
 
+.time-filter-preset:disabled {
+  cursor: default;
+  opacity: 0.52;
+}
+
 .time-filter-slider {
   --time-start: 0%;
   --time-end: 100%;
@@ -1260,18 +1265,12 @@ h2 {
 .place-line {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  grid-template-areas:
-    "pin place directions"
-    ". tags tags";
   gap: 5px 7px;
   align-items: center;
 }
 
 .place-line.has-no-pin {
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "place directions"
-    "tags tags";
 }
 
 .pin-badge {
@@ -1350,32 +1349,6 @@ h2 {
 .detail-event h2 {
   font-size: 1rem;
   line-height: 1.18;
-}
-
-.place-status-tags {
-  grid-area: tags;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 3px;
-  min-width: 0;
-}
-
-.place-status-tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 22px;
-  min-height: 22px;
-  padding: 0 5px;
-  border: 1px solid #d9e5d8;
-  border-radius: 6px;
-  background: #f5faf2;
-  color: var(--green-dark);
-  font-size: 0.66rem;
-  font-weight: 900;
-  line-height: 1;
-  white-space: nowrap;
 }
 
 .event-time {

@@ -11,7 +11,7 @@
   ],
   "eventNormalizationGuidance": {
     "dateRanges": "If a source lists an event across a date range, expand the event so every calendar day inside the range is represented. Use one record per active day unless the listing clearly describes a single overnight event. Mark dateStatus or dateExpansionStatus when the active dates are inferred or incomplete.",
-    "allDayTimes": "If a source says all day, check official operating hours for that venue/source/date before filling exact times. If exact hours cannot be confirmed, leave exact time fields blank when possible, preserve timeLabel such as All day, and mark timeStatus as all_day_hours_unconfirmed or needs_review.",
+    "allDayTimes": "If a source says all day, the app display time should be the venue/source open-to-close hours for that date, not 12:00 AM through 11:59 PM. Check official operating hours before filling exact times. If exact hours cannot be confirmed, do not guess; leave exact time fields blank when possible, preserve a clear label such as Date listed; time TBA, and mark timeStatus as date_only_time_unconfirmed or needs_review.",
     "missingAddresses": "If an event has a venue but no street address, search official venue/source pages first, then reliable map or directory sources. Write the exact address only when found; otherwise leave address blank or mark addressStatus as approximate/needs_review when using a likely location.",
     "evidenceOrder": [
       "Official event detail HTML or structured data",
