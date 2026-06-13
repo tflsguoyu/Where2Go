@@ -1265,12 +1265,14 @@ h2 {
 .place-line {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "pin place directions";
   gap: 5px 7px;
   align-items: center;
 }
 
 .place-line.has-no-pin {
   grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "place directions";
 }
 
 .pin-badge {
