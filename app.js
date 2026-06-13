@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v106";
+const APP_VERSION = "20260613-cache-v107";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -24,7 +24,7 @@ const AREA_ANALYTICS_SENT_KEY = "where2go-area-analytics-sent-v1";
 const STATS_ROW_LIMIT = 8;
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
 const DEFAULT_MAP_RADIUS_MILES = 3;
-const INITIAL_MAP_RADIUS_MILES = 10;
+const INITIAL_MAP_FALLBACK_RADIUS_MILES = 10;
 const MAP_FIT_PADDING = [52, 52];
 const NEARBY_MARKER_DISTANCE_METERS = 50;
 const NEARBY_MARKER_MIN_GAP_PX = 10;
@@ -1856,7 +1856,7 @@ function fitMapBounds(bounds, options = {}) {
     return;
   }
   mapState.map.fitBounds(bounds, {
-    padding: MAP_FIT_PADDING,
+    padding: options.padding || MAP_FIT_PADDING,
     animate: options.animate !== false
   });
 }
@@ -1866,6 +1866,33 @@ function fitMapAroundPoint(point, options = {}) {
     return;
   }
   fitMapBounds(boundsAroundPoint(point, options.radiusMiles || DEFAULT_MAP_RADIUS_MILES), options);
+}
+
+function coveredTownBounds() {
+  const townCenters = (state.sourceRegistry?.towns || [])
+    .map((town) => town?.center)
+    .filter(hasCoordinates)
+    .map((center) => [center.lat, center.lng]);
+  if (!townCenters.length) {
+    return null;
+  }
+  return L.latLngBounds(townCenters);
+}
+
+function fitCoverageMapView(options = {}) {
+  const bounds = coveredTownBounds();
+  if (bounds?.isValid?.()) {
+    fitMapBounds(bounds, options);
+    return true;
+  }
+  return false;
+}
+
+function fitInitialMapView() {
+  if (fitCoverageMapView({ animate: false })) {
+    return;
+  }
+  fitMapAroundPoint(HOME, { animate: false, radiusMiles: INITIAL_MAP_FALLBACK_RADIUS_MILES });
 }
 
 function markerIcon(index, isActive, isExpired) {
@@ -2456,13 +2483,16 @@ function initMap() {
   mapState.driveTimeLayer = L.layerGroup().addTo(map);
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
-  fitMapAroundPoint(HOME, { animate: false, radiusMiles: INITIAL_MAP_RADIUS_MILES });
+  fitInitialMapView();
   setTimeout(() => map.invalidateSize(), 0);
   return true;
 }
 
 function fitMapToEventArea() {
   if (!mapState.map) {
+    return;
+  }
+  if (fitCoverageMapView()) {
     return;
   }
   fitMapAroundPoint(distanceSortOrigin());
