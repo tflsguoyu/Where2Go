@@ -23,7 +23,8 @@ const WORLD_CUP_OBVIOUS_EVENT_PATTERN =
 const AREA_ANALYTICS_SENT_KEY = "where2go-area-analytics-sent-v1";
 const STATS_ROW_LIMIT = 8;
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
-const DEFAULT_MAP_RADIUS_MILES = 5.6;
+const DEFAULT_MAP_RADIUS_MILES = 3;
+const INITIAL_MAP_RADIUS_MILES = 10;
 const MAP_FIT_PADDING = [52, 52];
 const NEARBY_MARKER_DISTANCE_METERS = 50;
 const NEARBY_MARKER_MIN_GAP_PX = 10;
@@ -2455,7 +2456,7 @@ function initMap() {
   mapState.driveTimeLayer = L.layerGroup().addTo(map);
   mapState.markerLayer = L.layerGroup().addTo(map);
   mapState.map = map;
-  fitMapAroundPoint(HOME, { animate: false });
+  fitMapAroundPoint(HOME, { animate: false, radiusMiles: INITIAL_MAP_RADIUS_MILES });
   setTimeout(() => map.invalidateSize(), 0);
   return true;
 }
