@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-11",
+  "updatedAt": "2026-06-13",
   "datePolicy": {
     "refreshStart": "today",
     "defaultLookaheadDays": 60,
@@ -75,6 +75,8 @@
       "court session",
       "yard sale, garage sale, rummage sale, estate sale, tag sale, moving sale, flea market, swap meet, or free market",
       "secondhand sale or exchange events whose primary activity is browsing, donating, buying, selling, or swapping used items",
+      "broad festival, series, season, or umbrella listing cards that do not identify a specific activity, performer/program, or kid/family-compatible content",
+      "location-only summaries such as a city name, venue group, various locations, or multiple city names when paired with a generic festival or series title",
       "events starting at 10 PM or later unless explicitly reviewed",
       "overnight or midnight events when the source explicitly lists a midnight/early-morning start time",
       "explicitly unsafe or inappropriate for children"
@@ -114,7 +116,7 @@
       "externalId",
       "image"
     ],
-    "summaryRule": "Summary should contain activity content only. Do not put date, time, venue, room, place, or address text in summary.",
+    "summaryRule": "Summary should contain activity content only. Do not put date, time, venue, room, place, or address text in summary. If a summary is only a city, town, venue, address, room, or other location label, treat it as missing activity content; do not publish broad festival, series, season, or umbrella listing cards unless the title or details identify a specific child/family-compatible activity.",
     "placeDisplayRule": "venueName should be a human-readable place or venue name, not just a street address, intersection, vague area, route, or source placeholder. If a source location field is only a street address and the source registry has a confirmed venue/library name, use the confirmed name for venueName and keep the street address in address. If the source gives a place-like display name without a full address, such as a gazebo, bandstand, field, playground, pavilion, plaza, or named room, reverse-look up that display name with the town/venue context and use the resolved address or coordinates for navigation; mark addressLookupSource as place_name_reverse_lookup when practical. If the lookup is likely but not official, keep the useful address, mark addressStatus approximate or needs_review, and preserve the display name in venueName instead of falling back to a generic municipal default. If an event is genuinely spread across downtown, a route, or multiple sites, keep the broad place name only; use addressStatus area_confirmed when the area/route is confirmed but there is no single precise navigation point, otherwise use addressStatus approximate or needs_review and reviewNotes explaining the uncertainty.",
     "sourceUrlRule": "Keep the original official event page when available. If only a calendar listing exists, keep that listing URL. When the same activity has multiple source pages, the app should display only one source link: prefer the official organizer, venue, municipal, library, or program detail page; use discovery, directory, ticketing, or reposted pages such as Patch or Eventbrite only when no official page is available. Extra evidence links may stay in source data for review, but the visible app button should remain a single Source page.",
     "evidenceRule": "Manual or configured events should keep evidenceUrl, evidenceType, and checkedAt when practical.",
@@ -156,6 +158,7 @@
     "Every real event should have a sourceUrl or url back to the source.",
     "Every displayed map event should have coordinates or a geocodable address.",
     "Do not invent activity descriptions when the source does not provide one.",
+    "Broad festival, series, season, or umbrella listings must identify a specific activity, performer/program, or kid/family-compatible content before publishing; location-only summaries are insufficient.",
     "Prefer official HTML text before image, flyer, or OCR text.",
     "Use image or flyer text only when normal page text is missing needed date, time, room, address, or venue detail.",
     "For date ranges, verify that every date in the range has a record or an explicit review marker explaining why daily expansion was not possible.",

@@ -123,6 +123,12 @@ Current policy:
 - Keep kid-friendly and family-compatible events.
 - Keep gray-area community events such as farmers markets, street fairs,
   outdoor concerts, movie nights, festivals, nature walks, and museum open days.
+- Do not import broad festival, series, season, or umbrella listing cards as
+  standalone events when the source does not provide a specific activity,
+  performer/program, or kid/family-compatible content. Location-only summaries
+  such as a city name, venue group, "various locations", or multiple city names
+  are not enough to publish the row; import the specific child events instead or
+  leave the umbrella listing out for review.
 - Exclude only events children clearly cannot attend or that are clearly not
   suitable for children. Municipal adult/senior programming such as chair yoga,
   senior-center movie days, adult wellness classes, and senior camp/social
@@ -232,6 +238,9 @@ with later manual QA.
 
 Summaries must contain activity content only. Date, time, venue, room, place,
 and address belong in structured fields, not in `summary`.
+If a summary is only a city, town, venue, address, room, or other location label,
+it should be treated as missing activity content. Do not let a location-only
+summary turn a broad festival/series listing into a published event.
 
 ## Workflows
 

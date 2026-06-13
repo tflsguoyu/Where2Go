@@ -5633,10 +5633,28 @@ function parseNjpacPerformances(value) {
 
 function isImportableNjpacEvent(title, genre = "", highlights = "") {
   const text = `${title} ${genre} ${highlights}`;
+  if (isLowInformationFestivalShell(title, genre, highlights)) {
+    return false;
+  }
   if (/\b(comedy|r&b|latin|concert|world music|country)\b/i.test(text) && !/\b(family|families|kids|children|teen|arts ed|community engagement|reading|stem|festival)\b/i.test(text)) {
     return false;
   }
-  return /\b(family|families|kids|children|teen|arts ed|community engagement|reading|stem|festival|north to shore|poetry teen|student|youth)\b/i.test(text);
+  return /\b(family|families|kids|children|teen|arts ed|community engagement|reading|stem|festival|poetry teen|student|youth)\b/i.test(text);
+}
+
+function isLowInformationFestivalShell(title, genre = "", highlights = "") {
+  const titleText = normalizeWhitespace(title).toLowerCase();
+  const detailText = normalizeWhitespace([genre, highlights].filter(Boolean).join(" ")).toLowerCase();
+  const hasSpecificFamilySignal = /\b(family|families|kids|children|child|teen|tween|youth|student|story|reading|stem|craft|workshop|class|camp|sensory|school|arts ed)\b/i.test(
+    `${title} ${genre} ${highlights}`
+  );
+  if (hasSpecificFamilySignal || !/\b(festival|series|season|lineup|program)\b/i.test(titleText)) {
+    return false;
+  }
+  if (!detailText) {
+    return true;
+  }
+  return /^(newark|asbury park|atlantic city|newark asbury park atlantic city|citywide|downtown|various locations|multiple venues)$/.test(detailText);
 }
 
 function parseNjpacEventCards(html, source, startDate, days) {
