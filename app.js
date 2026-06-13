@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v107";
+const APP_VERSION = "20260613-cache-v113";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -49,7 +49,13 @@ const DRIVE_TIME_BAND_STYLES = [
   { className: "is-middle", color: "#b46d24", fillColor: "#f0b35a", fillOpacity: 0.24 },
   { className: "is-far", color: "#6f63b6", fillColor: "#a28be7", fillOpacity: 0.18 }
 ];
-const SUMMARY_PREVIEW_LIMIT = 130;
+const SUMMARY_PREVIEW_LIMIT = 220;
+const TIME_FILTER_MIN_MINUTES = 0;
+const TIME_FILTER_MAX_MINUTES = 24 * 60;
+const TIME_FILTER_DEFAULT_START_MINUTES = 8 * 60;
+const TIME_FILTER_DEFAULT_END_MINUTES = 22 * 60;
+const TIME_FILTER_STEP_MINUTES = 15;
+const TIME_FILTER_MIN_RANGE_MINUTES = TIME_FILTER_STEP_MINUTES;
 const MONTH_NAME_PATTERN =
   "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
 const DATE_TEXT_PATTERN = `(?:${MONTH_NAME_PATTERN}\\s+\\d{1,2}(?:st|nd|rd|th)?(?:,\\s*\\d{4})?|\\d{1,2}/\\d{1,2}/\\d{2,4}|\\d{4}-\\d{1,2}-\\d{1,2})`;
@@ -99,6 +105,9 @@ const state = {
   selectedPinNumber: "",
   dateStripAligned: false,
   mapFocus: "events",
+  timeAxisMode: "common",
+  timeStartMinutes: TIME_FILTER_DEFAULT_START_MINUTES,
+  timeEndMinutes: TIME_FILTER_DEFAULT_END_MINUTES,
   driveTimeEnabled: false,
   driveTimeLoading: false,
   driveTimeOrigin: null,
@@ -124,6 +133,12 @@ const state = {
 const elements = {
   dateStrip: document.querySelector("#dateStrip"),
   eventFilterControl: document.querySelector("#eventFilterControl"),
+  timeFilter: document.querySelector("#timeFilter"),
+  timeFilterLabel: document.querySelector("#timeFilterLabel"),
+  timeFilterSlider: document.querySelector("#timeFilterSlider"),
+  timeStartInput: document.querySelector("#timeStartInput"),
+  timeEndInput: document.querySelector("#timeEndInput"),
+  timePresetButtons: document.querySelectorAll("[data-time-preset]"),
   mapSurface: document.querySelector("#mapSurface"),
   eventDetail: document.querySelector("#eventDetail"),
   updatedLabel: document.querySelector("#updatedLabel"),
@@ -386,6 +401,56 @@ function eventsForActiveFilter() {
   return state.events;
 }
 
+function clampNumber(value, min, max) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return min;
+  }
+  return Math.min(max, Math.max(min, number));
+}
+
+function timeFilterBounds() {
+  if (state.timeAxisMode === "all") {
+    return { min: TIME_FILTER_MIN_MINUTES, max: TIME_FILTER_MAX_MINUTES };
+  }
+  return { min: TIME_FILTER_DEFAULT_START_MINUTES, max: TIME_FILTER_DEFAULT_END_MINUTES };
+}
+
+function snapTimeMinutes(value, bounds = timeFilterBounds()) {
+  const minutes = Math.round(clampNumber(value, bounds.min, bounds.max) / TIME_FILTER_STEP_MINUTES) * TIME_FILTER_STEP_MINUTES;
+  return clampNumber(minutes, bounds.min, bounds.max);
+}
+
+function timeFilterRange() {
+  const bounds = timeFilterBounds();
+  const start = snapTimeMinutes(state.timeStartMinutes, bounds);
+  const end = snapTimeMinutes(state.timeEndMinutes, bounds);
+  if (end - start >= TIME_FILTER_MIN_RANGE_MINUTES) {
+    return { start, end };
+  }
+  if (start <= bounds.min) {
+    return { start: bounds.min, end: bounds.min + TIME_FILTER_MIN_RANGE_MINUTES };
+  }
+  return { start: end - TIME_FILTER_MIN_RANGE_MINUTES, end };
+}
+
+function timeFilterBoundaryDate(dateKey, minutes) {
+  const { year, month, day } = dateKeyParts(dateKey);
+  return new Date(year, month - 1, day, 0, minutes, 0, 0);
+}
+
+function eventOverlapsSelectedTime(event) {
+  if (!state.selectedDate) {
+    return true;
+  }
+  const { start, end } = timeFilterRange();
+  const filterStartsAt = timeFilterBoundaryDate(state.selectedDate, start);
+  const filterEndsAt = timeFilterBoundaryDate(state.selectedDate, end);
+  const startsAt = eventStartDate(event);
+  const endsAt = eventEndDate(event);
+  return startsAt < filterEndsAt && endsAt > filterStartsAt;
+}
+
 function uniqueDates(events) {
   return [...new Set(events.map((event) => event.dateKey))];
 }
@@ -414,8 +479,22 @@ function alignActiveDateToStart() {
   });
 }
 
-function eventsForSelectedDate() {
+function eventsForSelectedDateBeforeTimeFilter() {
   return eventsForActiveFilter().filter((event) => event.dateKey === state.selectedDate);
+}
+
+function eventsForSelectedDate() {
+  return eventsForSelectedDateBeforeTimeFilter().filter(eventOverlapsSelectedTime);
+}
+
+function syncSelectedEventForVisibleEvents() {
+  if (!state.selectedEventId) {
+    return;
+  }
+  if (!eventsForSelectedDate().some((event) => event.id === state.selectedEventId)) {
+    state.selectedEventId = "";
+    state.mapFocus = "events";
+  }
 }
 
 function normalizedLocationName(event) {
@@ -721,6 +800,15 @@ function formatTimeRange(event) {
     minute: "2-digit"
   });
   return `${formatter.format(event.startsAt)} - ${formatter.format(event.endsAt)}`;
+}
+
+function formatTimeFilterMinutes(minutes) {
+  const displayMinutes = minutes >= TIME_FILTER_MAX_MINUTES ? TIME_FILTER_MAX_MINUTES - 1 : minutes;
+  const date = new Date(2000, 0, 1, 0, clampNumber(displayMinutes, TIME_FILTER_MIN_MINUTES, TIME_FILTER_MAX_MINUTES - 1), 0, 0);
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit"
+  }).format(date);
 }
 
 function formatTimeRanges(events) {
@@ -1406,6 +1494,82 @@ function renderEventFilter() {
   });
 }
 
+function renderTimeFilter() {
+  const { start, end } = timeFilterRange();
+  const bounds = timeFilterBounds();
+  state.timeStartMinutes = start;
+  state.timeEndMinutes = end;
+  if (elements.timeFilterLabel) {
+    elements.timeFilterLabel.textContent = `${formatTimeFilterMinutes(start)} - ${formatTimeFilterMinutes(end)}`;
+  }
+  if (elements.timeStartInput) {
+    elements.timeStartInput.min = String(bounds.min);
+    elements.timeStartInput.max = String(bounds.max);
+    elements.timeStartInput.value = String(start);
+    elements.timeStartInput.setAttribute("aria-valuetext", formatTimeFilterMinutes(start));
+  }
+  if (elements.timeEndInput) {
+    elements.timeEndInput.min = String(bounds.min);
+    elements.timeEndInput.max = String(bounds.max);
+    elements.timeEndInput.value = String(end);
+    elements.timeEndInput.setAttribute("aria-valuetext", formatTimeFilterMinutes(end));
+  }
+  if (elements.timeFilterSlider) {
+    const span = bounds.max - bounds.min || TIME_FILTER_MAX_MINUTES;
+    const startPercent = ((start - bounds.min) / span) * 100;
+    const endPercent = ((end - bounds.min) / span) * 100;
+    elements.timeFilterSlider.style.setProperty("--time-start", `${startPercent}%`);
+    elements.timeFilterSlider.style.setProperty("--time-end", `${endPercent}%`);
+  }
+  elements.timePresetButtons?.forEach((button) => {
+    const isActive = button.dataset.timePreset === "all" && state.timeAxisMode === "all";
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function setTimeFilterRange(startValue, endValue, changedSide = "") {
+  const bounds = timeFilterBounds();
+  let start = snapTimeMinutes(startValue, bounds);
+  let end = snapTimeMinutes(endValue, bounds);
+  if (end - start < TIME_FILTER_MIN_RANGE_MINUTES) {
+    if (changedSide === "start") {
+      start = Math.min(start, bounds.max - TIME_FILTER_MIN_RANGE_MINUTES);
+      end = start + TIME_FILTER_MIN_RANGE_MINUTES;
+    } else {
+      end = Math.max(end, bounds.min + TIME_FILTER_MIN_RANGE_MINUTES);
+      start = end - TIME_FILTER_MIN_RANGE_MINUTES;
+    }
+  }
+  state.timeStartMinutes = start;
+  state.timeEndMinutes = end;
+  state.selectedEventId = "";
+  state.mapFocus = "events";
+  render();
+}
+
+function bindTimeFilter() {
+  const handleInput = (event) => {
+    const changedSide = event.target === elements.timeStartInput ? "start" : "end";
+    setTimeFilterRange(elements.timeStartInput?.value, elements.timeEndInput?.value, changedSide);
+  };
+  elements.timeStartInput?.addEventListener("input", handleInput);
+  elements.timeEndInput?.addEventListener("input", handleInput);
+  elements.timePresetButtons?.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.dataset.timePreset === "all") {
+        if (state.timeAxisMode === "all") {
+          state.timeAxisMode = "common";
+          setTimeFilterRange(TIME_FILTER_DEFAULT_START_MINUTES, TIME_FILTER_DEFAULT_END_MINUTES);
+          return;
+        }
+        state.timeAxisMode = "all";
+        setTimeFilterRange(TIME_FILTER_MIN_MINUTES, TIME_FILTER_MAX_MINUTES);
+      }
+    });
+  });
+}
+
 function setEventFilter(filter) {
   if (!Object.values(EVENT_FILTERS).includes(filter) || filter === state.eventFilter) {
     return;
@@ -1591,7 +1755,10 @@ function summaryText(event) {
   if (text.length <= SUMMARY_PREVIEW_LIMIT) {
     return text;
   }
-  return `${text.slice(0, SUMMARY_PREVIEW_LIMIT).trim()}...`;
+  const preview = text.slice(0, SUMMARY_PREVIEW_LIMIT).trim();
+  const wordBoundary = preview.lastIndexOf(" ");
+  const trimmedPreview = wordBoundary > SUMMARY_PREVIEW_LIMIT * 0.72 ? preview.slice(0, wordBoundary).trim() : preview;
+  return `${trimmedPreview}...`;
 }
 
 function escapeHtml(value) {
@@ -1907,8 +2074,7 @@ function markerIcon(index, isActive, isExpired) {
     className: classNames.join(" "),
     html: `<span>${index + 1}</span>`,
     iconSize: [26, 34],
-    iconAnchor: [13, 31],
-    popupAnchor: [0, -30]
+    iconAnchor: [13, 31]
   });
 }
 
@@ -2599,6 +2765,7 @@ function renderDates() {
 }
 
 function renderMap() {
+  const unfilteredDayEvents = eventsForSelectedDateBeforeTimeFilter();
   const dayEvents = eventsForSelectedDate();
   const activeGroup = selectedGroup();
   if (!initMap()) {
@@ -2608,7 +2775,11 @@ function renderMap() {
   syncMarkers(dayEvents, activeGroup);
 
   if (!dayEvents.length) {
-    setMapMessage("No events this day", "Try another date.");
+    if (unfilteredDayEvents.length) {
+      setMapMessage("No events in this time range", "Adjust the time filter or try another date.");
+    } else {
+      setMapMessage("No events this day", "Try another date.");
+    }
     return;
   }
   if (!groupsWithCoordinates(locationGroupsForEvents(dayEvents)).length) {
@@ -2649,10 +2820,11 @@ function directionsControlHtml(group) {
 function renderDetail() {
   const groups = orderedGroupsForDetail();
   if (!groups.length) {
+    const hasEventsOutsideTime = eventsForSelectedDateBeforeTimeFilter().length > 0;
     elements.eventDetail.innerHTML = `
       <div class="empty-detail">
-        <strong>Choose a date</strong>
-        <span>Event details will appear here.</span>
+        <strong>${hasEventsOutsideTime ? "No events in this time range" : "Choose a date"}</strong>
+        <span>${hasEventsOutsideTime ? "Adjust the time filter or try another date." : "Event details will appear here."}</span>
       </div>
     `;
     return;
@@ -2700,6 +2872,8 @@ function renderDetail() {
 
 function render() {
   syncDatesForActiveFilter();
+  renderTimeFilter();
+  syncSelectedEventForVisibleEvents();
   renderEventFilter();
   renderDates();
   renderMap();
@@ -2747,6 +2921,7 @@ initAnalytics();
 setupInstallPrompt();
 bindMoreMenu();
 bindEventFilter();
+bindTimeFilter();
 bindDetailScroll();
 
 init().catch((error) => {

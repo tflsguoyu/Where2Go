@@ -52,11 +52,12 @@ a {
 
 .app-shell {
   display: grid;
-  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto auto auto minmax(0, 1fr) auto;
   grid-template-areas:
     "topbar"
     "install"
     "dates"
+    "time"
     "map"
     "details"
     "footer";
@@ -650,6 +651,151 @@ h2 {
   color: white;
 }
 
+.time-filter {
+  grid-area: time;
+  display: grid;
+  gap: 0;
+  padding: 0 14px 4px;
+  color: var(--ink);
+}
+
+.time-filter-top {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr) 50px;
+  gap: 6px;
+  align-items: center;
+  min-height: 18px;
+}
+
+.time-filter-top::before {
+  content: "";
+}
+
+.time-filter-label {
+  color: var(--green-dark);
+  font-size: 0.62rem;
+  font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.time-filter-preset {
+  justify-self: end;
+  min-width: 0;
+  min-height: 17px;
+  padding: 0 7px;
+  border: 1px solid rgba(22, 75, 67, 0.16);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.time-filter-preset.is-active {
+  border-color: rgba(37, 106, 95, 0.42);
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+
+.time-filter-slider {
+  --time-start: 0%;
+  --time-end: 100%;
+  position: relative;
+  height: 14px;
+  margin-top: -6px;
+}
+
+.time-filter-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  height: 3px;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(22, 75, 67, 0.18) 0 var(--time-start),
+      var(--green) var(--time-start) var(--time-end),
+      rgba(22, 75, 67, 0.18) var(--time-end) 100%
+    );
+}
+
+.time-filter-slider input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.time-filter-slider input:focus {
+  outline: 0;
+}
+
+.time-filter-slider input::-webkit-slider-runnable-track {
+  height: 3px;
+  background: transparent;
+  border: 0;
+}
+
+.time-filter-slider input::-webkit-slider-thumb {
+  width: 23px;
+  height: 11px;
+  margin-top: -4px;
+  border: 1px solid rgba(22, 75, 67, 0.58);
+  border-radius: 5px;
+  background: var(--surface);
+  box-shadow:
+    inset 0 0 0 2px rgba(37, 106, 95, 0.12),
+    0 1px 4px rgba(23, 33, 29, 0.14);
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.time-filter-slider input::-moz-range-track {
+  height: 3px;
+  background: transparent;
+  border: 0;
+}
+
+.time-filter-slider input::-moz-range-thumb {
+  width: 21px;
+  height: 9px;
+  border: 1px solid rgba(22, 75, 67, 0.58);
+  border-radius: 5px;
+  background: var(--surface);
+  box-shadow:
+    inset 0 0 0 2px rgba(37, 106, 95, 0.12),
+    0 1px 4px rgba(23, 33, 29, 0.14);
+  pointer-events: auto;
+}
+
+.time-filter-slider input:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 3px rgba(37, 106, 95, 0.16),
+    inset 0 0 0 2px rgba(37, 106, 95, 0.18),
+    0 1px 4px rgba(23, 33, 29, 0.14);
+}
+
+.time-filter-slider input:focus-visible::-moz-range-thumb {
+  box-shadow:
+    0 0 0 3px rgba(37, 106, 95, 0.16),
+    inset 0 0 0 2px rgba(37, 106, 95, 0.18),
+    0 1px 4px rgba(23, 33, 29, 0.14);
+}
+
 .event-filter {
   display: block;
   padding: 0;
@@ -711,7 +857,7 @@ h2 {
   position: relative;
   width: 100%;
   height: auto;
-  aspect-ratio: 1;
+  aspect-ratio: 1.12;
   min-height: 0;
   overflow: hidden;
   border: 1px solid #cfd9d4;
@@ -1090,8 +1236,8 @@ h2 {
 
 .detail-group {
   display: grid;
-  gap: 6px;
-  padding: 10px;
+  gap: 7px;
+  padding: 10px 11px 11px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
@@ -1113,16 +1259,23 @@ h2 {
 
 .place-line {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto auto;
-  gap: 6px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "pin place directions"
+    ". tags tags";
+  gap: 5px 7px;
   align-items: center;
 }
 
 .place-line.has-no-pin {
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "place directions"
+    "tags tags";
 }
 
 .pin-badge {
+  grid-area: pin;
   display: grid;
   width: 28px;
   height: 28px;
@@ -1146,6 +1299,7 @@ h2 {
 }
 
 .place-name {
+  grid-area: place;
   min-width: 0;
   overflow: hidden;
   color: var(--ink);
@@ -1156,6 +1310,7 @@ h2 {
 }
 
 .directions-link {
+  grid-area: directions;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1178,26 +1333,27 @@ h2 {
 
 .detail-events {
   display: grid;
-  gap: 6px;
-  margin-top: 2px;
+  gap: 8px;
+  margin-top: 1px;
 }
 
 .detail-event {
   display: grid;
-  gap: 2px;
+  gap: 4px;
 }
 
 .detail-event + .detail-event {
-  padding-top: 6px;
+  padding-top: 8px;
   border-top: 1px solid var(--line);
 }
 
 .detail-event h2 {
   font-size: 1rem;
-  line-height: 1.12;
+  line-height: 1.18;
 }
 
 .place-status-tags {
+  grid-area: tags;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -1226,6 +1382,7 @@ h2 {
   color: var(--green);
   font-size: 0.84rem;
   font-weight: 900;
+  line-height: 1.18;
 }
 
 .event-summary {
@@ -1233,29 +1390,30 @@ h2 {
   overflow: hidden;
   color: var(--ink);
   font-size: 0.86rem;
-  line-height: 1.24;
+  line-height: 1.32;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 
 .source-links {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 1px;
+  margin-top: 3px;
 }
 
 .source-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 26px;
+  min-height: 24px;
   width: fit-content;
-  padding: 0 9px;
-  border-radius: 999px;
-  background: var(--green-dark);
-  color: white;
-  font-size: 0.74rem;
+  padding: 0 8px;
+  border: 1px solid rgba(22, 75, 67, 0.18);
+  border-radius: 7px;
+  background: #f8fbfa;
+  color: var(--green-dark);
+  font-size: 0.7rem;
   font-weight: 900;
   text-decoration: none;
 }
