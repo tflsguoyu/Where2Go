@@ -1456,7 +1456,22 @@ h2 {
   min-width: 42px;
 }
 
-.event-action-like span:first-child {
+.event-like-icon {
+  width: 13px;
+  height: 13px;
+  color: #d94a4a;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  flex: 0 0 auto;
+}
+
+.event-action-like[aria-pressed="false"] .event-like-icon {
+  fill: none;
+}
+
+.event-action-like[aria-pressed="true"] .event-like-icon {
   color: #d94a4a;
 }
 
@@ -1554,7 +1569,7 @@ h2 {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 12px;
+  gap: 8px;
   width: min(100%, 390px);
   max-height: min(86vh, 560px);
   overflow: auto;
@@ -1618,6 +1633,10 @@ h2 {
   color: var(--ink);
   font-size: 0.78rem;
   font-weight: 950;
+}
+
+.feedback-form legend {
+  margin-bottom: 7px;
 }
 
 .feedback-form label {

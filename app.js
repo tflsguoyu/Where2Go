@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v131";
+const APP_VERSION = "20260613-cache-v133";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -1930,6 +1930,14 @@ function likeCountForEvent(eventId) {
   return Number(state.interactionCounts.get(eventId) || 0);
 }
 
+function likeIconHtml(liked) {
+  return `
+    <svg class="event-like-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 20.2c-.3 0-.6-.1-.8-.3C5.5 14.8 3 12.4 3 8.9 3 6.2 5.1 4 7.8 4c1.6 0 3.1.8 4.2 2 1.1-1.2 2.6-2 4.2-2C18.9 4 21 6.2 21 8.9c0 3.5-2.5 5.9-8.2 11-.2.2-.5.3-.8.3Z"${liked ? "" : ' fill="none"'} />
+    </svg>
+  `;
+}
+
 function updateInteractionControls() {
   elements.eventDetail?.querySelectorAll("[data-like-event-id]").forEach((button) => {
     const eventId = button.dataset.likeEventId || "";
@@ -1939,7 +1947,7 @@ function updateInteractionControls() {
     button.disabled = !INTERACTIONS_ENDPOINT;
     button.setAttribute("aria-pressed", String(liked));
     button.title = INTERACTIONS_ENDPOINT ? (liked ? "Unlike this event" : "Like this event") : "Likes are not configured yet";
-    button.innerHTML = `<span aria-hidden="true">${liked ? "♥" : "♡"}</span><span>${count}</span>`;
+    button.innerHTML = `${likeIconHtml(liked)}<span>${count}</span>`;
   });
   elements.eventDetail?.querySelectorAll("[data-report-event-id]").forEach((button) => {
     button.disabled = false;
@@ -1995,7 +2003,7 @@ function eventActionsHtml(event) {
     <div class="event-actions">
       <button class="event-action event-action-report" type="button" data-report-event-id="${escapeHtml(eventId)}">Report</button>
       <button class="event-action event-action-like ${liked ? "is-liked" : ""}" type="button" data-like-event-id="${escapeHtml(eventId)}" aria-pressed="${liked}"${!INTERACTIONS_ENDPOINT ? " disabled" : ""}>
-        <span aria-hidden="true">${liked ? "♥" : "♡"}</span><span>${escapeHtml(count)}</span>
+        ${likeIconHtml(liked)}<span>${escapeHtml(count)}</span>
       </button>
     </div>
   `;
