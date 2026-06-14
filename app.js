@@ -2890,7 +2890,7 @@ function ensureMapShell() {
     </button>
     <form class="search-form" id="searchForm" autocomplete="on">
       <label class="sr-only" for="searchInput">Search place or ZIP</label>
-      <input id="searchInput" name="search" autocomplete="off" maxlength="40" placeholder="ZIP/town" aria-label="Search ZIP or township" />
+      <input id="searchInput" name="search" autocomplete="off" maxlength="40" placeholder="ZIP or town" aria-label="Search ZIP or township" />
       <button id="searchButton" type="submit">Go</button>
     </form>
     <button class="drive-time-button" id="driveTimeButton" type="button" aria-pressed="false" aria-label="Toggle drive-time areas" title="Toggle drive-time areas">Drive</button>
