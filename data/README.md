@@ -329,6 +329,18 @@ and import events only when requested or clearly implied.
 - For duplicates, prefer organizer/venue official pages, then official
   municipal/county/library reposts, then ticketing pages, then third-party
   directories.
+- Strong duplicate signals include near-identical normalized title, same date,
+  same start time, and the same venue/town/activity even when one source uses a
+  slightly different venue label or URL.
+- When duplicate records disagree, keep the record with the most specific
+  confirmed venue/address, end time, source URL, and useful kid/family summary.
+  If an official or municipal source is only a placeholder with a vague venue,
+  default address, or empty summary, keep the better third-party record and mark
+  `reviewNotes` for later official verification.
+- Same venue plus same start time is not enough to delete a record. Museums,
+  festivals, and venues may list an umbrella program and a specific sub-activity
+  at the same time; only merge when the title/source context confirms the same
+  activity.
 
 ## Quality Rules
 
