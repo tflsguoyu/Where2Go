@@ -9,6 +9,9 @@ window.Where2GoConfig = {
     statsEndpoint: "https://where2go-tau.vercel.app/api/stats",
     areaMaxDistanceMiles: 12
   },
+  interactions: {
+    googleAppsScriptUrl: "https://script.google.com/macros/s/AKfycbyStUxaIva65ozgEcNLauyU5GyKa_LIv_D6H_gaWUxlg4oY7G4HrpNZEYMA2TTwe4sN/exec"
+  },
   driveTime: {
     provider: "openrouteservice",
     apiKey: "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjNjMGY5NzQ1YzkxMDRkNTBiOTU2ZmUxNjQ4NDBjNDIyIiwiaCI6Im11cm11cjY0In0=",

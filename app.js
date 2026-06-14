@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v127";
+const APP_VERSION = "20260613-cache-v131";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -9,6 +9,8 @@ const GITHUB_BRANCH = String(window.Where2GoConfig?.githubBranch || "main").trim
 const ANALYTICS_CONFIG = window.Where2GoConfig?.analytics || {};
 const GOOGLE_ANALYTICS_MEASUREMENT_ID = String(ANALYTICS_CONFIG.googleAnalyticsMeasurementId || "").trim();
 const STATS_ENDPOINT = String(ANALYTICS_CONFIG.statsEndpoint || "").trim();
+const INTERACTIONS_CONFIG = window.Where2GoConfig?.interactions || {};
+const INTERACTIONS_ENDPOINT = String(INTERACTIONS_CONFIG.googleAppsScriptUrl || "").trim();
 const AREA_ANALYTICS_MAX_DISTANCE_MILES = Number.isFinite(Number(ANALYTICS_CONFIG.areaMaxDistanceMiles))
   ? Number(ANALYTICS_CONFIG.areaMaxDistanceMiles)
   : 12;
@@ -21,6 +23,8 @@ const WORLD_CUP_TEXT_PATTERN = /\b(?:world\s*cup|fifa)\b|世界杯/i;
 const WORLD_CUP_OBVIOUS_EVENT_PATTERN =
   /\b(?:dream fan fest|goal zone @ the commons|battle of basking ridge|summit downtown welcomes the world)\b/i;
 const AREA_ANALYTICS_SENT_KEY = "where2go-area-analytics-sent-v1";
+const INTERACTIONS_CLIENT_ID_KEY = "where2go-interactions-client-id-v1";
+const LIKED_EVENTS_KEY = "where2go-liked-events-v1";
 const STATS_ROW_LIMIT = 8;
 const UPDATED_LABEL_CACHE_MS = 60 * 1000;
 const DEFAULT_MAP_RADIUS_MILES = 3;
@@ -128,6 +132,13 @@ const state = {
   statsRows: [],
   statsUpdatedAt: "",
   statsMessage: "",
+  feedbackModalOpen: false,
+  feedbackEventId: "",
+  feedbackSubmitting: false,
+  feedbackMessage: "",
+  likedEventIds: new Set(),
+  interactionCounts: new Map(),
+  interactionCountsLoading: new Set(),
   suppressDetailScrollSync: false
 };
 
@@ -166,6 +177,14 @@ const elements = {
   termsFooterButton: document.querySelector("#termsFooterButton"),
   termsModalClose: document.querySelector("#termsModalClose"),
   termsModalBackdrop: document.querySelector("#termsModalBackdrop"),
+  feedbackModal: document.querySelector("#feedbackModal"),
+  feedbackModalBackdrop: document.querySelector("#feedbackModalBackdrop"),
+  feedbackModalClose: document.querySelector("#feedbackModalClose"),
+  feedbackForm: document.querySelector("#feedbackForm"),
+  feedbackEventTitle: document.querySelector("#feedbackEventTitle"),
+  feedbackNotes: document.querySelector("#feedbackNotes"),
+  feedbackStatus: document.querySelector("#feedbackStatus"),
+  feedbackSubmit: document.querySelector("#feedbackSubmit"),
   coveredTownsList: document.querySelector("#coveredTownsList"),
   installPrompt: document.querySelector("#installPrompt"),
   installPromptTitle: document.querySelector("#installPromptTitle"),
@@ -1496,6 +1515,11 @@ function bindMoreMenu() {
       closeTermsModal();
       return;
     }
+    if (state.feedbackModalOpen) {
+      event.preventDefault();
+      closeFeedbackModal();
+      return;
+    }
     if (state.moreMenuOpen) {
       setMoreMenuOpen(false);
       elements.moreMenuButton?.focus();
@@ -1625,6 +1649,24 @@ function bindEventFilter() {
 
 function bindDetailScroll() {
   elements.eventDetail?.addEventListener("scroll", handleDetailScroll, { passive: true });
+}
+
+function bindEventInteractions() {
+  elements.eventDetail?.addEventListener("click", (event) => {
+    const reportButton = event.target.closest("[data-report-event-id]");
+    if (reportButton && elements.eventDetail.contains(reportButton)) {
+      openFeedbackModal(reportButton.dataset.reportEventId || "");
+      return;
+    }
+    const likeButton = event.target.closest("[data-like-event-id]");
+    if (likeButton && elements.eventDetail.contains(likeButton)) {
+      likeEvent(likeButton.dataset.likeEventId || "");
+    }
+  });
+  elements.feedbackForm?.addEventListener("submit", submitFeedback);
+  elements.feedbackModalClose?.addEventListener("click", closeFeedbackModal);
+  elements.feedbackModalBackdrop?.addEventListener("click", closeFeedbackModal);
+  elements.feedbackForm?.querySelector("#feedbackCancel")?.addEventListener("click", closeFeedbackModal);
 }
 
 function collapseWhitespace(value) {
@@ -1813,6 +1855,250 @@ function writeStorageValue(key, value) {
   try {
     window.localStorage.setItem(key, value);
   } catch {}
+}
+
+function readJsonStorageValue(key, fallback) {
+  const raw = readStorageValue(key);
+  if (!raw) {
+    return fallback;
+  }
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return fallback;
+  }
+}
+
+function interactionClientId() {
+  const existing = readStorageValue(INTERACTIONS_CLIENT_ID_KEY);
+  if (existing) {
+    return existing;
+  }
+  const next = `w2g-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+  writeStorageValue(INTERACTIONS_CLIENT_ID_KEY, next);
+  return next;
+}
+
+function loadLikedEventIds() {
+  return new Set(readJsonStorageValue(LIKED_EVENTS_KEY, []));
+}
+
+function saveLikedEventIds() {
+  writeStorageValue(LIKED_EVENTS_KEY, JSON.stringify([...state.likedEventIds]));
+}
+
+function selectedFeedbackEvent() {
+  if (!state.feedbackEventId) {
+    return null;
+  }
+  return state.events.find((event) => event.id === state.feedbackEventId) || null;
+}
+
+function interactionEventPayload(event) {
+  return {
+    eventId: event.id,
+    title: displayTitle(event),
+    date: event.dateKey || event.startsAt?.toISOString?.().slice(0, 10) || "",
+    time: formatTimeRange(event),
+    venue: event.venueName || event.venue || "",
+    sourceUrl: sourceUrl(event),
+    pageUrl: window.location.href
+  };
+}
+
+function postInteraction(data) {
+  if (!INTERACTIONS_ENDPOINT) {
+    return Promise.reject(new Error("Feedback is not configured yet."));
+  }
+  const formData = new FormData();
+  Object.entries({
+    appVersion: APP_VERSION,
+    clientId: interactionClientId(),
+    createdAt: new Date().toISOString(),
+    ...data
+  }).forEach(([key, value]) => {
+    formData.append(key, Array.isArray(value) ? value.join(",") : String(value ?? ""));
+  });
+  return fetch(INTERACTIONS_ENDPOINT, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  });
+}
+
+function likeCountForEvent(eventId) {
+  return Number(state.interactionCounts.get(eventId) || 0);
+}
+
+function updateInteractionControls() {
+  elements.eventDetail?.querySelectorAll("[data-like-event-id]").forEach((button) => {
+    const eventId = button.dataset.likeEventId || "";
+    const count = likeCountForEvent(eventId);
+    const liked = state.likedEventIds.has(eventId);
+    button.classList.toggle("is-liked", liked);
+    button.disabled = !INTERACTIONS_ENDPOINT;
+    button.setAttribute("aria-pressed", String(liked));
+    button.title = INTERACTIONS_ENDPOINT ? (liked ? "Unlike this event" : "Like this event") : "Likes are not configured yet";
+    button.innerHTML = `<span aria-hidden="true">${liked ? "♥" : "♡"}</span><span>${count}</span>`;
+  });
+  elements.eventDetail?.querySelectorAll("[data-report-event-id]").forEach((button) => {
+    button.disabled = false;
+    button.title = "Report this event";
+  });
+}
+
+function loadInteractionCountsForEvents(events) {
+  if (!INTERACTIONS_ENDPOINT) {
+    updateInteractionControls();
+    return;
+  }
+  const eventIds = [
+    ...new Set(
+      events
+        .map((event) => event.id)
+        .filter((eventId) => eventId && !state.interactionCounts.has(eventId) && !state.interactionCountsLoading.has(eventId))
+    )
+  ];
+  if (!eventIds.length) {
+    updateInteractionControls();
+    return;
+  }
+  eventIds.forEach((eventId) => state.interactionCountsLoading.add(eventId));
+  const callbackName = `where2goInteractionCounts_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  const cleanup = (script) => {
+    eventIds.forEach((eventId) => state.interactionCountsLoading.delete(eventId));
+    delete window[callbackName];
+    script?.remove();
+    updateInteractionControls();
+  };
+  const script = document.createElement("script");
+  const url = new URL(INTERACTIONS_ENDPOINT);
+  url.searchParams.set("action", "counts");
+  url.searchParams.set("eventIds", eventIds.join(","));
+  url.searchParams.set("callback", callbackName);
+  window[callbackName] = (payload = {}) => {
+    Object.entries(payload.counts || {}).forEach(([eventId, count]) => {
+      state.interactionCounts.set(eventId, Number(count) || 0);
+    });
+    cleanup(script);
+  };
+  script.onerror = () => cleanup(script);
+  script.src = url.toString();
+  document.head.append(script);
+}
+
+function eventActionsHtml(event) {
+  const eventId = event.id || "";
+  const liked = state.likedEventIds.has(eventId);
+  const count = likeCountForEvent(eventId);
+  return `
+    <div class="event-actions">
+      <button class="event-action event-action-report" type="button" data-report-event-id="${escapeHtml(eventId)}">Report</button>
+      <button class="event-action event-action-like ${liked ? "is-liked" : ""}" type="button" data-like-event-id="${escapeHtml(eventId)}" aria-pressed="${liked}"${!INTERACTIONS_ENDPOINT ? " disabled" : ""}>
+        <span aria-hidden="true">${liked ? "♥" : "♡"}</span><span>${escapeHtml(count)}</span>
+      </button>
+    </div>
+  `;
+}
+
+function renderFeedbackModal() {
+  if (!elements.feedbackModal) {
+    return;
+  }
+  const event = selectedFeedbackEvent();
+  elements.feedbackModal.hidden = !state.feedbackModalOpen;
+  elements.feedbackModal.setAttribute("aria-hidden", String(!state.feedbackModalOpen));
+  if (elements.feedbackEventTitle) {
+    elements.feedbackEventTitle.textContent = event ? displayTitle(event) : "";
+  }
+  if (elements.feedbackStatus) {
+    elements.feedbackStatus.textContent = state.feedbackMessage;
+  }
+  if (elements.feedbackSubmit) {
+    elements.feedbackSubmit.disabled = state.feedbackSubmitting || !INTERACTIONS_ENDPOINT;
+    elements.feedbackSubmit.textContent = state.feedbackSubmitting ? "Submitting..." : "Submit";
+  }
+}
+
+function openFeedbackModal(eventId) {
+  state.feedbackEventId = eventId;
+  state.feedbackModalOpen = true;
+  state.feedbackSubmitting = false;
+  state.feedbackMessage = INTERACTIONS_ENDPOINT ? "" : "Feedback is not configured yet.";
+  elements.feedbackForm?.reset();
+  renderFeedbackModal();
+}
+
+function closeFeedbackModal() {
+  state.feedbackModalOpen = false;
+  state.feedbackSubmitting = false;
+  state.feedbackMessage = "";
+  renderFeedbackModal();
+}
+
+async function submitFeedback(event) {
+  event.preventDefault();
+  const reportedEvent = selectedFeedbackEvent();
+  if (!reportedEvent) {
+    return;
+  }
+  const reasons = [...elements.feedbackForm.querySelectorAll("input[name='reason']:checked")].map((input) => input.value);
+  if (!reasons.length) {
+    state.feedbackMessage = "Choose at least one reason.";
+    renderFeedbackModal();
+    return;
+  }
+  state.feedbackSubmitting = true;
+  state.feedbackMessage = "";
+  renderFeedbackModal();
+  try {
+    await postInteraction({
+      action: "report",
+      reasons,
+      notes: elements.feedbackNotes?.value || "",
+      ...interactionEventPayload(reportedEvent)
+    });
+    state.feedbackMessage = "Thanks. Report sent.";
+    window.setTimeout(closeFeedbackModal, 700);
+  } catch (error) {
+    state.feedbackMessage = error.message || "Could not send report.";
+  } finally {
+    state.feedbackSubmitting = false;
+    renderFeedbackModal();
+  }
+}
+
+async function likeEvent(eventId) {
+  const event = state.events.find((item) => item.id === eventId);
+  if (!event) {
+    return;
+  }
+  const wasLiked = state.likedEventIds.has(eventId);
+  const previousCount = likeCountForEvent(eventId);
+  const nextCount = wasLiked ? Math.max(0, previousCount - 1) : previousCount + 1;
+  if (wasLiked) {
+    state.likedEventIds.delete(eventId);
+  } else {
+    state.likedEventIds.add(eventId);
+  }
+  state.interactionCounts.set(eventId, nextCount);
+  saveLikedEventIds();
+  updateInteractionControls();
+  try {
+    await postInteraction({
+      action: wasLiked ? "unlike" : "like",
+      ...interactionEventPayload(event)
+    });
+  } catch {
+    if (wasLiked) {
+      state.likedEventIds.add(eventId);
+    } else {
+      state.likedEventIds.delete(eventId);
+    }
+    state.interactionCounts.set(eventId, previousCount);
+    saveLikedEventIds();
+    updateInteractionControls();
+  }
 }
 
 function appRunsStandalone() {
@@ -2596,7 +2882,7 @@ function ensureMapShell() {
     </button>
     <form class="search-form" id="searchForm" autocomplete="on">
       <label class="sr-only" for="searchInput">Search place or ZIP</label>
-      <input id="searchInput" name="search" autocomplete="off" maxlength="40" placeholder="ZIP or town" aria-label="Search ZIP or township" />
+      <input id="searchInput" name="search" autocomplete="off" maxlength="40" placeholder="ZIP/town" aria-label="Search ZIP or township" />
       <button id="searchButton" type="submit">Go</button>
     </form>
     <button class="drive-time-button" id="driveTimeButton" type="button" aria-pressed="false" aria-label="Toggle drive-time areas" title="Toggle drive-time areas">Drive</button>
@@ -2816,6 +3102,7 @@ function renderDetail() {
     return;
   }
 
+  const detailEvents = groups.flatMap((group) => displayEventsForGroup(group));
   elements.eventDetail.innerHTML = groups
     .map((group) => {
       const pinNumber = groupPinNumber(group);
@@ -2834,7 +3121,10 @@ function renderDetail() {
                 <h2>${escapeHtml(displayTitle(event))}</h2>
                 <p class="event-time">${formatTimeRange(event)}</p>
                 ${summary ? `<p class="event-summary">${escapeHtml(summary)}</p>` : ""}
-                ${sourcePagesHtml(event)}
+                <div class="event-footer">
+                  ${sourcePagesHtml(event)}
+                  ${eventActionsHtml(event)}
+                </div>
               </article>
             `;
           }
@@ -2853,6 +3143,7 @@ function renderDetail() {
       `;
     })
     .join("");
+  loadInteractionCountsForEvents(detailEvents);
 }
 
 function render() {
@@ -2863,12 +3154,14 @@ function render() {
   renderDates();
   renderMap();
   renderDetail();
+  renderFeedbackModal();
 }
 
 async function init() {
   const [events, sourceRegistry] = await Promise.all([loadEventsData(), loadSourceRegistryData()]);
   state.sourceRegistry = sourceRegistry;
   state.events = normalizeEvents(events);
+  state.likedEventIds = loadLikedEventIds();
   syncDatesForActiveFilter();
   state.selectedDate = defaultSelectedDate(state.dates);
   state.selectedEventId = "";
@@ -2909,6 +3202,7 @@ bindMoreMenu();
 bindEventFilter();
 bindTimeFilter();
 bindDetailScroll();
+bindEventInteractions();
 
 init().catch((error) => {
   if (elements.aboutUpdatedLabel) {

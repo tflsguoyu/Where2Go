@@ -31,12 +31,12 @@
     />
     <meta name="twitter:image" content="https://tflsguoyu.github.io/Where2Go/assets/share-card.png" />
     <title>Where2Go</title>
-    <link rel="manifest" href="manifest.webmanifest?v=20260613-cache-v127" />
+    <link rel="manifest" href="manifest.webmanifest?v=20260613-cache-v131" />
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="assets/icon-192.png" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css?v=20260613-cache-v127" />
+    <link rel="stylesheet" href="styles.css?v=20260613-cache-v131" />
   </head>
   <body>
     <main class="app-shell" aria-label="Where2Go event map">
@@ -59,6 +59,19 @@
               <section class="more-section">
                 <button class="more-link more-action" id="aboutToggle" type="button" aria-expanded="false" aria-controls="aboutPanel">About</button>
                 <div class="about-panel" id="aboutPanel" hidden>
+                  <p class="about-intro">Where2Go Kids helps families find kid-friendly things to do nearby, organized by date, time, and map location.</p>
+                  <div class="about-row">
+                    <span>Listings</span>
+                    <strong>We collect public event information from libraries, parks, museums, community calendars, and family venues.</strong>
+                  </div>
+                  <div class="about-row">
+                    <span>Community</span>
+                    <strong>Likes show what families are interested in. Reports help us fix wrong times, locations, duplicates, and broken source links.</strong>
+                  </div>
+                  <div class="about-row">
+                    <span>Before you go</span>
+                    <strong>Event details can change. Please confirm cost, registration, age fit, and final details with the organizer before going.</strong>
+                  </div>
                   <div class="about-row">
                     <span>Updated</span>
                     <strong id="aboutUpdatedLabel">Loading</strong>
@@ -228,10 +241,42 @@
           <div class="terms-modal-content" id="termsModalContent"></div>
         </section>
       </div>
+
+      <div class="feedback-modal" id="feedbackModal" hidden aria-hidden="true">
+        <button class="feedback-modal-backdrop" id="feedbackModalBackdrop" type="button" aria-hidden="true" tabindex="-1"></button>
+        <section class="feedback-modal-panel" role="dialog" aria-modal="true" aria-labelledby="feedbackModalTitle">
+          <header class="feedback-modal-header">
+            <div>
+              <h2 id="feedbackModalTitle">Report this event</h2>
+              <p id="feedbackEventTitle"></p>
+            </div>
+            <button class="feedback-modal-close" id="feedbackModalClose" type="button" aria-label="Close report">✕</button>
+          </header>
+          <form class="feedback-form" id="feedbackForm">
+            <fieldset>
+              <legend>What’s wrong?</legend>
+              <label><input type="checkbox" name="reason" value="time_wrong" /> Time is wrong</label>
+              <label><input type="checkbox" name="reason" value="location_wrong" /> Location is wrong</label>
+              <label><input type="checkbox" name="reason" value="cancelled_or_ended" /> Event is cancelled or ended</label>
+              <label><input type="checkbox" name="reason" value="not_kid_friendly" /> Not kid-friendly</label>
+              <label><input type="checkbox" name="reason" value="duplicate" /> Duplicate</label>
+              <label><input type="checkbox" name="reason" value="source_broken" /> Source page is broken</label>
+              <label><input type="checkbox" name="reason" value="other" /> Other</label>
+            </fieldset>
+            <label class="feedback-notes-label" for="feedbackNotes">Notes optional</label>
+            <textarea id="feedbackNotes" name="notes" rows="3" maxlength="600"></textarea>
+            <p class="feedback-status" id="feedbackStatus" role="status"></p>
+            <div class="feedback-actions">
+              <button class="feedback-cancel" id="feedbackCancel" type="button">Cancel</button>
+              <button class="feedback-submit" id="feedbackSubmit" type="submit">Submit</button>
+            </div>
+          </form>
+        </section>
+      </div>
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="config.js?v=20260613-cache-v127"></script>
-    <script type="module" src="app.js?v=20260613-cache-v127"></script>
+    <script src="config.js?v=20260613-cache-v131"></script>
+    <script type="module" src="app.js?v=20260613-cache-v131"></script>
   </body>
 </html>

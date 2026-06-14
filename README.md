@@ -199,6 +199,22 @@ GOOGLE_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n
 Alternatively, set `GOOGLE_SERVICE_ACCOUNT_JSON` to the full service account
 JSON. Do not put private service-account credentials in frontend files.
 
+## Feedback And Likes
+
+Report and toggleable like interactions can use a free Google Apps Script Web
+App backed by a private Google Sheet. Copy
+`scripts/google-apps-script-interactions.gs` into a Sheet-bound Apps Script
+project, deploy it as a Web App, and set:
+
+```js
+interactions: {
+  googleAppsScriptUrl: "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
+}
+```
+
+in `config.js`. Leave the URL empty to show the Report UI locally while keeping
+submissions and likes disabled.
+
 ## Offline Behavior
 
 The service worker caches the app shell and event JSON with a network-first
