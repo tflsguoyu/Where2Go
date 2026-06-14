@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v125";
+const APP_VERSION = "20260613-cache-v127";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -54,7 +54,7 @@ const SUMMARY_PREVIEW_LIMIT = 220;
 const TIME_FILTER_MIN_MINUTES = 0;
 const TIME_FILTER_MAX_MINUTES = 24 * 60;
 const TIME_FILTER_DEFAULT_START_MINUTES = 9 * 60;
-const TIME_FILTER_DEFAULT_END_MINUTES = 20 * 60;
+const TIME_FILTER_DEFAULT_END_MINUTES = 22 * 60;
 const TIME_FILTER_STEP_MINUTES = 30;
 const TIME_FILTER_MIN_RANGE_MINUTES = TIME_FILTER_STEP_MINUTES;
 const MONTH_NAME_PATTERN =
@@ -1552,10 +1552,10 @@ function renderTimeFilter() {
   elements.timePresetButtons?.forEach((button) => {
     const isAllDayButton = button.dataset.timePreset === "all";
     const isResetDisabled = isAllDayButton && state.timeFilterAllDay;
-    button.classList.toggle("is-active", isAllDayButton && state.timeFilterAllDay);
     button.disabled = isResetDisabled;
+    button.checked = isAllDayButton && state.timeFilterAllDay;
     button.setAttribute("aria-disabled", String(isResetDisabled));
-    button.setAttribute("aria-pressed", String(isAllDayButton && state.timeFilterAllDay));
+    button.setAttribute("aria-checked", String(isAllDayButton && state.timeFilterAllDay));
   });
 }
 
@@ -1588,7 +1588,7 @@ function bindTimeFilter() {
   elements.timeStartInput?.addEventListener("input", handleInput);
   elements.timeEndInput?.addEventListener("input", handleInput);
   elements.timePresetButtons?.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("change", () => {
       if (button.dataset.timePreset === "all") {
         state.timeStartMinutes = TIME_FILTER_DEFAULT_START_MINUTES;
         state.timeEndMinutes = TIME_FILTER_DEFAULT_END_MINUTES;

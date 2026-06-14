@@ -31,12 +31,12 @@
     />
     <meta name="twitter:image" content="https://tflsguoyu.github.io/Where2Go/assets/share-card.png" />
     <title>Where2Go</title>
-    <link rel="manifest" href="manifest.webmanifest?v=20260613-cache-v125" />
+    <link rel="manifest" href="manifest.webmanifest?v=20260613-cache-v127" />
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="assets/icon-192.png" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css?v=20260613-cache-v125" />
+    <link rel="stylesheet" href="styles.css?v=20260613-cache-v127" />
   </head>
   <body>
     <main class="app-shell" aria-label="Where2Go event map">
@@ -174,31 +174,36 @@
 
       <section class="time-filter" id="timeFilter" aria-label="Filter events by time">
         <div class="time-filter-top">
-          <div class="time-filter-label" id="timeFilterLabel">9:00 AM - 8:00 PM</div>
-          <button class="time-filter-preset" type="button" data-time-preset="all" disabled aria-disabled="true">All day</button>
+          <div class="time-filter-label" id="timeFilterLabel">9:00 AM - 10:00 PM</div>
         </div>
-        <div class="time-filter-slider" id="timeFilterSlider">
-          <div class="time-filter-track" aria-hidden="true"></div>
-          <input
-            id="timeStartInput"
-            type="range"
-            min="540"
-            max="1200"
-            step="30"
-            value="540"
-            aria-label="Start time"
-            aria-describedby="timeFilterLabel"
-          />
-          <input
-            id="timeEndInput"
-            type="range"
-            min="540"
-            max="1200"
-            step="30"
-            value="1200"
-            aria-label="End time"
-            aria-describedby="timeFilterLabel"
-          />
+        <div class="time-filter-row">
+          <div class="time-filter-slider" id="timeFilterSlider">
+            <div class="time-filter-track" aria-hidden="true"></div>
+            <input
+              id="timeStartInput"
+              type="range"
+              min="540"
+              max="1320"
+              step="30"
+              value="540"
+              aria-label="Start time"
+              aria-describedby="timeFilterLabel"
+            />
+            <input
+              id="timeEndInput"
+              type="range"
+              min="540"
+              max="1320"
+              step="30"
+              value="1320"
+              aria-label="End time"
+              aria-describedby="timeFilterLabel"
+            />
+          </div>
+          <label class="time-filter-all-day">
+            <input type="checkbox" data-time-preset="all" disabled aria-disabled="true" />
+            <span>All day</span>
+          </label>
         </div>
       </section>
 
@@ -226,7 +231,7 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="config.js?v=20260613-cache-v125"></script>
-    <script type="module" src="app.js?v=20260613-cache-v125"></script>
+    <script src="config.js?v=20260613-cache-v127"></script>
+    <script type="module" src="app.js?v=20260613-cache-v127"></script>
   </body>
 </html>
