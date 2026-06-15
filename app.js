@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v133";
+const APP_VERSION = "20260613-cache-v134";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -1361,7 +1361,9 @@ async function loadStats() {
   state.statsMessage = "";
   renderStatsPanel();
   try {
-    const response = await fetch(STATS_ENDPOINT, {
+    const url = new URL(STATS_ENDPOINT);
+    url.searchParams.set("t", Date.now().toString());
+    const response = await fetch(url.toString(), {
       headers: { Accept: "application/json" },
       cache: "no-store"
     });
@@ -1385,7 +1387,7 @@ async function loadStats() {
 function toggleStatsPanel() {
   state.statsOpen = !state.statsOpen;
   renderStatsPanel();
-  if (state.statsOpen && !state.statsLoaded) {
+  if (state.statsOpen) {
     loadStats();
   }
 }
