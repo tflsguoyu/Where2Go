@@ -874,7 +874,7 @@ h2 {
   position: relative;
   width: 100%;
   height: auto;
-  aspect-ratio: 1.12;
+  aspect-ratio: 1.4;
   min-height: 0;
   overflow: hidden;
   border: 1px solid #cfd9d4;
@@ -1365,11 +1365,42 @@ h2 {
   line-height: 1.18;
 }
 
+.event-disclosure {
+  display: grid;
+  gap: 4px;
+}
+
 .event-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   color: var(--green);
   font-size: 0.84rem;
   font-weight: 900;
   line-height: 1.18;
+  list-style: none;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.event-time::-webkit-details-marker {
+  display: none;
+}
+
+.event-disclosure-cue {
+  color: #5f746d;
+  font-size: 0.74rem;
+  letter-spacing: 0;
+  transform: translateY(-0.5px);
+}
+
+.event-disclosure[open] .event-disclosure-cue {
+  color: var(--green-dark);
+}
+
+.event-disclosure-body {
+  display: grid;
+  gap: 4px;
 }
 
 .event-summary {

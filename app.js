@@ -1,5 +1,5 @@
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v134";
+const APP_VERSION = "20260613-cache-v138";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -194,7 +194,11 @@ const elements = {
 };
 
 async function loadJson(path) {
-  const response = await fetch(path);
+  const url = new URL(path, window.location.href);
+  if (url.origin === window.location.origin) {
+    url.searchParams.set("v", APP_VERSION);
+  }
+  const response = await fetch(url.toString(), { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`Could not load ${path}`);
   }
@@ -3129,12 +3133,19 @@ function renderDetail() {
             return `
               <article class="detail-event">
                 <h2>${escapeHtml(displayTitle(event))}</h2>
-                <p class="event-time">${formatTimeRange(event)}</p>
-                ${summary ? `<p class="event-summary">${escapeHtml(summary)}</p>` : ""}
-                <div class="event-footer">
-                  ${sourcePagesHtml(event)}
-                  ${eventActionsHtml(event)}
-                </div>
+                <details class="event-disclosure">
+                  <summary class="event-time">
+                    <span>${formatTimeRange(event)}</span>
+                    <span class="event-disclosure-cue" aria-hidden="true">&gt;&gt;&gt;</span>
+                  </summary>
+                  <div class="event-disclosure-body">
+                    ${summary ? `<p class="event-summary">${escapeHtml(summary)}</p>` : ""}
+                    <div class="event-footer">
+                      ${sourcePagesHtml(event)}
+                      ${eventActionsHtml(event)}
+                    </div>
+                  </div>
+                </details>
               </article>
             `;
           }

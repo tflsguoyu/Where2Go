@@ -6178,6 +6178,19 @@
             "address": "109 Mt. Bethel Road, Warren, NJ 07059"
           },
           {
+            "name": "Warren Municipal Park",
+            "aliases": [
+              "Municipal Park",
+              "USA Soccer Watch Party",
+              "USA Watch Party",
+              "Municipal Park, 46 Mountain Blvd"
+            ],
+            "address": "46 Mountain Blvd, Warren, NJ 07059",
+            "lat": 40.6205486,
+            "lng": -74.4858494,
+            "notes": "Official CivicPlus event detail for the USA Watch Party lists Location: Municipal Park, 46 Mountain Blvd, Warren, NJ 07059."
+          },
+          {
             "name": "Susie B. Boyce Court Room",
             "aliases": [
               "Warren Municipal Building",

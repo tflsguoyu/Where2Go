@@ -634,11 +634,27 @@ function stripImportedSummaryDateTimePrefix(value) {
   return collapseWhitespace(value).replace(prefixPattern, "").trim();
 }
 
+function stripTrailingCalendarDateTitleSuffix(value) {
+  const monthPattern =
+    "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
+  const suffixPattern = new RegExp(
+    `\\s*[-\\u2013\\u2014]\\s*(?:(?:sun|mon|tue|wed|thu|fri|sat)(?:day)?[,]?\\s+)?${monthPattern}\\s+\\d{1,2}(?:st|nd|rd|th)?(?:,\\s*\\d{4})?\\s*$`,
+    "i"
+  );
+  return collapseWhitespace(value).replace(suffixPattern, "").trim();
+}
+
 function normalizeImportedTitle(value) {
-  return collapseWhitespace(value)
+  return stripTrailingCalendarDateTitleSuffix(value)
     .replace(/^["'“”]+|["'“”]+$/g, "")
     .replace(/\s+A\s+USA\s+\d{3}\b.*$/i, "")
     .replace(/\s+[-\u2013\u2014]\s+/g, ": ")
+    .trim();
+}
+
+function cleanCivicPlusTitle(value) {
+  return stripTrailingCalendarDateTitleSuffix(stripHtml(value))
+    .replace(/^["'“”]+|["'“”]+$/g, "")
     .trim();
 }
 
@@ -5988,7 +6004,7 @@ function parseCivicPlusListings(html, source, startDate, days) {
       const block = itemMatch[1];
       const eventId =
         firstMatch(block, /eventTitle_(\d+)/i) || firstMatch(block, /[?&]EID=(\d+)/i) || slugify(block).slice(0, 40);
-      const title = stripHtml(firstMatch(block, /<a\b[^>]*id=["']eventTitle_[^"']+["'][^>]*>([\s\S]*?)<\/a>/i));
+      const title = cleanCivicPlusTitle(firstMatch(block, /<a\b[^>]*id=["']eventTitle_[^"']+["'][^>]*>([\s\S]*?)<\/a>/i));
       const href = firstMatch(block, /<a\b[^>]*id=["']eventTitle_[^"']+["'][^>]*href=["']([^"']+)["']/i);
       const sourceUrl = href ? absoluteUrl(source.municipal.eventsUrl || source.municipal.website, href) : source.municipal.eventsUrl;
       const dateText = stripHtml(firstMatch(block, /<div\b[^>]*class=["'][^"']*\bdate\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i));
