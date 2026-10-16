@@ -1,7 +1,8 @@
 import { createLocationConsent } from "./location-consent.js";
+import { hasUnconfirmedTime } from "./event-publication.mjs";
 
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20261016-cache-v141";
+const APP_VERSION = "20261016-cache-v142";
 const LOCATION_CHOICE_KEY = "where2go-location-choice-v1";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
@@ -389,6 +390,7 @@ function eventEndDate(event) {
 }
 
 function isEventExpired(event, now = new Date()) {
+  if (hasUnconfirmedTime(event)) return localDateKey(eventStartDate(event)) < localDateKey(now);
   return eventEndDate(event) < now;
 }
 
@@ -520,6 +522,7 @@ function timeFilterBoundaryDate(dateKey, minutes) {
 }
 
 function eventOverlapsSelectedTime(event) {
+  if (hasUnconfirmedTime(event)) return true;
   if (!state.selectedDate || state.timeFilterAllDay) {
     return true;
   }
@@ -602,7 +605,7 @@ function hasUncertainAddress(event) {
   const status = String(event?.addressStatus || event?.addressConfidence || "").toLowerCase();
   const coordinateStatus = String(event?.coordinateStatus || event?.coordinateSource || "").toLowerCase();
   return Boolean(
-    event?.directionsDisabled ||
+    !hasCoordinates(event) || event?.directionsDisabled ||
       event?.addressApproximate ||
       status === "approximate" ||
       status === "uncertain" ||
@@ -3140,6 +3143,7 @@ function renderDetail() {
             return `
               <article class="detail-event">
                 <h2>${escapeHtml(displayTitle(event))}</h2>
+                ${event.cancellationStatus === "cancelled" ? `<p class="event-verification">Cancelled — see source</p>` : event.verificationStatus && event.verificationStatus !== "confirmed" ? `<p class="event-verification">Needs confirmation${event.availabilityStatus === "fully_booked" ? " · Fully booked at last check" : ""}${event.minimumAge ? ` · Ages ${escapeHtml(event.minimumAge)}+` : ""}</p>` : ""}
                 <details class="event-disclosure">
                   <summary class="event-time">
                     <span>${formatTimeRange(event)}</span>
@@ -3149,6 +3153,7 @@ function renderDetail() {
                     </span>
                   </summary>
                   <div class="event-disclosure-body">
+                    ${event.verificationStatus && event.verificationStatus !== "confirmed" && event.reviewNotes ? `<p class="event-verification-notes">${escapeHtml(event.reviewNotes)}</p>` : ""}
                     ${summary ? `<p class="event-summary">${escapeHtml(summary)}</p>` : ""}
                     <div class="event-footer">
                       ${sourcePagesHtml(event)}

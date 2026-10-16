@@ -677,3 +677,24 @@ The handoff groups 14 outstanding programs and separates known age exclusions
 and full sessions from user verification tasks. Target and JCPenney national
 campaign dates do not establish local participation. No unpublished December
 retail sessions or daily Santa hours were invented. No external signup or push.
+
+### Source-linked review publication (2026-10-16)
+
+The user explicitly authorized publishing unresolved events with a source page
+after another verification attempt. `review-publication-audit-2026-10-16.json`
+records 260 occurrences and 192 source URLs checked: 179 returned HTTP200, while
+13 failed. HTTP success is not content verification. Matching event data confirms
+106 start times; other participation, age and location gaps remain explicit.
+Eight cancelled events are displayed with a cancellation notice. All260 records
+are published;258 are inside the existing geographic coverage. Historical reviews
+and out-of-coverage filtering are unchanged.
+
+`event-publication.mjs` applies the same authorized date-window policy after future
+imports, preserving review notes. The UI displays Needs confirmation and source
+links. Unknown/conflicting times remain visible through time filtering without
+showing midnight placeholders; missing end times are not presented as a made-up
+duration. Missing coordinates have no map pin; unverified locations have no
+navigation.
+The project audit accepts deliberately coordinate-free source-linked listings
+only when navigation is explicitly disabled. Existing coordinate requirements
+continue to apply to other published records.

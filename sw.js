@@ -1,8 +1,9 @@
-const CACHE_NAME = "where2go-public-v141";
+const CACHE_NAME = "where2go-public-v142";
 const APP_ASSETS = [
   "styles.css",
   "app.js",
   "location-consent.js",
+  "event-publication.mjs",
   "config.js",
   "data/data-status.html",
   "data/data-status.js",
@@ -23,6 +24,7 @@ const NETWORK_FIRST_SUFFIXES = [
   "/index.html",
   "/app.js",
   "/location-consent.js",
+  "/event-publication.mjs",
   "/config.js",
   "/data/data-status.html",
   "/data/data-status.js",

@@ -1397,6 +1397,18 @@ h2 {
   gap: 4px;
 }
 
+.event-verification,
+.event-verification-notes {
+  margin: 4px 0;
+  color: #76531c;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.event-verification {
+  font-weight: 700;
+}
+
 .event-time {
   display: flex;
   align-items: center;

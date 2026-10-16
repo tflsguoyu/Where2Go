@@ -1,0 +1,3877 @@
+{
+  "checkedAt": "2026-10-16",
+  "fromDate": "2026-10-16",
+  "throughDate": "2026-12-31",
+  "reviewedOccurrences": 260,
+  "uniqueSourcePages": 192,
+  "httpReadablePages": 179,
+  "failedPages": 13,
+  "scheduleStartConfirmed": 106,
+  "recordsWithCorrections": 83,
+  "publishedOccurrences": 260,
+  "withinCoveragePublished": 258,
+  "confirmedCancelled": 8,
+  "verificationStatusCounts": {
+    "unconfirmed": 154,
+    "confirmed_cancelled": 8,
+    "partial": 98
+  },
+  "note": "HTTP200 alone is not confirmation; generic templates, inaccessible pages, age, enrollment, conflicting dates/times and location gaps retain Needs confirmation. Known cancelled events display Cancelled. User explicitly authorized publishing unresolved source-linked records. Historical reviews are unchanged. No registrations submitted.",
+  "pageChecks": [
+    {
+      "url": "https://Ccanconcert26.givesmart.com",
+      "httpStatus": 200,
+      "finalUrl": "https://e.givesmart.com:443/events/Ps4/"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17218744",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17218744"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17328957",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17328957"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17436219",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17436219"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17436220",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17436220"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17436221",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17436221"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17436222",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17436222"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17436223",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17436223"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17436224",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17436224"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17436225",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17436225"
+    },
+    {
+      "url": "https://bccls.libcal.com/event/17436226",
+      "httpStatus": 200,
+      "finalUrl": "https://bccls.libcal.com/event/17436226"
+    },
+    {
+      "url": "https://bell.works/events/peas-carrots-at-the-holmdel-library-3/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://bernardslibrary.org/event-calendar/#/events/Dw9f0xB48x/instances/JJ3BbPn3T4/",
+      "httpStatus": 200,
+      "finalUrl": "https://bernardslibrary.org/event-calendar/#/events/Dw9f0xB48x/instances/JJ3BbPn3T4/"
+    },
+    {
+      "url": "https://bridgewatercommons.com/events/main-level-by-l-occitane",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://bswo.shulcloud.com/event/clc-camera-speaker.html",
+      "error": "HTTP Error 406: Not Acceptable"
+    },
+    {
+      "url": "https://chathamtownship.org/events/sunday-connections-intergenerational-dinner/",
+      "httpStatus": 200,
+      "finalUrl": "https://chathamtownship.org/events/sunday-connections-intergenerational-dinner/"
+    },
+    {
+      "url": "https://dunellennj.myrec.com/info/activities/program_details.aspx?ProgramID=29951",
+      "httpStatus": 200,
+      "finalUrl": "https://dunellennj.myrec.com/info/activities/program_details.aspx?ProgramID=29951"
+    },
+    {
+      "url": "https://edisonpubliclibrary.libnet.info/event/15765945",
+      "httpStatus": 200,
+      "finalUrl": "https://edisonpubliclibrary.libnet.info/event/15765945"
+    },
+    {
+      "url": "https://edisonpubliclibrary.libnet.info/event/15765947",
+      "httpStatus": 200,
+      "finalUrl": "https://edisonpubliclibrary.libnet.info/event/15765947"
+    },
+    {
+      "url": "https://edisonpubliclibrary.libnet.info/event/17375884",
+      "httpStatus": 200,
+      "finalUrl": "https://edisonpubliclibrary.libnet.info/event/17375884"
+    },
+    {
+      "url": "https://edisonpubliclibrary.libnet.info/event/17412107",
+      "httpStatus": 200,
+      "finalUrl": "https://edisonpubliclibrary.libnet.info/event/17412107"
+    },
+    {
+      "url": "https://engagedpatrons.org/EventsExtended.cfm?SiteID=1689&EventID=597841&PK=",
+      "httpStatus": 200,
+      "finalUrl": "https://engagedpatrons.org/EventsExtended.cfm?SiteID=1689&EventID=597841&PK="
+    },
+    {
+      "url": "https://essexcountyparks.org/facilities/environmental-center/calendar/fishing-101-13569",
+      "httpStatus": 200,
+      "finalUrl": "https://essexcountyparks.org/facilities/environmental-center/calendar/fishing-101-13569"
+    },
+    {
+      "url": "https://events.mountainside-nj.com/default/Detail/2026-10-31-1400-HALLOWEEN-TRICK-OR-TREATING",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://fanwoodnj.org/2026-events-calendar/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://farhillsrace.org/buy-now/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://forms.gle/VxExwTifXa7mawDr6",
+      "httpStatus": 200,
+      "finalUrl": "https://docs.google.com/forms/d/e/1FAIpQLSc1rISrdOi41iaOmo1UjXEmWK9tvOxWGxs4mSKTU9d7ltAR0Q/viewform?usp=send_form"
+    },
+    {
+      "url": "https://hartshornarboretum.org/event/arboreaders-book-club-4/",
+      "httpStatus": 200,
+      "finalUrl": "https://hartshornarboretum.org/event/arboreaders-book-club-4/"
+    },
+    {
+      "url": "https://lakeshorelearning.com/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4755",
+      "httpStatus": 200,
+      "finalUrl": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4755"
+    },
+    {
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4757",
+      "httpStatus": 200,
+      "finalUrl": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4757"
+    },
+    {
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4758",
+      "httpStatus": 200,
+      "finalUrl": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4758"
+    },
+    {
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4766",
+      "httpStatus": 200,
+      "finalUrl": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4766"
+    },
+    {
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4768",
+      "httpStatus": 200,
+      "finalUrl": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4768"
+    },
+    {
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4769",
+      "httpStatus": 200,
+      "finalUrl": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4769"
+    },
+    {
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4773",
+      "httpStatus": 200,
+      "finalUrl": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4773"
+    },
+    {
+      "url": "https://metc.org/event/halloween-2026/",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://millburnlibrary.libcal.com/event/17262949",
+      "httpStatus": 200,
+      "finalUrl": "https://millburnlibrary.libcal.com/event/17262949"
+    },
+    {
+      "url": "https://montclaircoop.org/admissions/admission-events-tours/",
+      "httpStatus": 200,
+      "finalUrl": "https://montclaircoop.org/admissions/admission-events-tours/"
+    },
+    {
+      "url": "https://morrismuseum.org/live-arts/film-rembrandt",
+      "httpStatus": 200,
+      "finalUrl": "https://morrismuseum.org/live-arts/film-rembrandt"
+    },
+    {
+      "url": "https://njaudubon.org/event/john-clyde-native-grassland-preserve/",
+      "httpStatus": 200,
+      "finalUrl": "https://njaudubon.org/event/john-clyde-native-grassland-preserve/"
+    },
+    {
+      "url": "https://paintnite.com/",
+      "httpStatus": 200,
+      "finalUrl": "https://paintnite.com/"
+    },
+    {
+      "url": "https://patch.com/new-jersey/edison-metuchen/calendar/event/20261017/211e031b-d7e8-433e-b45c-83de9515ba6f/financial-concepts-for-life",
+      "httpStatus": 200,
+      "finalUrl": "https://patch.com/new-jersey/edison-metuchen/calendar/event/20261017/211e031b-d7e8-433e-b45c-83de9515ba6f/financial-concepts-for-life"
+    },
+    {
+      "url": "https://patch.com/new-jersey/madison/calendar/event/20261021/139ab32a-e3e3-44bd-9d88-7dec79af8dfb/free-film-screening-hannah-arendt-facing-tyranny",
+      "httpStatus": 200,
+      "finalUrl": "https://patch.com/new-jersey/madison/calendar/event/20261021/139ab32a-e3e3-44bd-9d88-7dec79af8dfb/free-film-screening-hannah-arendt-facing-tyranny"
+    },
+    {
+      "url": "https://patch.com/new-jersey/newbrunswick/calendar/event/20261019/ac5ee0c6-839f-47b4-a9e6-34c8c86736d5/al-anon-do-you-worry-about-someone-else-s-drinking-al-anon-can-help",
+      "httpStatus": 200,
+      "finalUrl": "https://patch.com/new-jersey/newbrunswick/calendar/event/20261019/ac5ee0c6-839f-47b4-a9e6-34c8c86736d5/al-anon-do-you-worry-about-someone-else-s-drinking-al-anon-can-help"
+    },
+    {
+      "url": "https://patch.com/new-jersey/parsippany/calendar/event/20261113/92c0f65a-8782-4fc5-8e61-bf586cc5df0a/saint-anns-fall-festival-ministry-and-craft-fair",
+      "httpStatus": 200,
+      "finalUrl": "https://patch.com/new-jersey/parsippany/calendar/event/20261113/92c0f65a-8782-4fc5-8e61-bf586cc5df0a/saint-anns-fall-festival-ministry-and-craft-fair"
+    },
+    {
+      "url": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261025/214f8cc5-a416-49a3-8ad1-e34bcc67f72a/4-h-medieval-jubilee",
+      "httpStatus": 200,
+      "finalUrl": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261025/214f8cc5-a416-49a3-8ad1-e34bcc67f72a/4-h-medieval-jubilee"
+    },
+    {
+      "url": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261105/9aa55c75-6838-400e-8494-461fde758478/somerset-county-4-h-ag-venture-days",
+      "httpStatus": 200,
+      "finalUrl": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261105/9aa55c75-6838-400e-8494-461fde758478/somerset-county-4-h-ag-venture-days"
+    },
+    {
+      "url": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261206/9111c509-d5c3-4fdd-ab15-652c99983c0c/somerset-county-4-h-holiday-craft-festival",
+      "httpStatus": 200,
+      "finalUrl": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261206/9111c509-d5c3-4fdd-ab15-652c99983c0c/somerset-county-4-h-holiday-craft-festival"
+    },
+    {
+      "url": "https://piscatawaynj.librarycalendar.com/event/piscataway-pba-trunk-or-treat-1393",
+      "httpStatus": 200,
+      "finalUrl": "https://piscatawaynj.librarycalendar.com/event/piscataway-pba-trunk-or-treat-1393"
+    },
+    {
+      "url": "https://readingtonrecreation.org/program/halloween-event-2026/",
+      "httpStatus": 200,
+      "finalUrl": "https://readingtonrecreation.org/program/halloween-event-2026/"
+    },
+    {
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "httpStatus": 200,
+      "finalUrl": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258"
+    },
+    {
+      "url": "https://runsignup.com/Race/NJ/Glenwood/NJSColorBlastFunRunWalk",
+      "httpStatus": 200,
+      "finalUrl": "https://runsignup.com/Race/NJ/Glenwood/NJSColorBlastFunRunWalk"
+    },
+    {
+      "url": "https://sclsnj.libnet.info/event/16872093",
+      "httpStatus": 200,
+      "finalUrl": "https://sclsnj.libnet.info/event/16872093"
+    },
+    {
+      "url": "https://sclsnj.libnet.info/event/16929286",
+      "httpStatus": 200,
+      "finalUrl": "https://sclsnj.libnet.info/event/16929286"
+    },
+    {
+      "url": "https://sclsnj.libnet.info/event/17355989",
+      "httpStatus": 200,
+      "finalUrl": "https://sclsnj.libnet.info/event/17355989"
+    },
+    {
+      "url": "https://sclsnj.libnet.info/event/17404295",
+      "httpStatus": 200,
+      "finalUrl": "https://sclsnj.libnet.info/event/17404295"
+    },
+    {
+      "url": "https://summitlibrary.libcal.com/event/16517493",
+      "httpStatus": 200,
+      "finalUrl": "https://summitlibrary.libcal.com/event/16517493"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/a-very-barry-christmas-daybreak-manilow-tribute-holiday-edition/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/a-very-barry-christmas-daybreak-manilow-tribute-holiday-edition/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-23/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-23/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-24/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-24/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-25/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-25/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/bernards-winter-market-and-tree-lighting/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/bernards-winter-market-and-tree-lighting/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/fall-craft-vendor-fair-open-air-market/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/fall-craft-vendor-fair-open-air-market/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/garlicsville-bernardsville-garlic-festival-street-fair/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/garlicsville-bernardsville-garlic-festival-street-fair/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/halloween-hayrides-5/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/halloween-hayrides-5/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/halloween-hayrides-9/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/halloween-hayrides-9/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/halloween-spooktacular-2/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/halloween-spooktacular-2/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/halloween-trunk-or-treat/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/halloween-trunk-or-treat/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/hillsborough-tree-lighting/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/hillsborough-tree-lighting/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/holiday-craft-market-4/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/holiday-craft-market-4/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/kids-diwali-fest-2nd-annual-celebration-november-1/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/kids-diwali-fest-2nd-annual-celebration-november-1/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/kids-diwali-fest-2nd-annual-celebration-october-25/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/kids-diwali-fest-2nd-annual-celebration-october-25/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/lantern-walk-at-fairview-farm-wildlife-preserve/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/lantern-walk-at-fairview-farm-wildlife-preserve/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/make-recycling-fun/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/make-recycling-fun/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-17/1/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-17/1/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-17/2/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-17/2/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-18/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-18/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-24/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-24/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-25/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-25/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-31/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-31/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-01/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-01/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-07/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-07/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-08/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-08/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-14/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-14/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-15/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-15/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-21/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-21/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-22/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-22/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-28/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-28/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-29/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-29/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-05/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-05/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-06/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-06/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-12/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-12/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-13/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-13/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-19/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-19/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-20/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-20/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-26/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-26/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-27/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-27/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/night-of-the-living-drag/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/night-of-the-living-drag/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-17/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-17/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-18/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-18/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-24/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-24/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-25/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-25/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/songbird-the-singular-tribute-to-barbra-streisand-2/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/songbird-the-singular-tribute-to-barbra-streisand-2/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/sons-of-serendip-christmas-beyond-the-lights/2026-12-12/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/sons-of-serendip-christmas-beyond-the-lights/2026-12-12/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/sons-of-serendip-christmas-beyond-the-lights/2026-12-13/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/sons-of-serendip-christmas-beyond-the-lights/2026-12-13/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/spooktacular/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/spooktacular/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/stars-and-promise-2026-this-town/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/stars-and-promise-2026-this-town/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/the-3rd-mushroom-harvest-festival/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/the-3rd-mushroom-harvest-festival/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-16/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-16/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-17/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-17/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-18/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-18/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-23/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-23/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-24/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-24/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-25/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-25/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/the-other-side-of-the-revolution-the-story-of-the-loyalist-vought-family/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/the-other-side-of-the-revolution-the-story-of-the-loyalist-vought-family/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-07/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-07/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-08/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-08/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-13/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-13/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-14/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-14/"
+    },
+    {
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-15/",
+      "httpStatus": 200,
+      "finalUrl": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-15/"
+    },
+    {
+      "url": "https://woodbridgecenter.com/event/circus-vazquez-is-coming-back-to-woodbridge-center",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.americandream.com/events/dream-live-pac-featuring-cirque-musica-holiday-wonderland",
+      "httpStatus": 200,
+      "finalUrl": "https://www.americandream.com/events/dream-live-pac-featuring-cirque-musica-holiday-wonderland"
+    },
+    {
+      "url": "https://www.americandream.com/events/lego-giraffe-build-event",
+      "httpStatus": 200,
+      "finalUrl": "https://www.americandream.com/events/lego-giraffe-build-event"
+    },
+    {
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "finalUrl": "https://www.americandream.com/events/nickelodeon-booniverse"
+    },
+    {
+      "url": "https://www.cityofnewbrunswick.org/news_detail_T10_R1979.php",
+      "httpStatus": 200,
+      "finalUrl": "https://www.cityofnewbrunswick.org/news_detail_T10_R1979.php"
+    },
+    {
+      "url": "https://www.edisonnj.org/calendar.php?id=1508",
+      "httpStatus": 200,
+      "finalUrl": "https://www.edisonnj.org/calendar.php?id=1508"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/1021-zoo-kids-bugs-tickets-1997056944079",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/1021-zoo-kids-bugs-tickets-1997056944079"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/1111-zoo-kids-herbivores-tickets-1997058340255",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/1111-zoo-kids-herbivores-tickets-1997058340255"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/aatsp-nj-njhof-fall-workshop-at-american-dream-tickets-1999021134024",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/aatsp-nj-njhof-fall-workshop-at-american-dream-tickets-1999021134024"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/choo-choo-boo-event-at-northlandz-tickets-2003176203950",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/choo-choo-boo-event-at-northlandz-tickets-2003176203950"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/drop-and-dine-movie-night-tickets-1991019376552",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/drop-and-dine-movie-night-tickets-1991019376552"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/expecting-parents-group-class-tickets-2002351694821",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/expecting-parents-group-class-tickets-2002351694821"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/fairytale-fantasy-princess-parties-ball-tickets-1999694017637",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/fairytale-fantasy-princess-parties-ball-tickets-1999694017637"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/flu-clinic-flu-vaccinations-for-children-tickets-2002151596321",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/flu-clinic-flu-vaccinations-for-children-tickets-2002151596321"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/free-halloween-kids-workshop-tickets-2001942713547",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/free-halloween-kids-workshop-tickets-2001942713547"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/fun-with-feelings-ages-2-6-library-meeting-room-tickets-2003312338131",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/fun-with-feelings-ages-2-6-library-meeting-room-tickets-2003312338131"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/hoboken-starting-solids-class-parent-baby-6-10-months-tickets-1754134847549",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/hoboken-starting-solids-class-parent-baby-6-10-months-tickets-1754134847549"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/kids-halloween-party-at-el-nachos-tickets-2001028045751",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/kids-halloween-party-at-el-nachos-tickets-2001028045751"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/kids-halloween-party-tickets-2003082619035",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/kids-halloween-party-tickets-2003082619035"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/kids-halloween-party-tickets-2003083484624",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/kids-halloween-party-tickets-2003083484624"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/kids-salsa-dance-classes-tickets-1981023397309",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/kids-salsa-dance-classes-tickets-1981023397309"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/kids-yoga-4-years-old-5th-grade-tickets-2002645166603",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/kids-yoga-4-years-old-5th-grade-tickets-2002645166603"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/love-flemington-kids-halloween-parade-costume-contest-tickets-1998971431362",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/love-flemington-kids-halloween-parade-costume-contest-tickets-1998971431362"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/magic-carpet-kids-club-read-imagine-explore-tickets-2001035521110",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/magic-carpet-kids-club-read-imagine-explore-tickets-2001035521110"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/newborn-care-class-tickets-1984089810032",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/newborn-care-class-tickets-1984089810032"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/njmom-baby-expo-october-25-2026-at-w-hoboken-tickets-1983978016655",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/njmom-baby-expo-october-25-2026-at-w-hoboken-tickets-1983978016655"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/story-time-with-laura-tickets-639849827057",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/story-time-with-laura-tickets-639849827057"
+    },
+    {
+      "url": "https://www.eventbrite.com/e/storytime-for-ages-2-library-meeting-room-tickets-2003311951976",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/storytime-for-ages-2-library-meeting-room-tickets-2003311951976"
+    },
+    {
+      "url": "https://www.facebook.com/events/1105672598129267",
+      "httpStatus": 200,
+      "finalUrl": "https://www.facebook.com/events/1105672598129267"
+    },
+    {
+      "url": "https://www.facebook.com/share/1ByuA5aq8J/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.facebook.com/events/1695449004851926/?rdid=KDmTk3c7lgygb9QV&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1ByuA5aq8J%2F"
+    },
+    {
+      "url": "https://www.farhillsnj.org/news_detail_T2_R628.php",
+      "httpStatus": 200,
+      "finalUrl": "https://www.farhillsnj.org/news_detail_T2_R628.php"
+    },
+    {
+      "url": "https://www.flemingtonfineartisansshow.com/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.flemingtonfineartisansshow.com/"
+    },
+    {
+      "url": "https://www.goddardschool.com/schools/nj/warren/basking-ridge-warren/our-school/events",
+      "httpStatus": 200,
+      "finalUrl": "https://www.goddardschool.com/schools/nj/warren/basking-ridge-warren/our-school/events"
+    },
+    {
+      "url": "https://www.holidaytrainshow.com",
+      "httpStatus": 200,
+      "finalUrl": "https://www.eventbrite.com/e/the-47th-annual-pacific-southern-holiday-train-show-tickets-2002460259541?aff=oddtdtcreator"
+    },
+    {
+      "url": "https://www.hpboro.com/Home/Components/Calendar/Event/7957/18",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/grateful-and-cozy-bingo--801e3250-9526-43fe-85ac-f5dd8d9d63df/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/grateful-and-cozy-bingo--801e3250-9526-43fe-85ac-f5dd8d9d63df/"
+    },
+    {
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--708644a1-0678-479b-8bdd-3224ba977ad6/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--708644a1-0678-479b-8bdd-3224ba977ad6/"
+    },
+    {
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/"
+    },
+    {
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/halloween-say-bus-eller-godis--dd9f6c1f-1b41-4ac8-b11e-929f0dda88a4/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/halloween-say-bus-eller-godis--dd9f6c1f-1b41-4ac8-b11e-929f0dda88a4/"
+    },
+    {
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/spooktacular-plant-pot-painting--957754c4-12fe-4932-9dd0-a283f6b9791d/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/spooktacular-plant-pot-painting--957754c4-12fe-4932-9dd0-a283f6b9791d/"
+    },
+    {
+      "url": "https://www.jcpenney.com/m/kids-club",
+      "httpStatus": 200,
+      "finalUrl": "https://www.jcpenney.com/m/kids-club"
+    },
+    {
+      "url": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
+      "httpStatus": 200,
+      "finalUrl": "https://www.lego.com/en-us/stores/store/bridgewater-commons"
+    },
+    {
+      "url": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html#events",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.marketfairshoppes.com/event/44164-capture-holiday-memories-with-santa",
+      "httpStatus": 200,
+      "finalUrl": "https://www.marketfairshoppes.com/event/44164-capture-holiday-memories-with-santa"
+    },
+    {
+      "url": "https://www.mendhamnj.org/cn/eventscalendar/eventdetail.cfm?eid=106152&tpid=9674",
+      "httpStatus": 200,
+      "finalUrl": "https://www.mendhamnj.org/cn/eventscalendar/eventdetail.cfm?eid=106152&tpid=9674"
+    },
+    {
+      "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours%3A-halloween-fest-165030318324104",
+      "httpStatus": 200,
+      "finalUrl": "https://www.michaels.com/class/lil%E2%80%99-witching-hours%3A-halloween-fest-165030318324104"
+    },
+    {
+      "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours:-chenille-stem-ghost-or-spider-142265502677384",
+      "httpStatus": 200,
+      "finalUrl": "https://www.michaels.com/class/lil%E2%80%99-witching-hours:-chenille-stem-ghost-or-spider-142265502677384"
+    },
+    {
+      "url": "https://www.montvillenj.org/Calendar.aspx?EID=7574&month=12&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.montvillenj.org/Calendar.aspx?EID=7574&month=12&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.montvillenj.org/Calendar.aspx?EID=7807&month=10&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.montvillenj.org/Calendar.aspx?EID=7807&month=10&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.nj-carnivals.com/2026/fair-lawn-street-fair-craft-show-october-2026-in-fair-lawn-nj/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.nj-carnivals.com/2026/fair-lawn-street-fair-craft-show-october-2026-in-fair-lawn-nj/"
+    },
+    {
+      "url": "https://www.northbrunswicknj.gov/Calendar.aspx?EID=1008&month=10&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.northbrunswicknj.gov/Calendar.aspx?EID=1008&month=10&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.oldyorkcellars.com/events/holiday-dinners-with-chef/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.oldyorkcellars.com/events/holiday-dinners-with-chef/"
+    },
+    {
+      "url": "https://www.paramuspark.com/event/44347-photos-with-santa",
+      "httpStatus": 200,
+      "finalUrl": "https://www.paramuspark.com/event/44347-photos-with-santa"
+    },
+    {
+      "url": "https://www.parsippany.net/CalendarEvent/Details/UWZgsQkXbLU=",
+      "httpStatus": 200,
+      "finalUrl": "https://www.parsippany.net/CalendarEvent/Details/UWZgsQkXbLU="
+    },
+    {
+      "url": "https://www.parsippany.net/CalendarEvent/Details/s6ymzAQxw0Q=",
+      "httpStatus": 200,
+      "finalUrl": "https://www.parsippany.net/CalendarEvent/Details/s6ymzAQxw0Q="
+    },
+    {
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "finalUrl": "https://www.playandtalkwithus.com/playinnature"
+    },
+    {
+      "url": "https://www.scotchplainsnj.gov/news/1817-trunk-or-treat-october-24",
+      "httpStatus": 200,
+      "finalUrl": "https://www.scotchplainsnj.gov/news/1817-trunk-or-treat-october-24"
+    },
+    {
+      "url": "https://www.simon.com/mall/newport-centre/stores/santa-photo-experience/stream/the-magic-begins-santas-arrival-6291106",
+      "error": "HTTP Error 307: Forbidden"
+    },
+    {
+      "url": "https://www.somersetcountyparks.org/colonial-park/pages/mischief-night-madness",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.southorange.org/Calendar.aspx?EID=7290&month=12&year=2026&day=15&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.southorange.org/Calendar.aspx?EID=7290&month=12&year=2026&day=15&calType=0"
+    },
+    {
+      "url": "https://www.steschool.org/admission/open-house",
+      "httpStatus": 200,
+      "finalUrl": "https://www.steschool.org/admission/open-house"
+    },
+    {
+      "url": "https://www.stnj.org/events/detail/temptations-four-tops-2026",
+      "httpStatus": 200,
+      "finalUrl": "https://www.stnj.org/events/detail/temptations-four-tops-2026"
+    },
+    {
+      "url": "https://www.target.com/c/store-events/-/N-9x2nj",
+      "httpStatus": 200,
+      "finalUrl": "https://www.target.com/c/store-events/-/N-9x2nj"
+    },
+    {
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13391&month=10&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13391&month=10&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13695&month=10&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13695&month=10&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13759&month=11&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13759&month=11&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13818&month=11&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13818&month=11&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13819&month=12&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13819&month=12&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13821&month=12&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "finalUrl": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13821&month=12&year=2026&day=16&calType=0"
+    },
+    {
+      "url": "https://www.wellnessliving.com/rs/event/parisi_speed_school_healthquest?k_class=1030202&k_class_tab=19187",
+      "httpStatus": 200,
+      "finalUrl": "https://www.wellnessliving.com/rs/event/parisi_speed_school_healthquest?k_class=1030202&k_class_tab=19187"
+    },
+    {
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "finalUrl": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00"
+    }
+  ],
+  "events": [
+    {
+      "id": "woodbridge-center-family-circus-vazquez-announcement-2026-2026-10-16",
+      "url": "https://woodbridgecenter.com/event/circus-vazquez-is-coming-back-to-woodbridge-center",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-16",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "sclsnj-16929286",
+      "url": "https://sclsnj.libnet.info/event/16929286",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "cancelled",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "civicplus-north-brunswick-township-1008-2026-10-16",
+      "url": "https://www.northbrunswicknj.gov/Calendar.aspx?EID=1008&month=10&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056804-2026-10-16",
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-16/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "lego-bridgewater-commons-blooming-rainbow-2026-10-17-2026-10-17",
+      "url": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "civicplus-montville-township-7807-2026-10-17",
+      "url": "https://www.montvillenj.org/Calendar.aspx?EID=7807&month=10&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-flu-clinic-flu-vaccinations-for-children-tickets-2002151596321-2026-10-17",
+      "url": "https://www.eventbrite.com/e/flu-clinic-flu-vaccinations-for-children-tickets-2002151596321",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "far-hills-race-meeting-cc07247f931790ef-2026-10-17",
+      "url": "https://farhillsrace.org/buy-now/",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-aatsp-nj-njhof-fall-workshop-at-american-dream-tickets-1999021134024-2026-10-17",
+      "url": "https://www.eventbrite.com/e/aatsp-nj-njhof-fall-workshop-at-american-dream-tickets-1999021134024",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4755-2026-10-17",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4755",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-a8b5992d-88f8-462c-bbbf-b3bb7fa2d260-2026-10-17",
+      "url": "https://runsignup.com/Race/NJ/Glenwood/NJSColorBlastFunRunWalk",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "montclair-cooperative-school-public-playdates-2026-10-17-admissions-open-house-playdate",
+      "url": "https://montclaircoop.org/admissions/admission-events-tours/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4766-2026-10-17",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4766",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "michaels-kids-events-bridgewater-9938-2026-10-17-2026-10-17",
+      "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours%3A-halloween-fest-165030318324104",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "michaels-kids-events-watchung-5191-2026-10-17-2026-10-17",
+      "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours%3A-halloween-fest-165030318324104",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-2cd98573-9c01-4c15-bb6f-0d919bc0c8e2-2026-10-17",
+      "url": "https://forms.gle/VxExwTifXa7mawDr6",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-mountainside-mountainside-1000-2026-10-17",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056150-2026-10-17",
+      "url": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-17/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4769-2026-10-17",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4769",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-211e031b-d7e8-433e-b45c-83de9515ba6f-2026-10-17",
+      "url": "https://patch.com/new-jersey/edison-metuchen/calendar/event/20261017/211e031b-d7e8-433e-b45c-83de9515ba6f/financial-concepts-for-life",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4757-2026-10-17",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4757",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056902-2026-10-17",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-17/1/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-lego-giraffe-build-event-0-1200-2026-10-17",
+      "url": "https://www.americandream.com/events/lego-giraffe-build-event",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-17",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "macys-bridgewater-family-events-geoffrey-birthday-lego-2026-10-17",
+      "url": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html#events",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [
+        "local participation",
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "target-watchung-family-events-gigglescape-plush-floral-2026-10-17",
+      "url": "https://www.target.com/c/store-events/-/N-9x2nj",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-46379-2026-10-17",
+      "url": "https://visitsomersetnj.org/event/the-3rd-mushroom-harvest-festival/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "patch-738db42a-c983-4af1-a2f1-1f2eaef0d382-2026-10-17",
+      "url": "https://www.wellnessliving.com/rs/event/parisi_speed_school_healthquest?k_class=1030202&k_class_tab=19187",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056903-2026-10-17",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-17/2/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "parsippany-troy-hills-township-official-community-refresh-3227-2026-10-17",
+      "url": "https://www.parsippany.net/CalendarEvent/Details/s6ymzAQxw0Q=",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4773-2026-10-17",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4773",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-32f27335-bbcf-4f30-8dcb-171d620d3934-2026-10-17",
+      "url": "https://www.oldyorkcellars.com/events/holiday-dinners-with-chef/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056847-2026-10-17",
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-17/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-45854-2026-10-17",
+      "url": "https://visitsomersetnj.org/event/songbird-the-singular-tribute-to-barbra-streisand-2/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "lego-bridgewater-commons-blooming-rainbow-2026-10-18-2026-10-18",
+      "url": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4768-2026-10-18",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4768",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056151-2026-10-18",
+      "url": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-18/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4758-2026-10-18",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4758",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "new-brunswick-city-official-community-refresh-art-city-festival-2026-10-18",
+      "url": "https://www.cityofnewbrunswick.org/news_detail_T10_R1979.php",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "nj-carnivals-fair-lawn-street-fair-craft-show-october-2026-in-fair-lawn-nj",
+      "url": "https://www.nj-carnivals.com/2026/fair-lawn-street-fair-craft-show-october-2026-in-fair-lawn-nj/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056904-2026-10-18",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-18/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-18",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-46764-2026-10-18",
+      "url": "https://visitsomersetnj.org/event/fall-craft-vendor-fair-open-air-market/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056848-2026-10-18",
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-18/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "piscataway-township-official-community-refresh-1393-2026-10-18",
+      "url": "https://piscatawaynj.librarycalendar.com/event/piscataway-pba-trunk-or-treat-1393",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "patch-997d9204-3477-46d5-99e3-1e9dd6feed81-2026-10-18",
+      "url": "https://bswo.shulcloud.com/event/clc-camera-speaker.html",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 406: Not Acceptable",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-d2fff4d5-c569-4008-aea5-ec6d31ede61f-2026-10-18",
+      "url": "https://www.stnj.org/events/detail/temptations-four-tops-2026",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-10-19-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-storytime-for-ages-2-library-meeting-room-tickets-2003311951976-2026-10-19",
+      "url": "https://www.eventbrite.com/e/storytime-for-ages-2-library-meeting-room-tickets-2003311951976",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-19",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-hoboken-starting-solids-class-parent-baby-6-10-months-tickets-1754134847549-2026-10-19",
+      "url": "https://www.eventbrite.com/e/hoboken-starting-solids-class-parent-baby-6-10-months-tickets-1754134847549",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13391-2026-10-19",
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13391&month=10&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-kids-yoga-4-years-old-5th-grade-tickets-2002645166603-2026-10-19",
+      "url": "https://www.eventbrite.com/e/kids-yoga-4-years-old-5th-grade-tickets-2002645166603",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "patch-ac5ee0c6-839f-47b4-a9e6-34c8c86736d5-2026-10-19",
+      "url": "https://patch.com/new-jersey/newbrunswick/calendar/event/20261019/ac5ee0c6-839f-47b4-a9e6-34c8c86736d5/al-anon-do-you-worry-about-someone-else-s-drinking-al-anon-can-help",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "saint-elizabeth-bernardsville-public-open-house-2026-10-20-school-of-saint-elizabeth-fall-open-house",
+      "url": "https://www.steschool.org/admission/open-house",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-mountainside-mountainside-0930-2026-10-20",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-20",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-magic-carpet-kids-club-read-imagine-explore-tickets-2001035521110-2026-10-20",
+      "url": "https://www.eventbrite.com/e/magic-carpet-kids-club-read-imagine-explore-tickets-2001035521110",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-fanwood-fanwood-1630-2026-10-20",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "edison-public-library-libnet-17412107",
+      "url": "https://edisonpubliclibrary.libnet.info/event/17412107",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "cancelled",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "bound-brook-recreation-2026-10-20-youth-soccer-clinic-little-kickers-2022-2023",
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-expecting-parents-group-class-tickets-2002351694821-2026-10-20",
+      "url": "https://www.eventbrite.com/e/expecting-parents-group-class-tickets-2002351694821",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-10-21-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-story-time-with-laura-tickets-639849827057-2026-10-21",
+      "url": "https://www.eventbrite.com/e/story-time-with-laura-tickets-639849827057",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-fun-with-feelings-ages-2-6-library-meeting-room-tickets-2003312338131-2026-10-21",
+      "url": "https://www.eventbrite.com/e/fun-with-feelings-ages-2-6-library-meeting-room-tickets-2003312338131",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-21",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-f9540167-92eb-4b23-be7d-6414e0dc8273-2026-10-21",
+      "url": "https://morrismuseum.org/live-arts/film-rembrandt",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "sclsnj-16872093",
+      "url": "https://sclsnj.libnet.info/event/16872093",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "cancelled",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "eventbrite-1021-zoo-kids-bugs-tickets-1997056944079-2026-10-21",
+      "url": "https://www.eventbrite.com/e/1021-zoo-kids-bugs-tickets-1997056944079",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "ikea-elizabeth-family-events-spooky-kids-crafting-708644a1-2026-10-21",
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--708644a1-0678-479b-8bdd-3224ba977ad6/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-139ab32a-e3e3-44bd-9d88-7dec79af8dfb-2026-10-21",
+      "url": "https://patch.com/new-jersey/madison/calendar/event/20261021/139ab32a-e3e3-44bd-9d88-7dec79af8dfb/free-film-screening-hannah-arendt-facing-tyranny",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-22",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13695-2026-10-22",
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13695&month=10&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-90aae646-34b0-442e-999b-ba462dd0e107-2026-10-22",
+      "url": "https://engagedpatrons.org/EventsExtended.cfm?SiteID=1689&EventID=597841&PK=",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-paint-nite-sofias-taqueria-taco-tequila-bar-old-bridge-tickets-1999869136422-2026-10-22",
+      "url": "https://paintnite.com/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-7f734ba8-c9fb-4e83-a427-1d9ed0131396-2026-10-22",
+      "url": "https://bernardslibrary.org/event-calendar/#/events/Dw9f0xB48x/instances/JJ3BbPn3T4/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-kids-salsa-dance-classes-tickets-1981023397309-2026-10-22",
+      "url": "https://www.eventbrite.com/e/kids-salsa-dance-classes-tickets-1981023397309",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-23",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "warren-goddard-public-events-2026-10-23-goddard-school-open-house-now-enrolling",
+      "url": "https://www.goddardschool.com/schools/nj/warren/basking-ridge-warren/our-school/events",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "colonial-park-spray-park-f65ac34ae07abfce-2026-10-23",
+      "url": "https://www.somersetcountyparks.org/colonial-park/pages/mischief-night-madness",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "mendham-borough-official-community-refresh-c2caa3f6b25deec0-2026-10-23",
+      "url": "https://www.mendhamnj.org/cn/eventscalendar/eventdetail.cfm?eid=106152&tpid=9674",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056720-2026-10-23",
+      "url": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-23/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056849-2026-10-23",
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-23/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-46914-2026-10-23",
+      "url": "https://visitsomersetnj.org/event/night-of-the-living-drag/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4755-2026-10-24",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4755",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4766-2026-10-24",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4766",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "michaels-kids-events-bridgewater-9938-2026-10-24-2026-10-24",
+      "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours:-chenille-stem-ghost-or-spider-142265502677384",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "michaels-kids-events-watchung-5191-2026-10-24-2026-10-24",
+      "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours:-chenille-stem-ghost-or-spider-142265502677384",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-mountainside-mountainside-1000-2026-10-24",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056152-2026-10-24",
+      "url": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-24/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4769-2026-10-24",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4769",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-free-kids-event-fantastical-fun-featuring-kwik-stixtm-east-brunswick-tickets-2002177896987-2026-10-24",
+      "url": "https://lakeshorelearning.com/",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "ikea-paramus-family-events-spooktacular-pot-painting-2026-10-24",
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/spooktacular-plant-pot-painting--957754c4-12fe-4932-9dd0-a283f6b9791d/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4757-2026-10-24",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4757",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056905-2026-10-24",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-24/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-24",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-free-halloween-kids-workshop-tickets-2001942713547-2026-10-24",
+      "url": "https://www.eventbrite.com/e/free-halloween-kids-workshop-tickets-2001942713547",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-46415-2026-10-24",
+      "url": "https://visitsomersetnj.org/event/the-other-side-of-the-revolution-the-story-of-the-loyalist-vought-family/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "readington-recreation-supplement-2026-10-24-readington-halloween-event-2026",
+      "url": "https://readingtonrecreation.org/program/halloween-event-2026/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "essex-environmental-center-public-programs-2026-10-24-fishing-101-sold-out",
+      "url": "https://essexcountyparks.org/facilities/environmental-center/calendar/fishing-101-13569",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-46858-2026-10-24",
+      "url": "https://visitsomersetnj.org/event/make-recycling-fun/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "parsippany-troy-hills-township-official-community-refresh-3265-2026-10-24",
+      "url": "https://www.parsippany.net/CalendarEvent/Details/UWZgsQkXbLU=",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "scotch-plains-township-official-community-refresh-a1ff4c92819debfa-2026-10-24",
+      "url": "https://www.scotchplainsnj.gov/news/1817-trunk-or-treat-october-24",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4773-2026-10-24",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4773",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "far-hills-official-family-events-2026-10-24-far-hills-trunk-or-treat",
+      "url": "https://www.farhillsnj.org/news_detail_T2_R628.php",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056721-2026-10-24",
+      "url": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-24/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056850-2026-10-24",
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-24/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "patch-3a083381-18ee-49dd-974f-a51f92361974-2026-10-24",
+      "url": "https://Ccanconcert26.givesmart.com",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-njmom-baby-expo-october-25-2026-at-w-hoboken-tickets-1983978016655-2026-10-25",
+      "url": "https://www.eventbrite.com/e/njmom-baby-expo-october-25-2026-at-w-hoboken-tickets-1983978016655",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4768-2026-10-25",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4768",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-214f8cc5-a416-49a3-8ad1-e34bcc67f72a-2026-10-25",
+      "url": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261025/214f8cc5-a416-49a3-8ad1-e34bcc67f72a/4-h-medieval-jubilee",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056153-2026-10-25",
+      "url": "https://visitsomersetnj.org/event/snyders-farm-fall-festival/2026-10-25/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4758-2026-10-25",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4758",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-46850-2026-10-25",
+      "url": "https://visitsomersetnj.org/event/garlicsville-bernardsville-garlic-festival-street-fair/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056906-2026-10-25",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-25/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-25",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "dunellen-borough-official-community-refresh-dunellen-founders-day-festival-2026-10-25",
+      "url": "https://dunellennj.myrec.com/info/activities/program_details.aspx?ProgramID=29951",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056722-2026-10-25",
+      "url": "https://visitsomersetnj.org/event/american-theater-group-destroying-david/2026-10-25/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056851-2026-10-25",
+      "url": "https://visitsomersetnj.org/event/the-lord-stirling-theater-company-performs-almost-maine/2026-10-25/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-46804-2026-10-25",
+      "url": "https://visitsomersetnj.org/event/kids-diwali-fest-2nd-annual-celebration-october-25/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "chatham-township-official-community-refresh-sunday-connections-intergenerational-dinner-2026-10-25",
+      "url": "https://chathamtownship.org/events/sunday-connections-intergenerational-dinner/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-10-26-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-26",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-0dc72264-afc7-444e-8f88-b5f5895aa756-2026-10-26",
+      "url": "https://www.facebook.com/share/1ByuA5aq8J/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-mountainside-mountainside-0930-2026-10-27",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-27",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-fanwood-fanwood-1630-2026-10-27",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "edison-public-library-libnet-17375884",
+      "url": "https://edisonpubliclibrary.libnet.info/event/17375884",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "cancelled",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "bound-brook-recreation-2026-10-27-youth-soccer-clinic-little-kickers-2022-2023",
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-10-28-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17436219",
+      "url": "https://bccls.libcal.com/event/17436219",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "bell-works-holmdel-peas-carrots-oct28-2026-10-28",
+      "url": "https://bell.works/events/peas-carrots-at-the-holmdel-library-3/",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-28",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "ikea-elizabeth-family-events-spooky-kids-crafting-708644a1-2026-10-28",
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--708644a1-0678-479b-8bdd-3224ba977ad6/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-drop-and-dine-movie-night-tickets-1991019376552-2026-10-28",
+      "url": "https://www.eventbrite.com/e/drop-and-dine-movie-night-tickets-1991019376552",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-love-flemington-kids-halloween-parade-costume-contest-tickets-1998971431362-2026-10-29",
+      "url": "https://www.eventbrite.com/e/love-flemington-kids-halloween-parade-costume-contest-tickets-1998971431362",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-29",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-113019d4-8139-4d1c-ad45-c4a1f29e68da-2026-10-29",
+      "url": "https://metc.org/event/halloween-2026/",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 404: Not Found",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-45162-2026-10-29",
+      "url": "https://visitsomersetnj.org/event/spooktacular/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-45962-2026-10-29",
+      "url": "https://visitsomersetnj.org/event/halloween-spooktacular-2/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "highland-park-borough-official-community-refresh-e20f38e50a9208c9-2026-10-29",
+      "url": "https://www.hpboro.com/Home/Components/Calendar/Event/7957/18",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "sclsnj-17355989",
+      "url": "https://sclsnj.libnet.info/event/17355989",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "cancelled"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-30",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-choo-choo-boo-event-at-northlandz-tickets-2003176203950-2026-10-31",
+      "url": "https://www.eventbrite.com/e/choo-choo-boo-event-at-northlandz-tickets-2003176203950",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4755-2026-10-31",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4755",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4766-2026-10-31",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4766",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "ikea-paramus-family-events-bus-eller-godis-halloween-2026-10-31",
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/halloween-say-bus-eller-godis--dd9f6c1f-1b41-4ac8-b11e-929f0dda88a4/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-40d09ae4-03d7-4738-9ec5-1f273c9a41e2-2026-10-31",
+      "url": "https://njaudubon.org/event/john-clyde-native-grassland-preserve/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-mountainside-mountainside-1000-2026-10-31",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4769-2026-10-31",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4769",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4757-2026-10-31",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4757",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056907-2026-10-31",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-10-31/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-31",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-kids-halloween-party-at-el-nachos-tickets-2001028045751-2026-10-31",
+      "url": "https://www.eventbrite.com/e/kids-halloween-party-at-el-nachos-tickets-2001028045751",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "eventbrite-kids-halloween-party-tickets-2003082619035-2026-10-31",
+      "url": "https://www.eventbrite.com/e/kids-halloween-party-tickets-2003082619035",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-45802-2026-10-31",
+      "url": "https://visitsomersetnj.org/event/halloween-trunk-or-treat/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "mountainside-borough-official-community-refresh-f7ae5148d108fa5c-2026-10-31",
+      "url": "https://events.mountainside-nj.com/default/Detail/2026-10-31-1400-HALLOWEEN-TRICK-OR-TREATING",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4773-2026-10-31",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4773",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-kids-halloween-party-tickets-2003083484624-2026-10-31",
+      "url": "https://www.eventbrite.com/e/kids-halloween-party-tickets-2003083484624",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "fanwood-borough-official-community-refresh-a11d67b5f9ff11d1-2026-10-31",
+      "url": "https://fanwoodnj.org/2026-events-calendar/",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4768-2026-11-01",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4768",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "fanwood-borough-official-community-refresh-cdcd9057827de3e6-2026-11-01",
+      "url": "https://fanwoodnj.org/2026-events-calendar/",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-93b8d22e-06f5-4d51-bbd2-00897c177871-2026-11-01",
+      "url": "https://www.flemingtonfineartisansshow.com/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "maplewood-recdesk-preschool-4758-2026-11-01",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4758",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056908-2026-11-01",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-01/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-11-01",
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-46724-2026-11-01",
+      "url": "https://visitsomersetnj.org/event/lantern-walk-at-fairview-farm-wildlife-preserve/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-46807-2026-11-01",
+      "url": "https://visitsomersetnj.org/event/kids-diwali-fest-2nd-annual-celebration-november-1/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-11-02-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-mountainside-mountainside-0930-2026-11-03",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-fanwood-fanwood-1630-2026-11-03",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "bound-brook-recreation-2026-11-03-youth-soccer-clinic-little-kickers-2022-2023",
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-11-04-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17436220",
+      "url": "https://bccls.libcal.com/event/17436220",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "ikea-elizabeth-family-events-grateful-bingo-801e3250-2026-11-04",
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/grateful-and-cozy-bingo--801e3250-9526-43fe-85ac-f5dd8d9d63df/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-9aa55c75-6838-400e-8494-461fde758478-2026-11-05",
+      "url": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261105/9aa55c75-6838-400e-8494-461fde758478/somerset-county-4-h-ag-venture-days",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17218744",
+      "url": "https://bccls.libcal.com/event/17218744",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "patch-e187393c-e3aa-45ce-a53a-5955171cb15a-2026-11-07",
+      "url": "https://www.facebook.com/events/1105672598129267",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "play-and-talk-nature-mountainside-mountainside-1000-2026-11-07",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056909-2026-11-07",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-07/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "eventbrite-newborn-care-class-tickets-1984089810032-2026-11-07",
+      "url": "https://www.eventbrite.com/e/newborn-care-class-tickets-1984089810032",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056723-2026-11-07",
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-07/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056910-2026-11-08",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-08/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056724-2026-11-08",
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-08/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-11-09-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "bound-brook-recreation-2026-11-10-youth-soccer-clinic-little-kickers-2022-2023",
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-11-11-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17436221",
+      "url": "https://bccls.libcal.com/event/17436221",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "edison-public-library-libnet-15765945",
+      "url": "https://edisonpubliclibrary.libnet.info/event/15765945",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "cancelled",
+        "address"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "eventbrite-1111-zoo-kids-herbivores-tickets-1997058340255-2026-11-11",
+      "url": "https://www.eventbrite.com/e/1111-zoo-kids-herbivores-tickets-1997058340255",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "ikea-elizabeth-family-events-kids-crafting-e69f2cff-2026-11-11",
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "paramus-park-santa-2026-announcement-2026-11-13",
+      "url": "https://www.paramuspark.com/event/44347-photos-with-santa",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "sclsnj-17404295",
+      "url": "https://sclsnj.libnet.info/event/17404295",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "patch-92c0f65a-8782-4fc5-8e61-bf586cc5df0a-2026-11-13",
+      "url": "https://patch.com/new-jersey/parsippany/calendar/event/20261113/92c0f65a-8782-4fc5-8e61-bf586cc5df0a/saint-anns-fall-festival-ministry-and-craft-fair",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056725-2026-11-13",
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-13/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "bridgewater-commons-santa-commons-2026-2026-11-14",
+      "url": "https://bridgewatercommons.com/events/main-level-by-l-occitane",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "revize-edison-township-1508-2026-11-14",
+      "url": "https://www.edisonnj.org/calendar.php?id=1508",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "jcpenney-woodbridge-family-events-3d-turkey-2026-11-14",
+      "url": "https://www.jcpenney.com/m/kids-club",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "montclair-cooperative-school-public-playdates-2026-11-14-admissions-open-house-playdate",
+      "url": "https://montclaircoop.org/admissions/admission-events-tours/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056911-2026-11-14",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-14/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "cora-hartshorn-arboretum-5725-2026-11-14",
+      "url": "https://hartshornarboretum.org/event/arboreaders-book-club-4/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056726-2026-11-14",
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-14/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056912-2026-11-15",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-15/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "libcal-14878-16517493",
+      "url": "https://summitlibrary.libcal.com/event/16517493",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056727-2026-11-15",
+      "url": "https://visitsomersetnj.org/event/trilogy-repertory-presents-clue/2026-11-15/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-11-16-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-11-18-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17436222",
+      "url": "https://bccls.libcal.com/event/17436222",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "ikea-elizabeth-family-events-kids-crafting-e69f2cff-2026-11-18",
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "marketfair-family-events-santa-2026-announcement-2026-11-21",
+      "url": "https://www.marketfairshoppes.com/event/44164-capture-holiday-memories-with-santa",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "newport-centre-santa-arrival-6291106-2026-11-21",
+      "url": "https://www.simon.com/mall/newport-centre/stores/santa-photo-experience/stream/the-magic-begins-santas-arrival-6291106",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 307: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-bbd1603d-1082-4c9c-90a4-30296a2ff2b0-2026-11-21",
+      "url": "https://www.holidaytrainshow.com",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "eventbrite-fairytale-fantasy-princess-parties-ball-tickets-1999694017637-2026-11-21",
+      "url": "https://www.eventbrite.com/e/fairytale-fantasy-princess-parties-ball-tickets-1999694017637",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address"
+      ],
+      "corrections": [
+        "endTime",
+        "address"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056913-2026-11-21",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-21/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "american-dream-oct2026-dream-live-pac-featuring-cirque-musica-holiday-wonderland-0-1400-2026-11-21",
+      "url": "https://www.americandream.com/events/dream-live-pac-featuring-cirque-musica-holiday-wonderland",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "american-dream-oct2026-dream-live-pac-featuring-cirque-musica-holiday-wonderland-0-1900-2026-11-21",
+      "url": "https://www.americandream.com/events/dream-live-pac-featuring-cirque-musica-holiday-wonderland",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056914-2026-11-22",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-22/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-11-23-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17436223",
+      "url": "https://bccls.libcal.com/event/17436223",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "ikea-elizabeth-family-events-kids-crafting-e69f2cff-2026-11-25",
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-46903-2026-11-28",
+      "url": "https://visitsomersetnj.org/event/holiday-craft-market-4/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056915-2026-11-28",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-28/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13759-2026-11-28",
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13759&month=11&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056916-2026-11-29",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-11-29/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-11-30-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-45760-2026-11-30",
+      "url": "https://visitsomersetnj.org/event/halloween-hayrides-9/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13818-2026-11-30",
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13818&month=11&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-12-02-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17436224",
+      "url": "https://bccls.libcal.com/event/17436224",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "edison-public-library-libnet-15765947",
+      "url": "https://edisonpubliclibrary.libnet.info/event/15765947",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "cancelled",
+        "address"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-46871-2026-12-04",
+      "url": "https://visitsomersetnj.org/event/hillsborough-tree-lighting/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13819-2026-12-04",
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13819&month=12&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-45863-2026-12-04",
+      "url": "https://visitsomersetnj.org/event/a-very-barry-christmas-daybreak-manilow-tribute-holiday-edition/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "libcal-millburnlibrary-17262949",
+      "url": "https://millburnlibrary.libcal.com/event/17262949",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-46877-2026-12-05",
+      "url": "https://visitsomersetnj.org/event/bernards-winter-market-and-tree-lighting/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056917-2026-12-05",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-05/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "fanwood-borough-official-community-refresh-74bb3a910b6dde54-2026-12-05",
+      "url": "https://fanwoodnj.org/2026-events-calendar/",
+      "httpStatus": null,
+      "fetchError": "HTTP Error 403: Forbidden",
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "patch-9111c509-d5c3-4fdd-ab15-652c99983c0c-2026-12-06",
+      "url": "https://patch.com/new-jersey/watchung-greenbrook/calendar/event/20261206/9111c509-d5c3-4fdd-ab15-652c99983c0c/somerset-county-4-h-holiday-craft-festival",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056918-2026-12-06",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-06/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13821-2026-12-06",
+      "url": "https://www.twp.woodbridge.nj.us/Calendar.aspx?EID=13821&month=12&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-12-07-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "civicplus-south-orange-village-township-7290-2026-12-07",
+      "url": "https://www.southorange.org/Calendar.aspx?EID=7290&month=12&year=2026&day=15&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "civicplus-montville-township-7574-2026-12-07",
+      "url": "https://www.montvillenj.org/Calendar.aspx?EID=7574&month=12&year=2026&day=16&calType=0",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-12-09-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17436225",
+      "url": "https://bccls.libcal.com/event/17436225",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17328957",
+      "url": "https://bccls.libcal.com/event/17328957",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-45551-2026-12-11",
+      "url": "https://visitsomersetnj.org/event/stars-and-promise-2026-this-town/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056919-2026-12-12",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-12/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056729-2026-12-12",
+      "url": "https://visitsomersetnj.org/event/sons-of-serendip-christmas-beyond-the-lights/2026-12-12/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056920-2026-12-13",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-13/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056730-2026-12-13",
+      "url": "https://visitsomersetnj.org/event/sons-of-serendip-christmas-beyond-the-lights/2026-12-13/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "address",
+        "coordinates"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-12-14-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "visit-somerset-nj-events-45771-2026-12-14",
+      "url": "https://visitsomersetnj.org/event/halloween-hayrides-5/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate",
+        "address",
+        "coordinates"
+      ],
+      "corrections": [
+        "coordinates",
+        "flag contradictory dates"
+      ],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "whittemore-tewksbury-2026-12-16-fall-nature-explorers-ages-3-5",
+      "url": "https://www.whittemoreccc.org/events-1/fall-toddler-nature-program-2026-10-05-09-00",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [],
+      "corrections": [],
+      "verificationStatus": "unconfirmed"
+    },
+    {
+      "id": "libcal-bccls.libcal.com-17436226",
+      "url": "https://bccls.libcal.com/event/17436226",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056921-2026-12-19",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-19/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056922-2026-12-20",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-20/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056923-2026-12-26",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-26/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056924-2026-12-27",
+      "url": "https://visitsomersetnj.org/event/mosaic-lamp-workshop-2/2026-12-27/",
+      "httpStatus": 200,
+      "fetchError": null,
+      "fieldsConfirmed": [
+        "startDate",
+        "endDate"
+      ],
+      "corrections": [
+        "disable unverified office pin"
+      ],
+      "verificationStatus": "partial"
+    }
+  ]
+}

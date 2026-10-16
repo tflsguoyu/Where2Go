@@ -151,7 +151,7 @@ async function main() {
 
   const visibleEvents = visibleImportableEvents(events, todayKey);
   const visibleWithoutCoordinates = visibleEvents
-    .filter((event) => !hasCoordinates(event))
+    .filter((event) => !hasCoordinates(event) && !(event.publicationReason === "source_link_user_policy" && event.directionsDisabled === true && /^https?:\/\//i.test(event.sourceUrl || event.url || "")))
     .map((event) => `${event.id} (${eventDateKey(event)})`);
   pushListIssues(errors, "visible events missing coordinates", visibleWithoutCoordinates.slice(0, 12));
 

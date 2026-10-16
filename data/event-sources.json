@@ -23,7 +23,14 @@
     "qualityRule": "Every import must check date coverage, time, place, coordinates, source URL, and activity summary before writing events.json; summaries must contain only useful activity content, not date, time, venue, room, place, or address text; automatically repair deterministic gaps and report anything still missing.",
     "dateRangeRule": "When an event is listed as a date range, expand it so every calendar day in the range is represented unless the source clearly describes one overnight event.",
     "allDayTimeRule": "When an event is listed as all day, check official venue/source hours for that date before filling exact times; if exact hours are not confirmed, leave exact time fields blank where possible and mark timeStatus for review.",
-    "missingAddressRule": "When an event gives a venue but no address, search official venue/source pages first, then reliable map or directory sources for the exact street address; if still not found, leave address blank or mark approximate/needs_review rather than guessing."
+    "missingAddressRule": "When an event gives a venue but no address, search official venue/source pages first, then reliable map or directory sources for the exact street address; if still not found, leave address blank or mark approximate/needs_review rather than guessing.",
+    "sourceLinkedReviewPublication": {
+      "enabled": true,
+      "fromDate": "2026-10-16",
+      "throughDate": "2026-12-31",
+      "authorizedAt": "2026-10-16",
+      "notes": "User explicitly requests automatic verification, then publication of unresolved records with an HTTP(S) source page. Preserve uncertainty, cancellation, age and capacity notices. No inferred map coordinates or session times."
+    }
   },
   "importQuality": {
     "requiredChecks": [

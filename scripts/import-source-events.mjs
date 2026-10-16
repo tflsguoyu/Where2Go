@@ -3,6 +3,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import * as http from "node:http";
 import * as https from "node:https";
+import { publishSourceLinkedReviews } from "../event-publication.mjs";
 
 const TIMEZONE = "America/New_York";
 const SOURCES_FILE = new URL("../data/event-sources.json", import.meta.url);
@@ -4323,7 +4324,7 @@ function configuredLibraryEvent(source, config, dateKey) {
     confidence: config.confidence ?? 0.72
   };
 
-  for (const key of ["timeStatus", "timeLabel", "addressStatus", "coordinateStatus", "directionsDisabled", "reviewNotes", "dateStatus", "evidenceSource"]) {
+  for (const key of ["timeStatus", "timeLabel", "addressStatus", "coordinateStatus", "directionsDisabled", "reviewNotes", "dateStatus", "evidenceSource", "verificationStatus", "sourceScheduleStatus", "minimumAge", "availabilityStatus", "cancellationStatus", "publicationReason"]) {
     if (config[key] !== undefined) event[key] = config[key];
   }
 
@@ -4937,7 +4938,7 @@ function configuredRegionalEvent(source, config, dateKey) {
     tags: config.tags || [],
     confidence: config.confidence ?? 0.72
   });
-  for (const key of ["status", "timeStatus", "timeLabel", "addressStatus", "coordinateStatus", "directionsDisabled", "reviewNotes", "dateStatus", "evidenceSource"]) {
+  for (const key of ["status", "timeStatus", "timeLabel", "addressStatus", "coordinateStatus", "directionsDisabled", "reviewNotes", "dateStatus", "evidenceSource", "verificationStatus", "sourceScheduleStatus", "minimumAge", "availabilityStatus", "cancellationStatus", "publicationReason"]) {
     if (config[key] !== undefined) event[key] = config[key];
   }
   return event;
@@ -7946,6 +7947,8 @@ async function main() {
   const geocodeSummary = process.argv.includes("--skip-geocode")
     ? { skipped: true }
     : await geocodeEventCoordinates(events, sources);
+  const sourceLinkedPublished = publishSourceLinkedReviews(events, sources.eventPolicy?.sourceLinkedReviewPublication);
+  if (sourceLinkedPublished) console.log(`Published ${sourceLinkedPublished} source-linked review records with confirmation notices.`);
   const audit = auditEventQuality(events);
 
   await writeFile(EVENTS_FILE, `${JSON.stringify(events, null, 2)}\n`);
