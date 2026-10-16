@@ -1,4 +1,4 @@
-const CACHE_NAME = "where2go-public-v140";
+const CACHE_NAME = "where2go-public-v141";
 const APP_ASSETS = [
   "styles.css",
   "app.js",

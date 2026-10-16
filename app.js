@@ -1,7 +1,7 @@
 import { createLocationConsent } from "./location-consent.js";
 
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20261016-cache-v140";
+const APP_VERSION = "20261016-cache-v141";
 const LOCATION_CHOICE_KEY = "where2go-location-choice-v1";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
@@ -3143,7 +3143,10 @@ function renderDetail() {
                 <details class="event-disclosure">
                   <summary class="event-time">
                     <span>${formatTimeRange(event)}</span>
-                    <span class="event-disclosure-cue" aria-hidden="true">&gt;&gt;&gt;</span>
+                    <span class="event-disclosure-cue">
+                      <span class="event-disclosure-more">Show more <span aria-hidden="true">⌄</span></span>
+                      <span class="event-disclosure-less">Show less <span aria-hidden="true">⌃</span></span>
+                    </span>
                   </summary>
                   <div class="event-disclosure-body">
                     ${summary ? `<p class="event-summary">${escapeHtml(summary)}</p>` : ""}

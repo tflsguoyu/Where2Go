@@ -1416,6 +1416,8 @@ h2 {
 }
 
 .event-disclosure-cue {
+  flex-shrink: 0;
+  white-space: nowrap;
   color: #5f746d;
   font-size: 0.74rem;
   letter-spacing: 0;
@@ -1424,6 +1426,15 @@ h2 {
 
 .event-disclosure[open] .event-disclosure-cue {
   color: var(--green-dark);
+}
+
+.event-disclosure-less,
+.event-disclosure[open] .event-disclosure-more {
+  display: none;
+}
+
+.event-disclosure[open] .event-disclosure-less {
+  display: inline;
 }
 
 .event-disclosure-body {
