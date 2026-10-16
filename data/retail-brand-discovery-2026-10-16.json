@@ -1,0 +1,449 @@
+{
+  "checkedAt": "2026-10-16",
+  "dateWindow": [
+    "2026-10-16",
+    "2026-12-31"
+  ],
+  "scope": "Cross-brand first pass, 72 core towns plus previously requested regional destinations. No new town registrations. Pending rows are discovery targets, not verified programs.",
+  "families": [
+    {
+      "id": "toys",
+      "brandsOrGroups": [
+        "LEGO",
+        "Build-A-Bear",
+        "Learning Express",
+        "Tons of Toys",
+        "Toys R Us"
+      ]
+    },
+    {
+      "id": "books",
+      "brandsOrGroups": [
+        "Barnes & Noble",
+        "Independent bookstores"
+      ]
+    },
+    {
+      "id": "crafts_learning",
+      "brandsOrGroups": [
+        "Michaels",
+        "Lakeshore"
+      ]
+    },
+    {
+      "id": "home_hardware",
+      "brandsOrGroups": [
+        "Home Depot",
+        "Lowe’s",
+        "IKEA",
+        "Pottery Barn Kids"
+      ]
+    },
+    {
+      "id": "department_general",
+      "brandsOrGroups": [
+        "Macy’s",
+        "JCPenney",
+        "Nordstrom",
+        "Target",
+        "Walmart"
+      ]
+    },
+    {
+      "id": "sports_outdoors",
+      "brandsOrGroups": [
+        "DICK’S",
+        "REI",
+        "Bass Pro Shops/Cabela’s"
+      ]
+    },
+    {
+      "id": "technology",
+      "brandsOrGroups": [
+        "Apple",
+        "Best Buy"
+      ]
+    },
+    {
+      "id": "food_cooking",
+      "brandsOrGroups": [
+        "Whole Foods",
+        "Wegmans",
+        "Williams Sonoma",
+        "Sur La Table"
+      ]
+    },
+    {
+      "id": "pets",
+      "brandsOrGroups": [
+        "PetSmart",
+        "Petco"
+      ]
+    }
+  ],
+  "coverageMatrix": [
+    {
+      "family": "toys",
+      "brandOrGroup": "LEGO",
+      "sourceIds": [
+        "lego-bridgewater-commons"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "toys",
+      "brandOrGroup": "Build-A-Bear",
+      "sourceIds": [
+        "build-a-bear-family-events"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "toys",
+      "brandOrGroup": "Learning Express",
+      "sourceIds": [
+        "learning-express-nj-discovery"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "toys",
+      "brandOrGroup": "Tons of Toys",
+      "sourceIds": [
+        "tons-of-toys-madison",
+        "tons-of-toys-bernardsville"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "toys",
+      "brandOrGroup": "Toys R Us",
+      "sourceIds": [
+        "toysrus-american-dream"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "books",
+      "brandOrGroup": "Barnes & Noble",
+      "sourceIds": [
+        "barnes-noble-bridgewater"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "books",
+      "brandOrGroup": "Independent bookstores",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "crafts_learning",
+      "brandOrGroup": "Michaels",
+      "sourceIds": [
+        "michaels-kids-events"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "crafts_learning",
+      "brandOrGroup": "Lakeshore",
+      "sourceIds": [
+        "lakeshore-east-brunswick"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "home_hardware",
+      "brandOrGroup": "Home Depot",
+      "sourceIds": [
+        "home-depot-kids-workshops"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "home_hardware",
+      "brandOrGroup": "Lowe’s",
+      "sourceIds": [
+        "lowes-kids-club"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "home_hardware",
+      "brandOrGroup": "IKEA",
+      "sourceIds": [
+        "ikea-elizabeth-family-events",
+        "ikea-paramus-family-events"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "home_hardware",
+      "brandOrGroup": "Pottery Barn Kids",
+      "sourceIds": [
+        "pottery-barn-kids-events",
+        "pottery-barn-kids-short-hills",
+        "pottery-barn-kids-hackensack",
+        "pottery-barn-kids-shrewsbury"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "department_general",
+      "brandOrGroup": "Macy’s",
+      "sourceIds": [
+        "macys-bridgewater-family-events"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "department_general",
+      "brandOrGroup": "JCPenney",
+      "sourceIds": [
+        "jcpenney-kids-zone-discovery"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "department_general",
+      "brandOrGroup": "Nordstrom",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "department_general",
+      "brandOrGroup": "Target",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "department_general",
+      "brandOrGroup": "Walmart",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "sports_outdoors",
+      "brandOrGroup": "DICK’S",
+      "sourceIds": [
+        "dicks-house-of-sport-jersey-city"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "sports_outdoors",
+      "brandOrGroup": "REI",
+      "sourceIds": [
+        "rei-east-hanover-family-events"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "sports_outdoors",
+      "brandOrGroup": "Bass Pro Shops/Cabela’s",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "technology",
+      "brandOrGroup": "Apple",
+      "sourceIds": [
+        "apple-bridgewater",
+        "apple-menlo-park"
+      ],
+      "coverageStatus": "registered_sources_partial",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "technology",
+      "brandOrGroup": "Best Buy",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "food_cooking",
+      "brandOrGroup": "Whole Foods",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "food_cooking",
+      "brandOrGroup": "Wegmans",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "food_cooking",
+      "brandOrGroup": "Williams Sonoma",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "food_cooking",
+      "brandOrGroup": "Sur La Table",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "pets",
+      "brandOrGroup": "PetSmart",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    },
+    {
+      "family": "pets",
+      "brandOrGroup": "Petco",
+      "sourceIds": [],
+      "coverageStatus": "pending_branch_discovery",
+      "requiredNextStep": "Resolve actual local branches from official directories, then inspect each branch’s official events and linked booking pages. Source registration is not proof of complete event coverage.",
+      "agePolicy": "Check event-specific ages; no assumption that a family retailer accepts age three for every activity."
+    }
+  ],
+  "newSourceIds": [
+    "ikea-elizabeth-family-events",
+    "ikea-paramus-family-events",
+    "tons-of-toys-madison",
+    "tons-of-toys-bernardsville",
+    "rei-east-hanover-family-events",
+    "dicks-house-of-sport-jersey-city",
+    "jcpenney-kids-zone-discovery",
+    "learning-express-nj-discovery"
+  ],
+  "newReviewEventIds": [
+    "ikea-elizabeth-family-events-kids-crafting-e69f2cff-2026-11-11",
+    "ikea-elizabeth-family-events-kids-crafting-e69f2cff-2026-11-18",
+    "ikea-elizabeth-family-events-kids-crafting-e69f2cff-2026-11-25",
+    "ikea-elizabeth-family-events-grateful-bingo-801e3250-2026-11-04",
+    "ikea-paramus-family-events-spooktacular-pot-painting-2026-10-24",
+    "ikea-paramus-family-events-bus-eller-godis-halloween-2026-10-31"
+  ],
+  "newPublishedEvents": 0,
+  "outcomes": [
+    {
+      "sourceId": "ikea-elizabeth-family-events",
+      "officialUrl": "https://www.ikea.com/us/en/stores/elizabeth/",
+      "eventsUrl": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/",
+      "status": "importable",
+      "notes": "Browser-rendered local page checked. IKEA Family membership and login required for registration. Numeric minimum ages not supplied on reviewed November craft/Bingo pages: retain age-three eligibility review. No adult craft nights, resale promotions or ordinary business hours imported. Configured snapshot is not a live parser."
+    },
+    {
+      "sourceId": "ikea-paramus-family-events",
+      "officialUrl": "https://www.ikea.com/us/en/stores/paramus/",
+      "eventsUrl": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/",
+      "status": "importable",
+      "notes": "Browser-rendered local list checked. October 24 painting fully booked. October 31 giveaway lists CT despite New Jersey location; retain timezone conflict for confirmation. Regular shopping, discounts and free coffee excluded. Do not assign events from the Elizabeth location to Paramus."
+    },
+    {
+      "sourceId": "tons-of-toys-madison",
+      "officialUrl": "https://tonsoftoys.com/",
+      "eventsUrl": "https://tonsoftoys.com/",
+      "status": "manual_review",
+      "notes": "Official site verifies local branch and a FREE EVENTS & MORE entry. No current dated event recovered from the landing page; follow store-specific official social/link hub and verify dates before import."
+    },
+    {
+      "sourceId": "tons-of-toys-bernardsville",
+      "officialUrl": "https://tonsoftoys.com/",
+      "eventsUrl": "https://tonsoftoys.com/",
+      "status": "manual_review",
+      "notes": "Official site verifies local branch and a FREE EVENTS & MORE entry. No current dated event recovered from the landing page; keep separate from the Madison branch."
+    },
+    {
+      "sourceId": "rei-east-hanover-family-events",
+      "officialUrl": "https://www.rei.com/stores/east-hanover",
+      "eventsUrl": "https://www.rei.com/events/all-places",
+      "status": "manual_review",
+      "notes": "Store verified on official page. Official Kids Learn to Ride course example requires minimum age five, so it is not an age-three outing. Check each local course separately; do not infer child admission from an outdoor brand or store presence."
+    },
+    {
+      "sourceId": "dicks-house-of-sport-jersey-city",
+      "officialUrl": "https://stores.dickssportinggoods.com/nj/jersey-city/1567/",
+      "eventsUrl": "https://www.dickssportinggoods.com/s/scheduling/s/1567",
+      "status": "manual_review",
+      "notes": "Official store and scheduling checked. Current in-store listings are run clubs and private birthdays; no public age-three session verified. Rock wall, rentals and adult running events do not imply toddler suitability."
+    },
+    {
+      "sourceId": "jcpenney-kids-zone-discovery",
+      "officialUrl": "https://www.jcpenney.com/m/kids-club",
+      "eventsUrl": "https://www.jcpenney.com/m/kids-club",
+      "status": "reference_only",
+      "notes": "Official page uses image banners. Browser confirms monthly second-Saturday free craft program and October 10 11 AM–noon banner, which is already past this window. Future dates and participating local stores are not verified. National campaign discovery only; no automatic monthly recurrence or branch participation inferred."
+    },
+    {
+      "sourceId": "learning-express-nj-discovery",
+      "officialUrl": "https://seagirt.learningexpress.com/pages/sea-girt-store-info",
+      "eventsUrl": "https://seagirt.learningexpress.com/pages/sea-girt-store-info",
+      "status": "reference_only",
+      "notes": "Official Sea Girt franchise page confirms local free-event offering, but this location is not evidence of a nearby core-town branch and is outside the first-pass local-town sweep. Resolve actual branches and local event dates before adding occurrences."
+    }
+  ],
+  "scheduleConflictExample": {
+    "sourceId": "lakeshore-east-brunswick",
+    "currentNationalPage": "https://www.lakeshorelearning.com/stores/events/",
+    "dated2026Calendar": "https://img.lakeshorelearning.com/is/content/OCProduction/pdf/8597056_LE%20Year%20Calendar_2026_No%20Crop.pdf",
+    "outcome": "Search results show undated national page Nov1/15 conflicting with dated 2026 PDF Nov7/21. Existing dated-2026 snapshot was not silently replaced by possibly stale national text."
+  },
+  "rules": [
+    "Mall directory finds tenants; store pages confirm branch events; brand/manufacturer campaigns are leads only.",
+    "Resolve branches first; do not manufacture one source per town for a chain with no confirmed branch.",
+    "Public child program eligibility, membership, capacity and numerical ages are separate fields.",
+    "Do not treat ordinary shopping, discounts, private parties or animal adoption paperwork as toddler programming.",
+    "Use local NGO/rescue partner calendars for pet-store educational or family activities; verify outsider access separately."
+  ],
+  "preservedExistingEventCount": 6803
+}

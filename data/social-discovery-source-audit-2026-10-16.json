@@ -1,0 +1,817 @@
+{
+  "checkedAt": "2026-10-16",
+  "requestedDiscoveryChannel": "Xiaohongshu",
+  "xiaohongshu": {
+    "status": "awaiting_user_login",
+    "searchQuery": "NJ 3岁 遛娃",
+    "searchUrl": "https://www.xiaohongshu.com/search_result?keyword=NJ%203%E5%B2%81%20%E9%81%9B%E5%A8%83",
+    "observedRestriction": "登录后查看搜索结果",
+    "note": "User offered to log in. No readable Xiaohongshu notes were obtained yet. The additions below came from public web discovery and official sites, not authenticated Xiaohongshu results."
+  },
+  "dateWindow": [
+    "2026-10-16",
+    "2026-12-31"
+  ],
+  "sourcesAdded": [
+    {
+      "id": "small-town-westfield",
+      "label": "Small Town Play Café Westfield",
+      "status": "importable",
+      "officialUrl": "https://smalltownplaycafe.com/",
+      "eventsUrl": "https://smalltownplaycafe.com/classes-events/",
+      "townId": "westfield-town",
+      "notes": "Official venue and Roller booking links verified 2026-10-16. Dates explicitly listed in 2026; no daily open-play occurrences generated. Reservations strongly encouraged; age-3-and-under music class exists but individual sessions must be read from booking availability. Public class series already underway stay as leads until late enrollment is confirmed.",
+      "ageRange": {
+        "minimumMonths": 6,
+        "maximumYears": 6,
+        "source": "https://smalltownplaycafe.com/about/"
+      },
+      "ageSuitability": null
+    },
+    {
+      "id": "art-cafe-westfield",
+      "label": "Art Cafe Westfield",
+      "status": "importable",
+      "officialUrl": "https://www.artcafenj.com/",
+      "eventsUrl": "https://www.artcafenj.com/openstudiolittles",
+      "townId": "westfield-town",
+      "notes": "45 individual dated Sawyer calendar entries for Open Studio: Littles were read across October–December 2026. Only actual listed sessions imported: no extrapolation through Dec 31, no Big Kids Saturday classes for age 3. Drop-in option and $32/class verified on Sunday session; prices for other schedules must be checked. Caregiver remains on-site. Public event page contains mixed weekday/date text, so unverified one-off events are not imported from prose alone.",
+      "ageRange": {
+        "minimumYears": 2,
+        "maximumYears": 5,
+        "source": "https://www.artcafenj.com/openstudiolittles"
+      },
+      "ageSuitability": null
+    },
+    {
+      "id": "imagine-that-florham-park",
+      "label": "Imagine That! Discovery Center",
+      "status": "importable",
+      "officialUrl": "https://imaginethatmuseum.com/",
+      "eventsUrl": "https://imaginethatmuseum.com/events/",
+      "townId": "florham-park-borough",
+      "notes": "Official website and embedded Peek ticket calendar verified. Indoor discovery and pretend play for young children; special events may be cancelled if advance ticket sales are low. Normal opening hours are not expanded into daily events. October 27 delayed opening and October 31 early close noted on home page.",
+      "ageRange": null,
+      "ageSuitability": {
+        "age3": "Suitable young-child discovery and pretend play; exact numerical admission limits not supplied on checked official pages.",
+        "source": "https://imaginethatmuseum.com/about-us/"
+      }
+    },
+    {
+      "id": "catch-air-paramus",
+      "label": "Catch Air Paramus",
+      "status": "manual_review",
+      "officialUrl": "https://catchair.com/location/paramus-nj/",
+      "eventsUrl": "https://catchair.com/location/paramus-nj/",
+      "townId": "paramus-borough",
+      "notes": "Official page verifies open location and Tiny Town area for age four and under, including age three. Walk-ins normally allowed; capacity and temporary closures can change. Caregiver stays on-site. Page gives conflicting regular/grip-sock wording; confirm socks directly. No dated public special events found; ordinary business hours are not event occurrences.",
+      "ageRange": {
+        "maximumYears": 10,
+        "toddlerAreaMaximumYears": 4,
+        "source": "https://catchair.com/location/paramus-nj/"
+      },
+      "ageSuitability": null
+    },
+    {
+      "id": "wordplay-livingston",
+      "label": "WordPlay Livingston",
+      "status": "manual_review",
+      "officialUrl": "https://www.wordplaynj.com/",
+      "eventsUrl": "https://www.wordplaynj.com/calendar",
+      "townId": "livingston-township",
+      "notes": "Official calendar introduction confirms sensory play for children under four. It advertises winter classes but a current dated 2026 fall session was not verified; venue/program source only, no dates invented. Reading groups for ages four and up are not age-three programming.",
+      "ageRange": {
+        "maximumYearsExclusive": 4,
+        "source": "https://www.wordplaynj.com/calendar"
+      },
+      "ageSuitability": null
+    },
+    {
+      "id": "funplex-east-hanover",
+      "label": "The Funplex East Hanover",
+      "status": "manual_review",
+      "officialUrl": "https://thefunplex.com/east-hanover/",
+      "eventsUrl": "https://thefunplex.com/east-hanover/indoor-rides-attractions/",
+      "townId": "east-hanover-township",
+      "notes": "Official attraction page allows under-four children in Foam Frenzy with an adult. Other attractions have separate height/age limits; laser tag recommended seven-plus. Not every ride is suitable for a three-year-old. Funtober listed Sept 26–Oct 11 and is past the requested current window, so no future occurrences inferred.",
+      "ageRange": null,
+      "ageSuitability": {
+        "age3": "Foam Frenzy requires adult accompaniment under age four; height limits on rides vary.",
+        "source": "https://thefunplex.com/east-hanover/indoor-rides-attractions/"
+      }
+    },
+    {
+      "id": "little-grounds-livingston",
+      "label": "Little Grounds Livingston (opening not confirmed)",
+      "status": "reference_only",
+      "officialUrl": "https://www.littlegroundsnj.com/",
+      "eventsUrl": "https://www.littlegroundsnj.com/",
+      "townId": "livingston-township",
+      "notes": "Official homepage says COMING SOON. Record only as a discovery lead; opening date, public access and ages not verified. Do not publish as an open venue or invent events.",
+      "ageRange": null,
+      "ageSuitability": null
+    }
+  ],
+  "eventCount": 56,
+  "publishedBySource": {
+    "art-cafe-westfield": 45,
+    "imagine-that-florham-park": 1,
+    "small-town-westfield": 10
+  },
+  "eventEvidence": [
+    {
+      "id": "art-cafe-westfield-1937352-2026-10-16",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-16T13:30:00",
+      "endsAt": "2026-10-16T14:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-10-16&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934300-2026-10-18",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-18T09:30:00",
+      "endsAt": "2026-10-18T10:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-10-18&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "imagine-that-florham-park-peppa-pig-13306a65-2026-10-18",
+      "title": "Peppa Pig Visits! at Imagine That",
+      "startsAt": "2026-10-18T11:00:00",
+      "endsAt": null,
+      "sourceUrl": "https://imaginethatmuseum.com/events/",
+      "evidenceUrl": "https://book.peek.com/s/bca84ae5-49fb-4cd2-826b-883bbfbac8ad/p_r4pvgz--13306a65-4d61-4ab7-aa89-d1105977403a",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-2012686-2026-10-19",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-19T15:45:00",
+      "endsAt": "2026-10-19T16:45:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-10-19&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934308-2026-10-20",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-20T10:00:00",
+      "endsAt": "2026-10-20T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-10-20&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934315-2026-10-22",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-22T14:00:00",
+      "endsAt": "2026-10-22T15:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-10-22&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934317-2026-10-23",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-23T10:30:00",
+      "endsAt": "2026-10-23T11:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-10-23&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1937352-2026-10-23",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-23T13:30:00",
+      "endsAt": "2026-10-23T14:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-10-23&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934300-2026-10-25",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-25T09:30:00",
+      "endsAt": "2026-10-25T10:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-10-25&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-2012686-2026-10-26",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-26T15:45:00",
+      "endsAt": "2026-10-26T16:45:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-10-26&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934308-2026-10-27",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-27T10:00:00",
+      "endsAt": "2026-10-27T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-10-27&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934315-2026-10-29",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-29T14:00:00",
+      "endsAt": "2026-10-29T15:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-10-29&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934317-2026-10-30",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-30T10:30:00",
+      "endsAt": "2026-10-30T11:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-10-30&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1937352-2026-10-30",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-10-30T13:30:00",
+      "endsAt": "2026-10-30T14:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-10-30&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-spooktacular-2098705-2026-10-30",
+      "title": "Small Town Spooktacular",
+      "startsAt": "2026-10-30T16:30:00",
+      "endsAt": "2026-10-30T18:30:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/2098705?date=2026-10-30",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934300-2026-11-01",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-01T09:30:00",
+      "endsAt": "2026-11-01T10:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-01&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934308-2026-11-03",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-03T10:00:00",
+      "endsAt": "2026-11-03T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-11-03&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1994706-2026-11-04",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-04T10:00:00",
+      "endsAt": "2026-11-04T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1994706?day=2026-11-04&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934315-2026-11-05",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-05T14:00:00",
+      "endsAt": "2026-11-05T15:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-11-05&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1937352-2026-11-06",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-06T13:30:00",
+      "endsAt": "2026-11-06T14:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-11-06&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934300-2026-11-08",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-08T09:30:00",
+      "endsAt": "2026-11-08T10:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-08&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-2012686-2026-11-09",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-09T15:45:00",
+      "endsAt": "2026-11-09T16:45:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-11-09&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934308-2026-11-10",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-10T10:00:00",
+      "endsAt": "2026-11-10T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-11-10&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-11-10",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-11-10T17:00:00",
+      "endsAt": "2026-11-10T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-11-10",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-11-11",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-11-11T17:00:00",
+      "endsAt": "2026-11-11T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-11-11",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934315-2026-11-12",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-12T14:00:00",
+      "endsAt": "2026-11-12T15:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-11-12&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934317-2026-11-13",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-13T10:30:00",
+      "endsAt": "2026-11-13T11:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-11-13&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1937352-2026-11-13",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-13T13:30:00",
+      "endsAt": "2026-11-13T14:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-11-13&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934300-2026-11-15",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-15T09:30:00",
+      "endsAt": "2026-11-15T10:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-15&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-2012686-2026-11-16",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-16T15:45:00",
+      "endsAt": "2026-11-16T16:45:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-11-16&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934308-2026-11-17",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-17T10:00:00",
+      "endsAt": "2026-11-17T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-11-17&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934315-2026-11-19",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-19T14:00:00",
+      "endsAt": "2026-11-19T15:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-11-19&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934317-2026-11-20",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-20T10:30:00",
+      "endsAt": "2026-11-20T11:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-11-20&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1937352-2026-11-20",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-20T13:30:00",
+      "endsAt": "2026-11-20T14:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-11-20&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934300-2026-11-22",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-22T09:30:00",
+      "endsAt": "2026-11-22T10:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-22&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-2012686-2026-11-23",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-23T15:45:00",
+      "endsAt": "2026-11-23T16:45:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-11-23&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934308-2026-11-24",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-24T10:00:00",
+      "endsAt": "2026-11-24T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-11-24&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934300-2026-11-29",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-29T09:30:00",
+      "endsAt": "2026-11-29T10:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-29&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-2012686-2026-11-30",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-11-30T15:45:00",
+      "endsAt": "2026-11-30T16:45:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-11-30&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-11-30",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-11-30T17:00:00",
+      "endsAt": "2026-11-30T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-11-30",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934308-2026-12-01",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-01T10:00:00",
+      "endsAt": "2026-12-01T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-12-01&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-12-01",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-12-01T17:00:00",
+      "endsAt": "2026-12-01T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-01",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-12-02",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-12-02T17:00:00",
+      "endsAt": "2026-12-02T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-02",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934315-2026-12-03",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-03T14:00:00",
+      "endsAt": "2026-12-03T15:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-12-03&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934317-2026-12-04",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-04T10:30:00",
+      "endsAt": "2026-12-04T11:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-12-04&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1937352-2026-12-04",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-04T13:30:00",
+      "endsAt": "2026-12-04T14:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-12-04&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934300-2026-12-06",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-06T09:30:00",
+      "endsAt": "2026-12-06T10:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-12-06&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-2012686-2026-12-07",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-07T15:45:00",
+      "endsAt": "2026-12-07T16:45:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-12-07&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934308-2026-12-08",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-08T10:00:00",
+      "endsAt": "2026-12-08T11:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-12-08&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934315-2026-12-10",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-10T14:00:00",
+      "endsAt": "2026-12-10T15:00:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-12-10&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1934317-2026-12-11",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-11T10:30:00",
+      "endsAt": "2026-12-11T11:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-12-11&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "art-cafe-westfield-1937352-2026-12-11",
+      "title": "Open Studio for Littles (ages 2–5)",
+      "startsAt": "2026-12-11T13:30:00",
+      "endsAt": "2026-12-11T14:30:00",
+      "sourceUrl": "https://www.artcafenj.com/openstudiolittles",
+      "evidenceUrl": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-12-11&view=cal&source=semesters",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-12-14",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-12-14T17:00:00",
+      "endsAt": "2026-12-14T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-14",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-12-15",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-12-15T17:00:00",
+      "endsAt": "2026-12-15T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-15",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-12-16",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-12-16T17:00:00",
+      "endsAt": "2026-12-16T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-16",
+      "status": "published"
+    },
+    {
+      "id": "small-town-westfield-santa-1104097-2026-12-17",
+      "title": "Santa Experience at Small Town Play Café",
+      "startsAt": "2026-12-17T17:00:00",
+      "endsAt": "2026-12-17T19:00:00",
+      "sourceUrl": "https://smalltownplaycafe.com/classes-events/",
+      "evidenceUrl": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-17",
+      "status": "published"
+    }
+  ],
+  "coordinates": {
+    "small-town-westfield": {
+      "address": "278 North Avenue East, Westfield, NJ 07090",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=278+North+Avenue+East%2C+Westfield%2C+NJ+07090&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "60573674"
+          },
+          "coordinates": {
+            "x": -74.3431399894,
+            "y": 40.650761669702
+          },
+          "addressComponents": {
+            "zip": "07090",
+            "streetName": "NORTH",
+            "preType": "",
+            "city": "WESTFIELD",
+            "preDirection": "",
+            "suffixDirection": "E",
+            "fromAddress": "264",
+            "state": "NJ",
+            "suffixType": "AVE",
+            "toAddress": "400",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "278 NORTH AVE E, WESTFIELD, NJ, 07090"
+        }
+      ]
+    },
+    "art-cafe-westfield": {
+      "address": "317 South Avenue West, Westfield, NJ 07090",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=317+South+Avenue+West%2C+Westfield%2C+NJ+07090&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "L",
+            "tigerLineId": "60568323"
+          },
+          "coordinates": {
+            "x": -74.346136625461,
+            "y": 40.648781094583
+          },
+          "addressComponents": {
+            "zip": "07090",
+            "streetName": "SOUTH",
+            "preType": "",
+            "city": "WESTFIELD",
+            "preDirection": "",
+            "suffixDirection": "W",
+            "fromAddress": "301",
+            "state": "NJ",
+            "suffixType": "AVE",
+            "toAddress": "399",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "317 SOUTH AVE W, WESTFIELD, NJ, 07090"
+        }
+      ]
+    },
+    "imagine-that-florham-park": {
+      "address": "4 Vreeland Road, Florham Park, NJ 07932",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4+Vreeland+Road%2C+Florham+Park%2C+NJ+07932&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "625419684"
+          },
+          "coordinates": {
+            "x": -74.37352162262,
+            "y": 40.79343840972
+          },
+          "addressComponents": {
+            "zip": "07932",
+            "streetName": "VREELAND",
+            "preType": "",
+            "city": "FLORHAM PARK",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "2",
+            "state": "NJ",
+            "suffixType": "RD",
+            "toAddress": "18",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "4 VREELAND RD, FLORHAM PARK, NJ, 07932"
+        }
+      ]
+    },
+    "catch-air-paramus": {
+      "input": "224 State Route 4, Paramus, NJ 07652",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=224+State+Route+4%2C+Paramus%2C+NJ+07652&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "656020641"
+          },
+          "coordinates": {
+            "x": -74.052541878007,
+            "y": 40.915424030496
+          },
+          "addressComponents": {
+            "zip": "07652",
+            "streetName": "4",
+            "preType": "STATE RTE",
+            "city": "PARAMUS",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "212",
+            "state": "NJ",
+            "suffixType": "",
+            "toAddress": "250",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "224 STATE RTE 4, PARAMUS, NJ, 07652"
+        }
+      ]
+    },
+    "funplex-east-hanover": {
+      "input": "182 State Route 10, East Hanover, NJ 07936",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=182+State+Route+10%2C+East+Hanover%2C+NJ+07936&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "L",
+            "tigerLineId": "643813754"
+          },
+          "coordinates": {
+            "x": -74.377770897397,
+            "y": 40.808511971844
+          },
+          "addressComponents": {
+            "zip": "07936",
+            "streetName": "10",
+            "preType": "STATE RTE",
+            "city": "EAST HANOVER",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "144",
+            "state": "NJ",
+            "suffixType": "",
+            "toAddress": "188",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "182 STATE RTE 10, EAST HANOVER, NJ, 07936"
+        }
+      ]
+    },
+    "wordplay-livingston": {
+      "input": "4215 Town Center Way, Livingston, NJ 07039",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4215+Town+Center+Way%2C+Livingston%2C+NJ+07039&benchmark=Public_AR_Current&format=json",
+      "matches": []
+    }
+  },
+  "preservedExistingRecords": 6745,
+  "deduplication": "No existing record matched the new venue names/addresses; 45 Art Cafe entries deduplicated by official activity-set plus day across adjacent calendar months. All existing records restored exactly after the scoped importer legacy quality pass.",
+  "notImported": [
+    {
+      "name": "Kidz Village Kenilworth",
+      "reason": "Official site retrieval failed; third-party results suggest closure. Do not use old recommendation posts as proof of an open venue."
+    },
+    {
+      "name": "Little Grounds Livingston",
+      "reason": "Official homepage says coming soon; no opening date verified."
+    },
+    {
+      "name": "Small Town ongoing 6-week series",
+      "reason": "Late enrollment for already-running sessions unconfirmed."
+    },
+    {
+      "name": "Art Cafe one-off event prose",
+      "reason": "Mixed weekday/date text; use verified Sawyer calendar instead."
+    },
+    {
+      "name": "Ordinary open play opening hours",
+      "reason": "Venue hours were not expanded into event occurrences."
+    },
+    {
+      "name": "Funplex Funtober",
+      "reason": "Published Sept 26–Oct 11 dates precede the current window."
+    }
+  ]
+}

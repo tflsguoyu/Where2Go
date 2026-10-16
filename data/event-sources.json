@@ -2720,119 +2720,123 @@
       ],
       "notes": "Michaels public events page exposes named kids/craft events, but local availability can vary by store; these records are generated conservatively across nearby stores.",
       "lastCheckedAt": "2026-10-16",
-      "retailRefreshNotes": "Four local review leads preserved from two official October programs. Nov/Dec sessions not yet verified; age 13+ lantern event excluded. Review-only leads stored.",
+      "retailRefreshNotes": "Official class detail resolves time10am–noon and age4+ for both October programs. Retained review to exclude from age-three recommendations; no November/December program verified.",
       "configuredEvents": [
         {
           "externalId": "watchung-5191-2026-10-17",
           "title": "Michaels Kids Club: Halloween Fest",
           "date": "2026-10-17",
-          "startTime": "00:00",
-          "endTime": null,
+          "startTime": "10:00",
+          "endTime": "12:00",
           "venue": "Michaels Watchung",
           "townId": "watchung-borough",
           "address": "1515 US Hwy 22 Suite 34, Watchung, NJ 07069",
           "lat": 40.6392357,
           "lng": -74.4219689,
           "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours%3A-halloween-fest-165030318324104",
-          "summary": "National in-store children’s craft program. Local Watchung/Bridgewater booking and times remain unverified. Chenille craft is listed for ages 4+; age-3 suitability is not confirmed.",
+          "summary": "Official class page lists 10am–noon and ages4+. Watchung class location confirmed; Oct24 nearby availability also lists Bridgewater. Remains review to avoid recommending an age4+ activity for age3.",
           "ages": [
             "preschool",
             "early-elementary",
             "tween"
           ],
           "status": "review",
-          "timeStatus": "unknown",
-          "timeLabel": "Local event time needs confirmation",
-          "reviewNotes": "Date confirmed on national official calendar; local availability and time not confirmed. Midnight is a storage placeholder.",
+          "timeStatus": "confirmed",
+          "timeLabel": "10:00 AM–12:00 PM",
+          "reviewNotes": "Official class detail explicitly states 4+ years. Excluded from age-three recommendations; no need to ask user to verify the known age restriction.",
           "tags": [
             "family-compatible",
             "official-calendar"
           ],
-          "confidence": 0.9
+          "confidence": 0.9,
+          "minimumAge": 4
         },
         {
           "externalId": "watchung-5191-2026-10-24",
           "title": "Michaels Kids Club: Chenille Stem Ghost or Spider",
           "date": "2026-10-24",
-          "startTime": "00:00",
-          "endTime": null,
+          "startTime": "10:00",
+          "endTime": "12:00",
           "venue": "Michaels Watchung",
           "townId": "watchung-borough",
           "address": "1515 US Hwy 22 Suite 34, Watchung, NJ 07069",
           "lat": 40.6392357,
           "lng": -74.4219689,
           "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours:-chenille-stem-ghost-or-spider-142265502677384",
-          "summary": "National in-store children’s craft program. Local Watchung/Bridgewater booking and times remain unverified. Chenille craft is listed for ages 4+; age-3 suitability is not confirmed.",
+          "summary": "Official class page lists 10am–noon and ages4+. Watchung class location confirmed; Oct24 nearby availability also lists Bridgewater. Remains review to avoid recommending an age4+ activity for age3.",
           "ages": [
             "preschool",
             "early-elementary",
             "tween"
           ],
           "status": "review",
-          "timeStatus": "unknown",
-          "timeLabel": "Local event time needs confirmation",
-          "reviewNotes": "Date confirmed on national official calendar; local availability and time not confirmed. Midnight is a storage placeholder.",
+          "timeStatus": "confirmed",
+          "timeLabel": "10:00 AM–12:00 PM",
+          "reviewNotes": "Official class detail explicitly states 4+ years. Excluded from age-three recommendations; no need to ask user to verify the known age restriction.",
           "tags": [
             "family-compatible",
             "official-calendar"
           ],
-          "confidence": 0.9
+          "confidence": 0.9,
+          "minimumAge": 4
         },
         {
           "externalId": "bridgewater-9938-2026-10-17",
           "title": "Michaels Kids Club: Halloween Fest",
           "date": "2026-10-17",
-          "startTime": "00:00",
-          "endTime": null,
+          "startTime": "10:00",
+          "endTime": "12:00",
           "venue": "Michaels Bridgewater",
           "townId": "bridgewater-township",
           "address": "135 Promenade Blvd, Bridgewater, NJ 08807",
           "lat": 40.5629632,
           "lng": -74.5557133,
           "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours%3A-halloween-fest-165030318324104",
-          "summary": "National in-store children’s craft program. Local Watchung/Bridgewater booking and times remain unverified. Chenille craft is listed for ages 4+; age-3 suitability is not confirmed.",
+          "summary": "Official class page lists 10am–noon and ages4+. Watchung class location confirmed; Oct24 nearby availability also lists Bridgewater. Remains review to avoid recommending an age4+ activity for age3.",
           "ages": [
             "preschool",
             "early-elementary",
             "tween"
           ],
           "status": "review",
-          "timeStatus": "unknown",
-          "timeLabel": "Local event time needs confirmation",
-          "reviewNotes": "Date confirmed on national official calendar; local availability and time not confirmed. Midnight is a storage placeholder.",
+          "timeStatus": "confirmed",
+          "timeLabel": "10:00 AM–12:00 PM",
+          "reviewNotes": "Official class detail explicitly states 4+ years. Excluded from age-three recommendations; no need to ask user to verify the known age restriction.",
           "tags": [
             "family-compatible",
             "official-calendar"
           ],
-          "confidence": 0.9
+          "confidence": 0.9,
+          "minimumAge": 4
         },
         {
           "externalId": "bridgewater-9938-2026-10-24",
           "title": "Michaels Kids Club: Chenille Stem Ghost or Spider",
           "date": "2026-10-24",
-          "startTime": "00:00",
-          "endTime": null,
+          "startTime": "10:00",
+          "endTime": "12:00",
           "venue": "Michaels Bridgewater",
           "townId": "bridgewater-township",
           "address": "135 Promenade Blvd, Bridgewater, NJ 08807",
           "lat": 40.5629632,
           "lng": -74.5557133,
           "url": "https://www.michaels.com/class/lil%E2%80%99-witching-hours:-chenille-stem-ghost-or-spider-142265502677384",
-          "summary": "National in-store children’s craft program. Local Watchung/Bridgewater booking and times remain unverified. Chenille craft is listed for ages 4+; age-3 suitability is not confirmed.",
+          "summary": "Official class page lists 10am–noon and ages4+. Watchung class location confirmed; Oct24 nearby availability also lists Bridgewater. Remains review to avoid recommending an age4+ activity for age3.",
           "ages": [
             "preschool",
             "early-elementary",
             "tween"
           ],
           "status": "review",
-          "timeStatus": "unknown",
-          "timeLabel": "Local event time needs confirmation",
-          "reviewNotes": "Date confirmed on national official calendar; local availability and time not confirmed. Midnight is a storage placeholder.",
+          "timeStatus": "confirmed",
+          "timeLabel": "10:00 AM–12:00 PM",
+          "reviewNotes": "Official class detail explicitly states 4+ years. Excluded from age-three recommendations; no need to ask user to verify the known age restriction.",
           "tags": [
             "family-compatible",
             "official-calendar"
           ],
-          "confidence": 0.9
+          "confidence": 0.9,
+          "minimumAge": 4
         }
       ],
       "sourceTypes": [
@@ -18224,6 +18228,2447 @@
       "lng": -74.063050838195,
       "coordinateSource": "https://geocoding.geo.census.gov/geocoder/",
       "locationVerifiedAt": "2026-10-16"
+    },
+    {
+      "id": "small-town-westfield",
+      "label": "Small Town Play Café Westfield",
+      "type": "indoor-play",
+      "townId": "westfield-town",
+      "website": "https://smalltownplaycafe.com/",
+      "eventsUrl": "https://smalltownplaycafe.com/classes-events/",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "tier": 3,
+      "sourceTypes": [
+        "indoor_playground"
+      ],
+      "lastCheckedAt": "2026-10-16",
+      "discoveryChannel": "official_site_fallback_during_xiaohongshu_access_check",
+      "discoveryAudit": "social-discovery-source-audit-2026-10-16.json",
+      "configuredEvents": [
+        {
+          "externalId": "spooktacular-2098705",
+          "title": "Small Town Spooktacular",
+          "date": "2026-10-30",
+          "startTime": "16:30",
+          "endTime": "18:30",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Public Halloween open play with pizza, a treat and a children’s drink. Costumes encouraged; book the specific special-event ticket. The venue is designed for children six and under.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See official booking",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/2098705?date=2026-10-30",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-11-10",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-11-10",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-11-11",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-11-11",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-11-30",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-11-30",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-12-01",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-01",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-12-02",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-02",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-12-14",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-14",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-12-15",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-15",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-12-16",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-16",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "santa-1104097",
+          "title": "Santa Experience at Small Town Play Café",
+          "date": "2026-12-17",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://smalltownplaycafe.com/classes-events/",
+          "summary": "Santa photo mini-session with three digital images, open play and Santa storytime. Official Westfield calendar lists this date; reserve a ticket and confirm the current price and availability. Venue designed for children six and under.",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Tickets; reserve in advance",
+          "cost": "See booking; Nov 10 listed $80 general admission",
+          "confidence": 0.94,
+          "status": "published",
+          "evidenceSource": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1104097?date=2026-12-17",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        }
+      ],
+      "address": "278 North Avenue East, Westfield, NJ 07090",
+      "lat": 40.650761669702,
+      "lng": -74.3431399894,
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=278+North+Avenue+East%2C+Westfield%2C+NJ+07090&benchmark=Public_AR_Current&format=json",
+      "coordinateStatus": "address_interpolation",
+      "ageRange": {
+        "minimumMonths": 6,
+        "maximumYears": 6,
+        "source": "https://smalltownplaycafe.com/about/"
+      },
+      "notes": "Official venue and Roller booking links verified 2026-10-16. Dates explicitly listed in 2026; no daily open-play occurrences generated. Reservations strongly encouraged; age-3-and-under music class exists but individual sessions must be read from booking availability. Public class series already underway stay as leads until late enrollment is confirmed.",
+      "programLeads": [
+        {
+          "title": "Music Class for Littles with Ms. Kelly",
+          "ageMaximumYears": 3,
+          "url": "https://ecom.roller.app/smalltownplaycafe/onlinecheckout/en-us/product/1098456",
+          "status": "needs_dated_availability"
+        },
+        {
+          "title": "Twirl & Play / Little Engineering / Little Scientists / Little Chefs",
+          "status": "needs_late_enrollment_check",
+          "url": "https://smalltownplaycafe.com/classes-events/"
+        }
+      ]
+    },
+    {
+      "id": "art-cafe-westfield",
+      "label": "Art Cafe Westfield",
+      "type": "arts-crafts",
+      "townId": "westfield-town",
+      "website": "https://www.artcafenj.com/",
+      "eventsUrl": "https://www.artcafenj.com/openstudiolittles",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "tier": 3,
+      "sourceTypes": [
+        "arts_studio"
+      ],
+      "lastCheckedAt": "2026-10-16",
+      "discoveryChannel": "official_site_fallback_during_xiaohongshu_access_check",
+      "discoveryAudit": "social-discovery-source-audit-2026-10-16.json",
+      "configuredEvents": [
+        {
+          "externalId": "1937352",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-16",
+          "startTime": "13:30",
+          "endTime": "14:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-10-16&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934300",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-18",
+          "startTime": "09:30",
+          "endTime": "10:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-10-18&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "2012686",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-19",
+          "startTime": "15:45",
+          "endTime": "16:45",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-10-19&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934308",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-20",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-10-20&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934315",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-22",
+          "startTime": "14:00",
+          "endTime": "15:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-10-22&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934317",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-23",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-10-23&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1937352",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-23",
+          "startTime": "13:30",
+          "endTime": "14:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-10-23&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934300",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-25",
+          "startTime": "09:30",
+          "endTime": "10:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-10-25&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "2012686",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-26",
+          "startTime": "15:45",
+          "endTime": "16:45",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-10-26&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934308",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-27",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-10-27&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934315",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-29",
+          "startTime": "14:00",
+          "endTime": "15:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-10-29&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934317",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-30",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-10-30&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1937352",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-10-30",
+          "startTime": "13:30",
+          "endTime": "14:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-10-30&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934300",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-01",
+          "startTime": "09:30",
+          "endTime": "10:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-01&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934308",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-03",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-11-03&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1994706",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-04",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1994706?day=2026-11-04&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934315",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-05",
+          "startTime": "14:00",
+          "endTime": "15:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-11-05&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1937352",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-06",
+          "startTime": "13:30",
+          "endTime": "14:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-11-06&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934300",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-08",
+          "startTime": "09:30",
+          "endTime": "10:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-08&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "2012686",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-09",
+          "startTime": "15:45",
+          "endTime": "16:45",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-11-09&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934308",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-10",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-11-10&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934315",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-12",
+          "startTime": "14:00",
+          "endTime": "15:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-11-12&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934317",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-13",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-11-13&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1937352",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-13",
+          "startTime": "13:30",
+          "endTime": "14:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-11-13&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934300",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-15",
+          "startTime": "09:30",
+          "endTime": "10:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-15&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "2012686",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-16",
+          "startTime": "15:45",
+          "endTime": "16:45",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-11-16&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934308",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-17",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-11-17&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934315",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-19",
+          "startTime": "14:00",
+          "endTime": "15:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-11-19&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934317",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-20",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-11-20&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1937352",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-20",
+          "startTime": "13:30",
+          "endTime": "14:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-11-20&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934300",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-22",
+          "startTime": "09:30",
+          "endTime": "10:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-22&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "2012686",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-23",
+          "startTime": "15:45",
+          "endTime": "16:45",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-11-23&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934308",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-24",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-11-24&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934300",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-29",
+          "startTime": "09:30",
+          "endTime": "10:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-11-29&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "2012686",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-11-30",
+          "startTime": "15:45",
+          "endTime": "16:45",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-11-30&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934308",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-01",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-12-01&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934315",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-03",
+          "startTime": "14:00",
+          "endTime": "15:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-12-03&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934317",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-04",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-12-04&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1937352",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-04",
+          "startTime": "13:30",
+          "endTime": "14:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-12-04&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934300",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-06",
+          "startTime": "09:30",
+          "endTime": "10:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934300?day=2026-12-06&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "2012686",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-07",
+          "startTime": "15:45",
+          "endTime": "16:45",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/2012686?day=2026-12-07&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934308",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-08",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934308?day=2026-12-08&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934315",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-10",
+          "startTime": "14:00",
+          "endTime": "15:00",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934315?day=2026-12-10&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1934317",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-11",
+          "startTime": "10:30",
+          "endTime": "11:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1934317?day=2026-12-11&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        },
+        {
+          "externalId": "1937352",
+          "title": "Open Studio for Littles (ages 2–5)",
+          "date": "2026-12-11",
+          "startTime": "13:30",
+          "endTime": "14:30",
+          "url": "https://www.artcafenj.com/openstudiolittles",
+          "summary": "Caregiver-accompanied sensory and process-art session for ages 2–5. Painting, textured materials and imaginative stations; adults remain on-site. Book the individual dated session; availability and pricing can change.",
+          "ages": [
+            "toddler",
+            "preschool"
+          ],
+          "registration": "Drop-in reservation; caregiver on-site",
+          "cost": "See dated booking; Sunday drop-in verified $32/class plus fees",
+          "status": "published",
+          "reviewNotes": null,
+          "confidence": 0.96,
+          "evidenceSource": "https://www.hisawyer.com/art-cafe-1/schedules/activity-set/1937352?day=2026-12-11&view=cal&source=semesters",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        }
+      ],
+      "address": "317 South Avenue West, Westfield, NJ 07090",
+      "lat": 40.648781094583,
+      "lng": -74.346136625461,
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=317+South+Avenue+West%2C+Westfield%2C+NJ+07090&benchmark=Public_AR_Current&format=json",
+      "coordinateStatus": "address_interpolation",
+      "ageRange": {
+        "minimumYears": 2,
+        "maximumYears": 5,
+        "source": "https://www.artcafenj.com/openstudiolittles"
+      },
+      "notes": "45 individual dated Sawyer calendar entries for Open Studio: Littles were read across October–December 2026. Only actual listed sessions imported: no extrapolation through Dec 31, no Big Kids Saturday classes for age 3. Drop-in option and $32/class verified on Sunday session; prices for other schedules must be checked. Caregiver remains on-site. Public event page contains mixed weekday/date text, so unverified one-off events are not imported from prose alone."
+    },
+    {
+      "id": "imagine-that-florham-park",
+      "label": "Imagine That! Discovery Center",
+      "type": "indoor-play",
+      "townId": "florham-park-borough",
+      "website": "https://imaginethatmuseum.com/",
+      "eventsUrl": "https://imaginethatmuseum.com/events/",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "tier": 3,
+      "sourceTypes": [
+        "indoor_playground"
+      ],
+      "lastCheckedAt": "2026-10-16",
+      "discoveryChannel": "official_site_fallback_during_xiaohongshu_access_check",
+      "discoveryAudit": "social-discovery-source-audit-2026-10-16.json",
+      "configuredEvents": [
+        {
+          "externalId": "peppa-pig-13306a65",
+          "title": "Peppa Pig Visits! at Imagine That",
+          "date": "2026-10-18",
+          "startTime": "11:00",
+          "endTime": null,
+          "timeStatus": "end_time_missing",
+          "url": "https://imaginethatmuseum.com/events/",
+          "summary": "Peppa Pig dance-along included with general admission. Optional VIP photo meet-and-greet costs an additional $5 per child and requires reservations. Official Peek calendar confirms October 18 at 11 AM; ending time is not supplied. Special events may be cancelled for low ticket sales.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "registration": "Admission ticket; VIP reservation required",
+          "cost": "General admission; optional VIP +$5/child",
+          "status": "published",
+          "confidence": 0.95,
+          "evidenceSource": "https://book.peek.com/s/bca84ae5-49fb-4cd2-826b-883bbfbac8ad/p_r4pvgz--13306a65-4d61-4ab7-aa89-d1105977403a",
+          "tags": [
+            "official-calendar",
+            "caregiver-child",
+            "new-source-discovery"
+          ]
+        }
+      ],
+      "address": "4 Vreeland Road, Florham Park, NJ 07932",
+      "lat": 40.79343840972,
+      "lng": -74.37352162262,
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4+Vreeland+Road%2C+Florham+Park%2C+NJ+07932&benchmark=Public_AR_Current&format=json",
+      "coordinateStatus": "address_interpolation",
+      "notes": "Official website and embedded Peek ticket calendar verified. Indoor discovery and pretend play for young children; special events may be cancelled if advance ticket sales are low. Normal opening hours are not expanded into daily events. October 27 delayed opening and October 31 early close noted on home page.",
+      "ageSuitability": {
+        "age3": "Suitable young-child discovery and pretend play; exact numerical admission limits not supplied on checked official pages.",
+        "source": "https://imaginethatmuseum.com/about-us/"
+      }
+    },
+    {
+      "id": "catch-air-paramus",
+      "label": "Catch Air Paramus",
+      "type": "indoor-play",
+      "townId": "paramus-borough",
+      "website": "https://catchair.com/location/paramus-nj/",
+      "eventsUrl": "https://catchair.com/location/paramus-nj/",
+      "status": "manual_review",
+      "parser": "manual",
+      "tier": 3,
+      "sourceTypes": [
+        "indoor_playground"
+      ],
+      "lastCheckedAt": "2026-10-16",
+      "discoveryChannel": "official_site_fallback_during_xiaohongshu_access_check",
+      "discoveryAudit": "social-discovery-source-audit-2026-10-16.json",
+      "configuredEvents": [],
+      "address": "224 Route 4, Paramus, NJ 07652",
+      "ageRange": {
+        "maximumYears": 10,
+        "toddlerAreaMaximumYears": 4,
+        "source": "https://catchair.com/location/paramus-nj/"
+      },
+      "notes": "Official page verifies open location and Tiny Town area for age four and under, including age three. Walk-ins normally allowed; capacity and temporary closures can change. Caregiver stays on-site. Page gives conflicting regular/grip-sock wording; confirm socks directly. No dated public special events found; ordinary business hours are not event occurrences.",
+      "lat": 40.915424030496,
+      "lng": -74.052541878007,
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=224+State+Route+4%2C+Paramus%2C+NJ+07652&benchmark=Public_AR_Current&format=json",
+      "coordinateStatus": "address_interpolation"
+    },
+    {
+      "id": "wordplay-livingston",
+      "label": "WordPlay Livingston",
+      "type": "sensory-play",
+      "townId": "livingston-township",
+      "website": "https://www.wordplaynj.com/",
+      "eventsUrl": "https://www.wordplaynj.com/calendar",
+      "status": "manual_review",
+      "parser": "manual",
+      "tier": 3,
+      "sourceTypes": [
+        "arts_studio"
+      ],
+      "lastCheckedAt": "2026-10-16",
+      "discoveryChannel": "official_site_fallback_during_xiaohongshu_access_check",
+      "discoveryAudit": "social-discovery-source-audit-2026-10-16.json",
+      "configuredEvents": [],
+      "address": "4215B Town Center Way, 2nd Floor, Livingston, NJ 07039",
+      "ageRange": {
+        "maximumYearsExclusive": 4,
+        "source": "https://www.wordplaynj.com/calendar"
+      },
+      "notes": "Official calendar introduction confirms sensory play for children under four. It advertises winter classes but a current dated 2026 fall session was not verified; venue/program source only, no dates invented. Reading groups for ages four and up are not age-three programming."
+    },
+    {
+      "id": "funplex-east-hanover",
+      "label": "The Funplex East Hanover",
+      "type": "indoor-play",
+      "townId": "east-hanover-township",
+      "website": "https://thefunplex.com/east-hanover/",
+      "eventsUrl": "https://thefunplex.com/east-hanover/indoor-rides-attractions/",
+      "status": "manual_review",
+      "parser": "manual",
+      "tier": 3,
+      "sourceTypes": [
+        "indoor_playground"
+      ],
+      "lastCheckedAt": "2026-10-16",
+      "discoveryChannel": "official_site_fallback_during_xiaohongshu_access_check",
+      "discoveryAudit": "social-discovery-source-audit-2026-10-16.json",
+      "configuredEvents": [],
+      "address": "182 Route 10, East Hanover, NJ 07936",
+      "notes": "Official attraction page allows under-four children in Foam Frenzy with an adult. Other attractions have separate height/age limits; laser tag recommended seven-plus. Not every ride is suitable for a three-year-old. Funtober listed Sept 26–Oct 11 and is past the requested current window, so no future occurrences inferred.",
+      "ageSuitability": {
+        "age3": "Foam Frenzy requires adult accompaniment under age four; height limits on rides vary.",
+        "source": "https://thefunplex.com/east-hanover/indoor-rides-attractions/"
+      },
+      "lat": 40.808511971844,
+      "lng": -74.377770897397,
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=182+State+Route+10%2C+East+Hanover%2C+NJ+07936&benchmark=Public_AR_Current&format=json",
+      "coordinateStatus": "address_interpolation"
+    },
+    {
+      "id": "little-grounds-livingston",
+      "label": "Little Grounds Livingston (opening not confirmed)",
+      "type": "indoor-play",
+      "townId": "livingston-township",
+      "website": "https://www.littlegroundsnj.com/",
+      "eventsUrl": "https://www.littlegroundsnj.com/",
+      "status": "reference_only",
+      "parser": "manual",
+      "tier": 3,
+      "sourceTypes": [
+        "indoor_playground"
+      ],
+      "lastCheckedAt": "2026-10-16",
+      "discoveryChannel": "official_site_fallback_during_xiaohongshu_access_check",
+      "discoveryAudit": "social-discovery-source-audit-2026-10-16.json",
+      "configuredEvents": [],
+      "address": "4215 Town Center Way, Suite 8C, Livingston, NJ 07039",
+      "notes": "Official homepage says COMING SOON. Record only as a discovery lead; opening date, public access and ages not verified. Do not publish as an open venue or invent events."
+    },
+    {
+      "id": "macys-bridgewater-family-events",
+      "label": "Macy’s Bridgewater Toys R Us family events",
+      "type": "retail-family-events",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html",
+      "eventsUrl": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html#events",
+      "townId": "bridgewater-township",
+      "address": "400 Commons Way, Suite 473, Bridgewater, NJ 08807",
+      "lat": 40.584367,
+      "lng": -74.618418,
+      "coordinateSource": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html",
+      "coordinateStatus": "official_store_map",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "User-supplied official local store page. Static Google map marker on store page supplies coordinates. Body session times override the Oct16–17 10am–9pm header. Do not infer the floor from the unexplained template text “on 7”; actual in-store floor needs confirmation. Ordinary beauty promotions and adults-only sweepstakes excluded. This is a separate location from American Dream’s LEGO giraffe event.",
+      "configuredEvents": [
+        {
+          "externalId": "geoffrey-birthday-cars",
+          "title": "Celebrate Geoffrey’s Birthday — Toy Car Giveaway",
+          "date": "2026-10-16",
+          "startTime": "16:00",
+          "endTime": "18:00",
+          "summary": "Children can receive a free Gold Lightning McQueen die-cast car while supplies last. A separate Hot Wheels Halloween car offer requires a $25 purchase of qualifying toys. The official listing supplies no numerical minimum age; check toy age labels and supervise young children.",
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary",
+            "tween"
+          ],
+          "cost": "Free car while supplies last; separate bonus requires $25 qualifying purchase",
+          "registration": "See store; while supplies last",
+          "url": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html#events",
+          "evidenceSource": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html#events",
+          "confidence": 0.95,
+          "tags": [
+            "official-store-event",
+            "geoffrey-birthday",
+            "family"
+          ]
+        },
+        {
+          "externalId": "geoffrey-birthday-lego",
+          "title": "Celebrate Geoffrey’s Birthday — LEGO Giraffe Build & Coloring",
+          "date": "2026-10-17",
+          "startTime": "12:00",
+          "endTime": "14:00",
+          "summary": "Build and take home an exclusive LEGO giraffe and enjoy coloring at Toys R Us inside Macy’s Bridgewater. Minimum age and age-three participation are not specified on the official store page; confirm with the store.",
+          "status": "review",
+          "ages": [
+            "early-elementary",
+            "tween"
+          ],
+          "reviewNotes": "Minimum age and age-three eligibility not confirmed. Do not infer suitability from generic kids wording.",
+          "cost": "See store; price and supplies not specified for this session",
+          "registration": "See store",
+          "url": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html#events",
+          "evidenceSource": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html#events",
+          "confidence": 0.95,
+          "tags": [
+            "official-store-event",
+            "geoffrey-birthday",
+            "family"
+          ]
+        }
+      ],
+      "parentMallSourceId": "bridgewater-commons",
+      "retailerBrand": "Macy’s",
+      "inStoreProgramBrand": "Toys R Us",
+      "discoveryChannel": "user_supplied_local_store_page",
+      "refreshMode": "verified_configured_snapshot"
+    },
+    {
+      "id": "ikea-elizabeth-family-events",
+      "label": "IKEA Elizabeth public family events",
+      "retailerBrand": "IKEA",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://www.ikea.com/us/en/stores/elizabeth/",
+      "eventsUrl": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "Browser-rendered local page checked. IKEA Family membership and login required for registration. Numeric minimum ages not supplied on reviewed November craft/Bingo pages: retain age-three eligibility review. No adult craft nights, resale promotions or ordinary business hours imported. Configured snapshot is not a live parser.",
+      "discoveryAudit": "retail-brand-discovery-2026-10-16.json",
+      "configuredEvents": [
+        {
+          "externalId": "kids-crafting-e69f2cff",
+          "title": "IKEA Kids Crafting Club",
+          "date": "2026-11-11",
+          "startTime": "16:00",
+          "endTime": "18:00",
+          "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+          "summary": "Guided children’s craft at IKEA Elizabeth. An adult must remain with each child; supplies are limited. Free IKEA Family membership/login is required to register. Numerical minimum age and participation at age three remain unconfirmed.",
+          "reviewNotes": "Confirm minimum age/age-three participation and current registration availability.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "cost": "Free; IKEA Family membership required",
+          "registration": "IKEA Family account and event registration required",
+          "status": "review",
+          "confidence": 0.9,
+          "evidenceSource": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+          "tags": [
+            "official-store-event",
+            "retail-discovery"
+          ]
+        },
+        {
+          "externalId": "kids-crafting-e69f2cff",
+          "title": "IKEA Kids Crafting Club",
+          "date": "2026-11-18",
+          "startTime": "16:00",
+          "endTime": "18:00",
+          "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+          "summary": "Guided children’s craft at IKEA Elizabeth. An adult must remain with each child; supplies are limited. Free IKEA Family membership/login is required to register. Numerical minimum age and participation at age three remain unconfirmed.",
+          "reviewNotes": "Confirm minimum age/age-three participation and current registration availability.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "cost": "Free; IKEA Family membership required",
+          "registration": "IKEA Family account and event registration required",
+          "status": "review",
+          "confidence": 0.9,
+          "evidenceSource": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+          "tags": [
+            "official-store-event",
+            "retail-discovery"
+          ]
+        },
+        {
+          "externalId": "kids-crafting-e69f2cff",
+          "title": "IKEA Kids Crafting Club",
+          "date": "2026-11-25",
+          "startTime": "16:00",
+          "endTime": "18:00",
+          "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+          "summary": "Guided children’s craft at IKEA Elizabeth. An adult must remain with each child; supplies are limited. Free IKEA Family membership/login is required to register. Numerical minimum age and participation at age three remain unconfirmed.",
+          "reviewNotes": "Confirm minimum age/age-three participation and current registration availability.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "cost": "Free; IKEA Family membership required",
+          "registration": "IKEA Family account and event registration required",
+          "status": "review",
+          "confidence": 0.9,
+          "evidenceSource": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+          "tags": [
+            "official-store-event",
+            "retail-discovery"
+          ]
+        },
+        {
+          "externalId": "grateful-bingo-801e3250",
+          "title": "Grateful & Cozy Bingo at IKEA Elizabeth",
+          "date": "2026-11-04",
+          "startTime": "17:00",
+          "endTime": "19:00",
+          "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/grateful-and-cozy-bingo--801e3250-9526-43fe-85ac-f5dd8d9d63df/",
+          "summary": "Seasonal community bingo with prizes. Free with IKEA Family event registration; no experience required. The page does not confirm toddler participation or age-three suitability.",
+          "reviewNotes": "Minimum age and toddler suitability unconfirmed.",
+          "ages": [
+            "early-elementary",
+            "tween",
+            "teen"
+          ],
+          "cost": "Free; IKEA Family membership required",
+          "registration": "IKEA Family account and event registration required",
+          "status": "review",
+          "confidence": 0.9,
+          "evidenceSource": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/grateful-and-cozy-bingo--801e3250-9526-43fe-85ac-f5dd8d9d63df/",
+          "tags": [
+            "official-store-event",
+            "retail-discovery"
+          ]
+        },
+        {
+          "externalId": "spooky-kids-crafting-708644a1",
+          "title": "IKEA Kids Crafting Club: Spooky House Edition",
+          "date": "2026-10-21",
+          "startTime": "16:30",
+          "endTime": "18:00",
+          "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--708644a1-0678-479b-8bdd-3224ba977ad6/",
+          "status": "review",
+          "ages": [
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Official Elizabeth detail explicitly lists this date,4:30–6pm ET,free and fully booked. Adult must remain with child; IKEA Family login required. Numerical minimum age not stated.",
+          "cost": "Free; IKEA Family membership required",
+          "registration": "Fully booked as of October16",
+          "availabilityStatus": "fully_booked",
+          "reviewNotes": "Fully booked; not an actionable recommendation. Do not ask user to confirm a known lack of capacity."
+        },
+        {
+          "externalId": "spooky-kids-crafting-708644a1",
+          "title": "IKEA Kids Crafting Club: Spooky House Edition",
+          "date": "2026-10-28",
+          "startTime": "16:30",
+          "endTime": "18:00",
+          "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--708644a1-0678-479b-8bdd-3224ba977ad6/",
+          "status": "review",
+          "ages": [
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Official Elizabeth detail explicitly lists this date,4:30–6pm ET,free and fully booked. Adult must remain with child; IKEA Family login required. Numerical minimum age not stated.",
+          "cost": "Free; IKEA Family membership required",
+          "registration": "Fully booked as of October16",
+          "availabilityStatus": "fully_booked",
+          "reviewNotes": "Fully booked; not an actionable recommendation. Do not ask user to confirm a known lack of capacity."
+        }
+      ],
+      "townId": "elizabeth-city",
+      "address": "1000 IKEA Drive, Elizabeth, NJ 07201",
+      "lat": 40.672749964719,
+      "lng": -74.170546751884,
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1000+IKEA+Drive%2C+Elizabeth%2C+NJ+07201&benchmark=Public_AR_Current&format=json",
+      "coordinateStatus": "address_interpolation"
+    },
+    {
+      "id": "ikea-paramus-family-events",
+      "label": "IKEA Paramus public family events",
+      "retailerBrand": "IKEA",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://www.ikea.com/us/en/stores/paramus/",
+      "eventsUrl": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/",
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "Browser-rendered local list checked. October 24 painting fully booked. October 31 giveaway lists CT despite New Jersey location; retain timezone conflict for confirmation. Regular shopping, discounts and free coffee excluded. Do not assign events from the Elizabeth location to Paramus.",
+      "discoveryAudit": "retail-brand-discovery-2026-10-16.json",
+      "configuredEvents": [
+        {
+          "externalId": "spooktacular-pot-painting",
+          "title": "Spooktacular Plant Pot Painting at IKEA Paramus",
+          "date": "2026-10-24",
+          "startTime": "11:00",
+          "endTime": "13:00",
+          "url": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/spooktacular-plant-pot-painting--957754c4-12fe-4932-9dd0-a283f6b9791d/",
+          "summary": "Halloween plant-pot painting using an IKEA BUSKVERK pot. The local calendar marks the session fully booked and IKEA Family only; minimum age is not supplied.",
+          "reviewNotes": "Fully booked at check time; age-three eligibility unconfirmed.",
+          "ages": [
+            "preschool",
+            "early-elementary",
+            "tween"
+          ],
+          "cost": "Free; IKEA Family membership required",
+          "registration": "Fully booked at check time",
+          "status": "review",
+          "confidence": 0.86,
+          "evidenceSource": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/",
+          "tags": [
+            "official-store-event",
+            "retail-discovery"
+          ],
+          "availabilityStatus": "fully_booked"
+        },
+        {
+          "externalId": "bus-eller-godis-halloween",
+          "title": "Halloween: Say Bus eller Godis at IKEA Paramus",
+          "date": "2026-10-31",
+          "startTime": "10:00",
+          "endTime": "20:00",
+          "timeStatus": "conflicting_timezone",
+          "url": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/halloween-say-bus-eller-godis--dd9f6c1f-1b41-4ac8-b11e-929f0dda88a4/",
+          "summary": "October31,2026: children under10 receive one complimentary lollipop while supplies last; no registration. Official Paramus page labels10am–8pm CT despite New Jersey location. Eastern event hours remain unresolved.",
+          "reviewNotes": "Official listing says 10 AM–8 PM CT; cannot assume Eastern time or substitute store hours. Stored times are unresolved wall-clock labels and this record stays hidden.",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "cost": "Free while supplies last",
+          "registration": "No registration required",
+          "status": "review",
+          "confidence": 0.8,
+          "evidenceSource": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/",
+          "tags": [
+            "official-store-event",
+            "retail-discovery"
+          ]
+        }
+      ],
+      "townId": "paramus-borough",
+      "address": "100 IKEA Drive, Paramus, NJ 07652",
+      "lat": 40.923599562729,
+      "lng": -74.076841552356,
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=100+IKEA+Drive%2C+Paramus%2C+NJ+07652&benchmark=Public_AR_Current&format=json",
+      "coordinateStatus": "address_interpolation"
+    },
+    {
+      "id": "tons-of-toys-madison",
+      "label": "Tons of Toys Madison",
+      "retailerBrand": "Tons of Toys",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://tonsoftoys.com/",
+      "eventsUrl": "https://tonsoftoys.com/",
+      "status": "manual_review",
+      "parser": "manual",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "Official site verifies local branch and a FREE EVENTS & MORE entry. No current dated event recovered from the landing page; follow store-specific official social/link hub and verify dates before import.",
+      "discoveryAudit": "retail-brand-discovery-2026-10-16.json",
+      "configuredEvents": [],
+      "townId": "madison-borough",
+      "address": "64 Main Street, Madison, NJ 07940"
+    },
+    {
+      "id": "tons-of-toys-bernardsville",
+      "label": "Tons of Toys Bernardsville",
+      "retailerBrand": "Tons of Toys",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://tonsoftoys.com/",
+      "eventsUrl": "https://tonsoftoys.com/",
+      "status": "manual_review",
+      "parser": "manual",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "Official site verifies local branch and a FREE EVENTS & MORE entry. No current dated event recovered from the landing page; keep separate from the Madison branch.",
+      "discoveryAudit": "retail-brand-discovery-2026-10-16.json",
+      "configuredEvents": [],
+      "townId": "bernardsville-borough",
+      "address": "80 Morristown Road, Bernardsville, NJ 07924"
+    },
+    {
+      "id": "rei-east-hanover-family-events",
+      "label": "REI East Hanover classes and events",
+      "retailerBrand": "REI",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://www.rei.com/stores/east-hanover",
+      "eventsUrl": "https://www.rei.com/events/all-places",
+      "status": "manual_review",
+      "parser": "manual",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "Store verified on official page. Official Kids Learn to Ride course example requires minimum age five, so it is not an age-three outing. Check each local course separately; do not infer child admission from an outdoor brand or store presence.",
+      "discoveryAudit": "retail-brand-discovery-2026-10-16.json",
+      "configuredEvents": [],
+      "townId": "east-hanover-township",
+      "address": "280 Route 10, East Hanover, NJ 07936"
+    },
+    {
+      "id": "dicks-house-of-sport-jersey-city",
+      "label": "DICK’S House of Sport Jersey City",
+      "retailerBrand": "DICK’S",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://stores.dickssportinggoods.com/nj/jersey-city/1567/",
+      "eventsUrl": "https://www.dickssportinggoods.com/s/scheduling/s/1567",
+      "status": "manual_review",
+      "parser": "manual",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "Official store and scheduling checked. Current in-store listings are run clubs and private birthdays; no public age-three session verified. Rock wall, rentals and adult running events do not imply toddler suitability.",
+      "discoveryAudit": "retail-brand-discovery-2026-10-16.json",
+      "configuredEvents": [],
+      "townId": "jersey-city",
+      "address": "50 Mall Drive West, Jersey City, NJ 07310"
+    },
+    {
+      "id": "jcpenney-kids-zone-discovery",
+      "label": "JCPenney Kids Zone campaign discovery",
+      "retailerBrand": "JCPenney",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://www.jcpenney.com/m/kids-club",
+      "eventsUrl": "https://www.jcpenney.com/m/kids-club",
+      "status": "reference_only",
+      "parser": "manual",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "Official page uses image banners. Browser confirms monthly second-Saturday free craft program and October 10 11 AM–noon banner, which is already past this window. Future dates and participating local stores are not verified. National campaign discovery only; no automatic monthly recurrence or branch participation inferred.",
+      "discoveryAudit": "retail-brand-discovery-2026-10-16.json",
+      "configuredEvents": []
+    },
+    {
+      "id": "learning-express-nj-discovery",
+      "label": "Learning Express NJ branch discovery",
+      "retailerBrand": "Learning Express",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "website": "https://seagirt.learningexpress.com/pages/sea-girt-store-info",
+      "eventsUrl": "https://seagirt.learningexpress.com/pages/sea-girt-store-info",
+      "status": "reference_only",
+      "parser": "manual",
+      "lastCheckedAt": "2026-10-16",
+      "notes": "Official Sea Girt franchise page confirms local free-event offering, but this location is not evidence of a nearby core-town branch and is outside the first-pass local-town sweep. Resolve actual branches and local event dates before adding occurrences.",
+      "discoveryAudit": "retail-brand-discovery-2026-10-16.json",
+      "configuredEvents": []
+    },
+    {
+      "id": "barnes-noble-clark",
+      "label": "Barnes & Noble Clark Commons",
+      "retailerBrand": "Barnes & Noble",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://stores.barnesandnoble.com/store/3558",
+      "eventsUrl": "https://stores.barnesandnoble.com/store/3558",
+      "townId": "clark-township",
+      "address": "1255 Raritan Rd #710, Clark, NJ 07066",
+      "lastCheckedAt": "2026-10-16",
+      "refreshMode": "verified_configured_snapshot",
+      "configuredEvents": [
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-10-17",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-10-21",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-10-24",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-10-28",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-10-31",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-11-04",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-11-07",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-11-11",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-11-14",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-11-18",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-11-21",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-11-25",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-11-28",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-12-02",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-12-05",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-12-09",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-12-12",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-12-16",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-12-19",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-12-23",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        },
+        {
+          "externalId": "saturday-storytime",
+          "title": "Saturday Storytime",
+          "date": "2026-12-26",
+          "startTime": "11:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "toddler",
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "Children’s department storytime. This individual date and Eastern start time are explicitly listed on the official Clark Commons calendar. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "11:00 AM; end time not listed"
+        },
+        {
+          "externalId": "toddler-infant-storytime",
+          "title": "Toddler and Infant Storytime",
+          "date": "2026-12-30",
+          "startTime": "13:00",
+          "endTime": null,
+          "status": "published",
+          "ages": [
+            "baby",
+            "toddler",
+            "preschool"
+          ],
+          "summary": "Official Clark Commons toddler and infant storytime. This individual date and Eastern start time are explicitly listed. End time, cost and registration requirements are not stated.",
+          "timeStatus": "end_time_missing",
+          "timeLabel": "1:00 PM; end time not listed"
+        }
+      ],
+      "lat": 40.631740389758,
+      "lng": -74.306916782141,
+      "coordinateStatus": "address_interpolation",
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1255+Raritan+Rd+Clark+NJ+07066&benchmark=Public_AR_Current&format=json",
+      "phone": "848-387-0712",
+      "notes": "Official local grid explicitly lists each imported date through December 30, 2026. No recurrence extrapolation. Start times confirmed; ending times, price and registration not specified. Saturday detail https://stores.barnesandnoble.com/event/9780062195631-58 ; toddler detail https://stores.barnesandnoble.com/event/9780062215598-17 ."
+    },
+    {
+      "id": "jcpenney-woodbridge-family-events",
+      "label": "JCPenney Woodbridge Kids Zone",
+      "retailerBrand": "JCPenney",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.jcpenney.com/locations/nj/woodbridge/home-store-woodbridge-nj-1983.html",
+      "eventsUrl": "https://www.jcpenney.com/locations/nj/woodbridge/home-store-woodbridge-nj-1983.html",
+      "townId": "woodbridge-township",
+      "address": "428 Woodbridge Ctr Dr, Woodbridge, NJ 07095",
+      "lastCheckedAt": "2026-10-16",
+      "refreshMode": "verified_configured_snapshot",
+      "configuredEvents": [
+        {
+          "externalId": "3d-turkey",
+          "title": "JCPenney Kids Zone: Create Your Own 3D Turkey",
+          "date": "2026-11-14",
+          "startTime": "11:00",
+          "endTime": "12:00",
+          "url": "https://www.jcpenney.com/m/kids-club",
+          "status": "review",
+          "ages": [
+            "preschool",
+            "early-elementary"
+          ],
+          "cost": "Free craft; while supplies last",
+          "summary": "Official national November14 banner lists a 3D turkey craft, 11am–noon. Child must be present and accompanied by an adult. Woodbridge has a monthly Kids Zone program, but this local November session and age-three participation still need confirmation.",
+          "reviewNotes": "Call 732-636-6000 to confirm Woodbridge participates on Nov14, age3 eligibility, and local check-in location. Exact store coordinates remain unverified."
+        }
+      ],
+      "phone": "732-636-6000",
+      "parentMallSourceId": "woodbridge-center-family",
+      "coordinateStatus": "unverified",
+      "directionsDisabled": true,
+      "notes": "Local store page confirms a monthly Kids Zone program. Nov14 date and time are from national official image banner https://www.jcpenney.com/m/kids-club . Local November participation and numerical minimum age not confirmed. No December recurrence inferred."
+    },
+    {
+      "id": "target-watchung-family-events",
+      "label": "Target Watchung family events",
+      "retailerBrand": "Target",
+      "type": "retail-family-events",
+      "tier": 3,
+      "sourceTypes": [
+        "retail_store_family_events"
+      ],
+      "status": "importable",
+      "parser": "configured-regional-events",
+      "website": "https://www.target.com/c/store-events/-/N-9x2nj",
+      "eventsUrl": "https://www.target.com/c/store-events/-/N-9x2nj",
+      "townId": "watchung-borough",
+      "address": "1515 US Highway 22, Watchung, NJ 07069-6509",
+      "lastCheckedAt": "2026-10-16",
+      "refreshMode": "verified_configured_snapshot",
+      "configuredEvents": [
+        {
+          "externalId": "gigglescape-plush-floral",
+          "title": "Target Gigglescape Plush Floral Event — local participation pending",
+          "date": "2026-10-17",
+          "startTime": "12:00",
+          "endTime": "16:00",
+          "status": "review",
+          "ages": [
+            "preschool",
+            "early-elementary"
+          ],
+          "summary": "National official banner advertises the new Gigglescape plush floral stems and fun extras on October17 noon–4pm at most stores. Watchung participation, age-three eligibility and purchase requirements are not specified. Do not treat the bouquet as a free craft.",
+          "reviewNotes": "Call 908-769-8699: Does Watchung join Oct17 noon–4pm? What is free, does it require a purchase, and can a 3-year-old participate? Store coordinates unverified.",
+          "cost": "Purchase/free-gift conditions unconfirmed"
+        }
+      ],
+      "phone": "908-769-8699",
+      "coordinateStatus": "unverified",
+      "directionsDisabled": true,
+      "storeUrl": "https://www.target.com/sl/chantilly/1155",
+      "notes": "Official national October17 image banner says noon–4pm at most stores; selected Watchung shopping header does not establish event participation. Store identity/address/phone verified on official store1155 page despite irregular URL slug. No weekly recurrence inferred."
     }
   ],
   "towns": [

@@ -621,3 +621,59 @@ remain in memory; only the consent choice is saved. A manual ZIP/town search
 cancels any pending location result. Location does not automatically enable the
 external driving-time lookup. Run `node --test tests/location-consent.test.mjs`
 for the consent and fallback checks.
+
+### Social discovery follow-up (2026-10-16)
+
+`social-discovery-source-audit-2026-10-16.json` records the requested Xiaohongshu
+search, access restriction, official fallback research, evidence and exclusions.
+Xiaohongshu still required login during this pass; no retrieved note is claimed
+as evidence. Seven previously absent sources were registered. The three dated
+sources contribute 56 official occurrences: 45 Art Cafe Littles sessions (ages
+2–5, caregiver on-site, individual Sawyer calendar entries through December 11),
+10 Small Town Westfield events (Halloween plus nine Santa dates), and one
+Imagine That Peppa Pig event on October 18 at 11 AM (end time unavailable).
+
+Catch Air Paramus, WordPlay Livingston and The Funplex East Hanover are venue
+or program sources pending a dated-event refresh; Little Grounds is a
+coming-soon reference only. Venue opening hours are not daily event dates.
+Art Cafe's dated Sawyer schedule takes precedence over conflicting one-off prose.
+Small Town's ongoing six-week classes are not drop-in outings without confirmed
+late enrollment. All 6,745 existing event records were preserved exactly.
+
+### Cross-brand local retail discovery
+
+`retail-brand-discovery-2026-10-16.json` tracks nine retailer families and 29
+brand/groups. This is a gap checklist, not a claim that all branches or future
+schedules are covered. Include independent toy/book shops as well as chains;
+resolve actual branches from official directories before checking each local
+store calendar and linked registration pages. The October 16 follow-up adds
+six local source records (two IKEA, two Tons of Toys, REI East Hanover and
+DICK’S House of Sport Jersey City) and two campaign-discovery references
+(JCPenney and Learning Express).
+
+Six IKEA occurrences are retained in review: November crafts and Bingo lack
+confirmed age-three eligibility, October painting is full, and Paramus Halloween
+uses a conflicting CT timezone label. No signups were submitted. National campaign
+presence, an open shop or a family-friendly brand is not evidence of a confirmed
+local toddler activity. Membership, capacity, age, location and session time must
+be verified separately. The retail discovery workflow applies to all families,
+not only department stores or Macy’s.
+
+### Retail completion and verification handoff (2026-10-16)
+
+`retail-event-completion-2026-10-16.json` records this pass against the 6,809-record
+local baseline. It adds 26 dated occurrences: 22 explicitly listed Clark Commons
+Barnes & Noble storytimes through December 30, two review leads (Target Watchung
+October 17 and JCPenney Woodbridge November 14), and two already-full IKEA Elizabeth
+October crafts. The store calendar lists each B&N date individually; no weekly
+recurrence was extrapolated. B&N end times, price and signup requirements remain
+unspecified. Census coordinates are address interpolation, not a building entrance.
+
+Four existing Michaels review records now carry the official 10 AM–noon time and
+age-four minimum; they stay out of age-three recommendations. Two IKEA Paramus
+records now link directly to their event detail pages. Halloween participation is
+under ten, but the official CT time label still conflicts with the NJ location.
+The handoff groups 14 outstanding programs and separates known age exclusions
+and full sessions from user verification tasks. Target and JCPenney national
+campaign dates do not establish local participation. No unpublished December
+retail sessions or daily Santa hours were invented. No external signup or push.

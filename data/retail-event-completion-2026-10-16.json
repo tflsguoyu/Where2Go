@@ -1,0 +1,278 @@
+{
+  "checkedAt": "2026-10-16",
+  "windowEnd": "2026-12-31",
+  "beforeCount": 6809,
+  "afterCount": 6835,
+  "newOccurrences": 26,
+  "newPublished": 22,
+  "newReview": 4,
+  "updatedExistingIds": [
+    "michaels-kids-events-bridgewater-9938-2026-10-17-2026-10-17",
+    "michaels-kids-events-watchung-5191-2026-10-17-2026-10-17",
+    "michaels-kids-events-bridgewater-9938-2026-10-24-2026-10-24",
+    "michaels-kids-events-watchung-5191-2026-10-24-2026-10-24",
+    "ikea-paramus-family-events-spooktacular-pot-painting-2026-10-24",
+    "ikea-paramus-family-events-bus-eller-godis-halloween-2026-10-31"
+  ],
+  "newEventIds": [
+    "barnes-noble-clark-saturday-storytime-2026-10-17",
+    "target-watchung-family-events-gigglescape-plush-floral-2026-10-17",
+    "barnes-noble-clark-toddler-infant-storytime-2026-10-21",
+    "ikea-elizabeth-family-events-spooky-kids-crafting-708644a1-2026-10-21",
+    "barnes-noble-clark-saturday-storytime-2026-10-24",
+    "barnes-noble-clark-toddler-infant-storytime-2026-10-28",
+    "ikea-elizabeth-family-events-spooky-kids-crafting-708644a1-2026-10-28",
+    "barnes-noble-clark-saturday-storytime-2026-10-31",
+    "barnes-noble-clark-toddler-infant-storytime-2026-11-04",
+    "barnes-noble-clark-saturday-storytime-2026-11-07",
+    "barnes-noble-clark-toddler-infant-storytime-2026-11-11",
+    "barnes-noble-clark-saturday-storytime-2026-11-14",
+    "jcpenney-woodbridge-family-events-3d-turkey-2026-11-14",
+    "barnes-noble-clark-toddler-infant-storytime-2026-11-18",
+    "barnes-noble-clark-saturday-storytime-2026-11-21",
+    "barnes-noble-clark-toddler-infant-storytime-2026-11-25",
+    "barnes-noble-clark-saturday-storytime-2026-11-28",
+    "barnes-noble-clark-toddler-infant-storytime-2026-12-02",
+    "barnes-noble-clark-saturday-storytime-2026-12-05",
+    "barnes-noble-clark-toddler-infant-storytime-2026-12-09",
+    "barnes-noble-clark-saturday-storytime-2026-12-12",
+    "barnes-noble-clark-toddler-infant-storytime-2026-12-16",
+    "barnes-noble-clark-saturday-storytime-2026-12-19",
+    "barnes-noble-clark-toddler-infant-storytime-2026-12-23",
+    "barnes-noble-clark-saturday-storytime-2026-12-26",
+    "barnes-noble-clark-toddler-infant-storytime-2026-12-30"
+  ],
+  "humanVerification": [
+    {
+      "sourceId": "american-dream",
+      "title": "Booniverse",
+      "dates": [
+        "2026-10-16T12:00",
+        "2026-10-17T12:00",
+        "2026-10-18T12:00",
+        "2026-10-19T12:00",
+        "2026-10-20T12:00",
+        "2026-10-21T12:00",
+        "2026-10-22T12:00",
+        "2026-10-23T12:00",
+        "2026-10-24T12:00",
+        "2026-10-25T12:00",
+        "2026-10-26T12:00",
+        "2026-10-27T12:00",
+        "2026-10-28T12:00",
+        "2026-10-29T12:00",
+        "2026-10-30T12:00",
+        "2026-10-31T12:00",
+        "2026-11-01T12:00"
+      ],
+      "url": "https://www.americandream.com/events/nickelodeon-booniverse",
+      "phone": null,
+      "question": "Official description says hours vary; API hours are a schedule placeholder. Confirm the park ticket date and weekend activity times."
+    },
+    {
+      "sourceId": "american-dream",
+      "title": "LEGO® Giraffe Build Event",
+      "dates": [
+        "2026-10-17T12:00"
+      ],
+      "url": "https://www.americandream.com/events/lego-giraffe-build-event",
+      "phone": null,
+      "question": "Minimum age not supplied; suitability for a 3-year-old is not confirmed."
+    },
+    {
+      "sourceId": "macys-bridgewater-family-events",
+      "title": "Celebrate Geoffrey’s Birthday — LEGO Giraffe Build & Coloring",
+      "dates": [
+        "2026-10-17T12:00"
+      ],
+      "url": "https://www.macys.com/stores/nj/bridgewater/bridgewater-commons_81.html#events",
+      "phone": null,
+      "question": "Oct17 noon–2pm: confirm minimum age, whether an adult may help age3 build, cost, supply limits and actual Toys R Us floor/section."
+    },
+    {
+      "sourceId": "target-watchung-family-events",
+      "title": "Target Gigglescape Plush Floral Event — local participation pending",
+      "dates": [
+        "2026-10-17T12:00"
+      ],
+      "url": "https://www.target.com/c/store-events/-/N-9x2nj",
+      "phone": "908-769-8699",
+      "question": "Call 908-769-8699: Does Watchung join Oct17 noon–4pm? What is free, does it require a purchase, and can a 3-year-old participate? Store coordinates unverified."
+    },
+    {
+      "sourceId": "bell-works-holmdel",
+      "title": "Peas + Carrots at Holmdel Library",
+      "dates": [
+        "2026-10-28T11:00"
+      ],
+      "url": "https://bell.works/events/peas-carrots-at-the-holmdel-library-3/",
+      "phone": "732-226-8818",
+      "question": "Oct28 starts11am. Confirm with Holmdel Library whether it ends11:45am or noon, whether age3 can join and signup is needed; linked official library event17683508 is inaccessible."
+    },
+    {
+      "sourceId": "ikea-paramus-family-events",
+      "title": "Halloween: Say Bus eller Godis at IKEA Paramus",
+      "dates": [
+        "2026-10-31T10:00"
+      ],
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-paramus-nj/halloween-say-bus-eller-godis--dd9f6c1f-1b41-4ac8-b11e-929f0dda88a4/",
+      "phone": null,
+      "question": "Official listing says 10 AM–8 PM CT; cannot assume Eastern time or substitute store hours. Stored times are unresolved wall-clock labels and this record stays hidden."
+    },
+    {
+      "sourceId": "ikea-elizabeth-family-events",
+      "title": "Grateful & Cozy Bingo at IKEA Elizabeth",
+      "dates": [
+        "2026-11-04T17:00"
+      ],
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/grateful-and-cozy-bingo--801e3250-9526-43fe-85ac-f5dd8d9d63df/",
+      "phone": null,
+      "question": "Minimum age and toddler suitability unconfirmed."
+    },
+    {
+      "sourceId": "ikea-elizabeth-family-events",
+      "title": "IKEA Kids Crafting Club",
+      "dates": [
+        "2026-11-11T16:00",
+        "2026-11-18T16:00",
+        "2026-11-25T16:00"
+      ],
+      "url": "https://www.ikea.com/us/en/stores/events/ikea-elizabeth-nj/ikea-kids-crafting-club--e69f2cff-a835-43ba-8e3b-3f51e197068f/",
+      "phone": null,
+      "question": "Confirm minimum age/age-three participation and current registration availability."
+    },
+    {
+      "sourceId": "paramus-park",
+      "title": "Photos with Santa at Paramus Park — schedule pending",
+      "dates": [
+        "2026-11-13T00:00"
+      ],
+      "url": "https://www.paramuspark.com/event/44347-photos-with-santa",
+      "phone": null,
+      "question": "Confirm available2026 appointment dates/times, booking opening date and photo package/visit price. Published date range or arrival date does not supply daily session hours."
+    },
+    {
+      "sourceId": "bridgewater-commons",
+      "title": "Santa @ The Commons — schedule pending",
+      "dates": [
+        "2026-11-14T00:00"
+      ],
+      "url": "https://bridgewatercommons.com/events/main-level-by-l-occitane",
+      "phone": null,
+      "question": "Confirm available2026 appointment dates/times, booking opening date and photo package/visit price. Published date range or arrival date does not supply daily session hours."
+    },
+    {
+      "sourceId": "jcpenney-woodbridge-family-events",
+      "title": "JCPenney Kids Zone: Create Your Own 3D Turkey",
+      "dates": [
+        "2026-11-14T11:00"
+      ],
+      "url": "https://www.jcpenney.com/m/kids-club",
+      "phone": "732-636-6000",
+      "question": "Call 732-636-6000 to confirm Woodbridge participates on Nov14, age3 eligibility, and local check-in location. Exact store coordinates remain unverified."
+    },
+    {
+      "sourceId": "marketfair-family-events",
+      "title": "Photos with Santa at MarketFair — schedule pending",
+      "dates": [
+        "2026-11-21T00:00"
+      ],
+      "url": "https://www.marketfairshoppes.com/event/44164-capture-holiday-memories-with-santa",
+      "phone": null,
+      "question": "Confirm available2026 appointment dates/times, booking opening date and photo package/visit price. Published date range or arrival date does not supply daily session hours."
+    },
+    {
+      "sourceId": "newport-centre",
+      "title": "Santa’s Arrival at Newport Centre — time pending",
+      "dates": [
+        "2026-11-21T00:00"
+      ],
+      "url": "https://www.simon.com/mall/newport-centre/stores/santa-photo-experience/stream/the-magic-begins-santas-arrival-6291106",
+      "phone": null,
+      "question": "Confirm available2026 appointment dates/times, booking opening date and photo package/visit price. Published date range or arrival date does not supply daily session hours."
+    },
+    {
+      "sourceId": "american-dream",
+      "title": "Dream Live PAC Featuring Cirque Musica Holiday Wonderland",
+      "dates": [
+        "2026-11-21T14:00",
+        "2026-11-21T19:00"
+      ],
+      "url": "https://www.americandream.com/events/dream-live-pac-featuring-cirque-musica-holiday-wonderland",
+      "phone": null,
+      "question": "Nov21 starts2pm and7pm. End times are not published. Confirm duration/intermission and whether age3 needs a ticket before choosing a performance."
+    }
+  ],
+  "notRequiringUserVerification": [
+    {
+      "id": "lego-bridgewater-commons-blooming-rainbow-2026-10-17-2026-10-17",
+      "title": "LEGO Creativity Workshop: Blooming Rainbow Party",
+      "startsAt": "2026-10-17T00:00:00",
+      "reviewNotes": "For ages 9–12, not an age-3 activity. No unverified local booking copied.",
+      "availabilityStatus": null
+    },
+    {
+      "id": "michaels-kids-events-bridgewater-9938-2026-10-17-2026-10-17",
+      "title": "Michaels Kids Club: Halloween Fest",
+      "startsAt": "2026-10-17T10:00:00",
+      "reviewNotes": "Official class detail explicitly states 4+ years. Excluded from age-three recommendations; no need to ask user to verify the known age restriction.",
+      "availabilityStatus": null
+    },
+    {
+      "id": "michaels-kids-events-watchung-5191-2026-10-17-2026-10-17",
+      "title": "Michaels Kids Club: Halloween Fest",
+      "startsAt": "2026-10-17T10:00:00",
+      "reviewNotes": "Official class detail explicitly states 4+ years. Excluded from age-three recommendations; no need to ask user to verify the known age restriction.",
+      "availabilityStatus": null
+    },
+    {
+      "id": "lego-bridgewater-commons-blooming-rainbow-2026-10-18-2026-10-18",
+      "title": "LEGO Creativity Workshop: Blooming Rainbow Party",
+      "startsAt": "2026-10-18T00:00:00",
+      "reviewNotes": "For ages 9–12, not an age-3 activity. No unverified local booking copied.",
+      "availabilityStatus": null
+    },
+    {
+      "id": "ikea-elizabeth-family-events-spooky-kids-crafting-708644a1-2026-10-21",
+      "title": "IKEA Kids Crafting Club: Spooky House Edition",
+      "startsAt": "2026-10-21T16:30:00",
+      "reviewNotes": "Fully booked; not an actionable recommendation. Do not ask user to confirm a known lack of capacity.",
+      "availabilityStatus": "fully_booked"
+    },
+    {
+      "id": "michaels-kids-events-bridgewater-9938-2026-10-24-2026-10-24",
+      "title": "Michaels Kids Club: Chenille Stem Ghost or Spider",
+      "startsAt": "2026-10-24T10:00:00",
+      "reviewNotes": "Official class detail explicitly states 4+ years. Excluded from age-three recommendations; no need to ask user to verify the known age restriction.",
+      "availabilityStatus": null
+    },
+    {
+      "id": "michaels-kids-events-watchung-5191-2026-10-24-2026-10-24",
+      "title": "Michaels Kids Club: Chenille Stem Ghost or Spider",
+      "startsAt": "2026-10-24T10:00:00",
+      "reviewNotes": "Official class detail explicitly states 4+ years. Excluded from age-three recommendations; no need to ask user to verify the known age restriction.",
+      "availabilityStatus": null
+    },
+    {
+      "id": "ikea-paramus-family-events-spooktacular-pot-painting-2026-10-24",
+      "title": "Spooktacular Plant Pot Painting at IKEA Paramus",
+      "startsAt": "2026-10-24T11:00:00",
+      "reviewNotes": "Fully booked at check time; age-three eligibility unconfirmed.",
+      "availabilityStatus": "fully_booked"
+    },
+    {
+      "id": "ikea-elizabeth-family-events-spooky-kids-crafting-708644a1-2026-10-28",
+      "title": "IKEA Kids Crafting Club: Spooky House Edition",
+      "startsAt": "2026-10-28T16:30:00",
+      "reviewNotes": "Fully booked; not an actionable recommendation. Do not ask user to confirm a known lack of capacity.",
+      "availabilityStatus": "fully_booked"
+    }
+  ],
+  "limitations": [
+    "No unpublished November/December events inferred from past recurring schedules.",
+    "B&N start times are confirmed; ending times, cost and registration remain unspecified.",
+    "National Target/JCP dates do not independently confirm local participation.",
+    "Other brands without dated local public events remain discovery sources, not fabricated events.",
+    "Santa booking partner attempted: https://myholidaypicsorders.bookyourpictures.com/l/5423-bridgewater-commons exposed no selectable public sessions. Bell Works library link17683508 could not be retrieved."
+  ]
+}

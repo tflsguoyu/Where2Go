@@ -89,6 +89,7 @@
         "For importable sources, reuse or add parser configuration and import kid/family-compatible events from today forward.",
         "When normalizing events, expand date ranges, verify all-day hours before using exact times, look up missing venue addresses, inspect official images when page text is incomplete, and mark uncertain fields for review.",
         "Normalize events into data/events.json while preserving older historical records.",
+        "For malls, also run retail_family_event_discovery: inspect the official tenant directory and individual local store event pages; a completed mall-calendar check does not establish store-level coverage.",
         "Run validation and record any unresolved source or event quality issues."
       ],
       "deliverables": [
@@ -143,7 +144,43 @@
         "Search preschools, childcare centers, public/private schools and official PTA/PTO event pages for activities open to outside families. Apply data/event-rules.json eligibilityPolicy.schoolPublicEventPolicy; record found/not_found results separately from routine school calendars.",
         "Look for newly opened or previously missed malls, play venues, kids gyms, bookstores, farms, museums, parks, and community sources.",
         "Add new useful sources, update changed URLs or statuses, and record not_found checks.",
+        "For malls, also run retail_family_event_discovery: inspect the official tenant directory and individual local store event pages; a completed mall-calendar check does not establish store-level coverage.",
         "Do not import events until the source is classified and the user request includes import/update work or the add-town workflow requires it."
+      ]
+    },
+    {
+      "id": "retail_family_event_discovery",
+      "label": "Discover family events across malls, local stores and brand campaigns",
+      "defaultDateWindow": "today through the user-requested end date",
+      "steps": [
+        "Use the cross-brand retailer coverage matrix, not a Macy’s-specific checklist. Resolve actual branches from official directories before checking local event pages. Pending brands are leads, not claims that a program exists.",
+        "Start with official mall event calendars and tenant directories. Use directories to identify relevant anchor stores and family retailers; do not assume every tenant has events.",
+        "Inspect each relevant retailer’s official LOCAL store page and event section, including department-store toy concessions such as Toys R Us inside Macy’s. Register the store separately from the mall calendar and record parentMallSourceId when known.",
+        "Use national retailer, toy-brand and manufacturer campaign pages to discover event names, dates and participating-store locators. National campaign evidence alone does not prove participation by a specific local store.",
+        "Verify the actual participating branch, municipality, address, session date and time, price, registration, age limits and caregiver requirements. Prefer store-specific official event text, then its official booking page. Preserve unresolved age-three suitability in review.",
+        "Use narrative session times rather than enclosing store opening hours. Split distinct dated sessions, such as a Friday toy-car activity and a Saturday LEGO build, into separate records.",
+        "Separate no-purchase giveaways from purchase-conditioned bonuses. Exclude ordinary sales and shopping sweepstakes without a child activity. Never describe a purchase-conditioned bonus as unconditionally free.",
+        "Deduplicate mall, local retailer, brand and ticketing copies by physical branch, activity identity, date and start time. Identical campaign names at different branches are separate locations.",
+        "Record checked store pages even if no eligible dated event is found, along with lastCheckedAt, outcome and next manual action. A configured snapshot is not a live fetch parser; leave that limitation explicit.",
+        "Record source-family and brand-level gaps for independent shops and chains; never mark an entire retailer covered after checking just one branch. Pets, sports, cooking and technology activities require their own age and participation checks."
+      ],
+      "coverageRule": "Track mall-calendar coverage, store-page coverage and brand-campaign coverage separately. Completion at one layer cannot imply completion at the others.",
+      "deliverables": [
+        "Local store source records and verified event snapshots",
+        "Branch-level discovery audit including found/no-events/blocked/unresolved results",
+        "Official source and booking evidence; unresolved eligibility remains in review"
+      ],
+      "retailerCoverageReference": "data/retail-brand-discovery-2026-10-16.json",
+      "retailerFamilies": [
+        "toy and hobby retailers, including independent stores",
+        "bookstores and independent booksellers",
+        "craft and educational-supply retailers",
+        "home-improvement, furniture and children’s home stores",
+        "department and general-merchandise stores",
+        "sporting-goods and outdoor retailers",
+        "technology stores",
+        "food and kitchen retailers",
+        "pet retailers with independently verified public child/family programming"
       ]
     }
   ],

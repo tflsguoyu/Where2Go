@@ -299,9 +299,16 @@
           "examples": [
             "toy-store public build events",
             "Today at Apple family sessions",
-            "children’s furniture-store storytime and crafts"
+            "children’s furniture-store storytime and crafts",
+            "Macy’s local-store Toys R Us public events",
+            "department-store children’s craft and toy demonstrations",
+            "IKEA local-store children’s crafts and family games",
+            "JCPenney Kids Zone with local participation confirmation",
+            "independent toy-store public events",
+            "sporting-goods or outdoor-store age-appropriate public clinics",
+            "food, kitchen and pet-store public family workshops when verified"
           ],
-          "notes": "Import public dated programs, not merchandise promotions or private birthday bookings."
+          "notes": "Inspect official local store event sections separately from mall calendars. National retailer and toy-manufacturer campaigns are discovery leads until local branch participation is verified. Import dated child/family activities, not ordinary merchandise promotions, purchase-only offers or private birthday bookings. Distinguish unconditional gifts from purchase-conditioned bonuses."
         }
       ]
     },
