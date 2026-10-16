@@ -1,0 +1,927 @@
+{
+  "summary": {
+    "windowStart": "2026-10-15",
+    "windowEnd": "2026-12-31",
+    "retryCompletedOn": "2026-10-16",
+    "sourcesRetried": 49,
+    "confirmedTimedCandidates": 341,
+    "newStoredRecords": 335,
+    "totalStoredRecords": 6015,
+    "windowRecords": 2477,
+    "duplicatesMerged": 0,
+    "coordinatesRepairedFromCensus": 61,
+    "newRecordsPendingCoordinates": 8,
+    "outcomes": {
+      "recovered_with_events": 23,
+      "partial": 7,
+      "reviewed_no_eligible_events": 6,
+      "reviewed_no_dated_events": 7,
+      "unresolved_stale_content": 1,
+      "blocked_certificate": 1,
+      "covered_by_recovered_source": 3,
+      "already_recovered": 1
+    }
+  },
+  "sources": [
+    {
+      "index": 0,
+      "label": "Dunellen borough municipal",
+      "originalUrl": "https://www.dunellen-nj.gov/",
+      "currentUrl": "https://dunellennj.myrec.com/info/calendar/list.aspx",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Recovered correct official MyRec host dunellennj.myrec.com, public calendar/list and Founders Day details. October 25 noon–4 PM at Washington Park confirmed; map entrance remains pending.",
+      "configuredCandidates": 1,
+      "sourceId": "dunellen-borough-official-community-refresh",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 1,
+      "label": "North Plainfield borough municipal",
+      "originalUrl": "https://northplainfieldnj.gov/",
+      "currentUrl": "https://northplainfieldnj.gov/",
+      "directResult": 200,
+      "outcome": "partial",
+      "details": "Official DPCalendar iCal feeds retrieved; three Movie Matinee rows lack venue/audience information. Two advertised calendar feeds return HTTP 500. Recreation is checked separately.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "partial",
+        "details": "Movie Matinee detail page reads successfully, but Description is empty and there is no event-specific audience/venue. Do not infer it is the same as SCLSNJ adult matinees whose times differ. Halloween recovered separately via Recreation."
+      }
+    },
+    {
+      "index": 2,
+      "label": "Watchung borough municipal",
+      "originalUrl": "https://watchungnj.gov/resident/recreation-programs-events",
+      "currentUrl": "https://watchungnj.gov/resident/recreation-programs-events",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "partial",
+      "details": "Browser reads recreation page and confirms Upcoming Events: No events found. Fall basketball notice/flyer remains a separate schedule-review item.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "reviewed_no_eligible_events",
+        "details": "Fall WYBA clinic fully read: Warren Middle School, Saturdays Sept 19–Oct 24, grades 3–5 at 8:30–10 and grades 6–8 at 10–11:30, $130 full series. Not suitable for age 3; no new preschool rows found."
+      }
+    },
+    {
+      "index": 3,
+      "label": "Plainfield city municipal",
+      "originalUrl": "https://plainfieldsid.org/events-calendar",
+      "currentUrl": "https://plainfieldsid.org/events-calendar",
+      "directResult": 200,
+      "outcome": "partial",
+      "details": "SID page reads successfully and links the official city calendar, but neither retrieved page exposes confirmed family event details.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "recovered_with_events",
+        "details": "Correct municipal calendar is plainfieldnj.gov/calendar.php, not SID. Browser filtering initializes the calendar, and public Revize JSON returns 1,469 raw rows. October 30 Trunk or Treat at City Hall parking lot is free for ages 12 and under. Parent/child swim leads remain pending age/location confirmation and conflicting series schedules."
+      }
+    },
+    {
+      "index": 4,
+      "label": "Long Hill township municipal",
+      "originalUrl": "https://www.longhillnj.gov/calendar",
+      "currentUrl": "https://www.longhillnj.gov/calendar",
+      "directResult": 200,
+      "outcome": "reviewed_no_eligible_events",
+      "details": "Official Angular controller reveals GetCalendarData API. Queried entire requested date window; returned board/court/office-closure records only.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 5,
+      "label": "South Bound Brook borough municipal",
+      "originalUrl": "https://sbbnj.com/events/",
+      "currentUrl": "https://sbbnj.com/events/",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "south-bound-brook-borough-official-community-refresh",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 6,
+      "label": "South Plainfield borough municipal",
+      "originalUrl": "https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/",
+      "currentUrl": "https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/",
+      "directResult": 200,
+      "outcome": "reviewed_no_dated_events",
+      "details": "Official recreation calendar is readable but contains an empty month grid; no specific dated activity rows found.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 7,
+      "label": "Piscataway township municipal",
+      "originalUrl": "https://drupalpway.piscatawaynj.org/calendar",
+      "currentUrl": "https://piscatawaynj.librarycalendar.com/events/list",
+      "directResult": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'drupalpway.piscatawaynj.org'. (_ssl.c:1129)>",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level. Second listing page and individual December event pages verified, including seasonal traditions, storytime and Christmas tree lighting.",
+      "configuredCandidates": 11,
+      "sourceId": "piscataway-township-official-community-refresh",
+      "newStoredRecords": 11
+    },
+    {
+      "index": 8,
+      "label": "Fanwood borough municipal",
+      "originalUrl": "https://fanwoodnj.org/calendar/",
+      "currentUrl": "https://fanwoodnj.org/2026-events-calendar/",
+      "directResult": "HTTP Error 404: Not Found",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 3,
+      "sourceId": "fanwood-borough-official-community-refresh",
+      "newStoredRecords": 3
+    },
+    {
+      "index": 9,
+      "label": "Scotch Plains township municipal",
+      "originalUrl": "https://scotchplainsnj.gov/index.php/events",
+      "currentUrl": "https://scotchplainsnj.gov/index.php/events",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "scotch-plains-township-official-community-refresh",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 10,
+      "label": "Bridgewater township municipal",
+      "originalUrl": "https://www.bridgewaternj.gov/township-information/calendar",
+      "currentUrl": "https://www.bridgewaternj.gov/township-information/calendar",
+      "directResult": 200,
+      "outcome": "reviewed_no_eligible_events",
+      "details": "Read all nine official calendar subscription exports; no confirmed eligible dated family activity in the requested window.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 11,
+      "label": "Somerville borough municipal",
+      "originalUrl": "https://www.somervillenj.org/calendar/",
+      "currentUrl": "https://www.somervillenj.org/calendar/",
+      "directResult": 200,
+      "outcome": "reviewed_no_eligible_events",
+      "details": "Official calendar lists borough-office holidays/closures. Downtown Somerville event source already covers community programming.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 12,
+      "label": "Mountainside borough municipal",
+      "originalUrl": "https://www.mountainside-nj.com/",
+      "currentUrl": "https://www.mountainside-nj.com/",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 2,
+      "sourceId": "mountainside-borough-official-community-refresh",
+      "newStoredRecords": 2
+    },
+    {
+      "index": 13,
+      "label": "Chatham township municipal",
+      "originalUrl": "https://www.chathamtownship.org/community-calendar/",
+      "currentUrl": "https://chathamtownship.org/community/community-calendar/",
+      "directResult": "HTTP Error 404: Not Found",
+      "outcome": "recovered_with_events",
+      "details": "Corrected URL and read official event detail: October 25 intergenerational dinner, 4–6 PM at Presbyterian Church, 240 Southern Boulevard.",
+      "configuredCandidates": 1,
+      "sourceId": "chatham-township-official-community-refresh",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 14,
+      "label": "Far Hills borough municipal",
+      "originalUrl": "https://www.farhillsnj.org/calendar.php",
+      "currentUrl": "https://www.farhillsnj.org/calendar.php",
+      "directResult": 200,
+      "outcome": "partial",
+      "details": "Calendar URL currently returns borough homepage/navigation, not dated event rows. Far Hills Race Meeting was recovered separately.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "recovered_with_events",
+        "details": "Official homepage news links Trunk or Treat October 24 at 4 PM, Far Hills Fairgrounds. October 25 is a rain alternative only. Imported as review until exact entrance/end time is known."
+      }
+    },
+    {
+      "index": 15,
+      "label": "Highland Park borough municipal",
+      "originalUrl": "https://www.hpboro.com/events/",
+      "currentUrl": "https://www.hpboro.com/events/",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "highland-park-borough-official-community-refresh",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 16,
+      "label": "New Brunswick city municipal",
+      "originalUrl": "https://www.cityofnewbrunswick.com/events/",
+      "currentUrl": "https://www.cityofnewbrunswick.org/",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "recovered_with_events",
+      "details": "Corrected city website from .com to .org; official news confirms October 18 Art City Festival, 11 AM–6 PM. Venue is a multi-entrance downtown area; route pin remains pending.",
+      "configuredCandidates": 1,
+      "sourceId": "new-brunswick-city-official-community-refresh",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 17,
+      "label": "Springfield township municipal",
+      "originalUrl": "https://www.springfieldtownshipnj.org/calendar",
+      "currentUrl": "https://springfield-nj.us/calendar/",
+      "directResult": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 20,
+      "sourceId": "springfield-township-official-community-refresh",
+      "newStoredRecords": 20
+    },
+    {
+      "index": 18,
+      "label": "Bedminster township municipal",
+      "originalUrl": "https://www.bedminster.us/government/calendar",
+      "currentUrl": "https://www.bedminster.us/government/calendar",
+      "directResult": 200,
+      "outcome": "reviewed_no_eligible_events",
+      "details": "Official ICalendarHandler feed retrieved; municipal meetings/service/closure records only. Existing Bedminster community supplement retained.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 19,
+      "label": "Clarence Dillon Public Library",
+      "originalUrl": "https://www.clarencedillonpl.org/",
+      "currentUrl": "https://engagedpatrons.org/Events.cfm?SiteID=3205&Audience=C",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 6,
+      "sourceId": "configured-library-clarence-dillon-public-library",
+      "newStoredRecords": 6
+    },
+    {
+      "index": 20,
+      "label": "Mendham borough municipal",
+      "originalUrl": "https://www.mendhamnj.org/cn/EventsCalendar?tpid=9674",
+      "currentUrl": "https://www.mendhamnj.org/cn/EventsCalendar?tpid=9674",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "mendham-borough-official-community-refresh",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 21,
+      "label": "Florham Park borough municipal",
+      "originalUrl": "https://www.florhamparknj.gov/calendar/492/",
+      "currentUrl": "https://www.florhamparknj.gov/calendar/492/",
+      "directResult": 200,
+      "outcome": "reviewed_no_dated_events",
+      "details": "Recovered EvoGov meetings.js and its public /meetings/get_list API. Query of October 15–December 31 recreation, police and upcoming-event calendar IDs returned an empty JSON array; no dated rows available from these official calendars.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 22,
+      "label": "Chester township municipal",
+      "originalUrl": "https://www.chestertownship.org/index.php/calendar",
+      "currentUrl": "https://www.chestertownship.org/index.php/calendar",
+      "directResult": 200,
+      "outcome": "reviewed_no_eligible_events",
+      "details": "Retrieved five official iCal feeds and expanded recurrence. Current matches are child car-seat checks, a service rather than an outing; excluded.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 23,
+      "label": "Morris Plains Library",
+      "originalUrl": "https://morrisplainslibrary.org/",
+      "currentUrl": "https://morrisplainslibrary.org/",
+      "directResult": 200,
+      "outcome": "unresolved_stale_content",
+      "details": "Official borough Library page confirms morrisplainslibrary.org is still the correct library site. Homepage, Kids/Teens and Special Events read; latest retrieved event content is from 2019. No current public dated schedule found.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "unresolved_stale_content",
+        "details": "Homepage is not wholly stale: fall hours explicitly say 2026 and a 2027 fundraiser appears. However generic Wednesday 10:30 storytime post dates/last-modified are 2018, with no current dated 2026 exception/holiday schedule; not expanded automatically."
+      }
+    },
+    {
+      "index": 24,
+      "label": "East Hanover township municipal",
+      "originalUrl": "https://www.easthanovertownship.com/calendar",
+      "currentUrl": "https://www.easthanovertownship.com/calendar",
+      "directResult": 200,
+      "outcome": "partial",
+      "details": "Public GetCalendarData and GetEventsData both confirm Fire Department Open House October 24, 10 AM–2 PM; neither supplies an event-specific venue. Not assigned to municipal offices.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "recovered_with_events",
+        "details": "Official home news supplies missing location for October 24 Fire Department Open House, 10 AM–2 PM: Fire Headquarters, 323 Ridgedale Avenue. All ages welcome."
+      }
+    },
+    {
+      "index": 25,
+      "label": "Parsippany-Troy Hills township municipal",
+      "originalUrl": "https://www.parsippany.net/calendar",
+      "currentUrl": "https://www.parsippany.net/calendar",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 8,
+      "sourceId": "parsippany-troy-hills-township-official-community-refresh",
+      "newStoredRecords": 8
+    },
+    {
+      "index": 26,
+      "label": "Boonton Holmes Public Library",
+      "originalUrl": "https://www.boontonholmeslibrary.org/",
+      "currentUrl": "https://boontonlibrary.assabetinteractive.com/calendar/",
+      "directResult": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 48,
+      "sourceId": "configured-library-boonton-holmes-public-library",
+      "newStoredRecords": 48
+    },
+    {
+      "index": 27,
+      "label": "Maplewood township municipal",
+      "originalUrl": "https://www.maplewoodnj.gov/calendar/",
+      "currentUrl": "https://www.maplewoodnj.gov/calendar/",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "partial",
+      "details": "Browser recovers official Granicus calendar, showing municipal/election/board items. Community category/pagination needs further review before claiming full coverage.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "recovered_with_events",
+        "details": "Granicus All Upcoming Community Event and Maplewood Village Alliance categories both show no results. Official embedded RecDesk has 7 active preschool sports series and exact session-level schedules: 21 future occurrences recovered. All resident-only and enrollment closed; stored as review, not drop-ins. October 17/18 venue changes preserved."
+      }
+    },
+    {
+      "index": 28,
+      "label": "Irvington township municipal",
+      "originalUrl": "https://irvingtonnj.gov/home/upcoming-events/",
+      "currentUrl": "https://irvingtonnj.gov/home/upcoming-events/",
+      "directResult": "HTTP Error 404: Not Found",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 2,
+      "sourceId": "irvington-township-official-community-refresh",
+      "newStoredRecords": 2
+    },
+    {
+      "index": 29,
+      "label": "Newark Public Library",
+      "originalUrl": "https://www.npl.org/calendar/",
+      "currentUrl": "https://www.npl.org/calendar/",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 196,
+      "sourceId": "configured-library-newark-public-library",
+      "newStoredRecords": 190
+    },
+    {
+      "index": 30,
+      "label": "North Plainfield Recreation",
+      "originalUrl": "https://nprecreation.com/",
+      "currentUrl": "https://nprecreation.com/",
+      "directResult": 200,
+      "outcome": "partial",
+      "details": "Homepage and Special Events read: October 25 Halloween parade, December 6 Santa/tree lighting and chess dates confirmed. Some venue/end-time data remain incomplete; not assigned to recreation office by default.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "partial",
+        "details": "Current homepage and official Halloween flyer confirm Oct 25: noon registration, 1 PM parade, West End School to Vermeule Playground; school official site confirms 447 Greenbrook Road. One event recovered with end time unknown. Dec 6 Santa/tree lighting still date only. Chess grades 2–8 is not age-3 appropriate."
+      }
+    },
+    {
+      "index": 31,
+      "label": "Bound Brook Recreation",
+      "originalUrl": "https://boundbrook-nj.org/recreation/",
+      "currentUrl": "https://boundbrook-nj.org/recreation/",
+      "directResult": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)>",
+      "outcome": "blocked_certificate",
+      "details": "Direct request and browser both fail certificate verification. Official page remains readable through web search retrieval, but no verified current fall/winter dated activity was exposed. Certificate validation was not bypassed.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0,
+      "secondPass": {
+        "checkedOn": "2026-10-16",
+        "outcome": "recovered_with_events",
+        "details": "Official recreation site links bbrec.org, redirecting to CommunityPass account 2258. Public calendar and per-day detail endpoints confirm Little Kickers birth years 2022/2023, October 20/27 and November 3/10 at Billian-Legion Park 5:45–7 PM. November and December calendars checked via their actual POST filters; no December preschool sports rows."
+      }
+    },
+    {
+      "index": 32,
+      "label": "Long Hill Parks and Recreation",
+      "originalUrl": "https://www.longhillnj.gov/departments/parks-and-recreation",
+      "currentUrl": "https://www.longhillnj.gov/departments/parks-and-recreation",
+      "directResult": 200,
+      "outcome": "reviewed_no_dated_events",
+      "details": "Recreation page accessible; retrieved content provides archival 2025 holiday photos and earlier 2026 programs, without confirmed current-window dated public sessions.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 33,
+      "label": "South Plainfield Recreation",
+      "originalUrl": "https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/",
+      "currentUrl": "https://www.southplainfieldnj.com/spnj/Departments/Departments/Recreation%20Department/Recreation%20Home/Recreation%20Calendar/",
+      "directResult": 200,
+      "outcome": "reviewed_no_dated_events",
+      "details": "Same official South Plainfield recreation calendar as municipal source; no separate dated activity rows found.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 34,
+      "label": "Fanwood Recreation",
+      "originalUrl": "https://fanwoodnj.org/departments/recreation-info/",
+      "currentUrl": "https://fanwoodnj.org/departments/recreation-info/",
+      "directResult": 200,
+      "outcome": "covered_by_recovered_source",
+      "details": "Recreation page links the official 2026 community calendar. Activities recovered from that official calendar image under Fanwood municipal supplement; no duplicate import.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 35,
+      "label": "Menlo Park Mall",
+      "originalUrl": "https://www.simon.com/mall/menlo-park-mall/news-and-events",
+      "currentUrl": "https://www.simon.com/mall/menlo-park-mall/news-and-events",
+      "directResult": "HTTP Error 307: Forbidden",
+      "outcome": "reviewed_no_eligible_events",
+      "details": "Browser successfully renders Simon news/events page. Current items are retail product promotions/shopping offers rather than dated children/family activities.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 36,
+      "label": "Somerset County Park Commission",
+      "originalUrl": "https://www.somersetcountyparks.org/",
+      "currentUrl": "https://www.somersetcountyparks.org/",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "covered_by_recovered_source",
+      "details": "Browser reads protected park homepage and Halloween roundup; Stalls/Sweets/Treats and Colonial Park Mischief Night recovered under physical venue sources.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 37,
+      "label": "Somerset County Cultural & Heritage Commission",
+      "originalUrl": "https://www.co.somerset.nj.us/government/departments/cultural-and-heritage-commission",
+      "currentUrl": "https://www.somersetcountynj.gov/government/public-works/cultural-heritage/events",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "somerset-county-cultural-heritage",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 38,
+      "label": "The Stable at Lord Stirling Park",
+      "originalUrl": "https://www.somersetcountyparks.org/stable-lord-stirling-park/pages/programs-activities",
+      "currentUrl": "https://www.somersetcountyparks.org/stable-lord-stirling-park/pages/activities-events-program-registration",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "stable-lord-stirling-park",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 39,
+      "label": "North Branch Park",
+      "originalUrl": "https://www.somersetcountyparks.org/north-branch-park",
+      "currentUrl": "https://www.somersetcountyparks.org/north-branch-park",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "covered_by_recovered_source",
+      "details": "Browser reads park page and Special Events. No separate current park calendar rows; dated TR Activity Center sessions recovered under Therapeutic Recreation source.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 40,
+      "label": "Duke Island Park",
+      "originalUrl": "https://www.somersetcountyparks.org/duke-island-park",
+      "currentUrl": "https://www.somersetcountyparks.org/duke-island-park",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "reviewed_no_dated_events",
+      "details": "Browser reads park and calendar. Published program link remains Summer Concert Series; no newly confirmed dated fall/winter event.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 41,
+      "label": "Washington Valley Park",
+      "originalUrl": "https://www.somersetcountyparks.org/washington-valley-park",
+      "currentUrl": "https://www.somersetcountyparks.org/washington-valley-park",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "reviewed_no_dated_events",
+      "details": "Browser reads park and Hawk Watch context. Seasonal raptor viewing is not a dated hosted event; no invented daily rows.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 42,
+      "label": "Somerset County Therapeutic Recreation",
+      "originalUrl": "https://www.somersetcountyparks.org/therapeutic-recreation",
+      "currentUrl": "https://www.somersetcountyparks.org/therapeutic-recreation",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 30,
+      "sourceId": "somerset-county-therapeutic-recreation",
+      "newStoredRecords": 30
+    },
+    {
+      "index": 43,
+      "label": "Leonard J. Buck Garden",
+      "originalUrl": "https://www.somersetcountyparks.org/node/1251/events/year/2026",
+      "currentUrl": "https://www.somersetcountyparks.org/node/1251/events/year/2026",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "reviewed_no_dated_events",
+      "details": "Browser reads full 2026 Leonard J. Buck Garden calendar; year view contains no event entries.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    },
+    {
+      "index": 44,
+      "label": "Far Hills Race Meeting",
+      "originalUrl": "https://farhillsrace.org/buy-now/",
+      "currentUrl": "https://farhillsrace.org/buy-now/",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "far-hills-race-meeting",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 45,
+      "label": "Colonial Park Spray Park and Gardens",
+      "originalUrl": "https://www.somersetcountyparks.org/colonial-park/pages/colonial-park-spray-park",
+      "currentUrl": "https://www.somersetcountyparks.org/colonial-park/pages/colonial-park-spray-park",
+      "directResult": "HTTP Error 403: Forbidden",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "colonial-park-spray-park",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 46,
+      "label": "South Orange Village Center Alliance",
+      "originalUrl": "https://www.sovillagecenter.org/",
+      "currentUrl": "https://www.southorangedowntown.org/events-calendar",
+      "directResult": "<urlopen error timed out>",
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 3,
+      "sourceId": "south-orange-village-center-alliance",
+      "newStoredRecords": 3
+    },
+    {
+      "index": 47,
+      "label": "Downtown Cranford Events",
+      "originalUrl": "https://downtowncranford.org/events/",
+      "currentUrl": "https://downtowncranford.org/events/",
+      "directResult": 200,
+      "outcome": "recovered_with_events",
+      "details": "Official detail/API/calendar/flyer evidence produced dated candidates; uncertainties retained at record level.",
+      "configuredCandidates": 1,
+      "sourceId": "downtown-cranford-events",
+      "newStoredRecords": 1
+    },
+    {
+      "index": 48,
+      "label": "Watchung Arts Center",
+      "originalUrl": "https://watchungarts.org/",
+      "currentUrl": "https://watchungarts.org/",
+      "directResult": 200,
+      "outcome": "already_recovered",
+      "details": "Official homepage re-read. Previously verified 24 dated children/teen classes and market records remain; no duplicate additions.",
+      "configuredCandidates": 0,
+      "sourceId": null,
+      "newStoredRecords": 0
+    }
+  ],
+  "pending": [
+    {
+      "sourceIndex": 47,
+      "title": "19th Annual Scarecrow Stroll",
+      "url": "https://downtowncranford.org/mecevents/19th-annual-scarecrow-stroll/",
+      "reason": "Date range/all-day schedule requires confirmation"
+    },
+    {
+      "sourceIndex": 29,
+      "title": "Limited Partnership--Queer Lives on Film: Kanopy Flick of the Month",
+      "url": "https://npl.libcal.com/event/17728365",
+      "reason": "No confirmed physical branch or online meeting metadata"
+    },
+    {
+      "sourceIndex": 29,
+      "title": "Limited Partnership--Queer Lives on Film: Kanopy Flick of the Month",
+      "url": "https://npl.libcal.com/event/17728366",
+      "reason": "No confirmed physical branch or online meeting metadata"
+    },
+    {
+      "sourceIndex": 29,
+      "title": "College Readiness Series",
+      "url": "https://npl.libcal.com/event/16989843",
+      "reason": "No confirmed physical branch or online meeting metadata"
+    },
+    {
+      "sourceIndex": 29,
+      "title": "College Readiness Series",
+      "url": "https://npl.libcal.com/event/16989844",
+      "reason": "No confirmed physical branch or online meeting metadata"
+    },
+    {
+      "sourceIndex": 1,
+      "title": "Movie Matinee",
+      "reason": "Official feed lacks venue, audience and description; do not assume a child-compatible screening."
+    },
+    {
+      "sourceIndex": 20,
+      "title": "Holly Trail – December 5",
+      "reason": "Official date is confirmed; times and specific route/sites are absent."
+    },
+    {
+      "sourceIndex": 30,
+      "title": "Santa Comes to Town – December 6",
+      "reason": "Date confirmed; venue and time not published on retrieved page."
+    },
+    {
+      "sourceIndex": 46,
+      "title": "Hometown Holiday & Tree Lighting – December 12",
+      "reason": "2–6 PM confirmed; official detail says Details coming soon and gives no venue."
+    },
+    {
+      "sourceIndex": 8,
+      "title": "Four Centuries in a Weekend",
+      "reason": "Calendar image gives an ambiguous October 10–18 range; exact active days need confirmation."
+    },
+    {
+      "sourceIndex": 42,
+      "title": "Teen Club – November 19",
+      "reason": "Brochure calendar names a session but gives no start/end time."
+    }
+  ],
+  "duplicateMerges": [],
+  "geocodeEvidence": [
+    {
+      "query": "621 Main Street, Boonton, NJ 07005",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=621+Main+Street%2C+Boonton%2C+NJ+07005&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "60445300"
+          },
+          "coordinates": {
+            "x": -74.410424917213,
+            "y": 40.90490513612
+          },
+          "addressComponents": {
+            "zip": "07005",
+            "streetName": "MAIN",
+            "preType": "",
+            "city": "BOONTON",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "601",
+            "state": "NJ",
+            "suffixType": "ST",
+            "toAddress": "699",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "621 MAIN ST, BOONTON, NJ, 07005"
+        }
+      ]
+    },
+    {
+      "query": "66 Grange Road, Parsippany, NJ",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=66+Grange+Road%2C+Parsippany%2C+NJ&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "L",
+            "tigerLineId": "60478553"
+          },
+          "coordinates": {
+            "x": -74.393030336864,
+            "y": 40.86190878352
+          },
+          "addressComponents": {
+            "zip": "07054",
+            "streetName": "GRANGE",
+            "preType": "",
+            "city": "PARSIPPANY",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "2",
+            "state": "NJ",
+            "suffixType": "RD",
+            "toAddress": "98",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "66 GRANGE RD, PARSIPPANY, NJ, 07054"
+        }
+      ]
+    },
+    {
+      "query": "2441 US Highway 22, Union, NJ 07083",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2441+US+Highway+22%2C+Union%2C+NJ+07083&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "60570140"
+          },
+          "coordinates": {
+            "x": -74.297780586078,
+            "y": 40.690351434444
+          },
+          "addressComponents": {
+            "zip": "07083",
+            "streetName": "22",
+            "preType": "US HWY",
+            "city": "UNION",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "2401",
+            "state": "NJ",
+            "suffixType": "",
+            "toAddress": "2499",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "2441 US HWY 22, UNION, NJ, 07083"
+        }
+      ]
+    },
+    {
+      "query": "1399 US Highway 22, Mountainside, NJ 07092",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1399+US+Highway+22%2C+Mountainside%2C+NJ+07092&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "L",
+            "tigerLineId": "60566742"
+          },
+          "coordinates": {
+            "x": -74.354360923532,
+            "y": 40.672776248249
+          },
+          "addressComponents": {
+            "zip": "07092",
+            "streetName": "22",
+            "preType": "US HWY",
+            "city": "MOUNTAINSIDE",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "1299",
+            "state": "NJ",
+            "suffixType": "",
+            "toAddress": "1399",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "1399 US HWY 22, MOUNTAINSIDE, NJ, 07092"
+        }
+      ]
+    },
+    {
+      "query": "1 Ericsson Drive, Piscataway, NJ 08854",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1+Ericsson+Drive%2C+Piscataway%2C+NJ+08854&benchmark=Public_AR_Current&format=json",
+      "matches": []
+    }
+  ],
+  "validation": {
+    "events": "passed",
+    "eventWarnings": 119,
+    "projectAudit": "passed",
+    "projectAuditWarningCategories": 1,
+    "importerRegressionChecks": "passed"
+  },
+  "secondPassSummary": {
+    "checkedOn": "2026-10-16",
+    "sourcesRechecked": 9,
+    "outcomes": {
+      "partial": 2,
+      "reviewed_no_eligible_events": 1,
+      "recovered_with_events": 5,
+      "unresolved_stale_content": 1
+    },
+    "configuredNewOccurrences": 55,
+    "newStoredRecords": 55,
+    "details": "Second pass focuses on around-age-3 suitability. Prior summary remains a historical first-pass result.",
+    "totalStoredRecords": 6070,
+    "newPublished": 19,
+    "newReview": 36,
+    "windowRecords": 2532,
+    "bySource": {
+      "fosterfields-little-farm-friends": 3,
+      "maplewood-recdesk-preschool": 21,
+      "play-and-talk-nature-mountainside": 7,
+      "great-swamp-oec-preschool-programs": 7,
+      "morris-county-library-preschool-storytime": 6,
+      "play-and-talk-nature-fanwood": 3,
+      "bound-brook-recreation": 4,
+      "east-hanover-official-family-events": 1,
+      "far-hills-official-family-events": 1,
+      "north-plainfield-recreation": 1,
+      "plainfield-official-family-events": 1
+    },
+    "filteredCandidates": [],
+    "checks": [
+      "All existing IDs retained",
+      "No duplicate IDs",
+      "All new rows within requested window",
+      "Closed series remain review records",
+      "October 17/18 venue changes retained",
+      "Plainfield variable end time not set to fixed 9 PM"
+    ],
+    "geocodeMode": "Preverified Census coordinates; no full-history network geocode rerun",
+    "quality": {
+      "checked": 5508,
+      "issues": {
+        "summary": {
+          "count": 70,
+          "samples": [
+            "farmstead-arts-center-2026-06-05-theater-pygmalion-560656 | 2026-06-05 | Theater \"Pygmalion\" | Farmstead Arts Center",
+            "civicplus-union-township-10189-2026-06-06 | 2026-06-06 | Union Pride Flag Raising | Union township municipal event",
+            "civicplus-union-township-10188-2026-06-06 | 2026-06-06 | Union Pride Performance ft. Frenchie Davis | Union township municipal event",
+            "farmstead-arts-center-2026-06-06-theater-pygmalion-560656 | 2026-06-06 | Theater \"Pygmalion\" | Farmstead Arts Center",
+            "civicplus-union-township-10225-2026-06-07 | 2026-06-07 | Historical Bus Trip - 1pm Tour | Union township municipal event",
+            "farmstead-arts-center-2026-06-07-theater-pygmalion-557073 | 2026-06-07 | Theater \"Pygmalion\" | Farmstead Arts Center",
+            "civicplus-westfield-town-2381-2026-06-08 | 2026-06-08 | Pride Celebration | Save the date to celebrate Pride Month on Monday, June 8! The Pride flag will be raised at Town Hall at 5:30, which will be followed by a walk to the rainbow crosswalks. All are welcome!",
+            "libcal-bccls-south-orange-17007769 | 2026-06-10 | Farmer's Market Storytime: feat. Soccer Shots! | South Orange Public Library"
+          ]
+        }
+      }
+    },
+    "validation": {
+      "dataValidation": "passed",
+      "dataWarningCount": 144,
+      "projectAudit": "passed",
+      "projectWarningCategories": 1,
+      "newRecordsMissingPreciseCoordinates": 25,
+      "note": "25 new coordinate warnings are explicit review records with directions disabled. Existing warnings remain; no invented coordinates."
+    }
+  }
+}

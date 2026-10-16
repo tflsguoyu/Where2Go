@@ -1,0 +1,1999 @@
+{
+  "checkedOn": "2026-10-16",
+  "windowStart": "2026-10-16",
+  "windowEnd": "2026-12-31",
+  "focusAgeYears": 3,
+  "existingCoverage": "Configured Warren-area towns; no assignment by postal city alone",
+  "recheckedSources": [
+    {
+      "label": "North Plainfield borough municipal",
+      "previousOutcome": "partial",
+      "outcome": "partial",
+      "details": "Movie Matinee detail page reads successfully, but Description is empty and there is no event-specific audience/venue. Do not infer it is the same as SCLSNJ adult matinees whose times differ. Halloween recovered separately via Recreation."
+    },
+    {
+      "label": "Watchung borough municipal",
+      "previousOutcome": "partial",
+      "outcome": "reviewed_no_eligible_events",
+      "details": "Fall WYBA clinic fully read: Warren Middle School, Saturdays Sept 19–Oct 24, grades 3–5 at 8:30–10 and grades 6–8 at 10–11:30, $130 full series. Not suitable for age 3; no new preschool rows found."
+    },
+    {
+      "label": "Plainfield city municipal",
+      "previousOutcome": "partial",
+      "outcome": "recovered_with_events",
+      "details": "Correct municipal calendar is plainfieldnj.gov/calendar.php, not SID. Browser filtering initializes the calendar, and public Revize JSON returns 1,469 raw rows. October 30 Trunk or Treat at City Hall parking lot is free for ages 12 and under. Parent/child swim leads remain pending age/location confirmation and conflicting series schedules."
+    },
+    {
+      "label": "Far Hills borough municipal",
+      "previousOutcome": "partial",
+      "outcome": "recovered_with_events",
+      "details": "Official homepage news links Trunk or Treat October 24 at 4 PM, Far Hills Fairgrounds. October 25 is a rain alternative only. Imported as review until exact entrance/end time is known."
+    },
+    {
+      "label": "Morris Plains Library",
+      "previousOutcome": "unresolved_stale_content",
+      "outcome": "unresolved_stale_content",
+      "details": "Homepage is not wholly stale: fall hours explicitly say 2026 and a 2027 fundraiser appears. However generic Wednesday 10:30 storytime post dates/last-modified are 2018, with no current dated 2026 exception/holiday schedule; not expanded automatically."
+    },
+    {
+      "label": "East Hanover township municipal",
+      "previousOutcome": "partial",
+      "outcome": "recovered_with_events",
+      "details": "Official home news supplies missing location for October 24 Fire Department Open House, 10 AM–2 PM: Fire Headquarters, 323 Ridgedale Avenue. All ages welcome."
+    },
+    {
+      "label": "Maplewood township municipal",
+      "previousOutcome": "partial",
+      "outcome": "recovered_with_events",
+      "details": "Granicus All Upcoming Community Event and Maplewood Village Alliance categories both show no results. Official embedded RecDesk has 7 active preschool sports series and exact session-level schedules: 21 future occurrences recovered. All resident-only and enrollment closed; stored as review, not drop-ins. October 17/18 venue changes preserved."
+    },
+    {
+      "label": "North Plainfield Recreation",
+      "previousOutcome": "partial",
+      "outcome": "partial",
+      "details": "Current homepage and official Halloween flyer confirm Oct 25: noon registration, 1 PM parade, West End School to Vermeule Playground; school official site confirms 447 Greenbrook Road. One event recovered with end time unknown. Dec 6 Santa/tree lighting still date only. Chess grades 2–8 is not age-3 appropriate."
+    },
+    {
+      "label": "Bound Brook Recreation",
+      "previousOutcome": "blocked_certificate",
+      "outcome": "recovered_with_events",
+      "details": "Official recreation site links bbrec.org, redirecting to CommunityPass account 2258. Public calendar and per-day detail endpoints confirm Little Kickers birth years 2022/2023, October 20/27 and November 3/10 at Billian-Legion Park 5:45–7 PM. November and December calendars checked via their actual POST filters; no December preschool sports rows."
+    }
+  ],
+  "configuredOccurrences": [
+    {
+      "sourceId": "fosterfields-little-farm-friends",
+      "title": "Little Farm Friends: Foliage on the Farm",
+      "date": "2026-10-16",
+      "startTime": "10:30",
+      "endTime": "11:30",
+      "url": "https://www.morrisparks.net/events/little-farm-friends-foliage-on-the-farm-6/",
+      "venue": "Fosterfields Living Historical Farm",
+      "summary": "Ages 2.5–5 with an adult. Autumn is the best time to explore the farm! Find leaves and learn how they change colors, make a craft and read a fall-themed story.",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$10 per child.",
+      "registration": "Advance registration required",
+      "externalId": "little-farm-friends-foliage-on-the-farm-6-1030",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "great-swamp-oec-preschool-programs",
+      "title": "Yoga for Littles",
+      "date": "2026-10-17",
+      "startTime": "10:00",
+      "endTime": "10:45",
+      "url": "https://www.morrisparks.net/events/yoga-for-littles-6/",
+      "venue": "Great Swamp Outdoor Education Center",
+      "summary": "Ages 3–6 with an adult. Enjoy our nature-inspired yoga class for little ones! Each class will revolve around a nature theme and include a story, movement games, and mindfulness techniques. If the weather is nice, we’ll get outside for a nature walk or hold class entirely outdoors. Bring a yoga mat or borrow one of ours.",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "yoga-for-littles-6-1000",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "great-swamp-oec-preschool-programs",
+      "title": "Yoga for Littles",
+      "date": "2026-11-21",
+      "startTime": "10:00",
+      "endTime": "10:45",
+      "url": "https://www.morrisparks.net/events/yoga-for-littles-6/",
+      "venue": "Great Swamp Outdoor Education Center",
+      "summary": "Ages 3–6 with an adult. Enjoy our nature-inspired yoga class for little ones! Each class will revolve around a nature theme and include a story, movement games, and mindfulness techniques. If the weather is nice, we’ll get outside for a nature walk or hold class entirely outdoors. Bring a yoga mat or borrow one of ours.",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "yoga-for-littles-6-1000",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "fosterfields-little-farm-friends",
+      "title": "Little Farm Friends: Creepy Crawlies",
+      "date": "2026-10-23",
+      "startTime": "10:30",
+      "endTime": "11:30",
+      "url": "https://www.morrisparks.net/events/little-farm-friends-creepy-crawlies-5/",
+      "venue": "Fosterfields Living Historical Farm",
+      "summary": "Ages 2.5–5 with an adult. Who lives under a log? How can we help them prepare for the winter? Learn about bugs, worms, and more.",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$10 per child.",
+      "registration": "Advance registration required",
+      "externalId": "little-farm-friends-creepy-crawlies-5-1030",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "great-swamp-oec-preschool-programs",
+      "title": "Teeny Tiny Trail Tales",
+      "date": "2026-10-24",
+      "startTime": "13:00",
+      "endTime": "13:45",
+      "url": "https://www.morrisparks.net/events/teeny-tiny-trail-tales-6/",
+      "venue": "Great Swamp Outdoor Education Center",
+      "summary": "Ages 2–5 with an adult. Bring your little ones to our not-so-spooky annual trail adventure! Hear costumed storytellers share nature-themed Halloween tales on decorated trails during this guided walk in the Great Swamp. New stories every year! All are welcome to wear their costumes to this popular event. Limit one adult per child only. One adult is included free in the admission for each child. Sign up online or over the phone; these spots fill quickly! Event runs rain or shine.",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "teeny-tiny-trail-tales-6-1300",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "great-swamp-oec-preschool-programs",
+      "title": "Teeny Tiny Trail Tales",
+      "date": "2026-10-24",
+      "startTime": "13:30",
+      "endTime": "14:15",
+      "url": "https://www.morrisparks.net/events/teeny-tiny-trail-tales-6/",
+      "venue": "Great Swamp Outdoor Education Center",
+      "summary": "Ages 2–5 with an adult. Bring your little ones to our not-so-spooky annual trail adventure! Hear costumed storytellers share nature-themed Halloween tales on decorated trails during this guided walk in the Great Swamp. New stories every year! All are welcome to wear their costumes to this popular event. Limit one adult per child only. One adult is included free in the admission for each child. Sign up online or over the phone; these spots fill quickly! Event runs rain or shine.",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "teeny-tiny-trail-tales-6-1330",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "great-swamp-oec-preschool-programs",
+      "title": "Teeny Tiny Trail Tales",
+      "date": "2026-10-24",
+      "startTime": "14:00",
+      "endTime": "14:45",
+      "url": "https://www.morrisparks.net/events/teeny-tiny-trail-tales-6/",
+      "venue": "Great Swamp Outdoor Education Center",
+      "summary": "Ages 2–5 with an adult. Bring your little ones to our not-so-spooky annual trail adventure! Hear costumed storytellers share nature-themed Halloween tales on decorated trails during this guided walk in the Great Swamp. New stories every year! All are welcome to wear their costumes to this popular event. Limit one adult per child only. One adult is included free in the admission for each child. Sign up online or over the phone; these spots fill quickly! Event runs rain or shine.",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "teeny-tiny-trail-tales-6-1400",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "great-swamp-oec-preschool-programs",
+      "title": "Toddler Trek: Seeds & Fruits",
+      "date": "2026-10-28",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "url": "https://www.morrisparks.net/events/toddler-trek-seeds-fruits-5/",
+      "venue": "Great Swamp Outdoor Education Center",
+      "summary": "Ages 2–5 with an adult. It’s a seed! It’s a fruit! It’s … both! Come learn about what makes a seed and a fruit with demonstrations and a walk along the trails!",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "toddler-trek-seeds-fruits-5-1000",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "great-swamp-oec-preschool-programs",
+      "title": "Toddler Trek: Seeds & Fruits",
+      "date": "2026-10-28",
+      "startTime": "15:30",
+      "endTime": "16:30",
+      "url": "https://www.morrisparks.net/events/toddler-trek-seeds-fruits-5/",
+      "venue": "Great Swamp Outdoor Education Center",
+      "summary": "Ages 2–5 with an adult. It’s a seed! It’s a fruit! It’s … both! Come learn about what makes a seed and a fruit with demonstrations and a walk along the trails!",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "toddler-trek-seeds-fruits-5-1530",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "fosterfields-little-farm-friends",
+      "title": "Little Farm Friends: Pumpkin Pick n Paint",
+      "date": "2026-10-30",
+      "startTime": "10:30",
+      "endTime": "11:30",
+      "url": "https://www.morrisparks.net/events/little-farm-friends-pumpkin-pick-n-paint-6/",
+      "venue": "Fosterfields Living Historical Farm",
+      "summary": "Ages 2.5–5 with an adult. Visit the pumpkin patch at Fosterfields and pick your favorite! See the animals and use our art supplies to decorate your pumpkin.",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$10 per child.",
+      "registration": "Advance registration required",
+      "externalId": "little-farm-friends-pumpkin-pick-n-paint-6-1030",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "east-hanover-official-family-events",
+      "title": "Fire Department Open House",
+      "date": "2026-10-24",
+      "startTime": "10:00",
+      "endTime": "14:00",
+      "venue": "East Hanover Fire Headquarters",
+      "url": "https://www.easthanovertownship.com/",
+      "ages": [
+        "baby",
+        "toddler",
+        "preschool",
+        "early-elementary",
+        "tween",
+        "teen"
+      ],
+      "cost": null,
+      "registration": "See source",
+      "summary": "All ages welcome at Fire Headquarters, 323 Ridgedale Avenue. Meet firefighters, explore trucks and equipment, learn fire safety, and come in costume for trick-or-treating. Refreshments available.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "far-hills-official-family-events",
+      "title": "Far Hills Trunk or Treat",
+      "date": "2026-10-24",
+      "startTime": "16:00",
+      "endTime": null,
+      "venue": "Far Hills Fairgrounds",
+      "url": "https://www.farhillsnj.org/news_detail_T2_R628.php",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary",
+        "tween",
+        "teen"
+      ],
+      "cost": null,
+      "registration": "See source",
+      "summary": "Family costume and trunk-or-treat event at Far Hills Fairgrounds. Decorate your car and bring wrapped candy for 50 children. Rain date October 25 at 4 PM; this is an alternative date, not a second scheduled event.",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "reviewNotes": "Named fairgrounds confirmed; exact event entrance coordinates and end time not published.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ],
+      "timeStatus": "end_time_missing"
+    },
+    {
+      "sourceId": "north-plainfield-recreation",
+      "title": "North Plainfield Halloween Parade & Trunk or Treat",
+      "date": "2026-10-25",
+      "startTime": "13:00",
+      "endTime": null,
+      "venue": "West End School → Vermeule Playground",
+      "address": "447 Greenbrook Road, North Plainfield, NJ 07060",
+      "lat": 40.612332767656,
+      "lng": -74.44997792455,
+      "url": "https://nprecreation.com/",
+      "ages": [
+        "baby",
+        "toddler",
+        "preschool",
+        "early-elementary",
+        "tween",
+        "teen"
+      ],
+      "cost": "Free for North Plainfield residents",
+      "registration": "On-site registration opens at noon; North Plainfield residents",
+      "summary": "Family costume parade starts at West End School at 1 PM and ends at Vermeule Playground with awards, refreshments, and trunk-or-treat. On-site registration begins at noon. Includes an infant–pre-kindergarten costume category. No rain date.",
+      "reviewNotes": "End time not published. Address and coordinates identify the starting school, not the whole parade route. School address verified on its official district page.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ],
+      "timeStatus": "end_time_missing"
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sat 9:00 am)",
+      "date": "2026-10-17",
+      "startTime": "09:00",
+      "endTime": "09:45",
+      "venue": "Orchard Park",
+      "address": "DeHart Rd off of Ridgewood Rd, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4755",
+      "externalId": "4755",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SaturdaysTime: 9:00 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sat 9:00 am)",
+      "date": "2026-10-24",
+      "startTime": "09:00",
+      "endTime": "09:45",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4755",
+      "externalId": "4755",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SaturdaysTime: 9:00 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sat 9:00 am)",
+      "date": "2026-10-31",
+      "startTime": "09:00",
+      "endTime": "09:45",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4755",
+      "externalId": "4755",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SaturdaysTime: 9:00 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sat 11:30 am)",
+      "date": "2026-10-17",
+      "startTime": "11:30",
+      "endTime": "12:15",
+      "venue": "Orchard Park",
+      "address": "DeHart Rd off of Ridgewood Rd, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4757",
+      "externalId": "4757",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SaturdaysTime: 11:30 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sat 11:30 am)",
+      "date": "2026-10-24",
+      "startTime": "11:30",
+      "endTime": "12:15",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4757",
+      "externalId": "4757",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SaturdaysTime: 11:30 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sat 11:30 am)",
+      "date": "2026-10-31",
+      "startTime": "11:30",
+      "endTime": "12:15",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4757",
+      "externalId": "4757",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SaturdaysTime: 11:30 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sun 10:30 am)",
+      "date": "2026-10-18",
+      "startTime": "10:30",
+      "endTime": "11:10",
+      "venue": "Orchard Park",
+      "address": "DeHart Rd off of Ridgewood Rd, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4758",
+      "externalId": "4758",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$132.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SundayTime: 10:30 AMDates: October 4th – November 1, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sun 10:30 am)",
+      "date": "2026-10-25",
+      "startTime": "10:30",
+      "endTime": "11:10",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4758",
+      "externalId": "4758",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$132.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SundayTime: 10:30 AMDates: October 4th – November 1, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts Soccer USSI (Sun 10:30 am)",
+      "date": "2026-11-01",
+      "startTime": "10:30",
+      "endTime": "11:10",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4758",
+      "externalId": "4758",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$132.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Soccer Squirts – Ages 3–4.5Introduce your little one to the exciting world of soccer with Soccer Squirts, a fun and engaging program designed specifically for young children ages 3–4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic soccer skills such as dribbling, kicking, ball control, and movement through fun activities designed to keep young athletes engaged and active. No previous soccer experience is necessary!Ages: 3–4.5Day: SundayTime: 10:30 AMDates: October 4th – November 1, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Soccer USSI (Sat 9:45 am)",
+      "date": "2026-10-17",
+      "startTime": "09:45",
+      "endTime": "10:25",
+      "venue": "Orchard Park",
+      "address": "DeHart Rd off of Ridgewood Rd, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4766",
+      "externalId": "4766",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Program is Full Parent & Me Soccer – Ages 2–3.5Introduce your little one to the exciting world of soccer with Parent & Me Soccer, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help young children develop coordination, balance, listening skills, and confidence while having fun alongside a grown-up.Children and their parents or caregivers will participate together in fun activities that introduce basic soccer skills such as kicking, dribbling, ball control, and movement. The program provides a positive and supportive environment where little ones can explore, play, and develop early motor skills while building a love for the game. No previous soccer experience is necessary!Ages: 2–3.5Day: SaturdaysTime: 9:45 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Soccer USSI (Sat 9:45 am)",
+      "date": "2026-10-24",
+      "startTime": "09:45",
+      "endTime": "10:25",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4766",
+      "externalId": "4766",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Program is Full Parent & Me Soccer – Ages 2–3.5Introduce your little one to the exciting world of soccer with Parent & Me Soccer, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help young children develop coordination, balance, listening skills, and confidence while having fun alongside a grown-up.Children and their parents or caregivers will participate together in fun activities that introduce basic soccer skills such as kicking, dribbling, ball control, and movement. The program provides a positive and supportive environment where little ones can explore, play, and develop early motor skills while building a love for the game. No previous soccer experience is necessary!Ages: 2–3.5Day: SaturdaysTime: 9:45 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Soccer USSI (Sat 9:45 am)",
+      "date": "2026-10-31",
+      "startTime": "09:45",
+      "endTime": "10:25",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4766",
+      "externalId": "4766",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Program is Full Parent & Me Soccer – Ages 2–3.5Introduce your little one to the exciting world of soccer with Parent & Me Soccer, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help young children develop coordination, balance, listening skills, and confidence while having fun alongside a grown-up.Children and their parents or caregivers will participate together in fun activities that introduce basic soccer skills such as kicking, dribbling, ball control, and movement. The program provides a positive and supportive environment where little ones can explore, play, and develop early motor skills while building a love for the game. No previous soccer experience is necessary!Ages: 2–3.5Day: SaturdaysTime: 9:45 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Soccer USSI (Sun 9:45 am)",
+      "date": "2026-10-18",
+      "startTime": "09:45",
+      "endTime": "10:25",
+      "venue": "Orchard Park",
+      "address": "DeHart Rd off of Ridgewood Rd, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4768",
+      "externalId": "4768",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$132.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Parent & Me Soccer – Ages 2–3.5Introduce your little one to the exciting world of soccer with Parent & Me Soccer, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help young children develop coordination, balance, listening skills, and confidence while having fun alongside a grown-up.Children and their parents or caregivers will participate together in fun activities that introduce basic soccer skills such as kicking, dribbling, ball control, and movement. The program provides a positive and supportive environment where little ones can explore, play, and develop early motor skills while building a love for the game. No previous soccer experience is necessary!Ages: 2–3.5Day: SundaysTime: 9:45 AMDates: October 4th – November 1, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Soccer USSI (Sun 9:45 am)",
+      "date": "2026-10-25",
+      "startTime": "09:45",
+      "endTime": "10:25",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4768",
+      "externalId": "4768",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$132.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Parent & Me Soccer – Ages 2–3.5Introduce your little one to the exciting world of soccer with Parent & Me Soccer, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help young children develop coordination, balance, listening skills, and confidence while having fun alongside a grown-up.Children and their parents or caregivers will participate together in fun activities that introduce basic soccer skills such as kicking, dribbling, ball control, and movement. The program provides a positive and supportive environment where little ones can explore, play, and develop early motor skills while building a love for the game. No previous soccer experience is necessary!Ages: 2–3.5Day: SundaysTime: 9:45 AMDates: October 4th – November 1, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Soccer USSI (Sun 9:45 am)",
+      "date": "2026-11-01",
+      "startTime": "09:45",
+      "endTime": "10:25",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4768",
+      "externalId": "4768",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$132.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Parent & Me Soccer – Ages 2–3.5Introduce your little one to the exciting world of soccer with Parent & Me Soccer, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and soccer fundamentals to help young children develop coordination, balance, listening skills, and confidence while having fun alongside a grown-up.Children and their parents or caregivers will participate together in fun activities that introduce basic soccer skills such as kicking, dribbling, ball control, and movement. The program provides a positive and supportive environment where little ones can explore, play, and develop early motor skills while building a love for the game. No previous soccer experience is necessary!Ages: 2–3.5Day: SundaysTime: 9:45 AMDates: October 4th – November 1, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Multi Sport USSI (Sat 10:30 am)",
+      "date": "2026-10-17",
+      "startTime": "10:30",
+      "endTime": "11:10",
+      "venue": "Orchard Park",
+      "address": "DeHart Rd off of Ridgewood Rd, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4769",
+      "externalId": "4769",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Parent & Me Multi Sport– Ages 2–3.5Introduce your little one to the exciting world of sports with Parent & Me Multi Sport, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games and activities to introduce young children to a variety of sports while helping them develop coordination, balance, listening skills, and confidence.Children and their parents or caregivers will participate together in fun activities inspired by different sports, including soccer, basketball, track & field, and more. The program provides a positive and supportive environment where little ones can explore movement, develop early motor skills, and discover new activities while having fun with a grown-up. No previous sports experience is necessary!Ages: 2–3.5Day: SaturdaysTime: 10:30 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Multi Sport USSI (Sat 10:30 am)",
+      "date": "2026-10-24",
+      "startTime": "10:30",
+      "endTime": "11:10",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4769",
+      "externalId": "4769",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Parent & Me Multi Sport– Ages 2–3.5Introduce your little one to the exciting world of sports with Parent & Me Multi Sport, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games and activities to introduce young children to a variety of sports while helping them develop coordination, balance, listening skills, and confidence.Children and their parents or caregivers will participate together in fun activities inspired by different sports, including soccer, basketball, track & field, and more. The program provides a positive and supportive environment where little ones can explore movement, develop early motor skills, and discover new activities while having fun with a grown-up. No previous sports experience is necessary!Ages: 2–3.5Day: SaturdaysTime: 10:30 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Parent & Me Multi Sport USSI (Sat 10:30 am)",
+      "date": "2026-10-31",
+      "startTime": "10:30",
+      "endTime": "11:10",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4769",
+      "externalId": "4769",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Parent & Me Multi Sport– Ages 2–3.5Introduce your little one to the exciting world of sports with Parent & Me Multi Sport, a fun and interactive program designed specifically for toddlers ages 2–3.5 and their parents or caregivers! In partnership with USA Sport Group, this program uses age-appropriate games and activities to introduce young children to a variety of sports while helping them develop coordination, balance, listening skills, and confidence.Children and their parents or caregivers will participate together in fun activities inspired by different sports, including soccer, basketball, track & field, and more. The program provides a positive and supportive environment where little ones can explore movement, develop early motor skills, and discover new activities while having fun with a grown-up. No previous sports experience is necessary!Ages: 2–3.5Day: SaturdaysTime: 10:30 AMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts T-Ball USSI (Sat 3:10 pm)",
+      "date": "2026-10-17",
+      "startTime": "15:10",
+      "endTime": "15:55",
+      "venue": "Orchard Park",
+      "address": "DeHart Rd off of Ridgewood Rd, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4773",
+      "externalId": "4773",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Program is Full Squirts T-Ball – Ages 3-4.5Introduce your little one to the exciting world of baseball with Squirts T-Ball, a fun and engaging program designed specifically for young children ages 3-4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and baseball fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic T-ball skills such as hitting, throwing, catching, running the bases, and fielding through fun and interactive activities. The program provides a positive and supportive environment where young athletes can build fundamental skills, learn about teamwork, and develop a love for the game. No previous baseball experience is necessary!Ages: 3-4.5Day: SaturdaysTime: 3:10 PMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to learn, play, and have fun on the field!Come ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts T-Ball USSI (Sat 3:10 pm)",
+      "date": "2026-10-24",
+      "startTime": "15:10",
+      "endTime": "15:55",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4773",
+      "externalId": "4773",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Program is Full Squirts T-Ball – Ages 3-4.5Introduce your little one to the exciting world of baseball with Squirts T-Ball, a fun and engaging program designed specifically for young children ages 3-4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and baseball fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic T-ball skills such as hitting, throwing, catching, running the bases, and fielding through fun and interactive activities. The program provides a positive and supportive environment where young athletes can build fundamental skills, learn about teamwork, and develop a love for the game. No previous baseball experience is necessary!Ages: 3-4.5Day: SaturdaysTime: 3:10 PMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to learn, play, and have fun on the field!Come ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "maplewood-recdesk-preschool",
+      "title": "Squirts T-Ball USSI (Sat 3:10 pm)",
+      "date": "2026-10-31",
+      "startTime": "15:10",
+      "endTime": "15:55",
+      "venue": "Amphitheater",
+      "address": "Valley St between Oakland Rd and Baker St, Maplewood, NJ 07040",
+      "url": "https://maplewood.recdesk.com/Community/Program/Detail?programId=4773",
+      "externalId": "4773",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$211.00 full series; not a per-session price",
+      "registration": "Registration closed; Maplewood residents only",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "summary": "Registration closed; resident-only course. Program is Full Squirts T-Ball – Ages 3-4.5Introduce your little one to the exciting world of baseball with Squirts T-Ball, a fun and engaging program designed specifically for young children ages 3-4.5! In partnership with USA Sport Group, this program uses age-appropriate games, activities, and baseball fundamentals to help children develop coordination, balance, listening skills, and confidence while having fun.Players will be introduced to basic T-ball skills such as hitting, throwing, catching, running the bases, and fielding through fun and interactive activities. The program provides a positive and supportive environment where young athletes can build fundamental skills, learn about teamwork, and develop a love for the game. No previous baseball experience is necessary!Ages: 3-4.5Day: SaturdaysTime: 3:10 PMDates: September 12 – October 31, 2026Program Partner: USA Sport GroupCome ready to learn, play, and have fun on the field!Come ready to run, kick, play, and have fun! ",
+      "reviewNotes": "Official schedule lists a different park on October 17/18. Full/closed enrollment is not represented as an available drop-in. Exact map point pending.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "morris-county-library-preschool-storytime",
+      "title": "Preschool Storytime and Music with Mr. Laurence",
+      "date": "2026-10-20",
+      "startTime": "10:00",
+      "endTime": "10:30",
+      "venue": "Morris County Library — Children’s Room",
+      "url": "https://www.mclib.info/Events/Children/Preschool-Storytime",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "Free",
+      "registration": "No registration required; seating limited",
+      "summary": "Ages 2–5. Preschool stories, fingerplays and music in the Children’s Room. No registration required; seating is limited.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "morris-county-library-preschool-storytime",
+      "title": "Preschool Storytime and Music with Mr. Laurence",
+      "date": "2026-10-27",
+      "startTime": "10:00",
+      "endTime": "10:30",
+      "venue": "Morris County Library — Children’s Room",
+      "url": "https://www.mclib.info/Events/Children/Preschool-Storytime",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "Free",
+      "registration": "No registration required; seating limited",
+      "summary": "Ages 2–5. Preschool stories, fingerplays and music in the Children’s Room. No registration required; seating is limited.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "morris-county-library-preschool-storytime",
+      "title": "Preschool Storytime and Music with Mr. Laurence",
+      "date": "2026-11-10",
+      "startTime": "10:00",
+      "endTime": "10:30",
+      "venue": "Morris County Library — Children’s Room",
+      "url": "https://www.mclib.info/Events/Children/Preschool-Storytime",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "Free",
+      "registration": "No registration required; seating limited",
+      "summary": "Ages 2–5. Preschool stories, fingerplays and music in the Children’s Room. No registration required; seating is limited.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "morris-county-library-preschool-storytime",
+      "title": "Preschool Storytime and Music with Mr. Laurence",
+      "date": "2026-11-17",
+      "startTime": "10:00",
+      "endTime": "10:30",
+      "venue": "Morris County Library — Children’s Room",
+      "url": "https://www.mclib.info/Events/Children/Preschool-Storytime",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "Free",
+      "registration": "No registration required; seating limited",
+      "summary": "Ages 2–5. Preschool stories, fingerplays and music in the Children’s Room. No registration required; seating is limited.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "morris-county-library-preschool-storytime",
+      "title": "Preschool Storytime and Music with Mr. Laurence",
+      "date": "2026-11-24",
+      "startTime": "10:00",
+      "endTime": "10:30",
+      "venue": "Morris County Library — Children’s Room",
+      "url": "https://www.mclib.info/Events/Children/Preschool-Storytime",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "Free",
+      "registration": "No registration required; seating limited",
+      "summary": "Ages 2–5. Preschool stories, fingerplays and music in the Children’s Room. No registration required; seating is limited.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "morris-county-library-preschool-storytime",
+      "title": "Preschool Storytime and Music with Mr. Laurence",
+      "date": "2026-12-01",
+      "startTime": "10:00",
+      "endTime": "10:30",
+      "venue": "Morris County Library — Children’s Room",
+      "url": "https://www.mclib.info/Events/Children/Preschool-Storytime",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "Free",
+      "registration": "No registration required; seating limited",
+      "summary": "Ages 2–5. Preschool stories, fingerplays and music in the Children’s Room. No registration required; seating is limited.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-mountainside",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-10-20",
+      "startTime": "09:30",
+      "endTime": "10:30",
+      "venue": "Mountainside Borough Hall outdoor program",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "mountainside-0930",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Registration closed at Mountainside; contact provider for remaining-series availability",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Borough Hall location confirmed in municipal registration catalog.",
+      "status": "review",
+      "addressStatus": "confirmed",
+      "directionsDisabled": false,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-mountainside",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-10-27",
+      "startTime": "09:30",
+      "endTime": "10:30",
+      "venue": "Mountainside Borough Hall outdoor program",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "mountainside-0930",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Registration closed at Mountainside; contact provider for remaining-series availability",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Borough Hall location confirmed in municipal registration catalog.",
+      "status": "review",
+      "addressStatus": "confirmed",
+      "directionsDisabled": false,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-mountainside",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-11-03",
+      "startTime": "09:30",
+      "endTime": "10:30",
+      "venue": "Mountainside Borough Hall outdoor program",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "mountainside-0930",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Registration closed at Mountainside; contact provider for remaining-series availability",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Borough Hall location confirmed in municipal registration catalog.",
+      "status": "review",
+      "addressStatus": "confirmed",
+      "directionsDisabled": false,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-mountainside",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-10-17",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "venue": "Mountainside Borough Hall outdoor program",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "mountainside-1000",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Registration closed at Mountainside; contact provider for remaining-series availability",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Borough Hall location confirmed in municipal registration catalog.",
+      "status": "review",
+      "addressStatus": "confirmed",
+      "directionsDisabled": false,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-mountainside",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-10-24",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "venue": "Mountainside Borough Hall outdoor program",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "mountainside-1000",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Registration closed at Mountainside; contact provider for remaining-series availability",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Borough Hall location confirmed in municipal registration catalog.",
+      "status": "review",
+      "addressStatus": "confirmed",
+      "directionsDisabled": false,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-mountainside",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-10-31",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "venue": "Mountainside Borough Hall outdoor program",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "mountainside-1000",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Registration closed at Mountainside; contact provider for remaining-series availability",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Borough Hall location confirmed in municipal registration catalog.",
+      "status": "review",
+      "addressStatus": "confirmed",
+      "directionsDisabled": false,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-mountainside",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-11-07",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "venue": "Mountainside Borough Hall outdoor program",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "mountainside-1000",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Registration closed at Mountainside; contact provider for remaining-series availability",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Borough Hall location confirmed in municipal registration catalog.",
+      "status": "review",
+      "addressStatus": "confirmed",
+      "directionsDisabled": false,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-fanwood",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-10-20",
+      "startTime": "16:30",
+      "endTime": "17:30",
+      "venue": "Fanwood Nature Center",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "fanwood-1630",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Advance series registration; remaining-series availability unconfirmed",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Official provider registration form identifies Fanwood Nature Center and parking behind Terrill Road Bible Chapel at 535 Terrill Road.",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-fanwood",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-10-27",
+      "startTime": "16:30",
+      "endTime": "17:30",
+      "venue": "Fanwood Nature Center",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "fanwood-1630",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Advance series registration; remaining-series availability unconfirmed",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Official provider registration form identifies Fanwood Nature Center and parking behind Terrill Road Bible Chapel at 535 Terrill Road.",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "play-and-talk-nature-fanwood",
+      "title": "Play in Nature — Caregiver & Child",
+      "date": "2026-11-03",
+      "startTime": "16:30",
+      "endTime": "17:30",
+      "venue": "Fanwood Nature Center",
+      "url": "https://www.playandtalkwithus.com/playinnature",
+      "externalId": "fanwood-1630",
+      "ages": [
+        "toddler",
+        "preschool",
+        "early-elementary"
+      ],
+      "cost": "$255 for 8-class series; not a drop-in price",
+      "registration": "Advance series registration; remaining-series availability unconfirmed",
+      "summary": "Ages 18 months–8 years with a participating caregiver; not drop-off. Nature exploration, sensory play, stories and movement. Official provider registration form identifies Fanwood Nature Center and parking behind Terrill Road Bible Chapel at 535 Terrill Road.",
+      "status": "review",
+      "addressStatus": "area_confirmed",
+      "directionsDisabled": true,
+      "reviewNotes": "Series already underway; no assumption of drop-in or late enrollment. Make-up dates November 10/14 excluded unless activated.",
+      "confidence": 0.9,
+      "evidenceSource": "official_page_or_registration_schedule",
+      "tags": [
+        "age-3-suitable",
+        "adult-accompanied",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "bound-brook-recreation",
+      "title": "Youth Soccer Clinic: Little Kickers — 2022/2023",
+      "date": "2026-10-20",
+      "startTime": "17:45",
+      "endTime": "19:00",
+      "venue": "Billian-Legion Park",
+      "address": "549 East Main Street, Bound Brook, NJ 08805",
+      "lat": 40.5637685,
+      "lng": -74.5257607,
+      "addressStatus": "approximate",
+      "status": "review",
+      "directionsDisabled": true,
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "registration": "Advance registration; borough residency required; remaining-series availability unconfirmed",
+      "cost": null,
+      "summary": "For children born in 2022 or 2023, including children around age 3. Official public schedule lists Little Kickers at Billian-Legion Park, 5:45–7 PM. This is an ongoing youth soccer course; late enrollment and cost need confirmation. Borough youth programs require at least one resident parent.",
+      "reviewNotes": "Official calendar and day detail confirm date, birth-year group, time and park. Public program registration requires login; did not assume availability. Park centroid from OpenStreetMap; entrance not confirmed.",
+      "confidence": 0.88,
+      "evidenceSource": "official_communitypass_calendar_and_day_detail",
+      "tags": [
+        "age-3-suitable",
+        "soccer",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "bound-brook-recreation",
+      "title": "Youth Soccer Clinic: Little Kickers — 2022/2023",
+      "date": "2026-10-27",
+      "startTime": "17:45",
+      "endTime": "19:00",
+      "venue": "Billian-Legion Park",
+      "address": "549 East Main Street, Bound Brook, NJ 08805",
+      "lat": 40.5637685,
+      "lng": -74.5257607,
+      "addressStatus": "approximate",
+      "status": "review",
+      "directionsDisabled": true,
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "registration": "Advance registration; borough residency required; remaining-series availability unconfirmed",
+      "cost": null,
+      "summary": "For children born in 2022 or 2023, including children around age 3. Official public schedule lists Little Kickers at Billian-Legion Park, 5:45–7 PM. This is an ongoing youth soccer course; late enrollment and cost need confirmation. Borough youth programs require at least one resident parent.",
+      "reviewNotes": "Official calendar and day detail confirm date, birth-year group, time and park. Public program registration requires login; did not assume availability. Park centroid from OpenStreetMap; entrance not confirmed.",
+      "confidence": 0.88,
+      "evidenceSource": "official_communitypass_calendar_and_day_detail",
+      "tags": [
+        "age-3-suitable",
+        "soccer",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "bound-brook-recreation",
+      "title": "Youth Soccer Clinic: Little Kickers — 2022/2023",
+      "date": "2026-11-03",
+      "startTime": "17:45",
+      "endTime": "19:00",
+      "venue": "Billian-Legion Park",
+      "address": "549 East Main Street, Bound Brook, NJ 08805",
+      "lat": 40.5637685,
+      "lng": -74.5257607,
+      "addressStatus": "approximate",
+      "status": "review",
+      "directionsDisabled": true,
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "registration": "Advance registration; borough residency required; remaining-series availability unconfirmed",
+      "cost": null,
+      "summary": "For children born in 2022 or 2023, including children around age 3. Official public schedule lists Little Kickers at Billian-Legion Park, 5:45–7 PM. This is an ongoing youth soccer course; late enrollment and cost need confirmation. Borough youth programs require at least one resident parent.",
+      "reviewNotes": "Official calendar and day detail confirm date, birth-year group, time and park. Public program registration requires login; did not assume availability. Park centroid from OpenStreetMap; entrance not confirmed.",
+      "confidence": 0.88,
+      "evidenceSource": "official_communitypass_calendar_and_day_detail",
+      "tags": [
+        "age-3-suitable",
+        "soccer",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "bound-brook-recreation",
+      "title": "Youth Soccer Clinic: Little Kickers — 2022/2023",
+      "date": "2026-11-10",
+      "startTime": "17:45",
+      "endTime": "19:00",
+      "venue": "Billian-Legion Park",
+      "address": "549 East Main Street, Bound Brook, NJ 08805",
+      "lat": 40.5637685,
+      "lng": -74.5257607,
+      "addressStatus": "approximate",
+      "status": "review",
+      "directionsDisabled": true,
+      "url": "https://register.capturepoint.com/reg/pubcal.cfm?a=2258",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "registration": "Advance registration; borough residency required; remaining-series availability unconfirmed",
+      "cost": null,
+      "summary": "For children born in 2022 or 2023, including children around age 3. Official public schedule lists Little Kickers at Billian-Legion Park, 5:45–7 PM. This is an ongoing youth soccer course; late enrollment and cost need confirmation. Borough youth programs require at least one resident parent.",
+      "reviewNotes": "Official calendar and day detail confirm date, birth-year group, time and park. Public program registration requires login; did not assume availability. Park centroid from OpenStreetMap; entrance not confirmed.",
+      "confidence": 0.88,
+      "evidenceSource": "official_communitypass_calendar_and_day_detail",
+      "tags": [
+        "age-3-suitable",
+        "soccer",
+        "verified-2026-10-16"
+      ]
+    },
+    {
+      "sourceId": "plainfield-official-family-events",
+      "title": "Trunk or Treat - 2026",
+      "date": "2026-10-30",
+      "startTime": "18:00",
+      "endTime": null,
+      "externalId": "1873",
+      "venue": "Plainfield City Hall Parking Lot",
+      "url": "https://plainfieldnj.gov/calendar.php?view=day&month=10&day=30&year=2026&calendar=&id=1873",
+      "ages": [
+        "baby",
+        "toddler",
+        "preschool",
+        "early-elementary",
+        "tween"
+      ],
+      "cost": "Free",
+      "registration": "See source",
+      "summary": "Free family trunk-or-treat for children ages 12 and under at the City Hall parking lot, 515 Watchung Avenue. Starts at 6 PM and continues until candy runs out. Decorated-trunk contest vehicles must arrive by 5:45 PM.",
+      "timeStatus": "variable_end_time",
+      "reviewNotes": "Structured calendar shows 9 PM, but official narrative says until candy runs out; no fixed end time asserted.",
+      "confidence": 0.92,
+      "evidenceSource": "official_revize_json_and_browser_detail",
+      "tags": [
+        "age-3-suitable",
+        "halloween",
+        "verified-2026-10-16"
+      ]
+    }
+  ],
+  "pendingCandidates": [
+    {
+      "reason": "Physical town not in current coverage registry; do not assign postal Boonton to Boonton town.",
+      "title": "Animal Disguises for Littles",
+      "date": "2026-10-18",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "url": "https://www.morrisparks.net/events/animal-disguises-for-littles-5/",
+      "venue": "Pyramid Mountain Natural Historic Area",
+      "summary": "Ages 2–5 with an adult. People aren’t the only ones who dress up on Halloween! Plenty of animals pretend to be plants, rocks, or even other animals! Learn all about them with a story, dress up in your own costume, and then hit the trails to look for wild animals in disguise!",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "animal-disguises-for-littles-5-1000"
+    },
+    {
+      "reason": "Physical town not in current coverage registry; do not assign postal Boonton to Boonton town.",
+      "title": "Tot Trek: Seeds & Fruits",
+      "date": "2026-10-27",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "url": "https://www.morrisparks.net/events/tot-trek-seeds-fruits-5/",
+      "venue": "Pyramid Mountain Natural Historic Area",
+      "summary": "Ages 2–5 with an adult. It’s a seed! It’s a fruit! It’s … both! Come learn about what makes a seed and a fruit with demonstrations and a walk along the trails!",
+      "ages": [
+        "toddler",
+        "preschool"
+      ],
+      "cost": "$8 per child.",
+      "registration": "Advance registration required",
+      "externalId": "tot-trek-seeds-fruits-5-1000"
+    },
+    {
+      "title": "Fall Lantern Walk",
+      "date": "2026-11-01",
+      "startTime": "16:30",
+      "endTime": "17:30",
+      "townId": "mountainside-borough",
+      "reason": "Municipal catalog explicitly says Location TBD; do not assign Borough Hall by default.",
+      "cost": "Free",
+      "url": "https://secure.rec1.com/NJ/mountainside-nj/catalog"
+    },
+    {
+      "title": "North Plainfield Santa Comes to Town / Tree Lighting",
+      "date": "2026-12-06",
+      "url": "https://nprecreation.com/",
+      "reason": "Date only; time and venue unconfirmed."
+    },
+    {
+      "title": "Plainfield Parent & Child Swim — Session 2",
+      "url": "https://plainfieldnj.gov/calendar.php?view=day&month=11&day=14&year=2026&id=1883",
+      "reason": "JSON gives Saturday parent/child slot 9–9:45, but no precise age limit/venue and narrative/recurrence end dates differ. Older unlimited parent/child recurrence has conflicting 9:15 start; not expanded."
+    }
+  ],
+  "additionalSources": [
+    {
+      "label": "Turtle Back Zoo",
+      "url": "https://www.turtlebackzoo.com/learn/early-childhood/",
+      "town": "West Orange",
+      "ageSuitability": "Zoo Tots: ages 2 & 3 with one participating caregiver",
+      "nextDate": "2026-11-08",
+      "startTime": "11:30",
+      "endTime": "12:30",
+      "cost": "$30 child + one caregiver; zoo admission separate",
+      "status": "verified_outside_current_town_registry",
+      "address": "560 Northfield Avenue, West Orange, NJ 07052",
+      "notes": "Also verified Howl-O-Ween Oct 31 4–8 PM and 45-minute not-so-spooky storytimes at 4:30/5:30/6:30 PM, recommended ages 8 and under. Holiday Lights 5–9 PM Nov 20–22,27–29 and Dec 4–31 except Dec 24/25; free, no reservation. Keep outside current town coverage rather than misassign to South Orange.",
+      "additionalUrls": [
+        "https://www.turtlebackzoo.com/events/howl-o-ween-800/",
+        "https://www.turtlebackzoo.com/events/holiday-lights-2025-440/"
+      ]
+    },
+    {
+      "label": "Imagine That!!!",
+      "url": "https://imaginethatmuseum.com/events/",
+      "town": "Florham Park",
+      "address": "4 Vreeland Road, Florham Park, NJ 07932",
+      "status": "verified_venue_no_current_dated_event",
+      "ageSuitability": "Early-childhood interactive museum; age-3 suitability inferred from exhibit format rather than an event-specific age rule.",
+      "notes": "Official About Us confirms play-based interactive exhibits. Current event page displays Bluey Visits heading but no reliable full future date/time extracted; do not reuse cached July flyer as a fall event."
+    },
+    {
+      "label": "Pyramid Mountain Natural Historic Area",
+      "url": "https://www.morrisparks.net/events/tot-trek-seeds-fruits-5/",
+      "town": "Montville Township / Boonton postal address",
+      "address": "472 Boonton Avenue, Boonton, NJ 07005",
+      "status": "verified_outside_current_town_registry",
+      "ageSuitability": "Ages 2–5 with adult",
+      "notes": "Animal Disguises for Littles Oct18 10–11 AM; Tot Trek Seeds & Fruits Oct27 10–11 AM, $8 child. Physical town requires coverage check; do not assign postal Boonton to Boonton town."
+    }
+  ],
+  "geocodeEvidence": [
+    {
+      "query": "73 Kahdena Road, Morristown, NJ 07960",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=73+Kahdena+Road%2C+Morristown%2C+NJ+07960&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "60441830"
+          },
+          "coordinates": {
+            "x": -74.504022828575,
+            "y": 40.802641190682
+          },
+          "addressComponents": {
+            "zip": "07960",
+            "streetName": "KAHDENA",
+            "preType": "",
+            "city": "MORRISTOWN",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "73",
+            "state": "NJ",
+            "suffixType": "RD",
+            "toAddress": "199",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "73 KAHDENA RD, MORRISTOWN, NJ, 07960"
+        }
+      ]
+    },
+    {
+      "query": "247 Southern Boulevard, Chatham, NJ 07928",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=247+Southern+Boulevard%2C+Chatham%2C+NJ+07928&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "L",
+            "tigerLineId": "60488049"
+          },
+          "coordinates": {
+            "x": -74.4181104913,
+            "y": 40.73181262838
+          },
+          "addressComponents": {
+            "zip": "07928",
+            "streetName": "SOUTHERN",
+            "preType": "",
+            "city": "CHATHAM",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "245",
+            "state": "NJ",
+            "suffixType": "BLVD",
+            "toAddress": "299",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "247 SOUTHERN BLVD, CHATHAM, NJ, 07928"
+        }
+      ]
+    },
+    {
+      "query": "323 Ridgedale Avenue, East Hanover, NJ 07936",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=323+Ridgedale+Avenue%2C+East+Hanover%2C+NJ+07936&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "60448465"
+          },
+          "coordinates": {
+            "x": -74.366180433509,
+            "y": 40.821326737236
+          },
+          "addressComponents": {
+            "zip": "07936",
+            "streetName": "RIDGEDALE",
+            "preType": "",
+            "city": "EAST HANOVER",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "317",
+            "state": "NJ",
+            "suffixType": "AVE",
+            "toAddress": "341",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "323 RIDGEDALE AVE, EAST HANOVER, NJ, 07936"
+        }
+      ]
+    },
+    {
+      "query": "447 Greenbrook Road, North Plainfield, NJ 07060",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=447+Greenbrook+Road%2C+North+Plainfield%2C+NJ+07060&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "L",
+            "tigerLineId": "60001852"
+          },
+          "coordinates": {
+            "x": -74.44997792455,
+            "y": 40.612332767656
+          },
+          "addressComponents": {
+            "zip": "07063",
+            "streetName": "GREENBROOK",
+            "preType": "",
+            "city": "NORTH PLAINFIELD",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "403",
+            "state": "NJ",
+            "suffixType": "RD",
+            "toAddress": "447",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "447 GREENBROOK RD, NORTH PLAINFIELD, NJ, 07063"
+        }
+      ]
+    },
+    {
+      "query": "30 East Hanover Avenue, Whippany, NJ 07981",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=30+East+Hanover+Avenue%2C+Whippany%2C+NJ+07981&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "R",
+            "tigerLineId": "60486186"
+          },
+          "coordinates": {
+            "x": -74.450875229192,
+            "y": 40.805716801094
+          },
+          "addressComponents": {
+            "zip": "07981",
+            "streetName": "HANOVER",
+            "preType": "",
+            "city": "WHIPPANY",
+            "preDirection": "E",
+            "suffixDirection": "",
+            "fromAddress": "24",
+            "state": "NJ",
+            "suffixType": "AVE",
+            "toAddress": "84",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "30 E HANOVER AVE, WHIPPANY, NJ, 07981"
+        }
+      ]
+    },
+    {
+      "query": "1385 Route 22, Mountainside, NJ 07092",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1385+Route+22%2C+Mountainside%2C+NJ+07092&benchmark=Public_AR_Current&format=json",
+      "matches": [
+        {
+          "tigerLine": {
+            "side": "L",
+            "tigerLineId": "60566742"
+          },
+          "coordinates": {
+            "x": -74.354126018848,
+            "y": 40.672812456395
+          },
+          "addressComponents": {
+            "zip": "07092",
+            "streetName": "22",
+            "preType": "US HWY",
+            "city": "MOUNTAINSIDE",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "1299",
+            "state": "NJ",
+            "suffixType": "",
+            "toAddress": "1399",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "matchedAddress": "1385 US HWY 22, MOUNTAINSIDE, NJ, 07092"
+        }
+      ]
+    }
+  ],
+  "bbMapEvidence": {
+    "place_id": 370672323,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "way",
+    "osm_id": 307858709,
+    "lat": "40.5637685",
+    "lon": "-74.5257607",
+    "category": "leisure",
+    "type": "park",
+    "place_rank": 24,
+    "importance": 0.0800489456015869,
+    "addresstype": "park",
+    "name": "Billian Legion Park",
+    "display_name": "Billian Legion Park, Bound Brook, Somerset County, New Jersey, United States",
+    "boundingbox": [
+      "40.5617175",
+      "40.5655326",
+      "-74.5273234",
+      "-74.5245507"
+    ]
+  },
+  "importSummary": {
+    "newStoredRecords": 55,
+    "totalStoredRecords": 6070,
+    "newPublished": 19,
+    "newReview": 36,
+    "windowRecords": 2532,
+    "bySource": {
+      "fosterfields-little-farm-friends": 3,
+      "maplewood-recdesk-preschool": 21,
+      "play-and-talk-nature-mountainside": 7,
+      "great-swamp-oec-preschool-programs": 7,
+      "morris-county-library-preschool-storytime": 6,
+      "play-and-talk-nature-fanwood": 3,
+      "bound-brook-recreation": 4,
+      "east-hanover-official-family-events": 1,
+      "far-hills-official-family-events": 1,
+      "north-plainfield-recreation": 1,
+      "plainfield-official-family-events": 1
+    },
+    "filteredCandidates": [],
+    "checks": [
+      "All existing IDs retained",
+      "No duplicate IDs",
+      "All new rows within requested window",
+      "Closed series remain review records",
+      "October 17/18 venue changes retained",
+      "Plainfield variable end time not set to fixed 9 PM"
+    ],
+    "geocodeMode": "Preverified Census coordinates; no full-history network geocode rerun",
+    "quality": {
+      "checked": 5508,
+      "issues": {
+        "summary": {
+          "count": 70,
+          "samples": [
+            "farmstead-arts-center-2026-06-05-theater-pygmalion-560656 | 2026-06-05 | Theater \"Pygmalion\" | Farmstead Arts Center",
+            "civicplus-union-township-10189-2026-06-06 | 2026-06-06 | Union Pride Flag Raising | Union township municipal event",
+            "civicplus-union-township-10188-2026-06-06 | 2026-06-06 | Union Pride Performance ft. Frenchie Davis | Union township municipal event",
+            "farmstead-arts-center-2026-06-06-theater-pygmalion-560656 | 2026-06-06 | Theater \"Pygmalion\" | Farmstead Arts Center",
+            "civicplus-union-township-10225-2026-06-07 | 2026-06-07 | Historical Bus Trip - 1pm Tour | Union township municipal event",
+            "farmstead-arts-center-2026-06-07-theater-pygmalion-557073 | 2026-06-07 | Theater \"Pygmalion\" | Farmstead Arts Center",
+            "civicplus-westfield-town-2381-2026-06-08 | 2026-06-08 | Pride Celebration | Save the date to celebrate Pride Month on Monday, June 8! The Pride flag will be raised at Town Hall at 5:30, which will be followed by a walk to the rainbow crosswalks. All are welcome!",
+            "libcal-bccls-south-orange-17007769 | 2026-06-10 | Farmer's Market Storytime: feat. Soccer Shots! | South Orange Public Library"
+          ]
+        }
+      }
+    },
+    "validation": {
+      "dataValidation": "passed",
+      "dataWarningCount": 144,
+      "projectAudit": "passed",
+      "projectWarningCategories": 1,
+      "newRecordsMissingPreciseCoordinates": 25,
+      "note": "25 new coordinate warnings are explicit review records with directions disabled. Existing warnings remain; no invented coordinates."
+    }
+  },
+  "newStoredIds": [
+    "fosterfields-little-farm-friends-little-farm-friends-foliage-on-the-farm-6-1030-2026-10-16",
+    "maplewood-recdesk-preschool-4755-2026-10-17",
+    "maplewood-recdesk-preschool-4766-2026-10-17",
+    "play-and-talk-nature-mountainside-mountainside-1000-2026-10-17",
+    "great-swamp-oec-preschool-programs-yoga-for-littles-6-1000-2026-10-17",
+    "maplewood-recdesk-preschool-4769-2026-10-17",
+    "maplewood-recdesk-preschool-4757-2026-10-17",
+    "maplewood-recdesk-preschool-4773-2026-10-17",
+    "maplewood-recdesk-preschool-4768-2026-10-18",
+    "maplewood-recdesk-preschool-4758-2026-10-18",
+    "play-and-talk-nature-mountainside-mountainside-0930-2026-10-20",
+    "morris-county-library-preschool-storytime-2026-10-20-preschool-storytime-and-music-with-mr-laurence",
+    "play-and-talk-nature-fanwood-fanwood-1630-2026-10-20",
+    "bound-brook-recreation-2026-10-20-youth-soccer-clinic-little-kickers-2022-2023",
+    "fosterfields-little-farm-friends-little-farm-friends-creepy-crawlies-5-1030-2026-10-23",
+    "maplewood-recdesk-preschool-4755-2026-10-24",
+    "maplewood-recdesk-preschool-4766-2026-10-24",
+    "east-hanover-official-family-events-2026-10-24-fire-department-open-house",
+    "play-and-talk-nature-mountainside-mountainside-1000-2026-10-24",
+    "maplewood-recdesk-preschool-4769-2026-10-24",
+    "maplewood-recdesk-preschool-4757-2026-10-24",
+    "great-swamp-oec-preschool-programs-teeny-tiny-trail-tales-6-1300-2026-10-24",
+    "great-swamp-oec-preschool-programs-teeny-tiny-trail-tales-6-1330-2026-10-24",
+    "great-swamp-oec-preschool-programs-teeny-tiny-trail-tales-6-1400-2026-10-24",
+    "maplewood-recdesk-preschool-4773-2026-10-24",
+    "far-hills-official-family-events-2026-10-24-far-hills-trunk-or-treat",
+    "maplewood-recdesk-preschool-4768-2026-10-25",
+    "maplewood-recdesk-preschool-4758-2026-10-25",
+    "north-plainfield-recreation-2026-10-25-north-plainfield-halloween-parade-trunk-or-treat",
+    "play-and-talk-nature-mountainside-mountainside-0930-2026-10-27",
+    "morris-county-library-preschool-storytime-2026-10-27-preschool-storytime-and-music-with-mr-laurence",
+    "play-and-talk-nature-fanwood-fanwood-1630-2026-10-27",
+    "bound-brook-recreation-2026-10-27-youth-soccer-clinic-little-kickers-2022-2023",
+    "great-swamp-oec-preschool-programs-toddler-trek-seeds-fruits-5-1000-2026-10-28",
+    "great-swamp-oec-preschool-programs-toddler-trek-seeds-fruits-5-1530-2026-10-28",
+    "fosterfields-little-farm-friends-little-farm-friends-pumpkin-pick-n-paint-6-1030-2026-10-30",
+    "plainfield-official-family-events-1873-2026-10-30",
+    "maplewood-recdesk-preschool-4755-2026-10-31",
+    "maplewood-recdesk-preschool-4766-2026-10-31",
+    "play-and-talk-nature-mountainside-mountainside-1000-2026-10-31",
+    "maplewood-recdesk-preschool-4769-2026-10-31",
+    "maplewood-recdesk-preschool-4757-2026-10-31",
+    "maplewood-recdesk-preschool-4773-2026-10-31",
+    "maplewood-recdesk-preschool-4768-2026-11-01",
+    "maplewood-recdesk-preschool-4758-2026-11-01",
+    "play-and-talk-nature-mountainside-mountainside-0930-2026-11-03",
+    "play-and-talk-nature-fanwood-fanwood-1630-2026-11-03",
+    "bound-brook-recreation-2026-11-03-youth-soccer-clinic-little-kickers-2022-2023",
+    "play-and-talk-nature-mountainside-mountainside-1000-2026-11-07",
+    "morris-county-library-preschool-storytime-2026-11-10-preschool-storytime-and-music-with-mr-laurence",
+    "bound-brook-recreation-2026-11-10-youth-soccer-clinic-little-kickers-2022-2023",
+    "morris-county-library-preschool-storytime-2026-11-17-preschool-storytime-and-music-with-mr-laurence",
+    "great-swamp-oec-preschool-programs-yoga-for-littles-6-1000-2026-11-21",
+    "morris-county-library-preschool-storytime-2026-11-24-preschool-storytime-and-music-with-mr-laurence",
+    "morris-county-library-preschool-storytime-2026-12-01-preschool-storytime-and-music-with-mr-laurence"
+  ]
+}

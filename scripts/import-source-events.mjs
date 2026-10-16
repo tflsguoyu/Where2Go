@@ -4273,8 +4273,8 @@ function configuredLibraryEvent(source, config, dateKey) {
   }
 
   const event = {
-    id: `configured-library-${slugify(source.library.name)}-${dateKey}-${slugify(title)}`,
-    externalId: `${dateKey}-${slugify(title)}`,
+    id: config.externalId ? `configured-library-${slugify(source.library.name)}-${config.externalId}-${dateKey}` : `configured-library-${slugify(source.library.name)}-${dateKey}-${slugify(title)}`,
+    externalId: config.externalId ? String(config.externalId) : `${dateKey}-${slugify(title)}`,
     sourceId: `configured-library-${slugify(source.library.name)}`,
     townId: source.library.townId || source.town.id,
     title,
@@ -4295,14 +4295,18 @@ function configuredLibraryEvent(source, config, dateKey) {
     url: sourceUrl,
     sourceUrl,
     sourceCalendarUrl: source.library.eventsUrl,
-    address: source.library.address || null,
-    lat: libraryLat(source),
-    lng: libraryLng(source),
+    address: config.address || source.library.address || null,
+    lat: config.lat ?? libraryLat(source),
+    lng: config.lng ?? libraryLng(source),
     image: config.image || null,
     tags: config.tags || [],
-    status: "published",
-    confidence: 0.72
+    status: config.status || "published",
+    confidence: config.confidence ?? 0.72
   };
+
+  for (const key of ["timeStatus", "timeLabel", "addressStatus", "coordinateStatus", "directionsDisabled", "reviewNotes", "dateStatus", "evidenceSource"]) {
+    if (config[key] !== undefined) event[key] = config[key];
+  }
 
   if (config.virtual || eventLooksOnline(event)) {
     markOnlineEvent(event);
@@ -4895,9 +4899,9 @@ function configuredRegionalEvent(source, config, dateKey) {
     return null;
   }
 
-  return regionalEventRecord(source, {
-    id: `${source.id}-${dateKey}-${slugify(title)}`,
-    externalId: `${dateKey}-${slugify(title)}`,
+  const event = regionalEventRecord(source, {
+    id: config.externalId ? `${source.id}-${config.externalId}-${dateKey}` : `${source.id}-${dateKey}-${slugify(title)}`,
+    externalId: config.externalId ? String(config.externalId) : `${dateKey}-${slugify(title)}`,
     title,
     startsAt,
     endsAt,
@@ -4914,6 +4918,10 @@ function configuredRegionalEvent(source, config, dateKey) {
     tags: config.tags || [],
     confidence: config.confidence ?? 0.72
   });
+  for (const key of ["status", "timeStatus", "timeLabel", "addressStatus", "coordinateStatus", "directionsDisabled", "reviewNotes", "dateStatus", "evidenceSource"]) {
+    if (config[key] !== undefined) event[key] = config[key];
+  }
+  return event;
 }
 
 function importConfiguredRegionalEvents(sources, startDate, days) {
@@ -5659,8 +5667,8 @@ function isImportableNjpacEvent(title, genre = "", highlights = "") {
 }
 
 function isLowInformationFestivalShell(title, genre = "", highlights = "") {
-  const titleText = normalizeWhitespace(title).toLowerCase();
-  const detailText = normalizeWhitespace([genre, highlights].filter(Boolean).join(" ")).toLowerCase();
+  const titleText = collapseWhitespace(title).toLowerCase();
+  const detailText = collapseWhitespace([genre, highlights].filter(Boolean).join(" ")).toLowerCase();
   const hasSpecificFamilySignal = /\b(family|families|kids|children|child|teen|tween|youth|student|story|reading|stem|craft|workshop|class|camp|sensory|school|arts ed)\b/i.test(
     `${title} ${genre} ${highlights}`
   );
