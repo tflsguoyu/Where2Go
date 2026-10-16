@@ -78,7 +78,7 @@ const SUMMARY_ACTIVITY_SIGNAL_PATTERN =
   /\b(?:story|craft|club|kids|children|family|families|baby|toddler|preschool|teen|tween|lego|game|games|movie|music|concert|festival|market|rides?|food|workshop|camp|art|paint|build|read|reading|learn|discover|explore|nature|garden|science|theater|performance|play|party|parade|fireworks|foam|jump|slime)\b/i;
 const QUALITY_REPORT_SAMPLE_LIMIT = 8;
 const MUNICIPAL_COMMUNITY_EVENT_PATTERN =
-  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|time capsule|tree lighting|unity day|watch part(?:y|ies)|world cup|yoga)\b/i;
+  /\b(?:america\s*250|battle|camp|celebration|charter day|children|community event|concert|cookies with a cop|fair|famil(?:y|ies)|festival|field of honor|fireworks|flag day|flag raising|fun night|farm(?:ers)? market|garwood rocks|juneteenth|kids|kickoff|love is love|market|movie|musical|national night out|outdoor movie|parade|plays in the park|pool opening|pool party|pool safety|pride|revolution|screen on the green|shrek|street fair|time capsule|trunk[ -]or[ -]treat|tree lighting|unity day|watch part(?:y|ies)|world cup|yoga)\b/i;
 const MUNICIPAL_SKIP_TITLE_PATTERN =
   /\b(?:adult|adults only|authority meeting|board .*meeting|bulk collection|chair yoga|commission|court|curbside|deadline|garbage|id photos|meeting|membership|municipal court|offices? closed|offices? close|office hours|planning board|recycling|senior|seniors|stormwater|township committee|wine tasting|zoning board)\b/i;
 const SECONDHAND_SALE_EVENT_PATTERN =
@@ -801,7 +801,8 @@ function hasChildAudience(audiences, title = "") {
   if (adultsOnly && !explicitYouthTitle) {
     return false;
   }
-  return explicitYouthTitle || youthAudience || (!adultsOnly && /everyone|all ages|open to all/.test(audienceText));
+  const numericChildAudience = /\b(?:[0-9]|1[0-7])(?:\s*-\s*to\s*\d+)?-year-olds?\b/.test(audienceText);
+  return explicitYouthTitle || youthAudience || numericChildAudience || (!adultsOnly && /everyone|all ages|open to all/.test(audienceText));
 }
 
 function isClosureOrNonEvent(title, description = "") {
@@ -1191,6 +1192,10 @@ async function geocodeEventCoordinates(events, sources) {
       } catch (error) {
         console.warn(`warning: could not geocode ${address}: ${error.message}`);
         cache.set(address, null);
+        if (/\b429\b/.test(error.message)) {
+          console.warn("warning: geocoding rate limited; stopping address lookups for this run.");
+          break;
+        }
       }
     }
     const coordinates = cache.get(address);
@@ -1713,7 +1718,7 @@ function normalizePlaceName(value) {
 
 function buildTownLookup(sources) {
   const lookup = new Map();
-  sources.towns.forEach((town) => {
+  (sources.registryTowns || sources.towns).forEach((town) => {
     const variants = new Set([
       normalizePlaceName(town.name),
       normalizePlaceName(town.id),
@@ -2629,7 +2634,7 @@ function parseLibraryCalendarCards(html, baseUrl, source) {
     const selectorId = firstMatch(card, /data-drupal-selector="edit-([^"]+)"/) || slugFromUrl(linkMatch[2]);
 
     const actionLabel = decodeEntities(linkMatch[1]);
-    const titleMatch = actionLabel.match(/^(?:View Details|Register Now) - "([\s\S]+)" on ([A-Za-z]+,\s+[A-Za-z]+\s+\d{1,2},\s+\d{4}) @ (\d{1,2}:\d{2}(?:am|pm))$/i);
+    const titleMatch = actionLabel.match(/^(?:View Details|Register Now) - "([\s\S]+)" on ([A-Za-z]+,\s+[A-Za-z]+\s+\d{1,2},\s+\d{4}) @ (\d{1,2}:\d{2}(?:am|pm))(?:\s+-\s+.*)?$/i);
     if (!titleMatch) {
       return;
     }
@@ -2721,11 +2726,23 @@ async function importLibraryCalendarEvents(sources, startDate, days) {
   const imported = [];
   for (const source of allLibraryCalendarSources(sources)) {
     try {
-      const html = await fetchText(source.library.eventsUrl);
-      const events = parseLibraryCalendarCards(html, source.library.eventsUrl, source).filter((event) =>
-        isDateWithinWindow(String(event.startsAt || "").slice(0, 10), startDate, days)
-      );
-      imported.push(...(await enrichLibraryCalendarDetails(events, source)));
+      const windowUrl = new URL(source.library.eventsUrl);
+      windowUrl.searchParams.set("start", startDate);
+      windowUrl.searchParams.set("end", addDateDays(startDate, days - 1));
+      let pageUrl = windowUrl.toString();
+      const visited = new Set();
+      const byId = new Map();
+      while (pageUrl && !visited.has(pageUrl)) {
+        visited.add(pageUrl);
+        const html = await fetchText(pageUrl);
+        for (const event of parseLibraryCalendarCards(html, pageUrl, source)) {
+          if (isDateWithinWindow(String(event.startsAt || "").slice(0, 10), startDate, days)) byId.set(event.id, event);
+        }
+        const nextBlock = html.match(/<li[^>]*class=["'][^"']*pager__item--next[^"']*["'][^>]*>([\s\S]*?)<\/li>/i)?.[1];
+        const nextHref = nextBlock?.match(/href=["']([^"']+)["']/i)?.[1];
+        pageUrl = nextHref ? absoluteUrl(pageUrl, nextHref) : null;
+      }
+      imported.push(...(await enrichLibraryCalendarDetails([...byId.values()], source)));
     } catch (error) {
       console.warn(`warning: could not import ${source.library.eventsUrl}: ${error.message}`);
     }
@@ -3780,7 +3797,7 @@ function buildLibCalListUrl(source, dateKey, page = 1) {
   ajaxUrl.searchParams.set("page", String(page));
   ajaxUrl.searchParams.set("audience", source.library.audienceIds.join(","));
   ajaxUrl.searchParams.set("cats", "");
-  ajaxUrl.searchParams.set("camps", "");
+  ajaxUrl.searchParams.set("camps", (source.library.campusIds || []).join(","));
   ajaxUrl.searchParams.set("inc", "0");
   return ajaxUrl.toString();
 }
@@ -3788,15 +3805,17 @@ function buildLibCalListUrl(source, dateKey, page = 1) {
 function mapLibCalEvent(source, event, calendarUrl, dateKey) {
   const audiences = normalizeLabelList(event.audiences ?? []);
   const categories = normalizeLabelList(event.categories_arr ?? event.categories ?? []);
-  const summary = cleanImportedSummary(event.shortdesc || event.description || "");
-  if (isClosureOrNonEvent(event.title, summary) || !hasChildAudience(audiences, event.title)) {
+  const summary = cleanImportedSummary(event.description || event.shortdesc || "");
+  if (isClosureOrNonEvent(event.title, summary) || !hasChildAudience([...audiences, ...categories], event.title)) {
     return null;
   }
 
   const startsAt = libCalDateTime(event, "start", dateKey);
   const endsAt = libCalDateTime(event, "end", dateKey);
   const url = absoluteUrl(source.library.eventsUrl, event.url || `/event/${event.id}`);
-  const knownLocation = findKnownLibraryLocation(source, { name: event.location || "" });
+  const knownLocation = findKnownLibraryLocation(source, { name: event.campus || event.location || "", aliases: [event.location || ""] });
+  if (source.library.allowedLocationNames?.length && !source.library.allowedLocationNames.includes(event.campus || event.location)) return null;
+  if (source.library.requireKnownLocation && !knownLocation) return null;
   const knownCoordinates = locationCoordinates(knownLocation);
   const address = cleanAddress(locationAddress(knownLocation) || source.library.address || "");
   const venueName = knownLocation?.name || source.library.name;
@@ -3817,7 +3836,7 @@ function mapLibCalEvent(source, event, calendarUrl, dateKey) {
     ages: inferAgeBandsFromText(event.title, audiences.join(" "), categories.join(" "), summary),
     audiences,
     cost: event.registration_cost ?? null,
-    registration: event.registration_enabled ? "RSVP" : "See source",
+    registration: /(?:township residents|residents only|resident[s]? of)/i.test(summary) ? "Residents only; see source" : event.registration_enabled ? "RSVP" : "See source",
     summary,
     url,
     sourceUrl: url,
@@ -4900,7 +4919,7 @@ function configuredRegionalEvent(source, config, dateKey) {
   }
 
   const event = regionalEventRecord(source, {
-    id: config.externalId ? `${source.id}-${config.externalId}-${dateKey}` : `${source.id}-${dateKey}-${slugify(title)}`,
+    id: config.id || (config.externalId ? `${source.id}-${config.externalId}-${dateKey}` : `${source.id}-${dateKey}-${slugify(title)}`),
     externalId: config.externalId ? String(config.externalId) : `${dateKey}-${slugify(title)}`,
     title,
     startsAt,
@@ -6059,7 +6078,8 @@ function parseCivicPlusListings(html, source, startDate, days) {
         lat: venue.lat,
         lng: venue.lng,
         tags: ["municipal", source.town.id, category, "family"].filter(Boolean),
-        status: "published",
+        status: /\bcancel(?:led|ed)\b/i.test(title) ? "review" : "published",
+        ...(/\bcancel(?:led|ed)\b/i.test(title) ? { cancellationStatus: "cancelled", reviewNotes: "Official calendar title explicitly marks this event cancelled." } : {}),
         confidence: venue.confidence
       });
     }
@@ -6919,7 +6939,8 @@ function parseSavvyCitizenPluginEvents(html, source, sourceUrl, startDate, days)
         lat: venue.lat,
         lng: venue.lng,
         tags: ["municipal", "community", "savvycitizen"],
-        status: "published",
+        status: /\bcancel(?:led|ed)\b/i.test(title) ? "review" : "published",
+        ...(/\bcancel(?:led|ed)\b/i.test(title) ? { cancellationStatus: "cancelled", reviewNotes: "Official calendar title explicitly marks this event cancelled." } : {}),
         confidence: venue.confidence
       });
     }
@@ -7877,12 +7898,54 @@ async function main() {
     { name: "nj-carnivals-jsonld-list", run: importNjCarnivalsEvents }
   ];
 
-  const importedGroups = await runSelectedImporters(importers, selected, sources, startDate, days);
+  const requestedTownIds = argValue("--towns", "").split(",").map((id) => id.trim()).filter(Boolean);
+  let importSources = sources;
+  if (requestedTownIds.length) {
+    if (replace) throw new Error("--replace cannot be combined with --towns; scoped refresh must preserve other towns and history.");
+    const townIds = new Set(requestedTownIds);
+    const unknown = requestedTownIds.filter((id) => !sources.towns.some((town) => town.id === id));
+    if (unknown.length) throw new Error(`Unknown --towns: ${unknown.join(", ")}`);
+    const referencedSources = new Set(sources.towns.filter((town) => townIds.has(town.id))
+      .flatMap((town) => (town.libraries || []).map((library) => library.sourceRef)).filter(Boolean));
+    const servesSelectedTown = (source) => townIds.has(source.townId) ||
+      (source.servesTownIds || []).some((id) => townIds.has(id));
+    importSources = {
+      ...sources,
+      towns: sources.towns.filter((town) => townIds.has(town.id)),
+      regionalSources: (sources.regionalSources || []).filter(servesSelectedTown),
+      sharedSources: Object.fromEntries(Object.entries(sources.sharedSources || {})
+        .filter(([id, source]) => referencedSources.has(id) || servesSelectedTown(source)))
+    };
+    console.log(`Import towns: ${requestedTownIds.join(", ")}`);
+  }
+  const requestedSourceIds = argValue("--sources", "").split(",").map((id) => id.trim()).filter(Boolean);
+  if (requestedSourceIds.length) {
+    if (replace) throw new Error("--replace cannot be combined with --sources; scoped refresh must preserve other sources and history.");
+    const sourceIds = new Set(requestedSourceIds);
+    const known = new Set([
+      ...(sources.regionalSources || []).map((source) => source.id),
+      ...Object.keys(sources.sharedSources || {})
+    ]);
+    const unknown = requestedSourceIds.filter((id) => !known.has(id));
+    if (unknown.length) throw new Error(`Unknown --sources: ${unknown.join(", ")}`);
+    importSources = {
+      ...importSources,
+      registryTowns: sources.towns,
+      towns: [],
+      regionalSources: (importSources.regionalSources || []).filter((source) => sourceIds.has(source.id)),
+      sharedSources: Object.fromEntries(Object.entries(importSources.sharedSources || {})
+        .filter(([id]) => sourceIds.has(id)))
+    };
+    console.log(`Import sources: ${requestedSourceIds.join(", ")}`);
+  }
+  const importedGroups = await runSelectedImporters(importers, selected, importSources, startDate, days);
   const incoming = importedGroups.flat();
   const events = mergeEvents(existingEvents, incoming, importedAt);
   applyTownCoverage(events, sources);
   const repairs = repairEventQuality(events);
-  const geocodeSummary = await geocodeEventCoordinates(events, sources);
+  const geocodeSummary = process.argv.includes("--skip-geocode")
+    ? { skipped: true }
+    : await geocodeEventCoordinates(events, sources);
   const audit = auditEventQuality(events);
 
   await writeFile(EVENTS_FILE, `${JSON.stringify(events, null, 2)}\n`);

@@ -1,0 +1,771 @@
+{
+  "checkedOn": "2026-10-16",
+  "townCount": 8,
+  "requiredFamilyCount": 9,
+  "scope": "Initial source-family sweep for the 8 newly registered towns; found/not_found is discovery outcome, not a claim every venue or future date is covered.",
+  "towns": [
+    {
+      "townId": "west-orange-township",
+      "checkedOn": "2026-10-16",
+      "searchQuery": "West Orange township NJ kids family events downtown museum nature center indoor playground bookstore workshops 2026",
+      "families": [
+        {
+          "family": "municipal",
+          "status": "found",
+          "sources": [
+            {
+              "id": "west-orange-township:municipal",
+              "url": "https://www.westorange.org/calendar.aspx",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "library",
+          "status": "found",
+          "sources": [
+            {
+              "id": "west-orange-township:library:West Orange Public Library",
+              "url": "https://bccls.libcal.com/calendar/westorange/",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "downtown",
+          "status": "found",
+          "sources": [
+            {
+              "id": "downtown-west-orange",
+              "url": "https://downtownwo.com/events/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "nature",
+          "status": "found",
+          "sources": [
+            {
+              "id": "turtle-back-zoo-early-childhood",
+              "url": "https://www.turtlebackzoo.com/learn/early-childhood/",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "museum_arts",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "indoor_sports",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "retail",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "regional",
+          "status": "found",
+          "sources": [
+            {
+              "id": "nj-carnivals",
+              "url": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "school_public",
+          "status": "found",
+          "sources": [
+            {
+              "id": "west-orange-golda-och",
+              "url": "https://www.goldaochacademy.org/admissions/visit",
+              "status": "manual_review"
+            },
+            {
+              "id": "west-orange-playhouse",
+              "url": "https://www.playhouseonline.org/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        }
+      ]
+    },
+    {
+      "townId": "roseland-borough",
+      "checkedOn": "2026-10-16",
+      "searchQuery": "Roseland borough NJ kids family events downtown museum nature center indoor playground bookstore workshops 2026",
+      "families": [
+        {
+          "family": "municipal",
+          "status": "found",
+          "sources": [
+            {
+              "id": "roseland-borough:municipal",
+              "url": "https://www.roselandnj.org/calendar.aspx",
+              "status": "manual_review"
+            },
+            {
+              "id": "roseland-recreation-news",
+              "url": "https://www.roselandnj.org/m/newsflash?cat=12",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "library",
+          "status": "found",
+          "sources": [
+            {
+              "id": "roseland-borough:library:Roseland Free Public Library",
+              "url": "https://bccls.libcal.com/calendar/roseland",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "downtown",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "nature",
+          "status": "found",
+          "sources": [
+            {
+              "id": "essex-environmental-center-public-programs",
+              "url": "https://essexcountyparks.org/facilities/environmental-center",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "museum_arts",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "indoor_sports",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "retail",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "regional",
+          "status": "found",
+          "sources": [
+            {
+              "id": "nj-carnivals",
+              "url": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "school_public",
+          "status": "found",
+          "sources": [
+            {
+              "id": "roseland-learning-experience",
+              "url": "https://thelearningexperience.com/centers/roseland/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        }
+      ]
+    },
+    {
+      "townId": "north-brunswick-township",
+      "checkedOn": "2026-10-16",
+      "searchQuery": "North Brunswick township NJ kids family events downtown museum nature center indoor playground bookstore workshops 2026",
+      "families": [
+        {
+          "family": "municipal",
+          "status": "found",
+          "sources": [
+            {
+              "id": "north-brunswick-township:municipal",
+              "url": "https://www.northbrunswicknj.gov/calendar.aspx",
+              "status": "importable"
+            },
+            {
+              "id": "north-brunswick-recreation",
+              "url": "https://www.northbrunswicknj.gov/266/Recreation-Programs",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "library",
+          "status": "found",
+          "sources": [
+            {
+              "id": "north-brunswick-township:library:North Brunswick Public Library",
+              "url": "https://northbrunswicklibrary.org/upcoming-events-for-kids",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "downtown",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "nature",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "museum_arts",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "indoor_sports",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "retail",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "regional",
+          "status": "found",
+          "sources": [
+            {
+              "id": "nj-carnivals",
+              "url": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "school_public",
+          "status": "found",
+          "sources": [
+            {
+              "id": "north-brunswick-lightbridge",
+              "url": "https://lightbridgeacademy.com/north-brunswick-route-27-nj/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        }
+      ]
+    },
+    {
+      "townId": "montville-township",
+      "checkedOn": "2026-10-16",
+      "searchQuery": "Montville township NJ kids family events downtown museum nature center indoor playground bookstore workshops 2026",
+      "families": [
+        {
+          "family": "municipal",
+          "status": "found",
+          "sources": [
+            {
+              "id": "montville-township:municipal",
+              "url": "https://www.montvillenj.org/calendar.aspx",
+              "status": "importable"
+            },
+            {
+              "id": "montville-seasonal-recreation",
+              "url": "https://montvillenj.org/451/Seasonal-Program-Brochures",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "library",
+          "status": "found",
+          "sources": [
+            {
+              "id": "montville-township:library:Montville Township Public Library",
+              "url": "https://montville.librarycalendar.com/events/list?start=2026-10-16&end=2026-12-31",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "downtown",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "nature",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "museum_arts",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "indoor_sports",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "retail",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "regional",
+          "status": "found",
+          "sources": [
+            {
+              "id": "nj-carnivals",
+              "url": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "school_public",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        }
+      ]
+    },
+    {
+      "townId": "montclair-township",
+      "checkedOn": "2026-10-16",
+      "searchQuery": "Montclair township NJ kids family events downtown museum nature center indoor playground bookstore workshops 2026",
+      "families": [
+        {
+          "family": "municipal",
+          "status": "found",
+          "sources": [
+            {
+              "id": "montclair-township:municipal",
+              "url": "https://www.montclairnjusa.org/calendar.aspx",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "library",
+          "status": "found",
+          "sources": [
+            {
+              "id": "montclair-township:library:Montclair Public Library",
+              "url": "https://bccls.libcal.com/calendar/montclair",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "downtown",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "nature",
+          "status": "found",
+          "sources": [
+            {
+              "id": "montclair-van-vleck",
+              "url": "https://montclairfoundation.org/education-programs/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "museum_arts",
+          "status": "found",
+          "sources": [
+            {
+              "id": "montclair-history-public-events",
+              "url": "https://www.montclairhistory.org/all-events",
+              "status": "importable"
+            },
+            {
+              "id": "montclair-art-family",
+              "url": "https://www.montclairartmuseum.org/family-programs",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "indoor_sports",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "retail",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "regional",
+          "status": "found",
+          "sources": [
+            {
+              "id": "nj-carnivals",
+              "url": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "school_public",
+          "status": "found",
+          "sources": [
+            {
+              "id": "montclair-cooperative-school-public-playdates",
+              "url": "https://montclaircoop.org/admissions/admission-events-tours/",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        }
+      ]
+    },
+    {
+      "townId": "tewksbury-township",
+      "checkedOn": "2026-10-16",
+      "searchQuery": "Tewksbury township NJ kids family events downtown museum nature center indoor playground bookstore workshops 2026",
+      "families": [
+        {
+          "family": "municipal",
+          "status": "found",
+          "sources": [
+            {
+              "id": "tewksbury-township:municipal",
+              "url": "https://www.tewksburytwp.net/calendar.php",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "library",
+          "status": "found",
+          "sources": [
+            {
+              "id": "tewksbury-township:library:Tewksbury Public Library",
+              "url": "https://hclibrary.libcal.com/calendar/childrens",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "downtown",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "nature",
+          "status": "found",
+          "sources": [
+            {
+              "id": "whittemore-tewksbury",
+              "url": "https://www.whittemoreccc.org/upcoming-events",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "museum_arts",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "indoor_sports",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "retail",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "regional",
+          "status": "found",
+          "sources": [
+            {
+              "id": "nj-carnivals",
+              "url": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "school_public",
+          "status": "found",
+          "sources": [
+            {
+              "id": "school-community-tewksbury-township",
+              "url": "https://www.tewksburyschools.org/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        }
+      ]
+    },
+    {
+      "townId": "readington-township",
+      "checkedOn": "2026-10-16",
+      "searchQuery": "Readington township NJ kids family events downtown museum nature center indoor playground bookstore workshops 2026",
+      "families": [
+        {
+          "family": "municipal",
+          "status": "found",
+          "sources": [
+            {
+              "id": "readington-township:municipal",
+              "url": "https://www.readington.gov/calendar.aspx",
+              "status": "manual_review"
+            },
+            {
+              "id": "readington-recreation-supplement",
+              "url": "https://readingtonrecreation.org/",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "library",
+          "status": "found",
+          "sources": [
+            {
+              "id": "readington-township:library:Readington Township Library",
+              "url": "https://hclibrary.libcal.com/calendar/childrens",
+              "status": "importable"
+            },
+            {
+              "id": "readington-township:library:Three Bridges Library",
+              "url": "https://hclibrary.libcal.com/calendar/childrens",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "downtown",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "nature",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "museum_arts",
+          "status": "found",
+          "sources": [
+            {
+              "id": "readington-museums",
+              "url": "https://www.readington.gov/community/museum",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "indoor_sports",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "retail",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "regional",
+          "status": "found",
+          "sources": [
+            {
+              "id": "nj-carnivals",
+              "url": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "school_public",
+          "status": "found",
+          "sources": [
+            {
+              "id": "readington-school-community",
+              "url": "https://whs.readington.k12.nj.us/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        }
+      ]
+    },
+    {
+      "townId": "woodbridge-township",
+      "checkedOn": "2026-10-16",
+      "searchQuery": "Woodbridge township NJ kids family events downtown museum nature center indoor playground bookstore workshops 2026",
+      "families": [
+        {
+          "family": "municipal",
+          "status": "found",
+          "sources": [
+            {
+              "id": "woodbridge-township:municipal",
+              "url": "https://www.twp.woodbridge.nj.us/calendar.aspx",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "library",
+          "status": "found",
+          "sources": [
+            {
+              "id": "woodbridge-township:library:Woodbridge Public Library",
+              "url": "https://woodbridge-nj.libcal.com/calendar?cid=19628",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "downtown",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "nature",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "museum_arts",
+          "status": "not_found",
+          "sources": [],
+          "notes": "No separate useful dated-event source established in initial town-family search. Continue using registered library, recreation and regional sources; do not invent event dates from generic venue or school hours."
+        },
+        {
+          "family": "indoor_sports",
+          "status": "found",
+          "sources": [
+            {
+              "id": "woodbridge-playland",
+              "url": "https://goplayland.com/go-playland-woodbridge/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "retail",
+          "status": "found",
+          "sources": [
+            {
+              "id": "woodbridge-center-family",
+              "url": "https://woodbridgecenter.com/events/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "regional",
+          "status": "found",
+          "sources": [
+            {
+              "id": "nj-carnivals",
+              "url": "https://www.nj-carnivals.com/customsearch/?timeframe=all&county=all",
+              "status": "importable"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        },
+        {
+          "family": "school_public",
+          "status": "found",
+          "sources": [
+            {
+              "id": "woodbridge-lightbridge",
+              "url": "https://lightbridgeacademy.com/woodbridge-nj/",
+              "status": "manual_review"
+            }
+          ],
+          "notes": "Sources registered; event importability/eligibility can still be pending."
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-11",
+  "updatedAt": "2026-10-16",
   "principles": [
     "Frontend files do not own discovery, crawling, filtering, or event cleanup rules.",
     "data/event-sources.json is the durable registry for towns, sources, source configuration, and source notes.",
@@ -72,7 +72,8 @@
       "reference_only": "Keep for planning or discovery; do not import events automatically.",
       "not_found": "A source type was checked for a town and no useful dated-event source was found.",
       "broken": "A previously useful source or parser is currently failing and needs review."
-    }
+    },
+    "schoolPublicEventPolicyReference": "data/event-rules.json: eligibilityPolicy.schoolPublicEventPolicy"
   },
   "workflows": [
     {
@@ -82,6 +83,7 @@
       "steps": [
         "Create or update the town record with stable id, official name, county, state, ZIPs when known, and center coordinates when available.",
         "Use data/source-taxonomy.json to search across all source families, not only government and library sources.",
+        "Search preschools, childcare centers, public/private schools and official PTA/PTO event pages for activities open to outside families. Apply data/event-rules.json eligibilityPolicy.schoolPublicEventPolicy; record found/not_found results separately from routine school calendars.",
         "Record every useful source in data/event-sources.json with sourceTypes, status, URL fields, parser or parser notes, and service-town relationships.",
         "Record not_found discovery results for source families that were searched but produced no useful dated-event source.",
         "For importable sources, reuse or add parser configuration and import kid/family-compatible events from today forward.",
@@ -138,6 +140,7 @@
       "steps": [
         "Use this workflow only when explicitly asked or when adding a new town.",
         "Search each source family in data/source-taxonomy.json for the town, county, and nearby relevant venues.",
+        "Search preschools, childcare centers, public/private schools and official PTA/PTO event pages for activities open to outside families. Apply data/event-rules.json eligibilityPolicy.schoolPublicEventPolicy; record found/not_found results separately from routine school calendars.",
         "Look for newly opened or previously missed malls, play venues, kids gyms, bookstores, farms, museums, parks, and community sources.",
         "Add new useful sources, update changed URLs or statuses, and record not_found checks.",
         "Do not import events until the source is classified and the user request includes import/update work or the add-town workflow requires it."

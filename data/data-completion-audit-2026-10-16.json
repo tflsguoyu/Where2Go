@@ -1,0 +1,1702 @@
+{
+  "checkedAt": "2026-10-16",
+  "range": [
+    "2026-10-16",
+    "2026-12-31"
+  ],
+  "regionalMunicipalitiesRegistered": [
+    "east-rutherford-borough",
+    "holmdel-township",
+    "east-brunswick-township",
+    "west-windsor-township",
+    "jersey-city",
+    "paramus-borough",
+    "hackensack-city",
+    "shrewsbury-borough",
+    "freehold-township"
+  ],
+  "boundaryEvidence": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer/22/query?where=GEOID+IN+%28%273402525230%27%2C%273400355950%27%2C%273401736000%27%2C%273402567350%27%2C%273402180240%27%2C%273402532640%27%2C%273400319510%27%2C%273400328680%27%2C%273402319000%27%29&outFields=GEOID%2CNAME%2CCOUNTY%2CINTPTLAT%2CINTPTLON&outSR=4326&maxAllowableOffset=5e-05&f=geojson",
+  "locationEvidence": {
+    "american-dream": {
+      "townId": "east-rutherford-borough",
+      "lat": 40.809204,
+      "lng": -74.070808,
+      "address": "1 American Dream Way, East Rutherford, NJ 07073",
+      "coordinateSource": "https://www.americandream.com/"
+    },
+    "bell-works-holmdel": {
+      "townId": "holmdel-township",
+      "lat": 40.36509,
+      "lng": -74.16749,
+      "address": "101 Crawfords Corner Rd, Holmdel, NJ 07733",
+      "coordinateSource": "https://mapcarta.com/W23749134"
+    },
+    "marketfair-family-events": {
+      "townId": "west-windsor-township",
+      "lat": 40.317910569041,
+      "lng": -74.654665246164,
+      "address": "3535 US Highway 1, Princeton, NJ 08540",
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/"
+    },
+    "lakeshore-east-brunswick": {
+      "townId": "east-brunswick-township",
+      "lat": 40.46018915226,
+      "lng": -74.402920188762,
+      "address": "269 State Route 18, Suite A, East Brunswick, NJ 08816",
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/"
+    },
+    "pottery-barn-kids-hackensack": {
+      "townId": "hackensack-city",
+      "lat": 40.906804693458,
+      "lng": -74.033118009003,
+      "address": "390 Hackensack Avenue, Space 182A, Hackensack, NJ 07601",
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/"
+    },
+    "pottery-barn-kids-shrewsbury": {
+      "townId": "shrewsbury-borough",
+      "lat": 40.333610620883,
+      "lng": -74.063050838195,
+      "address": "546 Broad Street, Shrewsbury, NJ 07702",
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/"
+    },
+    "newport-centre": {
+      "townId": "jersey-city",
+      "lat": 40.726796725015,
+      "lng": -74.038699463089,
+      "address": "30 Mall Drive West, Jersey City, NJ 07310",
+      "coordinateSource": "https://geocoding.geo.census.gov/geocoder/"
+    },
+    "freehold-raceway-mall": {
+      "townId": "freehold-township",
+      "lat": 40.25333,
+      "lng": -74.30027,
+      "address": "3710 Route 9, Suite 1000, Freehold, NJ 07728",
+      "coordinateSource": "https://mapcarta.com/22542252"
+    },
+    "bergen-town-center": {
+      "townId": "paramus-borough",
+      "lat": 40.9162,
+      "lng": -74.0547,
+      "address": "One Bergen Town Center, Paramus, NJ 07652",
+      "coordinateSource": "https://commons.wikimedia.org/wiki/Category:Bergen_Town_Center"
+    },
+    "paramus-park": {
+      "townId": "paramus-borough",
+      "lat": 40.957694444,
+      "lng": -74.070194444,
+      "address": "700 Paramus Park, Paramus, NJ 07652",
+      "coordinateSource": "https://www.wikidata.org/wiki/Q11329374"
+    }
+  },
+  "retailRecordsEnriched": [
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-16",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-grovers-birthday-celebration-0-1000-2026-10-16",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "pottery-barn-kids-hackensack-2026-10-16-storytime-2026-10-16",
+      "before": "review",
+      "after": "published",
+      "townId": "hackensack-city"
+    },
+    {
+      "id": "pottery-barn-kids-shrewsbury-2026-10-16-storytime-2026-10-16",
+      "before": "review",
+      "after": "published",
+      "townId": "shrewsbury-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-16",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-17",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-grovers-birthday-celebration-0-1000-2026-10-17",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-17",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-lego-giraffe-build-event-0-1200-2026-10-17",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "freehold-raceway-mall-marmara-family-trivia-oct17-2026-10-17",
+      "before": "review",
+      "after": "published",
+      "townId": "freehold-township"
+    },
+    {
+      "id": "american-dream-oct2026-ride-into-inclusion-1-0900-2026-10-18",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-18",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-celebrate-abbys-birthday-0-1000-2026-10-18",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-monmouth-moms-fall-festival-2026-10-18",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-18",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1200-2026-10-18",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-19",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-celebrate-abbys-birthday-0-1000-2026-10-19",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-10-19",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-19",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-19",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-20",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-celebrate-abbys-birthday-0-1000-2026-10-20",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-20",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-20",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-21",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-celebrate-abbys-birthday-0-1000-2026-10-21",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-21",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-21",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-22",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-celebrate-abbys-birthday-0-1000-2026-10-22",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-22",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-22",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-23",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-celebrate-abbys-birthday-0-1000-2026-10-23",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "pottery-barn-kids-hackensack-2026-10-23-storytime-2026-10-23",
+      "before": "review",
+      "after": "published",
+      "townId": "hackensack-city"
+    },
+    {
+      "id": "pottery-barn-kids-shrewsbury-2026-10-23-storytime-2026-10-23",
+      "before": "review",
+      "after": "published",
+      "townId": "shrewsbury-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-23",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-23",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-celebrate-abbys-birthday-0-1000-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "pottery-barn-kids-hackensack-2026-10-24-craft-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "hackensack-city"
+    },
+    {
+      "id": "pottery-barn-kids-shrewsbury-2026-10-24-craft-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "shrewsbury-borough"
+    },
+    {
+      "id": "american-dream-oct2026-spooktacular-splash-weekend-0-1000-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "lakeshore-east-brunswick-2026-2026-10-24-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "east-brunswick-township"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-24",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1200-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-international-halloween-spooktacular-pageant-0-1300-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "marketfair-family-events-42040-2026-10-24",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-25",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-count-von-counts-batty-bat-hunt-0-1000-2026-10-25",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-spooktacular-splash-weekend-0-1000-2026-10-25",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-25",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1200-2026-10-25",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-26",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-count-von-counts-batty-bat-hunt-0-1000-2026-10-26",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-10-26",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-26",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-26",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-27",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-count-von-counts-batty-bat-hunt-0-1000-2026-10-27",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-27",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-27",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-28",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-count-von-counts-batty-bat-hunt-0-1000-2026-10-28",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-peas-carrots-oct28-2026-10-28",
+      "before": "review",
+      "after": "review",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-28",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-28",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-29",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-count-von-counts-batty-bat-hunt-0-1000-2026-10-29",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-29",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-29",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "newport-centre-trunk-or-treat-halloween-fun-for-all-6290823-2026-10-29",
+      "before": "review",
+      "after": "published",
+      "townId": "jersey-city"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-30",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-count-von-counts-batty-bat-hunt-0-1000-2026-10-30",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-trick-or-treating-around-the-block-2026-10-30",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "pottery-barn-kids-hackensack-2026-10-30-storytime-2026-10-30",
+      "before": "review",
+      "after": "published",
+      "townId": "hackensack-city"
+    },
+    {
+      "id": "pottery-barn-kids-shrewsbury-2026-10-30-storytime-2026-10-30",
+      "before": "review",
+      "after": "published",
+      "townId": "shrewsbury-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-30",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1300-2026-10-30",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-brick-or-treat-at-legoland-discovery-center-0-1000-2026-10-31",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-count-von-counts-batty-bat-hunt-0-1000-2026-10-31",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bergen-town-center-bergen-town-center-halloween-bash-2026-10-31",
+      "before": "review",
+      "after": "published",
+      "townId": "paramus-borough"
+    },
+    {
+      "id": "marketfair-family-events-42039-2026-10-31",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-10-31",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1200-2026-10-31",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-characters-of-the-dream-halloween-parade-0-1500-2026-10-31",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-nickelodeon-booniverse-0-1200-2026-11-01",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-geoffreys-boo-tastic-express-0-1200-2026-11-01",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-11-02",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "lakeshore-east-brunswick-2026-2026-11-07-2026-11-07",
+      "before": "review",
+      "after": "published",
+      "townId": "east-brunswick-township"
+    },
+    {
+      "id": "american-dream-oct2026-inclusion-friendly-days-sesame-street-1-0900-2026-11-08",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bergen-town-center-bergen-town-center-4th-annual-fall-food-truck-festival-2026-11-08",
+      "before": "review",
+      "after": "published",
+      "townId": "paramus-borough"
+    },
+    {
+      "id": "american-dream-oct2026-fourth-annual-polish-independence-day-celebration-0-1530-2026-11-08",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-11-09",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "paramus-park-santa-2026-announcement-2026-11-13",
+      "before": "review",
+      "after": "review",
+      "townId": "paramus-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1000-2026-11-14",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1000-2026-11-15",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-11-16",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1100-2026-11-16",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1100-2026-11-17",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1100-2026-11-18",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1100-2026-11-19",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1100-2026-11-20",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "marketfair-family-events-santa-2026-announcement-2026-11-21",
+      "before": "review",
+      "after": "review",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "newport-centre-santa-arrival-6291106-2026-11-21",
+      "before": "review",
+      "after": "review",
+      "townId": "jersey-city"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1000-2026-11-21",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "lakeshore-east-brunswick-2026-2026-11-21-2026-11-21",
+      "before": "review",
+      "after": "published",
+      "townId": "east-brunswick-township"
+    },
+    {
+      "id": "american-dream-oct2026-dream-live-pac-featuring-cirque-musica-holiday-wonderland-0-1400-2026-11-21",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "marketfair-family-events-44191-2026-11-21",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-dream-live-pac-featuring-cirque-musica-holiday-wonderland-0-1900-2026-11-21",
+      "before": "review",
+      "after": "review",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-ride-into-inclusion-2-0900-2026-11-22",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1000-2026-11-22",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-11-23",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-0-1100-2026-11-23",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-1-1100-2026-11-27",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "marketfair-family-events-44768-2026-11-27",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-1-1000-2026-11-28",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-11-28",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-1-1000-2026-11-29",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-11-29",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-11-30",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-02",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-1-1100-2026-12-04",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "marketfair-family-events-44763-2026-12-04",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "marketfair-family-events-44769-2026-12-04",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-1-1000-2026-12-05",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "lakeshore-east-brunswick-2026-2026-12-05-2026-12-05",
+      "before": "review",
+      "after": "published",
+      "townId": "east-brunswick-township"
+    },
+    {
+      "id": "marketfair-family-events-44856-2026-12-05",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-sensory-santa-2026-12-06",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "newport-centre-a-special-visit-with-caring-santa-6289945-2026-12-06",
+      "before": "review",
+      "after": "published",
+      "townId": "jersey-city"
+    },
+    {
+      "id": "marketfair-family-events-44356-2026-12-06",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-06",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-06",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-07",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-12-07",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-08",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-09",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-09",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-10",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-11",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "marketfair-family-events-44764-2026-12-11",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "marketfair-family-events-44770-2026-12-11",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-12",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-12",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-13",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-13",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-14",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-12-14",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-15",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "marketfair-family-events-44268-2026-12-15-2026-12-15",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-16",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-16",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "marketfair-family-events-44268-2026-12-16-2026-12-16",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-17",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-18",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "marketfair-family-events-44765-2026-12-18",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "marketfair-family-events-44771-2026-12-18",
+      "before": "review",
+      "after": "published",
+      "townId": "west-windsor-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-19",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-19",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-dive-into-inclusion-1-0830-2026-12-20",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-20",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-20",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-21",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-12-21",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-the-sound-of-music-sing-along-0-1900-2026-12-21",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-22",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-the-sound-of-music-sing-along-0-1900-2026-12-22",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-2-1000-2026-12-23",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "bell-works-holmdel-fresh-holiday-markets-2026-2026-12-23",
+      "before": "review",
+      "after": "published",
+      "townId": "holmdel-township"
+    },
+    {
+      "id": "american-dream-oct2026-santa-photos-3-1000-2026-12-24",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-dream-live-tj-salta-0-1700-2026-12-26",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-toddler-time-0-1000-2026-12-28",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    },
+    {
+      "id": "american-dream-oct2026-kidz-bop-live-in-concert-0-1900-2026-12-30",
+      "before": "review",
+      "after": "published",
+      "townId": "east-rutherford-borough"
+    }
+  ],
+  "otherTownAssignments": [
+    {
+      "id": "visit-somerset-nj-events-10056804-2026-10-16",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056150-2026-10-17",
+      "townId": "franklin-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056902-2026-10-17",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-46379-2026-10-17",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056903-2026-10-17",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-45854-2026-10-17",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056847-2026-10-17",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056151-2026-10-18",
+      "townId": "franklin-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056904-2026-10-18",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-46764-2026-10-18",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056848-2026-10-18",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "patch-997d9204-3477-46d5-99e3-1e9dd6feed81-2026-10-18",
+      "townId": "west-orange-township"
+    },
+    {
+      "id": "patch-d2fff4d5-c569-4008-aea5-ec6d31ede61f-2026-10-18",
+      "townId": "new-brunswick-city"
+    },
+    {
+      "id": "patch-ac5ee0c6-839f-47b4-a9e6-34c8c86736d5-2026-10-19",
+      "townId": "north-brunswick-township"
+    },
+    {
+      "id": "eventbrite-1021-zoo-kids-bugs-tickets-1997056944079-2026-10-21",
+      "townId": "paramus-borough"
+    },
+    {
+      "id": "patch-139ab32a-e3e3-44bd-9d88-7dec79af8dfb-2026-10-21",
+      "townId": "madison-borough"
+    },
+    {
+      "id": "eventbrite-kids-salsa-dance-classes-tickets-1981023397309-2026-10-22",
+      "townId": "hackensack-city"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056720-2026-10-23",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056849-2026-10-23",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-46914-2026-10-23",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056152-2026-10-24",
+      "townId": "franklin-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056905-2026-10-24",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-46415-2026-10-24",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-46858-2026-10-24",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056721-2026-10-24",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056850-2026-10-24",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056153-2026-10-25",
+      "townId": "franklin-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-46850-2026-10-25",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056906-2026-10-25",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056722-2026-10-25",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056851-2026-10-25",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-46804-2026-10-25",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "patch-0dc72264-afc7-444e-8f88-b5f5895aa756-2026-10-26",
+      "townId": "montville-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-45162-2026-10-29",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "squarespace-middlesex-borough-howl-o-ween-pet-parade-2026-10-29",
+      "townId": "middlesex-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056907-2026-10-31",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-45802-2026-10-31",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056908-2026-11-01",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-46807-2026-11-01",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-46724-2026-11-01",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "patch-e187393c-e3aa-45ce-a53a-5955171cb15a-2026-11-07",
+      "townId": "parsippany-troy-hills-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056909-2026-11-07",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056723-2026-11-07",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056910-2026-11-08",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056724-2026-11-08",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "eventbrite-1111-zoo-kids-herbivores-tickets-1997058340255-2026-11-11",
+      "townId": "paramus-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056725-2026-11-13",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056911-2026-11-14",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "cora-hartshorn-arboretum-5725-2026-11-14",
+      "townId": "millburn-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056726-2026-11-14",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056912-2026-11-15",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056727-2026-11-15",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056913-2026-11-21",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056914-2026-11-22",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-46903-2026-11-28",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056915-2026-11-28",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056916-2026-11-29",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-45760-2026-11-30",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-46871-2026-12-04",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-45863-2026-12-04",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-46877-2026-12-05",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056917-2026-12-05",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056918-2026-12-06",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-45551-2026-12-11",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056919-2026-12-12",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056729-2026-12-12",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056920-2026-12-13",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056730-2026-12-13",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-45771-2026-12-14",
+      "townId": "bernards-township"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056921-2026-12-19",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056922-2026-12-20",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056923-2026-12-26",
+      "townId": "somerville-borough"
+    },
+    {
+      "id": "visit-somerset-nj-events-10056924-2026-12-27",
+      "townId": "somerville-borough"
+    }
+  ],
+  "publishedFromReview": 150,
+  "policy": "Unresolved timing, access, age eligibility, and date-range announcements remain under review. Destination municipalities are not a claim of a 45-minute driving radius; the 72 core towns retain default map coverage.",
+  "additionalCoordinates": [
+    {
+      "id": "civicplus-north-brunswick-township-1008-2026-10-16",
+      "matchedAddress": "2051 US HWY 130, NORTH BRUNSWICK, NJ, 08902",
+      "lat": 40.439639983818,
+      "lng": -74.479202683944,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2051+Route+130%2C+North+Brunswick%2C+NJ+08902&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "civicplus-montville-township-7807-2026-10-17",
+      "matchedAddress": "356 MAIN RD, MONTVILLE, NJ, 07045",
+      "lat": 40.915868658919,
+      "lng": -74.364730218926,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=356+Main+Rd%2C+Montville%2C+NJ+07045&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "patch-32f27335-bbcf-4f30-8dcb-171d620d3934-2026-10-17",
+      "matchedAddress": "80 OLD YORK RD, RINGOES, NJ, 08551",
+      "lat": 40.452484051652,
+      "lng": -74.841669182694,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=80+Old+York+Road%2C+Ringoes%2C+NJ+08551&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13391-2026-10-19",
+      "matchedAddress": "372 NEW BRUNSWICK AVE, FORDS, NJ, 08863",
+      "lat": 40.526684854683,
+      "lng": -74.306625212994,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=372+New+Brunswick+Ave%2C+Fords%2C+NJ+08863&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "patch-f9540167-92eb-4b23-be7d-6414e0dc8273-2026-10-21",
+      "matchedAddress": "6 NORMANDY HEIGHTS RD, MORRISTOWN, NJ, 07960",
+      "lat": 40.795844169438,
+      "lng": -74.447659669205,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=6+Normandy+Heights+Rd%2C+Morristown%2C+NJ+07960&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13695-2026-10-22",
+      "matchedAddress": "600 MAIN ST, WOODBRIDGE, NJ, 07095",
+      "lat": 40.545528400276,
+      "lng": -74.300106711117,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=600+Main+Street%2C+Woodbridge%2C+NJ+07095&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "eventbrite-paint-nite-sofias-taqueria-taco-tequila-bar-old-bridge-tickets-1999869136422-2026-10-22",
+      "matchedAddress": "3030 US HWY 9, OLD BRIDGE, NJ, 08857",
+      "lat": 40.383899946904,
+      "lng": -74.308451966264,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3030+ROUTE+9%2C+OLD+BRIDGE%2C+NJ+08857&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "eventbrite-free-halloween-kids-workshop-tickets-2001942713547-2026-10-24",
+      "matchedAddress": "33 WASHINGTON ST, NEWARK, NJ, 07102",
+      "lat": 40.743607332898,
+      "lng": -74.170782538297,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=33+Washington+Street%2C+%23suite+103%2C+Newark%2C+NJ+07102&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "patch-214f8cc5-a416-49a3-8ad1-e34bcc67f72a-2026-10-25",
+      "matchedAddress": "310 MILLTOWN RD, BRIDGEWATER, NJ, 08807",
+      "lat": 40.576336002821,
+      "lng": -74.675003277166,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=310+Milltown+Rd%2C+Bridgewater%2C+NJ+08807&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "patch-9aa55c75-6838-400e-8494-461fde758478-2026-11-05",
+      "matchedAddress": "310 MILLTOWN RD, BRIDGEWATER, NJ, 08807",
+      "lat": 40.576336002821,
+      "lng": -74.675003277166,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=310+Milltown+Rd%2C+Bridgewater%2C+NJ+08807&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "patch-9111c509-d5c3-4fdd-ab15-652c99983c0c-2026-12-06",
+      "matchedAddress": "310 MILLTOWN RD, BRIDGEWATER, NJ, 08807",
+      "lat": 40.576336002821,
+      "lng": -74.675003277166,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=310+Milltown+Rd%2C+Bridgewater%2C+NJ+08807&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "chatham-township-official-community-refresh-sunday-connections-intergenerational-dinner-2026-10-25",
+      "matchedAddress": "240 SOUTHERN BLVD, CHATHAM, NJ, 07928",
+      "lat": 40.730623138664,
+      "lng": -74.415900305676,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=240+Southern+Boulevard%2C+Chatham%2C+NJ+07928&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "eventbrite-drop-and-dine-movie-night-tickets-1991019376552-2026-10-28",
+      "matchedAddress": "52 VOSE AVE, SOUTH ORANGE, NJ, 07079",
+      "lat": 40.746981390825,
+      "lng": -74.258454188488,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=52+Vose+Avenue%2C+South+Orange+Village%2C+NJ+07079&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "patch-93b8d22e-06f5-4d51-bbd2-00897c177871-2026-11-01",
+      "matchedAddress": "4 STANGL RD, FLEMINGTON, NJ, 08822",
+      "lat": 40.507268859796,
+      "lng": -74.862318680069,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4+Stangl+Rd%2C+Flemington%2C+NJ+08822&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "eventbrite-newborn-care-class-tickets-1984089810032-2026-11-07",
+      "matchedAddress": "209 COOPER AVE, MONTCLAIR, NJ, 07043",
+      "lat": 40.839502600089,
+      "lng": -74.206320823885,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=209+Cooper+Avenue%2C+%23suite+5b%2C+Montclair%2C+NJ+07043&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "patch-92c0f65a-8782-4fc5-8e61-bf586cc5df0a-2026-11-13",
+      "matchedAddress": "781 SMITH RD, PARSIPPANY, NJ, 07054",
+      "lat": 40.847330883762,
+      "lng": -74.406905968938,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=781+Smith+Road%2C+Parsippany%2C+NJ+07054&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "revize-edison-township-1508-2026-11-14",
+      "matchedAddress": "5053 WOODBRIDGE AVE, EDISON, NJ, 08837",
+      "lat": 40.534342645767,
+      "lng": -74.320697772421,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=5053+Woodbridge+Ave%2C+Edison+NJ+08837&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13759-2026-11-28",
+      "matchedAddress": "1 MAIN ST, WOODBRIDGE, NJ, 07095",
+      "lat": 40.555357671874,
+      "lng": -74.276297154678,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1+Main+St%2C+Woodbridge%2C+NJ+07095&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13818-2026-11-30",
+      "matchedAddress": "582 RAHWAY AVE, WOODBRIDGE, NJ, 07095",
+      "lat": 40.560789776378,
+      "lng": -74.274160164551,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=582+Rahway+Avenue%2C+Woodbridge%2C+NJ+07095&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13819-2026-12-04",
+      "matchedAddress": "95 PORT READING AVE, WOODBRIDGE, NJ, 07095",
+      "lat": 40.562818635564,
+      "lng": -74.269288775379,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=95+Port+Reading+Avenue%2C+Woodbridge%2C+NJ+07095&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "civicplus-woodbridge-township-13821-2026-12-06",
+      "matchedAddress": "101 MAIN ST, WOODBRIDGE, NJ, 07095",
+      "lat": 40.553831859395,
+      "lng": -74.281162165229,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=101+Main+Street%2C+Woodbridge%2C+NJ+07095&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "civicplus-montville-township-7574-2026-12-07",
+      "matchedAddress": "195 CHANGEBRIDGE RD, MONTVILLE, NJ, 07045",
+      "lat": 40.883461805774,
+      "lng": -74.364772856422,
+      "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=195+Changebridge+Road%2C+Montville%2C+NJ+07045&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "eventbrite-aatsp-nj-njhof-fall-workshop-at-american-dream-tickets-1999021134024-2026-10-17",
+      "sourceEventId": "american-dream-2026-06-13-dream-fan-fest-match-day-celebration-brazil-v-morocco",
+      "method": "same verified venue"
+    },
+    {
+      "id": "eventbrite-free-kids-event-fantastical-fun-featuring-kwik-stixtm-east-brunswick-tickets-2002177896987-2026-10-24",
+      "sourceEventId": "lakeshore-east-brunswick-2026-2026-10-24-2026-10-24",
+      "method": "same verified venue"
+    },
+    {
+      "id": "far-hills-race-meeting-cc07247f931790ef-2026-10-17",
+      "sourceEventId": "visit-somerset-nj-events-46643-2026-10-17"
+    }
+  ],
+  "rejectedGeocodes": [
+    {
+      "input": "2912 New Jersey 10, Morris Plains, NJ 07950",
+      "matchedAddress": "10 MORRIS PL, MORRIS PLAINS, NJ, 07950",
+      "reason": "house number mismatch"
+    }
+  ],
+  "summaryDetailsRecovered": [
+    "civicplus-montville-township-7807-2026-10-17",
+    "revize-edison-township-1439-2026-10-17",
+    "civicplus-westfield-town-2465-2026-10-18",
+    "civicplus-woodbridge-township-13391-2026-10-19",
+    "civicplus-westfield-town-2468-2026-10-23",
+    "libcal-bccls.libcal.com-17436219",
+    "configured-library-newark-public-library-17762362-2026-10-29",
+    "libcal-bccls.libcal.com-17436220",
+    "libcal-bccls.libcal.com-17218744",
+    "revize-edison-township-1440-2026-11-07",
+    "libcal-bccls.libcal.com-17436221",
+    "revize-edison-township-1508-2026-11-14",
+    "revize-edison-township-1441-2026-11-14",
+    "libcal-14878-16517493",
+    "libcal-bccls.libcal.com-17436222",
+    "libcal-14878-17322471",
+    "libcal-bccls.libcal.com-17436223",
+    "civicplus-woodbridge-township-13759-2026-11-28",
+    "libcal-bccls.libcal.com-17436224",
+    "libcal-millburnlibrary-17262949",
+    "revize-edison-township-1443-2026-12-05",
+    "civicplus-montville-township-7574-2026-12-07",
+    "libcal-bccls.libcal.com-17436225",
+    "libcal-bccls.libcal.com-17328957",
+    "libcal-bccls.libcal.com-17436226"
+  ],
+  "before": {
+    "records": 3144,
+    "review": 397,
+    "missingTown": 284,
+    "missingCoordinates": 95,
+    "missingSummary": 25
+  },
+  "after": {
+    "records": 3144,
+    "review": 249,
+    "missingTown": 36,
+    "missingCoordinates": 41,
+    "missingSummary": 0
+  },
+  "historyPreserved": true,
+  "remainingReviewBySource": {
+    "woodbridge-center-family": 1,
+    "american-dream": 20,
+    "sclsnj-libnet": 4,
+    "civicplus-north-brunswick-township": 1,
+    "visit-somerset-nj-events": 63,
+    "lego-bridgewater-commons": 2,
+    "michaels-kids-events": 4,
+    "far-hills-race-meeting": 1,
+    "eventbrite": 24,
+    "civicplus-montville-township": 2,
+    "patch": 23,
+    "maplewood-recdesk-preschool": 21,
+    "montclair-cooperative-school-public-playdates": 2,
+    "play-and-talk-nature-mountainside": 7,
+    "parsippany-troy-hills-township-official-community-refresh": 2,
+    "new-brunswick-city-official-community-refresh": 1,
+    "nj-carnivals": 1,
+    "piscataway-township-official-community-refresh": 1,
+    "whittemore-tewksbury": 17,
+    "civicplus-woodbridge-township": 6,
+    "saint-elizabeth-bernardsville-public-open-house": 1,
+    "play-and-talk-nature-fanwood": 3,
+    "edison-public-library-libnet": 4,
+    "bound-brook-recreation": 4,
+    "warren-goddard-public-events": 1,
+    "colonial-park-spray-park": 1,
+    "mendham-borough-official-community-refresh": 1,
+    "readington-recreation-supplement": 1,
+    "essex-environmental-center-public-programs": 1,
+    "scotch-plains-township-official-community-refresh": 1,
+    "far-hills-official-family-events": 1,
+    "dunellen-borough-official-community-refresh": 1,
+    "chatham-township-official-community-refresh": 1,
+    "libcal-bccls.libcal.com": 10,
+    "bell-works-holmdel": 1,
+    "highland-park-borough-official-community-refresh": 1,
+    "mountainside-borough-official-community-refresh": 1,
+    "fanwood-borough-official-community-refresh": 3,
+    "paramus-park": 1,
+    "bridgewater-commons": 1,
+    "revize-calendar-edison-township": 1,
+    "cora-hartshorn-arboretum": 1,
+    "libcal-summitlibrary.libcal.com": 1,
+    "marketfair-family-events": 1,
+    "newport-centre": 1,
+    "libcal-millburnlibrary.libcal.com": 1,
+    "civicplus-south-orange-village-township": 1
+  },
+  "summaryPolicy": "25 missing descriptions rechecked on official pages. Where no narrative exists, only verified calendar metadata is summarized with limitations; existing review holds remain. Roseland online/in-person contradictions and teen audience are explicit."
+}

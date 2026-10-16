@@ -1,0 +1,116 @@
+{
+  "checkedOn": "2026-10-16",
+  "dateWindow": {
+    "start": "2026-10-16",
+    "end": "2026-12-31"
+  },
+  "townsBefore": 64,
+  "townsAfter": 72,
+  "driveTimeMinutes": 45,
+  "previousEventCount": 6070,
+  "eventCount": 6528,
+  "newEventCount": 458,
+  "newPublishedCount": 416,
+  "newReviewCount": 42,
+  "existingRecordsRefreshed": 0,
+  "newTownCounts": [
+    {
+      "townId": "west-orange-township",
+      "name": "West Orange township",
+      "eventsInWindow": 30,
+      "published": 29,
+      "review": 1
+    },
+    {
+      "townId": "roseland-borough",
+      "name": "Roseland borough",
+      "eventsInWindow": 60,
+      "published": 58,
+      "review": 2
+    },
+    {
+      "townId": "north-brunswick-township",
+      "name": "North Brunswick township",
+      "eventsInWindow": 6,
+      "published": 5,
+      "review": 1
+    },
+    {
+      "townId": "montville-township",
+      "name": "Montville township",
+      "eventsInWindow": 48,
+      "published": 46,
+      "review": 2
+    },
+    {
+      "townId": "montclair-township",
+      "name": "Montclair township",
+      "eventsInWindow": 150,
+      "published": 140,
+      "review": 10
+    },
+    {
+      "townId": "tewksbury-township",
+      "name": "Tewksbury township",
+      "eventsInWindow": 19,
+      "published": 2,
+      "review": 17
+    },
+    {
+      "townId": "readington-township",
+      "name": "Readington township",
+      "eventsInWindow": 1,
+      "published": 0,
+      "review": 1
+    },
+    {
+      "townId": "woodbridge-township",
+      "name": "Woodbridge township",
+      "eventsInWindow": 133,
+      "published": 127,
+      "review": 6
+    }
+  ],
+  "schoolDiscovery": {
+    "townsSearched": 72,
+    "townsWithSourceEntries": 53,
+    "townsWithoutEstablishedSource": 19,
+    "newSchoolEvents": 13,
+    "publishedSchoolEvents": 9,
+    "reviewSchoolEvents": 4,
+    "scopeNote": "All 72 towns searched; source entries include public-school community bulletin/calendar leads pending event-specific access verification. This is not an exhaustive census of every school."
+  },
+  "validation": {
+    "parserRegressionChecks": "passed: Montville venue-suffix links, Roseland category-only audiences, Woodbridge numeric ages and actual branches, Hunterdon campus isolation",
+    "jsonAndSyntax": "passed",
+    "eventValidator": "passed with 158 warnings, including historical incomplete records and held review rows",
+    "projectAudit": "passed with one existing missing-summary warning category",
+    "gitDiffCheck": "passed"
+  },
+  "remainingIssues": [
+    {
+      "source": "Whittemore Fall Nature Explorers",
+      "eventCount": 17,
+      "status": "review",
+      "reason": "All 17 exact occurrences verified in official browser date dialog; expanded description ends November 19 while seven dialog dates run later. Registration and caregiver/drop-off policy also need confirmation."
+    },
+    {
+      "source": "Readington Halloween Event",
+      "eventCount": 1,
+      "status": "review",
+      "reason": "Official attendee page confirms preschool–Grade 5, October 24 1:30–4:30 PM and $5/child, but ticket widget says tickets available December 5; attendee registration availability conflicts."
+    },
+    {
+      "source": "Tewksbury municipal calendar",
+      "status": "manual_review",
+      "reason": "Official Revize endpoint returns HTTP 404; library and Whittemore sources retrieved separately."
+    },
+    {
+      "source": "Protected/dynamic venue and school sources",
+      "status": "manual_review",
+      "reason": "Future event detail/access or stable parser not verified; URLs and search notes retained in registry and school/source audits."
+    }
+  ],
+  "coverageNote": "Search/import window reaches December 31. Only dates actually published by sources are imported. Absence of future rows does not establish that no later events will be announced.",
+  "publishing": "Local changes only; not pushed."
+}

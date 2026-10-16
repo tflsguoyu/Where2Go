@@ -1,0 +1,457 @@
+{
+  "checkedAt": "2026-10-16",
+  "window": {
+    "start": "2026-10-16",
+    "end": "2026-12-31"
+  },
+  "scope": "NJ regional destinations, malls and family retail programs; age 3 prioritized, older-child events labeled separately. Existing 45-minute towns retained; farther named destinations stored without auto-adding municipalities.",
+  "sources": [
+    {
+      "sourceId": "american-dream",
+      "result": "official_api_recovered",
+      "publishedApiItems": 36,
+      "selectedFamilyPrograms": 20,
+      "occurrences": 133,
+      "excludedDuplicateSlugs": [
+        "annual-halloween-party"
+      ],
+      "notes": "Halloween parade appears twice with conflicting end times; retain the dedicated Characters of the Dream record only. All new records held for East Rutherford town assignment.",
+      "newEventRecords": 126,
+      "newByStatus": {
+        "review": 126
+      }
+    },
+    {
+      "sourceId": "bell-works-holmdel",
+      "result": "official_details_and_organizer_recovered",
+      "occurrences": 14,
+      "notes": "Held for Holmdel registry assignment and coordinates. Peas + Carrots end time conflicts. NJ calendar currently lists October; separate organizer calendar recovered November/December holiday markets.",
+      "newEventRecords": 14,
+      "newByStatus": {
+        "review": 14
+      }
+    },
+    {
+      "sourceId": "marketfair-family-events",
+      "result": "official_embedded_calendar_recovered",
+      "occurrences": 15,
+      "excluded": "Promotions, coat/toy collection bins, private bookings, bare teaser, pet-only sessions and duplicate market shopping listings.",
+      "newEventRecords": 15,
+      "newByStatus": {
+        "review": 15
+      }
+    },
+    {
+      "sourceId": "bergen-town-center",
+      "result": "official_details_recovered",
+      "occurrences": 2,
+      "newEventRecords": 2,
+      "newByStatus": {
+        "review": 2
+      }
+    },
+    {
+      "sourceId": "bridgewater-commons",
+      "result": "browser_calendar_recovered",
+      "occurrences": 3,
+      "notes": "Two timed events; Santa range held until daily hours are published.",
+      "newEventRecords": 3,
+      "newByStatus": {
+        "published": 2,
+        "review": 1
+      }
+    },
+    {
+      "sourceId": "home-depot-kids-workshops",
+      "result": "official_schedule_refreshed",
+      "occurrences": 12,
+      "notes": "Existing generic Nov/Dec occurrences will be updated in place; add Nov 21; age 5–12, not toddler-specific.",
+      "newEventRecords": 4,
+      "newByStatus": {
+        "published": 4
+      }
+    },
+    {
+      "sourceId": "lakeshore-east-brunswick",
+      "result": "official_2026_program_and_store_verified",
+      "occurrences": 4,
+      "newEventRecords": 4,
+      "newByStatus": {
+        "review": 4
+      }
+    },
+    {
+      "sourceId": "menlo-park-mall",
+      "result": "browser_loaded_no_matching_family_event",
+      "notes": "Live browser listed store merchandise and fundraising promotions; no dated child activity recovered.",
+      "url": "https://www.simon.com/mall/menlo-park-mall/news-and-events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "mall-at-short-hills",
+      "result": "browser_loaded_no_matching_family_event",
+      "notes": "Official dynamic listing loaded in browser; current rows are merchandise, restaurant or shopping promotions, without suitable dated child activities.",
+      "url": "https://www.simon.com/mall/the-mall-at-short-hills/news-and-events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "woodbridge-center-family",
+      "result": "browser_calendar_recovered",
+      "notes": "Recovered full live browser calendar and three official timed family event details. Footer map redirects to Woodbridge Center POI 40.5567045,-74.2993666. Census false match to Woodbridge Avenue rejected. Circus date-range announcement retained separately for showtime verification.",
+      "url": "https://woodbridgecenter.com/events/",
+      "newEventRecords": 4,
+      "newByStatus": {
+        "review": 1,
+        "published": 3
+      }
+    },
+    {
+      "sourceId": "garden-state-plaza",
+      "result": "no_verified_dated_child_event",
+      "notes": "Indexed official events are birthday perks, styling and expired LEGO promotion; not activity occurrences.",
+      "url": "https://www.westfield.com/en/united-states/gardenstateplaza/events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "paramus-park",
+      "result": "seasonal_schedule_pending",
+      "notes": "Photos with Santa Nov 13–Dec 24 announced; daily hours/detail page not recovered. Do not manufacture daily visits. Review-only leads stored.",
+      "url": "https://www.paramuspark.com/events",
+      "newEventRecords": 1,
+      "newByStatus": {
+        "review": 1
+      }
+    },
+    {
+      "sourceId": "willowbrook-mall",
+      "result": "no_published_events",
+      "notes": "Official events page explicitly says no news or events available at time checked.",
+      "url": "https://www.willowbrook-mall.com/en/events/",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "rockaway-townsquare",
+      "result": "browser_loaded_no_matching_family_event",
+      "notes": "Live browser retry loaded merchandise/promotional listings; no suitable dated child event recovered.",
+      "url": "https://www.simon.com/mall/rockaway-townsquare/news-and-events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "jersey-gardens",
+      "result": "browser_loaded_no_matching_family_event",
+      "notes": "Live browser retry loaded merchandise/promotional listings; no suitable dated child event recovered.",
+      "url": "https://www.simon.com/mall/the-mills-at-jersey-gardens/news-and-events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "newport-centre",
+      "result": "browser_details_recovered",
+      "notes": "Browser recovered three official event detail pages. Santa photos Nov 21–Dec 24 also announced, but daily booking hours unverified; not expanded. Jersey City requires registry assignment.",
+      "url": "https://www.simon.com/mall/newport-centre/news-and-events",
+      "occurrences": 3,
+      "newEventRecords": 3,
+      "newByStatus": {
+        "review": 3
+      }
+    },
+    {
+      "sourceId": "quaker-bridge-mall",
+      "result": "browser_loaded_no_matching_family_event",
+      "notes": "Official dynamic listing loaded in browser; current rows are merchandise, restaurant or shopping promotions, without suitable dated child activities.",
+      "url": "https://www.simon.com/mall/quaker-bridge-mall/news-and-events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "shops-at-riverside",
+      "result": "browser_loaded_no_matching_family_event",
+      "notes": "Official dynamic listing loaded in browser; current rows are merchandise, restaurant or shopping promotions, without suitable dated child activities.",
+      "url": "https://www.simon.com/mall/the-shops-at-riverside/news-and-events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "jersey-shore-premium-outlets",
+      "result": "browser_loaded_no_matching_family_event",
+      "notes": "Official dynamic listing loaded in browser; current rows are merchandise, restaurant or shopping promotions, without suitable dated child activities.",
+      "url": "https://www.premiumoutlets.com/outlet/jersey-shore/news-and-events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "jackson-premium-outlets",
+      "result": "browser_loaded_no_matching_family_event",
+      "notes": "Dynamic listing recovered; merchandise offers and a food-truck calendar lead, no verified dedicated child event imported.",
+      "url": "https://www.premiumoutlets.com/outlet/jackson/news-and-events",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "freehold-raceway-mall",
+      "result": "family_event_found",
+      "notes": "Oct 17 family trivia explicitly invites the whole family, but mainly suits older children.",
+      "url": "https://www.freeholdracewaymall.com/Events",
+      "newEventRecords": 1,
+      "newByStatus": {
+        "review": 1
+      }
+    },
+    {
+      "sourceId": "livingston-mall",
+      "result": "parked_domain",
+      "notes": "Live browser shows domain-for-sale parking page at livingstonmall.com. No public mall events verified; not a reliable calendar. Seek a current owner/property page before reuse.",
+      "url": "https://www.livingstonmall.com/events/",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "michaels-kids-events",
+      "result": "national_events_local_availability_pending",
+      "notes": "Four local review leads preserved from two official October programs. Nov/Dec sessions not yet verified; age 13+ lantern event excluded. Review-only leads stored.",
+      "url": "https://www.michaels.com/events-and-services",
+      "newEventRecords": 4,
+      "newByStatus": {
+        "review": 4
+      }
+    },
+    {
+      "sourceId": "lego-bridgewater-commons",
+      "result": "older_child_workshop_found",
+      "notes": "Oct 17/18 Blooming Rainbow workshop recommended age 9–12; local time/booking link points to another store, so no timed event invented. Review-only leads stored.",
+      "url": "https://www.lego.com/en-us/stores/store/bridgewater-commons",
+      "newEventRecords": 2,
+      "newByStatus": {
+        "review": 2
+      }
+    },
+    {
+      "sourceId": "barnes-noble-bridgewater",
+      "result": "browser_calendar_recovered",
+      "notes": "Recovered 22 explicitly listed storytime dates through Dec 28 in the live browser. November 14 LEGO build is a separate older-child lead awaiting age verification.",
+      "url": "https://stores.barnesandnoble.com/store/2140?view=calendar",
+      "newEventRecords": 22,
+      "newByStatus": {
+        "published": 22
+      }
+    },
+    {
+      "sourceId": "apple-bridgewater",
+      "result": "live_import_retried",
+      "notes": "Live importer refreshed existing sessions; no new unique dates returned.",
+      "url": "https://www.apple.com/today/calendar/bridgewater/",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "apple-menlo-park",
+      "result": "live_import_retried",
+      "notes": "Live importer refreshed existing sessions; no new unique dates returned.",
+      "url": "https://www.apple.com/today/calendar/menlopark/",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "lowes-kids-club",
+      "result": "existing_dates_reverified",
+      "notes": "Official Holiday Engine Nov 14 and Holiday Trolley Car Dec 12 confirmed. Existing Oct 17 program retained.",
+      "url": "https://www.lowes.com/diy-projects-and-ideas/workshops",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "toysrus-american-dream",
+      "result": "covered_by_american_dream",
+      "notes": "Oct 17 LEGO Giraffe 12–2 imported under American Dream; no duplicate retailer event.",
+      "url": "https://toysrusdream.com/events/",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "build-a-bear-family-events",
+      "result": "broken_event_url",
+      "notes": "Live browser confirms /events.html is a not-found page. Generic shopping and private party offers do not establish public event dates.",
+      "url": "https://www.buildabear.com/events.html",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "pottery-barn-kids-events",
+      "result": "browser_program_and_local_stores_recovered",
+      "notes": "Three NJ store calendars verified individually; 12 actual October sessions captured. November/December not published yet.",
+      "url": "https://www.potterybarnkids.com/pages/store-events.html",
+      "newEventRecords": 0,
+      "newByStatus": {}
+    },
+    {
+      "sourceId": "pottery-barn-kids-short-hills",
+      "result": "official_local_store_calendar_recovered",
+      "occurrences": 4,
+      "url": "https://www.potterybarnkids.com/stores/us-nj-short-hills-mall-at-short-hills/",
+      "notes": "Official local store page lists all four specific October 2026 sessions. RSVP through the event card. End times not provided. November/December not yet listed, so recurring Friday storytimes are not extrapolated. Exclude furniture-design appointments and baby-gear sales demos.",
+      "newEventRecords": 4,
+      "newByStatus": {
+        "published": 4
+      }
+    },
+    {
+      "sourceId": "pottery-barn-kids-hackensack",
+      "result": "official_local_store_calendar_recovered",
+      "occurrences": 4,
+      "url": "https://www.potterybarnkids.com/stores/us-nj-hackensack-shops-riverside/",
+      "notes": "Official local store page lists all four specific October 2026 sessions. RSVP through the event card. End times not provided. November/December not yet listed, so recurring Friday storytimes are not extrapolated. Exclude furniture-design appointments and baby-gear sales demos.",
+      "newEventRecords": 4,
+      "newByStatus": {
+        "review": 4
+      }
+    },
+    {
+      "sourceId": "pottery-barn-kids-shrewsbury",
+      "result": "official_local_store_calendar_recovered",
+      "occurrences": 4,
+      "url": "https://www.potterybarnkids.com/stores/us-nj-shrewsbury-grove-west/",
+      "notes": "Official local store page lists all four specific October 2026 sessions. RSVP through the event card. End times not provided. November/December not yet listed, so recurring Friday storytimes are not extrapolated. Exclude furniture-design appointments and baby-gear sales demos.",
+      "newEventRecords": 4,
+      "newByStatus": {
+        "review": 4
+      }
+    }
+  ],
+  "refreshSourceIds": [
+    "american-dream",
+    "bell-works-holmdel",
+    "marketfair-family-events",
+    "bergen-town-center",
+    "bridgewater-commons",
+    "home-depot-kids-workshops",
+    "lakeshore-east-brunswick",
+    "menlo-park-mall",
+    "mall-at-short-hills",
+    "woodbridge-center-family",
+    "garden-state-plaza",
+    "paramus-park",
+    "willowbrook-mall",
+    "rockaway-townsquare",
+    "jersey-gardens",
+    "newport-centre",
+    "quaker-bridge-mall",
+    "shops-at-riverside",
+    "jersey-shore-premium-outlets",
+    "jackson-premium-outlets",
+    "freehold-raceway-mall",
+    "livingston-mall",
+    "michaels-kids-events",
+    "lego-bridgewater-commons",
+    "barnes-noble-bridgewater",
+    "apple-bridgewater",
+    "apple-menlo-park",
+    "lowes-kids-club",
+    "toysrus-american-dream",
+    "build-a-bear-family-events",
+    "pottery-barn-kids-events",
+    "pottery-barn-kids-short-hills",
+    "pottery-barn-kids-hackensack",
+    "pottery-barn-kids-shrewsbury"
+  ],
+  "coordinateChecks": {
+    "accepted": [
+      "MarketFair Census address interpolation",
+      "Lakeshore East Brunswick Census address interpolation",
+      "Woodbridge Center official footer Google Maps place coordinates"
+    ],
+    "rejected": [
+      "Census Woodbridge Avenue false match for Woodbridge Center Drive"
+    ],
+    "remaining": "Holmdel, Bergen and Freehold coordinates remain unverified; directions disabled on their held events."
+  },
+  "importResult": {
+    "baselineEventCount": 6528,
+    "totalEventCount": 6745,
+    "newEventCount": 217,
+    "newByStatus": {
+      "review": 182,
+      "published": 35
+    },
+    "newBySource": {
+      "woodbridge-center-family": 4,
+      "american-dream": 126,
+      "pottery-barn-kids-hackensack": 4,
+      "pottery-barn-kids-short-hills": 4,
+      "pottery-barn-kids-shrewsbury": 4,
+      "lego-bridgewater-commons": 2,
+      "michaels-kids-events": 4,
+      "bridgewater-commons": 3,
+      "barnes-noble-bridgewater": 22,
+      "freehold-raceway-mall": 1,
+      "bell-works-holmdel": 14,
+      "lakeshore-east-brunswick": 4,
+      "marketfair-family-events": 15,
+      "newport-centre": 3,
+      "bergen-town-center": 2,
+      "paramus-park": 1,
+      "home-depot-kids-workshops": 4
+    },
+    "pendingTownAssignments": {
+      "East Rutherford": 126,
+      "Hackensack": 4,
+      "Shrewsbury": 4,
+      "Freehold Township": 1,
+      "Holmdel Township": 14,
+      "East Brunswick Township": 4,
+      "West Windsor Township": 15,
+      "Jersey City": 3,
+      "Paramus Borough": 3
+    },
+    "existingRecordsUpdated": 13,
+    "existingRecordIdsUpdated": [
+      "apple-menlo-park-7510460502750101504",
+      "apple-menlo-park-7510461249663369216",
+      "apple-menlo-park-7512976982733586432",
+      "apple-menlo-park-7512976985053036544",
+      "apple-menlo-park-7512976987590590464",
+      "home-depot-kids-workshops-watchung-906-2026-11-07-home-depot-kids-workshop",
+      "home-depot-kids-workshops-bridgewater-947-2026-11-07-home-depot-kids-workshop",
+      "home-depot-kids-workshops-south-plainfield-903-2026-11-07-home-depot-kids-workshop",
+      "home-depot-kids-workshops-colonia-981-2026-11-07-home-depot-kids-workshop",
+      "home-depot-kids-workshops-watchung-906-2026-12-05-home-depot-kids-workshop",
+      "home-depot-kids-workshops-bridgewater-947-2026-12-05-home-depot-kids-workshop",
+      "home-depot-kids-workshops-south-plainfield-903-2026-12-05-home-depot-kids-workshop",
+      "home-depot-kids-workshops-colonia-981-2026-12-05-home-depot-kids-workshop"
+    ],
+    "historyIdsPreserved": true,
+    "registryTownCount": 72,
+    "checkedSources": 34
+  },
+  "limitations": [
+    "This is a one-time verified snapshot through December 31, not a background monitor.",
+    "Unregistered destination municipalities remain review-only under repository policy; confirmed schedules do not imply app visibility.",
+    "No daily occurrences generated from a date-range teaser without active dates/times; no November/December Pottery Barn Kids storytimes extrapolated.",
+    "Age 3 priority does not override official minimum ages (Michaels 4+, Home Depot 5–12, LEGO Blooming Rainbow 9–12).",
+    "Livingston mall domain is parked; Build-A-Bear event URL is broken."
+  ],
+  "validation": {
+    "eventValidation": "passed",
+    "eventWarnings": 187,
+    "projectAudit": "passed",
+    "projectAuditWarnings": 1,
+    "projectAuditWarningDetail": "10 pre-existing visible events have missing summaries",
+    "syntaxCheck": "passed",
+    "diffWhitespaceCheck": "passed",
+    "dataAssertions": [
+      "All 6528 baseline IDs retained",
+      "No unrelated or historical records changed",
+      "All 217 new records within 2026-10-16–2026-12-31",
+      "No duplicate Home Depot store/date occurrences",
+      "Colonia Home Depot future workshops assigned to Woodbridge",
+      "All missing-town and unknown-start-time entries remain review-only",
+      "All new published records have physical address and coordinates"
+    ],
+    "newRecordsPendingTownAssignment": 174,
+    "otherNewReviewRecords": 8
+  }
+}

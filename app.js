@@ -1,5 +1,8 @@
+import { createLocationConsent } from "./location-consent.js";
+
 const TIMEZONE = "America/New_York";
-const APP_VERSION = "20260613-cache-v139";
+const APP_VERSION = "20261016-cache-v140";
+const LOCATION_CHOICE_KEY = "where2go-location-choice-v1";
 const HOME = { lat: 40.619261, lng: -74.490372 };
 const MAPTILER_KEY = String(window.Where2GoConfig?.mapTilerKey || "").trim();
 const MAPTILER_STYLE = String(window.Where2GoConfig?.mapTilerStyle || "streets-v4").trim();
@@ -192,6 +195,33 @@ const elements = {
   installPromptAction: document.querySelector("#installPromptAction"),
   installPromptDismiss: document.querySelector("#installPromptDismiss")
 };
+
+const locationConsent = createLocationConsent({
+  navigator,
+  readChoice: () => readStorageValue(LOCATION_CHOICE_KEY),
+  writeChoice: (choice) => writeStorageValue(LOCATION_CHOICE_KEY, choice),
+  showPrompt: () => {
+    const prompt = document.querySelector("#locationPrompt");
+    if (prompt && mapState.map && !state.driveTimeOrigin) prompt.hidden = false;
+  },
+  hidePrompt: () => {
+    const prompt = document.querySelector("#locationPrompt");
+    if (prompt) prompt.hidden = true;
+  },
+  onStart: () => setControlLoading("locate", true),
+  onPosition: (point) => {
+    setControlLoading("locate", false);
+    moveMapToPoint({ ...point, marker: "user" });
+    trackAreaAnalytics("located_area", nearestCoveredTownArea(point));
+  },
+  onFailure: (error, { automatic }) => {
+    setControlLoading("locate", false);
+    if (!automatic) {
+      const [title] = geolocationErrorMessage(error);
+      setMapMessage(title, "Your map location has not changed. Use a ZIP code or try the location button again.");
+    }
+  }
+});
 
 async function loadJson(path) {
   const url = new URL(path, window.location.href);
@@ -2310,6 +2340,7 @@ function fitMapAroundPoint(point, options = {}) {
 
 function coveredTownBounds() {
   const townCenters = (state.sourceRegistry?.towns || [])
+    .filter((town) => town.coverageStatus !== "requested_regional_destination")
     .map((town) => town?.center)
     .filter(hasCoordinates)
     .map((center) => [center.lat, center.lng]);
@@ -2705,34 +2736,7 @@ function geolocationErrorMessage(error) {
 }
 
 function locateUser() {
-  if (!navigator.geolocation) {
-    setMapMessage("Location is not supported", "Enter a ZIP code instead.");
-    return;
-  }
-  setControlLoading("locate", true);
-  setMapMessage("Finding your location", "Allow location access when prompted.");
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      setControlLoading("locate", false);
-      const point = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      moveMapToPoint({
-        lat: point.lat,
-        lng: point.lng,
-        marker: "user",
-        autoEnableDriveTime: true
-      });
-      trackAreaAnalytics("located_area", nearestCoveredTownArea(point));
-    },
-    (error) => {
-      setControlLoading("locate", false);
-      const [title, body] = geolocationErrorMessage(error);
-      setMapMessage(title, body);
-    },
-    { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
-  );
+  locationConsent.request();
 }
 
 function isPostalCode(value) {
@@ -2825,6 +2829,9 @@ async function handleSearchSubmit(event) {
     return;
   }
 
+  locationConsent.cancel();
+  setControlLoading("locate", false);
+  document.querySelector("#locationPrompt").hidden = true;
   setControlLoading("search", true);
   setMapMessage("Searching", query);
   try {
@@ -3196,6 +3203,9 @@ async function init() {
   renderTermsPanel();
   renderTermsModal();
   render();
+  document.querySelector("#locationAllow")?.addEventListener("click", locateUser);
+  document.querySelector("#locationDefault")?.addEventListener("click", () => locationConsent.decline());
+  void locationConsent.start();
 }
 
 function setupInstallPrompt() {

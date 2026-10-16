@@ -18,7 +18,39 @@ events.json             Source-driven merged event history used by the app
 sample-events.json      Fallback sample events
 source-refresh-runbook.md Generated per-source refresh checklist
 browser-backed-refresh-notes.md Manual/browser refresh paths for blocked sites
+retail-destination-source-audit-2026-10-16.json NJ destination/mall/store refresh evidence and unresolved leads
 ```
+
+### Regional destination and retail refresh
+
+The October 16 retail audit covers American Dream, Bell Works Holmdel, major
+NJ shopping centers, and child/family store programs through December 31, 2026.
+Configured records are verified snapshots, not a live subscription. Refresh the
+official calendar before extending their dates. Ordinary sales, private birthday
+packages, and permanent attraction opening hours are not activity occurrences.
+
+American Dream exposes published schedules through its public read-only query
+`POST https://api.americandream.com/1/adEvents/filter`, with JSON parameters
+`page: -1`, `skip: -1`, `query: ""`, `subCategory: "all-events"`, and
+`published: true`. Respect weekday closures and individual sessions. The detail
+path is `/events/{slug}`; `/events/category/{slug}` can show the general listing.
+Check narrative hours against the schedule: Santa has separate date periods,
+and some event wrappers conflict with their prose. Bell Works' global calendar
+mixes New Jersey and Chicagoland; confirm the actual event address.
+
+Use `--sources` with regional/shared source IDs for a scoped import, for example:
+
+```sh
+/Users/guoyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node scripts/import-source-events.mjs --start 2026-10-16 --days 77 --only configured-regional-events --sources american-dream,bell-works-holmdel,woodbridge-center-family --skip-geocode
+```
+
+Scoped imports preserve other sources and cannot use `--replace`. A configured
+single-date event may specify `id` to retain an existing record's identity when
+replacing an older generic workshop announcement. Do not reuse a fixed `id`
+across multiple dates. Date-only leads use `status: review` and
+`timeStatus: unknown`; their midnight storage value is not a verified start time.
+Destinations outside the town registry remain pending town assignment, even when
+their official activity schedule is confirmed.
 
 ## Three Layers
 
@@ -543,3 +575,49 @@ visible event quality:
 ```bash
 node scripts/audit-project.mjs
 ```
+
+### Preschool and school public events
+
+Town source discovery must also check preschools, childcare centers, public/private schools and official PTA/PTO pages. Apply `event-rules.json` → `eligibilityPolicy.schoolPublicEventPolicy`: verify that outside or prospective families and children may attend each event. Public calendar visibility alone is insufficient. Record ages, registration, cost, residency restrictions and admissions purpose; keep unknown eligibility in review. School closures, internal family events and adults-only admissions sessions are not child outings.
+
+The 2026-10-16 expansion registers West Orange, Roseland, North Brunswick,
+Montville, Montclair, Tewksbury, Readington and Woodbridge (72 towns total), with
+approximately 45-minute discovery coverage. Initial source-family results are in
+`town-expansion-source-audit-2026-10-16.json`; school discovery covers all 72 towns
+in `school-public-source-discovery-2026-10-16.json`. These audits distinguish
+source discovery from verified event access and complete future schedules.
+
+For a scoped refresh, use `--towns` with comma-separated registry ids and
+`--start 2026-10-16 --days 77` for the remaining 2026 window. Scoped refreshes
+preserve other towns and cannot be combined with `--replace`. `--skip-geocode`
+skips address requests when coordinates are already verified or the geocoder is
+rate limited; missing or uncertain coordinates still need review. LibraryCalendar
+list imports follow pagination; LibCal uses campus filters and known branch
+locations instead of assigning every system event to one branch.
+
+### 2026-10-16 data completion and location consent
+
+`data-completion-audit-2026-10-16.json` records the follow-up corrections and
+coordinate evidence. Nine municipalities were explicitly registered for the
+requested regional retail destinations, bringing the registry to 81: the 72 core
+45-minute discovery towns plus nine destination municipalities. The latter are
+marked `requested_regional_destination`; they do not enlarge the default map
+bounds and do not imply a completed town-wide school/library sweep or a verified
+45-minute drive. Census TIGER polygons verify the physical municipality rather
+than relying on the postal city. Destination ZIP lists are intentionally partial.
+
+The follow-up enriches 174 retail records and recovers 150 for publication while
+retaining unresolved schedules and access questions in review. Another 73 town
+assignments and 25 additional coordinates were recovered; a Census result that
+changed a highway address into a different house/street was rejected. Official
+detail pages were also rechecked for missing descriptions. Calendar-only facts
+are identified as such; no unlisted attractions, prices or age limits are inferred.
+
+On first visit the app offers **Use my location** or **Keep Warren**. Browser
+permission remains required; previous grants allow automatic location on return.
+Declining is remembered, and denial, unavailable GPS or timeouts preserve the
+existing default. The map location button remains available to retry. Coordinates
+remain in memory; only the consent choice is saved. A manual ZIP/town search
+cancels any pending location result. Location does not automatically enable the
+external driving-time lookup. Run `node --test tests/location-consent.test.mjs`
+for the consent and fallback checks.

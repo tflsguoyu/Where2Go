@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-13",
+  "updatedAt": "2026-10-16",
   "datePolicy": {
     "refreshStart": "today",
     "defaultLookaheadDays": 60,
@@ -82,7 +82,30 @@
       "explicitly unsafe or inappropriate for children"
     ],
     "exclusionRule": "Exclude only when children clearly cannot attend or the event is clearly not suitable for children. Municipal adult/senior programming such as chair yoga, senior-center movie days, adult wellness classes, and senior camp/social activities should not be imported even when the title contains otherwise kid-compatible words such as yoga, movie, or camp.",
-    "timeExclusionRule": "Exclude events that start at 10 PM or later. Also exclude adult nightlife, club, DJ, drag-party, bar, brewery, or similar late/overnight social events when the content is clearly not kid-appropriate, even if the source tags them as family/community. Do not automatically exclude 9 PM community events such as fireworks or public watch parties; keep them only when children can reasonably attend. For 12 AM-4:59 AM starts, exclude only when the source explicitly gives an overnight/midnight/early-morning time, because some sources use 00:00 as a date-only placeholder."
+    "timeExclusionRule": "Exclude events that start at 10 PM or later. Also exclude adult nightlife, club, DJ, drag-party, bar, brewery, or similar late/overnight social events when the content is clearly not kid-appropriate, even if the source tags them as family/community. Do not automatically exclude 9 PM community events such as fireworks or public watch parties; keep them only when children can reasonably attend. For 12 AM-4:59 AM starts, exclude only when the source explicitly gives an overnight/midnight/early-morning time, because some sources use 00:00 as a date-only placeholder.",
+    "schoolPublicEventPolicy": {
+      "scope": "Publicly accessible preschool, childcare, kindergarten and school events within the requested approximately 45-minute discovery area; prioritize child participation around age 3.",
+      "include": [
+        "Public family festivals, seasonal celebrations, performances, fairs and hands-on workshops",
+        "Open houses, playdates and trial sessions explicitly welcoming prospective families and children; label admissions/recruitment purpose"
+      ],
+      "exclude": [
+        "Enrolled-student or current-school-family-only events",
+        "Parent-teacher conferences, routine school days, closures and enrollment deadlines",
+        "Adults-only admissions information sessions as child outings"
+      ],
+      "publicAccessEvidenceRule": "A publicly readable school calendar alone does not establish public admission. Verify event-specific outsider/prospective-family eligibility using official event text, flyer or registration page. Unknown eligibility stays in review.",
+      "ageEvidenceRule": "A school serving age 3 does not prove every event accepts age 3. Record event-specific ages separately; keep unconfirmed age suitability in review.",
+      "requiredChecks": [
+        "actual venue municipality and address",
+        "date and start/end time",
+        "public/prospective-family eligibility evidence URL",
+        "event age limits and child participation",
+        "registration, price, residency and enrollment restrictions",
+        "admissions purpose when applicable"
+      ],
+      "deduplicationRule": "Deduplicate school-hosted and municipal/PTA-promoted copies of the same event using date, time, venue and event identity."
+    }
   },
   "eventSchemaGuidance": {
     "requiredForRealEvents": [
